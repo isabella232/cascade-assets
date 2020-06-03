@@ -28,7 +28,7 @@ function contextualMenu(atributes) {
       '            <div class="faux-h2">Chapman University</div>\n' +
       '        </a>\n' +
       '        <a class="contextualMenu__toggle" tabindex="-1">\n' +
-      '            <span class="contextualMenu__close"><i class="far fa-times-circle"></i></span>\n' +
+      '            <span class="contextualMenu__close"><span class="far fa-times-circle"></span></span>\n' +
       '        </a>\n' +
       '    </div>\n' +
       '</nav>\n' +

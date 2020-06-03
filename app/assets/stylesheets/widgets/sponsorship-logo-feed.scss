@@ -1,49 +1,86 @@
 #big-sponsor {
-  margin: 1em 0;
-  position: relative;
-  h2.header {
-    color: $grey;
-    text-transform: uppercase;
-    font-size: 1.3em;
-    font-weight: bold;
-    display: inline-block;
-  margin-bottom: 2px;
-  }
-  .jcarousel-clip {
-    overflow: hidden;
-  }
+  margin: 2rem 0;
+
   .carousel {
-    border: 1px solid #bcbcbc;
-    background: $white;
-    li {
-      width: 153px;
-      padding: 1em 0;
-      text-align: center;
-      margin:0 6px;
-      a {
-        border: 0;
+    border: 1px solid $cool-gray;
+
+    button {
+      height: 35px;
+      width: 35px;
+      display: flex;
+      justify-content: center;
+      border: 1px solid $cool-gray;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 1px 2px 8px rgba(0, 0, 0, .5);
+
+      &.slick-prev.slick-arrow {
+        transform: translate(5px, -20px);
+        z-index: 10;
       }
+
+      &.slick-next.slick-arrow {
+        transform: translate(-5px, -20px);
+        z-index: 10;
+      }
+
+      &:before {
+        color: $black;
+        font-size: 16px;
+        margin-top: 3px;
+
+        @-moz-document url-prefix() {
+          & {
+            margin-top: 9px;
+          }
+        }
+
+        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+          & {
+            margin-top: 9px;
+          }
+        }
+      }
+
+      &.slick-prev:before {
+        font-family: "Font Awesome 5 Pro";
+        content: "\f053";
+        font-weight: 400;
+      }
+
+      &.slick-next:before {
+        font-family: "Font Awesome 5 Pro";
+        content: "\f054";
+        margin-left: 3px;
+        font-weight: 400;
+      }
+
+
     }
-    .jcarousel-prev, .jcarousel-next {
-      position: absolute;
-      background-color: $cu-light-grey;
-      color: $cu-red;
-      width: 24px;
-      height: 26px;
-      font-size: 1.5em;
-      text-align: center;
-      cursor: pointer;
+
+    button[aria-disabled="true"] {
+      visibility: hidden;
     }
-    .jcarousel-prev {
-      top: -27px;
-      right: 29px;
-    }
-    .jcarousel-next {
-      top: -27px;
-      right: 0;
-    }
-    .jcarousel-prev-disabled, .jcarousel-next-disabled {
-      color: #bcbcbc;
+
+    ul {
+      height: 200px;
+      display: flex;
+      align-items: center;
+
+      li {
+
+        &:focus-within {
+          outline: auto -webkit-focus-ring-color;;
+          outline-offset: -5px;
+        }
+
+        img { 
+          width: 200px;
+          height: 200px;
+          object-fit: contain;
+          padding: 10px;
+        }
+      }
     }
   }
 }

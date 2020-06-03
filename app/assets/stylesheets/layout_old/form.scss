@@ -58,7 +58,7 @@
   background-color: #f5f5f5;
   color: #313131;
   padding: 25px 45px 45px; 
-  border: 1px solid v(cu-light-grey);
+  @include v(border, solid-grey);
 }
 
 /************ these responsiveForm used in surrounding DIV for all full page forms ************/

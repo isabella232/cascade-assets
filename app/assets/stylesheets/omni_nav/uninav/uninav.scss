@@ -82,7 +82,6 @@ html {
 
   .gssb_c,
   .gssb_c[style] {
-    // z-index: var(--uninavZindex) ;
     z-index: calc($uninavZindex + 2);
   }
 
@@ -166,7 +165,7 @@ html {
           list-style: none;
           color: $panther-black;
           @include uninav-drop-shadow;
-          @include qbal-slideLeft-enter;
+          // @include qbal-slideLeft-enter;
 
           a {
             @include button($red);
@@ -281,6 +280,11 @@ html {
 
       .uninav__login {
         border-right: none;
+
+        &:focus,
+        &:focus-within {
+          border: 2px dotted $cu-red;
+        }
 
         li {
           border-right: none;
@@ -408,7 +412,7 @@ html {
     }
 
     &__pipe {
-      border-right: 1px solid var(--cu-light-grey);
+      @include v(border-right, solid-grey);
       width: auto;
       height: 25px;
     }
@@ -890,6 +894,7 @@ html {
   #uninav {
     grid-template-areas: "hamburger logo utility";
     grid-template-columns: 10% 40% 50%;
+    -ms-grid-columns: .25fr 1fr 1fr;
     height: 60px;
 
     .uninav {
@@ -914,8 +919,10 @@ html {
       &__hamburger-menu {
         grid-area: "hamburger";
         display: grid;
+        -ms-grid-column: 1;
         align-items: center;
         justify-content: center;
+        z-index: 10;
         @include qbal-slideRight-enter;
 
         .fas.fa-bars {
@@ -965,6 +972,11 @@ html {
       width: auto;
       @include qbal-grow-enter;
       border-bottom: none;
+
+      @media all and (-ms-high-contrast:none) {
+        -ms-grid-column: 2;
+        -ms-grid-column-span: 1;
+      }
     }
 
     &__utility-nav--wrapper {

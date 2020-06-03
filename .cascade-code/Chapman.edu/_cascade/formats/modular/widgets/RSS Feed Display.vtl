@@ -1,0 +1,9 @@
+#macro(outputRssFeedDisplayWidget $element)
+    #set ( $rssFeedDisplay  = $_XPathTool.selectSingleNode($element, 'rssFeedDisplay') )
+    #set ( $rssFeedUrl      = $rssFeedDisplay.getChild('feedUrl').value)
+    #set ( $backgroundColor = $rssFeedDisplay.getChild('bgColor').value)
+    #set ( $title           = $rssFeedDisplay.getChild('feedTitle').value)
+    <div data-rss-feed="${_EscapeTool.xml($rssFeedUrl)}" data-bg-color="${backgroundColor}" class="rss-feed-display-widget">
+        <h2 class="rss-feed-display____title">${_EscapeTool.xml($title)}</h2>
+    </div>
+#end

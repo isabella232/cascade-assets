@@ -13,9 +13,16 @@ $(function () {
     $('.counter').each(function(idx) {
       var $this = $(this),
           countTo = $this.attr('data-count');
+      
       if( $this.isOnScreen() && !byTheNumberscounted['counter' + idx] ) {
         byTheNumberscounted['counter' + idx] = true;
-        $({ countNum: $this.text()}).animate({
+
+        if (isNaN(countTo)) {
+          $this.text(countTo);
+          return;
+        }
+
+        $({ countNum: $this.text() }).animate({
           countNum: countTo
         },
         {

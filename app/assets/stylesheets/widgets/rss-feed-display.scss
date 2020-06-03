@@ -1,0 +1,121 @@
+.rss-feed-display-widget {
+  margin: 2rem 0;
+  .text--link {
+    border-bottom: 2px solid currentColor;
+  }
+
+  .rss-feed-item {
+    &__container {
+      display: flex;
+      align-items: center;
+      height: 10rem;
+      margin: 2rem 0;
+      width: 100%;
+      opacity: 1;
+      transition: opacity 1s;
+
+      @include respond(phone) {
+        flex-direction: column;
+        height: auto;
+      }
+    }
+
+    &__description-container {
+      align-items: center;
+      margin: 0 0 0 2rem;
+      width: 70%;
+      font-family: 'futura-pt';
+
+      @include respond(phone) {
+        & {
+          width: 100%;
+          margin: 1rem 0 0 0;
+          padding: 0 2rem;
+        }
+      }
+    }
+
+    &__description-text {
+      display: inline;
+
+      @include respond(phone) {
+        & {
+          display: block;
+        }
+      }
+    }
+
+    &__link {
+      font-weight: bold;
+      border-bottom: 2px dotted currentColor;
+
+      &:after {
+        content: '-';
+        padding: 0 4px;
+      }
+    }
+
+    &__date-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 65%;
+      width: 20%;
+      border-right: 1px solid #ccc;
+      text-align: center;
+
+      @include respond(phone) {
+        & {
+          width: 100%;
+          display: block;
+          padding: 0 2rem;
+          margin: 1.5rem 0 0 0;
+          text-align: start;
+        }
+      }
+    }
+
+    &__date {
+      margin: 0;
+      font-family: futura-pt;
+
+      @include respond(phone) {
+        & {
+          display: inline;
+        }
+      }
+    }
+
+    &__time {
+      font-family: futura-pt;
+      margin-bottom: 0;
+
+      @include respond(phone) {
+        & {
+          display: inline;
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+
+  &__button {
+    font-family: futura-pt; 
+    font-weight: bold;
+    width: 100%;
+    height: 6rem;
+    border-radius: 5px;
+  }
+
+  .hidden-rss-item {
+    height: 0;
+    width: 0;
+    opacity: 0;
+    visibility: hidden;
+    @include respond(phone) {
+      & {
+        display: none;
+      }
+    }
+  }
+}

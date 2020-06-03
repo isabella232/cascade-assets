@@ -12,17 +12,169 @@ $breakpoint arguement choices:
 ORDER: Base + typography > general layout + grid > page layout > components
 1em = 16px
 */
+@keyframes sonar-pulse {
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 0 35px rgba(0, 0, 0, 0);
+  }
+}
+
+@-webkit-keyframes sonar-pulse-circular {
+  0% {
+    box-shadow: 0 0 0 0 rgba(165, 0, 52, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 30px rgba(165, 0, 52, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(165, 0, 52, 0);
+  }
+}
+
+@keyframes sonar-pulse-circular {
+  0% {
+    box-shadow: 0 0 0 0 rgba(165, 0, 52, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 30px rgba(165, 0, 52, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(165, 0, 52, 0);
+  }
+}
+
 /* These are colors commonly found on the site.
 Typically, if a color is used more than once or twice,
 it should be added here as a variable. Changing the value
 of these variables will affect the colors sitewide. */
 /* These are colors of common elements or states. */
 /* These colors are specifically for the class "newbutton". */
-/* These are theme specific colors. I moved them here
-to make it easier to edit the colors for each theme
-all in one place. Variables prefixed with "theme" are
-colors found in multiple themes. The others are specific
-to a theme. */
 /* Our Base Spacing Unit: Use multiples of this variable */
 /* Widget specific colors */
 /* Omninav height. Be sure to cross reference getOmninavHeight() in omni-nav-2.js if changes are made to the height*/
+/* Borders */
+:root {
+  --color-cu-red: #a50034;
+  --color-cu-red-rgb-transparent: rgba(165, 0, 52, 0.95);
+  --color-cu-dark-red: #851c2b;
+  --color-cu-off-white: #f7f6f0;
+  --color-cu-light-grey: #eaeaea;
+  --color-cu-light-grey-2: #ddd;
+  --color-cu-warm-light-grey: #eaeaea;
+  --color-cardinal: #a50034;
+  --color-cardinal-hover: #810029;
+  --color-pillar: #686259;
+  --color-panther-black: #231f20;
+  --color-pb: #231f20;
+  --color-theme-bg-color-alpha: transparent;
+  --color-cu-black: #231f20;
+  --color-red-button-hover: #c8003f;
+  --color-red-button-active: #88002b;
+  --color-white: white;
+  --color-brown: #896d49;
+  --color-teal: #25b6a5;
+  --color-teal-hover: #24d4bf;
+  --color-teal2: #02bac2;
+  --color-teal2-hover: #01cdd4;
+  --color-teal2-light: #a6ddd1;
+  --color-red: #a50034;
+  --color-red-secondary: #ce0041;
+  --color-red-tertiary: #7c0027;
+  --color-red-hover: #ce0041;
+  --color-red-active: #7f0026;
+  --color-grey: #2f2f2f;
+  --color-grey-hover: #4c4b45;
+  --color-grey2: #6e6e66;
+  --color-grey2-hover: #918e87;
+  --color-white-alpha: rgba(255, 255, 240, 0.8);
+  --color-white-alpha-50: rgba(255, 255, 240, 0.5);
+  --color-sand: #f6f2e8;
+  --color-sand-alpha: rgba(246, 242, 232, 0.8);
+  --color-slate: #666;
+  --color-cu-font-color: #2f2f2f;
+  --color-cu-link-hover: #bb223c;
+  --color-cu-link-down: #851c2b;
+  --color-cu-form-shadow: #797564;
+  --color-cu-border: #a58f75;
+  --color-new-button-primary: #01cdd4;
+  --color-new-button-secondary: #02bac2;
+  --color-new-button-hover-primary: #a6ddd1;
+  --color-new-button-hover-secondary: #02bac2;
+  --color-theme-light-grey: #dbdfcf;
+  --color-grey-light: #ccc;
+  --color-light-grey: #ccc;
+  --color-uninav-light-grey: #ddd;
+  --color-theme-yellow: #d4e13c;
+  --color-theme-blue: #006185;
+  --color-asbe-primary: #a50034;
+  --color-asbe-secondary: #ce0041;
+  --color-asbe-tertiary: #7c0027;
+  --color-education-primary: #a50034;
+  --color-education-secondary: #ce0041;
+  --color-education-tertiary: #7c0027;
+  --color-communication-primary: #a50034;
+  --color-communication-secondary: #ce0041;
+  --color-communication-tertiary: #7c0027;
+  --color-copa-primary: #a50034;
+  --color-copa-secondary: #ce0041;
+  --color-copa-tertiary: #7c0027;
+  --color-crean-primary: #a50034;
+  --color-crean-secondary: #ce0041;
+  --color-crean-tertiary: #7c0027;
+  --color-dance-primary: #a50034;
+  --color-dance-secondary: #ce0041;
+  --color-dance-tertiary: #7c0027;
+  --color-dodge-primary: #a50034;
+  --color-dodge-secondary: #ce0041;
+  --color-dodge-tertiary: #7c0027;
+  --color-music-primary: #a50034;
+  --color-music-secondary: #7c0027;
+  --color-music-tertiary: #ce0041;
+  --color-pharmacy-primary: #a50034;
+  --color-pharmacy-secondary: #ce0041;
+  --color-pharmacy-tertiary: #7c0027;
+  --color-scst-primary: #a50034;
+  --color-scst-secondary: #ce0041;
+  --color-scst-tertiary: #7c0027;
+  --color-theatre-primary: #a50034;
+  --color-theatre-secondary: #ce0041;
+  --color-theatre-tertiary: #7c0027;
+  --color-wilkinson-primary: #a50034;
+  --color-wilkinson-secondary: #ce0041;
+  --color-wilkinson-tertiary: #7c0027;
+  --color-law-primary: #a50034;
+  --color-law-secondary: #810029;
+  --font-size-html: 62.5%;
+  --font-size-body: 1.6rem;
+  --font-leading-body: 2.4rem;
+  --font-family-futura-regular: "futura-pt", Arial, sans-serif;
+  --font-family-futura: "futura-pt", Arial, sans-serif;
+  --font-family-futura-condensed: "futura-pt-condensed", Arial, sans-serif;
+  --font-family-arial: Arial, sans-serif;
+  --font-family-minion: "minion-pro", Arial, serif;
+  --font-family-font-stack-body: Arial, sans-serif;
+  --font-family-font-stack-heading: "futura-pt", Arial, sans-serif;
+  --font-family-font-stack-heading-emphasis: "futura-pt-condensed", Arial, sans-serif;
+  --space-uninav-div-height: 60px;
+  --space-utility-button-width: 60px;
+  --space-base-spacing: 16px;
+  --space-widget-margin-top: 30px;
+  --space-30px: 30px;
+  --space-omniNavHeightDesktop: 60px;
+  --space-omniNavHeightMobile: 123px;
+  --space-uninav-total-height: 120px;
+  --space-uninav-height-mobile: 60px;
+  --space-content-padding: 2%;
+  --space-line-height: 2.4rem;
+  --space-medium-spacing: 20px;
+  --space-zIndexTopmost: 9999999999999992;
+  --space-smallImgSize: 200px;
+  --space-standardPadding: 5%;
+  --space-mastheadVideoHeight: 600px;
+  --border-red-dots: 2px dotted #a50034;
+  --border-solid-grey: 1px solid #eaeaea;
+  --border-medium-solid-panther-black: 3px solid #231f20;
+  --border-cu-red: #a50034;
+}

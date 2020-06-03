@@ -5,10 +5,9 @@
 }
 
 .contact-profile-widget {
-  --spacing: 20px;
   text-align: center;
-  margin-top: v(spacing);
-  margin-bottom: v(spacing);
+  @include v(margin-top, medium-space);
+  @include v(margin-bottom, medium-space);
   display: -ms-grid;
   display: grid;
   -webkit-box-pack: center;
@@ -69,7 +68,7 @@
     }
 
     &__email {
-      margin-bottom: v(spacing);
+      @include v(margin-bottom, medium-space);
       padding-bottom: 30px;
     }
   }

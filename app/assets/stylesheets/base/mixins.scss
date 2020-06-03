@@ -32,36 +32,41 @@ ORDER: Base + typography > general layout + grid > page layout > components
   @if $breakpoint==phone {
     @media only screen and (max-width: 37.5em) {
       @content;
-    } //600px
+    }
+
+    //600px
   }
 
   @if $breakpoint==small {
     @media only screen and (max-width: 47em) {
       @content;
-    } // 767px
+    }
+
+    // 767px
   }
 
   @if $breakpoint==tab-port {
     @media only screen and (max-width: 56.5em) {
       @content;
-    } //900px
+    }
+
+    //900px
   }
 
   @if $breakpoint==tab-land {
     @media only screen and (max-width: 75em) {
       @content;
-    } //1200px
+    }
+
+    //1200px
   }
 
-  @if $breakpoint==desktop {
-    @media only screen and (min-width: 75.062em) {
-      @content;
-    } //1201
-  }
   @if $breakpoint==big-desktop {
     @media only screen and (min-width: 112.5em) {
       @content;
-    } //1800
+    }
+
+    //1800
   }
 }
 
@@ -75,6 +80,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
 // https://stackoverflow.com/a/13550716/6763239
 @mixin bp($point, $val: 0) {
   @if $point==s {
+
     // Mobile
     @media (min-width: 420px) {
       @content;
@@ -82,6 +88,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
   }
 
   @if $point==sx {
+
     // Mobile
     @media (max-width: 420px) {
       @content;
@@ -92,6 +99,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
   // not sure what changing it would break.
   // Use this instead: bp(wildcard-min, 767px)
   @if $point==m {
+
     // Medium
     @media (min-width: 780px) {
       @content;
@@ -99,6 +107,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
   }
 
   @if $point==mx {
+
     // Medium
     @media (max-width: 767px) {
       @content;
@@ -106,6 +115,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
   }
 
   @if $point==l {
+
     // Large
     @media (min-width: 1024px) {
       @content;
@@ -113,6 +123,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
   }
 
   @if $point==lx {
+
     // Large
     @media (max-width: 1024px) {
       @content;
@@ -120,6 +131,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
   }
 
   @if $point==xl {
+
     // Extra-Large
     @media (min-width: 1200px) {
       @content;
@@ -127,6 +139,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
   }
 
   @if $point==xlx {
+
     // Extra-Large
     @media (max-width: 1200px) {
       @content;
@@ -134,6 +147,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
   }
 
   @if $point==wildcard-min {
+
     // Uses variable breakpoint.
     @media (min-width: #{$val}) {
       @content;
@@ -141,6 +155,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
   }
 
   @if $point==wildcard-max {
+
     // Uses variable breakpoint.
     @media (max-width: #{$val}) {
       @content;
@@ -201,7 +216,9 @@ ORDER: Base + typography > general layout + grid > page layout > components
   @if $inset==false {
     -webkit-box-shadow: $hoffset $voffset $blur $spread $color;
     box-shadow: $hoffset $voffset $blur $spread $color;
-  } @else {
+  }
+
+  @else {
     -webkit-box-shadow: inset $hoffset $voffset $blur $spread $color;
     box-shadow: inset $hoffset $voffset $blur $spread $color;
   }
@@ -217,7 +234,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
 
 @mixin opacity($i) {
   $forie: $i * 100;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" + $forie + ")";
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+ $forie + ")";
   filter: alpha(opacity=$forie);
   opacity: $i;
 }
@@ -238,9 +255,11 @@ ORDER: Base + typography > general layout + grid > page layout > components
   margin-top: 12px;
   margin-bottom: 24px;
 
-  @if type-of($weight) ==string {
+  @if type-of($weight)==string {
     font-weight: unquote($weight);
-  } @else {
+  }
+
+  @else {
     font-weight: $weight;
   }
 
@@ -259,9 +278,11 @@ ORDER: Base + typography > general layout + grid > page layout > components
   font-family: $font-stack-heading;
   font-size: 32px;
 
-  @if type-of($weight) ==string {
+  @if type-of($weight)==string {
     font-weight: unquote($weight);
-  } @else {
+  }
+
+  @else {
     font-weight: $weight;
   }
 
@@ -273,9 +294,11 @@ ORDER: Base + typography > general layout + grid > page layout > components
   font-size: 22px;
   line-height: 26px;
 
-  @if type-of($weight) ==string {
+  @if type-of($weight)==string {
     font-weight: unquote($weight);
-  } @else {
+  }
+
+  @else {
     font-weight: $weight;
   }
 
@@ -294,9 +317,11 @@ ORDER: Base + typography > general layout + grid > page layout > components
   font-family: $font-stack-heading;
   font-size: 18px;
 
-  @if type-of($weight) ==string {
+  @if type-of($weight)==string {
     font-weight: unquote($weight);
-  } @else {
+  }
+
+  @else {
     font-weight: $weight;
   }
 
@@ -307,9 +332,11 @@ ORDER: Base + typography > general layout + grid > page layout > components
   font-family: $font-stack-heading;
   font-size: 14px;
 
-  @if type-of($weight) ==string {
+  @if type-of($weight)==string {
     font-weight: unquote($weight);
-  } @else {
+  }
+
+  @else {
     font-weight: $weight;
   }
 
@@ -464,9 +491,51 @@ ORDER: Base + typography > general layout + grid > page layout > components
   text-transform: uppercase;
 }
 
-// write CSS variables without like "v(thevariable);"
-@function v($var) {
-  @return var(--#{$var});
+// the variable mixin takes a property and variable name 
+// and an optional override to hide the fallback
+@mixin v($prop, $var, $show-fall: true) {
+  // get the property's map name(s)
+  $map-name: map-get($props, $prop);
+  $nest-name: null;
+  $nest-map-name: null;
+  $map: null;
+  $var-fall: null;
+  $var-output: null;
+
+  // if a list, we need to go deeper
+  @if type-of($map-name)==list {
+    $nest-name: nth($map-name, 1);
+    $nest-map-name: nth($map-name, 2);
+  }
+
+  // if it is a nested map
+  @if $nest-name {
+    // get the map from nested map-name
+    $map: map-get($var-maps, $nest-name);
+    // get the nested map
+    $nest-map: map-get($map, $nest-map-name);
+    // fallback value, get the var value from the nested map
+    $var-fall: map-get($nest-map, $var);
+    // our css4 variable output
+    $var-output: var(--#{$nest-name}-#{$nest-map-name}-#{$var});
+  }
+
+  @else {
+    // get the map from map name
+    $map: map-get($var-maps, $map-name);
+    // fallback value, grab the variable's value from the map
+    $var-fall: map-get($map, $var);
+    // our css4 variable output
+    $var-output: var(--#{$map-name}-#{$var});
+  }
+
+  // if show fallback is not overridden to be null
+  @if $show-fall {
+    #{$prop}: $var-fall;
+  }
+
+  // css4 variable output
+  #{$prop}: $var-output;
 }
 
 // @include dotted-underline($cu-red, 2px);
@@ -478,16 +547,25 @@ ORDER: Base + typography > general layout + grid > page layout > components
   background-image: -webkit-linear-gradient(to right, $color 10%, rgba(165, 0, 52, 1) 0%);
 }
 
+
+
 // button mixin
 @mixin button-bg($bg) {
   --padding: 15px;
+  --border-radius: 4px;
+  --font-weight: 400;
+  --font-size: 2rem;
+  --font-family: 400;
+  --padding-top: 10px;
+  --padding-bottom: 15px;
+
   background-color: $bg;
-  border-radius: 4px;
-  font-size: 2rem;
-  font-family: $futura-regular;
-  font-weight: 400;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  border-radius: var(--border-radius);
+  font-size: var(--font-size);
+  font-family: var(--futura-regular);
+  font-weight: var(--font-weight);
+  padding-top: var(--padding-top);
+  padding-bottom: var(--padding-bottom);
   @include dc($bg);
 
   &:hover {
@@ -505,15 +583,13 @@ ORDER: Base + typography > general layout + grid > page layout > components
   border-bottom: 2px dotted ($color);
 }
 
-@mixin focus($color) {
-  outline: 2px dotted ($color);
-}
-
 // automatic text contrast https://codepen.io/kevinpowell/pen/45ed86610f4fbdb2d05c8d6261e45b75
 @function text($bg) {
   @if (lightness($bg) > 50) {
     @return $panther-black;
-  } @else {
+  }
+
+  @else {
     @return $white;
   }
 }
@@ -578,25 +654,25 @@ ORDER: Base + typography > general layout + grid > page layout > components
   ul li {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid v(cu-light-grey);
+    @include v(border-bottom, solid-grey);
 
     a,
     .drill-down-parent {
       font-family: "futura-pt", arial, sans-serif;
       line-height: 1.8rem;
-      color: v(panther-black);
+      @include v(color, panther-black);
       padding: 15px 15px 15px 30px;
       width: 100%;
 
       &:hover,
       &:focus {
-        color: v(cu-red);
+        @include v(color, cu-red);
         margin-left: 2px;
         transition: all 0.175s ease-in-out;
         animation-delay: -0.75ms;
 
-        & + .toggle-drilldown {
-          color: v(cu-red);
+        &+.toggle-drilldown {
+          @include v(color, cu-red);
 
           .fa-chevron-right {
             transform: scale(1.2);
@@ -627,6 +703,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
           }
 
           @-moz-keyframes fadein {
+
             /* Firefox */
             from {
               opacity: 0;
@@ -638,6 +715,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
           }
 
           @-webkit-keyframes fadein {
+
             /* Safari and Chrome */
             from {
               opacity: 0;
@@ -649,6 +727,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
           }
 
           @-o-keyframes fadein {
+
             /* Opera */
             from {
               opacity: 0;
@@ -674,7 +753,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
       width: 7rem;
 
       &:hover {
-        color: v(cu-red);
+        @include v(color, cu-red);
         transform: scale(1.2);
         transition: all 0.175s ease-in-out;
         animation-delay: 500ms;
@@ -693,10 +772,10 @@ ORDER: Base + typography > general layout + grid > page layout > components
         }
 
         .fas {
-          color: v(cu-red);
+          @include v(color, cu-red);
 
           &:hover {
-            color: v(cu-red);
+            @include v(color, cu-red);
           }
         }
       }
@@ -720,16 +799,16 @@ ORDER: Base + typography > general layout + grid > page layout > components
 
       li {
         a {
-          color: v(white);
+          @include v(color, white);
           font-weight: bold;
           text-transform: uppercase;
           font-size: 1.4rem;
           letter-spacing: 0.5px;
-          background-color: v(cu-red);
+          @include v(background-color, cu-red);
 
           &:hover {
-            background-color: v(panther-black);
-            color: v(white);
+            @include v(background-color, panther-black);
+            @include v(color, white);
           }
         }
       }
@@ -755,7 +834,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
 
           &.home-menu {
             &:focus-within {
-              outline-color: v(panther-black);
+              @include v(outline-color, panther-black);
               outline-style: auto;
               outline-width: 5px;
             }
@@ -766,7 +845,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
       .menu-back {
         justify-content: start;
         align-items: center;
-        background: v(panther-black);
+        @include v(background-color, panther-black);
         color: $white;
         font-weight: bold;
         line-height: 1.6rem;
@@ -802,11 +881,12 @@ ORDER: Base + typography > general layout + grid > page layout > components
     }
 
     &.home-menu {
-      background: v(panther-black);
+      @include v(background, panther-black);
       font-weight: bold;
       color: $white;
 
-      i {
+      i,
+      span {
         padding: 20px 0px 20px 30px;
       }
 
@@ -823,5 +903,66 @@ ORDER: Base + typography > general layout + grid > page layout > components
 
   .off-canvas-menu-container .off-canvas-cta a:hover {
     margin-left: 0;
+  }
+}
+
+// USAGE
+// .example-1
+// {
+//      animation: sonar-pulse 1s infinite;
+// }
+@keyframes sonar-pulse {
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+  }
+
+  100% {
+    box-shadow: 0 0 0 35px rgba(0, 0, 0, 0);
+  }
+}
+
+// circular sonar pulse effect
+@-webkit-keyframes sonar-pulse-circular {
+  0% {
+    box-shadow: 0 0 0 0 rgba(165, 0, 52, 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 30px rgba(165, 0, 52, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(165, 0, 52, 0);
+  }
+}
+
+@keyframes sonar-pulse-circular {
+  0% {
+    box-shadow: 0 0 0 0 rgba(165, 0, 52, 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 30px rgba(165, 0, 52, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(165, 0, 52, 0);
+  }
+}
+
+
+// Ripple effect for clicks (https://codepen.io/finnhvman/post/pure-css-ripple-with-minimal-effort)
+@mixin ripple($focus-color, $active-color) {
+  background-position: center;
+  transition: background 0.5s;
+
+  &:hover {
+    background: $focus-color radial-gradient(circle, transparent 1%, $focus-color 1%) center/15000%;
+  }
+
+  &:active {
+    background-color: $active-color;
+    background-size: 100%;
+    transition: background 0s;
   }
 }

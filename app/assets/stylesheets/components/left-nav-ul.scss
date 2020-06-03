@@ -1,144 +1,162 @@
 .leftNav {
-	> ul {
-    float: left;
-    width: 100%;
-    background-color: #d8d8d8;
-    border-right: 1px solid v(cu-light-grey);
-    border-bottom: 1px solid v(cu-light-grey);
-    border-left: 1px solid v(cu-light-grey);
-    position: relative;
-    margin-bottom: 20px;
+	>ul {
+		float: left;
+		width: 100%;
+		background-color: #d8d8d8;
+		@include v(border-right, solid-grey);
+		@include v(border-bottom, solid-grey);
+		@include v(border-left, solid-grey);
+		position: relative;
+		margin-bottom: 20px;
 
-    li {
-      list-style-type: none;
-      margin: 0;
-    }
+		li {
+			list-style-type: none;
+			margin: 0;
+		}
 
-    > li {
-			&.active > {
+		>li {
+			&.active> {
 				a {
-	        background-color: $white;
-	      }
-	      ul {
-	        display: block;
-	        background: $white;
-	        @include bp(l) {
-	          display: block;
-	        }
-	      }
+					background-color: $white;
+				}
+
+				ul {
+					display: block;
+					background: $white;
+
+					@include bp(l) {
+						display: block;
+					}
+				}
 			}
 
 			> {
 				ul {
 					display: none;
-	        padding: 0 15px 10px 18px;
-          a {
-	          text-indent: -13px;
-	        }
-	        li {
-	          padding: 1px 5px 5px 16px;
-	        }
-	        > li > ul {
-	          display: none !important;
-	          padding: 0 0 10px 0;
-	        }
+					padding: 0 15px 10px 18px;
+
+					a {
+						text-indent: -13px;
+					}
+
+					li {
+						padding: 1px 5px 5px 16px;
+					}
+
+					>li>ul {
+						display: none !important;
+						padding: 0 0 10px 0;
+					}
 				}
+
 				a {
-					border-top: 1px solid v(cu-light-grey);
-	        font-size: 16px;
-          color: #383838;
-	        padding: 7px 40px 7px 20px;
-	        position: relative;
-	        &:hover {
-	        	background-color: $white;
-	          color: $cu-red;
-	          .plus {
-              text-decoration: none;
-            }
-	        }
-	        &.is-open {
-	          background-color: $white;
-	          font-weight: 700;
-	        }
-	        .plus {
-	        	// background-image: image-url('leftNavOpenClose.png');
-	          background-image: image-url('miscButtons.png');
-	          background-repeat: no-repeat;
-	          // background-position: 7px center;
-	          background-position: -79px 0px;
-	          // background-position: -15px 1px;
-	          // background-size: 105px;
-	          text-indent: -50px;
-	          position: absolute;
-	          right: 12px;
-	          top: 6px;
-	          width: 21px;
-	          height: 21px;
-	          overflow: hidden;
-	          visibility: hidden;
-	          display: block;
-	          &:hover {
-	            background-position: -101px 0px;
-	          }
-	          &.open {
-	            background-position: -79px -22px;
-	            &:hover {
-	              background-position: -101px -22px;
-	            }
-	          }
-	        }
+					@include v(border-top, solid-grey);
+					font-size: 16px;
+					color: #383838;
+					padding: 7px 40px 7px 20px;
+					position: relative;
+
+					&:hover {
+						background-color: $white;
+						color: $cu-red;
+
+						.plus {
+							text-decoration: none;
+						}
+					}
+
+					&.is-open {
+						background-color: $white;
+						font-weight: 700;
+					}
+
+					.plus {
+						// background-image: image-url('leftNavOpenClose.png');
+						background-image: image-url('miscButtons.png');
+						background-repeat: no-repeat;
+						// background-position: 7px center;
+						background-position: -79px 0px;
+						// background-position: -15px 1px;
+						// background-size: 105px;
+						text-indent: -50px;
+						position: absolute;
+						right: 12px;
+						top: 6px;
+						width: 21px;
+						height: 21px;
+						overflow: hidden;
+						visibility: hidden;
+						display: block;
+
+						&:hover {
+							background-position: -101px 0px;
+						}
+
+						&.open {
+							background-position: -79px -22px;
+
+							&:hover {
+								background-position: -101px -22px;
+							}
+						}
+					}
 				}
 			}
 		}
 	}
 
 	ul.is-open {
-	  background: $white;
+		background: $white;
 	}
-  a {
-    font-family: $font-stack-body;
-    display: block;
-    padding: 7px 0 0 0;
-  }
-  .active > {
-    a {
-      font-weight: 700;
-    }
-    ul > li > a > .bullet {
-      display: none;
-      color: $cu-red;
-    }
-  }
+
+	a {
+		font-family: $font-stack-body;
+		display: block;
+		padding: 7px 0 0 0;
+	}
+
+	.active> {
+		a {
+			font-weight: 700;
+		}
+
+		ul>li>a>.bullet {
+			display: none;
+			color: $cu-red;
+		}
+	}
 }
 
 .leftTitle {
-	> ul {
-    float: left;
-    width: 100%;
-    background-color: #2f2f2f;
+	>ul {
+		float: left;
+		width: 100%;
+		background-color: #2f2f2f;
 
-	position: relative;
-    margin-bottom: 0px;
-    li {
-      list-style-type: none;
-      margin: 0;
+		position: relative;
+		margin-bottom: 0px;
 
-      a {
-      	padding: 7px 40px 7px 20px;
-      	font-size:16px;
-      	color: $white;
-      	font-weight: 600;
-      	border: 1px solid #2f2f2f;
-        position: relative;
-      	&:hover {
-	        	background-color: $white;
-	          	color: $cu-red;
-	          	border-top: 1px solid v(cu-light-grey);
-	          	border-left: 1px solid v(cu-light-grey);
-	          	border-right: 1px solid v(cu-light-grey);
-	          	border-bottom: 1px solid #f5f5f5;
-            	}
-      		}
-    	}
-    }
+		li {
+			list-style-type: none;
+			margin: 0;
+
+			a {
+				padding: 7px 40px 7px 20px;
+				font-size: 16px;
+				color: $white;
+				font-weight: 600;
+				border: 1px solid #2f2f2f;
+				position: relative;
+
+				&:hover {
+					background-color: $white;
+					color: $cu-red;
+					@include v(border-top, solid-grey);
+					@include v(border-left, solid-grey);
+					@include v(border-right, solid-grey);
+					border-bottom: 1px solid #f5f5f5;
+				}
+			}
+		}
+	}
 }

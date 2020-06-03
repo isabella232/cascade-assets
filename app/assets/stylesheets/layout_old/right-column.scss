@@ -28,7 +28,7 @@
 
   .styleOne {
     background-color: #d8d8d8;
-    border: 1px solid v(cu-light-grey);
+    @include v(border, solid-grey);
     color: #313131;
     vertical-align: top;
     line-height: 20px;
@@ -49,17 +49,17 @@
   }
 
   .styleTwo {
-    background-color: v(cu-light-grey);
-    color: v(panther-black);
+    @include v(color, panther-black);
+    @include v(background-color, panther-black);
     position: relative;
     overflow: hidden;
 
     h2 {
-      color: v(panther-black);
+      @include v(color, panther-black);
     }
 
     a {
-      color: v(panther-black);
+      @include v(color, panther-black);
       font-weight: 400;
       border-bottom: 2px dotted #adadad;
     }

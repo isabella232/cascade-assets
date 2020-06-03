@@ -1,0 +1,98 @@
+#uninav-static-placeholder {
+
+    .uninav__logo,
+    .uninav__global-nav,
+    .uninav__utility-nav--wrapper,
+    .uninav__cta {
+        filter: blur(3px);
+        -webkit-filter: blur(3px);
+    }
+
+    .svg-inline--fa.fa-window-close.fa-w-16 {
+        @include v(color, panther-black);
+        max-width: 25px;
+        float: left;
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin-left: 5px;
+        margin-top: 5px;
+        cursor: pointer;
+    }
+
+    .uninav-static-placeholder__notice {
+        position: absolute;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        width: 100vw;
+        align-content: center;
+        align-items: center;
+        z-index: 2;
+        font-weight: bold;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding-left: 50px;
+        padding-right: 50px;
+        flex-wrap: wrap;
+
+        .line-two {
+            font-weight: normal;
+        }
+    }
+
+    .off-canvas-umbrella-navigation-static__notice {
+        height: 100vh;
+        display: grid;
+        align-content: center;
+        padding: 25px;
+    }
+
+    #uninav {
+
+        .uninav__cta,
+        .uninav__logo,
+        .uninav__global-nav,
+        .uninav__utility-nav-wrapper,
+        .uninav__logo--contextual,
+        .uninav__menu-item-flex.uninav__menu-item-flex--utility {
+            @include qbal-fade-enter;
+            animation-delay: 3s;
+            animation-duration: 5s;
+        }
+    }
+
+    @include respond(tab-port) {
+        .uninav-static-placeholder__notice {
+            font-size: 1.2rem;
+            height: 80px;
+            background-color: $white;
+        }
+
+        .line-two,
+        .fa-paw {
+            display: none !important;
+        }
+    }
+}
+
+.three-column-template,
+.two-column-template {
+    #uninav-static-placeholder {
+        .uninav__umbrella-nav-button-container {
+            display: none !important;
+        }
+    }
+}
+
+
+.left-nav-drilldown-static-placeholder__notice {
+    position: absolute;
+    display: grid;
+    z-index: 2;
+    background-color: white;
+    height: 100%;
+    align-content: center;
+    padding: 25px;
+    font-weight: bold;
+    @include v(font-family, futura-regular);
+}

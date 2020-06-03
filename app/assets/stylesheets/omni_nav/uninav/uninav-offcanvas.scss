@@ -49,7 +49,7 @@
       i {
         color: $cu-red;
         font-size: 2rem;
-        background-color: v(white);
+        @include v(background-color, white);
         border-radius: 50%;
       }
     }
@@ -75,7 +75,7 @@
     -webkit-box-pack: justify;
     justify-content: space-between;
     padding: 10px;
-    border-bottom: 1px solid v(cu-light-grey);
+    @include v(border-bottom, solid-grey);
 
     .menu-label {
       &:hover {
@@ -88,10 +88,10 @@
     }
 
     .toggle-menu-label {
-      background: v(panther-black);
+      @include v(background, panther-black);
       padding: .5rem 1.5rem .5rem 1.5rem;
       margin: 0 0 0 1rem;
-      color: v(white);
+      @include v(color, white);
       font-weight: bold;
       font-size: 1.2rem;
       text-transform: uppercase;
@@ -122,8 +122,8 @@
     left: 0;
     height: 100vh;
     width: $nav-width;
-    background-color: v(white);
-    border: 1px solid V(CU-LIGHT-GREY);
+    @include v(background-color, white);
+    @include v(border, solid-grey);
     overflow-x: hidden;
     -webkit-transition: all .40s;
     transition: all .40s;
@@ -139,19 +139,19 @@
 
     .off-canvas-cta {
       li {
-        color: v(white);
+        @include v(color, white);
 
         a {
-          color: v(white);
+          @include v(color, white);
           font-weight: bold;
           text-transform: uppercase;
           font-size: 1.4rem;
           letter-spacing: .5px;
-          background-color: v(cu-red);
-          color: v(white);
+          @include v(background-color, cu-red);
+          @include v(color, white);
 
           &:hover {
-            background-color: v(panther-black);
+            @include v(background-color, panther-black);
           }
         }
       }
@@ -353,7 +353,7 @@
         -moz-transition: 150s;
         -ms-transition: 150s;
         -o-transition: 150s;
-        background-color: v(panther-black);
+        @include v(background-color, panther-black);
       }
 
       ::not(:hover) {
@@ -362,7 +362,7 @@
       }
 
       &:active {
-        background-color: v(panther-black);
+        @include v(background-color, panther-black);
       }
 
       .section-menu-text {

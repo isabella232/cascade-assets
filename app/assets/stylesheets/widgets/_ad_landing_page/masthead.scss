@@ -2,12 +2,15 @@
   position: relative;
   background-color: #eaeaea;
 
-  .title, .subtitle, .header-text-desktop {
+  .title,
+  .subtitle,
+  .header-text-desktop {
     font-family: $font-stack-heading;
   }
 
-  + div {
+  +div {
     padding-top: 0;
+
     @include media($medium-screen) {
       padding-top: $one-column-widget-spacing;
     }
@@ -44,13 +47,13 @@
         padding: 24px 0 24px 32px;
         font-size: 20px;
         line-height: 24px;
-        border-bottom:1px solid #d8d8d8;
+        border-bottom: 1px solid #d8d8d8;
       }
     }
 
     .header-logo-desktop {
       display: table-cell;
-      height:35px;
+      height: 35px;
     }
 
     .header-text-desktop {
@@ -68,7 +71,9 @@
     }
   }
 
-  .masthead-hero, .background-image, .background-video-wrapper {
+  .masthead-hero,
+  .background-image,
+  .background-video-wrapper {
     padding: 0;
     pointer-events: none;
     background-color: #eaeaea;
@@ -77,13 +82,17 @@
       overflow: hidden;
       display: block;
       position: absolute;
-      top: 0; right: 0; left: 0; bottom: 0;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
       width: 100%;
     }
   }
 
   .background-image {
     background-size: 0 0;
+
     @include media($medium-screen) {
       background-size: cover;
       background-repeat: no-repeat;
@@ -93,6 +102,7 @@
 
   .background-video-wrapper #background-video {
     display: none;
+
     @include media($medium-screen) {
       display: inline-block;
     }
@@ -136,13 +146,16 @@
       line-height: 30px;
     }
 
-    p { line-height: 24px; }
+    p {
+      line-height: 24px;
+    }
 
-    h2, p {
+    h2,
+    p {
       text-align: left;
     }
 
-    .calls-to-action { 
+    .calls-to-action {
       margin-top: $base-spacing;
       color: #767676;
 
@@ -153,7 +166,8 @@
         line-height: 24px;
       }
 
-      input, select {
+      input,
+      select {
         border-radius: 0;
         margin-bottom: 0;
         width: 100%;
@@ -178,7 +192,7 @@
         background-color: $red;
         color: white;
         border: none;
-        box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.3);
+        box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.3);
       }
     }
   }
@@ -201,14 +215,20 @@
       background: none !important;
     }
 
-    img, video {
+    img,
+    video {
       width: 100%;
       height: auto;
       margin-bottom: -6px;
-      @include media($medium-screen) { display: none; }
+
+      @include media($medium-screen) {
+        display: none;
+      }
     }
 
-    .content { position: relative; }
+    .content {
+      position: relative;
+    }
 
     .category {
       @include content_label();
@@ -218,7 +238,7 @@
         color: white;
       }
     }
-    
+
     .title {
       margin: 0;
       font-size: 24px;
@@ -237,7 +257,7 @@
       }
     }
 
-    .subtitle { 
+    .subtitle {
       margin-top: 0;
       font-size: 20px;
       line-height: 28px;
@@ -285,7 +305,7 @@
       font-size: 135px;
       margin: 0 -4%;
       white-space: nowrap;
-      color:rgba(255, 255, 255, 0.04);
+      color: rgba(255, 255, 255, 0.04);
     }
   }
 }

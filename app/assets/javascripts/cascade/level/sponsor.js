@@ -1,43 +1,40 @@
-$(function () {
+$(function() {
+	$carousels = $('#big-sponsor .carousel ul');
 
-	$('#big-sponsor ul').jcarousel({
-	  buttonNextHTML: "<div title='Move to the next sponsor'>&raquo;</div>",
-	  buttonPrevHTML: "<div title='Move to the previous sponsor'>&laquo;</div>",
-	  auto: 5,
-	  wrap: "circular",
-	  scroll: 1
+	$carousels.each(function(index, carousel) {
+		var slideCount = $(carousel).find('li').length;
+
+		$(carousel).slick({
+			infinite: false,
+			slidesToShow: slideCount < 4 ? slideCount : 4,
+			slidesToScroll: slideCount < 4 ? slideCount : 4,
+			accessibility: false,
+			responsive: [
+				{
+					breakpoint: 1024,
+					settings: {
+						slidesToShow: slideCount < 3 ? slideCount : 3,
+						slidesToScroll: slideCount < 3 ? slideCount : 3,
+						infinite: false,
+					}
+				},
+				{
+					breakpoint: 600,
+					settings: {
+						slidesToShow: slideCount < 2 ? slideCount : 2,
+						slidesToScroll: slideCount < 2 ? slideCount : 2,
+						infinite: false,
+					}
+				},
+				{
+					breakpoint: 480,
+					settings: {
+						slidesToShow: 1,
+						slidesToScroll: 1,
+						infinite: false,
+					}
+				}
+			]
+		});
 	});
-
-	$('#big-sponsor ul').touchwipe({
-	  wipeLeft: function() {
-	    $('#big-sponsor ul').jcarousel('next');
-	  },
-	  wipeRight: function() {
-	    $('#big-sponsor ul').jcarousel('prev');
-	  },
-	  min_move_x: 20,
-	  min_move_y: 20,
-	  preventDefaultEvents: false
-	});
-
-	$('#small-sponsor ul').jcarousel({
-	  buttonNextHTML: "<div title='Move to the next sponsor'>&raquo;</div>",
-	  buttonPrevHTML: "<div title='Move to the previous sponsor'>&laquo;</div>",
-	  auto: 5,
-	  wrap: "circular",
-	  scroll: 1
-	});
-
-	$('#small-sponsor ul').touchwipe({
-	  wipeLeft: function() {
-	    $('#small-sponsor ul').jcarousel('next');
-	  },
-	  wipeRight: function() {
-	    $('#small-sponsor ul').jcarousel('prev');
-	  },
-	  min_move_x: 20,
-	  min_move_y: 20,
-	  preventDefaultEvents: false
-	});
-
 });

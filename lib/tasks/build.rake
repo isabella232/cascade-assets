@@ -179,8 +179,8 @@ task :changelog do
     f.puts "--------------------------------------------------------------------------"
     f.puts `git status`
     }
-  `open #{git_log}`
-  system %(open "./dist")
+  `open -g #{git_log}`
+  system %(open -g "./dist")
 end 
 
 ####################

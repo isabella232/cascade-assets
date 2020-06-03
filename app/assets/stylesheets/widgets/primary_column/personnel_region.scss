@@ -12,7 +12,7 @@
     }
 
     position: relative;
-    border-bottom: 1px solid v(cu-light-grey);
+    @include v(border-bottom, solid-grey);
     padding: $base-spacing*1 0;
     padding-left: 145px;
     height: auto;

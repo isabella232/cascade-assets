@@ -1,19 +1,20 @@
 #*
- * OmniNav v3 format.
- * Chapman.edu/_cascade/formats/modular/uninav/uninav.vtl
- *
- * Note: the site://Chapman.edu/ seen in most href is not a hardcoded subdomain but a Cascade variable 
- * that allows path to render correctly even when a page published to other webservers not www
- - the format is configured via its respective block at:
-    Chapman.edu/_cascade/blocks/html/uninav  (https://dev-cascade.chapman.edu/entity/open.act?id=a94c5727c0a81e4b22b523b8699a6359&type=block_STRUCTUREDDATA)
+* OmniNav v3 format.
+* Chapman.edu/_cascade/formats/modular/uninav/uninav.vtl
+*
+* Note: the site://Chapman.edu/ seen in most href is not a hardcoded subdomain but a Cascade variable
+* that allows path to render correctly even when a page published to other webservers not www
+- the format is configured via its respective block at:
+Chapman.edu/_cascade/blocks/html/uninav
+(https://dev-cascade.chapman.edu/entity/open.act?id=a94c5727c0a81e4b22b523b8699a6359&type=block_STRUCTUREDDATA)
 
 On a page level, configure via:
-  1) edit
-  2) configure
-  3) 'Omni-Nav' 
-    a) select block: Chapman.edu/_cascade/blocks/html/uninav
-    b) select (this) format: Chapman.edu: Chapman.edu: /_cascade/formats/modular/uninav/uninav.vtl
- *#
+1) edit
+2) configure
+3) 'Omni-Nav'
+a) select block: Chapman.edu/_cascade/blocks/html/uninav
+b) select (this) format: Chapman.edu: Chapman.edu: /_cascade/formats/modular/uninav/uninav.vtl
+*#
 
 ##
 ## Imports
@@ -37,29 +38,29 @@ On a page level, configure via:
 ## Current inner array values:
 ## [ $umbrellaDirectory, $umbrellaLabel/$umbrellaBrandLabel ]
 #set ( $umbrellaCategories = [
-  [ 'business', 'Argyros School' ],
-  [ 'education', 'Attallah College' ],
-  [ 'dodge', 'Dodge College' ],
-  [ 'crean', 'Crean College' ],
-  [ 'wilkinson', 'Wilkinson College' ],
-  [ 'copa', 'College of Performing Arts' ],
-  [ 'engineering', 'Fowler School of Engineering' ],
-  [ 'pharmacy', 'School of Pharmacy' ],
-  [ 'law', 'Fowler School of Law' ],
-  [ 'library', 'Leatherby Libraries' ],
-  [ 'scst', 'Schmid College' ],
-  [ 'communication', 'School of Communication' ],
-  [ 'about', 'About' ],
-  [ 'academics', 'Academics' ],
-  [ 'admission', 'Admission' ],
-  [ 'alumni', 'Alumni' ],
-  [ 'campus-services', 'Campus Services' ],
-  [ 'campus-services/career-professional-development', 'Career' ],
-  [ 'faculty-staff', 'Faculty and Staff' ],
-  [ 'families', 'Families' ],
-  [ 'research', 'Research' ],
-  [ 'students', 'Students' ],
-  [ 'support-chapman', 'Support Chapman' ]
+[ 'business', 'Argyros School' ],
+[ 'education', 'Attallah College' ],
+[ 'dodge', 'Dodge College' ],
+[ 'crean', 'Crean College' ],
+[ 'wilkinson', 'Wilkinson College' ],
+[ 'copa', 'College of Performing Arts' ],
+[ 'engineering', 'Fowler School of Engineering' ],
+[ 'pharmacy', 'School of Pharmacy' ],
+[ 'law', 'Fowler School of Law' ],
+[ 'library', 'Leatherby Libraries' ],
+[ 'scst', 'Schmid College' ],
+[ 'communication', 'School of Communication' ],
+[ 'about', 'About' ],
+[ 'academics', 'Academics' ],
+[ 'admission', 'Admission' ],
+[ 'alumni', 'Alumni' ],
+[ 'campus-services', 'Campus Services' ],
+[ 'campus-services/career-professional-development', 'Career' ],
+[ 'faculty-staff', 'Faculty and Staff' ],
+[ 'families', 'Families' ],
+[ 'research', 'Research' ],
+[ 'students', 'Students' ],
+[ 'support-chapman', 'Support Chapman' ]
 ])
 
 ##
@@ -83,71 +84,71 @@ On a page level, configure via:
 ## Var Macros
 ##
 #macro ( setVars )
-  #setPageUmbrellaCategory()
+#setPageUmbrellaCategory()
 
-  #set ( $isUmbrellaCategory = $pageUmbrellaCategory.size() > 0 )
+#set ( $isUmbrellaCategory = $pageUmbrellaCategory.size() > 0 )
 
-  #if ( $isUmbrellaCategory )
-    #set ( $umbrellaDirectory = $pageUmbrellaCategory[0] )
+#if ( $isUmbrellaCategory )
+#set ( $umbrellaDirectory = $pageUmbrellaCategory[0] )
 
-    ## These 2 were originally different values and could differ in the future.
-    #set ( $umbrellaLabel = $pageUmbrellaCategory[1] )
-    #set ( $umbrellaBrandLabel = $pageUmbrellaCategory[1] )
+## These 2 were originally different values and could differ in the future.
+#set ( $umbrellaLabel = $pageUmbrellaCategory[1] )
+#set ( $umbrellaBrandLabel = $pageUmbrellaCategory[1] )
 
-    #set ( $umbrellaDirectoryPath = "/${umbrellaDirectory}" )
+#set ( $umbrellaDirectoryPath = "/${umbrellaDirectory}" )
 
-    #set ( $brandClass = 'branded' )
-  #else
-    #set ( $brandClass = 'unbranded' )
-  #end
+#set ( $brandClass = 'branded' )
+#else
+#set ( $brandClass = 'unbranded' )
+#end
 
-  ## Currently law is the only page with different global nav content
-  #if( $umbrellaDirectory == 'law' )
-    #set( $globalNavLinks = $GLOBAL_NAV_LAW_CONFIG )
-  #else
-    #set( $globalNavLinks = $GLOBAL_NAV_CONFIG )
-  #end
+## Currently law is the only page with different global nav content
+#if( $umbrellaDirectory == 'law' )
+#set( $globalNavLinks = $GLOBAL_NAV_LAW_CONFIG )
+#else
+#set( $globalNavLinks = $GLOBAL_NAV_CONFIG )
+#end
 #end
 
 #macro ( setPageUmbrellaCategory )
-  ## Is current path under one of specified $umbrellaCategories?
-  #foreach ( $umbrellaCategory in $umbrellaCategories )
-    #set ( $dirName = $umbrellaCategory[0] )
+## Is current path under one of specified $umbrellaCategories?
+#foreach ( $umbrellaCategory in $umbrellaCategories )
+#set ( $dirName = $umbrellaCategory[0] )
 
-    ## Define substr range to compare umbrella dir with current page path.
-    ## pagePath does not include leading /.
-    #set ( $startSubStr = 0 )
-    #set ( $endSubStr = $dirName.length() )
+## Define substr range to compare umbrella dir with current page path.
+## pagePath does not include leading /.
+#set ( $startSubStr = 0 )
+#set ( $endSubStr = $dirName.length() )
 
-    ## Make sure endSubStr not long than pagePath else will throw exception
-    #if ( $endSubStr > $pagePath.length() )
-      #set ( $endSubStr = $pagePath.length() )
-    #end
+## Make sure endSubStr not long than pagePath else will throw exception
+#if ( $endSubStr > $pagePath.length() )
+#set ( $endSubStr = $pagePath.length() )
+#end
 
-    #set ( $pagePathDir = $pagePath.substring($startSubStr, $endSubStr) )
+#set ( $pagePathDir = $pagePath.substring($startSubStr, $endSubStr) )
 
-    ## Is current page directory $pagePathDir under this $navDirectory? If so,
-    ## we found our $navDirectory.
-    #if ( $pagePath.contains($dirName) && $pagePathDir == $dirName )
-      ## A page can enter this loop more than once if it falls under multiple umbrella categories
-      ## e.g. a page under both Campus Services and Career umbrellas
-      ## First check if it hasn't been set yet
-      #if ( $pageUmbrellaCategory.size() == 0 )
-        #set ( $pageUmbrellaCategory = $umbrellaCategory )
-      ## If it has been set, pages should use the umbrella category that's more specific
-      ## This ensures the page uses the closest matching directory out of all the umbrella categories
-      ## e.g. a page under Career should use campus-services/career umbrella not campus-services
-      #elseif ( $pagePathDir.length() > $pageUmbrellaCategory[0].length() )
-        #set ( $pageUmbrellaCategory = $umbrellaCategory )
-      #end
-    #end
-  #end
+## Is current page directory $pagePathDir under this $navDirectory? If so,
+## we found our $navDirectory.
+#if ( $pagePath.contains($dirName) && $pagePathDir == $dirName )
+## A page can enter this loop more than once if it falls under multiple umbrella categories
+## e.g. a page under both Campus Services and Career umbrellas
+## First check if it hasn't been set yet
+#if ( $pageUmbrellaCategory.size() == 0 )
+#set ( $pageUmbrellaCategory = $umbrellaCategory )
+## If it has been set, pages should use the umbrella category that's more specific
+## This ensures the page uses the closest matching directory out of all the umbrella categories
+## e.g. a page under Career should use campus-services/career umbrella not campus-services
+#elseif ( $pagePathDir.length() > $pageUmbrellaCategory[0].length() )
+#set ( $pageUmbrellaCategory = $umbrellaCategory )
+#end
+#end
+#end
 #end
 
 ##
 ## Template Macros
 ##
-## start uninav begin 
+## start uninav begin
 #macro ( buildOmniNav )
 <nav id="uninav" class="$brandClass">
   <!-- pagePath: $pagePath -->
@@ -157,14 +158,14 @@ On a page level, configure via:
   ## Uncomment to list pageUmbrella child assets.
   ##debugUmbrellaAssets()
 
-#uninavUmbrellaToggleButton()
-#uninavMobileIcon()
-#buildOffCanvasNav()
-#uninavLogo()
-#uninavUtility()
-#uninavSearch()
-#uninavGlobal()
-#uninavCTA()
+  #uninavUmbrellaToggleButton()
+  #uninavMobileIcon()
+  #buildOffCanvasNav()
+  #uninavLogo()
+  #uninavUtility()
+  #uninavSearch()
+  #uninavGlobal()
+  #uninavCTA()
 
   <!-- Page overlay for when search results are displayed -->
   <div id="search-results-overlay"></div>
@@ -172,168 +173,170 @@ On a page level, configure via:
 #end
 
 #macro (uninavUmbrellaToggleButton)
-    #if ( $isUmbrellaCategory )
-        #offCanvasUmbrellaNavButton($umbrellaLabel)
-    #end
+#if ( $isUmbrellaCategory )
+#offCanvasUmbrellaNavButton($umbrellaLabel)
+#end
 #end
 
 #macro ( uninavMobileIcon)
-    #import ("/_cascade/formats/modular/uninav/_mobile_hamburger_toggle_icon.vtl")
+#import ("/_cascade/formats/modular/uninav/_mobile_hamburger_toggle_icon.vtl")
 #end
 
 #macro ( uninavLogo )
-      #import ( "/_cascade/formats/modular/uninav/_logo.vtl" )
+#import ( "/_cascade/formats/modular/uninav/_logo.vtl" )
 #end
 
-#macro ( uninavUtility ) 
-  #import ( "/_cascade/formats/modular/uninav/_utilityNav.vtl" )
+#macro ( uninavUtility )
+#import ( "/_cascade/formats/modular/uninav/_utilityNav.vtl" )
 #end
 
-#macro ( uninavSearch ) 
-    #import ( "/_cascade/formats/modular/uninav/_search.vtl" )
+#macro ( uninavSearch )
+#import ( "/_cascade/formats/modular/uninav/_search.vtl" )
 #end
 
-#macro ( uninavAudiences ) 
-      #import ( "/_cascade/formats/modular/uninav/_audiences.vtl" )
+#macro ( uninavAudiences )
+#import ( "/_cascade/formats/modular/uninav/_audiences.vtl" )
 #end
-#macro ( uninavCTA ) 
-      #import ( "/_cascade/formats/modular/uninav/_cta.vtl" )
-#end
-
-#macro ( uninavSeach ) 
-      #import ( "/_cascade/formats/modular/uninav/_search.vtl" )
+#macro ( uninavCTA )
+#import ( "/_cascade/formats/modular/uninav/_cta.vtl" )
 #end
 
-#macro ( uninavGlobal ) 
-      #import ( "/_cascade/formats/modular/uninav/_global.vtl" )
+#macro ( uninavSeach )
+#import ( "/_cascade/formats/modular/uninav/_search.vtl" )
+#end
+
+#macro ( uninavGlobal )
+#import ( "/_cascade/formats/modular/uninav/_global.vtl" )
 #end
 
 ##
 ## Utility Nav Macros
 ##
 #macro ( buildUtilityNav )
-  <div class="utility-nav">
-    <nav aria-label="utility navigation bar">
-      #buildUtilityNavLinks()
-      #buildSearchComponent()
-    </nav>
-  </div>
+<div class="utility-nav">
+  <nav aria-label="utility navigation bar">
+    #buildUtilityNavLinks()
+    #buildSearchComponent()
+  </nav>
+</div>
 #end
 
 #macro ( buildUtilityNavLinks )
-  <div class="utility-nav-container utility-links">
-    <ul class="utility-list">
-        #import ( "/_cascade/formats/modular/uninav/_utility_nav_findInfoFor_menu.vtl" )
-        #import ( "/_cascade/formats/modular/uninav/_utility_nav_links.vtl" )
-        #import ( "/_cascade/formats/modular/uninav/_utility_nav_social_menu.vtl" )
-    </ul>
-  </div>
+<div class="utility-nav-container utility-links">
+  <ul class="utility-list">
+    #import ( "/_cascade/formats/modular/uninav/_utility_nav_findInfoFor_menu.vtl" )
+    #import ( "/_cascade/formats/modular/uninav/_utility_nav_links.vtl" )
+    #import ( "/_cascade/formats/modular/uninav/_utility_nav_social_menu.vtl" )
+  </ul>
+</div>
 #end
 
 #macro ( buildSearchComponent )
-  #set ($searchFilters = ["All", "Blog Stories", "Faculty Directory", "Events", "Main Website"])
+#set ($searchFilters = ["All", "Blog Stories", "Faculty Directory", "Events", "Main Website"])
 
-  <div class="utility-nav-container utility-search" id="utility-nav-search">
-    <ul class="utility-list">
-      <li class="utility-cell search-type utility-has-dropdown">
-        <a tabindex="0" class="selected-search-filter">Search From</a>
-        <div class="utility-dropdown dropdown">
-          <ul>
-            #foreach ($filter in $searchFilters)
-              <li class="search-filter-option"><a tabindex="0">$filter</a></li>
-            #end
-          </ul>
-        </div>
-      </li>
-      <li class="utility-cell">
-        #buildSearchBox()
-      </li>
-    </ul>
-  </div>
+<div class="utility-nav-container utility-search" id="utility-nav-search">
+  <ul class="utility-list">
+    <li class="utility-cell search-type utility-has-dropdown">
+      <a tabindex="0" class="selected-search-filter">Search From</a>
+      <div class="utility-dropdown dropdown">
+        <ul>
+          #foreach ($filter in $searchFilters)
+          <li class="search-filter-option"><a tabindex="0">$filter</a></li>
+          #end
+        </ul>
+      </div>
+    </li>
+    <li class="utility-cell">
+      #buildSearchBox()
+    </li>
+  </ul>
+</div>
 #end
 
 ##
 ## Off-Canvas Nav Macros
 ##
 #macro ( buildOffCanvasNav )
-  <div class="off-canvas-overlay" id="js-off-canvas-overlay"></div>
-  <div class="off-canvas-nav-container" id="js-off-canvas-nav-container">
-    #buildOffCanvasNavHeader()
-    #buildOffCanvasNavMenus()
-  </div>
+<div class="off-canvas-overlay" id="js-off-canvas-overlay"></div>
+<div class="off-canvas-nav-container" id="js-off-canvas-nav-container">
+  #buildOffCanvasNavHeader()
+  #buildOffCanvasNavMenus()
+</div>
 #end
 
 #macro ( buildOffCanvasNavHeader )
-  <div class="cu-off-canvas-header">
-    <div class="cu-logo-wrapper">
-      <div id="main-logo" class="toggle-logo">
-        <a class="default off-logo" href="site://Chapman.edu/index" title="Chapman University Website Home Page">
-          <!-- logo set as background image by class -->
-          Chapman University Logo
-        </a>
-        #buildOffCanvasNavCloseIcon()
-      </div>
+<div class="cu-off-canvas-header">
+  <div class="cu-logo-wrapper">
+    <div id="main-logo" class="toggle-logo">
+      <a class="default off-logo" href="site://Chapman.edu/index" title="Chapman University Website Home Page">
+        <!-- logo set as background image by class -->
+        Chapman University Logo
+      </a>
+      #buildOffCanvasNavCloseIcon()
     </div>
   </div>
+</div>
 #end
 
 #macro ( buildOffCanvasNavMenus )
-  ## For umbrella cats, build secondary menu.
-  <div class="off-canvas-nav clearfix" id="js-off-canvas-nav">
-      #buildOffCanvasDirectoryMenu()
-      #buildOffCanvasNavMainMenu()
-  </div>
+## For umbrella cats, build secondary menu.
+<div class="off-canvas-nav clearfix" id="js-off-canvas-nav">
+  #buildOffCanvasDirectoryMenu()
+  #buildOffCanvasNavMainMenu()
+</div>
 #end
 
 #macro ( buildOffCanvasNavMainMenu )
-  #set ( $currentPathRoot = $currentPage.path.replaceAll('/(.*)', "") )
-  
-  <div id="off-canvas-main" class="off-canvas-menu">
-    <div class="menu-header">
-      <span tabindex="0" class="menu-label">Chapman Menu</span>
+#set ( $currentPathRoot = $currentPage.path.replaceAll('/(.*)', "") )
 
-      #if ( $isUmbrellaCategory )
-        <span tabindex="0" class="toggle-menu-label">${umbrellaLabel} Menu</span>
-      #else
-        <span tabindex="0" class="toggle-menu-label">${currentPathRoot} Menu</span>
-      #end
-    </div>
-    
+<div id="off-canvas-main" class="off-canvas-menu">
+  <div class="menu-header">
+    <span tabindex="0" class="menu-label">Chapman Menu</span>
+
+    #if ( $isUmbrellaCategory )
+    <span tabindex="0" class="toggle-menu-label">${umbrellaLabel} Menu</span>
+    #elseif ( $currentPathRoot != "index" && $currentPathRoot != "")
+    <span tabindex="0" class="toggle-menu-label">${currentPathRoot} Menu</span>
+    #end
+  </div>
+
   #import( "/_cascade/formats/modular/uninav/_offCanvas_main_menu.vtl" )
 
-  </div>
+</div>
 #end
 
 #macro ( buildOffCanvasDirectoryMenu )
-  #set ( $currentPathRoot = $currentPage.path.replaceAll('/(.*)', "") )
+#set ( $currentPathRoot = $currentPage.path.replaceAll('/(.*)', "") )
 
-  #if ( $currentPathRoot != "index" && $currentPathRoot != "")
-      #set ( $offCanvasNavAssets = $_.locateFolder($currentPathRoot) )
-      #set ( $offCanvasLabel = $offCanvasNavAssets.label)
-      
-      <div id="off-canvas-umbrella" class="off-canvas-menu">
-        <div class="menu-header">
-          <span tabindex="0" class="menu-label">${_EscapeTool.xml($offCanvasLabel)}</span>
-          <span tabindex="0" class="toggle-menu-label">Chapman Menu</span>
-        </div>
-        
-        <div id="off-canvas-umbrella-navigation" class="off-canvas-menu">
-            <ul class="root-umbrella-nav">
-                #foreach( $asset in $offCanvasNavAssets.children)
-                  #buildDrillDownList($asset)
-                #end
-            </ul>
-        </div>
-      </div>
-  #end
+#if ( $currentPathRoot != "index" && $currentPathRoot != "")
+#set ( $offCanvasNavAssets = $_.locateFolder($currentPathRoot) )
+#set ( $offCanvasLabel = $offCanvasNavAssets.label)
+
+<div id="off-canvas-umbrella" class="off-canvas-menu">
+  <div class="menu-header">
+    <span tabindex="0" class="menu-label">${_EscapeTool.xml($offCanvasLabel)}</span>
+    <span tabindex="0" class="toggle-menu-label">Chapman Menu</span>
+  </div>
+
+  <div id="off-canvas-umbrella-navigation" class="off-canvas-menu">
+    <ul class="root-umbrella-nav">
+      #foreach( $asset in $offCanvasNavAssets.children)
+      #buildDrillDownList($asset)
+      #end
+    </ul>
+  </div>
+</div>
+#end
 #end
 
 #import ( "/_cascade/formats/modular/uninav/_buildToggleIcon_macro.vtl")
 
 #macro ( buildOffCanvasNavCloseIcon )
-  <span tabindex="0" class="close js-close-off-canvas-nav">
-    <i class="fas fa-times-circle"></i>
+<span tabindex="0" class="close js-close-off-canvas-nav">
+  <span class="fas fa-times-circle">
+    <span class="sr-only">Close Off-Canvas Menu</span>
   </span>
+</span>
 #end
 
 
@@ -341,16 +344,16 @@ On a page level, configure via:
 ## Helper Macros
 ##
 #macro( buildSearchBox )
-  <div class="cu-search-box"></div>
-  <div class="search-results-container">
-    <div class="cu-search-results"></div>
-  </div>
+<div class="cu-search-box"></div>
+<div class="search-results-container">
+  <div class="cu-search-results"></div>
+</div>
 #end
 
 #macro( debugUmbrellaAssets )
-  #foreach ( $asset in $umbrellaAssets )
-    <!-- $asset.name : $asset.path ($asset.children.size()) -->
-  #end
+#foreach ( $asset in $umbrellaAssets )
+<!-- $asset.name : $asset.path ($asset.children.size()) -->
+#end
 #end
 
 

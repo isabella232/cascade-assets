@@ -87,7 +87,7 @@ html {
   position: relative;
   width: 0;
   height: $uninav-total-height;
-  margin-top: -$uninav-total-height;
+  margin-top: - $uninav-total-height;
   z-index: -1;
 }
 
@@ -126,7 +126,7 @@ body {
   padding: 0;
   color: $cu-font-color;
   font-family: $font-stack-body;
-  font-size: 1.6 rem;
+  font-size: 1.6rem;
   height: auto;
 
   &.personnel .main {
@@ -639,16 +639,17 @@ p {
 html body {
 
   [class*="-widget"],
-  :not([class*="__buttons"]) {
+  :not([class*='__buttons']) {
     [class*="__button"] {
       border: none;
     }
 
-    [class*="__bold"] {
+    [class*='__bold'] {
       font-weight: bold;
     }
 
     [class$="__buttons"] {
+
       background-color: none;
       // override mixin
       background: none !important;
@@ -659,6 +660,7 @@ html body {
         background-color: none;
         background: none;
       }
+
     }
   }
 
@@ -688,12 +690,12 @@ html body {
     }
 
     .text--link {
-      color: $cu-red;
-      @include underline($cu-red);
+      color: $white;
+      @include underline($white);
 
       &:hover,
       &:focus {
-        color: lighten($cu-red, 8%);
+        color: lighten($white, 8%);
         @include underline(currentColor);
         transition: all 0.3s ease;
       }
@@ -784,39 +786,10 @@ html body {
     }
   }
 
-  button:hover {
-    transition: 150ms ease all;
-  }
-
-  button[class*="--sand"]:hover {
-    background-color: lighten($sand, 2%);
-  }
-
-  button[class*="--white"] {
-    border: 1px solid $cu-light-grey !important;
-
-    &:hover {
-      background-color: darken($white, 2%);
-      border: 1px solid $cu-light-grey-2 !important;
-    }
-  }
-
-  button[class*="--grey"]:hover {
-    background-color: lighten($cu-light-grey, 4%);
-  }
-
-  button[class*="--red"]:hover {
-    background-color: lighten($cu-red, 8%);
-  }
-
-  button[class*="--black"]:hover {
-    background-color: black;
-  }
-
   @media (prefers-reduced-motion: reduce) {
     * {
-      animation: none !important;
-      -webkit-animation: none !important;
+      animation: none;
+      -webkit-animation: none;
     }
   }
 }

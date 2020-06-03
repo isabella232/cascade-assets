@@ -95,7 +95,7 @@ $tab-content-border-color: #c1c1c1;
 // The clickable tabs
 .newsEventsNav li {
   // When small, make the tabs collapse.
-  background-color: v(cu-light-grey);
+  @include v(background-color, cu-light-grey);
   color: #383838;
   font-size: 1em;
   padding: 0 17px 0 17px;
@@ -105,7 +105,7 @@ $tab-content-border-color: #c1c1c1;
   bottom: -1px; // Cover up the border of the primary content
   position: relative;
   border-top: 2px solid transparent; // Keep text in same spot as active element
-  border-bottom: 1px solid v(cu-light-grey);
+  @include v(border-bottom, solid-grey);
   list-style-type: none;
   margin: 0;
 
@@ -165,7 +165,7 @@ $tab-content-border-color: #c1c1c1;
 
 // The container of all content
 .newsEventsContent {
-  border: 1px solid v(cu-light-grey);
+  @include v(border, solid-grey);
   position: relative;
   //color: $text-color;
   color: #383838;

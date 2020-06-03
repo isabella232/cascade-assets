@@ -27,12 +27,6 @@ h6,
 
 .homepage {
   a.button {
-    display: inline-block;
-    padding: 15px 25px;
-    font-size: 16px;
-    border-radius: 3px;
-    background: #cfcfcf no-repeat center;
-    color: #313131;
     @include transition(background-color);
 
     &:hover {
@@ -45,7 +39,8 @@ h6,
       text-decoration: none;
     }
 
-    &.red {
+    &.red,
+    [class*="--red"] {
       background: $cu-red no-repeat center;
       color: #FFFFFF;
 
@@ -60,15 +55,6 @@ h6,
       }
     }
 
-    &.blue {
-      background: #407892 no-repeat center;
-      color: #FFFFFF;
-
-      &:hover {
-        background-color: #4c87a2;
-        text-decoration: none;
-      }
-    }
 
     &.white {
       background: #eaeaea no-repeat center;
@@ -84,11 +70,6 @@ h6,
         text-decoration: none;
       }
     }
-
-    width: 80%;
-    margin-bottom: 10px;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
   }
 
   .maxWidth {

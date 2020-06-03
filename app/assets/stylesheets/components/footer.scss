@@ -406,3 +406,14 @@
     color: $white;
   }
 }
+
+
+
+.ie {
+  .footer {
+    .button--red {
+      display: block !important;
+      text-align: center !important;
+    }
+  }
+}

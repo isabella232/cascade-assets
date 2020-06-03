@@ -173,6 +173,8 @@
 		<group identifier="widget" label="Widgets" multiple="true">
 			<text default="(choose one)" help-text="Choose the type of content you'd like to add to the page" identifier="widgetType" label="Type of Widget" type="dropdown">
 				<dropdown-item value="(select one)"/>
+				<dropdown-item show-fields="primaryContent/widget/textWithCTA" value="Text with CTA"/>
+				<dropdown-item show-fields="primaryContent/widget/rssFeedDisplay" value="RSS Feed Display"/>
 				<dropdown-item show-fields="primaryContent/widget/programEvents" value="Program Events"/>
 				<dropdown-item show-fields="primaryContent/widget/bannerNotificationWidget" value="Banner Notification"/>
 				<dropdown-item show-fields="primaryContent/widget/careerBlockWidget" value="Career Block"/>
@@ -200,6 +202,45 @@
 				<dropdown-item show-fields="primaryContent/widget/next-steps-widget" value="Next Steps"/>
 				<dropdown-item show-fields="primaryContent/widget/quickFactBlocksWidget" value="Quick Fact Blocks"/>
 			</text>
+			<group collapsed="true" identifier="textWithCTA" label="Text with CTA">
+				<shared-field identifier="display" path="display"/>
+				<text identifier="textWithCTATitle" label="Title"/>
+				<text identifier="text" label="Text" required="true" wysiwyg="true"/>
+				<group identifier="textWithCTAButton" label="CTA Button" maximum-number="3" multiple="true">
+					<group identifier="link" label="Call to Action">
+						<text default="white" identifier="buttonColor" label="Button Color" type="dropdown">
+							<dropdown-item label="Red" value="red"/>
+							<dropdown-item label="White" value="white"/>
+						</text>
+						<text default="Internal Link" identifier="linkType" label="Link Type" type="radiobutton">
+							<radio-item show-fields="primaryContent/widget/textWithCTA/textWithCTAButton/link/internalLink" value="Internal Link"/>
+							<radio-item show-fields="primaryContent/widget/textWithCTA/textWithCTAButton/link/externalLink" value="External Link"/>
+							<radio-item show-fields="primaryContent/widget/textWithCTA/textWithCTAButton/link/fileLink" value="File Link"/>
+						</text>
+						<text help-text="full url (including HTTPS) to page outside of Cascade" identifier="externalLink" label="External Link"/>
+						<asset identifier="internalLink" label="Internal Link" type="page"/>
+						<asset identifier="fileLink" label="File Link" type="file"/>
+						<text identifier="label" label="Label"/>
+						<group identifier="accessibility" label="Accessibility">
+							<text identifier="ariaLabel" label="Aria Label"/>
+							<text identifier="title" label="Title"/>
+						</group>
+						<group identifier="tracking" label="Analytics Tracking">
+							<text help-text="Replace or add custom link ID for tracking." identifier="customID" label="Override HTML ID"/>
+							<text help-text="Replace or add custom data-attr for tracking. Entering 'my-custom-thing' will result in 'data-my-custom-thing'" identifier="dataAttr" label="Data Attribute" multiple="true"/>
+						</group>
+					</group>
+				</group>
+			</group>
+			<group collapsed="true" identifier="rssFeedDisplay" label="RSS Feed Display">
+				<shared-field identifier="display" path="display"/>
+				<text identifier="feedTitle" label="Feed Title" required="true"/>
+				<text default="Sand" identifier="bgColor" label="Background Color" type="dropdown">
+					<dropdown-item label="Sand" value="sand"/>
+					<dropdown-item label="Grey" value="grey"/>
+				</text>
+				<text identifier="feedUrl" label="Feed Url" required="true"/>
+			</group>
 			<group collapsed="true" identifier="programEvents" label="Program Events">
 				<shared-field identifier="display" path="display"/>
 				<text default="tiles" identifier="tilesBars" label="Program Events Display" required="true" type="radiobutton">
@@ -229,7 +270,29 @@
 					<text help-text="100 chracters max" identifier="endorserName" label="Endorser's Name" required="true"/>
 					<text help-text="E.G. 'University Advancement' or 'Lead Engineer at SpaceX'" identifier="endorserTitle" label="Endorser's Department/Title"/>
 					<text help-text="200 characters max" identifier="testimonyText" label="Testimonial Text" multi-line="true" required="true"/>
-					<shared-field identifier="link" path="cta"/>
+					<group identifier="link" label="Call to Action" maximum-number="3" multiple="true">
+						<text default="Text Link" field-id="a7a67dcbc0a81e4b407da564e9980d7d" identifier="linkStyle" label="Link Style" type="radiobutton">
+							<radio-item value="Text Link"/>
+							<radio-item value="Button Link"/>
+						</text>
+						<text default="Internal Link" field-id="a7a67dcbc0a81e4b407da5646c7791ca" identifier="linkType" label="Link Type" type="radiobutton">
+							<radio-item show-fields="link/internalLink" value="Internal Link"/>
+							<radio-item show-fields="link/externalLink" value="External Link"/>
+							<radio-item show-fields="link/fileLink" value="File Link"/>
+						</text>
+						<text field-id="a7a67dcbc0a81e4b407da5644e336c07" help-text="full url (including HTTPS) to page outside of Cascade" identifier="externalLink" label="External Link"/>
+						<asset field-id="a7a67dcbc0a81e4b407da564768ecefe" identifier="internalLink" label="Internal Link" type="page"/>
+						<asset field-id="a7a67dcbc0a81e4b407da564c02bfbee" identifier="fileLink" label="File Link" type="file"/>
+						<text field-id="a7a67dcbc0a81e4b407da564d749cd9a" identifier="label" label="Label"/>
+						<group identifier="accessibility" label="Accessibility">
+							<text field-id="a7a67dcbc0a81e4b407da564f2060b9f" identifier="ariaLabel" label="Aria Label"/>
+							<text field-id="a7a67dcbc0a81e4b407da564aab9989f" identifier="title" label="Title"/>
+						</group>
+						<group identifier="tracking" label="Analytics Tracking">
+							<text field-id="a7a67dcbc0a81e4b407da564d7f34a86" help-text="Replace or add custom link ID for tracking." identifier="customID" label="Override HTML ID"/>
+							<text field-id="a7a67dcbc0a81e4b407da564f8e17151" help-text="Replace or add custom data-attr for tracking. Entering 'my-custom-thing' will result in 'data-my-custom-thing'" identifier="dataAttr" label="Data Attribute" multiple="true"/>
+						</group>
+					</group>
 				</group>
 			</group>
 			<group collapsed="true" identifier="carousel" label="Carousel">

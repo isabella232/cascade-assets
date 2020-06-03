@@ -1,6 +1,9 @@
 .breadcrumbs {
   clear: both;
   margin: 15px 0 10px 0;
+  vertical-align: middle;
+  font-family: $futura-regular;
+  font-size: 1.6rme;
 
   >ul {
     width: 100%;
@@ -8,7 +11,16 @@
     text-align: left;
 
     @include bp(wildcard-min, 767px) {
-      width: 60%;
+      width: 70%;
+    }
+
+    svg {
+      width: 4px;
+
+      &.fa-caret-right {
+        top: 2px;
+        position: relative;
+      }
     }
   }
 
@@ -24,6 +36,13 @@
 
     .bullet {
       margin: 0;
+      height: 5px;
+      display: inline;
+
+      svg {
+        height: 5px;
+        display: inline-block;
+      }
 
       @include bp(wildcard-min, 767px) {
         margin: 0 5px;
@@ -36,7 +55,7 @@
   }
 
   a {
-    border-bottom: 2px dotted #c1c1c1;
+    border-bottom: 2px dotted $cu-red;
   }
 
   .home {
@@ -45,10 +64,12 @@
     border-bottom: none;
     height: 17px;
     width: 13px;
-    text-indent: -9999px;
-    background-image: image-url('home_icon.png');
-    background-repeat: no-repeat;
-    background-position: left center;
+    font-size: 20px;
+    margin-right: 10px;
+
+    svg {
+      width: 20px;
+    }
   }
 
   ul li {
@@ -64,5 +85,63 @@
 
   .bullet {
     margin: 0 6px;
+  }
+}
+
+@include respond(tab-port) {
+
+  // change order
+  .breadcrumbs.clearfix {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .breadcrumbs ul:first-of-type {
+    order: 2;
+  }
+
+  #social_follow_us {
+    justify-content: flex-end;
+    display: flex;
+  }
+
+}
+
+@include respond(phone) {
+
+  .breadcrumbs>ul:first-of-type li:not(:nth-last-child(2)),
+  .breadcrumbs>ul:first-of-type li:not(:nth-last-child(1)) svg {
+    display: none;
+  }
+
+  .breadcrumbs>ul:first-of-type a:last-child,
+  .breadcrumbs>ul:first-of-type li:last-child {
+    display: inline;
+  }
+
+  .breadcrumbs ul:first-of-type>li:first-of-type {
+    display: none;
+  }
+
+  #social_follow_us ul li {
+    display: inline;
+  }
+
+  .breadcrumbs>ul {
+    width: auto;
+  }
+}
+
+.ie {
+
+  .bullet {
+    height: 5px;
+    display: inline;
+
+    svg.fa-caret-right {
+      display: inline;
+      height: 5px;
+      display: inline-block;
+    }
   }
 }

@@ -1,4 +1,6 @@
 ##Import all the widget formats
+#import( "/_cascade/formats/modular/widgets/Text with CTA" )
+#import( "/_cascade/formats/modular/widgets/RSS Feed Display" )
 #import( "/_cascade/formats/modular/widgets/Program Events" )
 #import( "/_cascade/formats/modular/widgets/Banner Notification" )
 #import( "/_cascade/formats/modular/widgets/Carousel" )
@@ -41,6 +43,22 @@
     ##
     #set ($widgetType = $widget.getChild('widgetType').value )
     <!-- in forEach loop for $widgetType widget -->
+    ##
+    #if ($widgetType == 'Text with CTA')
+      #set ($displayWidget = $widget.getChild('textWithCTA').getChild('display').value)
+      #if ($displayWidget == 'Yes')
+          #outputTextWithCTA($widget)
+      #end
+    #end
+    ##
+    ##
+    #if ($widgetType == 'RSS Feed Display')
+      #set ($displayWidget = $widget.getChild('rssFeedDisplay').getChild('display').value)
+      #if ($displayWidget == 'Yes')
+          #outputRssFeedDisplayWidget($widget)
+      #end
+    #end
+    ##
     ##
     #if ($widgetType == 'Program Events')
       #set ($displayWidget = $widget.getChild('programEvents').getChild('display').value)

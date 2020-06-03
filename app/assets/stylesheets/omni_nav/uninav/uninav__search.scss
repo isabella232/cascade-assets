@@ -106,24 +106,20 @@
     }
 
     input.gsc-input {
-      opacity: 0;
+      opacity: 1;
       text-indent: 0 !important;
       transition: all 1s;
       -webkit-transition: all 1s;
-
-      /* animation: fadeInPlaceholder 3s forwards;*/
-      /* animation-delay: 1s;*/
-      /* animation-iteration-count: 1;*/
     }
   }
 
   #gs_st50 {
-    border-right: 1px solid v(cu-light-grey);
+    @include v(border-right, solid-grey);
     padding-right: 20px;
   }
 
   .gsst_a .gscb_a {
-    color: v(panther-black);
+    @include v(color, panther-black);
     cursor: pointer;
     font-size: 1.6em;
     position: relative;
@@ -210,17 +206,18 @@
 
 
 .gs-result .gs-title, .gs-result .gs-title * {
-  color: var(--cu-red);
+  @include v(color, cu-red);
 }
 
 
 
 .gs-bidi-start-align.gs-visibleUrl.gs-visibleUrl-long {
-  color: var(--panther-black);
+  @include v(color, panther-black);
 }
 
-.gsc-results-wrapper-overlay.gsc-results-wrapper-visible {
-  font-family: $futura-regular;
-}
+
+  .gsc-results-wrapper-overlay.gsc-results-wrapper-visible {
+    font-family: $futura-regular;
+  }
 
 }

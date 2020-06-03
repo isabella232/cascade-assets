@@ -11,7 +11,7 @@
   #set ( $homeIconHtml = "" )
   #if ($page.name == "index")
     #set ( $linkClass = "${linkClass} home-link" )
-    #set ( $homeIconHtml = "<i class='fas fa-home'></i>" )
+    #set ( $homeIconHtml = "<span class='fas fa-home'></span>" )
   #end
   <li class="${linkClass}">${homeIconHtml}<a href="${childAsset.link}">${_EscapeTool.xml($childAsset.metadata.displayName)}</a></li>
 #end
@@ -35,9 +35,9 @@
   #if ( !$_PropertyTool.isEmpty($childrenHtml) )
     <li class="${linkClass}">
       <span tabindex="0" class="drill-down-parent">${_EscapeTool.xml($asset.metadata.displayName)}</span>
-      <span class="toggle-drilldown"><i class="fas fa-chevron-right"></i></span>
+      <span class="toggle-drilldown"><span class="fas fa-chevron-right"></span></span>
       <ul class="drilldown-menu">
-        <li tabindex="0" class="menu-back"><i class="fas fa-chevron-left"></i>${_EscapeTool.xml($asset.label)}</li>
+        <li tabindex="0" class="menu-back"><span class="fas fa-chevron-left"></span>${_EscapeTool.xml($asset.label)}</li>
         ${childrenHtml}
       </ul>
     </li>

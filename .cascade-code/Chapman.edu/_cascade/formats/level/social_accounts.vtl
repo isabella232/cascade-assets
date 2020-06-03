@@ -41,7 +41,6 @@
 #if ( $accounts )    
 <div id="social_follow_us" class="school-social-media-icons">
     <ul>
-        <li class="school-social-media-icons__follow">Follow</li>
         #foreach ($account in $accounts)
             #set ( $name = $account.getChild('account_type').text )
             

@@ -12,16 +12,22 @@
       width: 20.6rem;
     }
   }
+
   .callout {
     padding: 1.5rem 1.5rem 0;
   }
+
   .editableContent {
     width: 17.4rem;
-    p, li, span, div {
+
+    p,
+    li,
+    span,
+    div {
       font-size: 1.4rem;
     }
   }
-  
+
   .callout-box-widget--white {
     img {
       border: 0;
@@ -43,16 +49,18 @@
   --text-dark: $panther-black;
   --preheaderLight: $white;
   --preheaderDark: $grey;
-  
+
   margin-bottom: 2rem;
   padding: 2rem 2rem;
-  
+
   .buttonLinks {
     margin: 2rem 0 0;
     padding: 0;
   }
+
   .buttonLinks li {
     margin-bottom: 5px;
+
     a {
       border-bottom: none;
       display: block;
@@ -61,20 +69,21 @@
 
   .editableContent {
     margin: 2rem 0;
-    
+
     a {
       border-bottom: 2px dotted;
       display: inline;
     }
+
     a:hover {
-//      opacity: 0.9;
+      //      opacity: 0.9;
     }
-    
+
     h2 {
       margin-top: 0;
     }
   }
-  
+
   .buttonLinks li {
     margin-bottom: 5px;
 
@@ -87,7 +96,7 @@
       font-weight: 600;
       font-size: 1.6rem;
     }
-    
+
     &:last-of-type {
       margin-bottom: unset;
     }
@@ -189,7 +198,7 @@
       color: currentColor;
     }
   }
-  
+
   .buttonLinks li {
     a {
       @include button-bg($cu-light-grey);
@@ -233,7 +242,7 @@
   a {
     color: currentColor;
   }
-  
+
   .buttonLinks li {
     a {
       @include button-bg($cu-red);
@@ -271,7 +280,7 @@
   a {
     color: $cu-red;
   }
-  
+
   .buttonLinks li {
     a {
       @include button-bg($cu-red);
@@ -304,7 +313,7 @@
   a {
     color: $cu-red;
   }
-  
+
   .buttonLinks li {
     a {
       @include button-bg($cu-red);
@@ -322,23 +331,36 @@
     .callout-box-widget {
       display: block;
       width: auto;
+
       img {
         width: calc(100% + 3rem);
         max-width: calc(100% + 3rem);
         margin: -1.5rem -1.5rem 0;
       }
     }
+
     .editableContent {
       display: block;
       padding-bottom: 2rem;
       width: auto;
     }
-    
+
     .callout-box-widget--white {
       .editableContent {
         padding-bottom: 0;
       }
     }
   }
-  
+
+}
+
+.ie {
+
+  .callout-box-widget,
+  .callout,
+  .buttonLinks {
+    display: flex;
+    flex-direction: column;
+  }
+
 }

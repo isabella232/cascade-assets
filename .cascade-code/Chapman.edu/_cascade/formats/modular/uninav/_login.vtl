@@ -3,10 +3,10 @@
 #set ( $menuItems = $_XPathTool.selectNodes($contentRoot, "/system-data-structure/uninav/login/submenuItem") )
 
 <li class="uninav__login uninav__dropdown--parent" tabindex="0" aria-expanded="false">
-  <span class="uninav__menu-item-login">
-    <i class="fas fa-paw"></i>
-  </span>
-  <div class="uninav__login--wrapper uninav__dropdown--child uninav__login-button">
+        <span class="uninav__menu-item-login">
+          <span class="fas fa-paw"></span>
+        </span>
+      <div class="uninav__login--wrapper uninav__dropdown--child uninav__login-button">
     #if ($menuItems.size() >= 1)
         <ul>
             [system-view:internal]
@@ -31,10 +31,10 @@
                 </a>
             </li>
             [/system-view:internal]
-            #foreach ($menuItem in $menuItems)
-              #set ($label = $menuItem.getChild('label').value )
-              #set ( $menuID = $label.replaceAll(" ", "-").replaceAll("[^a-zA-Z-]", "").replaceAll("--", "-").toLowerCase() )
-              #set ($linkType = $menuItem.getChild('linkType').value )
+        #foreach ($menuItem in $menuItems)
+            #set ($label = $menuItem.getChild('label').value )
+            #set ( $menuID = $label.replaceAll(" ", "-").replaceAll("[^a-zA-Z-]", "").replaceAll("--", "-").toLowerCase() )
+            #set ($linkType = $menuItem.getChild('linkType').value )
             #if ($linkType == 'Internal Link')
                 #set ($linkURL = $menuItem.getChild('internalLink').getChild('path').value )
             #elseif ($linkType == 'External Link')
@@ -45,7 +45,7 @@
             #set ($iconType = $menuItem.getChild('icon').value )
             #if ($linkURL != '' && $linkURL != '/' && $label != '')
                 <li>
-                    <a id="uninav__login--$menuID" href="site://Chapman.edu/${_EscapeTool.xml($linkURL)}"
+                    <a id="uninav__login--$menuID" href="${_EscapeTool.xml($linkURL)}"
                         #if ($iconType == "CSS Class" && $menuItem.getChild('icon_cssClass').value != "")
                             class="icon icon-${_EscapeTool.xml($menuItem.getChild('icon_cssClass').value)}"
                         #end
@@ -61,6 +61,8 @@
         #end
         </ul>
     #end
-  </div>
+    </div>
 </li>
 ## LOGIN NAV (END)
+
+

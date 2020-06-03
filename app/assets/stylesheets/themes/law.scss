@@ -25,7 +25,7 @@
     margin: 115px 0 0 0;
   }
 
-  .mainNavLinks > li > a {
+  .mainNavLinks>li>a {
     background-color: $law-primary;
   }
 
@@ -36,9 +36,9 @@
 
   @include bp(m) {
     .ie8 .subNavLinks {
-      border-right: 1px solid #00307c;
-      border-bottom: 1px solid #00307c;
-      border-left: 1px solid #00307c;
+      border-right: 1px solid $cu-light-grey;
+      border-bottom: 1px solid $cu-light-grey;
+      border-left: 1px solid $cu-light-grey;
     }
 
     .mainNav .icon {
@@ -51,19 +51,19 @@
   }
 
   .nameBarButtons li a {
-    color: #00307c;
+    color: $cu-light-grey;
   }
 
   .expandedNameBarContainer h2,
   .expandedNameBarContainer a,
   div.styleTwo a {
-    color: #99afda;
+    color: $cu-red;
   }
 
   .smallMasthead .masthead,
   .bigMasthead .masthead,
   .nameBar {
-    background: #00307c;
+    background: $cu-light-grey;
   }
 
   #social_follow_us .banner {
@@ -84,8 +84,8 @@
     background-color: $law-primary;
   }
 
-  .mainNavLinks > li {
-    background-color: #353430;
+  .mainNavLinks>li {
+    background-color: $panther-black;
   }
 
   /* ==|== media queries ====================================================== */
@@ -102,22 +102,22 @@
       background-image: image-url("ribbon_tails_law.png");
     }
 
-    .mainNavLinks > li.noSubNav > a {
+    .mainNavLinks>li.noSubNav>a {
       padding: 0 !important;
     }
 
-    .mainNavLinks > li:hover {
+    .mainNavLinks>li:hover {
       background-color: transparent;
     }
 
-    .mainNavLinks > li > a > span {
+    .mainNavLinks>li>a>span {
       padding-left: 12px;
       padding-right: 12px;
     }
 
     .mainNavLinks,
-    .mainNavLinks > li,
-    .mainNavLinks > li.noSubNav:hover {
+    .mainNavLinks>li,
+    .mainNavLinks>li.noSubNav:hover {
       background-color: $law-primary;
     }
   }
@@ -140,7 +140,7 @@
   }
 
   .rightColumn .styleTwo .border {
-    background-color: #002663;
+    background-color: $panther-black;
   }
 
   .styleTwo p {
@@ -165,7 +165,7 @@
 
   .rightColumn .styleTwo a {
     color: $white;
-    border-bottom: 2px dotted #61728d;
+    border-bottom: 2px dotted $cu-red;
   }
 
   .nameBarButtons li a {
@@ -175,7 +175,7 @@
   .expandedNameBarContainer h2,
   .expandedNameBarContainer a,
   div.styleTwo a {
-    color: #99afda;
+    color: $cu-red;
   }
 
   #social_follow_us .banner {
@@ -189,18 +189,14 @@
 
   .rounded-slider .info-container .blue {
     background-color: $law-primary;
-    background-image: -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      from($law-primary),
-      to($law-secondary)
-    );
-    background-image: -webkit-linear-gradient(
-      top,
-      $law-primary,
-      $law-secondary
-    );
+    background-image: -webkit-gradient(linear,
+        left top,
+        left bottom,
+        from($law-primary),
+        to($law-secondary));
+    background-image: -webkit-linear-gradient(top,
+        $law-primary,
+        $law-secondary);
     background-image: -moz-linear-gradient(top, $law-primary, $law-secondary);
     background-image: -o-linear-gradient(top, $law-primary, $law-secondary);
     background-image: linear-gradient(to bottom, $law-primary, $law-secondary);
@@ -211,11 +207,11 @@
     background-color: $law-primary;
 
     &:hover {
-      background-color: #063a8f;
+      background-color: $red-hover;
     }
 
     &:active {
-      background-color: #002562;
+      background-color: $red-hover;
     }
   }
 
