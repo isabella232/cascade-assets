@@ -1,5 +1,5 @@
 // object-fit fallback for ie internet explorer
-$(function() {
+$(function () {
   var ua = window.navigator.userAgent;
   var msie = ua.indexOf("MSIE ");
   if (
@@ -7,7 +7,7 @@ $(function() {
     (!!navigator.userAgent.match(/Trident.*rv\:11\./) &&
       $(".contact-profile-widget__img").length)
   ) {
-    $("img.contact-profile-widget__img").each(function() {
+    $("img.contact-profile-widget__img").each(function () {
       var t = $(this),
         s = "url(" + t.attr("src") + ")",
         p = t.parent(),

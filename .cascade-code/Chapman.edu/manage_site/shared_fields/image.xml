@@ -12,7 +12,7 @@
 			<radio-item value="Circle"/>
 			<radio-item value="Square"/>
 		</text>
-		<text default="Center" help-text="Horiztonal position. Enter value such as a percentage (&quot;10%&quot;), direction (&quot;top&quot;), or pixels (&quot;10px&quot;). Usage: https://developer.mozilla.org/en-US/docs/Web/CSS/object-position" identifier="objectPositionX" label="Object Position X"/>
-		<text default="Center" help-text="Horiztonal position. Enter value such as a percentage (&quot;10%&quot;), direction (&quot;top&quot;), or pixels (&quot;10px&quot;). Usage: https://developer.mozilla.org/en-US/docs/Web/CSS/object-position" identifier="objectPositionY" label="Object Position Y"/>
+		<text default="Center" help-text="Horizontal position. Enter value such as a percentage (&quot;10%&quot;), direction (&quot;top&quot;), or pixels (&quot;10px&quot;). Usage: https://developer.mozilla.org/en-US/docs/Web/CSS/object-position" identifier="objectPositionX" label="Object Position X"/>
+		<text default="Center" help-text="Vertical position. Enter value such as a percentage (&quot;10%&quot;), direction (&quot;top&quot;), or pixels (&quot;10px&quot;). Usage: https://developer.mozilla.org/en-US/docs/Web/CSS/object-position" identifier="objectPositionY" label="Object Position Y"/>
 	</group>
 </system-data-structure>

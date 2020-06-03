@@ -1,0 +1,103 @@
+#import( "/_cascade/formats/helpers.velocity" )
+
+#macro(outputPhotoCalloutWidget $element) 
+#set ( $blocks = $_XPathTool.selectNodes($element, 'photoCalloutWidget/block') )
+#set ($widgetXPath = 'photoCalloutWidget')
+#set ($display = $element.getChild($widgetXPath).getChild('display').value)
+#set ($numberOfColumns = $element.getChild($widgetXPath).getChild('numberOfColumns').value)
+#set ($hideImagesOnMobile = $element.getChild($widgetXPath).getChild('hideImagesOnMobile').value)
+#set ($enableLinks = $element.getChild($widgetXPath).getChild('enableLinks').value)
+#set ($textAlignment = $element.getChild($widgetXPath).getChild('textAlignment').value)
+#set ($bgColor =  $element.getChild($widgetXPath).getChild('bgColor').value)
+#set ($bgColor = $bgColor.toLowerCase())
+#set ($pagination = $element.getChild($widgetXPath).getChild('pagination').value)
+
+#camelToSnake($widgetXPath)
+#set ( $widgetXPath = $snakeCase ) 
+#camelToSnake($widgetXPath)
+#set ( $widgetXPath = $snakeCase ) 
+
+## override values in helpers.velocity macro
+## this widget doesn't allow for customizable image attributes such as round 
+#set ( $imgSize = 'auto' ) 
+#set ( $imageShape = 'photo-callout' ) 
+
+#if ($numberOfColumns == 'Two Column Layout')
+    #set ($columnOverride = 'photo-callout-widget__container--2-col' )
+#else 
+    #set ($columnOverride = 'photo-callout-widget__container--3-col' )
+#end
+
+#if ($textAlignment == 'Left Aligned Text')
+    #set ($textAlignment = 'photo-callout-widget__text--left-aligned' )
+#else 
+    #set ($textAlignment = '' )
+#end
+
+#if ($hideImagesOnMobile == 'Hide Images')
+    #set ($mobileImagOptions = 'photo-callout-widget__container--hide-img-mobile' )
+#else 
+    #set ($mobileImagOptions = '' )
+#end
+
+#if ($pagination == 'Paginate')
+    #set ($pagination = 'photo-callout-widget__container--paginate' )
+    #set ($buttonPaginate = 'photo-callout-widget__button--paginate')
+#elseif ($pagination == 'Load All Images')
+    #set ($pagination = 'photo-callout-widget__container--no-paginate' )
+    #set ($buttonPaginate = 'photo-callout-widget__button--no-paginate')
+#end
+
+
+
+<div class="photo-callout-widget__container $columnOverride $mobileImagOptions $pagination">
+
+    #foreach ($block in $blocks)
+        
+        
+        ## TEXT
+        #set ($text = $_SerializerTool.serialize($block.getChild('text'), true))
+        
+        #set ($linkType = $block.getChild('link').getChild('linkType').value )
+        #if ($linkType == 'Internal Link')
+            #set ($linkURL = $block.getChild('link').getChild('internalLink').getChild('path').value )
+        #elseif ($linkType == 'External Link')
+            #set ($linkURL = $block.getChild('link').getChild('externalLink').value )
+        #else 
+            #set ($linkURL = $block.getChild('link').getChild('fileLink').getChild('path').value )
+        #end
+        
+        ## STYLE
+        
+        
+        #if ($enableLinks == 'Enable Links')
+         
+	
+	<a href="${_EscapeTool.xml($linkURL)}" class="photo-callout-widget photo-callout-widget--$bgColor">
+            #imageInCollection($block)
+            
+		
+		<div class="photo-callout-widget__text $textAlignment photo-callout-widget__text--$bgColor">
+			<p>${_EscapeTool.xml($text)}</p>
+		</div>
+	</a>
+        #else 
+        
+	
+	<div href="${_EscapeTool.xml($linkURL)}" class="photo-callout-widget photo-callout-widget--$bgColor">
+            #imageInCollection($block)
+            
+		
+		<div class="photo-callout-widget__text $textAlignment photo-callout-widget__text--$bgColor">
+			<p>${_EscapeTool.xml($text)}</p>
+		</div>
+	</div>
+        #end
+    #end
+
+</div>
+<button id="photo-callout-widget__load-more"
+    class="photo-callout-widget__button photo-callout-widget__button--$bgColor $buttonPaginate" aria-role="button"
+    aria-label="Load More Photos">Load
+    More</button>
+#end

@@ -1,0 +1,370 @@
+/* autoprefixer grid: autoplace */
+.photo-callout-widget {
+
+    border: none;
+    @include qbal-slideUp-enter;
+
+    &:hover,
+    &:focus,
+    &:focus-within {
+        img {
+            filter: brightness(80%);
+            transition: 250ms linear;
+        }
+    }
+
+    img {
+        --imgSize: 150px;
+        width: 100%;
+        object-fit: cover;
+        width: 100%;
+        height: var(--imgSize);
+    }
+
+    &__img {
+        background-color: $white;
+        max-height: 152px;
+    }
+
+    &__container {
+        --marginTop: 20px;
+        --marginBottom: 20px;
+
+        display: -ms-grid;
+        display: grid;
+        -ms-grid-columns: 1fr 25px 1fr 25px 1fr;
+        grid-template-columns: repeat(3, 1fr);
+        -ms-grid-rows: auto;
+        grid-template-rows: auto;
+        grid-gap: 2rem;
+        margin-top: v(marginTop);
+        margin-bottom: v(marginBottom);
+
+        [class*="--white"] {
+            border-color: #cfcfcf;
+        }
+
+        @for $i from 1 through 6 {
+            :nth-child(#{$i}) {
+                animation-delay: #{$i * .05s};
+            }
+        }
+
+        @for $i from 7 through 15 {
+            :nth-child(#{$i}) {
+                animation-delay: #{$i * .03s};
+            }
+        }
+
+
+        &--no-paginate {
+            &+button {
+                display: none !important;
+            }
+        }
+
+        &--2-col {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        &--hide-img-mobile {
+            img {
+                @include respond(phone) {
+                    display: none;
+                }
+            }
+        }
+
+        @include respond(tab-port) {
+            grid-template-columns: repeat(2, 1fr);
+            @include qbal-fade-enter;
+        }
+
+        @include respond(phone) {
+            grid-template-columns: repeat(1, 1fr);
+            @include qbal-fade-enter;
+
+        }
+    }
+
+    &__container>*:nth-child(1) {
+        -ms-grid-row: 1;
+        -ms-grid-column: 1;
+    }
+
+    &__container>*:nth-child(2) {
+        -ms-grid-row: 1;
+        -ms-grid-column: 3;
+    }
+
+    &__container>*:nth-child(3) {
+        -ms-grid-row: 1;
+        -ms-grid-column: 5;
+    }
+
+    &__text {
+        display: -ms-grid;
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        padding: 4%;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: center;
+        min-height: 66px;
+        @include qbal-fade-enter;
+
+
+        &--left-aligned {
+            text-align: left;
+            display: grid;
+            justify-content: start;
+        }
+
+        p {
+            margin-bottom: 0;
+            font-weight: bold;
+            font-family: $futura-regular;
+            line-height: 1.6rem;
+            font-size: 1.5rem;
+        }
+
+        &--white,
+        &--sand {
+            p {
+                color: $cu-red;
+
+                &:hover,
+                &:focus {
+                    color: lighten($cu-red, 8%);
+                    transition: 250ms linear;
+                }
+            }
+        }
+
+        &--white {
+            border: none !important;
+        }
+    }
+
+    &__button {
+        --marginTop: 20px;
+        --marginBottom: 20px;
+
+        width: 100%;
+        height: 5rem;
+        font-family: $futura-regular;
+        font-weight: bold;
+        border-radius: 4px;
+        grid-column-start: 1;
+        grid-column-end: 4;
+        display: none;
+        margin-top: v(marginTop);
+        margin-bottom: v(marginBottom);
+
+        &--sand,
+        &--white {
+            color: $cu-red;
+
+            &:hover {
+                color: $red-hover
+            }
+        }
+
+        +[class*="-widget"] {
+            --marginTop: 20px;
+            --marginBottom: 20px;
+        }
+    }
+
+    .ie__fallback--object-fit {
+        margin: 0;
+        max-height: 150px;
+    }
+}
+
+
+a.photo-callout-widget,
+button.photo-callout-widget__load-more {
+
+
+
+    border: none;
+
+    &:hover,
+    &:focus,
+    &:focus-within {
+        transition: 250ms linear;
+    }
+
+    &:focus,
+    &:focus-within {
+        @include focus($cu-red);
+    }
+
+    &[class*="--sand"]:hover,
+    &[class*="--sand"]:focus,
+    &[class*="--sand"]:focus-within {
+        background-color: lighten($sand, 2%);
+    }
+
+    &[class*="--sand"]:hover .photo-callout-widget__text,
+    &[class*="--sand"]:focus .photo-callout-widget__text,
+    &[class*="--sand"]:focus-within .photo-callout-widget__text {
+        background-color: lighten($sand, 2%);
+    }
+
+    &[class*="--red"]:hover,
+    &[class*="--red"]:focus,
+    &[class*="--red"]:focus-within {
+        background-color: lighten($cu-red, 8%);
+    }
+
+    &[class*="--red"]:hover .photo-callout-widget__text,
+    &[class*="--red"]:focus .photo-callout-widget__text,
+    &[class*="--red"]:focus-within .photo-callout-widget__text {
+        background-color: lighten($cu-red, 8%);
+    }
+
+    &[class*="--white"]:hover,
+    &[class*="--white"]:focus,
+    &[class*="--white"]:focus-within {
+        background-color: darken($white, 2%);
+    }
+
+    &[class*="--white"]:hover .photo-callout-widget__text,
+    &[class*="--white"]:focus .photo-callout-widget__text,
+    &[class*="--white"]:focus-within .photo-callout-widget__text {
+        background-color: darken($white, 2%);
+    }
+
+    &[class*="--black"]:hover,
+    &[class*="--black"]:focus,
+    &[class*="--black"]:focus-within {
+        background-color: darken($panther-black, 100%);
+    }
+
+    &[class*="--black"]:hover .photo-callout-widget__text,
+    &[class*="--black"]:focus .photo-callout-widget__text,
+    &[class*="--black"]:focus-within .photo-callout-widget__text {
+        background-color: darken($panther-black, 100%);
+    }
+
+    &[class*="--grey"]:hover,
+    &[class*="--grey"]:focus,
+    &[class*="--grey"]:focus-within {
+        background-color: lighten($cu-light-grey, 2%);
+    }
+
+    &[class*="--grey"]:hover .photo-callout-widget__text,
+    &[class*="--grey"]:focus .photo-callout-widget__text,
+    &[class*="--grey"]:focus-within .photo-callout-widget__text {
+        background-color: lighten($cu-light-grey, 2%);
+    }
+}
+
+:not(.photo-callout-widget__container--2-col) {
+    a.photo-callout-widget:nth-child(n + 7) {
+        display: none;
+    }
+
+    div.photo-callout-widget:nth-child(n + 7) {
+        display: none;
+    }
+}
+
+.photo-callout-widget__container--2-col {
+    a.photo-callout-widget:nth-child(n + 3) {
+        display: none;
+    }
+
+    div.photo-callout-widget:nth-child(n + 3) {
+        display: none;
+    }
+}
+
+.photo-callout-widget__container--no-paginate {
+    a.photo-callout-widget:nth-child(n + 4) {
+        display: grid;
+    }
+
+    div.photo-callout-widget:nth-child(n + 4) {
+        display: grid;
+    }
+}
+
+.no-js {
+    a.photo-callout-widget:nth-child(n + 4) {
+        display: grid;
+    }
+
+    div.photo-callout-widget:nth-child(n + 4) {
+        display: grid;
+    }
+}
+
+.ie {
+    .photo-callout-widget {
+        flex: 1 0 25%;
+
+        +[class*="-widget"] {
+            margin-top: 0;
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        &__container {
+            display: flex;
+            align-items: start;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            &--2-col {
+
+                // .ie {
+                .photo-callout-widget {
+                    flex: 1 0 42%;
+                }
+            }
+        }
+
+        &__text {
+            display: flex;
+
+            &--left-aligned {
+                display: flex;
+            }
+        }
+    }
+
+    .no-js {
+        a.photo-callout-widget:nth-child(n + 4) {
+            display: flex;
+        }
+
+        div.photo-callout-widget:nth-child(n + 4) {
+            display: flex;
+        }
+    }
+}
+
+
+@include respond(desktop) {
+
+    .threeColumns {
+        .photo-callout-widget__container--3-col p {
+            font-size: 1.3rem;
+            line-height: 1.4rem;
+        }
+    }
+
+}
+
+button.photo-callout-widget__button.photo-callout-widget__button--white {
+    color: $cu-red;
+    border-color: #cfcfcf;
+
+    &:hover {
+        color: $red-hover;
+    }
+}

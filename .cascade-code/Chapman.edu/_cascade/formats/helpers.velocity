@@ -24,6 +24,7 @@ Master Version: Chapman.edu/_cascade/formats/helpers.velocity
     #set ( $wxp = $snakeCase)
 #end
 
+
 #*
 --------------------------------------------------------------------------------
  OUTPUTS IMAGES IN A COLLECTION (AN IMAGE WITHIN A SLIDE IN A SERIES OF SLIDES)
@@ -37,19 +38,29 @@ Master Version: Chapman.edu/_cascade/formats/helpers.velocity
     #set ($imageUrlInt =
     $elem.getChild('image').getChild('imageUrlInt').getChild('path').value )
     #set ($imageUrlExt =
-    $elem.getChild('image').getChild('imageUrlExt').getChild('path').value )
+    $elem.getChild('image').getChild('imageUrlExt').value )
     #set ($altText =
     $elem.getChild('image').getChild('altText').value)
     #set ($objectPositionX = $elem.getChild('image').getChild('objectPositionX').value.toLowerCase())
     #set ($objectPositionY = $elem.getChild('image').getChild('objectPositionY').value.toLowerCase())
+
+    #if ($imageType.contains("none"))
     
-    #if (!$imageType.contains("none"))
+    #elseif ($imageType == 'internal cascade image')
         <div
             class="${_EscapeTool.xml($widgetXPath)}__img--${_EscapeTool.xml($imageShape)} ${_EscapeTool.xml($widgetXPath)}__img"
             style="width: ${_EscapeTool.xml($imgSize)}; height: ${_EscapeTool.xml($imgSize)}; ">
-                <img class="${_EscapeTool.xml($widgetXPath)}__img img--${_EscapeTool.xml($imageShape)} "
+            
+                <img class="${_EscapeTool.xml($widgetXPath)}__img img--${_EscapeTool.xml($imageShape)} img--internal"
                     src="[system-asset]${_EscapeTool.xml($imageUrlInt)}[/system-asset]"
-                    alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-position:${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}"/>
+                    alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-position:${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}" loading="lazy"/>
+        </div>
+    #else 
+        <div 
+        class="${_EscapeTool.xml($widgetXPath)}__img--${_EscapeTool.xml($imageShape)} ${_EscapeTool.xml($widgetXPath)}__img" style="width: ${_EscapeTool.xml($imgSize)}; height: ${_EscapeTool.xml($imgSize)}; ">
+            <img class="${_EscapeTool.xml($widgetXPath)}__img img--${_EscapeTool.xml($imageShape)} img--external"
+            src="${_EscapeTool.xml($imageUrlExt)}"
+            alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-position:${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}" loading="lazy"/>
         </div>
     #end
 #end
@@ -82,7 +93,7 @@ USAGE: #image()
             style="width: ${_EscapeTool.xml($imgSize)}; height: ${_EscapeTool.xml($imgSize)}; ">
                 <img class="${_EscapeTool.xml($widgetXPath)}__img img--${_EscapeTool.xml($imageShape)} "
                     src="[system-asset]${_EscapeTool.xml($imageUrlInt)}[/system-asset]"
-                    alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-position:${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}"/>
+                    alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-position:${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}" loading="lazy" />
         </div>
     #end
 #end

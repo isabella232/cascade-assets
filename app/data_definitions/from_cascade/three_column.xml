@@ -346,6 +346,59 @@
 					</group>
 				</group>
 			</group>
+			<group collapsed="true" identifier="photoCalloutWidget" label="Photo Callout">
+				<shared-field field-id="a7a67c6bc0a81e4b407da5646ea52523" identifier="display" path="display"/>
+				<text default="Centered Text" field-id="a7a67c6bc0a81e4b407da5647f163c00" identifier="textAlignment" label="Text Alignment" type="radiobutton">
+					<radio-item value="Centered Text"/>
+					<radio-item value="Left Aligned Text"/>
+				</text>
+				<text default="Three Column Layout" field-id="a7a67c6bc0a81e4b407da56416da0fff" identifier="numberOfColumns" label="Desktop Layout" type="radiobutton">
+					<radio-item value="Three Column Layout"/>
+					<radio-item value="Two Column Layout"/>
+				</text>
+				<text default="Show Images" field-id="a7a67c6bc0a81e4b407da5641f41b7dc" identifier="hideImagesOnMobile" label="Mobile Layout" type="radiobutton">
+					<radio-item value="Show Images"/>
+					<radio-item value="Hide Images"/>
+				</text>
+				<text default="Paginate" field-id="a7a67c6bc0a81e4b407da5644ac0b6d1" identifier="pagination" label="Pagination" type="radiobutton">
+					<radio-item value="Load All Images"/>
+					<radio-item value="Paginate"/>
+				</text>
+				<text default="Enable Links" field-id="a7a67c6bc0a81e4b407da564d2b584c6" help-text="Disabling links will remove the option to wrap each photo block in a link" identifier="enableLinks" label="Make each photo block a link?" type="radiobutton">
+					<radio-item show-fields="primaryContent/widget/photoCalloutWidget/block/link" value="Enable Links"/>
+					<radio-item value="Disable Links"/>
+				</text>
+				<shared-field field-id="a7a67c6bc0a81e4b407da5645d10d161" identifier="bgColor" path="background-color"/>
+				<group collapsed="true" identifier="design" label="Design - Advanced (Restricted to Admins)" restrict-to-groups="Administrators">
+					<text field-id="containerMarginTop" identifier="containerMarginTop" label="Container Margin Top"/>
+					<text field-id="containerMarginBottom" identifier="containerMarginBottom" label="Container Margin Bottom"/>
+					<text field-id="buttonMarginTop" identifier="buttonMarginTop" label="Button Margin Top"/>
+					<text field-id="buttonMarginBottom" identifier="buttonMarginBottom" label=" Button Margin Bottom"/>
+				</group>
+				<group identifier="block" label="Photo Block" multiple="true">
+					<shared-field field-id="a7a67c6bc0a81e4b407da56469ff04b0" identifier="image" maximum-number="1" path="image__rectangle-only--required" required="true" help-text="Two Column Dimensions: 392 X 150; Three Column Dimensions: 255 X 150;"/>
+					<text field-id="a7a67c6bc0a81e4b407da5641061c456" help-text="50 Characters Max" identifier="text" label="Text" maxlength="50" required="true"/>
+					<group identifier="link" label="Link">
+						<text default="Internal Link" field-id="a7a67c6cc0a81e4b407da5640265d916" identifier="linkType" label="Link Type" type="radiobutton">
+							<radio-item show-fields="primaryContent/widget/photoCalloutWidget/block/link/internalLink" value="Internal Link"/>
+							<radio-item show-fields="primaryContent/widget/photoCalloutWidget/block/link/externalLink" value="External Link"/>
+							<radio-item show-fields="primaryContent/widget/photoCalloutWidget/block/link/fileLink" value="File Link"/>
+						</text>
+						<text field-id="a7a67c6cc0a81e4b407da5644d7c41a0" help-text="full url (including HTTPS) to page outside of Cascade" identifier="externalLink" label="External Link"/>
+						<asset field-id="a7a67c6cc0a81e4b407da56431c665dc" identifier="internalLink" label="Internal Link" type="page"/>
+						<asset field-id="a7a67c6cc0a81e4b407da56439d1669e" identifier="fileLink" label="File Link" type="file"/>
+						<text field-id="a7a67c6cc0a81e4b407da564d8fe5d57" identifier="label" label="Label"/>
+						<group identifier="accessibility" label="Accessibility">
+							<text field-id="a7a67c6cc0a81e4b407da5641cf0adf1" identifier="ariaLabel" label="Aria Label"/>
+							<text field-id="a7a67c6cc0a81e4b407da564dcc41146" identifier="title" label="Title"/>
+						</group>
+						<group identifier="tracking" label="Analytics Tracking" restrict-to-groups="Administrators">
+							<text field-id="a7a67c6cc0a81e4b407da56401c40add" help-text="Replace or add custom link ID for tracking." identifier="customID" label="Override HTML ID"/>
+							<text field-id="a7a67c6cc0a81e4b407da564a6c6de23" help-text="Replace or add custom data-attr for tracking. Entering 'my-custom-thing' will result in 'data-my-custom-thing'" identifier="dataAttr" label="Data Attribute" multiple="true"/>
+						</group>
+					</group>
+				</group>
+			</group>
 			<group collapsed="true" identifier="next-steps-widget" label="Next Steps">
 				<shared-field identifier="display" path="display"/>
 				<text default="left-aligned" identifier="layout" label="Layout" type="radiobutton">

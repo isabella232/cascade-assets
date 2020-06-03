@@ -8,12 +8,12 @@
 #set ($text = $_SerializerTool.serialize($element.getChild($widgetXPath).getChild('text'), true))
 ## STYLE
 #set ($display = $element.getChild($widgetXPath).getChild('display').value)
-#bgColorChooser($widgetXPath)
+    #bgColorChooser($widgetXPath)
 
-## use snake-case here for BEM naming convention
-#camelToSnake($widgetXPath)
+    ## use snake-case here for BEM naming convention
+    #camelToSnake($widgetXPath)
 
-#set ( $widgetXPath = $snakeCase ) 
+    #set ( $widgetXPath = $snakeCase ) 
 <div class="#escape($widgetXPath) $bgColor">
     <div class="text ${_EscapeTool.xml($widgetXPath)}__text">
         $text

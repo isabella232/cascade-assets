@@ -24,6 +24,7 @@
 #import( "/_cascade/formats/modular/widgets/Shared Content - Degrees Primary Content" )
 #import( "/_cascade/formats/modular/widgets/Faculty Info Primary" )
 #import( "/_cascade/formats/modular/widgets/Html Block" )
+#import( "/_cascade/formats/modular/widgets/Photo Callout" )
 #import( "/_cascade/formats/modular/widgets/Next Steps" )
 ## Reserved Block Format not finished/working:
 #import( "/_cascade/formats/modular/widgets/Reserved Block Format" )
@@ -166,6 +167,14 @@
         #set ($displayNextSteps = $widget.getChild('next-steps-widget').getChild('display').value)
         #if ($displayNextSteps == 'Yes')
             #outputNextStepsWidget($widget)
+        #end
+    #end
+    ## 
+    ##    
+    #if ($widgetType == 'Photo Callout')
+        #set ($displayPhotoCallout = $widget.getChild('photo-callout-widget').getChild('display').value)
+        #if ($displayPhotoCallout == 'Yes')
+            #outputPhotoCalloutWidget($widget)
         #end
     #end
     ## 
