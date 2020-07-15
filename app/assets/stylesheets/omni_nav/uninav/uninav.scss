@@ -74,7 +74,7 @@ html {
 
 #uninav {
   $uninavZindex: 2;
-  $uninavZindexPlusOne: $uninavZindex + 1;
+  $uninavZindexPlusOne: calc($uninavZindex + 1);
   font-family: $futura-regular;
   position: fixed;
   width: 100vw;

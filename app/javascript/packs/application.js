@@ -26,4 +26,3 @@ import '../src/master.scss';
 
 leftNav();
 uninav();
-// require.context('../src/images', true, /\.(gif|png|svg)$/i)

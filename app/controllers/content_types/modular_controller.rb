@@ -509,7 +509,7 @@ module ContentTypes
     def render_static_two_column_primary_content
       # This reproduces content from static sample version
       format("%s",
-        render_static_partial("widgets/primary_content/collapsables_1"),
+        render_static_partial("widgets/primary_content/testimonial_widget"),
         # render_static_partial("widgets/primary_content/next_steps_widget"),
         # render_static_partial("widgets/primary_content/news_events_feed_1"),
         # render_static_partial("widgets/primary_content/three_photo_callout_1")
