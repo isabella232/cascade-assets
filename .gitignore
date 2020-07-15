@@ -39,7 +39,7 @@ cascade-notes.md
 
 /.prettierrc
 /public/packs
-/public/packs-test
+/public/webpacker_assets
 /node_modules
 /yarn-error.log
 yarn-debug.log*

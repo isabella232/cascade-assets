@@ -1,5 +1,7 @@
+const crypto = require('crypto')
 
-process.env.NODE_ENV = process.env.RAILS_ENV || 'production'
+process.env.NODE_ENV = process.env.RAILS_ENV || 'staging'
+
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const environment = require('./environment');
@@ -17,6 +19,5 @@ environment.plugins.append(
 
 const config = environment.toWebpackConfig();
 config.output.filename = `master-webpack-${hashJs}.js`
-
 
 module.exports = config;

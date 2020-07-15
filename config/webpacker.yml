@@ -4,13 +4,13 @@ default: &default
   source_path: app/javascript
   source_entry_path: packs
   public_root_path: public
-  public_output_path: _assets
+  public_output_path: webpacker_assets
   cache_path: tmp/cache/webpacker
   webpack_compile_output: true
 
   # Additional paths webpack should lookup modules
   # ['app/assets', 'engine/foo/app/assets']
-  resolved_paths: ['app/assets/images', 'app/javascript/src/']
+  resolved_paths: []
 
   # Reload manifest.json on all requests so we reload latest compiled packs
   cache_manifest: false
@@ -80,8 +80,24 @@ test:
   # Compile test packs to a separate directory
   public_output_path: packs-test
 
+staging: 
+  <<: *default
+
+  public_output_path: _assets
+
+  # Production depends on precompilation of packs prior to booting for performance.
+  compile: false
+
+  # Extract and emit a css file
+  extract_css: true
+
+  # Cache manifest.json for performance
+  cache_manifest: true
+  
 production:
   <<: *default
+
+  public_output_path: _assets
 
   # Production depends on precompilation of packs prior to booting for performance.
   compile: false

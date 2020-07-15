@@ -73,8 +73,6 @@ html {
 }
 
 #uninav {
-  $uninavZindex: 2;
-  $uninavZindexPlusOne: $uninavZindex + 1;
   font-family: $futura-regular;
   position: fixed;
   width: 100vw;
@@ -86,7 +84,7 @@ html {
 
   .gssb_c,
   .gssb_c[style] {
-    z-index: calc($uninavZindex + 2);
+    z-index: calc(2 + 2);
   }
 
   a {

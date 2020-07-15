@@ -1,7 +1,4 @@
-import $ from 'jquery';
-
 const leftNav = function() {
-
   $(document).ready(function() {
     var $rootDrillDownNav   = $('#left-column-navigation .root-left-nav'),
     $rootElement            = $('#left-column-navigation'),

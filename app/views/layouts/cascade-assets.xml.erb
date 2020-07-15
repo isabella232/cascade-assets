@@ -8,8 +8,8 @@
   <%= stylesheet_link_tag 'master', rel: 'preload', as: 'style', media: 'all' %>
   <%= preload_js_link 'master', rel: 'preload', as: 'script', media: 'all'  %>
 
-  <script src="//dev-www.chapman.edu<%= Webpacker.manifest.lookup('application.css')&.html_safe %>"></script>
-  <script src="//dev-www.chapman.edu<%= Webpacker.manifest.lookup('application.js')&.html_safe %>"></script>
+  <script src="<%=asset_path(Webpacker.manifest.lookup('application.css')&.html_safe) %>" defer="true"></script>
+  <script src="<%= asset_path(Webpacker.manifest.lookup('application.js')&.html_safe) %>" defer="true"></script>
  
   <!-- Carry on -->
   <%= stylesheet_link_tag 'master', media: 'all' %>

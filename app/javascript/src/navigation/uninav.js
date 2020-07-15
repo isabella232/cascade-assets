@@ -1,4 +1,3 @@
-import $ from 'jquery';
 // uninav accessibility
 const uninav = function() {
   $(function () {
@@ -118,7 +117,7 @@ const uninav = function() {
     document.getElementById("gsc-i-id1").style.opacity = "1";
   }
   // TODO: iOS style frosted/blurred background. CSS filter: blur(2px) performance is terrible
-  $(window).load(function () {
+  $(window).on('load',function () {
     if ($('table.gstl_50').length) {
       $('table.gstl_50:not([role])').attr('role', 'presentation');
       $("#gsc-i-id1").on("input focus click", function () {
