@@ -3,7 +3,6 @@ class Cascade < Thor
     require "awesome_print"
     # method_option :asset_type, :aliases => "-t", :desc => "page/block/structureddatadefinition/etc | NOTE: KEEP trailing slash"
     # method_option :asset_path, :aliases => "-p", :desc => "eg Chapman.edu/_cascade/formats/modular/widgets/1-column | NOTE: no trailing slash"
-    
 
     # ---------------------------------------------------------------------------- #
     #                                    search                                    #
@@ -150,6 +149,3 @@ class Cascade < Thor
 
     end
 end
-
-
-
