@@ -49,7 +49,7 @@ task edit_cascade_assets: :environment do
  url_post = base_url + 'edit/' + asset_type + asset_path + cascade_username + cascade_password
 
  # 👹Editing assets unfortunately requires PATH, SITENAME, ID. This can be obtained by reading the asset's response.body 👆
- HTTParty.post(url_post, body: { asset: { xmlBlock: { xml: data, path: "_cascade/blocks/html/0-write-test", parentFolderId: "8516f0a9c04d744c610b81da2d21be44", siteName: "Chapman.edu", id: asset_path } } }.to_json)
+ puts HTTParty.post(url_post, body: { asset: { xmlBlock: { xml: data, path: "_cascade/blocks/html/0-write-test", parentFolderId: "8516f0a9c04d744c610b81da2d21be44", siteName: "Chapman.edu", id: asset_path } } }.to_json)
 end
 
 # ---------------------------------------------------------------------------- #
@@ -102,7 +102,7 @@ response_body = data
 url_post = base_url + 'edit/' + asset_type + asset_path + cascade_username + cascade_password
 
 #  # 👹Editing assets unfortunately requires PATH, SITENAME, ID. This can be obtained by reading the asset's response.body 👆
-HTTParty.post(url_post, body: { asset: { dataDefinition: { xml: data, path: asset_path, parentContainerId: "f8d1f15cc04d744c54334eca7e6dd033", siteName: "Chapman.edu", id: asset_path } } }.to_json)
+puts HTTParty.post(url_post, body: { asset: { dataDefinition: { xml: data, path: asset_path, parentContainerId: "f8d1f15cc04d744c54334eca7e6dd033", siteName: "Chapman.edu", id: asset_path } } }.to_json)
 puts "🎉 View changes at https://dev-cascade.chapman.edu/entity/open.act?id=c77aa6ffc04d744c4832d6753c63a730&type=structureddatadefinition"
 end
 
@@ -156,7 +156,7 @@ url_post = base_url + 'edit/' + asset_type + asset_path + cascade_username + cas
 
 puts "📝 Replacing Data Definitions:Modular/2 Column with app/data_definitions/from_cascade/two_column.xml"
 #  # 👹Editing assets unfortunately requires PATH, SITENAME, ID. This can be obtained by reading the asset's response.body 👆
-HTTParty.post(url_post, body: { asset: { dataDefinition: { xml: data, path: asset_path, parentContainerId: "f8d1f15cc04d744c54334eca7e6dd033", siteName: "Chapman.edu", id: asset_path } } }.to_json)
+puts HTTParty.post(url_post, body: { asset: { dataDefinition: { xml: data, path: asset_path, parentContainerId: "f8d1f15cc04d744c54334eca7e6dd033", siteName: "Chapman.edu", id: asset_path } } }.to_json)
 puts "🎉 View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{asset_path}&type=structureddatadefinition"
 end
 
@@ -212,7 +212,7 @@ require "json"
  puts "📝 Replacing Data Definitions:Modular/2 Column with app/data_definitions/from_cascade/two_column.xml"
  #  # 👹Editing assets unfortunately requires PATH, SITENAME, ID. This can be obtained by reading the asset's response.body 👆
 
-puts  HTTParty.post(url_post, body: { 
+puts HTTParty.post(url_post, body: { 
   "asset": {
     "scriptFormat": {
       "script": data,
@@ -229,7 +229,7 @@ puts  HTTParty.post(url_post, body: {
       "name": "PrimaryContent",
       "id": "f9037d2ec04d744c54334ecabde0ebe7"
     }
-  } \
+  }
 }.to_json)
 
  puts "🎉 View changes at https://dev-cascade.chapman.edu/entity/open.act?id=f9037d2ec04d744c54334ecabde0ebe7&type=format"
@@ -282,14 +282,14 @@ url_post = base_url + 'edit/' + asset_type + asset_path + cascade_username + cas
 puts "📝 Replacing Data Definitions:Modular/3 Column with app/data_definitions/from_cascade/two_column.xml"
 
 #  # 👹Editing assets unfortunately requires PATH, SITENAME, ID. This can be obtained by reading the asset's response.body 👆
-HTTParty.post(url_post, body: { asset: { dataDefinition: { xml: data, path: asset_path, parentContainerId: "f8d1f15cc04d744c54334eca7e6dd033", siteName: "Chapman.edu", id: asset_path } } }.to_json)
+puts HTTParty.post(url_post, body: { asset: { dataDefinition: { xml: data, path: asset_path, parentContainerId: "f8d1f15cc04d744c54334eca7e6dd033", siteName: "Chapman.edu", id: asset_path } } }.to_json)
 puts "🎉 View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{asset_path}&type=structureddatadefinition"
 end
 
 desc "Pulls staging velocity formats to local machine"
 task pull: :environment do
  # * 1) BASE URL 
- base_url = 'https://dev-cascade.chapman.edu/api/v1/'
+   base_url = 'https://dev-cascade.chapman.edu/api/v1/'
 
  # * 2) REST API ACTION
  # https://wimops.chapman.edu/wiki/WWW#Key_Links
