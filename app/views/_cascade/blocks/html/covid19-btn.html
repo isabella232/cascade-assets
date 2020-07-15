@@ -1,112 +1,126 @@
 <!--#protect
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/plugins/CSSPlugin.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenLite.min.js"></script><style>
-#covid19-callout-box {
-    background-color: #a50034;
-    box-shadow: 3px 4px 8px rgba(0,0,0,0.3);
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 13px;
-    max-width: 300px;
-    right: 0;
-    position: fixed;
-    top: 130px;
-    height: 210px;
-    transform: translateX(100%);
-    width: 300px;
-    z-index: 100;
-}
-.covid19-btn-opener {
-    background-color: #a50034;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    box-shadow: -3px -4px 8px rgba(0,0,0,0.3);
-    cursor: pointer;
-    padding: 10px 15px;
-    position: absolute;
-    text-transform: uppercase;
-    transform: rotate(-90deg) translatez(0) translate(-40.5%, -122px);
-    width: 210px;
-}
-.covid19-btn-opener:hover,
-.covid19-btn-opener:active,
-.covid19-btn-opener:focus {
-    background-color: #C8003F;
-    -webkit-transition: background-color 0.4s;
-    transition: 0.4s;
-}
-#covid19-callout-box .covid19-btn-body {
-    padding: 30px 30px 10px 30px;
-}
-#covid19-callout-box .covid19-btn-body h3 {
-    margin: 0rem 0 1rem;
-}
-#covid19-callout-box .covid19-btn-body ol {
-    padding: 5px 0px 10px 20px;
-}
-#covid19-callout-box .covid19-btn-body li {
-    font-weight: 700;
-    padding: 8px 0px;
-}
-#covid19-callout-box .covid19-btn-body .btn-primary {
-    background: #ffffff;
-    border: none;
-    border-radius: 3px;
-    box-shadow: 0 0 0 0 #2f2f2f;
-    color: #a50034;
-    cursor: pointer;
-    display: block;
-    font-family: "futura-pt", arial, sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    margin-right: 10px;
-    min-width: 120px;
-    padding: 5px;
-    text-align: center;
-    -webkit-animation-duration: 3s;
-    animation-duration: 3s;   
-    -webkit-transition: 250ms ease-in-out;
-    transition: 250ms ease-in-out;
-    will-change: background-color;
-}
-#covid19-callout-box .covid19-btn-body .btn-primary:hover, 
-#covid19-callout-box .covid19-btn-body .btn-primary:active,
-#covid19-callout-box .covid19-btn-body .btn-primary:focus {
-    background-color: #ededed;
-    -webkit-transition: background-color 1s linear;
-    transition: background-color 1s linear;
-}
-</style><div role="complementary" id="covid19-callout-box"><div class="covid19-btn-opener">Coronavirus Updates <span id="covid-carot" style="margin-left: 5px;font-size: 1.8rem;"><i class="fas fa-caret-up"></i></span></div><div class="covid19-btn-body"><h3>Coronavirus: Chapman Community  Updates and Resources</h3><a id="covid19-learn-more-btn" class="btn btn-primary btn-block" aria-label="Learn more about Corona Virus" href="https://news.chapman.edu/coronavirus/">Visit Website</a></div></div><script>
-var contactEl;
-var toggleBtn;
-var contactElHidden = true;
-
-$(function() {
-    contactEl = $('#covid19-callout-box');
-    toggleBtn = contactEl.find('.covid19-btn-opener');
-    toggleBtn.click(_toggleContactEl);
-    $(window).scroll(_onScroll);
-});
-
-function _toggleContactEl() {
-    TweenLite.to(contactEl, 0.3, {
-        x: contactElHidden ? '0%' : '100%'
-    });
-    contactElHidden = !contactElHidden;
-    $("#covid-carot i").toggleClass('fa-caret-up fa-caret-down');
-}
-
-function _onScroll() {
-    // scrolled half-way
-    if ($(window).scrollTop() < $(document).height() * 0.5) {
-        if (contactElHidden) {
-            _toggleContactEl();
+        #covid19-callout-box {
+            background-color: #a50034;
+            box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.3);
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            max-width: 300px;
+            right: 0;
+            position: fixed;
+            top: 130px;
+            height: 210px;
+            transform: translateX(100%);
+            width: 300px;
+            z-index: 100;
         }
-        // only try to display once
-        $(window).off('scroll');
-    }
-}
-</script>
 
-<script src="https://2c8f9c2a9ace49dda0e5e9cdc00d62bc.js.ubembed.com" async="true"></script>
-#protect-->
+        .covid19-btn-opener {
+            background-color: #a50034;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            box-shadow: -3px -4px 8px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            padding: 10px 15px;
+            position: absolute;
+            text-transform: uppercase;
+            transform: rotate(-90deg) translatez(0) translate(-40%, -122px);
+            width: 210px;
+        }
+
+        .covid19-btn-opener:hover,
+        .covid19-btn-opener:active,
+        .covid19-btn-opener:focus {
+            background-color: #C8003F;
+            -webkit-transition: background-color 0.4s;
+            transition: 0.4s;
+        }
+
+        #covid19-callout-box .covid19-btn-body {
+            padding: 30px 30px 10px 30px;
+        }
+
+        #covid19-callout-box .covid19-btn-body h3 {
+            margin: 0rem 0 1rem;
+        }
+
+        #covid19-callout-box .covid19-btn-body ol {
+            padding: 5px 0px 10px 20px;
+        }
+
+        #covid19-callout-box .covid19-btn-body li {
+            font-weight: 700;
+            padding: 8px 0px;
+        }
+
+        #covid19-callout-box .covid19-btn-body .btn-primary {
+            background: #ffffff;
+            border: none;
+            border-radius: 3px;
+            box-shadow: 0 0 0 0 #2f2f2f;
+            color: #a50034;
+            cursor: pointer;
+            display: block;
+            font-family: "futura-pt", arial, sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            margin-right: 10px;
+            min-width: 120px;
+            padding: 5px;
+            text-align: center;
+            -webkit-animation-duration: 3s;
+            animation-duration: 3s;
+            -webkit-transition: 250ms ease-in-out;
+            transition: 250ms ease-in-out;
+            will-change: background-color;
+        }
+        a#covid19-learn-more-btn:hover, a#covid19-learn-more-btn:focus, a#covid19-learn-more-btn:focus-within {
+outline: 2px dotted white;
+}
+
+        #covid19-callout-box .covid19-btn-body .btn-primary:hover,
+        #covid19-callout-box .covid19-btn-body .btn-primary:active,
+        #covid19-callout-box .covid19-btn-body .btn-primary:focus {
+            background-color: #ededed;
+            -webkit-transition: background-color 1s linear;
+            transition: background-color 1s linear;
+        }
+    </style><div id="covid19-callout-box" role="complementary"><div class="covid19-btn-opener" tabindex="0">Coronavirus Updates <span id="covid-carot"
+                style="margin-left: 5px;font-size: 1.8rem;"><i class="fas fa-caret-up" aria-hidden="true"></i></span></div><div class="covid19-btn-body"><h3>CU Safely Back: Chapman's Plans for Returning to Campus</h3><a tabindex="-1" id="covid19-learn-more-btn" class="btn btn-primary btn-block" aria-label="Learn more about Corona Virus"
+                href="https://news.chapman.edu/coronavirus/">Visit Website</a></div></div><script>
+        var contactEl;
+        var toggleBtn;
+        var contactElHidden = true;
+
+        $(function () {
+            contactEl = $('#covid19-callout-box');
+            toggleBtn = contactEl.find('.covid19-btn-opener');
+            toggleBtn.click(_toggleContactEl);
+            $(window).scroll(_onScroll);
+        });
+
+        function _toggleContactEl() {
+            TweenLite.to(contactEl, 0.3, {
+                x: contactElHidden ? '0%' : '100%'
+            });
+            contactElHidden = !contactElHidden;
+            $("#covid-carot i").toggleClass('fa-caret-up fa-caret-down');
+            $("#covid19-learn-more-btn").attr('tabindex', function(index, attr){
+                return attr == 0 ? -1 : 0;
+            });
+        }
+
+        function _onScroll() {
+            // scrolled half-way
+            if ($(window).scrollTop() < $(document).height() * 0.5) {
+                if (contactElHidden) {
+                    _toggleContactEl();
+                }
+                // only try to display once
+                $(window).off('scroll');
+            }
+        }
+    </script>
+    #protect-->

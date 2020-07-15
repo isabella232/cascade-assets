@@ -64,6 +64,7 @@ $(function () {
       // SCROLL TO TOP OF ID
       if ((currentAccordion).length > 1) {
         $(currentToggle).text('Collapse');
+        $(currentToggle).attr('aria-label', 'collapse accordion');
       }
     }
     // HANDLE COLLAPSE TOGGLES
@@ -77,6 +78,7 @@ $(function () {
       $(currentExpand).focus();
       if ((currentAccordion).length > 1) {
         $(currentToggle).text('Expand');
+        $(currentToggle).attr('aria-label', 'expand accordion');
       }
     }
   });

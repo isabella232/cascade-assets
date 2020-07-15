@@ -62,6 +62,7 @@
     justify-self: end;
     @include v(color, white);
     padding-right: 2vw;
+    padding-left: 2vw;
     cursor: pointer;
     top: calc(600px - 12.5rem);
     fill-opacity: 0.9;
@@ -72,6 +73,11 @@
     &:hover {
       transition: 150ms linear;
       fill-opacity: 1;
+    }
+
+    &:focus,
+    &:focus-within {
+      outline: 2px dotted white;
     }
   }
 

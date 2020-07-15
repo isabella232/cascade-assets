@@ -205,6 +205,21 @@ textarea {
   text-shadow: none;
 }
 
+
+[alt] {
+  font-family: $futura-regular;
+  opacity: 0;
+  animation-delay: 300ms;
+  animation: fadein 3s forwards;
+  -moz-animation: fadein 3s forwards;
+  -webkit-animation: fadein 3s forwards;
+  -o-animation: fadein 3s forwards;
+  animation-direction: forwards;
+  -webkit-animation: fadein 3s forwards;
+  animation-fill-mode: forwards !important;
+}
+
+
 a {
   color: $red;
   text-decoration: none;

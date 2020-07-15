@@ -1,4 +1,5 @@
 class UninavController < ApplicationController
+  before_action :replace_relative_urls
 
   def uninav 
   end
@@ -56,4 +57,12 @@ class UninavController < ApplicationController
 
   def home_cascade
   end
+end
+
+
+private 
+def replace_relative_urls
+  relative_url = "_files"
+  # relative_url.sub! '_files', 'https://www.chapman.edu/'
+  relative_url ["_files"] = "https://www.chapman.edu/_files"
 end
