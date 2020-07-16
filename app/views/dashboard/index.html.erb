@@ -1,7 +1,9 @@
+<%# inherits from dashboard.html.erb %>
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+        aria-expanded="false" aria-controls="navbar">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -10,7 +12,8 @@
       <a class="navbar-brand" href="#">Cascade Assets</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
-    </div><!--/.navbar-collapse -->
+    </div>
+    <!--/.navbar-collapse -->
   </div>
 </nav>
 
@@ -22,7 +25,7 @@
   <!-- Example row of columns -->
   <div class="row">
     <div class="col-md-4">
-      <h2>Static</h2>
+      <h3>Static</h3>
       <p>Static samples use static views to simulate content from the production WWW site. </p>
       <ul>
         <li><%= link_to 'Home Page', '/home_page/sample' %></li>
@@ -41,8 +44,9 @@
       </ul>
     </div>
     <div class="col-md-4">
-      <h2>Modular</h2>
-      <p>Modular samples use Content Type controllers and Data Definition objects to more closely emulate the data structures and organization in Cascade.</p>
+      <h3>Modular</h3>
+      <p>Modular samples use Content Type controllers and Data Definition objects to more closely emulate the data
+        structures and organization in Cascade.</p>
       <ul>
         <li><%= link_to 'Ad Landing Page', '/modular/ad_landing' %></li>
         <li><%= link_to 'One Column Page', '/modular/one_column' %></li>
@@ -53,9 +57,9 @@
         <li><%= link_to 'Three Column Page', '/modular/three_column' %></li>
         <li><%= link_to 'Three Column Business Page', '/modular/three_column_business'%> </li>
       </ul>
-   </div>
+    </div>
     <div class="col-md-4">
-      <h2>OmniNav</h2>
+      <h3>OmniNav</h3>
       <p>The OmniNav navbar is built and distributed from Cascade Assets.</p>
       <ul>
         <li><%= link_to 'Static Sample v1 - Home', '/omninav' %></li>
@@ -71,7 +75,134 @@
 
   <hr>
 
-  <footer>
-    <p>&copy; Chapman University</p>
-  </footer>
-</div> <!-- /container -->
+  <h2>Cascade Web Services</h2>
+  <p>See <a href="https://www.hannonhill.com/cascadecms/latest/developing-in-cascade/rest-api/index.html">Hannon Hill
+      REST API</a></p>
+  <div id="thor_tasks">
+    <h3> Web Services - Rake Tasks</h3>
+    <p>View all Rake tasks with <code>rake -T</code></p>
+    <p>The following Rake tasks aim to be low friction with a one-to-one edit>save>push approach.
+      You don't need to pass any arguments (such as asset_type or asset_path), as each is
+      hardcoded in <code>web-services.rake</code>.
+    </p>
+    <p><b>Note</b>: each of the following web services tasks is set to dev-www, not production (as of 7.16.2020)</p>
+    <details open="">
+      <summary>
+        Details
+      </summary>
+      <ul>
+        <h3>Edit Cascade Assets Block</h3>
+        <p>Usage: Make local edits, save, run command</p>
+        Command:
+        <pre>rake edit_cascade_assets.xml</pre>
+
+        Replaces the block
+        <pre>Chapman.edu/_cascade/blocks/html/cascade-assets</pre>
+        With local file
+        <pre>dist/staging/cascade-assets.xml</pre>
+        </p>
+
+        <h3>Edit 1 Column Data Definition</h3>
+        <p>Usage: Make local edits, save, run command</p>
+        Command:
+        <pre>edit_one_col_data_def</pre>
+        Replaces the Data Definition
+        <pre>Data Definitions:Modular/one_column</pre>
+        With local file
+        <pre>app/data_definitions/from_cascade/one_column.xml</pre>
+        </p>
+
+        <h3>Edit 2 Column Data Definition</h3>
+        <p>Usage: Make local edits, save, run command</p>
+        Command:
+        <pre>edit_two_col_data_def</pre>
+        Replaces the Data Definition
+        <pre>Data Definitions:Modular/2 Column</pre>
+        With local file
+        <pre>app/data_definitions/from_cascade/two_column.xml</pre>
+        </p>
+
+        <h3>Edit 3 Column Data Definition</h3>
+        <p>Usage: Make local edits, save, run command</p>
+        Command:
+        <pre>edit_two_col_data_def</pre>
+        Replaces the Data Definition
+        <pre>Data Definitions:Modular/3 Column</pre>
+        With local file
+        <pre>app/data_definitions/from_cascade/three_column.xml</pre>
+        </p>
+
+        <h3>Edit 2/3 Column Primary Content</h3>
+        <p>Usage: Make local edits, save, run command</p>
+        Command:
+        <pre>edit_primary_content_2_3_col</pre>
+        Replaces the Data Definition
+        <pre>Chapman.edu/_cascade/formats/modular/PrimaryContent</pre>
+        With local file
+        <pre>.cascade-code/Chapman.edu/_cascade/formats/modular/PrimaryContent.vtl</pre>
+        </p>
+      </ul>
+    </details>
+
+
+
+    <div id="rake_tasks">
+      <h3> Web Services - Thor Tasks</h3>
+
+      <p>View all thor tasks with <code>thor list</code>
+
+      <details>
+        <summary>
+          <b>Why Thor?</b> Thor allows passing <a href="http://whatisthor.com/"> arguments and flags</a>, useful
+          for
+          Cascade's API requirements:
+        </summary>
+
+        <blockquote>The “asset” property is quite complex. An easy way to understand its structure is by simply
+          performing a “read” operation on an existing asset in the system. If you would like to “create” an asset
+          (a
+          page
+          for instance), it would be useful to “read” a similar asset first to see the proper structure of “asset”
+          property. The same object can even be reused for “create” operation with just tweaked parameters.
+          Similarly,
+          the
+          easiest way to edit an asset is by reading it first and reusing the read “asset” object.</blockquote>
+      </details>
+      <br>
+      <p><b>Note</b>: each of the following web services tasks is set to dev-www, not production (as of 7.16.2020)
+      </p>
+      <details open="">
+        <summary>
+          Details
+        </summary>
+        <ul>
+          <h3>Publish Asset</h3>
+          <p>Usage: Publish asset</p>
+          Command:
+          <pre>thor cascade:publish asset_type asset_path</pre>
+          Example:
+          <pre>thor cascade:publish page Chapman.edu/test-section/nick-test/test-publish</pre>
+          </p>
+        </ul>
+      </details>
+
+
+      <hr />
+      <h3> All Rake Tasks: </h3>
+      <% rake_tasks = `rake -T`.split("\n") %>
+      <details open="">
+        <summary>
+          Details
+        </summary>
+        <ul>
+          <% rake_tasks.each do |t| %>
+          <pre><%= t %></pre>
+          <% end %>
+        </ul>
+      </details>
+
+    </div>
+    <footer>
+      <p>&copy; Chapman University</p>
+    </footer>
+  </div> <!-- /container -->
