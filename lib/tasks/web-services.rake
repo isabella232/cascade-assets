@@ -90,8 +90,37 @@ task edit_one_col_data_def: :environment do
  response = HTTParty.get(url)
 #  puts response.body
 
- response_xml = response["asset"]["dataDefinition"]["xml"]
-#  puts response_xml
+
+response_xml = response["asset"]["dataDefinition"]["xml"]
+site_name = response["asset"]["dataDefinition"]["siteName"]
+response_path = response["asset"]["dataDefinition"]["path"] 
+response_path_full = site_name + '/' +   response_path 
+
+puts response_path_full.gsub("/", "_").gsub(".", "_")
+
+#  puts response["asset"]["dataDefinition"]["xml"]["path"]["name"]
+
+backup_dir = 'app/data_definitions/from_cascade/backup/'
+puts backup_dir
+  puts "👼 Backing up Cascade asset in #{'backup_dir'}"
+  FileUtils.mkdir_p(backup_dir) unless File.directory?(backup_dir)
+
+  time = Time.now
+
+  backup_files_count = Dir[File.join(backup_dir, '**', '*')].count { |file| File.file?(file) }.to_i
+  backup_files_max = 10
+  backup_file_oldest = Dir[backup_dir + "*.bak"].sort_by{ |f| File.ctime(f) }.last(1)[0]
+
+
+  if backup_files_count <= backup_files_max
+   File.write(backup_dir + response_path_full.gsub("/", "_").gsub(".", "_") +  "__" + time.strftime("%m-%d-%Y.%H.%M.%S") + ".bak", response["asset"])
+  else 
+    puts "🚨 Reached file backup limit ( #{backup_files_max} )"
+    puts "♻️  Overwriting oldest backup ( #{backup_file_oldest} )"
+      File.write(backup_file_oldest, response["asset"])
+    puts 
+  end
+
 puts "📝 Replacing Data Definitions:Modular/one_column with app/data_definitions/from_cascade/one_column.xml"
 update_source='app/data_definitions/from_cascade/one_column.xml'
 data = File.read(update_source)
@@ -400,3 +429,10 @@ task :publish do
   response = HTTParty.get(url)
   puts response.body
 end
+
+
+
+def birth(file)
+  Time.at(`stat -f%B "#{file}"`.chomp.to_i)
+end
+
