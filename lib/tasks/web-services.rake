@@ -3,54 +3,11 @@
 # ---------------------------------------------------------------------------- #
 #                            edit cascade-assets.xml                           #
 # ---------------------------------------------------------------------------- #
-desc "Replaces dev Chapman.edu/_cascade/blocks/html/cascade-assets with dist/staging/cascade-assets.xml"
+desc "Updates dev Chapman.edu/_cascade/blocks/html/cascade-assets with dist/staging/cascade-assets.xml"
 task edit_cascade_assets: :environment do
-  # * 1) BASE URL 
-  base_url = 'https://dev-cascade.chapman.edu/api/v1/'.to_s
-
-  # * 2) REST API ACTION
-  # https://wimops.chapman.edu/wiki/WWW#Key_Links
-  # https://www.hannonhill.com/cascadecms/latest/developing-in-cascade/rest-api/index.html
-  rest_action = "read/".to_s # ! KEEP TRAILING SLASH
-
-  # * 3) ASSET TYPE
-  # this is easy to find in cascade's edit/preview url.
-  # ie https://dev-cascade.chapman.edu/entity/open.act?id=7f74b81ec04d744c7345a74906ded22a&type=page
-  asset_type = 'block/' # ! KEEP TRAILING SLASH 
-
-  # * 4) ASSET PATH OR ID
-  # you can also use its path (ie "Chapman.edu/_cascade/formats/modular/widgets/1-column")... but.. whitespace.
-  asset_path = "Chapman.edu/_cascade/blocks/html/cascade-assets" # ! NO TRAILING SLASH
-
-  # * 5) SECRETS
-  # set these in application.yml (a la figaro 🐈)
-  cascade_username = '?u=' + ENV['CASCADE_USERNAME']
-  cascade_password = "&p=" + ENV['CASCADE_PASSWORD']
-
-  # the constructed url should look something like:
-  # https://dev-cascade.chapman.edu/api/v1/read/folder/Chapman.edu/_cascade/formats/modular/widgets/foldername?u=username&p=password
-
-  url = base_url + rest_action + asset_type + asset_path + cascade_username + cascade_password
-  puts url
-
- # Inspect response for required details below 👇
-  response = HTTParty.get(url)
-  puts response.body
-
-  response_xml = response["asset"]["xmlBlock"]["xml"]
-  puts response_xml
-
- cascade_assets_changes='dist/staging/cascade-assets.xml'
- data = File.read(cascade_assets_changes)
- puts data
- response_body = data
-
- # Change URL for edit request
- url_post = base_url + 'edit/' + asset_type + asset_path + cascade_username + cascade_password
-
- # 👹Editing assets unfortunately requires PATH, SITENAME, ID. This can be obtained by reading the asset's response.body 👆
- puts HTTParty.post(url_post, body: { asset: { xmlBlock: { xml: data, path: "_cascade/blocks/html/0-write-test", parentFolderId: "8516f0a9c04d744c610b81da2d21be44", siteName: "Chapman.edu", id: asset_path } } }.to_json)
+  edit_block("Chapman.edu/_cascade/blocks/html/cascade-assets", "dist/staging/cascade-assets.xml")
 end
+
 
 # ---------------------------------------------------------------------------- #
 #                           edit one-column data def                           #
@@ -306,7 +263,6 @@ puts asset_path
  response = HTTParty.get(url)
 #  puts response.body
 
-
 response_xml = response["asset"]["dataDefinition"]["xml"]
 site_name = response["asset"]["dataDefinition"]["siteName"]
 response_name = response["asset"]["name"]
@@ -330,6 +286,70 @@ url_post = base_url + 'edit/' + asset_type + asset_path + cascade_username + cas
 
 #  # 👹Editing assets unfortunately requires PATH, SITENAME, ID. This can be obtained by reading the asset's response.body 👆
 puts HTTParty.post(url_post, body: { asset: { dataDefinition: { xml: data, path: asset_path, parentContainerId: parent_container_id, siteName: site_name, id: asset_id } } }.to_json)
+puts "🎉 View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{asset_id}&type=#{asset_type}".chomp("/")
+end
+
+def edit_block(asset_path, update_source)
+ # * 1) BASE URL 
+ base_url = 'https://dev-cascade.chapman.edu/api/v1/'.to_s
+
+ # * 2) REST API ACTION
+ # https://wimops.chapman.edu/wiki/WWW#Key_Links
+ # https://www.hannonhill.com/cascadecms/latest/developing-in-cascade/rest-api/index.html
+ rest_action = "read/".to_s # ! KEEP TRAILING SLASH
+
+ # * 3) ASSET TYPE
+ # this is easy to find in cascade's edit/preview url.
+ # ie https://dev-cascade.chapman.edu/entity/open.act?id=7f74b81ec04d744c7345a74906ded22a&type=page
+ asset_type = 'block/' # ! KEEP TRAILING SLASH 
+
+ # * 4) ASSET PATH OR ID
+ # you can also use its path (ie "Chapman.edu/_cascade/formats/modular/widgets/1-column")... but.. whitespace.
+ asset_path = "#{asset_path}" # ! NO TRAILING SLASH
+
+
+
+ # * 5) SECRETS
+ # set these in application.yml (a la figaro 🐈)
+ cascade_username = '?u=' + ENV['CASCADE_USERNAME']
+ cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
+
+
+ url = base_url + rest_action + asset_type + asset_path + cascade_username + cascade_password
+
+ puts url
+
+ response = HTTParty.get(url)
+ puts response.body
+
+
+puts response_xml = response["asset"]["xmlBlock"]["xml"]
+puts asset_id = response["asset"]["xmlBlock"]["id"]
+puts site_name = response["asset"]["xmlBlock"]["siteName"]
+puts response_name = response["asset"]["xmlBlock"]["name"]
+puts response_path = response["asset"]["xmlBlock"]["path"] 
+puts parent_folder_id = response["asset"]["xmlBlock"]["parentFolderId"]
+
+response_path_full = site_name + '/' +   response_path 
+
+ response_xml = response["asset"]["xmlBlock"]["xml"]
+ puts response_xml
+ 
+#  backup_strategy
+
+ cascade_assets_changes='dist/staging/cascade-assets.xml'
+
+data = File.read(cascade_assets_changes)
+puts data
+
+response_body = data
+
+url_post = base_url + 'edit/' + asset_type + asset_path + cascade_username + cascade_password
+
+# 👹Editing assets unfortunately requires PATH, SITENAME, ID. This can be obtained by reading the asset's response.body 👆
+# HTTParty.post(url_post, body: { asset: { xmlBlock: { xml: data, path: "_cascade/blocks/html/0-write-test", parentFolderId: parent_folder_id, siteName: "Chapman.edu", id: "365ae5dec0a81e8a20b1d746fd3e0778" } } }.to_json)
+
+puts HTTParty.post(url_post, body: { asset: { xmlBlock: { xml: data, path: asset_path, parentFolderId: parent_folder_id, siteName: site_name, id: asset_id } } }.to_json)
 puts "🎉 View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{asset_id}&type=#{asset_type}".chomp("/")
 end
 
