@@ -24,7 +24,7 @@ task edit_cascade_assets: :environment do
 
   # * 5) SECRETS
   # set these in application.yml (a la figaro 🐈)
-  cascade_username = ENV['CASCADE_USERNAME']
+  cascade_username = '?u=' + ENV['CASCADE_USERNAME']
   cascade_password = "&p=" + ENV['CASCADE_PASSWORD']
 
   # the constructed url should look something like:
@@ -58,58 +58,7 @@ end
 desc "Updates Dev-Chapman.edu Data Definitions:Modular/1 Column (https://dev-cascade.chapman.edu/entity/open.act?id=c77aa6ffc04d744c4832d6753c63a730&type=structureddatadefinition&direct=true) 
 with app/data_definitions/from_cascade/one_column.xml"
 task edit_one_col_data_def: :environment do
- # * 1) BASE URL 
- base_url = 'https://dev-cascade.chapman.edu/api/v1/'.to_s
-
- # * 2) REST API ACTION
- # https://wimops.chapman.edu/wiki/WWW#Key_Links
- # https://www.hannonhill.com/cascadecms/latest/developing-in-cascade/rest-api/index.html
- rest_action = "read/".to_s # ! KEEP TRAILING SLASH
-
- # * 3) ASSET TYPE
- # this is easy to find in cascade's edit/preview url.
- # ie https://dev-cascade.chapman.edu/entity/open.act?id=7f74b81ec04d744c7345a74906ded22a&type=page
- asset_type = 'structureddatadefinition/' # ! KEEP TRAILING SLASH 
-
- # * 4) ASSET PATH OR ID
- # you can also use its path (ie "Chapman.edu/_cascade/formats/modular/widgets/1-column")... but.. whitespace.
- asset_path = "c77aa6ffc04d744c4832d6753c63a730" # ! NO TRAILING SLASH
-
- # * 5) SECRETS
- # set these in application.yml (a la figaro 🐈)
- cascade_username = '?u=' + ENV['CASCADE_USERNAME']
- cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
-
- # the constructed url should look something like:
- # https://dev-cascade.chapman.edu/api/v1/read/folder/Chapman.edu/_cascade/formats/modular/widgets/foldername?u=username&p=password
-
- url = base_url + rest_action + asset_type + asset_path + cascade_username + cascade_password
-#  puts url
-
-# Inspect response for required details below 👇
- response = HTTParty.get(url)
-#  puts response.body
-
-
-response_xml = response["asset"]["dataDefinition"]["xml"]
-site_name = response["asset"]["dataDefinition"]["siteName"]
-response_path = response["asset"]["dataDefinition"]["path"] 
-response_path_full = site_name + '/' +   response_path 
-
-backup_strategy(response_path_full, response)
-
-puts "📝 Replacing Data Definitions:Modular/one_column with app/data_definitions/from_cascade/one_column.xml"
-update_source='app/data_definitions/from_cascade/one_column.xml'
-data = File.read(update_source)
-# puts data
-response_body = data
-
-#  # Change URL for edit request
-url_post = base_url + 'edit/' + asset_type + asset_path + cascade_username + cascade_password
-
-#  # 👹Editing assets unfortunately requires PATH, SITENAME, ID. This can be obtained by reading the asset's response.body 👆
-puts HTTParty.post(url_post, body: { asset: { dataDefinition: { xml: data, path: asset_path, parentContainerId: "f8d1f15cc04d744c54334eca7e6dd033", siteName: "Chapman.edu", id: asset_path } } }.to_json)
-puts "🎉 View changes at https://dev-cascade.chapman.edu/entity/open.act?id=c77aa6ffc04d744c4832d6753c63a730&type=structureddatadefinition"
+ edit_data_def("c77aa6ffc04d744c4832d6753c63a730", "app/data_definitions/from_cascade/one_column.xml")
 end
 
 # ---------------------------------------------------------------------------- #
@@ -118,52 +67,7 @@ end
 desc "Updates Dev-Chapman.edu Data Definitions:Modular/2 Column (https://dev-cascade.chapman.edu/entity/open.act?id=c77aa6ffc04d744c4832d6753c63a730&type=structureddatadefinition&direct=true) 
 with app/data_definitions/from_cascade/one_column.xml"
 task edit_two_col_data_def: :environment do
- # * 1) BASE URL 
- base_url = 'https://dev-cascade.chapman.edu/api/v1/'.to_s
-
- # * 2) REST API ACTION
- # https://wimops.chapman.edu/wiki/WWW#Key_Links
- # https://www.hannonhill.com/cascadecms/latest/developing-in-cascade/rest-api/index.html
- rest_action = "read/".to_s # ! KEEP TRAILING SLASH
-
- # * 3) ASSET TYPE
- # this is easy to find in cascade's edit/preview url.
- # ie https://dev-cascade.chapman.edu/entity/open.act?id=7f74b81ec04d744c7345a74906ded22a&type=page
- asset_type = 'structureddatadefinition/' # ! KEEP TRAILING SLASH 
-
- # * 4) ASSET PATH OR ID
- # you can also use its path (ie "Chapman.edu/_cascade/formats/modular/widgets/1-column")... but.. whitespace.
- asset_path = "f8d4de89c04d744c54334eca5dd3752c" # ! NO TRAILING SLASH
-
- # * 5) SECRETS
- # set these in application.yml (a la figaro 🐈)
- cascade_username = '?u=' + ENV['CASCADE_USERNAME']
- cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
-
- # the constructed url should look something like:
- # https://dev-cascade.chapman.edu/api/v1/read/folder/Chapman.edu/_cascade/formats/modular/widgets/foldername?u=username&p=password
-
- url = base_url + rest_action + asset_type + asset_path + cascade_username + cascade_password
-#  puts url
-
-# Inspect response for required details below 👇
- response = HTTParty.get(url)
-#  puts response.body
-
- response_xml = response["asset"]["dataDefinition"]["xml"]
-#  puts response_xml
-update_source='app/data_definitions/from_cascade/two_column.xml'
-data = File.read(update_source)
-# puts data
-response_body = data
-
-#  # Change URL for edit request
-url_post = base_url + 'edit/' + asset_type + asset_path + cascade_username + cascade_password
-
-puts "📝 Replacing Data Definitions:Modular/2 Column with app/data_definitions/from_cascade/two_column.xml"
-#  # 👹Editing assets unfortunately requires PATH, SITENAME, ID. This can be obtained by reading the asset's response.body 👆
-puts HTTParty.post(url_post, body: { asset: { dataDefinition: { xml: data, path: asset_path, parentContainerId: "f8d1f15cc04d744c54334eca7e6dd033", siteName: "Chapman.edu", id: asset_path } } }.to_json)
-puts "🎉 View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{asset_path}&type=structureddatadefinition"
+  edit_data_def("f8d4de89c04d744c54334eca5dd3752c", "app/data_definitions/from_cascade/two_column.xml")
 end
 
 # ---------------------------------------------------------------------------- #
@@ -244,52 +148,7 @@ puts HTTParty.post(url_post, body: {
 desc "Updates Dev-Chapman.edu Data Definitions:Modular/3 Column (https://dev-cascade.chapman.edu/entity/open.act?id=c77aa6ffc04d744c4832d6753c63a730&type=structureddatadefinition&direct=true) 
 with app/data_definitions/from_cascade/one_column.xml"
 task edit_three_col_data_def: :environment do
- # * 1) BASE URL 
- base_url = 'https://dev-cascade.chapman.edu/api/v1/'.to_s
-
- # * 2) REST API ACTION
- # https://wimops.chapman.edu/wiki/WWW#Key_Links
- # https://www.hannonhill.com/cascadecms/latest/developing-in-cascade/rest-api/index.html
- rest_action = "read/".to_s # ! KEEP TRAILING SLASH
-
- # * 3) ASSET TYPE
- # this is easy to find in cascade's edit/preview url.
- # ie https://dev-cascade.chapman.edu/entity/open.act?id=7f74b81ec04d744c7345a74906ded22a&type=page
- asset_type = 'structureddatadefinition/' # ! KEEP TRAILING SLASH 
-
- # * 4) ASSET PATH OR ID
- # you can also use its path (ie "Chapman.edu/_cascade/formats/modular/widgets/1-column")... but.. whitespace.
- asset_path = "f8d5f76bc04d744c54334eca6b05957e" # ! NO TRAILING SLASH
-
- # * 5) SECRETS
- # set these in application.yml (a la figaro 🐈)
- cascade_username = '?u=' + ENV['CASCADE_USERNAME']
- cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
-
- # the constructed url should look something like:
- # https://dev-cascade.chapman.edu/api/v1/read/folder/Chapman.edu/_cascade/formats/modular/widgets/foldername?u=username&p=password
-
- url = base_url + rest_action + asset_type + asset_path + cascade_username + cascade_password
-#  puts url
-
-# Inspect response for required details below 👇
- response = HTTParty.get(url)
-#  puts response.body
-
- response_xml = response["asset"]["dataDefinition"]["xml"]
-#  puts response_xml
-update_source='app/data_definitions/from_cascade/three_column.xml'
-data = File.read(update_source)
-# puts data
-response_body = data
-
-#  # Change URL for edit request
-url_post = base_url + 'edit/' + asset_type + asset_path + cascade_username + cascade_password
-puts "📝 Replacing Data Definitions:Modular/3 Column with app/data_definitions/from_cascade/two_column.xml"
-
-#  # 👹Editing assets unfortunately requires PATH, SITENAME, ID. This can be obtained by reading the asset's response.body 👆
-puts HTTParty.post(url_post, body: { asset: { dataDefinition: { xml: data, path: asset_path, parentContainerId: "f8d1f15cc04d744c54334eca7e6dd033", siteName: "Chapman.edu", id: asset_path } } }.to_json)
-puts "🎉 View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{asset_path}&type=structureddatadefinition"
+  edit_data_def("f8d5f76bc04d744c54334eca6b05957e", "app/data_definitions/from_cascade/three_column.xml")
 end
 
 desc "Pulls staging velocity formats to local machine"
@@ -413,6 +272,65 @@ def birth(file)
   Time.at(`stat -f%B "#{file}"`.chomp.to_i)
 end
 
+
+def edit_data_def(asset_path, update_source)
+# * 1) BASE URL 
+ base_url = 'https://dev-cascade.chapman.edu/api/v1/'.to_s
+
+# * 2) REST API ACTION - we'll first read to make a backup
+# https://wimops.chapman.edu/wiki/WWW#Key_Links
+# https://www.hannonhill.com/cascadecms/latest/developing-in-cascade/rest-api/index.html
+ rest_action = "read/".to_s # ! KEEP TRAILING SLASH
+
+# * 3) ASSET TYPE
+# this is easy to find in cascade's edit/preview url.
+# ie https://dev-cascade.chapman.edu/entity/open.act?id=7f74b81ec04d744c7345a74906ded22a&type=page
+ asset_type = 'structureddatadefinition/' # ! KEEP TRAILING SLASH 
+
+ # * 4) ASSET PATH OR ID
+ # you can also use its path (ie "Chapman.edu/_cascade/formats/modular/widgets/1-column")... but Cascade's naming scheme whitespace makes it annoying.
+ asset_path = "#{asset_path}" # ! NO TRAILING SLASH
+puts asset_path
+ # * 5) SECRETS
+ # set these in application.yml (a la figaro 🐈)
+ cascade_username = '?u=' + ENV['CASCADE_USERNAME']
+ cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
+
+ # the constructed url should look something like:
+ # https://dev-cascade.chapman.edu/api/v1/read/folder/Chapman.edu/_cascade/formats/modular/widgets/foldername?u=username&p=password
+
+ url = base_url + rest_action + asset_type + asset_path + cascade_username + cascade_password
+#  puts url
+
+# Inspect response for required details below 👇
+ response = HTTParty.get(url)
+#  puts response.body
+
+
+response_xml = response["asset"]["dataDefinition"]["xml"]
+site_name = response["asset"]["dataDefinition"]["siteName"]
+response_path = response["asset"]["dataDefinition"]["path"] 
+response_path_full = site_name + '/' +   response_path 
+
+parent_container_id = response["asset"]["dataDefinition"]["parentContainerId"]
+asset_id = response["asset"]["dataDefinition"]["id"]
+
+
+backup_strategy(response_path_full, response)
+
+puts "📝 Replacing #{response_path_full} with #{update_source}"
+update_source = "#{update_source}"
+data = File.read(update_source)
+# puts data
+response_body = data
+
+#  # Change URL for edit request
+url_post = base_url + 'edit/' + asset_type + asset_path + cascade_username + cascade_password
+
+#  # 👹Editing assets unfortunately requires PATH, SITENAME, ID. This can be obtained by reading the asset's response.body 👆
+puts HTTParty.post(url_post, body: { asset: { dataDefinition: { xml: data, path: asset_path, parentContainerId: parent_container_id, siteName: site_name, id: asset_id } } }.to_json)
+puts "🎉 View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{asset_id}&type=#{asset_type}".chomp("/")
+end
 
 def backup_strategy(response_path_full, response)
 puts response_path_full.gsub("/", "_").gsub(".", "_")
