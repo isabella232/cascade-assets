@@ -309,6 +309,7 @@ puts asset_path
 
 response_xml = response["asset"]["dataDefinition"]["xml"]
 site_name = response["asset"]["dataDefinition"]["siteName"]
+response_name = response["asset"]["name"]
 response_path = response["asset"]["dataDefinition"]["path"] 
 response_path_full = site_name + '/' +   response_path 
 
@@ -333,12 +334,11 @@ puts "🎉 View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{
 end
 
 def backup_strategy(response_path_full, response)
-puts response_path_full.gsub("/", "_").gsub(".", "_")
-backup_dir = 'app/data_definitions/from_cascade/backup/'
-puts backup_dir
-  puts "👼 Backing up Cascade asset in #{'backup_dir'}"
+backup_filename = response_path_full.gsub("/", "_").gsub(".", "_")
+backup_dir = "app/data_definitions/from_cascade/backup/#{backup_filename}/"
+puts "backup_dir: #{backup_dir}"
+  puts "👼 Backing up Cascade asset in #{backup_dir}"
   FileUtils.mkdir_p(backup_dir) unless File.directory?(backup_dir)
-
   time = Time.now
 
   backup_files_count = Dir[File.join(backup_dir, '**', '*')].count { |file| File.file?(file) }.to_i
@@ -347,7 +347,7 @@ puts backup_dir
 
 
   if backup_files_count <= backup_files_max
-   File.write(backup_dir + response_path_full.gsub("/", "_").gsub(".", "_") +  "__" + time.strftime("%m-%d-%Y.%H.%M.%S") + ".bak", response["asset"])
+   File.write(backup_dir + backup_filename +  "__" + time.strftime("%m-%d-%Y.%H.%M.%S") + ".bak", response["asset"])
   else 
     puts "🚨 Reached file backup limit ( #{backup_files_max} )"
     puts "♻️  Overwriting oldest backup ( #{backup_file_oldest} )"
