@@ -335,7 +335,7 @@ response_path_full = site_name + '/' +   response_path
  response_xml = response["asset"]["xmlBlock"]["xml"]
  puts response_xml
  
-#  backup_strategy
+ backup_strategy(response_path_full, response)
 
  cascade_assets_changes='dist/staging/cascade-assets.xml'
 
@@ -355,7 +355,8 @@ end
 
 def backup_strategy(response_path_full, response)
 backup_filename = response_path_full.gsub("/", "_").gsub(".", "_")
-backup_dir = "app/data_definitions/from_cascade/backup/#{backup_filename}/"
+asset_type = "#{asset_type}"
+backup_dir = "app/from_cascade/backup#{asset_type}/#{backup_filename}/"
 puts "backup_dir: #{backup_dir}"
   puts "👼 Backing up Cascade asset in #{backup_dir}"
   FileUtils.mkdir_p(backup_dir) unless File.directory?(backup_dir)
