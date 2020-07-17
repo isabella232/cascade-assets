@@ -77,7 +77,7 @@ task :publish do
   ENV['PATH'] # ! NO TRAILING SLASH
 
   # * 5) SECRETS
-  # set these in application.yml (a la figaro 🐈)
+  # set these in environment_variables.yml
   cascade_username = '?u=' + ENV['CASCADE_USERNAME']
   cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
 
@@ -117,7 +117,7 @@ def edit_format(asset_path, update_source)
   asset_path = 'Chapman.edu/_cascade/formats/modular/PrimaryContent' # ! NO TRAILING SLASH
 
   # * 5) SECRETS
-  # set these in application.yml (a la figaro 🐈)
+  # set these in environment_variables.yml
   cascade_username = '?u=' + ENV['CASCADE_USERNAME']
   cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
 
@@ -207,7 +207,7 @@ def edit_data_def(asset_path, update_source)
   asset_path = "#{asset_path}" # ! NO TRAILING SLASH
   puts asset_path
   # * 5) SECRETS
-  # set these in application.yml (a la figaro 🐈)
+  # set these in environment_variables.yml
   cascade_username = '?u=' + ENV['CASCADE_USERNAME']
   cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
 
@@ -284,7 +284,7 @@ def edit_block(asset_path, update_source)
   asset_path = "#{asset_path}" # ! NO TRAILING SLASH
 
   # * 5) SECRETS
-  # set these in application.yml (a la figaro 🐈)
+  # set these in environment_variables.yml
   cascade_username = '?u=' + ENV['CASCADE_USERNAME']
   cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
 

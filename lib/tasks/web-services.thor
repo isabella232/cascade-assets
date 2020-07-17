@@ -33,7 +33,7 @@ class Cascade < Thor
     # asset_path = #{asset_path}
 
     # * 5) SECRETS
-    # set these in application.yml (a la figaro 🐈)
+    # set these in environment_variables.yml
     cascade_username = '?u=' + ENV['CASCADE_USERNAME']
     cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
     puts 'cascade username ' + ENV['CASCADE_USERNAME']
@@ -87,7 +87,7 @@ class Cascade < Thor
     # asset_path = "Chapman.edu/test-section/nick-test/test-publish" # ! NO TRAILING SLASH
     # asset_path = #{asset_path}
     # * 5) SECRETS
-    # set these in application.yml (a la figaro 🐈)
+    # set these in environment_variables.yml
     cascade_username = '?u=' + `ruby -e 'p ENV["CASCADE_USERNAME"]'`.to_s
     cascade_password = '&p=' + `ruby -e 'p ENV["CASCADE_PASSWORD"]'`
     puts 'cascade username ' + `ruby -e 'p ENV["CASCADE_USERNAME"]'`
