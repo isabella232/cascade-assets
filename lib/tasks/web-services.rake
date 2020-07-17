@@ -1,5 +1,5 @@
 # https://www.hannonhill.com/cascadecms/latest/developing-in-cascade/rest-api/index.html
-
+require 'json'
 # ---------------------------------------------------------------------------- #
 #                            edit cascade-assets.xml                           #
 # ---------------------------------------------------------------------------- #
@@ -99,7 +99,6 @@ def birth(file)
 end
 
 def edit_format(asset_path, update_source)
-  require 'json'
   # * 1) BASE URL
   base_url = 'https://dev-cascade.chapman.edu/api/v1/'.to_s
 

@@ -1,6 +1,8 @@
 class Cascade < Thor
   require 'httparty'
   require 'awesome_print'
+  require 'nokogiri'
+  require 'open-uri'
 
   # ---------------------------------------------------------------------------- #
   #                                    search                                    #
@@ -109,8 +111,6 @@ class Cascade < Thor
        'USAGE: thor cascade:download https://www.chapman.edu'
   def download(url)
     puts 'url ' + url
-    require 'nokogiri'
-    require 'fileutils'
 
     url_path = URI.parse(url).path
     puts 'url_path: ' + url_path
