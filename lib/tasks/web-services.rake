@@ -144,7 +144,7 @@ def edit_format(asset_path, update_source)
   parent_container_id = response['asset']['scriptFormat']['parentContainerId']
   asset_id = response['asset']['scriptFormat']['id']
 
-  backup_strategy(response_path_full, response)
+  backup_strategy(response_path_full, response, site_name)
 
   #  puts response_xml
   update_source = "#{update_source}"
@@ -158,7 +158,7 @@ def edit_format(asset_path, update_source)
       cascade_password
   puts url_post
   puts '📝 Replacing Data Definitions:Modular/2 Column with app/data_definitions/from_cascade/two_column.xml'
-  
+
   #  # 👹Editing assets unfortunately requires PATH, SITENAME, ID. This can be obtained by reading the asset's response.body 👆
 
   puts HTTParty.post(
@@ -233,7 +233,7 @@ def edit_data_def(asset_path, update_source)
   parent_container_id = response['asset']['dataDefinition']['parentContainerId']
   asset_id = response['asset']['dataDefinition']['id']
 
-  backup_strategy(response_path_full, response)
+  backup_strategy(response_path_full, response, site_name)
 
   puts "📝 Replacing #{response_path_full} with #{update_source}"
   update_source = "#{update_source}"
@@ -345,12 +345,12 @@ def edit_block(asset_path, update_source)
        }&type=#{asset_type}".chomp('/')
 end
 
-def backup_strategy(response_path_full, response)
+def backup_strategy(response_path_full, response, site_name)
   backup_filename = response_path_full.gsub('/', '_').gsub('.', '_')
   asset_type = "#{asset_type}"
   site_name = "#{site_name}"
 
-  backup_dir = "_sites/#{site_name}#{asset_type}/#{backup_filename}/"
+  backup_dir = "_backup/#{site_name}#{asset_type}/#{backup_filename}/"
   puts "backup_dir: #{backup_dir}"
   puts "👼 Backing up Cascade asset in #{backup_dir}"
   FileUtils.mkdir_p(backup_dir) unless File.directory?(backup_dir)
