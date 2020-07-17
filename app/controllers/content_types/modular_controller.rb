@@ -256,6 +256,8 @@ module ContentTypes
     end
 
     def two_column_communications
+      puts 'Hello WOrld'
+      # byebug
       # Cascade Data Models
       @configuration_set = ConfigurationSet.two_column
       @metadata_set = MetadataSet.page(title: "Modular Two Column School of Communications")
@@ -306,7 +308,9 @@ module ContentTypes
         "OMNI-NAV" => render_static_partial("uninav/uninav"),
         "GLOBAL FOOTER" => render_static_partial(footer_path),
       }
-
+      # puts @configuration_set.regions["CASCADE ASSETS"]
+      # puts @configuration_set.template
+      # byebug
       render @configuration_set.template
     end
 

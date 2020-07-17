@@ -1,6 +1,6 @@
 const crypto = require('crypto')
 
-process.env.NODE_ENV = process.env.RAILS_ENV || 'staging'
+process.env.NODE_ENV = process.env.NODE_ENV || 'staging'
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 

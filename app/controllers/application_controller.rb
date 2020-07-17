@@ -29,8 +29,12 @@ class ApplicationController < ActionController::Base
   def render_region_tags
     return unless @configuration_set
     @configuration_set.regions.each do |name, html|
-      region_tag = format('<system-region name="%s"/>', name)
+      region_tag = format('<system-region name="%s" />', name)
+      # byebug
+
       response.body = response.body.gsub(region_tag, html)
+      # puts "WHAT ABOUT HERE"
+      # byebug
     end
   end
 
