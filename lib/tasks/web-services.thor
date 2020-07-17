@@ -6,7 +6,7 @@ class Cascade < Thor
     #                                    search                                    #
     # ---------------------------------------------------------------------------- #
     # USAGE: thor cascade:search term
-    desc "search term"
+    desc "publish asset_type asset_path", "Publish any Cascade Asset via CLI!!! Remember to `export CASCADE_USERNAME=foo` and `export CASCADE_PASSWORD=bar"
     def search(term)
         puts "term: #{term}"
 
@@ -52,6 +52,7 @@ class Cascade < Thor
           }.to_json).to_s
 
         puts ap(JSON.parse(response_json))
+        map publish: :publish
     end
 
 
@@ -59,8 +60,7 @@ class Cascade < Thor
     #                                    PUBLISH                                   #
     # ---------------------------------------------------------------------------- #
     # USAGE: thor cascade:publish page Chapman.edu/test-section/nick-test/test-publish
-    desc "publish asset_type asset_path", "Publish any Cascade Asset via CLI!!! 
-    Remember to `export CASCADE_USERNAME=foo` and `export CASCADE_PASSWORD=bar"
+    desc "publish asset_type asset_path", "Publish any Cascade Asset via CLI!!! Remember to `export CASCADE_USERNAME=foo` and `export CASCADE_PASSWORD=bar"
     def publish(asset_type, asset_path)
         puts "asset type: #{asset_type}"
         puts "asset type: #{asset_path}"
@@ -83,7 +83,6 @@ class Cascade < Thor
         # you can also use its path (ie "Chapman.edu/_cascade/formats/modular/widgets/1-column")... but.. whitespace.
         # asset_path = "Chapman.edu/test-section/nick-test/test-publish" # ! NO TRAILING SLASH
         # asset_path = #{asset_path}
-        
         # * 5) SECRETS
         # set these in application.yml (a la figaro 🐈)
         cascade_username = '?u=' + `ruby -e 'p ENV["CASCADE_USERNAME"]'`.to_s
@@ -149,5 +148,3 @@ class Cascade < Thor
 
     end
 end
-
-Cascade.start
