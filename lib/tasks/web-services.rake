@@ -309,7 +309,7 @@ def edit_block(asset_path, update_source)
   response_xml = response['asset']['xmlBlock']['xml']
   puts response_xml
 
-  backup_strategy(response_path_full, response)
+  backup_strategy(response_path_full, response, site_name)
 
   cascade_assets_changes = 'dist/staging/cascade-assets.xml'
 
