@@ -129,5 +129,8 @@ class Cascade < Thor
     puts static_filename =
            File.basename(static_directory + url_path).gsub('.aspx', '.html.erb')
     File.write(static_directory + "/#{static_filename}", body)
+    # I would like to eventually automatically generate:
+    # an action: Chapman.edu/about/index would generate uninav#about_index
+    # and the route `get 'uninav/about_index', to: 'uninav#about_index'
   end
 end
