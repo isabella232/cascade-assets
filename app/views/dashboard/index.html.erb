@@ -90,6 +90,12 @@
     <p>The following Rake tasks aim to be low friction with a one-to-one edit>save>push approach.
       You don't need to pass any arguments (such as asset_type or asset_path), as each is
       hardcoded in <code>web-services.rake</code>.
+    <p>Each Rake task attempts to make a rolling backup (to <code>_backup/site/file_name/file.bak</code>) of each asset
+      before
+      modifying. This contains the full <code>JSON</code> response, which could be used to push back to Cascade (like a
+      reversion).</p>
+    <p>Consider checking out <a href="https://insomnia.rest/">https://insomnia.rest/</a> to get familiar with Hannon
+      Hill's API</p>
     </p>
     <p><b>Note</b>: each of the following web services tasks is set to dev-www, not production (as of 7.16.2020)</p>
     <details open="">
