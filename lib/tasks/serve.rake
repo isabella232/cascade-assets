@@ -2,7 +2,7 @@
 
 desc "Runs forman start"
 task serve: :environment do
-  system('bundle exec foreman start')
+  system("bundle exec foreman start")
 end
 
 desc "Starts serveo tunnel"
