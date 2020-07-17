@@ -117,34 +117,18 @@ class Cascade < Thor
         static_filename= url_path.gsub(".aspx", ".html.erb")
         
         puts 'static directory: ' + static_directory
-        puts 'stsatic filename: ' + static_filename
+        puts 'static filename: ' + static_filename
         
         html =  Nokogiri::HTML(URI.open(url, read_timeout: 300))
         body = html.css('body')
         # static_path = "app/views/static" + url_path.gsub(".aspx", ".html.erb")
 
-        File.write('app/views/static' + static_filename , body)
+        # File.write('app/views/static' + static_filename , body)
         
         puts 'static path: ' + static_directory 
         
         FileUtils.mkdir(static_directory) unless File.directory?(static_directory)
-        puts File.basename(url_path).gsub(".aspx", ".html.erb")
-        # File.write(static_directory + "/" + File.basename(url_path).gsub(".aspx", ".html.erb"))
-        # File.write(static_directory, html)
-
-
-        # FileUtils.touch(`~/download/test.html`)
-        # File.write(`~/download/test.html`, html)
-
-        # FileUtils.mkdir_p static_path
-
-        # File.open(yourfile, 'w') { |file| file.write("your text") }
-
-        # File.write('~/Downloads/hello.txt', 'Some glorious content')
-        # FileUtils.mkdir(static_path) unless File.directory?(static_path)
-        # FileUtils.touch(static_path) unless File.directory?(static_path)
-
-        # File.write(static_path, html)
-
+        puts static_filename =  File.basename(static_directory + url_path).gsub(".aspx", ".html.erb")
+        File.write(static_directory + "/#{static_filename}", body)
     end
 end

@@ -177,11 +177,21 @@
         </summary>
         <ul>
           <h3>Publish Asset</h3>
-          <p>Usage: Publish asset</p>
+          <p>Usage: Publishes any asset</p>
           Command:
           <pre>thor cascade:publish asset_type asset_path</pre>
           Example:
           <pre>thor cascade:publish page Chapman.edu/test-section/nick-test/test-publish</pre>
+          </p>
+
+          <h3>Download (scrape) HTML</h3>
+          <p>Usage: Download <code><body></code> from any URL to a directory with the same path</p>
+          Command:
+          <pre>thor cascade:download url</pre>
+          Example:
+          <pre>thor cascade:download https://www.chapman.edu/about/index.aspx</pre>
+          <span>Will download the <code><body></code> of the URL to app/view/static/about/index.html.erb.
+            You'll still need to add the action and route, for now... </span>
           </p>
         </ul>
       </details>
