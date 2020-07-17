@@ -55,9 +55,8 @@ class Cascade < Thor
         map publish: :publish
     end
 
-
     # ---------------------------------------------------------------------------- #
-    #                                    PUBLISH                                   #
+    #                                    publish                                   #
     # ---------------------------------------------------------------------------- #
     # USAGE: thor cascade:publish page Chapman.edu/test-section/nick-test/test-publish
     desc "publish asset_type asset_path", "Publish any Cascade Asset via CLI!!! Remember to `export CASCADE_USERNAME=foo` and `export CASCADE_PASSWORD=bar"
@@ -108,7 +107,6 @@ class Cascade < Thor
         puts "url " + url
         require 'nokogiri'
         require 'fileutils'
-        # url = Nokogiri::HTML(URI.open('https://www.chapman.edu'))
 
         url_path = URI.parse(url).path  
         puts "url_path: " + url_path
@@ -116,15 +114,11 @@ class Cascade < Thor
         static_directory = "app/views/static"+ File.dirname(url_path) 
         static_filename= url_path.gsub(".aspx", ".html.erb")
         
-        puts 'static directory: ' + static_directory
-        puts 'static filename: ' + static_filename
-        
         html =  Nokogiri::HTML(URI.open(url, read_timeout: 300))
         body = html.css('body')
-        # static_path = "app/views/static" + url_path.gsub(".aspx", ".html.erb")
-
-        # File.write('app/views/static' + static_filename , body)
         
+        puts 'static directory: ' + static_directory
+        puts 'static filename: ' + static_filename
         puts 'static path: ' + static_directory 
         
         FileUtils.mkdir(static_directory) unless File.directory?(static_directory)
