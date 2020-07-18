@@ -44,7 +44,8 @@ $red-button-active: #88002b;
 $white: #ffffff;
 $white-hover: darken($white, 8%);
 $brown: #896d49;
-$teal: #25b6a5;
+$teal: #009CA6;
+$pacific: $teal;
 $teal-hover: #24d4bf;
 $teal2: #02bac2;
 $teal2-hover: #01cdd4;
@@ -182,6 +183,7 @@ $colors: (cu-red: $cu-red,
   white: $white,
   brown: $brown,
   teal: $teal,
+  pacific: $teal,
   teal-hover: $teal-hover,
   teal2: $teal2,
   teal2-hover: $teal2-hover,

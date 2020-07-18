@@ -789,6 +789,45 @@ html body {
     }
   }
 
+  [class*="--teal"] {
+    background-color: $pacific;
+    color: $white;
+
+    ::selection,
+    ::-moz-selection {
+      background: $panther-black;
+    }
+
+    [class*="__heading"],
+    a {
+      color: $white;
+    }
+
+    [class*="__button"] {
+      // $bg: $cu-red;
+      // @include button-bg($bg);
+
+      &:hover,
+      &:active {
+        // background-color: darken($bg, 8%);
+        -webkit-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+      }
+    }
+
+    .text--link {
+      color: $cu-light-grey;
+      @include underline(currentColor);
+
+      &:hover,
+      &:focus {
+        color: $white;
+        @include underline(currentColor);
+        transition: all 0.3s ease;
+      }
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     * {
       animation: none;
