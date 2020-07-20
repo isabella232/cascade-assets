@@ -9,6 +9,10 @@ task edit_cascade_assets: :environment do
     'Chapman.edu/_cascade/blocks/html/cascade-assets',
     'dist/staging/cascade-assets.xml'
   )
+  
+
+  # create_file('Chapman.edu/_assets/', stylesheet_link_tag)
+
 end
 
 # ---------------------------------------------------------------------------- #
@@ -349,6 +353,141 @@ def edit_block(asset_path, update_source)
              }
            }
          }.to_json
+       )
+  puts "🎉 View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{
+         asset_id
+       }&type=#{asset_type}".chomp('/')
+end
+
+def backup_strategy(response_path_full, response, site_name)
+  backup_filename = response_path_full.gsub('/', '_').gsub('.', '_')
+  asset_type = "#{asset_type}"
+  site_name = "#{site_name}"
+
+  backup_dir = "_backup/#{site_name}#{asset_type}/#{backup_filename}/"
+  puts "backup_dir: #{backup_dir}"
+  puts "👼 Backing up Cascade asset in #{backup_dir}"
+  FileUtils.mkdir_p(backup_dir) unless File.directory?(backup_dir)
+  time = Time.now
+
+  backup_files_count =
+    Dir[File.join(backup_dir, '**', '*')].count { |file| File.file?(file) }.to_i
+  backup_files_max = 10
+  backup_file_oldest =
+    Dir[backup_dir + '*.bak'].sort_by { |f| File.ctime(f) }.last(1)[0]
+
+  if backup_files_count <= backup_files_max
+    File.write(
+      backup_dir + backup_filename + '__' + time.strftime('%m-%d-%Y.%H.%M.%S') +
+        '.bak',
+      response['asset']
+    )
+  else
+    puts "🚨 Reached file backup limit ( #{backup_files_max} )"
+    puts "♻️  Overwriting oldest backup ( #{backup_file_oldest} )"
+    File.write(backup_file_oldest, response['asset'])
+    puts
+  end
+end
+
+
+# create file (such as master.css or master.js)
+def create_file(response_name, asset_path, update_source)
+  # * 1) BASE URL
+  base_url = 'https://dev-cascade.chapman.edu/api/v1/'.to_s
+
+  # * 2) REST API ACTION
+  # https://wimops.chapman.edu/wiki/WWW#Key_Links
+  # https://www.hannonhill.com/cascadecms/latest/developing-in-cascade/rest-api/index.html
+  rest_action = 'create/'.to_s # ! KEEP TRAILING SLASH
+
+  # * 3) ASSET TYPE
+  # this is easy to find in cascade's edit/preview url.
+  # ie https://dev-cascade.chapman.edu/entity/open.act?id=7f74b81ec04d744c7345a74906ded22a&type=page
+  asset_type = 'file/' # ! KEEP TRAILING SLASH
+
+  # * 4) ASSET PATH OR ID
+  # you can also use its path (ie "Chapman.edu/_cascade/formats/modular/widgets/1-column")... but.. whitespace.
+  asset_path = "#{asset_path}" # ! NO TRAILING SLASH
+
+  # * 5) SECRETS
+  # set these in environment_variables.yml
+  cascade_username = '?u=' + ENV['CASCADE_USERNAME']
+  cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
+
+  url =
+    base_url + rest_action + asset_type + asset_path + cascade_username +
+      cascade_password
+
+  puts url
+
+  response = HTTParty.get(url)
+  puts response.body
+
+  puts response_xml = response['asset']['xmlBlock']['xml']
+  puts asset_id = response['asset']['xmlBlock']['id']
+  puts site_name = response['asset']['xmlBlock']['siteName']
+  puts response_name = response['asset']['xmlBlock']['name']
+  puts response_path = response['asset']['xmlBlock']['path']
+  puts parent_folder_id = response['asset']['xmlBlock']['parentFolderId']
+
+  response_path_full = site_name + '/' + response_path
+
+  response_xml = response['asset']['xmlBlock']['xml']
+  puts response_xml
+
+  backup_strategy(response_path_full, response, site_name)
+
+  cascade_assets_changes = 'dist/staging/cascade-assets.xml'
+
+  data = File.read(cascade_assets_changes)
+  puts data
+
+  response_body = data
+
+  url_post =
+    base_url + 'edit/' + asset_type + asset_path + cascade_username +
+      cascade_password
+
+  # 👹Editing assets unfortunately requires PATH, SITENAME, ID. This can be obtained by reading the asset's response.body 👆
+  # HTTParty.post(url_post, body: { asset: { xmlBlock: { xml: data, path: "_cascade/blocks/html/0-write-test", parentFolderId: parent_folder_id, siteName: "Chapman.edu", id: "365ae5dec0a81e8a20b1d746fd3e0778" } } }.to_json)
+
+  puts HTTParty.post(
+         url_post,
+         body: {
+          "asset": {
+            "xmlBlock": {
+              "xml": data,
+              "expirationFolderRecycled": false,
+              "metadataSetId": "6fef14a3c04d744c610b81da9d165a27",
+              "metadataSetPath": "Default",
+              "metadata": {
+                "displayName": "",
+                "title": "",
+                "summary": "",
+                "teaser": "",
+                "keywords": "",
+                "metaDescription": "",
+                "author": ""
+              },
+              "reviewOnSchedule": false,
+              "reviewEvery": 180,
+              "parentFolderId": parent_folder_id,
+              "parentFolderPath": parent_folder_path,
+              "lastModifiedDate": "Jul 10, 2020, 9:19:48 AM",
+              "lastModifiedBy": "cscddev01500",
+              "createdDate": "Jul 9, 2020, 6:33:13 PM",
+              "createdBy": "nnadel",
+              "path": asset_path + response_name,
+              "siteId": "6fef14a3c04d744c610b81dac0a8d082",
+              "siteName": "Chapman.edu",
+              "tags": [],
+              "name": response_name,
+              "id": "365ae5dec0a81e8a20b1d746fd3e0778"
+            }
+          },
+          "success": true
+        }.to_json
        )
   puts "🎉 View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{
          asset_id
