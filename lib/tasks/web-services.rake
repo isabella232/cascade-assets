@@ -35,6 +35,18 @@ task edit_two_col_data_def: :environment do
   )
 end
 
+
+# ---------------------------------------------------------------------------- #
+#   edit format `Chapman.edu/_cascade/formats/modular/widgets/Text with CTA`   #
+# ---------------------------------------------------------------------------- #
+desc 'Updates `Chapman.edu/_cascade/formats/modular/widgets/Text with CTA` with `.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Text with CTA.vtl`'
+task edit_widget_text_with_cta: :environment do
+  edit_format(
+    '61adcfeac0a81e4b05275461be912e1c',
+    '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/text_with_cta.vtl'
+  )
+end
+
 # ---------------------------------------------------------------------------- #
 #                    edit two & three column primary content                   #
 # ---------------------------------------------------------------------------- #
@@ -114,7 +126,7 @@ def edit_format(asset_path, update_source)
 
   # * 4) ASSET PATH OR ID
   # you can also use its path (ie "Chapman.edu/_cascade/formats/modular/widgets/1-column")... but.. whitespace.
-  asset_path = 'Chapman.edu/_cascade/formats/modular/PrimaryContent' # ! NO TRAILING SLASH
+  asset_path = "#{asset_path}" # ! NO TRAILING SLASH
 
   # * 5) SECRETS
   # set these in environment_variables.yml
@@ -140,7 +152,9 @@ def edit_format(asset_path, update_source)
   response_path = response['asset']['scriptFormat']['path']
   response_path_full = site_name + '/' + response_path
 
-  parent_container_id = response['asset']['scriptFormat']['parentContainerId']
+  parent_folder_id = response['asset']['scriptFormat']['parentFolderId']
+  parent_folder_path = response['asset']['scriptFormat']['parentFolderPath']
+
   asset_id = response['asset']['scriptFormat']['id']
 
   backup_strategy(response_path_full, response, site_name)
@@ -156,7 +170,7 @@ def edit_format(asset_path, update_source)
     base_url + 'edit/' + asset_type + asset_path + cascade_username +
       cascade_password
   puts url_post
-  puts '📝 Replacing Data Definitions:Modular/2 Column with app/data_definitions/from_cascade/two_column.xml'
+  puts "📝 Replacing #{response_path} with #{update_source}"
 
   #  # 👹Editing assets unfortunately requires PATH, SITENAME, ID. This can be obtained by reading the asset's response.body 👆
 
@@ -166,18 +180,14 @@ def edit_format(asset_path, update_source)
            "asset": {
              "scriptFormat": {
                "script": data,
-               "parentFolderId": 'f8bce98fc04d744c54334eca2392c22e',
-               "parentFolderPath": '_cascade/formats/modular',
-               "lastModifiedDate": 'Apr 24, 2020, 3:19:03 PM',
-               "lastModifiedBy": 'nnadel',
-               "createdDate": 'Oct 10, 2014, 12:43:48 AM',
-               "createdBy": 'mthomas',
+               "parentFolderId": parent_folder_id,
+               "parentFolderPath": parent_folder_path,
                "path": asset_path,
                "siteId": '6fef14a3c04d744c610b81dac0a8d082',
                "siteName": 'Chapman.edu',
                "tags": [],
                "name": 'PrimaryContent',
-               "id": 'f9037d2ec04d744c54334ecabde0ebe7'
+               "id": asset_id
              }
            }
          }.to_json
@@ -187,6 +197,7 @@ def edit_format(asset_path, update_source)
          asset_id
        }&type=#{asset_type}".chomp('/')
 end
+
 
 def edit_data_def(asset_path, update_source)
   # * 1) BASE URL
