@@ -16,7 +16,7 @@ html {
             margin-bottom: 2rem;
           }
 
-          @include respond (tab-port) {
+          @include respond(tab-port) {
             iframe {
               width: 100%;
             }
@@ -59,7 +59,7 @@ html {
           padding: 10px;
           border-radius: 5px;
           font-family: $futura;
-          margin: 0 0 .5rem 0;
+          margin: 0 0 0.5rem 0;
 
           a {
             border-bottom: none;
@@ -80,18 +80,9 @@ html {
   }
 }
 
-
-
-
-
-
-
-
 // teal
 
 /* Inline #15 | http://localhost:3000/uninav/three_column */
-
-
 .text-with-cta__text-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -108,12 +99,12 @@ html {
 }
 
 .text-with-cta__text-container {
-  padding: 20px;
+  padding: 30px;
 }
 
 .text-with-cta__text-container {
   /* grid-template-columns: 1fr 1fr; */
-  grid-template-columns: 1fr .5fr;
+  grid-template-columns: 1fr 0.5fr;
 }
 
 .text-with-cta__col-1 {
@@ -141,9 +132,12 @@ html body .text-with-cta-widget .text-with-cta__button {
 
 .text-with-cta__buttons {
   width: 100% !important;
-  padding-right: 50px;
-}
+  margin: auto !important;
 
+  a {
+    font-weight: bold !important;
+  }
+}
 
 /* Inline #15 | http://localhost:3000/uninav/three_column */
 
@@ -158,8 +152,6 @@ html body .text-with-cta-widget .text-with-cta__button {
 .text-with-cta__button+.text-with-cta__button {
   margin-top: 5px !important;
 }
-
-
 
 /* Inline #15 | http://localhost:3000/uninav/three_column */
 
@@ -185,4 +177,14 @@ h2,
 .faux-h2 {
   /* font-size: 2.4rem; */
   font-size: 3rem;
+}
+
+html body .text-with-cta-widget .text-with-cta__button {
+  min-width: 200px;
+  justify-self: center;
+  max-width: max-content;
+}
+
+.text-with-cta__button:last-of-type {
+  margin-bottom: 0 !important;
 }

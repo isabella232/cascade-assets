@@ -204,11 +204,21 @@
 			</text>
 			<group collapsed="true" identifier="textWithCTA" label="Text with CTA">
 				<shared-field identifier="display" path="display"/>
+				<text default="Default Theme" identifier="theme" label="Theme" type="radiobutton">
+					<radio-item identifier="default" value="Default Theme"/>
+					<radio-item show-fields="primaryContent/widget/textWithCTA/bgColor" value="CU Back Safely Pacific" help-text="Pacific (Teal) Background" identifier="pacific"/>
+				</text>
+
+				<text default="pacific" identifier="bgColor" label="Background Color" type="dropdown" require="false">
+					<dropdown-item label="Pacific (Teal)" value="pacific"/>
+					<dropdown-item label="White" value="white"/>
+				</text>
+
 				<text identifier="textWithCTATitle" label="Title"/>
 				<text identifier="text" label="Text" required="true" wysiwyg="true"/>
 				<group identifier="textWithCTAButton" label="CTA Button" maximum-number="3" multiple="true">
 					<group identifier="link" label="Call to Action">
-						<text default="white" identifier="buttonColor" label="Button Color" type="dropdown">
+						<text default="White" identifier="buttonColor" label="Button Color" type="dropdown">
 							<dropdown-item label="Red" value="red"/>
 							<dropdown-item label="White" value="white"/>
 						</text>
