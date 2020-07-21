@@ -445,7 +445,7 @@
 					</group>
 				</group>
 			</group>
-			<group collapsed="true" identifier="textWithCTA" label="Text with CTA">
+			<group collapsed="false" identifier="textWithCTA" label="Text with CTA">
 				<shared-field identifier="display" path="display"/>
 				<text default="Default Theme" identifier="theme" label="Theme" type="radiobutton">
 					<radio-item identifier="default" value="Default Theme" show-fields="primaryContent/widget/textWithCTA/textWithCTAButton"/>
