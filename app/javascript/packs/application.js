@@ -17,12 +17,12 @@ import 'regenerator-runtime/runtime'
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-const images = require.context('../src/images', true);
+const images = require.context('../images', true);
 const imagePath = (name) => images(name, true);
 
 import uninav from '../src/navigation/uninav';
 import leftNav from '../src/navigation/leftnav';
-import '../src/master.scss';
+import '../stylesheets/master.scss';
 
 leftNav();
 uninav();

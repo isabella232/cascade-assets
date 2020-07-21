@@ -1,9 +1,0 @@
-.img {
-
-  &--circle {
-    border-radius: 50%;
-    @include v(height, smallImgSize);
-    @include v(width, smallImgSize);
-    object-fit: cover;
-  }
-}

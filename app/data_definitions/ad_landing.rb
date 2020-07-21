@@ -22,11 +22,11 @@ module DataDefinitions
     DEFAULTS = {
       # Selector => Value
       XPATH[:header_text] => 'MAKING <strong>BOLD</strong> STEPS',
-      XPATH[:desktop_logo_src] => 'media/src/images/ad_landing_page/desktop_logo.svg',
+      XPATH[:desktop_logo_src] => 'media/images/ad_landing_page/desktop_logo.svg',
       XPATH[:desktop_logo_alt] => 'desktop logo',
-      XPATH[:mobile_logo_src] => 'media/src/images/ad_landing_page/mobile_logo.svg',
+      XPATH[:mobile_logo_src] => 'media/images/ad_landing_page/mobile_logo.svg',
       XPATH[:mobile_logo_alt] => 'mobile logo',
-      XPATH[:background_image] => 'media/src/images/ad_landing_page/dmac-masthead.jpg',
+      XPATH[:background_image] => 'media/images/ad_landing_page/dmac-masthead.jpg',
       XPATH[:hero_title] => 'Turn your passion, knowledge, and experience into a rewarding career',
       XPATH[:hero_subtitle] => 'Earn your Masters Degree at Dodge College of Film and Media Arts.',
       XPATH[:form_title] => 'Take the first step to advance your career.',

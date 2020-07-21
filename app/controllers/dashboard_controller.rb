@@ -16,6 +16,7 @@ class DashboardController < ApplicationController
   end
 
   def home_page
+    byebug
     render template: "home_page/#{params[:page]}", layout: 'home_page'
   end
 
