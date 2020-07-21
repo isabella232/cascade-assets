@@ -9,10 +9,10 @@ require 'uri'
 # ---------------------------------------------------------------------------- #
 desc 'Updates dev Chapman.edu/_cascade/blocks/html/cascade-assets with dist/staging/cascade-assets.xml'
 task edit_cascade_assets: :environment do
-  # edit_block(
-  #   'Chapman.edu/_cascade/blocks/html/cascade-assets',
-  #   'dist/staging/cascade-assets.xml'
-  # )
+  edit_block(
+    'Chapman.edu/_cascade/blocks/html/cascade-assets',
+    'dist/staging/cascade-assets.xml'
+  )
   
   
   local_file = 'dist/staging/cascade-assets.xml'
@@ -28,7 +28,7 @@ task edit_cascade_assets: :environment do
   puts uri_css = File.basename(uri_css.path)
 
   uri_js = URI.parse("#{master_js}")
-  puts_js = File.basename(uri_js.path)
+  puts uri_js = File.basename(uri_js.path)
 
 
   # def create_file(response_name, asset_path, update_source)
@@ -36,9 +36,12 @@ task edit_cascade_assets: :environment do
 
 
   puts create_file("#{uri_css}", 'Chapman.edu/_assets/', "dist/staging/_assets/#{uri_css}")
-  # create_file(response_name,'Chapman.edu/_assets/', uri_js)
+  puts create_file("#{uri_js}", 'Chapman.edu/_assets/', "dist/staging/_assets/#{uri_js}")
 
-
+  puts "publishing Chapman.edu/_assets/#{uri_css}"
+  publish_asset("file", "Chapman.edu/_assets/#{uri_css}")
+  puts "publishing Chapman.edu/_assets/#{uri_js}"
+  publish_asset("file", "Chapman.edu/_assets/#{uri_js}")
 # puts Rails.application.assets_manifest.assets["master.css"]
 
 end
@@ -464,7 +467,7 @@ def create_file(file_name, asset_path, update_source)
          body: {
           "asset": {
             "file": {
-              "text": update_source,
+              "text": data,
               "rewriteLinks": false,
               "maintainAbsoluteLinks": false,
               "shouldBePublished": true,
@@ -528,4 +531,41 @@ def backup_strategy(response_path_full, response, site_name)
     File.write(backup_file_oldest, response['asset'])
     puts
   end
+end
+
+
+def publish_asset(asset_type, asset_path) 
+  # * 1) BASE URL
+  base_url = 'https://dev-cascade.chapman.edu/api/v1/'.to_s
+
+  # * 2) REST API ACTION
+  # https://wimops.chapman.edu/wiki/WWW#Key_Links
+  # https://www.hannonhill.com/cascadecms/latest/developing-in-cascade/rest-api/index.html
+  rest_action = 'publish/'.to_s # ! KEEP TRAILING SLASH
+
+  # * 3) ASSET TYPE
+  # this is easy to find in cascade's edit/preview url.
+  # ie https://dev-cascade.chapman.edu/entity/open.act?id=7f74b81ec04d744c7345a74906ded22a&type=page
+  asset_type = "#{asset_type}/" # ! KEEP TRAILING SLASH
+
+  # * 4) ASSET PATH OR ID
+  # you can also use its path (ie "Chapman.edu/_cascade/formats/modular/widgets/1-column")... but.. whitespace.
+  asset_path = "#{asset_path}" # ! NO TRAILING SLASH
+
+  # * 5) SECRETS
+  # set these in environment_variables.yml
+  cascade_username = '?u=' + ENV['CASCADE_USERNAME']
+  cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
+
+  # the constructed url should look something like:
+  # https://dev-cascade.chapman.edu/api/v1/read/folder/Chapman.edu/_cascade/formats/modular/widgets/foldername?u=username&p=password
+
+  url =
+    base_url + rest_action + asset_type + asset_path + cascade_username +
+      cascade_password
+  puts url
+
+  # Inspect response for required details below 👇
+  response = HTTParty.get(url)
+  puts response.body
 end

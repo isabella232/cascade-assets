@@ -15,8 +15,9 @@ task build: :environment do
     zip rails_asset_path, dist_assets_path
     Rake::Task['changelog'].invoke
     File.write(dist_cascade_block_path, render(file: 'layouts/cascade-assets.xml', layout: false))
-    unzip('dist/netlify/_assets.zip', 'dist/netlify/_assets')
+    # unzip('dist/netlify/_assets.zip', 'dist/netlify/_assets')
     unzip('dist/staging/_assets.zip', 'dist/staging/_assets')
+    Rake::Task['edit_cascade_assets'].invoke
   end
 end
 
@@ -56,7 +57,7 @@ def prep_dist
   FileUtils.mkdir('dist') unless File.directory?('dist')
   FileUtils.rm_rf dist_folder
   FileUtils.mkdir dist_folder
-  prep_netlify
+  # prep_netlify
 end
 
 def prep_netlify
@@ -133,6 +134,7 @@ def zip(input_folder, output_name)
   zf = ZipFileGenerator.new(input_folder, output_name)
   zf.write
 end
+
 
 def unzip(file, destination)
   FileUtils.mkdir_p(destination)
