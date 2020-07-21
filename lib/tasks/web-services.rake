@@ -77,7 +77,7 @@ task edit_cascade_assets: :environment do
 
     branch_settings = YAML.load(File.read("dist/staging/_config/branch_settings.yml"))
     page = branch_settings["page_to_publish"]
-    puts "Automatically publish #{page}. This can be reconfigured in dist/staging/_config/branch_settings.yml"
+    puts "🔮 Automatically publishing #{page}. This can be reconfigured in dist/staging/_config/branch_settings.yml"
 
     puts `thor cascade:publish page #{page}`
 
