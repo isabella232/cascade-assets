@@ -231,6 +231,24 @@ html {
       }
     }
   }
+
+  &.one-column-template {
+    .text-with-cta-widget {
+      max-width: 800px;
+      display: block;
+      max-width: 1136px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      margin-top: 50px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+
+      +[class*="-widget"] {
+        margin-top: 50px;
+      }
+    }
+  }
 }
 
 // // teal
