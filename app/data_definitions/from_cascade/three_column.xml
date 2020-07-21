@@ -449,7 +449,7 @@
 				<shared-field identifier="display" path="display"/>
 				<text default="Default Theme" identifier="theme" label="Theme" type="radiobutton">
 					<radio-item identifier="default" value="Default Theme" show-fields="primaryContent/widget/textWithCTA/textWithCTAButton"/>
-					<radio-item show-fields="primaryContent/widget/textWithCTA/bgColor/primaryContent/widget/textWithCTA/textWithCTAButton" value="CU Safely Back" identifier="pacific"/>
+					<radio-item show-fields="primaryContent/widget/textWithCTA/bgColor, primaryContent/widget/textWithCTA/textWithCTAButtonCUSafelyBack" value="CU Safely Back" identifier="pacific"/>
 				</text>
 				<text default="pacific" identifier="bgColor" label="Background Color" type="dropdown" require="false">
 					<dropdown-item label="Pacific (Teal)" value="pacific"/>
