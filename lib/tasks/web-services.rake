@@ -9,6 +9,15 @@ require 'uri'
 # ---------------------------------------------------------------------------- #
 desc 'Updates dev Chapman.edu/_cascade/blocks/html/cascade-assets with dist/staging/cascade-assets.xml'
 task edit_cascade_assets: :environment do
+
+  
+
+  puts  cascade_assets_feature_branch_filename = 'cacasde-assets-' + `git rev-parse --abbrev-ref HEAD`.strip
+    
+  puts create_block("#{cascade_assets_feature_branch_filename}", "_cascade/blocks/html", "dist/staging/cascade-assets.xml")
+
+
+
   edit_block(
     'Chapman.edu/_cascade/blocks/html/cascade-assets',
     'dist/staging/cascade-assets.xml'
@@ -456,7 +465,7 @@ def create_file(file_name, asset_path, update_source)
   response_body = data
 
   url_post =
-    base_url + 'edit/' + asset_type + asset_path + cascade_username +
+    base_url + rest_action + asset_type + asset_path + cascade_username +
       cascade_password
 
   # 👹Editing assets unfortunately requires PATH, SITENAME, ID. This can be obtained by reading the asset's response.body 👆
@@ -492,6 +501,79 @@ def create_file(file_name, asset_path, update_source)
               "tags": [],
               "name": file_name,
               # "id": "2ba09c01c0a81e4b0015d01bfd25ea78"
+            }
+          },
+          "success": true
+        }.to_json
+       )
+  # puts "🎉 View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{
+  #        asset_id
+  #      }&type=#{asset_type}".chomp('/')
+end
+
+def create_block(asset_name, parent_folder_path, update_source)
+
+  response_name = "#{response_name}"
+  # * 1) BASE URL
+  base_url = 'https://dev-cascade.chapman.edu/api/v1/'.to_s
+
+  # * 2) REST API ACTION
+  # https://wimops.chapman.edu/wiki/WWW#Key_Links
+  # https://www.hannonhill.com/cascadecms/latest/developing-in-cascade/rest-api/index.html
+  rest_action = 'create/'.to_s # ! KEEP TRAILING SLASH
+
+  # * 3) ASSET TYPE
+  # this is easy to find in cascade's edit/preview url.
+  # ie https://dev-cascade.chapman.edu/entity/open.act?id=7f74b81ec04d744c7345a74906ded22a&type=page
+  asset_type = 'block/' # ! KEEP TRAILING SLASH
+
+  # * 4) ASSET PATH OR ID
+  # you can also use its path (ie "Chapman.edu/_cascade/formats/modular/widgets/1-column")... but.. whitespace.
+  asset_path = "#{asset_path}" # ! NO TRAILING SLASH
+
+  # * 5) SECRETS
+  # set these in environment_variables.yml
+  cascade_username = '?u=' + ENV['CASCADE_USERNAME']
+  cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
+
+  update_source = "#{update_source}"
+
+  data = File.read(update_source)
+  puts data
+
+  response_body = data
+
+  url_post =
+    base_url + 'create/' + asset_type + cascade_username +
+      cascade_password
+
+
+  # 👹Editing assets unfortunately requires PATH, SITENAME, ID. This can be obtained by reading the asset's response.body 👆
+  # HTTParty.post(url_post, body: { asset: { xmlBlock: { xml: data, path: "_cascade/blocks/html/0-write-test", parentFolderId: parent_folder_id, siteName: "Chapman.edu", id: "365ae5dec0a81e8a20b1d746fd3e0778" } } }.to_json)
+
+  puts HTTParty.post(
+         url_post,
+         body: {
+          "asset": {
+            "xmlBlock": {
+              "xml": data,
+              "expirationFolderRecycled": false,
+              "metadataSetId": "6fef14a3c04d744c610b81da9d165a27",
+              "metadataSetPath": "Default",
+              "metadata": {},
+              "reviewOnSchedule": false,
+              "reviewEvery": 0,
+              "parentFolderId": "8516f0a9c04d744c610b81da2d21be44",
+              "parentFolderPath": "#{parent_folder_path}",
+              "lastModifiedDate": "Jul 20, 2020, 5:48:52 PM",
+              "lastModifiedBy": "cscddev01500",
+              "createdDate": "Apr 27, 2015, 5:10:43 PM",
+              "createdBy": "mthomas",
+              # "path": "_cascade/blocks/html/#{asset_name}",
+              "siteId": "6fef14a3c04d744c610b81dac0a8d082",
+              "siteName": "Chapman.edu",
+              "tags": [],
+              "name": "#{asset_name}"
             }
           },
           "success": true
