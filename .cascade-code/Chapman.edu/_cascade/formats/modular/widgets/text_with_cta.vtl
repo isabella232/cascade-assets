@@ -3,23 +3,15 @@
 
 #set ( $textWithCTA = $_XPathTool.selectSingleNode($element, 'textWithCTA') )
 #set ( $title = $textWithCTA.getChild('textWithCTATitle').value)
+#set ( $titleFirstTwoChars = $title.substring(0,2) )
+#set( $titleEmphasis = $title.replace($titleFirstTwoChars, "<span class='text-with-cta__emphasis'>${titleFirstTwoChars}</span>") )
 #set ( $text = $_SerializerTool.serialize($textWithCTA.getChild('text'), true))
 #set ( $ctaButtons = $_XPathTool.selectNodes($element, 'textWithCTA/textWithCTAButton'))
 #set ( $theme = $textWithCTA.getChild('theme').value)
 #set ( $bgColor = $textWithCTA.getChild('bgColor').value)
 
-
-#set ( $titleFirstTwoChars = $title.substring(0,2) )
-
-$titleFirstTwoChars
-
-
-#set( $titleEmphasis = $title.replace($titleFirstTwoChars, "<span class='text-with-cta__emphasis'>${titleFirstTwoChars}</span>") )
-${titleEmphasis}
-
-
 #if ($theme == 'Default Theme')
-<div class="text-with-cta-widget">
+<div class="text-with-cta-widget text-with-cta-widget--default">
     <div class="text-with-cta__text-container">
         #if ($title != "")
             <h2 class="text-with-cta__title">${_EscapeTool.xml($title)}</h2>
@@ -47,7 +39,7 @@ ${titleEmphasis}
 </div>
 #end
 
-#if ($theme == 'CU Back Safely Pacific')
+#if ($theme == 'CU Safely Back')
 <div class='text-with-cta-widget text-with-cta-widget--$bgColor'>
     <div class="text-with-cta__text-container">
         <div class="text-with-cta__col-1">
