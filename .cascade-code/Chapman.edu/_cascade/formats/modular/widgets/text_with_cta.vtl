@@ -3,7 +3,11 @@
 
 #set ( $textWithCTA = $_XPathTool.selectSingleNode($element, 'textWithCTA') )
 #set ( $title = $textWithCTA.getChild('textWithCTATitle').value)
-#set ( $titleFirstTwoChars = $title.substring(0,2) )
+
+#if ( $tite != "")
+    #set ( $titleFirstTwoChars = $title.substring(0,2) )
+#end
+
 #set( $titleEmphasis = $title.replace($titleFirstTwoChars, "<span class='text-with-cta__emphasis'>${titleFirstTwoChars}</span>") )
 #set ( $text = $_SerializerTool.serialize($textWithCTA.getChild('text'), true))
 #set ( $ctaButtons = $_XPathTool.selectNodes($element, 'textWithCTA/textWithCTAButton'))
@@ -50,22 +54,23 @@
         </div>
         <div class="text-with-cta__col-2">
             <div class="text-with-cta__buttons">
-                #foreach ( $button in $ctaButtons )
-                    #set ( $link = $button.getChild('link') )
-                    #set ( $linkType = $link.getChild('linkType').value )
-                    #set ( $buttonText = $link.getChild('label').value )
-                    #set ( $buttonColor = $link.getChild('buttonColor').value )
-                    #if ($linkType == 'Internal Link')
-                        #set ($linkURL = $link.getChild('internalLink').getChild('path').value )
-                        #elseif ($linkType == 'External Link')
-                        #set ($linkURL = $link.getChild('externalLink').value )
-                    #else
-                        #set ($linkURL = $link.getChild('fileLink').getChild('path').value )
+                #set ( $ctaButtons = $_XPathTool.selectNodes($element, 'textWithCTA/textWithCTAButtonCUSafelyBack'))
+                    #foreach ( $button in $ctaButtons )
+                        #set ( $link = $button.getChild('link') )
+                        #set ( $linkType = $link.getChild('linkType').value )
+                        #set ( $buttonText = $link.getChild('label').value )
+                        #set ( $buttonColor = $link.getChild('buttonColor').value )
+                        #if ($linkType == 'Internal Link')
+                            #set ($linkURL = $link.getChild('internalLink').getChild('path').value )
+                            #elseif ($linkType == 'External Link')
+                            #set ($linkURL = $link.getChild('externalLink').value )
+                        #else
+                            #set ($linkURL = $link.getChild('fileLink').getChild('path').value )
+                        #end
+                        <button class="text-with-cta__button color--red">
+                            <a href="${_EscapeTool.xml($linkURL)}">${_EscapeTool.xml($buttonText)}</a>
+                        </button>
                     #end
-                    <button class="text-with-cta__button color--red">
-                        <a href="${_EscapeTool.xml($linkURL)}">${_EscapeTool.xml($buttonText)}</a>
-                    </button>
-                #end
             </div>
         </div>
     </div>

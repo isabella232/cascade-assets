@@ -358,7 +358,7 @@
 						<asset field-id="a7a67c6cc0a81e4b407da56431c665dc" identifier="internalLink" label="Internal Link" type="page"/>
 						<asset field-id="a7a67c6cc0a81e4b407da56439d1669e" identifier="fileLink" label="File Link" type="file"/>
 						<text field-id="a7a67c6cc0a81e4b407da564d8fe5d57" identifier="label" label="Label"/>
-						<group identifier="accessibility" label="Accessibility">
+						<group identifier="accessibility" label="Accessibility" collapsed="true">
 							<text field-id="a7a67c6cc0a81e4b407da5641cf0adf1" identifier="ariaLabel" label="Aria Label"/>
 							<text field-id="a7a67c6cc0a81e4b407da564dcc41146" identifier="title" label="Title"/>
 						</group>
@@ -448,8 +448,8 @@
 			<group collapsed="true" identifier="textWithCTA" label="Text with CTA">
 				<shared-field identifier="display" path="display"/>
 				<text default="Default Theme" identifier="theme" label="Theme" type="radiobutton">
-					<radio-item identifier="default" value="Default Theme"/>
-					<radio-item show-fields="primaryContent/widget/textWithCTA/bgColor" value="CU Safely Back" identifier="pacific"/>
+					<radio-item identifier="default" value="Default Theme" show-fields="primaryContent/widget/textWithCTA/textWithCTAButton"/>
+					<radio-item show-fields="primaryContent/widget/textWithCTA/bgColor/primaryContent/widget/textWithCTA/textWithCTAButton" value="CU Safely Back" identifier="pacific"/>
 				</text>
 				<text default="pacific" identifier="bgColor" label="Background Color" type="dropdown" require="false">
 					<dropdown-item label="Pacific (Teal)" value="pacific"/>
@@ -472,11 +472,33 @@
 						<asset identifier="internalLink" label="Internal Link" type="page"/>
 						<asset identifier="fileLink" label="File Link" type="file"/>
 						<text identifier="label" label="Label"/>
-						<group identifier="accessibility" label="Accessibility">
+						<group identifier="accessibility" label="Accessibility" collapsed="true">
 							<text identifier="ariaLabel" label="Aria Label"/>
 							<text identifier="title" label="Title"/>
 						</group>
-						<group identifier="tracking" label="Analytics Tracking">
+						<group identifier="tracking" label="Analytics Tracking" collapsed="true">
+							<text help-text="Replace or add custom link ID for tracking." identifier="customID" label="Override HTML ID"/>
+							<text help-text="Replace or add custom data-attr for tracking. Entering 'my-custom-thing' will result in 'data-my-custom-thing'" identifier="dataAttr" label="Data Attribute" multiple="true"/>
+						</group>
+					</group>
+				</group>
+				<!-- cu safely back CTA (no color chooser, 2 max) -->
+				<group identifier="textWithCTAButtonCUSafelyBack" label="CTA Button" maximum-number="2" multiple="true">
+					<group identifier="link" label="Call to Action">
+						<text default="Internal Link" identifier="linkType" label="Link Type" type="radiobutton">
+							<radio-item show-fields="primaryContent/widget/textWithCTA/textWithCTAButtonCUSafelyBack/link/internalLink" value="Internal Link"/>
+							<radio-item show-fields="primaryContent/widget/textWithCTA/textWithCTAButtonCUSafelyBack/link/externalLink" value="External Link"/>
+							<radio-item show-fields="primaryContent/widget/textWithCTA/textWithCTAButtonCUSafelyBack/link/fileLink" value="File Link"/>
+						</text>
+						<text help-text="full url (including HTTPS) to page outside of Cascade" identifier="externalLink" label="External Link"/>
+						<asset identifier="internalLink" label="Internal Link" type="page"/>
+						<asset identifier="fileLink" label="File Link" type="file"/>
+						<text identifier="label" label="Label"/>
+						<group identifier="accessibility" label="Accessibility" collapsed="true">
+							<text identifier="ariaLabel" label="Aria Label"/>
+							<text identifier="title" label="Title"/>
+						</group>
+						<group identifier="tracking" label="Analytics Tracking" collapsed="true">
 							<text help-text="Replace or add custom link ID for tracking." identifier="customID" label="Override HTML ID"/>
 							<text help-text="Replace or add custom data-attr for tracking. Entering 'my-custom-thing' will result in 'data-my-custom-thing'" identifier="dataAttr" label="Data Attribute" multiple="true"/>
 						</group>
