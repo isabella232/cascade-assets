@@ -789,7 +789,8 @@ html body {
     }
   }
 
-  [class*="--teal"] {
+  [class*="--teal"],
+  [class*="--pacific"] {
     background-color: $pacific;
     color: $white;
 
