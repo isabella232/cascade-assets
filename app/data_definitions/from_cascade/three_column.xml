@@ -190,6 +190,7 @@
 				<dropdown-item show-fields="primaryContent/widget/testimonial-widget" value="Testimonial"/>
 				<dropdown-item show-fields="primaryContent/widget/wysiwyg-editor" value="Text Editor"/>
 				<dropdown-item show-fields="primaryContent/widget/threePhotoCallout" value="Three Photo Callout"/>
+				<dropdown-item show-fields="primaryContent/widget/textWithCTA" value="Text with CTA"/>
 				<dropdown-item show-fields="primaryContent/widget/twitterTimeline" value="Twitter Feed"/>
 				<dropdown-item show-fields="primaryContent/widget/Calendar25Live" value="Calendar25Live"/>
 				<dropdown-item show-fields="primaryContent/widget/AtoZListing" value="A to Z Listing"/>
@@ -441,6 +442,44 @@
 						<asset identifier="internalLink" label="Internal Link" type="page"/>
 						<asset identifier="fileLink" label="File Link" type="file"/>
 						<text identifier="label" label="Label"/>
+					</group>
+				</group>
+			</group>
+			<group collapsed="true" identifier="textWithCTA" label="Text with CTA">
+				<shared-field identifier="display" path="display"/>
+				<text default="Default Theme" identifier="theme" label="Theme" type="radiobutton">
+					<radio-item identifier="default" value="Default Theme"/>
+					<radio-item show-fields="primaryContent/widget/textWithCTA/bgColor" value="CU Safely Back" identifier="pacific"/>
+				</text>
+				<text default="pacific" identifier="bgColor" label="Background Color" type="dropdown" require="false">
+					<dropdown-item label="Pacific (Teal)" value="pacific"/>
+					<dropdown-item label="White" value="white"/>
+				</text>
+				<text identifier="textWithCTATitle" label="Title" help-text="Note: With 'CU Safely Back' Theme, the first two characters are emphasized"/>
+				<text identifier="text" label="Text" required="true" wysiwyg="true"/>
+				<group identifier="textWithCTAButton" label="CTA Button" maximum-number="3" multiple="true">
+					<group identifier="link" label="Call to Action">
+						<text default="White" identifier="buttonColor" label="Button Color" type="dropdown">
+							<dropdown-item label="Red" value="red"/>
+							<dropdown-item label="White" value="white"/>
+						</text>
+						<text default="Internal Link" identifier="linkType" label="Link Type" type="radiobutton">
+							<radio-item show-fields="primaryContent/widget/textWithCTA/textWithCTAButton/link/internalLink" value="Internal Link"/>
+							<radio-item show-fields="primaryContent/widget/textWithCTA/textWithCTAButton/link/externalLink" value="External Link"/>
+							<radio-item show-fields="primaryContent/widget/textWithCTA/textWithCTAButton/link/fileLink" value="File Link"/>
+						</text>
+						<text help-text="full url (including HTTPS) to page outside of Cascade" identifier="externalLink" label="External Link"/>
+						<asset identifier="internalLink" label="Internal Link" type="page"/>
+						<asset identifier="fileLink" label="File Link" type="file"/>
+						<text identifier="label" label="Label"/>
+						<group identifier="accessibility" label="Accessibility">
+							<text identifier="ariaLabel" label="Aria Label"/>
+							<text identifier="title" label="Title"/>
+						</group>
+						<group identifier="tracking" label="Analytics Tracking">
+							<text help-text="Replace or add custom link ID for tracking." identifier="customID" label="Override HTML ID"/>
+							<text help-text="Replace or add custom data-attr for tracking. Entering 'my-custom-thing' will result in 'data-my-custom-thing'" identifier="dataAttr" label="Data Attribute" multiple="true"/>
+						</group>
 					</group>
 				</group>
 			</group>
