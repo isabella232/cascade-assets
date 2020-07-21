@@ -61,6 +61,10 @@ html {
           font-family: $futura;
           margin: 0 0 0.5rem 0;
 
+          display: flex;
+          justify-self: center;
+          justify-content: center;
+
           a {
             border-bottom: none;
             font-weight: normal;
@@ -69,6 +73,13 @@ html {
 
           &.color--red {
             border: none;
+
+            &:hover,
+            &:focus {
+              background-color: $red-button-hover;
+              transform: translateY(-.2px);
+              transition: 150ms linear;
+            }
 
             a {
               color: white;
@@ -156,6 +167,7 @@ html {
         .text-with-cta__button {
           width: 100%;
           justify-self: center;
+          justify-content: center;
         }
 
         .text-with-cta__buttons {

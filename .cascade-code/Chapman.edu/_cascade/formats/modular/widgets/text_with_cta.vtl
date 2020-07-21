@@ -33,9 +33,7 @@
                 #else
                     #set ($linkURL = $link.getChild('fileLink').getChild('path').value )
                 #end
-                <button class="text-with-cta__button color--${buttonColor}">
-                    <a href="${_EscapeTool.xml($linkURL)}">${_EscapeTool.xml($buttonText)}</a>
-                </button>
+                    <a class="text-with-cta__button color--${buttonColor}" href="${_EscapeTool.xml($linkURL)}">${_EscapeTool.xml($buttonText)}</a>
             #end
         </div>
         <div class="text-with-cta__text">$text</div>
@@ -67,9 +65,7 @@
                         #else
                             #set ($linkURL = $link.getChild('fileLink').getChild('path').value )
                         #end
-                        <button class="text-with-cta__button color--red">
-                            <a href="${_EscapeTool.xml($linkURL)}">${_EscapeTool.xml($buttonText)}</a>
-                        </button>
+                            <a class="text-with-cta__button color--red" href="${_EscapeTool.xml($linkURL)}">${_EscapeTool.xml($buttonText)}</a>
                     #end
             </div>
         </div>
