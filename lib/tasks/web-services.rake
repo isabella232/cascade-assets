@@ -56,11 +56,13 @@ task edit_cascade_assets: :environment do
 # puts Rails.application.assets_manifest.assets["master.css"]
 
   # TODO
-  unless File.exist?("dist/staging/run_once")
-
+  unless File.exist?("dist/staging/_config/branch_settings.yml")
+    puts
     puts "Done! Want to also automatically publish an associated page?"
-    puts "If so enter the the path below WITHOUT https:// or .com"
-    puts "\n eg Chapman.edu/test-section/nick-test/two-col"
+    puts
+    puts  "⚡️ If so enter the the asset path below WITHOUT https:// or .com"
+    puts " eg Chapman.edu/test-section/nick-test/two-col"
+    puts " 🎹"
     
     page = STDIN.gets.chomp
     puts `thor cascade:publish page #{page}`
@@ -77,8 +79,10 @@ task edit_cascade_assets: :environment do
 
     branch_settings = YAML.load(File.read("dist/staging/_config/branch_settings.yml"))
     page = branch_settings["page_to_publish"]
+    puts 
     puts "🔮 Automatically publishing #{page}. This can be reconfigured in dist/staging/_config/branch_settings.yml"
 
+    puts
     puts `thor cascade:publish page #{page}`
 
   end

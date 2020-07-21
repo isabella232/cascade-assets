@@ -17,8 +17,8 @@ task build: :environment do
     File.write(dist_cascade_block_path, render(file: 'layouts/cascade-assets.xml', layout: false))
     # unzip('dist/netlify/_assets.zip', 'dist/netlify/_assets')
     unzip('dist/staging/_assets.zip', 'dist/staging/_assets')
-    Rake::Task['edit_cascade_assets'].invoke
   end
+  at_exit {   Rake::Task['edit_cascade_assets'].invoke if $!.nil? }
 end
 
 task do_precompile: :environment do
@@ -166,3 +166,4 @@ task netlify: :environment do
 
   puts "deploying assets to http://chapman.netlify.app"
 end
+
