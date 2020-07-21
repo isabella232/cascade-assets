@@ -12,12 +12,12 @@ desc 'Updates dev Chapman.edu/_cascade/blocks/html/cascade-assets with dist/stag
 task edit_cascade_assets: :environment do
 
 
-  unless File.exist?("dist/staging/run_once")
+  unless File.exist?("dist/_config/run_once")
     puts  cascade_assets_feature_branch_filename = 'cacade-assets-' + `git rev-parse --abbrev-ref HEAD`.strip
     puts create_block("#{cascade_assets_feature_branch_filename}", "_cascade/blocks/html", "dist/staging/cascade-assets.xml")
 
     puts "creating new cascade-assets-block ( #{cascade_assets_feature_branch_filename} )!!"
-    File.write("dist/staging/run_once", "ran `create_block` , created #{cascade_assets_feature_branch_filename} on dev-Chapman.edu/_cascade/blocks/html !!")
+    File.write("dist/_config/run_once", "ran `create_block` , created #{cascade_assets_feature_branch_filename} on dev-Chapman.edu/_cascade/blocks/html !!")
   end
 
   edit_block(
@@ -45,39 +45,45 @@ task edit_cascade_assets: :environment do
   # def create_file(response_name, asset_path, update_source)
   puts ("#{uri_css}" + 'Chapman.edu/_assets/' + "dist/development/_assets/#{uri_css}")
 
-
+  puts 
   puts create_file("#{uri_css}", 'Chapman.edu/_assets/', "dist/staging/_assets/#{uri_css}")
+  puts
   puts create_file("#{uri_js}", 'Chapman.edu/_assets/', "dist/staging/_assets/#{uri_js}")
+  puts
 
   puts "publishing Chapman.edu/_assets/#{uri_css}"
+  p
   publish_asset("file", "Chapman.edu/_assets/#{uri_css}")
+  p
   puts "publishing Chapman.edu/_assets/#{uri_js}"
+  p
   publish_asset("file", "Chapman.edu/_assets/#{uri_js}")
+  p
 # puts Rails.application.assets_manifest.assets["master.css"]
 
   # TODO
-  unless File.exist?("dist/staging/_config/branch_settings.yml")
+  unless File.exist?("dist/_config/branch_settings.yml")
     puts
     puts "Done! Want to also automatically publish an associated page?"
     puts
     puts  "⚡️ If so enter the the asset path below WITHOUT https:// or .com"
     puts " eg Chapman.edu/test-section/nick-test/two-col"
-    puts " 🎹"
+    puts " 🎹 Enter the asset path (or press enter to ignore): "
     
     page = STDIN.gets.chomp
     puts `thor cascade:publish page #{page}`
 
-    FileUtils.mkdir('dist/staging/_config') unless File.directory?('dist/staging/_config')
+    FileUtils.mkdir('dist/_config') unless File.directory?('dist/_config')
 
     # File.write("dist/staging/branch_settings.yml", "page_to_publish #{page}")
-    File.open("dist/staging/_config/branch_settings.yml", 'a') do |file|
+    File.open("dist/_config/branch_settings.yml", 'a') do |file|
       file.puts "page_to_publish: #{page}"
     end
 
-    puts "👼 Cool. This page can be reconfigured in dist/staging/_config/branch_settings.yml"
+    puts "👼 Cool. This page can be reconfigured in dist/_config/branch_settings.yml"
   else 
 
-    branch_settings = YAML.load(File.read("dist/staging/_config/branch_settings.yml"))
+    branch_settings = YAML.load(File.read("dist/_config/branch_settings.yml"))
     page = branch_settings["page_to_publish"]
     puts 
     puts "🔮 Automatically publishing #{page}. This can be reconfigured in dist/staging/_config/branch_settings.yml"
@@ -529,7 +535,7 @@ def create_file(file_name, asset_path, update_source)
               # "lastModifiedBy": "mthomas",
               # "createdDate": "Feb 26, 2019, 1:05:39 PM",
               # "createdBy": "mthomas",
-              "path": "_assets/#{file_name}",
+              # "path": "#{asset_path}#{file_name}",
               # "siteId": "6fef14a3c04d744c610b81dac0a8d082",
               "siteName": "Chapman.edu",
               "tags": [],
