@@ -4,6 +4,12 @@ class Cascade < Thor
   require 'nokogiri'
   require 'open-uri'
 
+
+  desc "publish PAGE", "publishes PAGE"
+  def publish_block(path)
+    puts "publishing #{path}"
+  end
+
   # ---------------------------------------------------------------------------- #
   #                                    search                                    #
   # ---------------------------------------------------------------------------- #
@@ -104,7 +110,7 @@ class Cascade < Thor
     response = HTTParty.get(url)
     puts response.body
 
-    puts 'Visit https:dev-www.' + asset_path + '.aspx'
+    puts 'Visit ' + asset_path
   end
 
   desc 'download HTML from URL',
@@ -134,3 +140,5 @@ class Cascade < Thor
     # and the route `get 'uninav/about_index', to: 'uninav#about_index'
   end
 end
+
+

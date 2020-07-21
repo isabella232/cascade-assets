@@ -3,6 +3,7 @@ require 'json'
 require 'nokogiri'
 require 'open-uri'
 require 'uri'
+require 'yaml'
 
 # ---------------------------------------------------------------------------- #
 #                            edit cascade-assets.xml                           #
@@ -53,6 +54,34 @@ task edit_cascade_assets: :environment do
   puts "publishing Chapman.edu/_assets/#{uri_js}"
   publish_asset("file", "Chapman.edu/_assets/#{uri_js}")
 # puts Rails.application.assets_manifest.assets["master.css"]
+
+  # TODO
+  unless File.exist?("dist/staging/run_once")
+
+    puts "Done! Want to also automatically publish an associated page?"
+    puts "If so enter the the path below WITHOUT https:// or .com"
+    puts "\n eg Chapman.edu/test-section/nick-test/two-col"
+    
+    page = STDIN.gets.chomp
+    puts `thor cascade:publish page #{page}`
+
+    FileUtils.mkdir('dist/staging/_config') unless File.directory?('dist/staging/_config')
+
+    # File.write("dist/staging/branch_settings.yml", "page_to_publish #{page}")
+    File.open("dist/staging/_config/branch_settings.yml", 'a') do |file|
+      file.puts "page_to_publish: #{page}"
+    end
+
+    puts "👼 Cool. This page can be reconfigured in dist/staging/_config/branch_settings.yml"
+  else 
+
+    branch_settings = YAML.load(File.read("dist/staging/_config/branch_settings.yml"))
+    page = branch_settings["page_to_publish"]
+    puts "Automatically publish #{page}. This can be reconfigured in dist/staging/_config/branch_settings.yml"
+
+    puts `thor cascade:publish page #{page}`
+
+  end
 
 end
 
