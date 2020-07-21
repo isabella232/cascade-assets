@@ -10,13 +10,14 @@ require 'uri'
 desc 'Updates dev Chapman.edu/_cascade/blocks/html/cascade-assets with dist/staging/cascade-assets.xml'
 task edit_cascade_assets: :environment do
 
-  
 
-  puts  cascade_assets_feature_branch_filename = 'cacasde-assets-' + `git rev-parse --abbrev-ref HEAD`.strip
-    
-  puts create_block("#{cascade_assets_feature_branch_filename}", "_cascade/blocks/html", "dist/staging/cascade-assets.xml")
+  unless File.exist?("dist/staging/run_once")
+    puts  cascade_assets_feature_branch_filename = 'cacade-assets-' + `git rev-parse --abbrev-ref HEAD`.strip
+    puts create_block("#{cascade_assets_feature_branch_filename}", "_cascade/blocks/html", "dist/staging/cascade-assets.xml")
 
-
+    puts "creating new cascade-assets-block ( #{cascade_assets_feature_branch_filename} )!!"
+    File.write("dist/staging/run_once", "ran `create_block` !!")
+  end
 
   edit_block(
     'Chapman.edu/_cascade/blocks/html/cascade-assets',
