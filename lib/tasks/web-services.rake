@@ -16,7 +16,7 @@ task edit_cascade_assets: :environment do
     puts create_block("#{cascade_assets_feature_branch_filename}", "_cascade/blocks/html", "dist/staging/cascade-assets.xml")
 
     puts "creating new cascade-assets-block ( #{cascade_assets_feature_branch_filename} )!!"
-    File.write("dist/staging/run_once", "ran `create_block` !!")
+    File.write("dist/staging/run_once", "ran `create_block` , created #{cascade_assets_feature_branch_filename} on dev-Chapman.edu/_cascade/blocks/html !!")
   end
 
   edit_block(
