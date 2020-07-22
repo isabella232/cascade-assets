@@ -389,7 +389,7 @@
 				<text identifier="text" label="Text" required="true" wysiwyg="true"/>
 				<group identifier="textWithCTAButton" label="CTA Button" maximum-number="3" multiple="true">
 					<group identifier="link" label="Call to Action">
-						<text default="White" identifier="buttonColor" label="Button Color" type="dropdown">
+						<text default="white" identifier="buttonColor" label="Button Color" type="dropdown">
 							<dropdown-item label="Red" value="red"/>
 							<dropdown-item label="White" value="white"/>
 						</text>
@@ -892,7 +892,7 @@
 					<radio-item value="Yes"/>
 					<radio-item value="No"/>
 				</text>
-				<text default="White" identifier="bgColor" label="Background Color" type="radiobutton">
+				<text default="white" identifier="bgColor" label="Background Color" type="radiobutton">
 					<radio-item value="White"/>
 					<radio-item value="School Color"/>
 				</text>

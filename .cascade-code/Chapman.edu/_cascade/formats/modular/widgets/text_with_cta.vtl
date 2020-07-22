@@ -15,6 +15,7 @@
 #set ( $bgColor = $textWithCTA.getChild('bgColor').value)
 
 #if ($theme == 'Default Theme')
+
 <div class="text-with-cta-widget text-with-cta-widget--default">
     <div class="text-with-cta__text-container">
         #if ($title != "")
@@ -39,9 +40,11 @@
         <div class="text-with-cta__text">$text</div>
     </div>
 </div>
+<span class="one-col-spacer"></span>
 #end
 
 #if ($theme == 'CU Safely Back')
+
 <div class='text-with-cta-widget text-with-cta-widget--cu-safely-back text-with-cta-widget--$bgColor'>
     <div class="text-with-cta__text-container">
         <div class="text-with-cta__col-1">
@@ -65,12 +68,12 @@
                         #else
                             #set ($linkURL = $link.getChild('fileLink').getChild('path').value )
                         #end
-                            <a class="text-with-cta__button color--red" href="${_EscapeTool.xml($linkURL)}">${_EscapeTool.xml($buttonText)}</a>
+                            <a class="button text-with-cta__button color--red" href="${_EscapeTool.xml($linkURL)}">${_EscapeTool.xml($buttonText)}</a>
                     #end
             </div>
         </div>
     </div>
 </div>
-<span class="one-col-spacer-bottom"></span>
+<span class="one-col-spacer"></span>
 #end
 #end

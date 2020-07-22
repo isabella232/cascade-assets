@@ -74,14 +74,9 @@ html {
           &.color--red {
             border: none;
 
-            &:hover,
-            &:focus {
-              background-color: $red-button-hover;
-              transition: 150ms linear;
-            }
 
             a {
-              color: white;
+              color: $white;
             }
           }
         }
@@ -165,10 +160,14 @@ html {
         }
 
         .text-with-cta__button {
+          --padding-top: 15px;
+          --padding-bottom: 15px;
           width: 100%;
           justify-self: center;
           justify-content: center;
         }
+
+
 
         .text-with-cta__buttons {
           width: 90%;
@@ -234,8 +233,8 @@ html {
 
   &.one-column-template {
     .text-with-cta-widget {
-      max-width: 800px;
-      display: block;
+      display: flex;
+      justify-content: center;
       max-width: 1136px;
       margin-left: auto;
       margin-right: auto;
@@ -247,9 +246,49 @@ html {
       +[class*="-widget"] {
         margin-top: 50px;
       }
+
+      .text-with-cta__text-container {
+        max-width: 804px;
+      }
+
+      &--default {
+
+        background-color: $white;
+
+        .text-with-cta__text-container {
+          background-color: $white;
+          max-width: 1136px;
+
+          @include respond(tab-port) {
+            padding: 0 30px 0 30px
+          }
+        }
+
+        .text-with-cta__title {
+          justify-content: center;
+        }
+
+        .text-with-cta__text-container {
+          max-width: 804px;
+        }
+
+        .text-with-cta-widget {
+          background-color: $white;
+        }
+
+      }
     }
 
-    .one-col-spacer-bottom {
+    .one-col-spacer {
+      height: 0px;
+      display: none;
+    }
+
+    .primary-content .text-with-cta-widget:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .primary-content .text-with-cta-widget:last-of-type+.one-col-spacer {
       height: 50px;
       position: relative;
       display: block;
@@ -259,10 +298,10 @@ html {
 
 // 2. Background color options:
 // *note: remove school color option.
-// a. white #FFF
+// a. $white #FFF
 // b. chapman red #a50034
 // b. sand #f6f2e8
-// c. panther black #231f20 (if this option is selected, text will switch to white)
+// c. panther black #231f20 (if this option is selected, text will switch to $white)
 // d. covid-theme (pacific) #009CA6
 
 // // teal

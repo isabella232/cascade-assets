@@ -216,7 +216,7 @@
 				<text identifier="text" label="Text" required="true" wysiwyg="true"/>
 				<group identifier="textWithCTAButton" label="CTA Button" maximum-number="3" multiple="true">
 					<group identifier="link" label="Call to Action">
-						<text default="White" identifier="buttonColor" label="Button Color" type="dropdown">
+						<text default="white" identifier="buttonColor" label="Button Color" type="dropdown">
 							<dropdown-item label="Red" value="red"/>
 							<dropdown-item label="White" value="white"/>
 						</text>
