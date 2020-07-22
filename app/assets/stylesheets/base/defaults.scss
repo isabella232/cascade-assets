@@ -750,10 +750,14 @@ html body {
     [class*="__button"] {
       $bg: $panther-black;
       @include button-bg($bg);
+    }
+
+    .button {
 
       &:hover,
-      &:active {
-        background-color: darken($bg, 8%);
+      &:active,
+      &:focus {
+        background-color: black !important;
         -webkit-transition: all 0.3s ease;
         transition: all 0.3s ease;
       }

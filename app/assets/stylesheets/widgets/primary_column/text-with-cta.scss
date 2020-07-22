@@ -77,7 +77,6 @@ html {
             &:hover,
             &:focus {
               background-color: $red-button-hover;
-              transform: translateY(-.2px);
               transition: 150ms linear;
             }
 
@@ -92,7 +91,8 @@ html {
         margin-bottom: 30px;
       }
 
-      &--pacific {
+      &--pacific,
+      &--cu-safely-back {
 
         .text-with-cta__text-container {
           display: grid;
@@ -248,8 +248,22 @@ html {
         margin-top: 50px;
       }
     }
+
+    .one-col-spacer-bottom {
+      height: 50px;
+      position: relative;
+      display: block;
+    }
   }
 }
+
+// 2. Background color options:
+// *note: remove school color option.
+// a. white #FFF
+// b. chapman red #a50034
+// b. sand #f6f2e8
+// c. panther black #231f20 (if this option is selected, text will switch to white)
+// d. covid-theme (pacific) #009CA6
 
 // // teal
 

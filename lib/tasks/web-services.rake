@@ -21,7 +21,7 @@ task edit_cascade_assets: :environment do
   end
 
   edit_block(
-    'Chapman.edu/_cascade/blocks/html/cascade-assets',
+    'Chapman.edu/_cascade/blocks/html/cacade-assets-cu-safely-back-widget',
     'dist/staging/cascade-assets.xml'
   )
   
