@@ -761,6 +761,10 @@ html body {
         -webkit-transition: all 0.3s ease;
         transition: all 0.3s ease;
       }
+
+      &:focus {
+        outline: 2px dotted black;
+      }
     }
 
     .text--link {
