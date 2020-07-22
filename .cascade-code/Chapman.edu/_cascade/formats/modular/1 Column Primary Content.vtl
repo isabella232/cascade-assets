@@ -3,6 +3,7 @@
 #import( "/_cascade/formats/modular/widgets/1 Column/video_with_text" )
 #import( "/_cascade/formats/modular/widgets/1 Column/image_with_text" )
 #import( "/_cascade/formats/modular/widgets/1 Column/circle_image_with_text" )
+#import( "/_cascade/formats/modular/widgets/1 Column/textWithCTA" )
 #import( "/_cascade/formats/modular/widgets/1 Column/text_only" )
 #import( "/_cascade/formats/modular/widgets/1 Column/call_to_action_3_up" )
 #import( "/_cascade/formats/modular/widgets/1 Column/chapman_social_feed" )
@@ -43,6 +44,13 @@
 
     #if ($widgetType == 'Text Only')
         #outputTextOnly($widget)
+    #end
+
+    #if ($widgetType == 'Text with CTA')
+      #set ($displayWidget = $widget.getChild('textWithCTA').getChild('display').value)
+      #if ($displayWidget == 'Yes')
+          #outputTextWithCTA($widget)
+      #end
     #end
 
     #if ($widgetType == 'Call To Action 3 Up')
