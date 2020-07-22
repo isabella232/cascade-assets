@@ -105,6 +105,7 @@ html {
 
           @include respond(phone) {
             grid-template-columns: 1fr;
+            padding-bottom: 0;
           }
         }
 
@@ -134,16 +135,15 @@ html {
           margin-top: 0;
         }
 
-        .text-with-cta__text-container {
-          padding: 30px;
-        }
 
         .text-with-cta__text-container {
           /* grid-template-columns: 1fr 1fr; */
           grid-template-columns: 1fr 0.5fr;
+          padding: 30px;
 
           @include respond(phone) {
             grid-template-columns: 1fr;
+            padding-bottom: 0;
           }
         }
 
