@@ -1,3 +1,11 @@
+@media only screen and (min-width: 905px) {
+  $mastheadVideoHeight: 680px !important;
+
+  :root {
+    --space-mastheadVideoHeight: 680px !important;
+  }
+}
+
 /* autoprefixer grid: autoplace */
 .homepage-masthead__container {
   --defaultPadding: 5%;
@@ -701,18 +709,20 @@ video#homepage-masthead__video {
   }
 }
 
+
 .ie {
   .homepage-masthead {
     &__container {
       display: block;
-      background-image: image-url("masthead-wave");
+      background-image: none;
       background-position: bottom center;
       height: auto;
-      position: relative;
+      position: static;
     }
 
     &__heading-container {
-      position: absolute;
+      position: relative;
+      padding-top: auto;
 
       h2 {
         display: block;
@@ -722,8 +732,8 @@ video#homepage-masthead__video {
     }
 
     &__button-container {
-      position: absolute;
-      margin-top: 400px;
+      position: relative;
+      margin-top: 100px;
     }
 
     &__buttons {
@@ -822,6 +832,7 @@ video#homepage-masthead__video {
       margin: auto;
       text-align: center;
       padding-top: 10px;
+      margin-top: 100px;
     }
 
     &__photos {
@@ -835,6 +846,10 @@ video#homepage-masthead__video {
       z-index: 3;
       max-width: 1130px;
       margin: auto;
+
+      a {
+        overflow: hidden;
+      }
 
       a,
       div {
@@ -890,6 +905,10 @@ video#homepage-masthead__video {
 
     a {
       display: inline-block !important;
+
+      &:first-child {
+        // height: 412px;
+      }
     }
 
     img {
@@ -901,12 +920,14 @@ video#homepage-masthead__video {
     img {
       display: inline;
 
+
       &:first-child {
         -ms-grid-row: 1;
         -ms-grid-column: 1;
         -ms-grid-column-span: 2;
         -ms-grid-row-span: 2;
         margin-right: 12px;
+        min-height: 400px;
       }
 
       &:nth-child(2) {
@@ -956,6 +977,9 @@ video#homepage-masthead__video {
         display: -ms-grid;
         max-height: 185px;
         margin-bottom: 12px;
+        height: 200px;
+        min-height: 200px;
+        max-height: 200px;
       }
     }
 
@@ -1055,5 +1079,11 @@ video#homepage-masthead__video {
     max-height: $mastheadVideoHeight;
     position: absolute;
     background: none;
+  }
+
+  video#homepage-masthead__video {
+    height: auto;
+    width: 100%;
+    max-height: none;
   }
 }
