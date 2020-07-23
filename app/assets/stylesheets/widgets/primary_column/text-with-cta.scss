@@ -107,6 +107,14 @@ html {
           @include respond(phone) {
             grid-template-columns: 1fr;
           }
+
+          .text-with-cta__text {
+            max-width: 52ch;
+
+            @include respond(phone) {
+              max-width: 100%;
+            }
+          }
         }
 
         .text-with-cta__col-1 {
@@ -265,10 +273,22 @@ html {
         margin-top: 50px;
       }
 
+      &--cu-safely-back {
+        .text-with-cta__text {
+          max-width: 52ch;
+
+          @include respond(phone) {
+            max-width: 100%;
+          }
+        }
+      }
+
       .text-with-cta__text-container {
         max-width: 804px;
         padding-bottom: 30px;
         margin-bottom: 0;
+
+
       }
 
 
