@@ -355,6 +355,12 @@ html {
       display: block;
     }
   }
+
+  &.three-column-template {
+    .text-with-cta__text {
+      max-width: 38ch;
+    }
+  }
 }
 
 // 2. Background color options:
