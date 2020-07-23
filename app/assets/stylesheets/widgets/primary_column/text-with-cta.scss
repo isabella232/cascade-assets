@@ -254,6 +254,12 @@ html {
 
   &.one-column-template {
     .text-with-cta-widget {
+      &--cu-safely-back {
+        .text-with-cta__buttons {
+          padding-top: 15px;
+        }
+      }
+
       display: flex;
       justify-content: center;
       max-width: 1136px;
@@ -285,9 +291,8 @@ html {
 
       .text-with-cta__text-container {
         max-width: 804px;
-        padding-bottom: 30px;
+        padding: 0;
         margin-bottom: 0;
-
 
       }
 
