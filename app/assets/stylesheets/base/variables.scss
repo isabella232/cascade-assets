@@ -155,10 +155,10 @@ $mastheadTextShadow: rgba(0, 0, 0, 0.5) 6.5px 6.5px 13px;
 $mastheadVideoHeight: 600px;
 
 @media only screen and (min-width: 905px) {
-  $mastheadVideoHeight: 680px !important;
+  $mastheadVideoHeight: 700px !important;
 
   :root {
-    --space-mastheadVideoHeight: 680px !important;
+    --space-mastheadVideoHeight: 700px !important;
   }
 }
 
