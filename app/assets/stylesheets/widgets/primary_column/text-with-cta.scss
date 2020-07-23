@@ -258,6 +258,15 @@ html {
         .text-with-cta__buttons {
           padding-top: 15px;
         }
+
+        .text-with-cta__text-container {
+          max-width: 804px;
+          padding: 0;
+          margin-bottom: 0;
+          margin-left: 30px;
+          margin-right: 30px;
+        }
+
       }
 
       display: flex;
@@ -293,7 +302,6 @@ html {
         max-width: 804px;
         padding: 0;
         margin-bottom: 0;
-
       }
 
 
