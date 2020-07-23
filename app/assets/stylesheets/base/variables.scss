@@ -154,6 +154,14 @@ $standardPadding: 5%;
 $mastheadTextShadow: rgba(0, 0, 0, 0.5) 6.5px 6.5px 13px;
 $mastheadVideoHeight: 600px;
 
+@media only screen and (min-width: 905px) {
+  $mastheadVideoHeight: 680px !important;
+
+  :root {
+    --space-mastheadVideoHeight: 680px !important;
+  }
+}
+
 $zIndexTopmost: 9999999999999991;
 $uninavZIndex: 999999999999999;
 $zIndexMid: 2;

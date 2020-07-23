@@ -63,7 +63,7 @@
     @include v(color, white);
     padding-right: 2vw;
     cursor: pointer;
-    top: calc(600px - 12.5rem);
+    top: calc(var(--space-mastheadVideoHeight) - 12.5rem);
     fill-opacity: 0.9;
     bottom: 60px;
 
@@ -850,7 +850,7 @@ video#homepage-masthead__video {
     display: block;
     justify-content: center;
     max-width: 100%;
-    margin-top: 600px;
+    margin-top: var(--space-mastheadVideoHeight);
     width: 100%;
   }
 
@@ -882,7 +882,7 @@ video#homepage-masthead__video {
     -ms-grid-rows: 200px 200px;
     grid-gap: 12px;
     position: relative;
-    margin-top: 600px;
+    margin-top: var(--space-mastheadVideoHeight);
     margin-left: auto;
     margin-right: auto;
     z-index: 3;
@@ -1003,8 +1003,8 @@ video#homepage-masthead__video {
 
   &__video-container {
     overflow: hidden;
-    max-height: 600px;
-    height: 600px;
+    max-height: var(--space-mastheadVideoHeight);
+    height: var(--space-mastheadVideoHeight);
     position: relative;
   }
 
