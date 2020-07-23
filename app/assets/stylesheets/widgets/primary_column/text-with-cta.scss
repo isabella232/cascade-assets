@@ -67,13 +67,18 @@ html {
 
           a {
             border-bottom: none;
-            font-weight: normal;
+            font-weight: bold;
             color: $panther-black;
           }
 
           &.color--red {
             border: none;
 
+            &:hover,
+            &:focus {
+              background-color: lighten($cu-red, 8%);
+              transition: 350ms linear;
+            }
 
             a {
               color: $white;
