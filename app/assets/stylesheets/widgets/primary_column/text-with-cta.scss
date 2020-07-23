@@ -191,7 +191,7 @@ html {
           }
 
           a {
-            font-weight: 400;
+            font-weight: bold;
           }
         }
 
@@ -256,16 +256,30 @@ html {
       padding-top: 20px;
       padding-bottom: 20px;
 
+      @include respond(phone) {
+        padding-bottom: 10px;
+        margin-bottom: 0;
+      }
+
       +[class*="-widget"] {
         margin-top: 50px;
       }
 
       .text-with-cta__text-container {
         max-width: 804px;
+        padding-bottom: 10px;
+        margin-bottom: 0;
       }
 
 
       &--default {
+        @include respond(phone) {
+          .text-with-cta__buttons {
+            padding-top: 10px;
+          }
+
+          padding-bottom: 30px;
+        }
 
         background-color: $white;
 
@@ -274,7 +288,7 @@ html {
           max-width: 1136px;
 
           @include respond(tab-port) {
-            padding: 0 30px 0 30px
+            padding: 0 30px 0 30px;
           }
         }
 
@@ -289,7 +303,6 @@ html {
         .text-with-cta-widget {
           background-color: $white;
         }
-
       }
     }
 
