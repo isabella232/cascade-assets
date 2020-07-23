@@ -356,129 +356,15 @@ html {
     }
   }
 
-  &.three-column-template {
-    .text-with-cta__text {
-      max-width: 38ch;
+}
+
+html.three-column-template body .text-with-cta-widget--cu-safely-back {
+
+  .text-with-cta__text {
+    max-width: 38ch;
+
+    @include respond(phone) {
+      max-width: 100%;
     }
   }
 }
-
-// 2. Background color options:
-// *note: remove school color option.
-// a. $white #FFF
-// b. chapman red #a50034
-// b. sand #f6f2e8
-// c. panther black #231f20 (if this option is selected, text will switch to $white)
-// d. covid-theme (pacific) #009CA6
-
-// // teal
-
-// /* Inline #15 | http://localhost:3000/uninav/three_column */
-
-// .text-with-cta-widget--teal {}
-
-// .text-with-cta__text-container {
-//   display: grid;
-//   grid-template-columns: 1fr 1fr;
-// }
-
-// .text-with-cta__col-1 {
-//   display: grid;
-//   align-content: center;
-//   align-items: center;
-// }
-
-// .text-with-cta__title {
-//   margin-top: 0;
-// }
-
-// .text-with-cta__text-container {
-//   padding: 30px;
-// }
-
-// .text-with-cta__text-container {
-//   /* grid-template-columns: 1fr 1fr; */
-//   grid-template-columns: 1fr 0.5fr;
-// }
-
-// .text-with-cta__col-1 {
-//   // padding: 0 20px 0 20px;
-// }
-
-// /* master.css | http://localhost:3000/_assets/master.css */
-
-// html body .text-with-cta-widget .text-with-cta__buttons {
-//   /* float: right; */
-//   /* display: flex; */
-//   /* width: 25%; */
-//   /* margin: 0 0 0 2rem; */
-//   float: unset;
-//   display: grid;
-//   place-items: center;
-//   align-content: center;
-//   height: 100%;
-// }
-
-// html body .text-with-cta-widget .text-with-cta__button {
-//   width: 100%;
-//   justify-self: center;
-// }
-
-// .text-with-cta__buttons {
-//   width: 100% ;
-//   margin: auto ;
-
-//   a {
-//     font-weight: bold ;
-//   }
-// }
-
-// /* Inline #15 | http://localhost:3000/uninav/three_column */
-
-// .text-with-cta__title {
-//   font-weight: normal;
-// }
-
-// .text-with-cta__emphasis {
-//   font-weight: 800;
-// }
-
-// .text-with-cta__button+.text-with-cta__button {
-//   margin-top: 5px ;
-// }
-
-// /* Inline #15 | http://localhost:3000/uninav/three_column */
-
-// .text-with-cta__title {
-//   font-weight: normal;
-// }
-
-// .text-with-cta__emphasis {
-//   font-weight: 800;
-// }
-
-// .text-with-cta__button+.text-with-cta__button {
-//   margin-top: 5px ;
-// }
-
-// .text-with-cta__text {
-//   font-weight: bold;
-// }
-
-// /* master.css | http://localhost:3000/_assets/master.css */
-
-// h2,
-// .faux-h2 {
-//   /* font-size: 2.4rem; */
-//   font-size: 3rem;
-// }
-
-// html body .text-with-cta-widget .text-with-cta__button {
-//   min-width: 200px;
-//   justify-self: center;
-//   max-width: max-content;
-// }
-
-// .text-with-cta__button:last-of-type {
-//   margin-bottom: 0 ;
-// }
