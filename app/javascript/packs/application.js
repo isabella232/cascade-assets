@@ -20,9 +20,8 @@ import 'regenerator-runtime/runtime'
 const images = require.context('../images', true);
 const imagePath = (name) => images(name, true);
 
-import uninav from '../src/navigation/uninav';
-import leftNav from '../src/navigation/leftnav';
+import navigation from '../src/navigation';
 import '../stylesheets/master.scss';
 
-leftNav();
-uninav();
+navigation.initialize();
+
