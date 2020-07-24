@@ -13,7 +13,7 @@ module DataDefinitions
     DEFAULTS = {
       XPATH[:masthead_type] => 'Branded Masthead',
       XPATH[:branded_header] => 'A Brand New Branded Masthead',
-      XPATH[:branded_image_path] => 'media/src/images/mastheads/branded-new.jpg',
+      XPATH[:branded_image_path] => 'media/images/mastheads/branded-new.jpg',
       XPATH[:branded_alt_text] => 'Branded - New alt text',
       XPATH[:v201611_header] => 'Campus Life at Chapman University'
     }.freeze
@@ -28,19 +28,19 @@ module DataDefinitions
               subTitle: '',
               altText: 'the altText is not the alt-right',
               photoBy: 'I.M. Photographer',
-              image: {path: 'media/src/images/mastheads/slider-v201611.jpg'}
+              image: {path: 'media/images/mastheads/slider-v201611.jpg'}
             },
             {
               subTitle: 'Optional text can go here',
               altText: 'image alt attribute here',
               photoBy: '',
-              image: {path: 'media/src/images/mastheads/slider-v201611.jpg'}
+              image: {path: 'media/images/mastheads/slider-v201611.jpg'}
             },
             {
               subTitle: 'Slider Slide \n #3 of 3',
               altText: 'image alt attribute here',
               photoBy: '',
-              image: {path: 'media/src/images/mastheads/slider-v201611.jpg'}
+              image: {path: 'media/images/mastheads/slider-v201611.jpg'}
             }
           ]
         }

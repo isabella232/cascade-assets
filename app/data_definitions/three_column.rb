@@ -13,7 +13,7 @@ module DataDefinitions
     DEFAULTS = {
       XPATH[:masthead_type] => 'Branded Masthead',
       XPATH[:branded_header] => 'A Brand New Branded Masthead',
-      XPATH[:branded_image_path] => 'media/src/images/mastheads/branded-new.jpg',
+      XPATH[:branded_image_path] => 'media/images/mastheads/branded-new.jpg',
       XPATH[:branded_alt_text] => 'Branded - New alt text'
     }.freeze
 
@@ -27,19 +27,19 @@ module DataDefinitions
               subTitle: 'Optional text can go here',
               altText: 'image alt attribute here',
               photoBy: 'I.M. Photographer',
-              image: {path: 'media/src/images/mastheads/slider-v201611.jpg'}
+              image: {path: 'media/images/mastheads/slider-v201611.jpg'}
             },
             {
               subTitle: '',
               altText: 'image alt attribute here',
               photoBy: '',
-              image: {path: 'media/src/images/mastheads/slider-v201611.jpg'}
+              image: {path: 'media/images/mastheads/slider-v201611.jpg'}
             },
             {
               subTitle: 'Slider Slide #3 of 3',
               altText: 'image alt attribute here',
               photoBy: '',
-              image: {path: 'media/src/images/mastheads/slider-v201611.jpg'}
+              image: {path: 'media/images/mastheads/slider-v201611.jpg'}
             }
           ]
         }
