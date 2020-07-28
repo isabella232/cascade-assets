@@ -11,6 +11,7 @@ require 'yaml'
 desc 'Updates dev Chapman.edu/_cascade/blocks/html/cascade-assets with dist/staging/cascade-assets.xml'
 task edit_cascade_assets: :environment do
 
+  FileUtils.mkdir('dist/_config') unless File.directory?('dist/_config')
 
   unless File.exist?("dist/_config/run_once")
     puts  cascade_assets_feature_branch_filename = 'cacade-assets-' + `git rev-parse --abbrev-ref HEAD`.strip
