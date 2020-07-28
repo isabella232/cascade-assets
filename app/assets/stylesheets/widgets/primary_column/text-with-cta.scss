@@ -263,6 +263,16 @@ html {
   .one-column-template {
     .text-with-cta-widget {
 
+      &--default {
+        margin-bottom: 0;
+
+        .text-with-cta__buttons {
+          @include respond(tab-port) {
+            width: 100%;
+          }
+        }
+      }
+
       a.text-with-cta__button {
         border: none;
       }
@@ -272,7 +282,6 @@ html {
         .text-with-cta__buttons {
           padding-top: 15px;
           padding-bottom: 15px;
-
 
         }
 
