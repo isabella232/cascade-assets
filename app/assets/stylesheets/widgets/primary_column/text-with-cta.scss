@@ -252,12 +252,31 @@ html {
     }
   }
 
-  &.one-column-template {
+  &.two-column-template,
+  &.three-column-template {
+    [class*="--white"] {
+      border: none;
+    }
+  }
+
+  &.one-column-template,
+  .one-column-template {
     .text-with-cta-widget {
+      +[class*="-widget"] {
+        margin-top: 50px;
+      }
+
+      a.text-with-cta__button {
+        border: none;
+      }
+
+
       &--cu-safely-back {
         .text-with-cta__buttons {
           padding-top: 15px;
           padding-bottom: 15px;
+
+
         }
 
         .text-with-cta__text-container {
@@ -272,17 +291,16 @@ html {
 
       display: flex;
       justify-content: center;
-      max-width: 1136px;
       margin-left: auto;
       margin-right: auto;
       width: 100%;
-      margin-top: 50px;
-      padding-top: 20px;
-      padding-bottom: 20px;
+      padding-top: 64px;
+      padding-bottom: 64px;
+
 
       @include respond(phone) {
-        padding-bottom: 10px;
-        margin-bottom: 0;
+        // padding-bottom: 10px;
+        // margin-bottom: 0;
       }
 
       +[class*="-widget"] {
@@ -315,11 +333,11 @@ html {
           padding-bottom: 30px;
         }
 
-        background-color: $white;
+        // background-color: $white;
 
         .text-with-cta__text-container {
-          background-color: $white;
-          max-width: 1136px;
+          background-color: inherit;
+          // max-width: 1136px;
 
           @include respond(tab-port) {
             padding: 0 30px 0 30px;
@@ -332,6 +350,10 @@ html {
 
         .text-with-cta__text-container {
           max-width: 804px;
+
+          &--white {
+            border: none;
+          }
         }
 
         .text-with-cta-widget {
@@ -347,12 +369,6 @@ html {
 
     .primary-content .text-with-cta-widget:last-of-type {
       margin-bottom: 0;
-    }
-
-    .primary-content .text-with-cta-widget:last-of-type+.one-col-spacer {
-      height: 50px;
-      position: relative;
-      display: block;
     }
   }
 

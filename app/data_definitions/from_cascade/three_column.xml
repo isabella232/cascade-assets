@@ -448,12 +448,14 @@
 			<group collapsed="false" identifier="textWithCTA" label="Text with CTA">
 				<shared-field identifier="display" path="display"/>
 				<text default="Default Theme" identifier="theme" label="Theme" type="radiobutton">
-					<radio-item identifier="default" value="Default Theme" show-fields="primaryContent/widget/textWithCTA/textWithCTAButton"/>
-					<radio-item show-fields="primaryContent/widget/textWithCTA/bgColor, primaryContent/widget/textWithCTA/textWithCTAButtonCUSafelyBack" value="CU Safely Back" identifier="pacific"/>
+					<radio-item identifier="default" value="Default Theme" show-fields="primaryContent/widget/textWithCTA/bgColor, primaryContent/widget/textWithCTA/textWithCTAButton"/>
+					<radio-item show-fields="primaryContent/widget/textWithCTA/CUSafelyBackbgColor, primaryContent/widget/textWithCTA/textWithCTAButtonCUSafelyBack" value="CU Safely Back" identifier="pacific"/>
 				</text>
-				<text default="pacific" identifier="bgColor" label="Background Color" type="dropdown" require="false">
-					<dropdown-item label="Pacific (Teal)" value="pacific"/>
-					<dropdown-item label="White" value="white"/>
+				<text default="white" identifier="bgColor" label="Background Color" type="radiobutton" require="false">
+					<radio-item label="White" value="white"/>
+				</text>
+				<text default="pacific" identifier="CUSafelyBackbgColor" label="Background Color" type="radiobutton" require="false">
+					<radio-item label="Pacific" value="pacific"/>
 				</text>
 				<text identifier="textWithCTATitle" label="Title" help-text="Note: With 'CU Safely Back' Theme, the first two characters are emphasized"/>
 				<text identifier="text" label="Text" required="true" wysiwyg="true"/>

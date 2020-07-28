@@ -14,48 +14,15 @@
 #set ( $theme = $textWithCTA.getChild('theme').value)
 #set ( $bgColor = $textWithCTA.getChild('bgColor').value)
 
-#if ($theme == 'Default Theme')
 
-<div class="text-with-cta-widget text-with-cta-widget--default">
-    <div class="text-with-cta__text-container">
-        #if ($title != "")
-            <h2 class="text-with-cta__title">${_EscapeTool.xml($title)}</h2>
-        #end
-        <div class="text-with-cta__buttons">
-            #foreach ( $button in $ctaButtons )
-                #set ( $link = $button.getChild('link') )
-                #set ( $linkType = $link.getChild('linkType').value )
-                #set ( $buttonText = $link.getChild('label').value )
-                #set ( $buttonColor = $link.getChild('buttonColor').value )
-                #if ($linkType == 'Internal Link')
-                    #set ($linkURL = $link.getChild('internalLink').getChild('path').value )
-                    #elseif ($linkType == 'External Link')
-                    #set ($linkURL = $link.getChild('externalLink').value )
-                #else
-                    #set ($linkURL = $link.getChild('fileLink').getChild('path').value )
+
+    #if ($theme == 'Default Theme')
+        <div class="text-with-cta-widget text-with-cta-widget--default text-with-cta-widget--$bgColor">
+            <div class="text-with-cta__text-container text-with-cta__text-container--$bgColor">
+                #if ($title != "")
+                    <h2 class="text-with-cta__title">${_EscapeTool.xml($title)}</h2>
                 #end
-                    <a class="text-with-cta__button color--${buttonColor}" href="${_EscapeTool.xml($linkURL)}">${_EscapeTool.xml($buttonText)}</a>
-            #end
-        </div>
-        <div class="text-with-cta__text">$text</div>
-    </div>
-</div>
-<span class="one-col-spacer"></span>
-#end
-
-#if ($theme == 'CU Safely Back')
-
-<div class='text-with-cta-widget text-with-cta-widget--cu-safely-back text-with-cta-widget--$bgColor'>
-    <div class="text-with-cta__text-container">
-        <div class="text-with-cta__col-1">
-            #if ($title != "")
-                <h2 class="text-with-cta__title">${titleEmphasis}</h2>
-            #end
-            <div class="text-with-cta__text">$text</div>
-        </div>
-        <div class="text-with-cta__col-2">
-            <div class="text-with-cta__buttons">
-                #set ( $ctaButtons = $_XPathTool.selectNodes($element, 'textWithCTA/textWithCTAButtonCUSafelyBack'))
+                <div class="text-with-cta__buttons">
                     #foreach ( $button in $ctaButtons )
                         #set ( $link = $button.getChild('link') )
                         #set ( $linkType = $link.getChild('linkType').value )
@@ -68,12 +35,46 @@
                         #else
                             #set ($linkURL = $link.getChild('fileLink').getChild('path').value )
                         #end
-                            <a class="button text-with-cta__button color--red" href="${_EscapeTool.xml($linkURL)}">${_EscapeTool.xml($buttonText)}</a>
+                            <a class="text-with-cta__button color--${buttonColor}" href="${_EscapeTool.xml($linkURL)}">${_EscapeTool.xml($buttonText)}</a>
                     #end
+                </div>
+                <div class="text-with-cta__text">$text</div>
             </div>
         </div>
-    </div>
-</div>
-<span class="one-col-spacer"></span>
-#end
+        <span class="one-col-spacer"></span>
+    #end
+
+    #if ($theme == 'CU Safely Back')
+        #set ( $bgColor = 'pacific')
+        <div class='text-with-cta-widget text-with-cta-widget--cu-safely-back text-with-cta-widget--$bgColor'>
+            <div class="text-with-cta__text-container">
+                <div class="text-with-cta__col-1">
+                    #if ($title != "")
+                        <h2 class="text-with-cta__title">${titleEmphasis}</h2>
+                    #end
+                    <div class="text-with-cta__text">$text</div>
+                </div>
+                <div class="text-with-cta__col-2">
+                    <div class="text-with-cta__buttons">
+                        #set ( $ctaButtons = $_XPathTool.selectNodes($element, 'textWithCTA/textWithCTAButtonCUSafelyBack'))
+                            #foreach ( $button in $ctaButtons )
+                                #set ( $link = $button.getChild('link') )
+                                #set ( $linkType = $link.getChild('linkType').value )
+                                #set ( $buttonText = $link.getChild('label').value )
+                                #set ( $buttonColor = $link.getChild('buttonColor').value )
+                                #if ($linkType == 'Internal Link')
+                                    #set ($linkURL = $link.getChild('internalLink').getChild('path').value )
+                                    #elseif ($linkType == 'External Link')
+                                    #set ($linkURL = $link.getChild('externalLink').value )
+                                #else
+                                    #set ($linkURL = $link.getChild('fileLink').getChild('path').value )
+                                #end
+                                    <a class="button text-with-cta__button color--red" href="${_EscapeTool.xml($linkURL)}">${_EscapeTool.xml($buttonText)}</a>
+                            #end
+                    </div>
+                </div>
+            </div>
+        </div>
+        <span class="one-col-spacer"></span>
+    #end
 #end
