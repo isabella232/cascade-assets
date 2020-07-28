@@ -60,6 +60,7 @@
 //= require cascade/level/funnel
 //= require cascade/iframe-titles
 //= require cascade/image-alt-text
+//= require cascade/lazy-load-images
 //= require cascade/level/left-nav
 //= require cascade/level/level
 //= require cascade/level/masthead

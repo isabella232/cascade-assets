@@ -4,11 +4,14 @@
 
 #graduateAdmission {
   background: #111111 image-url('graduate-admission-2017.jpg') no-repeat center;
+  background: #111111 image-url('graduate-admission-2017.webp') no-repeat center;
   background-size: cover;
   color: #FFFFFF;
   text-align: center;
   overflow: hidden;
-  p, h3 {
+
+  p,
+  h3 {
     color: #FFFFFF;
   }
 }
@@ -21,18 +24,22 @@
   .heading {
     @include condensed-heading;
     text-align: center;
+
     span {
       display: block;
     }
   }
+
   .subheading {
     margin: 0 15px;
     text-align: center;
   }
+
   .actions {
     margin-top: 25px;
     text-align: center;
   }
+
   br.large-screens {
     display: none;
   }
@@ -42,7 +49,9 @@
   #graduateAdmission {
     text-align: left;
     background-position: center;
-    .heading, .subheading {
+
+    .heading,
+    .subheading {
       margin: 0 50px;
       z-index: 1;
       position: relative;
@@ -52,10 +61,13 @@
 
 @media only screen and (min-width: 980px) {
   #graduateAdmission {
-    .heading, .subheading {
+
+    .heading,
+    .subheading {
       text-align: right;
       margin: 0 auto;
     }
+
     .actions {
       position: absolute;
       bottom: 0;
@@ -74,6 +86,7 @@
       margin-left: 50px;
     }
   }
+
   #graduateAdmission br.large-screens {
     display: block;
   }

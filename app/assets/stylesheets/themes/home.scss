@@ -30,6 +30,9 @@ h6,
     padding-bottom: 18px;
     @include transition(background-color);
 
+
+
+
     &:hover {
       background-color: #ffffff;
       text-decoration: none;
@@ -713,4 +716,11 @@ h6,
     align-content: flex-end;
     align-self: flex-end;
   }
+}
+
+.no-js .homepage .stories .story-bg img[loading="lazy"] {
+  @include qbal-fade-enter;
+  display: block !important;
+  overflow: hidden;
+  max-height: 200px;
 }

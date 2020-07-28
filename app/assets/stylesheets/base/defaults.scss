@@ -896,3 +896,13 @@ html body {
     opacity: 0;
   }
 }
+
+.lazy {
+  background-image: none !important;
+  @include qbal-fade-enter;
+}
+
+.no-js .lazy {
+  background-image: revert !important;
+  @include qbal-fade-enter;
+}
