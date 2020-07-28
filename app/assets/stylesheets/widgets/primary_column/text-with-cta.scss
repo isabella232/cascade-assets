@@ -267,7 +267,13 @@ html {
         margin-bottom: 0;
 
         .text-with-cta__buttons {
+          padding-top: 0;
+          padding-bottom: 0;
+
           @include respond(tab-port) {
+            padding-top: 20px;
+            padding-bottom: 20px;
+
             width: 100%;
           }
         }
