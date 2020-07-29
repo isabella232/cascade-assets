@@ -268,12 +268,16 @@
 
 #undergraduateAdmission {
   --bgImage: url(https://www.chapman.edu/_assets/homepage/undergrad-admissions.webp);
-  background-image: url('https://www.chapman.edu/_assets/homepage/undergrad-admissions.webp');
+  background-image: var(--bgImage);
   background-color: #111111;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   color: #ffffff;
+
+  &.lazy {
+    --bgImage: '';
+  }
 
   h2 {
     margin-top: 12px;

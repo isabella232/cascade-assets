@@ -19,6 +19,11 @@
   text-align: center;
   overflow: hidden;
 
+
+  &.lazy {
+    --bgImage: '';
+  }
+
   p,
   h3 {
     color: #FFFFFF;
