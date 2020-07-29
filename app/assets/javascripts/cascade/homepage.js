@@ -11,7 +11,6 @@
       setGeneralInfoMinHeight();
       animateOnScroll();
       setTimeout(function () { addSquigglyUnderline() }, 1000);
-
     }
   });
 

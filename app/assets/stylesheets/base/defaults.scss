@@ -908,13 +908,10 @@ img[loading="lazy"] {
   opacity: 0;
 }
 
-
-
 img.lazy-loaded,
-.lazy-loaded[role="img"] {
-  -webkit-backface-visibility: hidden;
-  will-change: transform;
-  animation: 500ms lazyload forwards;
+.lazy-loaded[role="img"],
+img[loading="lazy"] {
+  animation: 1s lazyload forwards;
 }
 
 @keyframes lazyload {
@@ -940,7 +937,6 @@ img.lazy-loaded,
 }
 
 .no-js {
-
   .lazy {
     --bgImage: '';
     background-image: var(--bgImage) !important;
@@ -948,5 +944,4 @@ img.lazy-loaded,
     will-change: transform;
     animation: 500ms lazyload forwards;
   }
-
 }
