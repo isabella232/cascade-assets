@@ -231,7 +231,7 @@
   }
 
 
-  background: #111111 image-url('undergrad-admissions.jpg') no-repeat center;
+  background-image: var(--bgImage);
   background-size: cover;
   color: #ffffff;
 
@@ -258,7 +258,8 @@
 
 .no-webp {
   #undergraduateAdmission {
-    background-image: url('//www.chapman.edu/_assets/undergrad-admissions-6b05436c3ff08330a37837dcf25b8c5c1749cc7456f32c7383593726a4125407.jpg');
+    --bgImage: url(https://www.chapman.edu/_assets/homepage/undergrad-admissions.webp);
+    background-image: var(--bgImage);
     background-color: #111111;
     background-repeat: no-repeat;
     background-position: center;
