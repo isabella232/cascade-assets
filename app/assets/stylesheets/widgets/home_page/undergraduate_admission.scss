@@ -258,14 +258,15 @@
 
 .no-webp {
   #undergraduateAdmission {
-    --bgImage: url(https://www.chapman.edu/_assets/homepage/undergrad-admissions.webp);
-    background-image: var(--bgImage);
+    --bgImage: url(undergrad-admissions.jpg);
+    background-image: url(undergrad-admissions.jpg); // safari does not parse the CSS var
     background-color: #111111;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
   }
 }
+
 
 #undergraduateAdmission {
   --bgImage: url(https://www.chapman.edu/_assets/homepage/undergrad-admissions.webp);
@@ -275,6 +276,7 @@
   background-position: center;
   background-size: cover;
   color: #ffffff;
+
 
   &.lazy {
     --bgImage: '';

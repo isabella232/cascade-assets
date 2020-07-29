@@ -727,3 +727,25 @@ h6,
   max-height: 200px;
   object-fit: cover;
 }
+
+.homepage .story-bg {
+
+  .lazy,
+  img[loading="lazy"] {
+    animation: 150ms lazyload forwards;
+  }
+
+
+  @keyframes lazyload {
+    from {
+      opacity: 0;
+      filter: blur(3px);
+    }
+
+    to {
+      opacity: 1;
+      filter: blur(0);
+    }
+  }
+
+}

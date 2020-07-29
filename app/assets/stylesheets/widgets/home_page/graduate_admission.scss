@@ -4,7 +4,7 @@
 
 .no-webp {
   #graduateAdmission {
-    background: #111111 image-url('graduate-admission-2017.jpg') no-repeat center;
+    background: #111111 image-url('graduate-admission-2017.jpg') no-repeat center; // safari did not parse the CSS var
   }
 }
 
@@ -19,6 +19,9 @@
   text-align: center;
   overflow: hidden;
 
+  /* Safari */
+  background-image: image-set(url("graduate-admission-2017.jpg") 1x);
+  /* Safari */
 
   &.lazy {
     --bgImage: '';
