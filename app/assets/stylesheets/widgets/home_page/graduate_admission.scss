@@ -2,9 +2,17 @@
 * Graduate Admission Section
 ***************************************************/
 
+.no-webp {
+  #graduateAdmission {
+    background: #111111 image-url('graduate-admission-2017.jpg') no-repeat center;
+  }
+}
+
 #graduateAdmission {
-  background: #111111 image-url('graduate-admission-2017.jpg') no-repeat center;
-  background: #111111 image-url('graduate-admission-2017.webp') no-repeat center;
+  background-color: #111111;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('https://www.chapman.edu/_assets/homepage/graduate-admission-2017.webp');
   background-size: cover;
   color: #FFFFFF;
   text-align: center;
