@@ -42,7 +42,7 @@
                                 #set ( $imageLink = '#' )
                             #end
                             
-					<img loading="lazy" src="$imageLink" alt="$imageAltText"/>
+					<img loading="lazy" class="lazy" src="$imageLink" alt="$imageAltText"/>
                         #end
                     #end
                     
