@@ -898,11 +898,13 @@ html body {
 }
 
 .lazy {
-  background-image: none;
+  --bgImage: 'none';
+  background-image: var(--bgImage) !important;
   @include qbal-fade-enter;
 }
 
 .no-js .lazy {
-  background-image: revert;
+  --bgImage: '';
+  background-image: var(--bgImage) !important;
   @include qbal-fade-enter;
 }
