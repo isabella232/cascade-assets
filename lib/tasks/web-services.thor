@@ -140,5 +140,3 @@ class Cascade < Thor
     # and the route `get 'uninav/about_index', to: 'uninav#about_index'
   end
 end
-
-

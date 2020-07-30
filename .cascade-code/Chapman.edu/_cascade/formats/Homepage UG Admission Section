@@ -1,173 +1,77 @@
-#*
- * Chapman.edu/_cascade/formats/Homepage CU Family section
- * Chapman Families Stories widget for Chapman home page.
- *
- * The code here is shocking similar to that in the Homepage Blog Stories format.
- *#
+#set ($currentPage = $_XPathTool.selectSingleNode($contentRoot, "//system-page[@current]") )
 
- ##
- ## Imports
- ##
- #import( "/_config/blogs.vm" )
- #import( "/_config/social.vm" )
+#set ($panel = $currentPage.getChild('system-data-structure').getChild('UGadmission') )
+#set ($headerSet = $_XPathTool.selectNodes($panel, "./header") )
+#set ($subHeader = $panel.getChild('subHeader').value )
+#set ($factSet = $_XPathTool.selectNodes($panel, "./facts") )
+#set ($leftButtonLabel = $panel.getChild('leftButton').getChild('Text').value )
+#set ($leftButtonTrackID = $panel.getChild('leftButton').getChild('trackingID').value )
+#set ($rightButtonTrackID = $panel.getChild('leftButton').getChild('trackingID').value )
+#set ($rightButtonLabel = $panel.getChild('rightButton').getChild('Text').value )
+#set ( $leftButtonLink_ext = $panel.getChild('leftButton').getChild('buttonLink').getChild('link').value )
+            #set ( $leftButtonLink_int = $panel.getChild('leftButton').getChild('buttonLink').getChild('internalLink').getChild('path').value )
+            #if ($leftButtonLink_ext != '')
+                #set ( $leftButtonLink = $leftButtonLink_ext )
+            #elseif ($leftButtonLink_int != '' && $leftButtonLink_int != '/')
+                  #set ( $leftButtonLink = $leftButtonLink_int )
+            #else
+                #set ( $leftButtonLink = '#' )
+            #end
+#set ( $rightButtonLink_ext = $panel.getChild('rightButton').getChild('buttonLink').getChild('link').value )
+            #set ( $rightButtonLink_int = $panel.getChild('rightButton').getChild('buttonLink').getChild('internalLink').getChild('path').value )
+            #if ($rightButtonLink_ext != '')
+                #set ( $rightButtonLink = $rightButtonLink_ext )
+            #elseif ($rightButtonLink_int != '' && $rightButtonLink_int != '/')
+                  #set ( $rightButtonLink = $rightButtonLink_int )
+            #else
+                #set ( $rightButtonLink = '#' )
+            #end
 
+<section aria-label="Undergraduate Admission Information" class="section dark-bg lazy"
+                data-bottom-top="background-position: center 100px" data-top-bottom="background-position: center -100px"
+                id="undergraduateAdmission">
+                <div class="maxWidth">
+                    <h2 class="heading" data-aos="fade-up" data-aos-duration="500">
+                        <span class="fade-elem" style="opacity: 0;">START </span>
+                        <span class="fade-elem" style="opacity: 0;">SOMETHING</span>
+                        <span class="fade-elem" style="opacity: 0;">BIG.</span>
+                    </h2>
+                    <h3 class="subheading fade-elem" style="opacity: 0;">Join our vibrant intellectual community of
+                        undergraduate makers and doers.</h3>
 
- ##
- ## Hardcoded Params
- ##
- #set ( $FACEBOOK_SHARE_URL = $SOCIAL_CONFIG['facebook']['shareUrl'] )
- #set ( $TWITTER_SHARE_URL = $SOCIAL_CONFIG['twitter']['shareUrl'] )
+                    <ul class="statistics">
+                        <li class="fact1" data-bottom-top="top[sqrt]:120px" data-center="top:0px">
+                            <p><span class="bigstat" data-count="1790">1790</span> <span class="label"> projected first
+                                    year fall enrollment</span></p>
+                        </li>
+                        <li class="fact2" data-bottom-top="top[sqrt]:-50px" data-center="top:0px">
+                            <p><span class="bigstat" data-count="3.82">3.82</span> <span class="label"> average GPA for
+                                    admitted fall first years</span></p>
+                        </li>
+                        <li class="fact3" data-bottom-top="top[sqrt]:60px" data-center="top:0px">
+                            <p><span class="bigstat" data-count="1316">1316</span> <span class="label"> average SAT for
+                                    admitted fall first years</span></p>
+                        </li>
+                        <li class="fact4" data-bottom-top="top[sqrt]:-10px" data-center="top:0px">
+                            <p><span class="bigstat" data-count="28">28</span> <span class="label"> average ACT for
+                                    admitted fall first years</span></p>
+                        </li>
+                        <li class="fact5" data-bottom-top="top[sqrt]:70px" data-center="top:0px">
+                            <p><span class="bigstat" data-count="400">400</span> <span class="label"> projected transfer
+                                    fall enrollment</span></p>
+                        </li>
+                    </ul>
 
+                    <div class="actions">
+                        <a class="button white smc-cta" data--100-bottom="opacity:1" data-bottom="opacity:0"
+                            data-cta-id="homepage-ug-adm" href="https://www.chapman.edu/about/index.aspx">Discover Chapman</a>
 
-##
-## Global Vars
-##
-#set ( $currentPage = $_XPathTool.selectSingleNode($contentRoot, "//system-page[@current]") )
-#set ( $familyData = $currentPage.getChild('system-data-structure').getChild('chapmanFamily') )
-#set ( $header = $familyData.getChild('header').value )
+                        <a class="button white smc-cta" data--100-bottom="opacity:1" data-bottom="opacity:0"
+                            data-cta-id="homepage-ug-adm" href="https://www.chapman.edu/admission/undergraduate/visit/index.aspx">Visit Us</a>
+                        <a class="button white smc-cta" data--100-bottom="opacity:1" data-bottom="opacity:0"
+                            data-cta-id="homepage-ug-adm" href="https://www.chapman.edu/admission/undergraduate/how-to-apply/index.aspx">Apply
+                            Today</a>
 
-#set ( $smallStories = $_XPathTool.selectNodes($familyData, "./story") )
-
-#set ( $calloutHeader = '' )
-#set ( $calloutDetails = '' )
-#set ( $calloutLink = '' )
-#set ( $calloutLinkText = '' )
-
-
-##
-## Var Macros
-##
-#macro ( setVars )
-  #set ( $calloutHeader = $familyData.getChild('callout').getChild('header').value )
-  #set ( $calloutDetails = $_SerializerTool.serialize($familyData.getChild('callout').getChild('copy'), true) )
-
-  ## Set $calloutLink
-  #set ( $calloutLinkText = $familyData.getChild('callout').getChild('link').getChild('linktext').value )
-  #set ( $calloutExternalLink = $familyData.getChild('callout').getChild('link').getChild('externalLink').value )
-  #set ( $calloutInternalLink = $familyData.getChild('callout').getChild('link').getChild('internalLink').getChild('path').value )
-
-  #if ( $calloutExternalLink != '' )
-    #set ( $calloutLink = $calloutExternalLink )
-  #elseif ( $calloutInternalLink != '' && $calloutInternalLink != '/' )
-    #set ( $calloutLink = $calloutInternalLink )
-  #else
-    #set ( $calloutLink = '#' )
-  #end
-#end
-
-
-##
-## Build Macros
-##
-#macro ( buildChapmanFamilyBlock )
-  <!-- Chapman Family Section Macro -->
-  <section id="chapmanFamily" class="section light-bg stories" aria-label="Chapman Family">
-    <div class="maxWidth">
-      <h2 class="heading skrollable skrollable-after" data-bottom="opacity:0;" data-center="opacity:1;">
-        $header
-      </h2>
-        <div class="homepage-news__grid-wrapper">
-          #buildSmallStoriesBlock()
-          #buildCalloutBlock()
-        </div>
-    </div>
-  </section>
-#end
-
-#macro ( buildCalloutBlock )
-  <div class="third">
-    <h2>$calloutHeader</h2>
-    <p>$calloutDetails</p>
-    <p><a href="$calloutLink">$calloutLinkText »</a></p>
-  </div>
-#end
-
-#macro ( buildSmallStoriesBlock )
-  ## There are three trending stories
-  #if ( $smallStories.size() > 0 )
-    #foreach ( $story in $smallStories )
-      #buildStoryArticleBlock($story)
-    #end
-  #end
-#end
-
-#macro ( buildStoryArticleBlock $story )
-  ## Data
-  #set ( $storyCategoryLink = $story.getChild('topCategory').getChild('link').value )
-  #set ( $storyCategoryText = $story.getChild('topCategory').getChild('text').value )
-  #set ( $storyHeader = $story.getChild('header').value )
-  #set ( $storyLink = $story.getChild('link').value )
-
-  ## if url to story starts with // then the compound link to Twitter using that
-  ## url won't work. Append https: in front.
-  #if ( $storyLink.substring(0,2) == "//" )
-    #set ( $storyLink = "https:" + $storyLink )
-  #end
-
-  ## Set story image vars
-  #set ( $storyImageAltText = $story.getChild('image').getChild('altText').value )
-  #set ( $storyImageExternalLink = $story.getChild('image').getChild('link').value )
-  #set ( $storyImageInternalLink = $story.getChild('image').getChild('internalLink').getChild('path').value )
-  #if ( $storyImageExternalLink != '' )
-    #set ( $storyImage = $storyImageExternalLink )
-  #elseif ( $storyImageInternalLink != '' && $storyImageInternalLink != '/' )
-    ## This renders image inside Cascade.
-    #set ( $storyImage = "[system-asset:local]${storyImageInternalLink}[/system-asset:local]")
-  #else
-    #set ( $storyImage = '' )
-  #end
-
-  ## Output
-  <div class="third">
-    <article class="story" aria-label="$storyHeader">
-        <div class="story-bg"
-             style="background-image:url('$storyImage');"
-             role="img"
-             aria-label="$storyImageAltText">
-          <img src="$storyImage" alt="$storyImageAltText" />
-        </div>
-        <div class="homepage-story__text">
-      <a class="tag" href="$storyCategoryLink"><span class="squiggle squiggle-2-2">#$storyCategoryText</span></a>
-      
-      <a class="permalink" href="$storyLink">
-        <h2 class="title">$storyHeader</h2>
-      </a>
-    </div>
-      #buildStoryArticleBlockFooter( $story $storyLink $storyHeader )
-    </article>
-  </div>
-#end
-
-#macro ( buildStoryArticleBlockFooter $story $storyLink $storyHeader )
-  ## Data
-  #set ( $storyBlogName = $story.getChild('blogName').value )
-  #set ( $storyBlogParams = $BLOGS_CONFIG[$storyBlogName] )
-  #set ( $storyBlogTitle = $storyBlogParams[0] )
-  #set ( $storyCss = $storyBlogParams[1] )
-  #set ( $storyBlogLink = "https://blogs.chapman.edu/${storyBlogName}" )
-
-  ## Output
-  <div class="story_footer">
-    <p class="source blogname $storyCss">
-      <a href="$storyBlogLink">$storyBlogTitle</a>
-    </p>
-    #buildMetaSocialBlock( $storyLink $storyHeader )
-  </div>
-#end
-
-#macro( buildMetaSocialBlock $storyLink $storyHeader )
-  ## Data
-  ## Normalize header for Twitter.
-  #set ( $headerStripped = $_DisplayTool.stripTags($storyHeader) )
-  #set ( $headerNormed = $headerStripped.replaceAll("&amp;","and").replaceAll("""","").replaceAll("/\W/", "") )
-  #set ( $escapedHeader = ${_EscapeTool.url($headerNormed)} )
-  #set ( $facebookLink = $FACEBOOK_SHARE_URL + $storyLink )
-  #set ( $twitterLink = $TWITTER_SHARE_URL + $escapedHeader + '&amp;url=' + $storyLink )
-#end
-
-
-##
-## Main Format Block
-##
-#setVars()
-#buildChapmanFamilyBlock()
+                    </div>
+                </div>
+            </section>

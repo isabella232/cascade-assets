@@ -1,5 +1,6 @@
 # https://www.hannonhill.com/cascadecms/latest/developing-in-cascade/rest-api/index.html
 require 'json'
+require 'httparty'
 require 'nokogiri'
 require 'open-uri'
 require 'uri'
@@ -13,6 +14,7 @@ task edit_cascade_assets: :environment do
 
   FileUtils.mkdir('dist/_config') unless File.directory?('dist/_config')
 
+  cascade_assets_block_name = 'cacade-assets-' + `git rev-parse --abbrev-ref HEAD`.strip
   unless File.exist?("dist/_config/run_once")
     puts  cascade_assets_feature_branch_filename = 'cacade-assets-' + `git rev-parse --abbrev-ref HEAD`.strip
     puts create_block("#{cascade_assets_feature_branch_filename}", "_cascade/blocks/html", "dist/staging/cascade-assets.xml")
@@ -22,10 +24,9 @@ task edit_cascade_assets: :environment do
   end
 
   edit_block(
-    'Chapman.edu/_cascade/blocks/html/cacade-assets-cu-safely-back-widget',
+    "Chapman.edu/_cascade/blocks/html/#{cascade_assets_block_name}",
     'dist/staging/cascade-assets.xml'
   )
-  
   
   local_file = 'dist/staging/cascade-assets.xml'
   # url_path = URI.parse(local_file).path

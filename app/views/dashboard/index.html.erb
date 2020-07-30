@@ -82,7 +82,7 @@
     with:
   </p>
   <pre>export CASCADE_USERNAME=username</pre>
-  <pre>export CASCADE_USERNAME=password</pre>
+  <pre>export CASCADE_PASWORD=password</pre>
   </p>
   <div id="thor_tasks">
     <h3> Web Services - Rake Tasks</h3>
@@ -105,6 +105,18 @@
       <ul>
         <h3>Edit Cascade Assets Block</h3>
         <p>Usage: Make local edits, save, run command</p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/0zs9kvgthLo" frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p>This will create a new
+          <code><%= 'cacade-assets-' + `git rev-parse --abbrev-ref HEAD`.strip %></code> block (based on
+          your current
+          branch name) for you to reference at <code>Chapman.edu/_cascade/blocks/html/</code>
+        </p>
+        <p>It can also be triggered via <code>bin/build</code>, which will automatically handle uploading and publishing
+          <code>master.css</code> and <code>master.js</code></p>
+        <p>You'll be prompted to pass an optional page path argument to fire a publish action every time this command is
+          run.
+          This can be reconfigured in <code>dist/_config/branch-settings.yml</code></p>
         Command:
         <pre>rake edit_cascade_assets.xml</pre>
         Replaces the block

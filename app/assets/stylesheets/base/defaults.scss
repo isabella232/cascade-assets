@@ -209,7 +209,7 @@ textarea {
 [alt] {
   font-family: $futura-regular;
   opacity: 0;
-  animation-delay: 300ms;
+  animation-delay: 500ms;
   animation: fadein 3s forwards;
   -moz-animation: fadein 3s forwards;
   -webkit-animation: fadein 3s forwards;
@@ -942,5 +942,54 @@ html body {
 
   to {
     opacity: 0;
+  }
+}
+
+.lazy {
+  --bgImage: 'none';
+  background-image: var(--bgImage) !important;
+}
+
+img.lazy,
+.lazy[role="img"],
+img[loading="lazy"] {
+  opacity: 0;
+}
+
+img.lazy-loaded,
+.lazy-loaded[role="img"],
+img[loading="lazy"] {
+  animation: 1s lazyload forwards;
+}
+
+@keyframes lazyload {
+  0% {
+    opacity: 0;
+    -webkit-backface-visibility: hidden;
+    filter: url(#blur);
+    -webkikt-filter: url('#blur');
+  }
+
+  10% {
+    opacity: .5;
+  }
+
+  30% {
+    opacity: 1 !important;
+  }
+
+  100% {
+    filter: none;
+    -webkikt-filter: none;
+  }
+}
+
+.no-js {
+  .lazy {
+    --bgImage: '';
+    background-image: var(--bgImage) !important;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
+    animation: 500ms lazyload forwards;
   }
 }

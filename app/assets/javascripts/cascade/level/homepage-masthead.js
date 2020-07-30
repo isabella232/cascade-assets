@@ -3,10 +3,8 @@ $(function () {
         fetchCuratorImages();
         var vid = $("video#homepage-masthead__video");
         $('.homepage video').removeAttr('controls');
-        $('#homepage-masthead__pause-button ,#homepage-masthead__play-button').on('click keydown', function (event) {
-            if (masthead_a11y(event)) {
-                togglePlay();
-            }
+        $('.homepage-masthead__toggle-play-button').on('click keydown', function (event) {
+            togglePlay();
         });
         ieObjectFitFallback();
     }
@@ -18,28 +16,31 @@ function fetchCuratorImages() {
         success: manipulateCuratorImages,
         error: function (data, status, error) {
             console.log('%c ERROR: level/homepage-masthead.js - could not load curator.io images' + data.responseText.error, 'background: #222; color: #bada55');
-            $('.homepage-masthead__photos img').addClass('fade-in');
+            $('.homepage-masthead__photos picture').addClass('fade-in');
         }
     });
 }
+
+$(document).on('.homepage-masthead__photos img src', function () {
+    console.log('src changed')
+});
+
 function manipulateCuratorImages(data) {
-    $('.homepage-masthead__photos img').each(function (index, value) {
-        $(this).attr('src', data.posts[index].image);
-        $(this).attr('data-post', data.posts[index].id);
+    $('.homepage-masthead__photos picture').each(function (index, value) {
+        $(this).find('img').attr('src', data.posts[index].image);
+        $(this).find('img').attr('data-post', data.posts[index].id);
     })
-    $('.homepage-masthead__photos img').load(function () {
+    $('.homepage-masthead__photos picture img').load(function () {
         var imageObj = $(this);
         if (!(imageObj.width() == 1 && imageObj.height() == 1)) {
-            fadeInImages();
+            $(this).closest('picture').addClass('fade-in');
         }
     });
     $('img[alt=""]').each(function (index, value) {
         $(this).attr('alt', data.posts[index].text);
     })
 }
-function fadeInImages() {
-    $('.homepage-masthead__photos img').addClass('fade-in');
-}
+
 function togglePlay() {
     if ($('video#homepage-masthead__video').length) {
         var vid = $("video#homepage-masthead__video");
@@ -82,20 +83,18 @@ function ieObjectFitFallback() {
         $('.ie__fallback-object-fit:first-of-type').css('height', '100%');
     }
 }
-
 // KEYS 🎹
-var masthead_a11y = function masthead_a11yClick(event) {
-    var code = event.charCode || event.keyCode,
-        type = event.type;
-
-    if (type === 'click') {
+function a11yClick(event) {
+    if (event.type === 'click') {
+        togglePlay();
         return true;
-    } else if (type === 'keydown') {
-        if (code === 32 || code === 13) {
-            event.preventDefault();
+    } else if (event.type === 'keypress') {
+        var code = event.charCode || event.keyCode;
+        if ((code === 32) || (code === 13)) {
+            togglePlay();
             return true;
         }
     } else {
         return false;
     }
-};
+}
