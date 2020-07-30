@@ -8,7 +8,7 @@
 //= require_tree ./uninav
 //= require global_functions
 //= require cascade/carousel
-//= require cascade/unibuddy.js
+//= require cascade/unibuddy
 //= require cascade/covid-19-button 
 //= require cascade/back-to-top
 //= require cascade/collapsed-nav
