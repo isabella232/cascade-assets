@@ -104,7 +104,7 @@ desc 'Updates Dev-Chapman.edu Data Definitions:Modular/1 Column (https://dev-cas
 with app/data_definitions/from_cascade/one_column.xml'
 task edit_one_col_data_def: :environment do
   edit_data_def(
-    'c77aa6ffc04d744c4832d6753c63a730',
+    '9ccd05f7c0a81e4173d445873ad3b5a6',
     'app/data_definitions/from_cascade/one_column.xml'
   )
 end
@@ -116,7 +116,7 @@ desc 'Updates Dev-Chapman.edu Data Definitions:Modular/2 Column (https://dev-cas
 with app/data_definitions/from_cascade/one_column.xml'
 task edit_two_col_data_def: :environment do
   edit_data_def(
-    'f8d4de89c04d744c54334eca5dd3752c',
+    '9ccd064ec0a81e4173d4458753f41e5a',
     'app/data_definitions/from_cascade/two_column.xml'
   )
 end
@@ -146,10 +146,10 @@ task edit_primary_content_2_3_col: :environment do
 end
 
 desc 'Updates Dev-Chapman.edu Data Definitions:Modular/3 Column (https://dev-cascade.chapman.edu/entity/open.act?id=c77aa6ffc04d744c4832d6753c63a730&type=structureddatadefinition&direct=true) 
-with app/data_definitions/from_cascade/one_column.xml'
+with app/data_definitions/from_cascade/three_column.xml'
 task edit_three_col_data_def: :environment do
   edit_data_def(
-    'f8d5f76bc04d744c54334eca6b05957e',
+    '9ccd06a0c0a81e4173d44587d345268f',
     'app/data_definitions/from_cascade/three_column.xml'
   )
 end
