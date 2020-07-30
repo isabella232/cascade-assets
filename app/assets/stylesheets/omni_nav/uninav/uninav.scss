@@ -170,7 +170,7 @@ html {
       align-items: center;
       margin-left: auto;
       border-bottom: none;
-      
+
       @include respond(tab-land) {
         width: 10%;
       }
@@ -208,7 +208,7 @@ html {
           &:last-child {
             padding-right: 1rem;
           }
-          
+
         }
       }
     }
@@ -421,58 +421,58 @@ html {
     }
 
     &__utility-nav--audiences {
-        &-container {
-          display: flex;
-          align-items: center;
-          position: relative;
-          margin: 0 2rem;
+      &-container {
+        display: flex;
+        align-items: center;
+        position: relative;
+        margin: 0 2rem;
 
-          @include respond(tab-port) {
-            display: none;
+        @include respond(tab-port) {
+          display: none;
+        }
+
+        li:last-of-type {
+          border-right: none;
+        }
+
+        p {
+          margin-bottom: 0;
+          font-size: 1.4rem;
+          text-transform: uppercase;
+          font-weight: bold;
+          cursor: pointer;
+
+          &:focus {
+            outline: 2px dotted $cu-red;
           }
 
-          li:last-of-type {
-            border-right: none;
-          }
-
-          p {
-            margin-bottom: 0;
+          &::after {
+            font-family: "Font Awesome 5 Pro";
+            font-weight: 900;
+            content: "\f0d7";
+            padding-left: 1rem;
             font-size: 1.4rem;
-            text-transform: uppercase;
-            font-weight: bold;
-            cursor: pointer;
-
-            &:focus {
-              outline: 2px dotted $cu-red;
-            }
-
-            &::after {
-              font-family: "Font Awesome 5 Pro";
-              font-weight: 900;
-              content: "\f0d7";
-              padding-left: 1rem;
-              font-size: 1.4rem;
-            }
           }
         }
+      }
 
-        &-menu {
-          flex-direction: column;
-          align-items: flex-start;
-          position: absolute;
-          width: 25rem;
-          top: 0;
-          right: 21rem;
-          background-color: #ffffff;
-          border: 1px solid #CFCFCF;
+      &-menu {
+        flex-direction: column;
+        align-items: flex-start;
+        position: absolute;
+        width: 25rem;
+        top: 0;
+        right: 21rem;
+        background-color: #ffffff;
+        border: 1px solid #CFCFCF;
 
-          li {
-            width: 100%;
-            padding: 15px 15px 15px 30px;
-            line-height: 1.8rem;
-            border-bottom: 1px solid #CFCFCF;
-          }
+        li {
+          width: 100%;
+          padding: 15px 15px 15px 30px;
+          line-height: 1.8rem;
+          border-bottom: 1px solid #CFCFCF;
         }
+      }
     }
 
     // global nav
@@ -760,6 +760,13 @@ html {
   }
 }
 
+@media only screen and (min-width: 768px) {
+  #uninav__search-button--mobile {
+    display: none;
+  }
+}
+
+
 @media only screen and (max-width: 1300px) {
   .uninav--has-secondary-menu {
     .uninav {
@@ -776,6 +783,7 @@ html {
         }
       }
     }
+
 
     .uninav__search-button--mobile {
       width: 80px;
@@ -1278,5 +1286,84 @@ html.off-canvas__blur {
     &__reveal {
       display: grid !important;
     }
+  }
+}
+
+#uninav .uninav__search-input {
+
+  &:focus,
+  &:focus-within {
+
+    .gsc-search-box-tools,
+    .sc-search-button {
+      border: 2px dotted var(--color-cu-red);
+    }
+  }
+}
+
+.uninav__search-button--mobile:focus {
+  border: 2px dotted var(--color-cu-red) !important;
+}
+
+.uninav__dropdown--parent:hover .fas.fa-paw::before,
+.uninav__dropdown--parent:focus .fas.fa-paw::before,
+.uninav__dropdown--parent:focus-within .fas.fa-paw::before {
+  // content: "chapman systems login" !important;
+  font-family: $futura-regular;
+  font-size: 1.4rem;
+  word-break: break-word;
+  animation: changeLetter 150ms linear 1 forwards;
+
+  @keyframes changeLetter {
+
+    0% {
+      opacity: 0;
+    }
+
+    50% {
+      opacity: .5;
+    }
+
+    100% {
+      opacity: 1;
+      content: "Login";
+      white-space: nowrap;
+      padding: 2%;
+    }
+  }
+
+}
+
+
+#js-off-canvas-nav-container * {
+
+  &:focus,
+  &:focus-within {
+    outline: 2px dotted $red;
+  }
+}
+
+.focus {
+  &:focus {
+    outline: 2px dotted $red;
+  }
+}
+
+.debug {
+  animation: bgcolor;
+  animation-duration: 5s;
+
+  &:focus {
+    background-color: yellow;
+  }
+}
+
+@keyframes bgcolor {
+  0% {
+    background-color: yellow;
+  }
+
+  100% {
+    background-color: initial;
   }
 }

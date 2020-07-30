@@ -1,3 +1,12 @@
+#set ( $currentPage = $_XPathTool.selectSingleNode($contentRoot, "//system-page[@current]") )
+#set ( $heroPanel = $currentPage.getChild('system-data-structure').getChild('heroPanel') )
+#set ( $altText1 = $heroPanel.getChild('image-1').value )
+#set ( $altText2 = $heroPanel.getChild('image-2').value )
+#set ( $altText3 = $heroPanel.getChild('image-3').value )
+#set ( $altText4 = $heroPanel.getChild('image-4').value )
+#set ( $altText5 = $heroPanel.getChild('image-5').value )
+
+<div class="hidden">alt text $altText1</div>
 <div class="homepage-masthead__container">
 	<div class="homepage-masthead__heading-container">
 		<!-- Heading -->
@@ -60,19 +69,19 @@
 	<div class="homepage-masthead__photo-grid-container">
 		<div class="homepage-masthead__photo-grid">
 			<div class="homepage-masthead__photos">
-				<a href="https://www.instagram.com/p/B8KhB8mlOpZ/">
+				<span>
 					<img src="https://www.chapman.edu/_files/img/hero-panels/masthead-2020-images/tour-group.png"
-						alt="Chapman Tour Group" style="object-position: top;" />
-				</a>
-				<a href="https://www.instagram.com/p/B06uMxDlXEK/">
+						alt="$altText1" style="object-position: top;" />
+				</span>
+				<span>
 					<img src="https://www.chapman.edu/_files/img/hero-panels/masthead-2020-images/panther-square-400x400.png"
-						alt="Student with Pete the Panther (Mascot)" />
-				</a>
-				<a href="https://www.instagram.com/p/B89l1WbBj5k/">
+						alt="$altText2" />
+				</span>
+				<span>
 					<img src="https://www.chapman.edu/_files/img/hero-panels/masthead-2020-images/microscope-square-400x400.png"
-						alt="Student looking into microscope" />
-				</a>
-				<a href="https://www.instagram.com/chapmanadmission/">
+						alt="$altText3" />
+				</span>
+				<a href="https://www.chapman.edu/admission/social-media.aspx">
 					<div class="homepage-masthead__photo-grid-container__text">
 						<h2>
 							<span>See </span>
@@ -88,14 +97,14 @@
 						</svg>
 					</div>
 				</a>
-				<a href="https://www.instagram.com/p/B_BezdmBCt4/">
+				<span>
 					<img src="https://www.chapman.edu/_files/img/hero-panels/masthead-2020-images/girls-square-400x400.png"
-						alt="Chapman Students near college dorms" />
-				</a>
-				<a href="https://www.instagram.com/p/B3NoIlPFTTE/">
+						alt="$altText4" />
+				</span>
+				<span>
 					<img src="https://www.chapman.edu/_files/img/hero-panels/masthead-2020-images/group-square-400x400.png"
-						alt="Four Chapman Students" />
-				</a>
+						alt="$altText5" />
+				</span>
 				<span class="diagonal">
 				</span>
 			</div>
@@ -131,11 +140,20 @@
 </style>
 
 <script>
+	var preloadLink = document.createElement("link");
+	preloadLink.href = "https://api.curator.io/v1/feeds/ef183959-c3ad-4f2d-b90e-390c5d766fac/posts?api_key=11a4445f-6005-4040-9ff2-fd90d3aaa8a6.js";
+	preloadLink.rel = "preload";
+	preloadLink.as = "script";
+	document.head.appendChild(preloadLink);
+
+
 	$(function () {
 		var isIE11 = !!navigator.userAgent.match(/Trident.*rv\:11\./);
 		if (isIE11) {
 			$('html').addClass('ie');
 		}
 	});
+
+
 
 </script>

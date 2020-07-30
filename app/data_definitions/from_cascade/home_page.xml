@@ -1,35 +1,50 @@
 <system-data-structure>
     <group collapsed="true" identifier="sharing" label="Sharing ">
-        <asset help-text="Image used for sharing on facebook (130px w, 110px h exactly)" identifier="og_image" label="OG Image" type="file"/>
-        <text help-text="Overrides title for when page is shared to facebook (defaults to Display Name)" identifier="og_title" label="OG Title"/>
-        <text help-text="Overrides description when page is shared to facebook" identifier="og_description" label="OG Description"/>
-        <text help-text="The text that prepopulates on twitter (followed by URL and hashtags)" identifier="twitter_text" label="Twitter Share Text"/>
-        <text help-text="Hastags to get appended to tweet (no #!)" identifier="twitter_hashtag" label="Twitter Hashtag" maximum-number="3" multiple="true"/>
+        <asset field-id="a7a67d7ec0a81e4b407da564cfc9f9b9" help-text="Image used for sharing on facebook (130px w, 110px h exactly)" identifier="og_image" label="OG Image" type="file"/>
+        <text field-id="a7a67d7fc0a81e4b407da564772a679a" help-text="Overrides title for when page is shared to facebook (defaults to Display Name)" identifier="og_title" label="OG Title"/>
+        <text field-id="a7a67d7fc0a81e4b407da564f0b10135" help-text="Overrides description when page is shared to facebook" identifier="og_description" label="OG Description"/>
+        <text field-id="a7a67d7fc0a81e4b407da5646d482919" help-text="The text that prepopulates on twitter (followed by URL and hashtags)" identifier="twitter_text" label="Twitter Share Text"/>
+        <text field-id="a7a67d7fc0a81e4b407da5642ece7fa1" help-text="Hastags to get appended to tweet (no #!)" identifier="twitter_hashtag" label="Twitter Hashtag" maximum-number="3" multiple="true"/>
     </group>
     <group collapsed="true" identifier="alert" label="Alert">
-        <text default="No" identifier="active" label="Active" required="true" type="radiobutton">
+        <text default="No" field-id="a7a67d7fc0a81e4b407da5645b713e8c" identifier="active" label="Override Rave Feed and show alert?" required="true" type="radiobutton">
             <radio-item value="Yes"/>
             <radio-item value="No"/>
         </text>
-        <text identifier="copy" label="Copy" wysiwyg="true"/>
+        <text default="Alert" field-id="a7a67d7fc0a81e4b407da564310d18f7" identifier="messageType" label="Type of message?" required="true" type="radiobutton">
+            <radio-item value="Alert"/>
+            <radio-item value="Notice"/>
+        </text>
+        <text field-id="a7a67d7fc0a81e4b407da564a4d3fa00" identifier="copy" label="Copy" wysiwyg="true"/>
     </group>
-    <group identifier="heroPanel" label="Hero Panel">
-        <asset identifier="internalLink" label="Hero Story To Feature" type="page"/>
+    <group identifier="heroPanel" label="Hero Panel" collapsed="true">
+        <text field-id="ede627c2c0a81e8a44b999f9bc3616c8" identifier="image-1" label="Image 1 Alt Text" required="false" help-text="Leftmost image" />
+        <text field-id="ede627c3c0a81e8a44b999f939d5e2e1" identifier="image-2" label="Image 2 Alt Text" required="false" help-text="Row 1, Column 2" />
+        <text field-id="ede627c4c0a81e8a44b999f9daee12e4" identifier="image-3" label="Image 3 Alt Text" required="false" help-text="Row 1, Column 3" />
+        <text field-id="ede627c4c0a81e8a44b999f9f86b3502" identifier="image-4" label="Image 4 Alt Text" required="false" help-text="Row 2, Column 2" />
+        <text field-id="ede627c5c0a81e8a44b999f9a53bbb0e" identifier="image-5" label="Image 5 Alt Text" required="false" help-text="Row 2, Column 3" />
+    </group>
+    <group identifier="newsStories" label="News Stories">
+        <text default="Alert" field-id="a7a67d7fc0a81e4b407da564551e186f" identifier="displayNews" label="Display" required="true" type="radiobutton">
+            <radio-item value="Yes"/>
+            <radio-item value="No"/>
+        </text>
     </group>
     <group collapsed="true" identifier="BlogStories" label="Blog Stories">
         <group collapsed="true" identifier="topStory" label="Top Story">
-            <text identifier="header" label="Header" required="true"/>
-            <text identifier="link" label="Link to Blog Story" required="true"/>
+            <text field-id="a7a67d7fc0a81e4b407da5648292bdc3" identifier="header" label="Header" required="true"/>
+            <text field-id="a7a67d7fc0a81e4b407da564e90c1dda" identifier="link" label="Link to Blog Story" required="true"/>
             <group identifier="topCategory" label="#Top Category">
-                <text help-text="text (without #) for blog link" identifier="text" label="#Text"/>
-                <text identifier="link" label="External Link"/>
+                <text field-id="a7a67d7fc0a81e4b407da564eaeebb74" help-text="text (without #) for blog link" identifier="text" label="#Text"/>
+                <text field-id="a7a67d7fc0a81e4b407da564f4af6955" identifier="link" label="External Link"/>
             </group>
-            <text help-text="blog name/icon that displays below story" identifier="blogName" label="Blog Name" type="dropdown">
+            <text field-id="a7a67d7fc0a81e4b407da5646bb38d23" help-text="blog name/icon that displays below story" identifier="blogName" label="Blog Name" type="dropdown">
                 <dropdown-item value=""/>
                 <dropdown-item value="academics"/>
-                <dropdown-item value="alumni"/>                
+                <dropdown-item value="alumni"/>
                 <dropdown-item value="business"/>
                 <dropdown-item value="chapman-blogs"/>
+                <dropdown-item value="chapman-forward"/>
                 <dropdown-item value="collections"/>
                 <dropdown-item value="communication"/>
                 <dropdown-item value="copa"/>
@@ -40,7 +55,7 @@
                 <dropdown-item value="huell-howser-archives"/>
                 <dropdown-item value="law"/>
                 <dropdown-item value="magazine"/>
-                <dropdown-item value="news-and-stories"/>
+                <dropdown-item url="news.chapman.edu" value="newsroom"/>
                 <dropdown-item value="pharmacy"/>
                 <dropdown-item value="press-room"/>
                 <dropdown-item value="scst"/>
@@ -49,32 +64,33 @@
                 <dropdown-item value="sustainability"/>
                 <dropdown-item value="wilkinson"/>
             </text>
-            <text help-text="short excerpt of blog story" identifier="excerpt" label="Excerpt" wysiwyg="true"/>
-            <group identifier="extraLink" label="Additional Link">                    
-                <text help-text="text of optional link below excerpt" identifier="text" label="Link Text"/>
-                <text identifier="link" label="External Link"/>
-                <asset identifier="internalLink" label="Or Internal Link" type="page"/>
+            <text field-id="a7a67d7fc0a81e4b407da564107c88f9" help-text="short excerpt of blog story" identifier="excerpt" label="Excerpt" wysiwyg="true"/>
+            <group identifier="extraLink" label="Additional Link">
+                <text field-id="a7a67d7fc0a81e4b407da564d2891517" help-text="text of optional link below excerpt" identifier="text" label="Link Text"/>
+                <text field-id="a7a67d7fc0a81e4b407da564b9d1f6e4" identifier="link" label="External Link"/>
+                <asset field-id="a7a67d7fc0a81e4b407da5642fa8dbc4" identifier="internalLink" label="Or Internal Link" type="page"/>
             </group>
             <group identifier="images" label="Slideshow Images (725x374)" minimum-number="1" multiple="true">
-                <text help-text="full url to image on blog server" identifier="link" label="External Image"/>
-                <asset help-text="link to image to be used for story" identifier="internalLink" label="Or Internal Image" type="file"/>
-                <text default="story photo" identifier="altText" label="Image Alt Text" required="true"/>
+                <text field-id="a7a67d7fc0a81e4b407da5647e0fbb1e" help-text="full url to image on blog server" identifier="link" label="External Image"/>
+                <asset field-id="a7a67d7fc0a81e4b407da564c7420dba" help-text="link to image to be used for story" identifier="internalLink" label="Or Internal Image" type="file"/>
+                <text default="story photo" field-id="a7a67d7fc0a81e4b407da564bb43472a" identifier="altText" label="Image Alt Text" required="true"/>
             </group>
         </group>
         <group identifier="trendingStories" label="Trending Stories">
             <group collapsed="true" identifier="story" label="Story" maximum-number="3" minimum-number="3" multiple="true">
-                <text identifier="header" label="Header (80 chars max, spaces count...but only 2 lines)" maxlength="80" required="true"/>
-                <text identifier="link" label="Link to Blog Story" required="true"/>
+                <text field-id="a7a67d7fc0a81e4b407da5642925cecd" identifier="header" label="Header (80 chars max, spaces count...but only 2 lines)" maxlength="80" required="true"/>
+                <text field-id="a7a67d7fc0a81e4b407da56463033580" identifier="link" label="Link to Blog Story" required="true"/>
                 <group identifier="topCategory" label="#Top Category">
-                    <text help-text="text (without #) for blog link" identifier="text" label="#Text"/>
-                    <text identifier="link" label="External Link"/>
+                    <text field-id="a7a67d7fc0a81e4b407da564955e4a4a" help-text="text (without #) for blog link" identifier="text" label="#Text"/>
+                    <text field-id="a7a67d7fc0a81e4b407da564b2d8ba41" identifier="link" label="External Link"/>
                 </group>
-                <text help-text="blog name/icon that displays below story" identifier="blogName" label="Blog Name" type="dropdown">
+                <text field-id="a7a67d7fc0a81e4b407da564a1a72f18" help-text="blog name/icon that displays below story" identifier="blogName" label="Blog Name" type="dropdown">
                     <dropdown-item value=""/>
                     <dropdown-item value="academics"/>
                     <dropdown-item value="alumni"/>
                     <dropdown-item value="business"/>
                     <dropdown-item value="chapman-blogs"/>
+                    <dropdown-item value="chapman-forward"/>
                     <dropdown-item value="collections"/>
                     <dropdown-item value="communication"/>
                     <dropdown-item value="copa"/>
@@ -85,7 +101,7 @@
                     <dropdown-item value="huell-howser-archives"/>
                     <dropdown-item value="law"/>
                     <dropdown-item value="magazine"/>
-                    <dropdown-item value="news-and-stories"/>
+                    <dropdown-item value="newsroom"/>
                     <dropdown-item value="pharmacy"/>
                     <dropdown-item value="press-room"/>
                     <dropdown-item value="scst"/>
@@ -95,136 +111,137 @@
                     <dropdown-item value="wilkinson"/>
                 </text>
                 <group identifier="image" label="Image">
-                    <text help-text="full url to image on blog server" identifier="link" label="External Image"/>
-                    <asset help-text="link to image to be used for story" identifier="internalLink" label="Or Internal Image" type="file"/>
-                    <text default="story photo" identifier="altText" label="Image Alt Text" required="true"/>
+                    <text field-id="a7a67d7fc0a81e4b407da564d92a8af2" help-text="full url to image on blog server" identifier="link" label="External Image"/>
+                    <asset field-id="a7a67d7fc0a81e4b407da56474448a0e" help-text="link to image to be used for story" identifier="internalLink" label="Or Internal Image" type="file"/>
+                    <text default="story photo" field-id="a7a67d7fc0a81e4b407da56401c51045" identifier="altText" label="Image Alt Text" required="true"/>
                 </group>
             </group>
         </group>
         <group collapsed="true" identifier="primaryButton" label="Primary Button">
-            <text identifier="text" label="Button Text"/>
-            <text help-text="ID code to pass to tracking software" identifier="trackingID" label="Tracking ID" required="true"/>
-            <text identifier="link" label="External Link"/>
-            <asset identifier="internalLink" label="Or Internal Link" type="page"/>
+            <text field-id="a7a67d7fc0a81e4b407da564074edc56" identifier="text" label="Button Text"/>
+            <text field-id="a7a67d7fc0a81e4b407da564af26c224" help-text="ID code to pass to tracking software" identifier="trackingID" label="Tracking ID" required="true"/>
+            <text field-id="a7a67d7fc0a81e4b407da56431254a85" identifier="link" label="External Link"/>
+            <asset field-id="a7a67d7fc0a81e4b407da564b405495c" identifier="internalLink" label="Or Internal Link" type="page"/>
         </group>
         <group collapsed="true" identifier="secondaryButton" label="Secondary Button">
-            <text identifier="text" label="Button Text"/>
-            <text help-text="ID code to pass to tracking software" identifier="trackingID" label="Tracking ID" required="true"/>
-            <text identifier="link" label="External Link"/>
-            <asset identifier="internalLink" label="Or Internal Link" type="page"/>
+            <text field-id="a7a67d7fc0a81e4b407da564ceba7043" identifier="text" label="Button Text"/>
+            <text field-id="a7a67d7fc0a81e4b407da564929b15a8" help-text="ID code to pass to tracking software" identifier="trackingID" label="Tracking ID" required="true"/>
+            <text field-id="a7a67d7fc0a81e4b407da564a7b34952" identifier="link" label="External Link"/>
+            <asset field-id="a7a67d7fc0a81e4b407da564b281d530" identifier="internalLink" label="Or Internal Link" type="page"/>
         </group>
     </group>
     <group collapsed="true" identifier="UGadmission" label="UG Admission">
         <group identifier="header" label="Header" maximum-number="3" minimum-number="1" multiple="true">
-        <text help-text="small section of heading that will fit on mobile" identifier="item" label="Item" required="true"/>
-    </group>
-    <text identifier="subHeader" label="subHeader"/>
-    <group identifier="facts" label="Facts" maximum-number="5" minimum-number="5" multiple="true">
-        <text help-text="MUST be numeric (commas and decimals  ok)" identifier="factNumber" label="Number" required="true"/>
-        <text help-text="text to display below number" identifier="Label" label="factLabel" required="true"/>
-    </group>
-    <group identifier="leftButton" label="Left Button">
-        <text identifier="Text" label="Label" required="true"/>
-        <text help-text="ID code to pass to tracking software" identifier="trackingID" label="Tracking ID" required="true"/>
-        <group identifier="buttonLink" label="Link">
-            <text identifier="link" label="External Link"/>
-            <asset identifier="internalLink" label="Or Internal Link" type="page"/>
+            <text field-id="a7a67d7fc0a81e4b407da5642006714c" help-text="small section of heading that will fit on mobile" identifier="item" label="Item" required="true"/>
         </group>
-    </group>
-    <group identifier="rightButton" label="Right Button">
-        <text identifier="Text" label="Label" required="true"/>
-        <text help-text="ID code to pass to tracking software" identifier="trackingID" label="Tracking ID" required="true"/>
-        <group identifier="buttonLink" label="Link">
-            <text identifier="link" label="External Link"/>
-            <asset identifier="internalLink" label="Or Internal Link" type="page"/>
+        <text field-id="a7a67d7fc0a81e4b407da5645c79df36" identifier="subHeader" label="subHeader"/>
+        <group identifier="facts" label="Facts" maximum-number="5" minimum-number="5" multiple="true">
+            <text field-id="a7a67d7fc0a81e4b407da5640650833f" help-text="MUST be numeric (commas and decimals  ok)" identifier="factNumber" label="Number" required="true"/>
+            <text field-id="a7a67d7fc0a81e4b407da564283e9ee7" help-text="text to display below number" identifier="Label" label="factLabel" required="true"/>
         </group>
-    </group>
+        <group identifier="leftButton" label="Left Button">
+            <text field-id="a7a67d7fc0a81e4b407da5644e0e953f" identifier="Text" label="Label" required="true"/>
+            <text field-id="a7a67d7fc0a81e4b407da56480204848" help-text="ID code to pass to tracking software" identifier="trackingID" label="Tracking ID" required="true"/>
+            <group identifier="buttonLink" label="Link">
+                <text field-id="a7a67d7fc0a81e4b407da56446e5bf11" identifier="link" label="External Link"/>
+                <asset field-id="a7a67d7fc0a81e4b407da56471cdd897" identifier="internalLink" label="Or Internal Link" type="page"/>
+            </group>
+        </group>
+        <group identifier="rightButton" label="Right Button">
+            <text field-id="a7a67d80c0a81e4b407da564886195b0" identifier="Text" label="Label" required="true"/>
+            <text field-id="a7a67d80c0a81e4b407da5645edda37a" help-text="ID code to pass to tracking software" identifier="trackingID" label="Tracking ID" required="true"/>
+            <group identifier="buttonLink" label="Link">
+                <text field-id="a7a67d80c0a81e4b407da564f2f5342f" identifier="link" label="External Link"/>
+                <asset field-id="a7a67d80c0a81e4b407da564653195db" identifier="internalLink" label="Or Internal Link" type="page"/>
+            </group>
+        </group>
     </group>
     <group collapsed="true" identifier="generalInfo" label="General Information">
-        <text identifier="header" label="Header"/>
+        <text field-id="a7a67d80c0a81e4b407da564f8f82624" identifier="header" label="Header"/>
         <group collapsed="true" identifier="story" label="Story" maximum-number="3" minimum-number="3" multiple="true">
-            <text identifier="header" label="Header" required="true"/>
+            <text field-id="a7a67d80c0a81e4b407da56434bd25db" identifier="header" label="Header" required="true"/>
             <group identifier="images" label="Slideshow Images (480x320)" minimum-number="1" multiple="true">
-                <text help-text="full url to image on another server" identifier="link" label="External Image"/>
-                <asset help-text="link to image to be used for story" identifier="internalLink" label="Or Internal Image" type="file"/>
-                <text default="[altText]" identifier="altText" label="Image Alt Text" required="true"/>
+                <text field-id="a7a67d80c0a81e4b407da56450559ec8" help-text="full url to image on another server" identifier="link" label="External Image"/>
+                <asset field-id="a7a67d80c0a81e4b407da56469689dc9" help-text="link to image to be used for story" identifier="internalLink" label="Or Internal Image" type="file"/>
+                <text default="[altText]" field-id="a7a67d80c0a81e4b407da564e65be95c" identifier="altText" label="Image Alt Text" required="true"/>
             </group>
-            <text help-text="short paragraph of information" identifier="copy" label="Text" wysiwyg="true"/>
+            <text field-id="a7a67d80c0a81e4b407da5644dab811f" help-text="short paragraph of information" identifier="copy" label="Text" wysiwyg="true"/>
             <group identifier="storyLink" label="Link">
-                <text help-text="text of optional link below excerpt" identifier="linkText" label="Link Text"/>
-                <text identifier="link" label="External Link"/>
-                <asset identifier="internalLink" label="Or Internal Link" type="page"/>
+                <text field-id="a7a67d80c0a81e4b407da564a7f7c423" help-text="text of optional link below excerpt" identifier="linkText" label="Link Text"/>
+                <text field-id="a7a67d80c0a81e4b407da564b9bee33f" identifier="link" label="External Link"/>
+                <asset field-id="a7a67d80c0a81e4b407da564ce99b310" identifier="internalLink" label="Or Internal Link" type="page"/>
             </group>
         </group>
     </group>
     <group collapsed="true" identifier="GradAdmission" label="Grad Admission">
-        <text help-text="main header for section" identifier="header" label="Header" required="true" wysiwyg="true" wysiwyg-toolbar-remove="insert table,insert image,font assignment"/>
-        <text identifier="subHeader" label="subHeader"/>
+        <text field-id="a7a67d80c0a81e4b407da5649020764e" help-text="main header for section" identifier="header" label="Header" required="true" wysiwyg="true" wysiwyg-toolbar-remove="insert table,insert image,font assignment"/>
+        <text field-id="a7a67d80c0a81e4b407da5642fb6ec9b" identifier="subHeader" label="subHeader"/>
         <group identifier="primaryButton" label="Primary Button">
-            <text identifier="Text" label="Label" required="true"/>
-            <text help-text="ID code to pass to tracking software" identifier="trackingID" label="Tracking ID" required="true"/>
+            <text field-id="a7a67d80c0a81e4b407da564ed0427c1" identifier="Text" label="Label" required="true"/>
+            <text field-id="a7a67d80c0a81e4b407da56475a18da7" help-text="ID code to pass to tracking software" identifier="trackingID" label="Tracking ID" required="true"/>
             <group identifier="buttonLink" label="Link">
-                <text identifier="link" label="External Link"/>
-                <asset identifier="internalLink" label="Or Internal Link" type="page"/>
+                <text field-id="a7a67d80c0a81e4b407da5642b349573" identifier="link" label="External Link"/>
+                <asset field-id="a7a67d80c0a81e4b407da5642895e218" identifier="internalLink" label="Or Internal Link" type="page"/>
             </group>
         </group>
     </group>
     <group collapsed="true" identifier="chapmanFamily" label="Chapman Family">
-        <text identifier="header" label="Header"/>
+        <text field-id="a7a67d80c0a81e4b407da564f05e2f59" identifier="header" label="Header"/>
         <group collapsed="true" identifier="story" label="Story" maximum-number="2" minimum-number="2" multiple="true">
-        <text identifier="header" label="Header (65 chars max, spaces count)" maxlength="65" required="true"/>
-        <text identifier="link" label="Link to Blog Story" required="true"/>
-        <group identifier="topCategory" label="#Top Category">
-            <text help-text="text (without #) for blog link" identifier="text" label="#Text"/>
-            <text identifier="link" label="External Link"/>
+            <text field-id="a7a67d80c0a81e4b407da5648acff891" identifier="header" label="Header (65 chars max, spaces count)" maxlength="65" required="true"/>
+            <text field-id="a7a67d80c0a81e4b407da564b954b176" identifier="link" label="Link to Blog Story" required="true"/>
+            <group identifier="topCategory" label="#Top Category">
+                <text field-id="a7a67d80c0a81e4b407da564e18e0c63" help-text="text (without #) for blog link" identifier="text" label="#Text"/>
+                <text field-id="a7a67d80c0a81e4b407da5645db725a9" identifier="link" label="External Link"/>
+            </group>
+            <text field-id="a7a67d80c0a81e4b407da564313f8d88" help-text="blog name/icon that displays below story" identifier="blogName" label="Blog Name" type="dropdown">
+                <dropdown-item value=""/>
+                <dropdown-item value="academics"/>
+                <dropdown-item value="alumni"/>
+                <dropdown-item value="business"/>
+                <dropdown-item value="chapman-blogs"/>
+                <dropdown-item value="chapman-forward"/>
+                <dropdown-item value="collections"/>
+                <dropdown-item value="communication"/>
+                <dropdown-item value="copa"/>
+                <dropdown-item value="crean"/>
+                <dropdown-item value="dodge"/>
+                <dropdown-item value="education"/>
+                <dropdown-item value="holocaust-education"/>
+                <dropdown-item value="huell-howser-archives"/>
+                <dropdown-item value="law"/>
+                <dropdown-item value="magazine"/>
+                <dropdown-item value="newsroom"/>
+                <dropdown-item value="pharmacy"/>
+                <dropdown-item value="press-room"/>
+                <dropdown-item value="scst"/>
+                <dropdown-item value="smc"/>
+                <dropdown-item value="students"/>
+                <dropdown-item value="sustainability"/>
+                <dropdown-item value="wilkinson"/>
+            </text>
+            <group identifier="image" label="Image">
+                <text field-id="a7a67d80c0a81e4b407da56410bd384a" help-text="full url to image on blog server" identifier="link" label="External Image"/>
+                <asset field-id="a7a67d80c0a81e4b407da564088cfde5" help-text="link to image to be used for story" identifier="internalLink" label="Or Internal Image" type="file"/>
+                <text default="story photo" field-id="a7a67d80c0a81e4b407da564cd46517c" identifier="altText" label="Image Alt Text" required="true"/>
+            </group>
         </group>
-        <text help-text="blog name/icon that displays below story" identifier="blogName" label="Blog Name" type="dropdown">
-            <dropdown-item value=""/>
-            <dropdown-item value="academics"/>
-            <dropdown-item value="alumni"/>
-            <dropdown-item value="business"/>
-            <dropdown-item value="chapman-blogs"/>
-            <dropdown-item value="collections"/>
-            <dropdown-item value="communication"/>
-            <dropdown-item value="copa"/>
-            <dropdown-item value="crean"/>
-            <dropdown-item value="dodge"/>
-            <dropdown-item value="education"/>
-            <dropdown-item value="holocaust-education"/>
-            <dropdown-item value="huell-howser-archives"/>
-            <dropdown-item value="law"/>
-            <dropdown-item value="magazine"/>
-            <dropdown-item value="news-and-stories"/>
-            <dropdown-item value="pharmacy"/>
-            <dropdown-item value="press-room"/>
-            <dropdown-item value="scst"/>
-            <dropdown-item value="smc"/>
-            <dropdown-item value="students"/>
-            <dropdown-item value="sustainability"/>
-            <dropdown-item value="wilkinson"/>
+        <group collapsed="true" identifier="callout" label="Callout (shown in column 3)">
+            <text field-id="a7a67d80c0a81e4b407da564e37592f7" identifier="header" label="Header"/>
+            <text field-id="a7a67d80c0a81e4b407da56455936623" help-text="short descriptive paragraph" identifier="copy" label="Text" wysiwyg="true"/>
+            <group identifier="link" label="Link">
+                <text field-id="a7a67d80c0a81e4b407da564306826a6" help-text="text of optional link below text" identifier="linktext" label="Link Text"/>
+                <text field-id="a7a67d80c0a81e4b407da564546bc790" identifier="externalLink" label="External Link"/>
+                <asset field-id="a7a67d80c0a81e4b407da56496ae810f" identifier="internalLink" label="Or Internal Link" type="page"/>
+            </group>
+        </group>
+    </group>
+    <group collapsed="true" identifier="accessibility-statement" label="Accessibility Statement">
+        <text default="No" field-id="a7a67d80c0a81e4b407da564f29156a5" identifier="show" label="Show" required="true" type="radiobutton">
+            <radio-item value="Yes"/>
+            <radio-item value="No"/>
         </text>
-        <group identifier="image" label="Image">
-            <text help-text="full url to image on blog server" identifier="link" label="External Image"/>
-            <asset help-text="link to image to be used for story" identifier="internalLink" label="Or Internal Image" type="file"/>
-            <text default="story photo" identifier="altText" label="Image Alt Text" required="true"/>
-        </group>
+        <text field-id="a7a67d80c0a81e4b407da5643552f9b4" identifier="header" label="Header"/>
+        <text field-id="a7a67d80c0a81e4b407da564696d2d59" identifier="copy" label="Copy" wysiwyg="true"/>
     </group>
-    <group collapsed="true" identifier="callout" label="Callout (shown in column 3)">
-        <text identifier="header" label="Header"/>
-        <text help-text="short descriptive paragraph" identifier="copy" label="Text" wysiwyg="true"/>
-        <group identifier="link" label="Link">
-            <text help-text="text of optional link below text" identifier="linktext" label="Link Text"/>
-            <text identifier="externalLink" label="External Link"/>
-            <asset identifier="internalLink" label="Or Internal Link" type="page"/>
-        </group>
-    </group>
-</group>
-<group collapsed="true" identifier="accessibility-statement" label="Accessibility Statement">
-    <text default="No" identifier="show" label="Show" required="true" type="radiobutton">
-        <radio-item value="Yes"/>
-        <radio-item value="No"/>
-    </text>
-    <text identifier="header" label="Header"/>
-    <text identifier="copy" label="Copy" wysiwyg="true"/>
-</group>
 </system-data-structure>

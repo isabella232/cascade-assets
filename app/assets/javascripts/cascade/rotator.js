@@ -1,4 +1,6 @@
 $(function () {
+
+
   if ($(".rotatorContainer").parent(".homepage").length > 0) {
     $('.flexslider').flexslider({
       animation: "slide",
@@ -16,7 +18,7 @@ $(function () {
         var currentSlide = slider.slides[slider.currentSlide];
         if ($('html').hasClass("opacity")) {
           $('.slide').not(currentSlide).fadeTo(0, 0.1,
-            function () {}
+            function () { }
           );
         } else {
           if ($(".ie7").length) {
@@ -42,17 +44,17 @@ $(function () {
         }, 300, function () {
           $nextSlide.children(".bg3").animate({
             marginLeft: '0'
-          }, 500, function () {});
+          }, 500, function () { });
           $nextSlide.children(".bg2").animate({
             marginLeft: '0'
-          }, 900, function () {});
+          }, 900, function () { });
           $nextSlide.children(".bg1").animate({
             marginLeft: '0'
-          }, 700, function () {});
+          }, 700, function () { });
         });
         if ($('html').hasClass("opacity")) {
-          $('.slide').not(nextSlide).stop().fadeTo(500, .1, function () {});
-          $nextSlide.stop().fadeTo(500, 1, function () {});
+          $('.slide').not(nextSlide).stop().fadeTo(500, .1, function () { });
+          $nextSlide.stop().fadeTo(500, 1, function () { });
         }
       },
       after: function (slider) {
@@ -80,7 +82,7 @@ $(function () {
   // Pause the slider once the user interacts with the slider
   $(".flex-direction-nav li a").on("click", function (event) {
     g_mySlider.pause();
-    g_mySlider.resume = function () {};
+    g_mySlider.resume = function () { };
   });
   // Flex navigation hover 
   $('.flex-direction-nav li a').hover(
@@ -169,16 +171,11 @@ $(function () {
   }
 });
 $(function () {
-  if ($(".miniRotatorNav").length > 0) {
-    // Skip over carousel entirely
-    $('a.next-section').click(function () {
-      $('html, body').animate({
-        scrollTop: $("div.breadcrumbs").offset().top - 100
-      }, 500)
-      $(".breadcrumbs a:first-child").focus()
-    })
-    // Scroll to skip button when focus
-    $(window).scrollTop($('.peekaboo').position().top);
+  if ($('#uninav').length > 0) {
+    var uninavHeight = $('#uninav').outerHeight();
+  }
+
+  if ($(".miniRotatorNav, .slider.version-201611").length > 0) {
     // Pause carousel via button
     $('div.pause').click(function () {
       pauseAutoScroll();

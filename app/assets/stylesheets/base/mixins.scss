@@ -998,9 +998,9 @@ ORDER: Base + typography > general layout + grid > page layout > components
 }
 
 // squiggly underline animation: https://codepen.io/kjbrum/pen/qVQRQW
-$max-width: 800px;
-$ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1.000);
-$cubic-transition: 0.55s $ease-in-out-cubic;
+$squiggle-max-width: 800px;
+$squiggle-ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1.000);
+$squiggle-cubic-transition: 0.55s $squiggle-ease-in-out-cubic;
 $squiggle-width: 18px;
 $squiggle-height: 4px;
 

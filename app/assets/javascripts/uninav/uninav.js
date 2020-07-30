@@ -5,8 +5,10 @@ $(function () {
   toggleAriaExpandVal();
   handleEscapeKeypress();
   gs__setSearchResultsZIndex();
-});
 
+  // $('#off-canvas-umbrella-navigation .root-main-nav').find('*[tabindex]:visible').last().addClass('last-item');
+
+});
 function closePrevDropdownWhenFocusChanges() {
   $(".uninav__dropdown--parent").on("click keypress", function (e) {
     $(".uninav__dropdown--parent")
@@ -16,20 +18,17 @@ function closePrevDropdownWhenFocusChanges() {
       });
   });
 }
-
 function handleEscapeKeypress() {
   document.onkeydown = function (evt) {
     evt = evt || window.event;
     if (evt.keyCode == 27) {
       $(".uninav__dropdown--parent").attr("aria-expanded", "false");
-      $(".js-close-off-canvas-nav").click();
     }
   };
 }
-
 function toggleAriaExpandVal() {
   $("#uninav li").on("click keypress", function (e) {
-    if (a11yClick(event) === true) {
+    if (accessibleClick(e) === true) {
       var menuItem = $(e.currentTarget);
       if (menuItem.attr("aria-expanded") === "true") {
         $(this).attr("aria-expanded", "false");
@@ -39,6 +38,9 @@ function toggleAriaExpandVal() {
     }
   });
 }
+
+
+
 
 function hideCurrentDropdownWhenLoseFocus() {
   $(".uninav__dropdown--child li:last-of-type").on("keydown blur", function (e) {
@@ -70,7 +72,6 @@ function hideCurrentDropdownWhenLoseFocus() {
     }
   });
 }
-
 function collapseAriaWhenClickOutside() {
   $(document).mouseup(function (e) {
     var container = $(".uninav__dropdown--parent");
@@ -80,8 +81,7 @@ function collapseAriaWhenClickOutside() {
     }
   });
 }
-
-function a11yClick(event) {
+function a11yClick(e) {
   if (event.type === "click") {
     return true;
   } else if (event.type === "keypress") {
@@ -94,30 +94,19 @@ function a11yClick(event) {
   }
 }
 // end uninav accessibility
-// off-canvas overlay - add to main content when expanded
-$(function () {
-  var sectionMenuButton = $("#section-menu-hamburger-icon");
-  $("#umbrella-nav-button-toggle, .uninav__hamburger-menu").on(
-    "click",
-    function () {
-      $("html, #main").addClass("off-canvas__blur");
-    }
-  );
-  $(".js-close-off-canvas-nav").on("click", function () {
-    $("html, #main").removeClass("off-canvas__blur");
-  });
-});
+
 // gs = Google Search
 // replace Google Custom Search default placeholder
 window.onload = gs__customPlaceholder;
-
 function gs__customPlaceholder() {
   document.getElementById("gsc-i-id1").setAttribute("placeholder", "Search...");
   document.getElementById("gsc-i-id1").style.opacity = "1";
+  $('.gsc-search-button.gsc-search-button-v2').attr('tabindex', '-1');
 }
 // TODO: iOS style frosted/blurred background. CSS filter: blur(2px) performance is terrible
 $(window).load(function () {
   if ($('table.gstl_50').length) {
+    $('#gsc-i-id1').attr('aria-label', 'Search');
     $('table.gstl_50:not([role])').attr('role', 'presentation');
     $("#gsc-i-id1").on("input focus click", function () {
       gs__blurBg();
@@ -129,7 +118,6 @@ $(window).load(function () {
 $(window).on("load resize", function (e) {
   gs__mobileReveal();
 });
-
 function gs__mobileReveal() {
   var searchInputDesktop = $(".uninav__search-input--desktop");
   var searchButtonMobile = $("#uninav__search-button--mobile");
@@ -137,11 +125,9 @@ function gs__mobileReveal() {
     $(this).addClass('uninav__hidden');
     $('#uninav').addClass('utility-only');
     $('.uninav__logo, .uninav__hamburger-menu').addClass('logo--underneath');
-
     $(searchInputDesktop).addClass('uninav__reveal').addClass('slide-left');
     $("#gsc-i-id1").focus();
     $('.gsst_a').show()
-
     $('#gs_st50, .gsc-results-close-btn').click(function () {
       $('#uninav').removeClass('utility-only');
       $(searchInputDesktop).removeClass('uninav__reveal');
@@ -150,25 +136,34 @@ function gs__mobileReveal() {
       $('.uninav__cta--wrapper').css('z-index', 'initial');
       $('.uninav__cta--wrapper').css('position', 'initial');
       $('.uninav__cta--wrapper').css('opacity', 'initial');
-
-
       $(searchButtonMobile).removeClass('uninav__hidden');
-
       $(searchInputDesktop).removeClass('uninav__reveal');
       $(searchButtonMobile).removeClass('uninav__hidden');
       $(searchInputDesktop).find('input').val('');
     });
   });
 }
-
 function gs__setSearchResultsZIndex() {
   $(".gssb_c[style]").css("z-index", "999999999999999999999999999999");
 }
-
 function gs__blurBg() {
   $(".gsc-completion-container").css("background", "transparent");
   $(".gsc-completion-container").css(
     "background-color",
     "rgba(255, 255, 255, 0.98)"
   );
+}
+
+
+function a11yClick(e) {
+  if (event.type === 'click') {
+    return true;
+  } else if (event.type === 'keypress') {
+    var code = event.charCode || event.keyCode;
+    if ((code === 32) || (code === 13)) {
+      return true;
+    }
+  } else {
+    return false;
+  }
 }

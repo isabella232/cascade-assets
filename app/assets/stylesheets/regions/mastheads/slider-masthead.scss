@@ -185,4 +185,53 @@ div.slider.version-201611 {
       }
     }
   }
+
+
+  .peekaboo {
+    margin-left: -9999999px;
+    z-index: -9999999;
+    opacity: 0;
+  }
+
+  .peekaboo:focus,
+  .pause:focus {
+    z-index: unset !important;
+    margin-left: unset !important;
+    opacity: 1;
+    color: $white;
+    text-align: center;
+    outline: initial;
+    font-family: $arial;
+    font-weight: bold;
+  }
+
+  .skip-masthead--2-3-col {
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+  }
+
+  .miniRotatorNav.next {
+    top: 0;
+  }
+
+  .skip-masthead--2-3-col {
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+    position: absolute;
+    z-index: -1;
+
+    .peekaboo.next-section.button.red:focus {
+      border: 2px dotted;
+    }
+  }
+
+  .skip-masthead--2-3-col:focus-within {
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+    position: relative;
+    z-index: 10;
+  }
 }
