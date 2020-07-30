@@ -186,6 +186,7 @@
 				<dropdown-item show-fields="primaryContent/widget/imageWithText" value="Image with Text"/>
 				<dropdown-item show-fields="primaryContent/widget/circleImageWithText" value="Circle Image With Text"/>
 				<dropdown-item show-fields="primaryContent/widget/videoWithText" value="Video with Text"/>
+				<dropdown-item show-fields="primaryContent/widget/textWithCTA" value="Text with CTA"/>
 				<dropdown-item show-fields="primaryContent/widget/textOnly" value="Text Only"/>
 				<dropdown-item show-fields="primaryContent/widget/factCardsWithText" value="Fact Cards with Text"/>
 				<dropdown-item show-fields="primaryContent/widget/callToAction3Up" value="Call To Action 3 Up"/>
@@ -367,6 +368,67 @@
 								<radio-item show-fields="primaryContent/widget/callToActionBlock/callToActionBlockRow/callToActionBox/media/fileLink" value="File Link"/>
 							</text>
 							<asset identifier="fileLink" label="File Link (Around 600px by 272px)" type="file"/>
+						</group>
+					</group>
+				</group>
+			</group>
+			<group collapsed="false" identifier="textWithCTA" label="Text with CTA">
+				<shared-field identifier="display" path="display"/>
+				<text default="Default Theme" identifier="theme" label="Theme" type="radiobutton">
+					<radio-item identifier="default" value="Default Theme" show-fields="primaryContent/widget/textWithCTA/bgColor, primaryContent/widget/textWithCTA/textWithCTAButton"/>
+					<radio-item show-fields="primaryContent/widget/textWithCTA/CUSafelyBackbgColor, primaryContent/widget/textWithCTA/textWithCTAButtonCUSafelyBack" value="CU Safely Back" identifier="pacific"/>
+				</text>
+				<text default="white" identifier="bgColor" label="Background Color" type="dropdown" require="false">
+					<dropdown-item label="White" value="white"/>
+					<dropdown-item label="Red" value="red"/>
+					<dropdown-item label="Sand" value="sand"/>
+					<dropdown-item label="Black" value="black"/>
+				</text>
+				<text default="pacific" identifier="CUSafelyBackbgColor" label="Background Color" type="radiobutton" require="false">
+					<radio-item label="Pacific" value="pacific"/>
+				</text>
+				<text identifier="textWithCTATitle" label="Title" help-text="Note: With 'CU Safely Back' Theme, the first two characters are emphasized"/>
+				<text identifier="text" label="Text" required="true" wysiwyg="true"/>
+				<group identifier="textWithCTAButton" label="CTA Button" maximum-number="3" multiple="true">
+					<group identifier="link" label="Call to Action">
+						<text default="Internal Link" identifier="linkType" label="Link Type" type="radiobutton">
+							<radio-item show-fields="primaryContent/widget/textWithCTA/textWithCTAButton/link/internalLink" value="Internal Link"/>
+							<radio-item show-fields="primaryContent/widget/textWithCTA/textWithCTAButton/link/externalLink" value="External Link"/>
+							<radio-item show-fields="primaryContent/widget/textWithCTA/textWithCTAButton/link/fileLink" value="File Link"/>
+						</text>
+						<text help-text="full url (including HTTPS) to page outside of Cascade" identifier="externalLink" label="External Link"/>
+						<asset identifier="internalLink" label="Internal Link" type="page"/>
+						<asset identifier="fileLink" label="File Link" type="file"/>
+						<text identifier="label" label="Label"/>
+						<group identifier="accessibility" label="Accessibility" collapsed="true">
+							<text identifier="ariaLabel" label="Aria Label"/>
+							<text identifier="title" label="Title"/>
+						</group>
+						<group identifier="tracking" label="Analytics Tracking" collapsed="true">
+							<text help-text="Replace or add custom link ID for tracking." identifier="customID" label="Override HTML ID"/>
+							<text help-text="Replace or add custom data-attr for tracking. Entering 'my-custom-thing' will result in 'data-my-custom-thing'" identifier="dataAttr" label="Data Attribute" multiple="true"/>
+						</group>
+					</group>
+				</group>
+				<!-- cu safely back CTA (no color chooser, 2 max) -->
+				<group identifier="textWithCTAButtonCUSafelyBack" label="CTA Button" maximum-number="2" multiple="true">
+					<group identifier="link" label="Call to Action">
+						<text default="Internal Link" identifier="linkType" label="Link Type" type="radiobutton">
+							<radio-item show-fields="primaryContent/widget/textWithCTA/textWithCTAButtonCUSafelyBack/link/internalLink" value="Internal Link"/>
+							<radio-item show-fields="primaryContent/widget/textWithCTA/textWithCTAButtonCUSafelyBack/link/externalLink" value="External Link"/>
+							<radio-item show-fields="primaryContent/widget/textWithCTA/textWithCTAButtonCUSafelyBack/link/fileLink" value="File Link"/>
+						</text>
+						<text help-text="full url (including HTTPS) to page outside of Cascade" identifier="externalLink" label="External Link"/>
+						<asset identifier="internalLink" label="Internal Link" type="page"/>
+						<asset identifier="fileLink" label="File Link" type="file"/>
+						<text identifier="label" label="Label"/>
+						<group identifier="accessibility" label="Accessibility" collapsed="true">
+							<text identifier="ariaLabel" label="Aria Label"/>
+							<text identifier="title" label="Title"/>
+						</group>
+						<group identifier="tracking" label="Analytics Tracking" collapsed="true">
+							<text help-text="Replace or add custom link ID for tracking." identifier="customID" label="Override HTML ID"/>
+							<text help-text="Replace or add custom data-attr for tracking. Entering 'my-custom-thing' will result in 'data-my-custom-thing'" identifier="dataAttr" label="Data Attribute" multiple="true"/>
 						</group>
 					</group>
 				</group>
@@ -828,7 +890,7 @@
 					<radio-item value="Yes"/>
 					<radio-item value="No"/>
 				</text>
-				<text default="White" identifier="bgColor" label="Background Color" type="radiobutton">
+				<text default="white" identifier="bgColor" label="Background Color" type="radiobutton">
 					<radio-item value="White"/>
 					<radio-item value="School Color"/>
 				</text>

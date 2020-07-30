@@ -160,7 +160,7 @@
     align-content: center;
     border-radius: 50%;
     will-change: box-shadow;
-    -webkit-box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.4);
+    box-shadow: 1px 2px 8px rgba(0, 0, 0, .5);
 
     &:before {
       color: rgba(255, 255, 255, 0.9);
@@ -173,7 +173,7 @@
       width: 43px;
       display: grid;
       align-content: center;
-      box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.4);
+
 
       opacity: 1;
       @include ripple($red-hover, $red-active);
@@ -182,11 +182,11 @@
     &:hover,
     &:focus,
     &:focus-within {
-      -webkit-box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.6);
+
 
       &::before,
       &::before {
-        box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.6);
+
         transition: 150ms ease-out;
         background-color: $red-hover;
         background-color: var(--red-hover);
@@ -316,10 +316,7 @@
 
   &--white,
   &--sand {
-    .slick-next:hover::before {
-      box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.4);
-      -webkit-box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.4);
-    }
+    .slick-next:hover::before {}
   }
 
   &--sand {

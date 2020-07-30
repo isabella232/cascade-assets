@@ -58,6 +58,7 @@
 //= require cascade/level/feature
 //= require cascade/level/flickr-picasa
 //= require cascade/level/funnel
+//= require cascade/level/cu-safely-back
 //= require cascade/iframe-titles
 //= require cascade/image-alt-text
 //= require cascade/lazy-load-images
