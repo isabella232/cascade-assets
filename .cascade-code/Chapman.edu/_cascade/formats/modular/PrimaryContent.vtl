@@ -3,8 +3,10 @@
 #import( "/_cascade/formats/modular/widgets/RSS Feed Display" )
 #import( "/_cascade/formats/modular/widgets/Program Events" )
 #import( "/_cascade/formats/modular/widgets/Banner Notification" )
+#import( "/_cascade/formats/modular/widgets/Career Block" )
 #import( "/_cascade/formats/modular/widgets/Carousel" )
 #import( "/_cascade/formats/modular/widgets/Collapsibles" )
+#import( "/_cascade/formats/modular/widgets/Contact Profile" )
 #import( "/_cascade/formats/modular/widgets/Featured News Events Primary Content" )
 #import( "/_cascade/formats/modular/widgets/Form Embed" )
 #import( "/_cascade/formats/modular/widgets/Form" )
@@ -17,6 +19,7 @@
 #import( "/_cascade/formats/modular/widgets/Testimonial" )
 #import( "/_cascade/formats/modular/widgets/Text Editor" )
 #import( "/_cascade/formats/modular/widgets/Three Photo Callout" )
+#import( "/_cascade/formats/modular/widgets/Photo Callout" )
 #import( "/_cascade/formats/modular/widgets/Twitter Feed" )
 #import( "/_cascade/formats/modular/widgets/25Live Calendar" )
 #import( "/_cascade/formats/modular/widgets/A-Z Listing" )
@@ -24,8 +27,9 @@
 #import( "/_cascade/formats/modular/widgets/Shared Content - Degrees Primary Content" )
 #import( "/_cascade/formats/modular/widgets/Faculty Info Primary" )
 #import( "/_cascade/formats/modular/widgets/Html Block" )
-#import( "/_cascade/formats/modular/widgets/Photo Callout" )
 #import( "/_cascade/formats/modular/widgets/Next Steps" )
+#import( "/_cascade/formats/modular/widgets/Quick Fact Blocks" )
+
 ## Reserved Block Format not finished/working:
 #import( "/_cascade/formats/modular/widgets/Reserved Block Format" )
 ##
@@ -40,54 +44,66 @@
 ##
 ## Widgets
 #foreach ($widget in $widgets)
-    ##
+##
     #set ($widgetType = $widget.getChild('widgetType').value )
-    <!-- in forEach loop for $widgetType widget -->
-    ##
+<!-- in forEach loop for $widgetType widget -->
+##
     #if ($widgetType == 'Text with CTA')
       #set ($displayWidget = $widget.getChild('textWithCTA').getChild('display').value)
       #if ($displayWidget == 'Yes')
           #outputTextWithCTA($widget)
       #end
     #end
-    ##
-    ##
+##
+##
     #if ($widgetType == 'RSS Feed Display')
       #set ($displayWidget = $widget.getChild('rssFeedDisplay').getChild('display').value)
       #if ($displayWidget == 'Yes')
           #outputRssFeedDisplayWidget($widget)
       #end
     #end
-    ##
-    ##
+##
+##
     #if ($widgetType == 'Program Events')
-      #set ($displayWidget = $widget.getChild('programEvents').getChild('display').value)
-      #if ($displayWidget == 'Yes')
-          #outputProgramEventsWidget($widget)
-      #end
+        #set ($displayWidget = $widget.getChild('programEvents').getChild('display').value)
+        #if ($displayWidget == 'Yes')
+            #outputProgramEventsWidget($widget)
+        #end
     #end
-    ##
-    ##
+##    
+##    
     #if ($widgetType == 'Banner Notification')
         #set ($displayWidget = $widget.getChild('bannerNotificationWidget').getChild('display').value)
         #if ($displayWidget == 'Yes')
             #outputBannerNotification($widget)
         #end
     #end
-    ##    
-    ##    
+##    
+    #if ($widgetType == 'Career Block')
+        #set ($displayWidget = $widget.getChild('careerBlockWidget').getChild('display').value)
+        #if ($displayWidget == 'Yes')
+            #outputCareerBlockWidget($widget)
+        #end
+    #end
+##    
     #if ($widgetType == 'Carousel')
         #set ($displayCarousel = $widget.getChild('carousel').getChild('display-carousel').value)
         #if ($displayCarousel == 'Yes')
             #outputCarousel($widget)
         #end
     #end
-    ##    
+##    
     #if ($widgetType == 'Collapsible Regions')
-        #set ($displayCollapsibles =
-        $widget.getChild('collapsibleRegions').getChild('display-collapsibles').value)
+        #set ($displayCollapsibles = $widget.getChild('collapsibleRegions').getChild('display-collapsibles').value)
         #if ($displayCollapsibles == 'Yes')
             #outputCollapsibles($widget)
+        #end
+    #end
+##  
+     #if ($widgetType == 'Contact Profile')
+        #set ($displayContactProfile = $widget.getChild('contact-profile-widget').getChild('display').value)
+        #if ($displayContactProfile == 'Yes')
+            #outputContactProfile($widget)
         #end
     #end
 ##    
@@ -104,125 +120,128 @@
             #outputForm($widget)
         #end
     #end
-    ##
+##
     #if ($widgetType == 'Featured / News / Events')
         #set ($displayNewsEvents = $widget.getChild('FeaturedNewsEvents').getChild('options').value)
         #if ($displayNewsEvents != "Do Not Show")
             #outputFeaturedNewsEvents($widget)
         #end
     #end
-    ##    
+##    
     #if ($widgetType == 'Funnels 2up')
         #set ($displayFunnels2up = $widget.getChild('funnels-2up').getChild('display-funnels-2up').value)
         #if ($displayFunnels2up == 'Yes')
             #outputFunnels2up($widget)
         #end
     #end
-    ##    
+##    
     #if ($widgetType == 'Funnels 1up')
         #set ($displayFunnels1up = $widget.getChild('funnels-1up').getChild('display-funnels-1up').value)
         #if ($displayFunnels1up == 'Yes')
             #outputFunnels1up($widget)
         #end
     #end
-    ##    
+##    
     #if ($widgetType == 'Personnel Table')
         #set ($displayPersonnel = $widget.getChild('personnel').getChild('display-personnel').value)
         #if ($displayPersonnel == 'Yes')
             #outputPersonnel($widget)
         #end
     #end
-    ##    
+##    
     #if ($widgetType == 'Logo Image Rotator')
-        #set ($displayLogoRotator =
-        $widget.getChild('logo-image-rotator').getChild('display-logo-image-rotator').value)
+        #set ($displayLogoRotator = $widget.getChild('logo-image-rotator').getChild('display-logo-image-rotator').value)
         #if ($displayLogoRotator == 'Yes')
             #outputLogoImageRotator($widget)
         #end
     #end
-    ##    
+##    
     #if ($widgetType == 'Tabs')
         #set ($displayTabs = $widget.getChild('tabs').getChild('display-tabs').value)
         #if ($displayTabs == 'Yes')
             #outputTabs($widget)
         #end
     #end
-    ##    
+##    
     #if ($widgetType == 'Text Editor')
         #set ($displayWYSIWYG = $widget.getChild('wysiwyg-editor').getChild('display-wysiwyg-editor').value)
         #if ($displayWYSIWYG == 'Yes')
             #outputWYSIWYGEditor($widget)
         #end
     #end
-    ##    
-    #if ($widgetType == 'Testimonial')
+        #if ($widgetType == 'Testimonial')
         #set ($displayTestimonial = $widget.getChild('testimonial-widget').getChild('display').value)
         #if ($displayTestimonial == 'Yes')
-        #outputTestimonialWidget($widget)
+            #outputTestimonialWidget($widget)
         #end
     #end
 ##    
-    ##    
-    #if ($widgetType == 'Next Steps')
-        #set ($displayNextSteps = $widget.getChild('next-steps-widget').getChild('display').value)
+        #if ($widgetType == 'Next Steps')
+            #set ($displayNextSteps = $widget.getChild('next-steps-widget').getChild('display').value)
         #if ($displayNextSteps == 'Yes')
             #outputNextStepsWidget($widget)
         #end
     #end
-    ## 
-    ##    
-    #if ($widgetType == 'Photo Callout')
-        #set ($displayPhotoCallout = $widget.getChild('photo-callout-widget').getChild('display').value)
-        #if ($displayPhotoCallout == 'Yes')
-            #outputPhotoCalloutWidget($widget)
-        #end
+##
+##    
+#if ($widgetType == 'Photo Callout')
+    #set ($displayPhotoCallout = $widget.getChild('photoCalloutWidget').getChild('display').value)
+    #if ($displayPhotoCallout == 'Yes')
+        #outputPhotoCalloutWidget($widget)
     #end
-    ## 
+#end
+## 
     #if ($widgetType == 'Three Photo Callout')
-        #set ($displayCallout =
-        $widget.getChild('threePhotoCallout').getChild('display-three-photo-callout').value)
+        #set ($displayCallout = $widget.getChild('threePhotoCallout').getChild('display-three-photo-callout').value)
         #if ($displayCallout == 'Yes')
             #outputThreePhotoCallout($widget)
         #end
     #end
-    ##    
+##    
     #if ($widgetType == 'Twitter Feed')
-        #set ($displayTwitterFeed =
-        $widget.getChild('twitterTimeline').getChild('display-twitter-timeline').value)
+        #set ($displayTwitterFeed = $widget.getChild('twitterTimeline').getChild('display-twitter-timeline').value)
         #if ($displayTwitterFeed == 'Yes')
             #outputTwitterFeed($widget)
         #end
     #end
-    ##    
+##    
     #if ($widgetType == 'Calendar25Live')
         #set ($display25Live = $widget.getChild('Calendar25Live').getChild('display-25live-listing').value)
         #if ($display25Live == 'Yes')
             #output25LiveCalendar($widget)
         #end
     #end
-    ##    
+##    
     #if ($widgetType == 'A to Z Listing')
         #set ($displayAtoZ = $widget.getChild('AtoZListing').getChild('display-a-z-listing').value)
         #if ($displayAtoZ == 'Yes')
             #outputAZblock($widget)
         #end
     #end
-    ##    
+##    
     #if ($widgetType == 'Html Block')
         #set ($displayHtmlBlock = $widget.getChild('html-block').getChild('display-html-block').value)
         #if ($displayHtmlBlock == 'Yes')
             #outputHtmlBlock($widget)
         #end
     #end
+##    
+    #if ($widgetType == 'Quick Fact Blocks')
+        #set ($displayQuickFactBlocks = $widget.getChild('quickFactBlocksWidget').getChild('display').value)
+        #if ($displayQuickFactBlocks == 'Yes')
+            #outputQuickFactBlocks($widget)
+        #end
+    #end
+##  
+     
 ## not finished/working yet:   
     #if ($widgetType == 'Reserved Block-Formats')
-        #set ($displayReservedBlockFormat =
-        $widget.getChild('reserved-block-formats').getChild('display-reserved-block-formats').value)
+        #set ($displayReservedBlockFormat = $widget.getChild('reserved-block-formats').getChild('display-reserved-block-formats').value)
         #if ($displayReservedBlockFormat == 'Yes')
             #outputReservedBlockFormat($widget)
         #end
     #end
-    ##
+##
     #if ($widgetType == 'Department Contact Info')
         #if ($widget.getChild('contact').getChild('display-contact').value == 'Yes')
             #set($wHeading = 2)
@@ -236,8 +255,8 @@
             #displayContactsPrimary($widget, $wHeading)
         #end
     #end
-    ##
-    #if ($widgetType == 'Degree Info')
+##
+     #if ($widgetType == 'Degree Info')
         #if ($widget.getChild('degree').getChild('display-degree').value == 'Yes')
             #set($wHeading = 2)
             #if($_XPathTool.selectSingleNode($widget, "degree/heading").value != "")
@@ -250,7 +269,7 @@
             #displayDegreesPrimary($widget, $wHeading)
         #end
     #end
-    ##
+##
     #if ($widgetType == 'Faculty Info')
         #if ($_XPathTool.selectSingleNode($widget, "faculty/display-faculty").value == 'Yes')
             #set($wHeading = 2)
@@ -264,6 +283,7 @@
             #displayFacultyInfo($widget, $wHeading, $foreach.count)
         #end
     #end
-    ##
+##
 #end
+
 ## end Widgets
