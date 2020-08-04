@@ -202,16 +202,16 @@
 				<dropdown-item show-fields="primaryContent/widget/next-steps-widget" value="Next Steps"/>
 				<dropdown-item show-fields="primaryContent/widget/quickFactBlocksWidget" value="Quick Fact Blocks"/>
 			</text>
-			<group collapsed="false" identifier="textWithCTA" label="Text with CTA">
+			<group identifier="textWithCTA" label="Text with CTA">
 				<shared-field field-id="ff6bcc13c0a81e5f43ef9b37cfb81c31" identifier="display" path="display"/>
 				<text default="Default Theme" field-id="a0c33b14c0a81e5f510cef509cca16b5" identifier="theme" label="Theme" type="radiobutton">
-					<radio-item identifier="default" show-fields="primaryContent/widget/textWithCTA/bgColor, primaryContent/widget/textWithCTA/textWithCTAButton" value="Default Theme"/>
-					<radio-item identifier="pacific" show-fields="primaryContent/widget/textWithCTA/CUSafelyBackbgColor, primaryContent/widget/textWithCTA/textWithCTAButtonCUSafelyBack" value="CU Safely Back"/>
+					<radio-item show-fields="primaryContent/widget/textWithCTA/bgColor, primaryContent/widget/textWithCTA/textWithCTAButton" value="Default Theme"/>
+					<radio-item show-fields="primaryContent/widget/textWithCTA/CUSafelyBackbgColor, primaryContent/widget/textWithCTA/textWithCTAButtonCUSafelyBack" value="CU Safely Back"/>
 				</text>
-				<text default="white" field-id="a0c33b14c0a81e5f510cef507c594ba1" identifier="bgColor" label="Background Color" require="false" type="radiobutton">
+				<text default="white" field-id="a0c33b14c0a81e5f510cef507c594ba1" identifier="bgColor" label="Background Color" type="radiobutton">
 					<radio-item label="White" value="white"/>
 				</text>
-				<text default="pacific" field-id="a0c33b15c0a81e5f510cef50c62bb65c" identifier="CUSafelyBackbgColor" label="Background Color" require="false" type="radiobutton">
+				<text default="pacific" field-id="a0c33b15c0a81e5f510cef50c62bb65c" identifier="CUSafelyBackbgColor" label="Background Color" type="radiobutton">
 					<radio-item label="Pacific" value="pacific"/>
 				</text>
 				<text field-id="ff6bcc13c0a81e5f43ef9b37913f523a" help-text="Note: With 'CU Safely Back' Theme, the first two characters are emphasized" identifier="textWithCTATitle" label="Title"/>
@@ -475,7 +475,7 @@
 				</text>
 				<shared-field field-id="7c2e3042c0a81e5f43ef9b3725d60aca" identifier="bgColor" path="background-color"/>
 				<group identifier="block" label="Photo Block" multiple="true">
-					<shared-field field-id="7c2e3042c0a81e5f43ef9b37793a33ae" identifier="image" maximum-number="1" path="image__rectangle-only--required" required="true"/>
+					<shared-field field-id="7c2e3042c0a81e5f43ef9b37793a33ae" help-text="150px x 150px" identifier="image" label="Image (4:3 aspect ratio - 260px by 150px mimimum)" maximum-number="1" path="image__rectangle-only--required" required="true"/>
 					<text field-id="7c2e3043c0a81e5f43ef9b37401c76ee" help-text="50 Characters Max" identifier="text" label="Text" maxlength="50" required="true"/>
 					<group identifier="link" label="Link">
 						<text default="Internal Link" field-id="7c2e3043c0a81e5f43ef9b3706b01b64" identifier="linkType" label="Link Type" type="radiobutton">
