@@ -12,6 +12,8 @@
 /.ruby-gemset
 /.ruby-version
 
+config/environment_variables.yml
+
 # Ignore the redis database
 /*.rdb
 

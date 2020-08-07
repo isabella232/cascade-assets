@@ -15,7 +15,7 @@
     #set ( $primaryButtonLink = '#' )
 #end
 
-<section class="section dark-bg skrollable skrollable-between" data-bottom-top="background-position: center 100px" data-top-bottom="background-position: center -100px" id="graduateAdmission" aria-label="Graduate Admission Information">
+<section class="section dark-bg skrollable skrollable-between lazy" data-bottom-top="background-position: center 100px" data-top-bottom="background-position: center -100px" id="graduateAdmission" aria-label="Graduate Admission Information">
         <div class="maxWidth">
             <div class="second">
                 <h2 class="heading skrollable skrollable-after" data-bottom="right:50px; opacity:0;" data-center="right:0; opacity:1;">$header </h2>

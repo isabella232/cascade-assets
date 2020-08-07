@@ -2,14 +2,13 @@
 #import( "/_cascade/formats/helpers.velocity" )
 
 #set ( $textWithCTA = $_XPathTool.selectSingleNode($element, 'textWithCTA') )
-
 #set ( $title = $textWithCTA.getChild('textWithCTATitle').value)
 
-#if ( $title != "")
+#if ( $tite != "")
     #set ( $titleFirstTwoChars = $title.substring(0,2) )
-    #set( $titleEmphasis = $title.replace($titleFirstTwoChars, "<span class='text-with-cta__emphasis'>${titleFirstTwoChars}</span>") )
 #end
 
+#set( $titleEmphasis = $title.replace($titleFirstTwoChars, "<span class='text-with-cta__emphasis'>${titleFirstTwoChars}</span>") )
 #set ( $text = $_SerializerTool.serialize($textWithCTA.getChild('text'), true))
 #set ( $ctaButtons = $_XPathTool.selectNodes($element, 'textWithCTA/textWithCTAButton'))
 #set ( $theme = $textWithCTA.getChild('theme').value)
