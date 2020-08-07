@@ -23,7 +23,7 @@ module ContentTypes
     def ad_landing
       # Link static assets for test photo.
       # For https://github.com/chapmanu/cascade-assets/issues/126
-      link_static_assets
+      # link_static_assets
 
       @configuration_set =
         ConfigurationSet.ad_landing(
@@ -96,10 +96,9 @@ module ContentTypes
         'PAGE WRAPPER OPEN' =>
           cascade_format('_cascade/formats/modular/page_wrapper_open'),
         # TODO: convert these to cascade_format action.
-        'OMNI-NAV' => render_static_partial('app/views/uninav/uninav'),
-        'NAVIGATION' => render_static_partial(navigation_path),
-        'PRIMARY CONTENT' => render_static_one_column_primary_content,
-        'GLOBAL FOOTER' => render_static_partial(footer_path)
+        "UNINAV" => render_static_partial("uninav/uninav"),
+        "PRIMARY CONTENT" => render_static_one_column_primary_content,
+        "GLOBAL FOOTER" => render_static_partial(footer_path),
       }
 
       render @configuration_set.template
@@ -120,31 +119,23 @@ module ContentTypes
 
       # Define configuration set regions.
       @configuration_set.regions = {
-        # "PRIMARY CONTENT" => render_static_one_column_primary_content_business_grad,
-        # "GLOBAL FOOTER" => render_static_partial(footer_path),
-        'ADDITIONAL BODY AT-END' => '',
-        'ADDITIONAL HEAD' => '',
-        'CASCADE ASSETS' =>
-          cascade_block('_cascade/blocks/html/cascade_assets'),
-        'FB_JS_SDK' =>
-          cascade_block('_cascade/blocks/html/facebook_javascript_sdk'),
-        'GOOGLE_ANALYTICS' => '',
-        'JQUERY' => cascade_block('_cascade/blocks/html/jquery'),
-        'JUMP LINK' => cascade_block('_cascade/blocks/html/jump_link'),
-        'MASTHEAD' =>
-          cascade_format(
-            '_cascade/formats/modular/one_column_masthead_business_graduate'
-          ),
-        'META VIEWPORT' =>
-          cascade_block('_cascade/blocks/html/global_meta_viewport'),
-        'OG_TAGS' => '',
-        'PAGE WRAPPER CLOSE' =>
-          cascade_format('_cascade/formats/modular/page_wrapper_close'),
-        'PAGE WRAPPER OPEN' =>
-          cascade_format('_cascade/formats/modular/page_wrapper_open'),
+        "ADDITIONAL BODY AT-END" => "",
+        "ADDITIONAL HEAD" => "",
+        "CASCADE ASSETS" => cascade_block("_cascade/blocks/html/cascade_assets"),
+        "FB_JS_SDK" => cascade_block("_cascade/blocks/html/facebook_javascript_sdk"),
+        "GOOGLE_ANALYTICS" => "",
+        "JQUERY" => cascade_block("_cascade/blocks/html/jquery"),
+        "JUMP LINK" => cascade_block("_cascade/blocks/html/jump_link"),
+        "MASTHEAD" => cascade_format("_cascade/formats/modular/one_column_masthead_business_graduate"),
+        "META VIEWPORT" => cascade_block("_cascade/blocks/html/global_meta_viewport"),
+        "OG_TAGS" => "",
+        "PAGE WRAPPER CLOSE" => cascade_format("_cascade/formats/modular/page_wrapper_close"),
+        "PAGE WRAPPER OPEN" => cascade_format("_cascade/formats/modular/page_wrapper_open"),
+
         # TODO: convert these to cascade_format action.
-        'OMNI-NAV' => render_static_partial('/uninav/uninav'),
-        'NAVIGATION' => render_static_partial(navigation_path)
+        "UNINAV" => render_static_partial("uninav/uninav"),
+        "PRIMARY CONTENT" => render_static_one_column_primary_content_business_grad,
+        "GLOBAL FOOTER" => render_static_partial(footer_path),
       }
 
       render @configuration_set.template
@@ -178,11 +169,9 @@ module ContentTypes
         'PAGE WRAPPER OPEN' =>
           cascade_format('_cascade/formats/modular/page_wrapper_open'),
         # TODO: convert these to cascade_format action.
-        'OMNI-NAV' => render_static_partial('/uninav/uninav'),
-        #update this
-        #'NAVIGATION' => render_static_partial(navigation_path), #remove this
-        'PRIMARY CONTENT' => render_static_one_column_primary_content_subbrand,
-        'GLOBAL FOOTER' => render_static_partial(footer_path)
+        "UNINAV" => render_static_partial("uninav/uninav"),
+        "PRIMARY CONTENT" => render_static_one_column_primary_content_subbrand,
+        "GLOBAL FOOTER" => render_static_partial(footer_path),
       }
       render @configuration_set.template
     end
@@ -216,10 +205,9 @@ module ContentTypes
         'PAGE WRAPPER OPEN' =>
           cascade_format('_cascade/formats/modular/page_wrapper_open'),
         # TODO: convert these to cascade_format action.
-        'OMNI-NAV' => render_static_partial('widgets/shared/omninav'),
-        'NAVIGATION' => render_static_partial(navigation_path),
-        'PRIMARY CONTENT' => render_static_one_column_primary_content_subbrand,
-        'GLOBAL FOOTER' => render_static_partial(footer_path)
+        "UNINAV" => render_static_partial("uninav/uninav"),
+        "PRIMARY CONTENT" => render_static_one_column_primary_content_subbrand,
+        "GLOBAL FOOTER" => render_static_partial(footer_path),
       }
       render @configuration_set.template
     end
@@ -280,9 +268,8 @@ module ContentTypes
         'PRIMARY CONTENT' => render_static_two_column_primary_content,
         'SOCIAL ACCOUNTS' => 'TODO: _cascade/formats/level/social_accounts',
         # TODO: convert these to cascade_format action.
-        'OMNI-NAV' => render_static_partial('/uninav/uninav'),
-        'NAVIGATION' => render_static_partial(navigation_path),
-        'GLOBAL FOOTER' => render_static_partial(footer_path)
+        "UNINAV" => render_static_partial("/uninav/uninav"),
+        "GLOBAL FOOTER" => render_static_partial(footer_path),
       }
 
       render @configuration_set.template
@@ -342,8 +329,8 @@ module ContentTypes
         'SOCIAL ACCOUNTS' => 'TODO: _cascade/formats/level/social_accounts',
         'TYPEKIT' => cascade_block('_cascade/blocks/html/typekit'),
         # TODO: convert these to cascade_format action.
-        'OMNI-NAV' => render_static_partial('uninav/uninav'),
-        'GLOBAL FOOTER' => render_static_partial(footer_path)
+        "UNINAV" => render_static_partial("uninav/uninav"),
+        "GLOBAL FOOTER" => render_static_partial(footer_path),
       }
 
       render @configuration_set.template
@@ -461,9 +448,8 @@ module ContentTypes
         'RIGHT COLUMN CONTENT' => render_static_three_column_right_column,
         'SOCIAL ACCOUNTS' => 'TODO: _cascade/formats/level/social_accounts',
         # TODO: convert these to cascade_format action.
-        'GLOBAL FOOTER' => render_static_partial('_cascade/blocks/html/footer'),
-        'NAVIGATION' => render_static_partial('widgets/shared/navigation'),
-        'OMNI-NAV' => render_static_partial('widgets/shared/uninav')
+        "GLOBAL FOOTER" => render_static_partial("_cascade/blocks/html/footer"),
+        "UNINAV" => render_static_partial("uninav/uninav"),
       }
 
       render @configuration_set.template
@@ -583,9 +569,11 @@ module ContentTypes
 
     def render_static_two_column_primary_content
       # This reproduces content from static sample version
-      format(
-        '%s',
-        render_static_partial('widgets/primary_content/twitter_feed_1')
+      format("%s",
+        render_static_partial("widgets/primary_content/testimonial_widget"),
+        # render_static_partial("widgets/primary_content/next_steps_widget"),
+        # render_static_partial("widgets/primary_content/news_events_feed_1"),
+        # render_static_partial("widgets/primary_content/three_photo_callout_1")
       )
     end
 

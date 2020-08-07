@@ -11,16 +11,18 @@
     <meta content="width=device-width, initial-scale=1, minimum-scale=1" name="viewport" />
 
     <!-- scripts -->
+    <script src="https://kit.fontawesome.com/69750d1513.js" crossorigin="anonymous"></script>
     <link href="https://use.typekit.net/eyn5jyy.css" rel="stylesheet" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <%= javascript_include_tag 'master' %>
+    <%= stylesheet_pack_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "master", debug: true %>
+    <%= javascript_include_tag "master", debug: true %>
 
     <!--[if lt IE 7 ]>
     <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
     <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
     <![endif]-->
-
-    <%= stylesheet_link_tag 'master', media: 'all' %>
 
     <script>
         window.fbAsyncInit = function () {

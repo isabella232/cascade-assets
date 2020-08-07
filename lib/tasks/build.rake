@@ -14,7 +14,7 @@ task build: :environment do
     prep_dist
     zip rails_asset_path, dist_assets_path
     Rake::Task['changelog'].invoke
-    File.write(dist_cascade_block_path, render(file: 'layouts/cascade-assets.xml', layout: false))
+    File.write(dist_cascade_block_path, ApplicationController.renderer.render(file: 'layouts/cascade-assets.xml'))
     # unzip('dist/netlify/_assets.zip', 'dist/netlify/_assets')
     unzip('dist/staging/_assets.zip', 'dist/staging/_assets')
     Rake::Task['edit_cascade_assets'].invoke
@@ -22,6 +22,7 @@ task build: :environment do
 end
 
 task do_precompile: :environment do
+  ENV['NODE_ENV'] = ENV['RAILS_ENV']
   Rake::Task['assets:clobber'].invoke
   Rake::Task['assets:precompile'].invoke
 end
