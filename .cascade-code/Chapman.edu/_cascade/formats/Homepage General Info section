@@ -4,7 +4,7 @@
 #set ( $header = $panel.getChild('header').value )
 
 
-<section class="section light-bg" id="generalInformation" aria-label="General Campus Information">
+<section class="section light-bg lazy" id="generalInformation" aria-label="General Campus Information">
 	<div class="maxWidth">
 		<h2 class="heading skrollable skrollable-after" data-bottom="opacity:0;" data-center="opacity:1;">$header</h2>
 		<div class="homepage-news__grid-wrapper">
@@ -42,7 +42,7 @@
                                 #set ( $imageLink = '#' )
                             #end
                             
-					<img src="$imageLink" alt="$imageAltText"/>
+					<img loading="lazy" class="lazy" src="$imageLink" alt="$imageAltText"/>
                         #end
                     #end
                     

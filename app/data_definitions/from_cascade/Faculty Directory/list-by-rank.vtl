@@ -1,0 +1,111 @@
+[system-view:internal]<div class="hidden">DOCUMENTATION: https://docs.google.com/document/d/1cFAJ7Wg-0HAt-pJ1UDdQ-aybo5nOcRDYG2rMVKUTT0E/</div>[/system-view:internal]
+#set($all_faculty  = $_XPathTool.selectNodes($contentRoot, '//ArrayOfFacultyMember/FacultyMember'))  
+
+$_SortTool.addSortCriterion("FacLastName", "", "text", "ascending", "upper-first")
+$_SortTool.sort($all_faculty)
+
+## loop over array for all ranks except Emeriti (do those separate at end)
+#set ( $rank_list = ["Professor","Associate Professor","Assistant Professor","Instructor","Lecturer","Faculty Emeriti","Fellow"] )  
+
+ <h1>Faculty Listed by Rank</h1>
+    <div class="collapsibles-widget">
+    <p>On this page you will find all faculty at Chapman, grouped by their rank at the university.</p>
+  
+    #foreach ( $fac_category in $rank_list) 
+    <div class="accordion"><h2 class="header"><span class="show"></span><span class="hide">-</span>$fac_category</h2><div class="content editableContent">
+    #if ($fac_category == 'Faculty Emeriti')
+         #set ($faclist = $_XPathTool.selectNodes($all_faculty, "//FacultyMember[EmeritiFlag = 'Y']"))
+    #elseif ($fac_category == 'Lecturer') 
+         #set ($faclist = $_XPathTool.selectNodes($all_faculty, "//FacultyMember[AdjunctFlag = 'Y']"))
+    #elseif ($fac_category == 'Fellow') 
+         #set ($faclist = $_XPathTool.selectNodes($all_faculty, "//FacultyMember[PresidentialFellowFlag = 'Y']"))
+    #else
+         #set ($faclist = $_XPathTool.selectNodes($all_faculty, "//FacultyMember[Rank = '$fac_category']"))       
+    #end
+    
+    #foreach($faculty in $faclist)    
+        #set($v_school = "")   
+        #set ($v_dept ="")
+        #set ($v_div = "")
+        <div>
+            #set($web_url = "")
+            #set($web_url = $faculty.getChild('CascadePath').text)
+          #if($web_url != '')
+              <br /><span style="font-weight:bold; font-size:15px;"><a href="/our-faculty/$web_url">$faculty.getChild('FacFullName').text</a></span>
+           #else
+               <br /><span style="font-weight:bold; font-size:15px;">$faculty.getChild('FacFullName').text</span>
+          #end
+            
+           #set($deptlist = $faculty.getChild('Depts')) 
+           #set ($v_school =  '')
+           #set ($v_dept = '')
+           #set ($v_div = "")
+           #set ($v_previous_school = '')
+           #set ($v_previous_dept = '')
+           #set ($v_final_school_dept = '')
+           #set ($cntr = 0)
+           #foreach ($dept in $deptlist.getChildren('FacultyDepts') )
+                #set ($cntr = $cntr + 1)    
+                #set ($v_school =  $dept.getChild('SchoolName').value)
+                #set ($v_dept = $dept.getChild('DisplayDeptName').value)
+                #set ($v_div ="")          
+                #set ($v_div = $dept.getChild('FacGroupName').value)
+                
+                #if ($cntr == 1)
+                    #set ($v_previous_school = $dept.getChild('SchoolName').value)
+                    #set ($v_previous_dept = $dept.getChild('DisplayDeptName').value)
+###<br/>$cntr. Prev School: $v_previous_school Prev Dept: $v_previous_dept (1st IF)
+
+                #elseif ($v_school ==  $v_previous_school)
+                    #if ($v_dept != '' && $v_previous_dept != '')
+                        #set ($v_previous_dept = $v_previous_dept + ", " + $v_dept)
+                    #elseif ($v_previous_dept != '')
+                        #set ($v_previous_dept = $v_previous_dept)
+                    #else
+                        ####set ($v_previous_dept = $dept)
+                        #set ($v_previous_dept = $v_dept)
+                    #end 
+###<br/>$cntr. Prev School: $v_previous_school Prev Dept: $v_previous_dept  (2nd IF)
+
+                #else
+                    #if ($v_previous_dept == '')
+                        #set ($final_school_dept = $v_previous_school)
+                    #else
+                        #if ($v_previous_school != '')
+                            #set ($final_school_dept = $v_previous_school + '; ' + $v_previous_dept)
+                        #else
+                            #set ($final_school_dept = $v_previous_dept)
+                        #end
+                    #end
+###<br/>$cntr. Prev School: $v_previous_school Prev Dept: $v_previous_dept Final S/D: $final_school_dept (ELSE)
+                    <br/>$final_school_dept
+###(REAL OUTPUT WITHIN OUTER LOOP)
+                    #set ($v_previous_school =  $dept.getChild('SchoolName').value)
+                    #set ($v_previous_dept = $dept.getChild('DisplayDeptName').value)
+                #end
+###<br/>$cntr. Prev School: $v_previous_school Prev Dept: $v_previous_dept (after IF)
+              
+            #end
+              
+            ## one final repeat after last loop:
+            #if ($v_previous_dept == '')
+                #set ($final_school_dept = $v_previous_school)
+            #else
+                #if ($v_previous_school != '')
+                    #set ($final_school_dept = $v_previous_school + '; ' + $v_previous_dept)
+                #else
+                    #set ($final_school_dept = $v_previous_dept)
+                #end
+            #end
+            <br/>$final_school_dept
+###(FINAL AFTER LAST LOOP)
+
+          
+        </div>
+    ## end loop over each faculty
+    #end
+
+    </div></div>
+## end of loop over fac_category array:
+#end
+</div>

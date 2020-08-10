@@ -30,6 +30,9 @@ h6,
     padding-bottom: 18px;
     @include transition(background-color);
 
+
+
+
     &:hover {
       background-color: #ffffff;
       text-decoration: none;
@@ -713,4 +716,36 @@ h6,
     align-content: flex-end;
     align-self: flex-end;
   }
+}
+
+.no-js .homepage .stories .story-bg img[loading="lazy"] {
+  @include qbal-fade-enter;
+  display: block;
+  overflow: hidden;
+  height: 100%;
+  min-width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+}
+
+.homepage .story-bg {
+
+  .lazy,
+  img[loading="lazy"] {
+    animation: 150ms lazyload forwards;
+  }
+
+
+  @keyframes lazyload {
+    from {
+      opacity: 0;
+      filter: blur(3px);
+    }
+
+    to {
+      opacity: 1;
+      filter: blur(0);
+    }
+  }
+
 }

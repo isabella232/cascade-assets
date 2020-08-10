@@ -61,14 +61,8 @@
 		<div class="homepage-masthead__photo-grid">
 			<div class="homepage-masthead__photos">
 				<a href="https://www.instagram.com/p/B8KhB8mlOpZ/">
-					<picture>
-						<source srcset="https://www.chapman.edu/_files/img/hero-panels/masthead-2020-images/tour-group.webp" type="image/webp">
-						<source
-							srcset="https://www.chapman.edu/_files/img/hero-panels/masthead-2020-images/tour-group.png"
-							type="image/png">
-						<img src="https://www.chapman.edu/_files/img/hero-panels/masthead-2020-images/tour-group.png"
-							alt="Chapman Tour Group" style="object-position: top;" />
-					</picture>
+					<img src="https://www.chapman.edu/_files/img/hero-panels/masthead-2020-images/tour-group.png"
+						alt="Chapman Tour Group" style="object-position: top;" />
 				</a>
 				<a href="https://www.instagram.com/p/B06uMxDlXEK/">
 					<img src="https://www.chapman.edu/_files/img/hero-panels/masthead-2020-images/panther-square-400x400.png"
@@ -129,3 +123,19 @@
 
 
 </div>
+
+<style>
+	video#homepage-masthead__video {
+		max-height: 100vh;
+	}
+</style>
+
+<script>
+	$(function () {
+		var isIE11 = !!navigator.userAgent.match(/Trident.*rv\:11\./);
+		if (isIE11) {
+			$('html').addClass('ie');
+		}
+	});
+
+</script>

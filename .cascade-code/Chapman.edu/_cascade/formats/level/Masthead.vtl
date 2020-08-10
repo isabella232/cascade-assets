@@ -30,7 +30,7 @@
 				#end
 			</div>
 			<div class="column header theme-bg-color">
-				<div class="faux-h2 header">$_EscapeTool.xml($brandedMastheadHeader)</div>
+				<div class="faux-h2 h2 header">$_EscapeTool.xml($brandedMastheadHeader)</div>
 			</div>
 		</div>
 	</div>
@@ -42,6 +42,10 @@
 	#set ( $header = $_XPathTool.selectSingleNode($masthead, 'slider201611/header').value )
 	#set ( $firstSubtitle = $_XPathTool.selectSingleNode($slides[0], 'subTitle').value )
 
+<div class="skip-masthead--2-3-col">
+        <a class="peekaboo next-section button red" tabindex="0" href="#breadcrumbs" aria-label="skip over carousel to next section">Skip
+          over carousel to next section</a>
+    </div>
 	<div class="slider version-201611">
 		<div class="hidden slideOptions">
 			<div class="autoRotate">On</div>
@@ -80,7 +84,7 @@
 
 			<div class="column header theme-bg-color">
 				<div class="aligned">
-					<div class="faux-h2 header">${_EscapeTool.xml($header).replace("\n", "<br/>")}</div>
+					<div class="faux-h2 h2 header">${_EscapeTool.xml($header).replace("\n", "<br/>")}</div>
 					## for ADA compliance, only show subheader if not empty
 					<div class="subheader">
 					## HTML for subsequent slides comes from javascript
@@ -88,7 +92,7 @@
 					#if ( $firstSubtitle != '' )
 						<hr />
 						## Replace newline characters with html breaks so users can have multiline subtitles
-						<div class="faux-h3">${_EscapeTool.xml($firstSubtitle).replace("\n", "<br/>")}</div>
+						<div class="faux-h3 h3">${_EscapeTool.xml($firstSubtitle).replace("\n", "<br/>")}</div>
 					#end
 					</div>
 				</div>
@@ -122,8 +126,8 @@
 		</div>
 	</div>
     
-    <div class="skip-masthead--2-3-col">
-        <a class="peekaboo next-section button red" tabindex="0" href="#breadcrumbs" aria-label="skip over carousel to next section">Skip
+    <div class="skip">
+        <a class="peekaboo next-section button red" tabindex="0" href="#breadcrumbs" role="skip over carousel to next section">Skip
           over carousel to next section</a>
     </div>
     

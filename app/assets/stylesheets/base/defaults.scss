@@ -209,13 +209,14 @@ textarea {
 [alt] {
   font-family: $futura-regular;
   opacity: 0;
-  animation-delay: 300ms;
+  animation-delay: 500ms;
   animation: fadein 3s forwards;
   -moz-animation: fadein 3s forwards;
   -webkit-animation: fadein 3s forwards;
   -o-animation: fadein 3s forwards;
   animation-direction: forwards;
   -webkit-animation: fadein 3s forwards;
+  animation-fill-mode: forwards !important;
 }
 
 
@@ -764,12 +765,20 @@ html body {
     [class*="__button"] {
       $bg: $panther-black;
       @include button-bg($bg);
+    }
+
+    .button {
 
       &:hover,
-      &:active {
-        background-color: darken($bg, 8%);
+      &:active,
+      &:focus {
+        background-color: black !important;
         -webkit-transition: all 0.3s ease;
         transition: all 0.3s ease;
+      }
+
+      &:focus {
+        outline: 2px dotted black;
       }
     }
 
@@ -800,6 +809,46 @@ html body {
 
     a {
       color: $cu-red;
+    }
+  }
+
+  [class*="--teal"],
+  [class*="--pacific"] {
+    background-color: $pacific;
+    color: $white;
+
+    ::selection,
+    ::-moz-selection {
+      background: $panther-black;
+    }
+
+    [class*="__heading"],
+    a {
+      color: $white;
+    }
+
+    [class*="__button"] {
+      // $bg: $cu-red;
+      // @include button-bg($bg);
+
+      &:hover,
+      &:active {
+        // background-color: darken($bg, 8%);
+        -webkit-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+      }
+    }
+
+    .text--link {
+      color: $cu-light-grey;
+      @include underline(currentColor);
+
+      &:hover,
+      &:focus {
+        color: $white;
+        @include underline(currentColor);
+        transition: all 0.3s ease;
+      }
     }
   }
 
@@ -893,5 +942,54 @@ html body {
 
   to {
     opacity: 0;
+  }
+}
+
+.lazy {
+  --bgImage: 'none';
+  background-image: var(--bgImage) !important;
+}
+
+img.lazy,
+.lazy[role="img"],
+img[loading="lazy"] {
+  opacity: 0;
+}
+
+img.lazy-loaded,
+.lazy-loaded[role="img"],
+img[loading="lazy"] {
+  animation: 1s lazyload forwards;
+}
+
+@keyframes lazyload {
+  0% {
+    opacity: 0;
+    -webkit-backface-visibility: hidden;
+    filter: url(#blur);
+    -webkikt-filter: url('#blur');
+  }
+
+  10% {
+    opacity: .5;
+  }
+
+  30% {
+    opacity: 1 !important;
+  }
+
+  100% {
+    filter: none;
+    -webkikt-filter: none;
+  }
+}
+
+.no-js {
+  .lazy {
+    --bgImage: '';
+    background-image: var(--bgImage) !important;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
+    animation: 500ms lazyload forwards;
   }
 }
