@@ -8,7 +8,7 @@
         <div id="left-column-navigation" class="left-nav-drilldown">
             <ul class="root-left-nav">
                 #foreach( $asset in $leftNavAssets.children)
-                 #buildDrillDownList($asset)
+                 #buildDrillDownList($asset, 'leftNav')
                 #end
             </ul>
         </div>
