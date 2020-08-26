@@ -179,8 +179,19 @@ end
 desc 'Updates `Chapman.edu/_cascade/formats/level/left_nav_drilldown.vtl` with `.cascade-code/Chapman.edu/_cascade/formats/level/left_nav_drilldown.vtl`'
 task edit_left_nav_drilldown: :environment do
   edit_format(
-    '_cascade/formats/level/left_nav_drilldown.vtl',
+    'Chapman.edu/_cascade/formats/level/left_nav_drilldown.vtl',
     '.cascade-code/Chapman.edu/_cascade/formats/level/left_nav_drilldown.vtl'
+  )
+end
+
+# ---------------------------------------------------------------------------- #
+#   edit format `Chapman.edu/_cascade/formats/helpers.velocity`   #
+# ---------------------------------------------------------------------------- #
+desc 'Updates `Chapman.edu/_cascade/formats/helpers.velocity` with `.cascade-code/Chapman.edu/_cascade/formats/helpers.velocity`'
+task edit_helpers_velocity: :environment do
+  edit_format(
+    'Chapman.edu/_cascade/formats/helpers.velocity',
+    '.cascade-code/Chapman.edu/_cascade/formats/helpers.velocity'
   )
 end
 
