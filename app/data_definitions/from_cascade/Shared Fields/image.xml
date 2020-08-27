@@ -1,5 +1,5 @@
 <system-data-structure>
-	<group identifier="image" label="Image" multiple="true">
+	<group identifier="imageNICKWASHERE" label="Image" multiple="true">
 		<text default="Internal Cascade Image" identifier="imageType" label="Image Link" required="true" type="radiobutton">
 			<radio-item show-fields="image/imageUrlInt, image/altText, image/imageShape, image/objectPositionX, image/objectPositionY" value="Internal Cascade Image"/>
 			<radio-item show-fields="image/imageUrlExt, image/altText, image/imageShape, image/objectPositionX, image/objectPositionY" value="External Image URL"/>
