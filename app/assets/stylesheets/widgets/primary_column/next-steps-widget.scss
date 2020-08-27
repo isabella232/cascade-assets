@@ -1,6 +1,6 @@
 @import "base/base";
 
-h1+.next-steps-widget {
+h1 + .next-steps-widget {
   margin-top: 0;
 }
 
@@ -21,15 +21,15 @@ h1+.next-steps-widget {
     padding-top: $defaultPadding;
     margin-bottom: 0.5rem;
 
-    &~.next-steps-widget__text {
+    & ~ .next-steps-widget__text {
       justify-self: center;
 
-      &~.next-steps-widget__buttons {
+      & ~ .next-steps-widget__buttons {
         padding-top: unset;
       }
     }
 
-    &~.next-steps-widget__buttons {
+    & ~ .next-steps-widget__buttons {
       padding-top: 10px;
       padding-bottom: $defaultPadding;
       padding-right: $defaultPadding;
@@ -59,6 +59,7 @@ h1+.next-steps-widget {
 
   .next-steps-widget__button {
     @include button-bg($cu-red);
+    --font-size: 1.6rem;
     border: none;
   }
 
@@ -77,18 +78,18 @@ h1+.next-steps-widget {
       padding-top: $defaultPadding;
       padding-left: $defaultPadding;
 
-      &~.next-steps-widget__text {
+      & ~ .next-steps-widget__text {
         // padding-top: 2.$defaultPadding;
         max-width: unset;
         justify-self: flex-start;
         padding-left: $defaultPadding;
 
-        &~.next-steps-widget__buttons {
+        & ~ .next-steps-widget__buttons {
           padding-top: unset;
         }
       }
 
-      &~.next-steps-widget__buttons {
+      & ~ .next-steps-widget__buttons {
         padding-left: $defaultPadding;
         padding-top: $defaultPadding;
         padding-bottom: $defaultPadding;
@@ -161,14 +162,12 @@ h1+.next-steps-widget {
     }
   }
 
-
-  +[class*="-widget"] {
+  + [class*="-widget"] {
     margin: 20px 0 20px 0;
   }
 }
 
 .ie {
-
   .next-steps-widget,
   &.next-steps-widget--left-aligned {
     display: flex;
