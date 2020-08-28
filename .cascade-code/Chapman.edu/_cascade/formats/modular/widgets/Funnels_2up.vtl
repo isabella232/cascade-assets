@@ -39,10 +39,12 @@
   #set ( $headlineText = $funnel.getChild('headline').value )
   #set ( $links = $_XPathTool.selectNodes($funnel.getChild('links'), "link") )
   #set ( $details = $funnel.getChild('copy').value )
-  #set ( $imageRoleVal =  ( $region.getChild('imageAltOrDecorative').value ) )
+  #set ( $imageRoleVal =  ( $funnel.getChild('imageAltOrDecorative').value ) )
+
+  #set ( $linkAriaLabel =  ( $funnel.getChild('accessibility').getChild('ariaLabel').value ) )
 
   #if ( $altText == "" )
-    #set ( $altText = "TODO: [photo description needed in 2up Funnel]" )
+    #set ( $altText = "" )
   #end
 
   #if ( $imageRoleVal == "Decorative Image" )
@@ -82,21 +84,21 @@
 #macro( buildFunnelBlockLink $isLink $headlineLink $headlineText )
     #if ( $isLink )
       <a href="${_EscapeTool.xml($headlineLink)}">
-        #buildFunnelBlockFeatureImage( $imageUrl $altText )
+        #buildFunnelBlockFeatureImage( $imageUrl $altText $imageRole )
         #buildFunnelBlockHeader( $headlineText )
       </a>
     #else
-      #buildFunnelBlockFeatureImage( $imageUrl $altText )
+      #buildFunnelBlockFeatureImage( $imageUrl $altText $imageRole)
       #buildFunnelBlockHeader( $headlineText )
     #end
 #end
 
-#macro( buildFunnelBlockFeatureImage $imageUrl $altText )
+#macro( buildFunnelBlockFeatureImage $imageUrl $altText $imageRole )
   <div class="featureImage">
-  $imageRole
     <img 
          src="$imageUrl"
          alt="${_EscapeTool.xml($altText)}"
+        $imageRole 
          height="$FUNNEL_FEATURE_IMAGE_HEIGHT"
          width="$FUNNEL_FEATURE_IMAGE_WIDTH" />
   </div>
@@ -115,6 +117,9 @@
     #foreach ( $link in $links )
       #set ( $linkType = $link.getChild('linkType').value )
       #set ( $linkLabel = $link.getChild('label').value )
+      #set ( $ariaLabelVal = $link.getChild('accessibility').getChild('ariaLabel').value )
+      #set ( $linkTitle = $link.getChild('accessibility').getChild('title').value )
+
 
       #if ( $linkType == 'Internal Link' )
         #set ($linkURL = $link.getChild('internalLink').getChild('path').value )
@@ -128,7 +133,7 @@
 
       #if ( $isLink )
         <li>
-          <a href="${_EscapeTool.xml($linkURL)}">${_EscapeTool.xml($linkLabel)}&#160;»</a>
+          <a href="${_EscapeTool.xml($linkURL)}" aria-label="${_EscapeTool.xml($ariaLabelVal)}" title="${_EscapeTool.xml($linkTitle)}">${_EscapeTool.xml($linkLabel)}&#160;»</a>
         </li>
       #end
     #end

@@ -571,6 +571,10 @@
               <asset type="page" identifier="internalLink" label="Internal Link" field-id="ff6bcc3ec0a81e5f43ef9b37c29ad89d"/>
               <asset type="file" identifier="fileLink" label="File Link" field-id="ff6bcc3ec0a81e5f43ef9b3762e00da3"/>
               <text identifier="label" label="Label" field-id="ff6bcc3ec0a81e5f43ef9b377eb9120f"/>
+              <group identifier="accessibility" label="Accessibility">
+                <text identifier="ariaLabel" label="Aria Label"/>
+                <text identifier="title" label="Title"/>
+              </group>
             </group>
           </group>
         </group>

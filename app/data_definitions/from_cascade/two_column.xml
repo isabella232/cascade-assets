@@ -720,6 +720,10 @@
 							<asset field-id="ff6bcc16c0a81e5f43ef9b37e434ef17" identifier="internalLink" label="Internal Link" type="page"/>
 							<asset field-id="ff6bcc16c0a81e5f43ef9b37f27ec24a" identifier="fileLink" label="File Link" type="file"/>
 							<text field-id="ff6bcc16c0a81e5f43ef9b3789f46601" identifier="label" label="Label"/>
+							<group identifier="accessibility" label="Accessibility">
+								<text identifier="ariaLabel" label="Aria Label"/>
+								<text identifier="title" label="Title"/>
+							</group>
 						</group>
 					</group>
 				</group>
@@ -779,6 +783,10 @@
 							<asset field-id="ff6bcc17c0a81e5f43ef9b372478007f" identifier="internalLink" label="Internal Link" type="page"/>
 							<asset field-id="ff6bcc17c0a81e5f43ef9b377a181553" identifier="fileLink" label="File Link" type="file"/>
 							<text field-id="ff6bcc17c0a81e5f43ef9b37ee709654" identifier="label" label="Label"/>
+							<group identifier="accessibility" label="Accessibility">
+								<text identifier="ariaLabel" label="Aria Label"/>
+								<text identifier="title" label="Title"/>
+							</group>
 						</group>
 					</group>
 				</group>

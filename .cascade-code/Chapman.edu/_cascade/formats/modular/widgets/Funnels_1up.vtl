@@ -16,6 +16,7 @@
       #set ( $links = $_XPathTool.selectNodes($region.getChild('links'), "link") )
       #set ( $imageRoleVal =  ( $region.getChild('imageAltOrDecorative').value ) )
 
+
       #if ( $region.getChild('altText').value != "" )
         #set ( $altText = $region.getChild('altText').value )
       #else
@@ -55,7 +56,10 @@
     #foreach ( $link in $links )
       #set ( $linkType = $link.getChild('linkType').value )
       #set ( $label = $link.getChild('label').value )
+      #set ( $ariaLabelVal = $link.getChild('accessibility').getChild('ariaLabel').value )
+      #set ( $linkTitle = $link.getChild('accessibility').getChild('title').value )
 
+      
       #if ( $linkType == 'Internal Link' )
         #set ( $linkURL = $link.getChild('internalLink').getChild('path').value )
       #elseif ( $linkType == 'File Link' )
@@ -68,7 +72,7 @@
 
       #if ( $linkURL != '' && $linkURL != '/' )
         <li>
-          <a href="${_EscapeTool.xml($linkURL)}">${_EscapeTool.xml($label)}&#160;»</a>
+          <a href="${_EscapeTool.xml($linkURL)}" aria-label="${_EscapeTool.xml($ariaLabelVal)}" title="${_EscapeTool.xml($linkTitle)}">${_EscapeTool.xml($label)}&#160;»</a>
         </li>
       #else
         <li>${_EscapeTool.xml($label)}</li>
