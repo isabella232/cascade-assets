@@ -688,7 +688,7 @@
 						required="true"
 						type="file"/>
 
-					<text default="Alt Text"
+					<text default="Decorative Image"
 						identifier="imageAltOrDecorative"
 						label="Accessibility"
 						type="radiobutton"
@@ -736,7 +736,7 @@
 				</text>
 				<group identifier="region" label="Region" multiple="true">
 					<asset field-id="ff6bcc16c0a81e5f43ef9b37b537417c" identifier="image" label="Image (290x125)" type="file"/>
-					<text default="Alt Text"
+					<text default="Decorative Image"
 						identifier="imageAltOrDecorative"
 						label="Accessibility"
 						type="radiobutton"

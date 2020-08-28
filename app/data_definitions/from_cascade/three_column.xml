@@ -1,9 +1,13 @@
 <system-data-structure>
   <group identifier="masthead" label="Masthead Options" collapsed="true">
-    <!-- Masthead Options -->
-    <!-- radio-item show-fields map to groups below -->
-    <!-- radio-item values map to Masthead format selectors -->
-    <text type="radiobutton" identifier="mastheadType" label="Masthead Type" field-id="ff6bcc38c0a81e5f43ef9b37ac5ffc0b" help-text="these are the new wider mastheads available">
+  <!-- Masthead Options -->
+  <!-- radio-item show-fields map to groups below -->
+  <!-- radio-item values map to Masthead format selectors -->
+    <text type="radiobutton"
+      identifier="mastheadType"
+      label="Masthead Type"
+      field-id="ff6bcc38c0a81e5f43ef9b37ac5ffc0b"
+      help-text="these are the new wider mastheads available">
       <radio-item value="Branded - New" show-fields="masthead/branded201611"/>
       <radio-item value="Slider - New" show-fields="masthead/slider201611"/>
       <radio-item value="Boxes" show-fields="masthead/boxes"/>
@@ -12,24 +16,65 @@
     <!-- New masthead formats (Nov 2016): Branded and Slider -->
     <!-- These should mirror groups in two_column.xml -->
     <group identifier="branded201611" label="Branded - New">
-      <text identifier="header" label="School or Dept Name" field-id="ff6bcc38c0a81e5f43ef9b378d8025a9" required="true" help-text="title that appears in masthead to the side of the photo"/>
-      <asset type="file" identifier="image" label="Image (780x260)" field-id="ff6bcc38c0a81e5f43ef9b37f2d6e2db" required="true"/>
-      <text identifier="altText" label="Image Alt-Text" field-id="ff6bcc38c0a81e5f43ef9b37eefb31a6" required="true" help-text="Alternate text to describe image (required)"/>
-      <text identifier="photoCaption" label="Caption (optional. 70 chars max)" field-id="ff6bcc38c0a81e5f43ef9b37c15820ad" maxlength="70" help-text="short caption (70 chars max including blanks) to show on photo eg. Photo By: or other text"/>
+      <text identifier="header"
+        label="School or Dept Name"
+        field-id="ff6bcc38c0a81e5f43ef9b378d8025a9"
+        required="true"
+        help-text="title that appears in masthead to the side of the photo"/>
+      <asset type="file"
+        identifier="image"
+        label="Image (780x260)"
+        field-id="ff6bcc38c0a81e5f43ef9b37f2d6e2db"
+        required="true"/>
+      <text identifier="altText"
+        label="Image Alt-Text"
+        field-id="ff6bcc38c0a81e5f43ef9b37eefb31a6"
+        required="true"
+        help-text="Alternate text to describe image (required)"/>
+      <text identifier="photoCaption"
+        label="Caption (optional. 70 chars max)"
+        field-id="ff6bcc38c0a81e5f43ef9b37c15820ad"
+        maxlength="70"
+        help-text="short caption (70 chars max including blanks) to show on photo eg. Photo By: or other text"/>
     </group>
     <group identifier="slider201611" label="Slider - New">
-      <text identifier="header" label="School or Dept Name" field-id="ff6bcc38c0a81e5f43ef9b37b872a571" required="true" help-text="title that appears in masthead to the side of the photo"/>
+      <text identifier="header"
+        label="School or Dept Name"
+        field-id="ff6bcc38c0a81e5f43ef9b37b872a571"
+        required="true"
+        help-text="title that appears in masthead to the side of the photo"/>
       <group identifier="slides" label="Slides">
-        <group identifier="slide" label="Slide" multiple="true" maximum-number="10" minimum-number="1">
-          <asset type="file" identifier="image" label="Image (780x440)" field-id="ff6bcc38c0a81e5f43ef9b3769d98c08" required="true"/>
-          <text identifier="altText" label="Image Alt-Text" field-id="ff6bcc38c0a81e5f43ef9b37450ef255" required="true" help-text="Alternate text to describe image (required)"/>
+        <group identifier="slide"
+          label="Slide"
+          multiple="true"
+          maximum-number="10"
+          minimum-number="1">
+          <asset type="file"
+            identifier="image"
+            label="Image (780x440)"
+            field-id="ff6bcc38c0a81e5f43ef9b3769d98c08"
+            required="true"/>
+          <text identifier="altText"
+            label="Image Alt-Text"
+            field-id="ff6bcc38c0a81e5f43ef9b37450ef255"
+            required="true"
+            help-text="Alternate text to describe image (required)"/>
           <text identifier="subTitle" label="subTitle" field-id="ff6bcc38c0a81e5f43ef9b378142265a"/>
-          <text identifier="photoCaption" label="Caption (optional. 70 chars max)" field-id="ff6bcc38c0a81e5f43ef9b37715fd868" maxlength="70" help-text="short caption (70 chars max including blanks) to show on photo eg. Photo By: or other text"/>
+          <text identifier="photoCaption"
+            label="Caption (optional. 70 chars max)"
+            field-id="ff6bcc38c0a81e5f43ef9b37715fd868"
+            maxlength="70"
+            help-text="short caption (70 chars max including blanks) to show on photo eg. Photo By: or other text"/>
         </group>
       </group>
     </group>
     <group identifier="boxes" label="Boxes">
-      <text type="radiobutton" identifier="show" label="Show" field-id="ff6bcc38c0a81e5f43ef9b37fe74fb5e" default="No" required="true">
+      <text type="radiobutton"
+        identifier="show"
+        label="Show"
+        field-id="ff6bcc38c0a81e5f43ef9b37fe74fb5e"
+        default="No"
+        required="true">
         <radio-item value="Yes"/>
         <radio-item value="No"/>
       </text>
@@ -41,9 +86,23 @@
       <group identifier="slides" label="Slides">
         <group identifier="slide" label="Slide" multiple="true" minimum-number="4">
           <asset type="file" identifier="image" label="Image (266x220)" field-id="ff6bcc38c0a81e5f43ef9b37f7cc8bfb"/>
-          <text identifier="altText" label="Image Alt-Text" field-id="ff6bcc39c0a81e5f43ef9b3744f25a60" required="true" help-text="Alternate text to describe image (required)"/>
-          <text identifier="header" label="Header" field-id="ff6bcc39c0a81e5f43ef9b37edf0cca4" default="[header]" required="true" maxlength="35"/>
-          <text multi-line="true" identifier="description" label="Description (25 words max)" field-id="ff6bcc39c0a81e5f43ef9b37fb8cd0ed" default="[description]" required="true"/>
+          <text identifier="altText"
+            label="Image Alt-Text"
+            field-id="ff6bcc39c0a81e5f43ef9b3744f25a60"
+            required="true"
+            help-text="Alternate text to describe image (required)"/>
+          <text identifier="header"
+            label="Header"
+            field-id="ff6bcc39c0a81e5f43ef9b37edf0cca4"
+            default="[header]"
+            required="true"
+            maxlength="35"/>
+          <text multi-line="true"
+            identifier="description"
+            label="Description (25 words max)"
+            field-id="ff6bcc39c0a81e5f43ef9b37fb8cd0ed"
+            default="[description]"
+            required="true"/>
           <text identifier="link" label="External Link" field-id="ff6bcc39c0a81e5f43ef9b3713c0fd0c" help-text="full url (including http) to page outside of Cascade"/>
           <asset type="page" identifier="internalLink" label="Or Internal Link" field-id="ff6bcc39c0a81e5f43ef9b37f4d0a62c"/>
         </group>
@@ -52,7 +111,12 @@
   </group>
   <group identifier="leftColumn" label="Left Column" collapsed="true">
     <group identifier="widget" label="Widget" multiple="true">
-      <text type="dropdown" identifier="widgetType" label="Type of Widget" field-id="ff6bcc39c0a81e5f43ef9b37519a4a68" default="(select one)" help-text="Choose the type of content you&#39;d like to add to the page">
+      <text type="dropdown"
+        identifier="widgetType"
+        label="Type of Widget"
+        field-id="ff6bcc39c0a81e5f43ef9b37519a4a68"
+        default="(select one)"
+        help-text="Choose the type of content you&#39;d like to add to the page">
         <dropdown-item value="(select one)"/>
         <dropdown-item value="Button" show-fields="leftColumn/widget/actionButtons"/>
         <dropdown-item value="Callout Box" show-fields="leftColumn/widget/calloutBox"/>
@@ -64,18 +128,34 @@
         <shared-field path="display" identifier="display" field-id="ff6bcc39c0a81e5f43ef9b37182a10fe" />
         <shared-field path="background-color" identifier="bgColor" field-id="ff6bcc39c0a81e5f43ef9b37558a08ef" />
         <shared-field path="image" identifier="image" required="true" field-id="ff6bcc39c0a81e5f43ef9b376d4e9ee4" />
-        <text identifier="heading" label="Heading" field-id="ff6bcc39c0a81e5f43ef9b37fab117ce" required="true" maxlength="100"/>
-        <text identifier="name" label="Name" field-id="ff6bcc39c0a81e5f43ef9b37ed837f91" required="true" maxlength="50"/>
+        <text identifier="heading"
+          label="Heading"
+          field-id="ff6bcc39c0a81e5f43ef9b37fab117ce"
+          required="true"
+          maxlength="100"/>
+        <text identifier="name"
+          label="Name"
+          field-id="ff6bcc39c0a81e5f43ef9b37ed837f91"
+          required="true"
+          maxlength="50"/>
         <text identifier="dept" label="Department" field-id="ff6bcc39c0a81e5f43ef9b37d6b8709a" maxlength="100"/>
         <text identifier="phone" label="Phone" field-id="ff6bcc39c0a81e5f43ef9b375e658295"/>
         <text identifier="email" label="Email" field-id="ff6bcc39c0a81e5f43ef9b37bddc5fc2"/>
       </group>
       <group identifier="calloutBox" label="Callout Box" collapsed="true">
-        <text type="radiobutton" identifier="display-callout-box" label="Show" field-id="ff6bcc39c0a81e5f43ef9b37ce1a1fbf" default="Yes">
+        <text type="radiobutton"
+          identifier="display-callout-box"
+          label="Show"
+          field-id="ff6bcc39c0a81e5f43ef9b37ce1a1fbf"
+          default="Yes">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
-        <text type="dropdown" identifier="color-value" label="Color" field-id="ff6bcc39c0a81e5f43ef9b3775f1572c" default="Grey">
+        <text type="dropdown"
+          identifier="color-value"
+          label="Color"
+          field-id="ff6bcc39c0a81e5f43ef9b3775f1572c"
+          default="Grey">
           <dropdown-item value="Grey"/>
           <dropdown-item value="Red"/>
           <dropdown-item value="Black"/>
@@ -84,12 +164,20 @@
         </text>
         <group identifier="text" label="Text">
           <text identifier="preheader" label="Preheader (Optional)" field-id="ff6bcc39c0a81e5f43ef9b379124f9c2" help-text="Preheader"/>
-          <text multi-line="true" identifier="headline" label="Headline" field-id="ff6bcc3ac0a81e5f43ef9b378b4739c8" help-text="Headline"/>
+          <text multi-line="true"
+            identifier="headline"
+            label="Headline"
+            field-id="ff6bcc3ac0a81e5f43ef9b378b4739c8"
+            help-text="Headline"/>
           <text wysiwyg="true" identifier="copy" label="Copy" field-id="ff6bcc3ac0a81e5f43ef9b37b7df7e3c"/>
         </group>
         <group identifier="links" label="Links">
           <group identifier="link" label="Link" multiple="true">
-            <text type="radiobutton" identifier="linkType" label="Link Type" field-id="ff6bcc3ac0a81e5f43ef9b3790063d26" default="Internal Link">
+            <text type="radiobutton"
+              identifier="linkType"
+              label="Link Type"
+              field-id="ff6bcc3ac0a81e5f43ef9b3790063d26"
+              default="Internal Link">
               <radio-item value="Internal Link" show-fields="leftColumn/widget/calloutBox/links/link/internalLink"/>
               <radio-item value="External Link" show-fields="leftColumn/widget/calloutBox/links/link/externalLink"/>
               <radio-item value="File Link" show-fields="leftColumn/widget/calloutBox/links/link/fileLink"/>
@@ -102,12 +190,20 @@
         </group>
       </group>
       <group identifier="actionButtons" label="Buttons" collapsed="true">
-        <text type="radiobutton" identifier="display-action-buttons" label="Show" field-id="ff6bcc3ac0a81e5f43ef9b37e235e5bf" default="Yes">
+        <text type="radiobutton"
+          identifier="display-action-buttons"
+          label="Show"
+          field-id="ff6bcc3ac0a81e5f43ef9b37e235e5bf"
+          default="Yes">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
         <group identifier="button" label="Button" multiple="true">
-          <text type="radiobutton" identifier="linkType" label="Link Type" field-id="ff6bcc3ac0a81e5f43ef9b378352efe4" default="Internal Link">
+          <text type="radiobutton"
+            identifier="linkType"
+            label="Link Type"
+            field-id="ff6bcc3ac0a81e5f43ef9b378352efe4"
+            default="Internal Link">
             <radio-item value="Internal Link" show-fields="leftColumn/widget/actionButtons/button/internalLink"/>
             <radio-item value="External Link" show-fields="leftColumn/widget/actionButtons/button/externalLink"/>
             <radio-item value="File Link" show-fields="leftColumn/widget/actionButtons/button/fileLink"/>
@@ -118,10 +214,19 @@
           <text identifier="label" label="Label" field-id="ff6bcc3ac0a81e5f43ef9b378ab9f44b"/>
           <text identifier="onclick" label="Custom Onclick Code" field-id="ff6bcc3ac0a81e5f43ef9b37f2cd1306" help-text="Javascript code to execute on the click event of this link."/>
         </group>
-        <asset type="block" identifier="block" label="Block" field-id="ff6bcc3ac0a81e5f43ef9b37863536db" render-content-depth="unlimited"/>
+        <asset type="block"
+          identifier="block"
+          label="Block"
+          field-id="ff6bcc3ac0a81e5f43ef9b37863536db"
+          render-content-depth="unlimited"/>
       </group>
       <group identifier="FeaturedNewsEvents" label="Featured / News / Events" collapsed="true">
-        <text type="dropdown" identifier="options" label="Options" field-id="ff6bcc3bc0a81e5f43ef9b378216cc30" default="Do Not Show" required="true">
+        <text type="dropdown"
+          identifier="options"
+          label="Options"
+          field-id="ff6bcc3bc0a81e5f43ef9b378216cc30"
+          default="Do Not Show"
+          required="true">
           <dropdown-item value="Featured - News - Events (Featured active)"/>
           <dropdown-item value="Featured - News - Events (News active)"/>
           <dropdown-item value="Featured - News - Events (Events active)"/>
@@ -140,28 +245,64 @@
       <group identifier="contact" label="Department Contact" collapsed="true">
         <shared-field path="display" identifier="display" field-id="ff6bcc3bc0a81e5f43ef9b3700b3042d" />
         <shared-field path="background-color" identifier="bgColor" field-id="ff6bcc3bc0a81e5f43ef9b37ca9f71c8" />
-        <asset type="block" identifier="info" label="Contact Block" field-id="ff6bcc3bc0a81e5f43ef9b37b757c757" render-content-depth="2" required="true" help-text="Find department blocks under //_shared-content/departments/"/>
-        <text type="radiobutton" identifier="show-department" label="Show Department Name" field-id="ff6bcc3bc0a81e5f43ef9b3787d8d425" default="Yes" required="true">
+        <asset type="block"
+          identifier="info"
+          label="Contact Block"
+          field-id="ff6bcc3bc0a81e5f43ef9b37b757c757"
+          render-content-depth="2"
+          required="true"
+          help-text="Find department blocks under //_shared-content/departments/"/>
+        <text type="radiobutton"
+          identifier="show-department"
+          label="Show Department Name"
+          field-id="ff6bcc3bc0a81e5f43ef9b3787d8d425"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
-        <text type="radiobutton" identifier="show-phone" label="Show Phone" field-id="ff6bcc3bc0a81e5f43ef9b37b0f34d1c" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="show-phone"
+          label="Show Phone"
+          field-id="ff6bcc3bc0a81e5f43ef9b37b0f34d1c"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
-        <text type="radiobutton" identifier="show-email" label="Show Email" field-id="ff6bcc3bc0a81e5f43ef9b37194ae712" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="show-email"
+          label="Show Email"
+          field-id="ff6bcc3bc0a81e5f43ef9b37194ae712"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
-        <text type="radiobutton" identifier="show-hours" label="Show Hours" field-id="ff6bcc3bc0a81e5f43ef9b37106c6f4c" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="show-hours"
+          label="Show Hours"
+          field-id="ff6bcc3bc0a81e5f43ef9b37106c6f4c"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
-        <text type="radiobutton" identifier="show-address" label="Show Address" field-id="ff6bcc3bc0a81e5f43ef9b377ecdd0be" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="show-address"
+          label="Show Address"
+          field-id="ff6bcc3bc0a81e5f43ef9b377ecdd0be"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
-        <text type="radiobutton" identifier="show-social" label="Show Social Links" field-id="ff6bcc3bc0a81e5f43ef9b37059894c1" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="show-social"
+          label="Show Social Links"
+          field-id="ff6bcc3bc0a81e5f43ef9b37059894c1"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
@@ -169,9 +310,17 @@
     </group>
   </group>
   <group identifier="primaryContent" label="Primary Content" collapsed="true">
-    <text identifier="pageTitle" label="Page Title" field-id="ff6bcc3bc0a81e5f43ef9b37e9446e07" default="[page title]" required="true"/>
+    <text identifier="pageTitle"
+      label="Page Title"
+      field-id="ff6bcc3bc0a81e5f43ef9b37e9446e07"
+      default="[page title]"
+      required="true"/>
     <group identifier="widget" label="Widgets" multiple="true">
-      <text type="dropdown" identifier="widgetType" label="Type of Widget" field-id="ff6bcc3bc0a81e5f43ef9b372ea525f7" help-text="Choose the type of content you&#39;d like to add to the page">
+      <text type="dropdown"
+        identifier="widgetType"
+        label="Type of Widget"
+        field-id="ff6bcc3bc0a81e5f43ef9b372ea525f7"
+        help-text="Choose the type of content you&#39;d like to add to the page">
         <dropdown-item value="(select one)"/>
         <dropdown-item value="RSS Feed Display" show-fields="primaryContent/widget/rssFeedDisplay"/>
         <dropdown-item value="Program Events" show-fields="primaryContent/widget/programEvents"/>
@@ -203,7 +352,11 @@
       <group identifier="rssFeedDisplay" label="RSS Feed Display" collapsed="true">
         <shared-field path="display" identifier="display" field-id="ff6bcc3bc0a81e5f43ef9b370404edfd" />
         <text identifier="feedTitle" label="Feed Title" field-id="ff6bcc3bc0a81e5f43ef9b37d3baf23b" required="true"/>
-        <text type="dropdown" identifier="bgColor" label="Background Color" field-id="ff6bcc3bc0a81e5f43ef9b37df775fb0" default="Sand">
+        <text type="dropdown"
+          identifier="bgColor"
+          label="Background Color"
+          field-id="ff6bcc3bc0a81e5f43ef9b37df775fb0"
+          default="Sand">
           <dropdown-item value="sand" label="Sand"/>
           <dropdown-item value="grey" label="Grey"/>
         </text>
@@ -211,23 +364,40 @@
       </group>
       <group identifier="programEvents" label="Program Events" collapsed="true">
         <shared-field path="display" identifier="display" field-id="ff6bcc3bc0a81e5f43ef9b37f4046c5f" />
-        <text type="radiobutton" identifier="tilesBars" label="Program Events Display" field-id="ff6bcc3bc0a81e5f43ef9b3742e06df1" default="tiles" required="true">
+        <text type="radiobutton"
+          identifier="tilesBars"
+          label="Program Events Display"
+          field-id="ff6bcc3bc0a81e5f43ef9b3742e06df1"
+          default="tiles"
+          required="true">
           <radio-item value="tiles" label="Tiles"/>
           <radio-item value="bars" label="Bars"/>
         </text>
         <text identifier="feedUrl" label="Feed Url" field-id="ff6bcc3cc0a81e5f43ef9b37fa0ff413" required="true"/>
-        <text wysiwyg="true" identifier="text" label="Text" field-id="ff6bcc3cc0a81e5f43ef9b37e3000629" required="true"/>
+        <text wysiwyg="true"
+          identifier="text"
+          label="Text"
+          field-id="ff6bcc3cc0a81e5f43ef9b37e3000629"
+          required="true"/>
       </group>
       <group identifier="bannerNotificationWidget" label="Banner Notification" collapsed="true">
         <shared-field path="display" identifier="display" field-id="ff6bcc3cc0a81e5f43ef9b370d22310e" />
         <shared-field path="background-color" identifier="bgColor" field-id="ff6bcc3cc0a81e5f43ef9b37f9bdd034" />
-        <text wysiwyg="true" identifier="text" label="Text" field-id="ff6bcc3cc0a81e5f43ef9b3702908d7c" required="true"/>
+        <text wysiwyg="true"
+          identifier="text"
+          label="Text"
+          field-id="ff6bcc3cc0a81e5f43ef9b3702908d7c"
+          required="true"/>
       </group>
       <group identifier="careerBlockWidget" label="Career Block" collapsed="true">
         <shared-field path="display" identifier="display" field-id="ff6bcc3cc0a81e5f43ef9b37273c5176" />
         <group identifier="block" label="Block" multiple="true">
           <shared-field path="background-color" identifier="bgColor" field-id="ff6bcc3cc0a81e5f43ef9b377ad1ec6e" />
-          <text identifier="careerCode" label="Career Code" field-id="ff6bcc3cc0a81e5f43ef9b37a5274c7f" required="true" help-text="Copy and paste the respective career &#39;Code&#39; from https://www.onetonline.org/find/"/>
+          <text identifier="careerCode"
+            label="Career Code"
+            field-id="ff6bcc3cc0a81e5f43ef9b37a5274c7f"
+            required="true"
+            help-text="Copy and paste the respective career &#39;Code&#39; from https://www.onetonline.org/find/"/>
         </group>
       </group>
       <group identifier="testimonial-widget" label="Testimonial Widget" collapsed="true">
@@ -235,21 +405,39 @@
         <shared-field path="background-color" identifier="bgColor" field-id="ff6bcc3cc0a81e5f43ef9b37b8596bef" />
         <group identifier="testimonialSlide" label="Testimonial Slide" multiple="true">
           <shared-field path="image" identifier="image" label="Headshot Image" maximum-number="1" field-id="ff6bcc3cc0a81e5f43ef9b372bb2ffb7" />
-          <text identifier="endorserName" label="Endorser&#39;s Name" field-id="ff6bcc3cc0a81e5f43ef9b373578a0b3" required="true" help-text="100 chracters max"/>
+          <text identifier="endorserName"
+            label="Endorser&#39;s Name"
+            field-id="ff6bcc3cc0a81e5f43ef9b373578a0b3"
+            required="true"
+            help-text="100 chracters max"/>
           <text identifier="endorserTitle" label="Endorser&#39;s Department/Title" field-id="ff6bcc3cc0a81e5f43ef9b3783b0b00d" help-text="E.G. &#39;University Advancement&#39; or &#39;Lead Engineer at SpaceX&#39;"/>
-          <text multi-line="true" identifier="testimonyText" label="Testimonial Text" field-id="ff6bcc3cc0a81e5f43ef9b37c415eea3" required="true" help-text="200 characters max"/>
+          <text multi-line="true"
+            identifier="testimonyText"
+            label="Testimonial Text"
+            field-id="ff6bcc3cc0a81e5f43ef9b37c415eea3"
+            required="true"
+            help-text="200 characters max"/>
           <shared-field path="cta" identifier="link" field-id="ff6bcc3cc0a81e5f43ef9b372fa31250" />
         </group>
       </group>
       <group identifier="carousel" label="Carousel" collapsed="true">
-        <text type="radiobutton" identifier="display-carousel" label="Show" field-id="ff6bcc3cc0a81e5f43ef9b376aee3cc8" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="display-carousel"
+          label="Show"
+          field-id="ff6bcc3cc0a81e5f43ef9b376aee3cc8"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
         <group identifier="image" label="Image" multiple="true">
           <text identifier="headline" label="Headline" field-id="ff6bcc3cc0a81e5f43ef9b37d1ff4c2e"/>
           <text wysiwyg="true" identifier="caption" label="Caption" field-id="ff6bcc3cc0a81e5f43ef9b37e8f1b9f1"/>
-          <text type="radiobutton" identifier="imageLink" label="Image Link" field-id="ff6bcc3dc0a81e5f43ef9b376eb4a49d" default="Internal Cascade Image">
+          <text type="radiobutton"
+            identifier="imageLink"
+            label="Image Link"
+            field-id="ff6bcc3dc0a81e5f43ef9b376eb4a49d"
+            default="Internal Cascade Image">
             <radio-item value="Internal Cascade Image" show-fields="primaryContent/widget/carousel/image/internalCascadeImage"/>
             <radio-item value="External Image URL" show-fields="primaryContent/widget/carousel/image/externalImageURL"/>
           </text>
@@ -258,23 +446,46 @@
         </group>
       </group>
       <group identifier="collapsibleRegions" label="Collapsible Regions" collapsed="true">
-        <text type="radiobutton" identifier="display-collapsibles" label="Show" field-id="ff6bcc3dc0a81e5f43ef9b373397e307" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="display-collapsibles"
+          label="Show"
+          field-id="ff6bcc3dc0a81e5f43ef9b373397e307"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
         <text identifier="header" label="Main Header" field-id="ff6bcc3dc0a81e5f43ef9b37cc17d730" help-text="heading to appear above set of collapsibles"/>
-        <text wysiwyg="true" identifier="copy" label="Introductory Copy" field-id="ff6bcc3dc0a81e5f43ef9b3797b693a7" help-text="introductory text to appear above set of collapsibles"/>
+        <text wysiwyg="true"
+          identifier="copy"
+          label="Introductory Copy"
+          field-id="ff6bcc3dc0a81e5f43ef9b3797b693a7"
+          help-text="introductory text to appear above set of collapsibles"/>
         <group identifier="collapsibleRegion" label="Region" multiple="true" minimum-number="0">
-          <text type="radiobutton" identifier="active" label="Open by Default" field-id="ff6bcc3dc0a81e5f43ef9b37d227fcf6" default="No" required="true">
+          <text type="radiobutton"
+            identifier="active"
+            label="Open by Default"
+            field-id="ff6bcc3dc0a81e5f43ef9b37d227fcf6"
+            default="No"
+            required="true">
             <radio-item value="Yes"/>
             <radio-item value="No"/>
           </text>
-          <text identifier="header" label="Collapsible Header" field-id="ff6bcc3dc0a81e5f43ef9b3788be6f3a" default="[section header here]" required="true"/>
+          <text identifier="header"
+            label="Collapsible Header"
+            field-id="ff6bcc3dc0a81e5f43ef9b3788be6f3a"
+            default="[section header here]"
+            required="true"/>
           <text wysiwyg="true" identifier="copy" label="Copy" field-id="ff6bcc3dc0a81e5f43ef9b37c0168744"/>
         </group>
       </group>
       <group identifier="FeaturedNewsEvents" label="Featured / News / Events" collapsed="true">
-        <text type="dropdown" identifier="options" label="Options" field-id="ff6bcc3dc0a81e5f43ef9b37a0a2282f" default="Do Not Show" required="true">
+        <text type="dropdown"
+          identifier="options"
+          label="Options"
+          field-id="ff6bcc3dc0a81e5f43ef9b37a0a2282f"
+          default="Do Not Show"
+          required="true">
           <dropdown-item value="Featured - News - Events (Featured active)"/>
           <dropdown-item value="Featured - News - Events (News active)"/>
           <dropdown-item value="Featured - News - Events (Events active)"/>
@@ -291,28 +502,67 @@
         </text>
       </group>
       <group identifier="tabs" label="Tabs" collapsed="true">
-        <text type="radiobutton" identifier="display-tabs" label="Show" field-id="ff6bcc3dc0a81e5f43ef9b373f18b136" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="display-tabs"
+          label="Show"
+          field-id="ff6bcc3dc0a81e5f43ef9b373f18b136"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
         <group identifier="tab" label="Tab" multiple="true">
-          <text identifier="name" label="Name" field-id="ff6bcc3dc0a81e5f43ef9b37a3b3fed2" default="[name]" required="true"/>
-          <text wysiwyg="true" identifier="content" label="Content" field-id="ff6bcc3dc0a81e5f43ef9b378aa6612f" default="[content]" required="true"/>
+          <text identifier="name"
+            label="Name"
+            field-id="ff6bcc3dc0a81e5f43ef9b37a3b3fed2"
+            default="[name]"
+            required="true"/>
+          <text wysiwyg="true"
+            identifier="content"
+            label="Content"
+            field-id="ff6bcc3dc0a81e5f43ef9b378aa6612f"
+            default="[content]"
+            required="true"/>
         </group>
       </group>
       <group identifier="funnels-1up" label="Funnels (1up)" collapsed="true">
-        <text type="radiobutton" identifier="display-funnels-1up" label="Show" field-id="ff6bcc3dc0a81e5f43ef9b37530952d2" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="display-funnels-1up"
+          label="Show"
+          field-id="ff6bcc3dc0a81e5f43ef9b37530952d2"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
         <group identifier="region" label="Region" multiple="true" minimum-number="0">
-          <text identifier="headline" label="Headline" field-id="ff6bcc3dc0a81e5f43ef9b378c7f2ec9" default="[headline]" required="true"/>
-          <asset type="file" identifier="image" label="Image (200x150)" field-id="ff6bcc3dc0a81e5f43ef9b37f2986772" required="true"/>
-          <text identifier="altText" label="Image Alt-Text" field-id="ff6bcc3dc0a81e5f43ef9b37e1d5f384" required="true" help-text="Alternate text to describe image (required)"/>
+          <text identifier="headline"
+            label="Headline"
+            field-id="ff6bcc3dc0a81e5f43ef9b378c7f2ec9"
+            default="[headline]"
+            required="true"/>
+          <asset type="file"
+            identifier="image"
+            label="Image (200x150)"
+            field-id="ff6bcc3dc0a81e5f43ef9b37f2986772"
+            required="true"/>
+          <text default="Decorative Image"
+            identifier="imageAltOrDecorative"
+            label="Accessibility"
+            type="radiobutton"
+            help-text="Decorative images don’t add information to the content of a page. For example, the information provided by the image might already be given using adjacent text, or the image might be included to make the website more visually attractive.">
+            <radio-item show-fields="primaryContent/widget/funnels-1up/region/altText" value="Alt Text"/>
+            <radio-item value="Decorative Image"/>
+          </text>
+          <text help-text="Alternate text to describe image (required)" identifier="altText" label="Image Alt-Text" required="true"/>
           <text wysiwyg="true" identifier="copy" label="Copy" field-id="ff6bcc3dc0a81e5f43ef9b37debfd1c2"/>
           <group identifier="links" label="Links">
             <group identifier="link" label="Link" multiple="true">
-              <text type="radiobutton" identifier="linkType" label="Link Type" field-id="ff6bcc3dc0a81e5f43ef9b37ce3b292e" default="Internal Link">
+              <text type="radiobutton"
+                identifier="linkType"
+                label="Link Type"
+                field-id="ff6bcc3dc0a81e5f43ef9b37ce3b292e"
+                default="Internal Link">
                 <radio-item value="Internal Link" show-fields="primaryContent/widget/funnels-1up/region/links/link/internalLink"/>
                 <radio-item value="External Link" show-fields="primaryContent/widget/funnels-1up/region/links/link/externalLink"/>
                 <radio-item value="File Link" show-fields="primaryContent/widget/funnels-1up/region/links/link/fileLink"/>
@@ -327,23 +577,44 @@
       </group>
       <group identifier="photoCalloutWidget" label="Photo Callout" collapsed="true">
         <shared-field path="display" identifier="display" field-id="a7a67c6bc0a81e4b407da5646ea52523" />
-        <text type="radiobutton" identifier="textAlignment" label="Text Alignment" field-id="a7a67c6bc0a81e4b407da5647f163c00" default="Centered Text">
+        <text type="radiobutton"
+          identifier="textAlignment"
+          label="Text Alignment"
+          field-id="a7a67c6bc0a81e4b407da5647f163c00"
+          default="Centered Text">
           <radio-item value="Centered Text"/>
           <radio-item value="Left Aligned Text"/>
         </text>
-        <text type="radiobutton" identifier="numberOfColumns" label="Desktop Layout" field-id="a7a67c6bc0a81e4b407da56416da0fff" default="Three Column Layout">
+        <text type="radiobutton"
+          identifier="numberOfColumns"
+          label="Desktop Layout"
+          field-id="a7a67c6bc0a81e4b407da56416da0fff"
+          default="Three Column Layout">
           <radio-item value="Three Column Layout"/>
           <radio-item value="Two Column Layout"/>
         </text>
-        <text type="radiobutton" identifier="hideImagesOnMobile" label="Mobile Layout" field-id="a7a67c6bc0a81e4b407da5641f41b7dc" default="Show Images">
+        <text type="radiobutton"
+          identifier="hideImagesOnMobile"
+          label="Mobile Layout"
+          field-id="a7a67c6bc0a81e4b407da5641f41b7dc"
+          default="Show Images">
           <radio-item value="Show Images"/>
           <radio-item value="Hide Images"/>
         </text>
-        <text type="radiobutton" identifier="pagination" label="Pagination" field-id="a7a67c6bc0a81e4b407da5644ac0b6d1" default="Paginate">
+        <text type="radiobutton"
+          identifier="pagination"
+          label="Pagination"
+          field-id="a7a67c6bc0a81e4b407da5644ac0b6d1"
+          default="Paginate">
           <radio-item value="Load All Images"/>
           <radio-item value="Paginate"/>
         </text>
-        <text type="radiobutton" identifier="enableLinks" label="Make each photo block a link?" field-id="a7a67c6bc0a81e4b407da564d2b584c6" default="Enable Links" help-text="Disabling links will remove the option to wrap each photo block in a link">
+        <text type="radiobutton"
+          identifier="enableLinks"
+          label="Make each photo block a link?"
+          field-id="a7a67c6bc0a81e4b407da564d2b584c6"
+          default="Enable Links"
+          help-text="Disabling links will remove the option to wrap each photo block in a link">
           <radio-item value="Enable Links" show-fields="primaryContent/widget/photoCalloutWidget/block/link"/>
           <radio-item value="Disable Links"/>
         </text>
@@ -356,9 +627,18 @@
         </group>
         <group identifier="block" label="Photo Block" multiple="true">
           <shared-field path="image__rectangle-only--required" identifier="image" label="Image Image (4:3 aspect ratio - 260px by 150px mimimum)" help-text="Two Column Dimensions: 392 X 150; Three Column Dimensions: 255 X 150;" required="true" maximum-number="1" field-id="a7a67c6bc0a81e4b407da56469ff04b0" />
-          <text identifier="text" label="Text" field-id="a7a67c6bc0a81e4b407da5641061c456" required="true" maxlength="50" help-text="50 Characters Max"/>
+          <text identifier="text"
+            label="Text"
+            field-id="a7a67c6bc0a81e4b407da5641061c456"
+            required="true"
+            maxlength="50"
+            help-text="50 Characters Max"/>
           <group identifier="link" label="Link">
-            <text type="radiobutton" identifier="linkType" label="Link Type" field-id="a7a67c6cc0a81e4b407da5640265d916" default="Internal Link">
+            <text type="radiobutton"
+              identifier="linkType"
+              label="Link Type"
+              field-id="a7a67c6cc0a81e4b407da5640265d916"
+              default="Internal Link">
               <radio-item value="Internal Link" show-fields="primaryContent/widget/photoCalloutWidget/block/link/internalLink"/>
               <radio-item value="External Link" show-fields="primaryContent/widget/photoCalloutWidget/block/link/externalLink"/>
               <radio-item value="File Link" show-fields="primaryContent/widget/photoCalloutWidget/block/link/fileLink"/>
@@ -373,29 +653,50 @@
             </group>
             <group identifier="tracking" label="Analytics Tracking" restrict-to-groups="Administrators">
               <text identifier="customID" label="Override HTML ID" field-id="a7a67c6cc0a81e4b407da56401c40add" help-text="Replace or add custom link ID for tracking."/>
-              <text identifier="dataAttr" label="Data Attribute" multiple="true" field-id="a7a67c6cc0a81e4b407da564a6c6de23" help-text="Replace or add custom data-attr for tracking. Entering &#39;my-custom-thing&#39; will result in &#39;data-my-custom-thing&#39;"/>
+              <text identifier="dataAttr"
+                label="Data Attribute"
+                multiple="true"
+                field-id="a7a67c6cc0a81e4b407da564a6c6de23"
+                help-text="Replace or add custom data-attr for tracking. Entering &#39;my-custom-thing&#39; will result in &#39;data-my-custom-thing&#39;"/>
             </group>
           </group>
         </group>
       </group>
       <group identifier="next-steps-widget" label="Next Steps" collapsed="true">
         <shared-field path="display" identifier="display" field-id="ff6bcc3ec0a81e5f43ef9b370e84584c" />
-        <text type="radiobutton" identifier="layout" label="Layout" field-id="ff6bcc3ec0a81e5f43ef9b372f21161b" default="left-aligned">
+        <text type="radiobutton"
+          identifier="layout"
+          label="Layout"
+          field-id="ff6bcc3ec0a81e5f43ef9b372f21161b"
+          default="left-aligned">
           <radio-item value="left-aligned" label="Left Aligned"/>
           <radio-item value="centered" label="Centered"/>
         </text>
         <shared-field path="background-color" identifier="bgColor" field-id="ff6bcc3ec0a81e5f43ef9b3769a31374" />
         <text identifier="heading" label="Heading" field-id="ff6bcc3ec0a81e5f43ef9b378abc8721" required="true"/>
-        <text multi-line="true" identifier="body" label="Text" field-id="ff6bcc3ec0a81e5f43ef9b37d145ad32" help-text="500 characters maximum"/>
+        <text multi-line="true"
+          identifier="body"
+          label="Text"
+          field-id="ff6bcc3ec0a81e5f43ef9b37d145ad32"
+          help-text="500 characters maximum"/>
         <shared-field path="cta" identifier="link" field-id="ff6bcc3ec0a81e5f43ef9b37a2d93339" />
       </group>
       <group identifier="personnel" label="Personnel" collapsed="true">
-        <text type="radiobutton" identifier="display-personnel" label="Show" field-id="ff6bcc3ec0a81e5f43ef9b37d7675c6e" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="display-personnel"
+          label="Show"
+          field-id="ff6bcc3ec0a81e5f43ef9b37d7675c6e"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
         <text identifier="header" label="Header" field-id="ff6bcc3ec0a81e5f43ef9b374c893af9"/>
-        <text wysiwyg="true" identifier="copy" label="Copy" field-id="ff6bcc3ec0a81e5f43ef9b37a51076e5" help-text="text to appear above list of people"/>
+        <text wysiwyg="true"
+          identifier="copy"
+          label="Copy"
+          field-id="ff6bcc3ec0a81e5f43ef9b37a51076e5"
+          help-text="text to appear above list of people"/>
         <group identifier="person" label="Person" multiple="true">
           <text identifier="first-name" label="First Name" field-id="ff6bcc3ec0a81e5f43ef9b3738ef4bbc"/>
           <text identifier="middle-name" label="Middle Name" field-id="ff6bcc3ec0a81e5f43ef9b3772abb82c"/>
@@ -405,9 +706,17 @@
           <text identifier="phone" label="Phone Number" field-id="ff6bcc3fc0a81e5f43ef9b377b1e763f"/>
           <text identifier="email" label="Email address" field-id="ff6bcc3fc0a81e5f43ef9b379afb0d91"/>
           <asset type="file" identifier="image" label="Image (120px wide)" field-id="ff6bcc3fc0a81e5f43ef9b375ac84c68"/>
-          <text multi-line="true" identifier="bio" label="Bio paragraph" multiple="true" field-id="ff6bcc3fc0a81e5f43ef9b37fa8c4559"/>
+          <text multi-line="true"
+            identifier="bio"
+            label="Bio paragraph"
+            multiple="true"
+            field-id="ff6bcc3fc0a81e5f43ef9b37fa8c4559"/>
           <group identifier="link" label="Links" multiple="true">
-            <text type="radiobutton" identifier="linkType" label="Link Type" field-id="ff6bcc3fc0a81e5f43ef9b3710a0b7e3" default="Internal Link">
+            <text type="radiobutton"
+              identifier="linkType"
+              label="Link Type"
+              field-id="ff6bcc3fc0a81e5f43ef9b3710a0b7e3"
+              default="Internal Link">
               <radio-item value="Internal Link" show-fields="primaryContent/widget/personnel/person/link/internalLink"/>
               <radio-item value="External Link" show-fields="primaryContent/widget/personnel/person/link/externalLink"/>
               <radio-item value="File Link" show-fields="primaryContent/widget/personnel/person/link/fileLink"/>
@@ -422,27 +731,56 @@
       <group identifier="quickFactBlocksWidget" label="Quick Fact Blocks" multiple="true" collapsed="true">
         <shared-field path="display" identifier="display" field-id="ff6bcc3fc0a81e5f43ef9b37e1e05adb" />
         <!-- Red was deliberately removed  normally use the shared bgColor field here -->
-        <text type="dropdown" identifier="bgColor" label="Background Color" field-id="ff6bcc3fc0a81e5f43ef9b373dcbe4bb" default="Black">
+        <text type="dropdown"
+          identifier="bgColor"
+          label="Background Color"
+          field-id="ff6bcc3fc0a81e5f43ef9b373dcbe4bb"
+          default="Black">
           <dropdown-item value="Grey"/>
           <dropdown-item value="Black"/>
           <dropdown-item value="Sand"/>
           <dropdown-item value="White"/>
         </text>
         <group identifier="fact" label="Fact" multiple="true">
-          <text identifier="icon" label="FontAwesome Icon" field-id="ff6bcc3fc0a81e5f43ef9b37a4407a73" required="true" help-text="Insert FontAwesome Icon from https://fontawesome.com/icons in the format: fas fa-lightbulb"/>
-          <text identifier="text" label="Text" field-id="ff6bcc3fc0a81e5f43ef9b37f65c05f6" required="true" help-text="15 Characters Maximum"/>
+          <text identifier="icon"
+            label="FontAwesome Icon"
+            field-id="ff6bcc3fc0a81e5f43ef9b37a4407a73"
+            required="true"
+            help-text="Insert FontAwesome Icon from https://fontawesome.com/icons in the format: fas fa-lightbulb"/>
+          <text identifier="text"
+            label="Text"
+            field-id="ff6bcc3fc0a81e5f43ef9b37f65c05f6"
+            required="true"
+            help-text="15 Characters Maximum"/>
         </group>
       </group>
       <group identifier="threePhotoCallout" label="Three Photo Callout" collapsed="true">
-        <text type="radiobutton" identifier="display-three-photo-callout" label="Show" field-id="ff6bcc3fc0a81e5f43ef9b373ad8b02e" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="display-three-photo-callout"
+          label="Show"
+          field-id="ff6bcc3fc0a81e5f43ef9b373ad8b02e"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
-        <group identifier="photoCallout" label="Photo" multiple="true" maximum-number="3" minimum-number="3">
+        <group identifier="photoCallout"
+          label="Photo"
+          multiple="true"
+          maximum-number="3"
+          minimum-number="3">
           <asset type="file" identifier="image" label="Image (136x96)" field-id="ff6bcc3fc0a81e5f43ef9b37b3d963c7"/>
-          <text identifier="altText" label="Image Alt-Text" field-id="ff6bcc3fc0a81e5f43ef9b372d18edaf" required="true" help-text="Alternate text to describe image (required)"/>
+          <text identifier="altText"
+            label="Image Alt-Text"
+            field-id="ff6bcc3fc0a81e5f43ef9b372d18edaf"
+            required="true"
+            help-text="Alternate text to describe image (required)"/>
           <group identifier="link" label="Link">
-            <text type="radiobutton" identifier="linkType" label="Link Type" field-id="ff6bcc40c0a81e5f43ef9b37a3a19d5f" default="Internal Link">
+            <text type="radiobutton"
+              identifier="linkType"
+              label="Link Type"
+              field-id="ff6bcc40c0a81e5f43ef9b37a3a19d5f"
+              default="Internal Link">
               <radio-item value="Internal Link" show-fields="primaryContent/widget/threePhotoCallout/photoCallout/link/internalLink"/>
               <radio-item value="External Link" show-fields="primaryContent/widget/threePhotoCallout/photoCallout/link/externalLink"/>
               <radio-item value="File Link" show-fields="primaryContent/widget/threePhotoCallout/photoCallout/link/fileLink"/>
@@ -455,19 +793,38 @@
         </group>
       </group>
       <group identifier="twitterTimeline" label="Twitter Timeline" collapsed="true">
-        <text type="radiobutton" identifier="display-twitter-timeline" label="Show" field-id="ff6bcc40c0a81e5f43ef9b371d820951" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="display-twitter-timeline"
+          label="Show"
+          field-id="ff6bcc40c0a81e5f43ef9b371d820951"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
-        <asset type="block" identifier="timeline" label="Timeline" field-id="ff6bcc40c0a81e5f43ef9b3766236e68" render-content-depth="unlimited"/>
+        <asset type="block"
+          identifier="timeline"
+          label="Timeline"
+          field-id="ff6bcc40c0a81e5f43ef9b3766236e68"
+          render-content-depth="unlimited"/>
       </group>
       <group identifier="Calendar25Live" label="25Live Calendar (labs and classrooms)" collapsed="true">
-        <text type="radiobutton" identifier="display-25live-listing" label="Show" field-id="ff6bcc40c0a81e5f43ef9b37d24363da" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="display-25live-listing"
+          label="Show"
+          field-id="ff6bcc40c0a81e5f43ef9b37d24363da"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
         <group identifier="settings" label="Settings">
-          <text type="dropdown" identifier="Calendar25LiveVariable" label="25Live Calendar Code" field-id="ff6bcc40c0a81e5f43ef9b37d3b55aeb" default="llb03" help-text="code for specific calendar from 25live database">
+          <text type="dropdown"
+            identifier="Calendar25LiveVariable"
+            label="25Live Calendar Code"
+            field-id="ff6bcc40c0a81e5f43ef9b37d3b55aeb"
+            default="llb03"
+            help-text="code for specific calendar from 25live database">
             <dropdown-item value="llb03"/>
             <dropdown-item value="llb12"/>
             <dropdown-item value="llb13"/>
@@ -503,49 +860,95 @@
         </group>
       </group>
       <group identifier="AtoZListing" label="A to Z Listing (Block)" collapsed="true">
-        <text type="radiobutton" identifier="display-a-z-listing" label="Show" field-id="ff6bcc40c0a81e5f43ef9b37af3a25a9" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="display-a-z-listing"
+          label="Show"
+          field-id="ff6bcc40c0a81e5f43ef9b37af3a25a9"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
-        <asset type="block" identifier="blockName" label="Block" field-id="ff6bcc40c0a81e5f43ef9b3727557a6f" help-text="choose an index block from _cascade/blocks/ folder"/>
+        <asset type="block"
+          identifier="blockName"
+          label="Block"
+          field-id="ff6bcc40c0a81e5f43ef9b3727557a6f"
+          help-text="choose an index block from _cascade/blocks/ folder"/>
       </group>
       <group identifier="html-block" label="Html block" collapsed="true">
-        <text type="radiobutton" identifier="display-html-block" label="Show" field-id="ff6bcc40c0a81e5f43ef9b37a7b9c3f1" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="display-html-block"
+          label="Show"
+          field-id="ff6bcc40c0a81e5f43ef9b37a7b9c3f1"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
-        <text type="radiobutton" identifier="block-type" label="Block Type" field-id="ff6bcc40c0a81e5f43ef9b377b97ae55" default="Cascade Block" required="true">
+        <text type="radiobutton"
+          identifier="block-type"
+          label="Block Type"
+          field-id="ff6bcc40c0a81e5f43ef9b377b97ae55"
+          default="Cascade Block"
+          required="true">
           <radio-item value="Cascade Block" label="Cascade Block" show-fields="primaryContent/widget/html-block/cascade-block"/>
           <radio-item value="External Block" label="Paste In External Code" show-fields="primaryContent/widget/html-block/external-block"/>
         </text>
         <group identifier="cascade-block" label="Cascade Block">
-          <asset type="block" identifier="code-block" label="Block" field-id="ff6bcc40c0a81e5f43ef9b37a7211708" render-content-depth="unlimited" help-text="link to _cascade/blocks/html"/>
+          <asset type="block"
+            identifier="code-block"
+            label="Block"
+            field-id="ff6bcc40c0a81e5f43ef9b37a7211708"
+            render-content-depth="unlimited"
+            help-text="link to _cascade/blocks/html"/>
         </group>
         <group identifier="external-block" label="External Block">
-          <text multi-line="true" identifier="code-block" label="HTml of Javascript Embed or IFrame Code Block" field-id="ff6bcc40c0a81e5f43ef9b37e5cc8a29" required="true" help-text="paste in raw html or Javascript link to render code or iFrame"/>
+          <text multi-line="true"
+            identifier="code-block"
+            label="HTml of Javascript Embed or IFrame Code Block"
+            field-id="ff6bcc40c0a81e5f43ef9b37e5cc8a29"
+            required="true"
+            help-text="paste in raw html or Javascript link to render code or iFrame"/>
         </group>
       </group>
       <!--
       <group collapsed="true" identifier="reserved-block-formats" label="Reserved Block/Formats"><text default="Yes" identifier="display-reserved-block-formats" label="Show" required="true" type="radiobutton"><radio-item value="Yes"/><radio-item value="No"/></text><text default="A to Z Listing" help-text="identifies pre-paired block and formats of data" identifier="BlockFormatType" label="Block/Format Type" type="dropdown"><dropdown-item value="University-wide Faculty By Rank Listing"/><dropdown-item value="University-wide Tenure/Tenure-Track Faculty Listing"/><dropdown-item value="University-wide Presidential Fellows Listing"/><dropdown-item value="A to Z Listing"/></text></group>
       -->
       <group identifier="wysiwyg-editor" label="Text Editor" collapsed="true">
-        <text type="radiobutton" identifier="display-wysiwyg-editor" label="Show" field-id="ff6bcc40c0a81e5f43ef9b373650a7b0" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="display-wysiwyg-editor"
+          label="Show"
+          field-id="ff6bcc40c0a81e5f43ef9b373650a7b0"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
         <text wysiwyg="true" identifier="content" label="Content" field-id="ff6bcc40c0a81e5f43ef9b371026538c"/>
       </group>
       <group identifier="logo-image-rotator" label="Logo Image Rotator" collapsed="true">
-        <text type="radiobutton" identifier="display-logo-image-rotator" label="Show" field-id="ff6bcc41c0a81e5f43ef9b37c8099d27" default="Yes">
+        <text type="radiobutton"
+          identifier="display-logo-image-rotator"
+          label="Show"
+          field-id="ff6bcc41c0a81e5f43ef9b37c8099d27"
+          default="Yes">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
         <text identifier="label" label="Label" field-id="ff6bcc41c0a81e5f43ef9b37f7182d9e" maxlength="20"/>
         <group identifier="image" label="Image" multiple="true" maximum-number="25">
           <asset type="file" identifier="image-file" label="Image (114 x 100)" field-id="ff6bcc41c0a81e5f43ef9b3755e8e61d"/>
-          <text identifier="altText" label="Image Alt-Text" field-id="ff6bcc41c0a81e5f43ef9b3752919404" required="true" help-text="Alternate text to describe image (required)"/>
+          <text identifier="altText"
+            label="Image Alt-Text"
+            field-id="ff6bcc41c0a81e5f43ef9b3752919404"
+            required="true"
+            help-text="Alternate text to describe image (required)"/>
           <group identifier="link" label="Link">
-            <text type="radiobutton" identifier="linkType" label="Link Type" field-id="ff6bcc41c0a81e5f43ef9b3787943c93" default="Internal Link">
+            <text type="radiobutton"
+              identifier="linkType"
+              label="Link Type"
+              field-id="ff6bcc41c0a81e5f43ef9b3787943c93"
+              default="Internal Link">
               <radio-item value="Internal Link" show-fields="primaryContent/widget/logo-image-rotator/image/link/internalLink"/>
               <radio-item value="External Link" show-fields="primaryContent/widget/logo-image-rotator/image/link/externalLink"/>
               <radio-item value="File Link" show-fields="primaryContent/widget/logo-image-rotator/image/link/fileLink"/>
@@ -557,46 +960,95 @@
         </group>
       </group>
       <group identifier="form-embed" label="Form Embed" collapsed="true">
-        <text type="radiobutton" identifier="display-form-embed" label="Show" field-id="ff6bcc41c0a81e5f43ef9b37adb8ec9a" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="display-form-embed"
+          label="Show"
+          field-id="ff6bcc41c0a81e5f43ef9b37adb8ec9a"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
-        <text type="radiobutton" identifier="block-type" label="Block Type" field-id="ff6bcc41c0a81e5f43ef9b37af16406d" default="Cascade Block" required="true">
+        <text type="radiobutton"
+          identifier="block-type"
+          label="Block Type"
+          field-id="ff6bcc41c0a81e5f43ef9b37af16406d"
+          default="Cascade Block"
+          required="true">
           <radio-item value="Cascade Block" label="Cascade Block" show-fields="primaryContent/widget/form-embed/cascade-block"/>
           <radio-item value="External Block" label="External Javascript Embed or iFrame Block" show-fields="primaryContent/widget/form-embed/external-block"/>
         </text>
         <group identifier="cascade-block" label="Cascade Block">
           <text identifier="header" label="Header" field-id="ff6bcc41c0a81e5f43ef9b373fdbdc2e"/>
           <text wysiwyg="true" identifier="copy" label="Introductory Copy" field-id="ff6bcc41c0a81e5f43ef9b37704f514d"/>
-          <asset type="block" identifier="code-block" label="Form Block" field-id="ff6bcc41c0a81e5f43ef9b37662ca575" render-content-depth="unlimited" help-text="link to _cascade/blocks/html/Forms-primary-content"/>
+          <asset type="block"
+            identifier="code-block"
+            label="Form Block"
+            field-id="ff6bcc41c0a81e5f43ef9b37662ca575"
+            render-content-depth="unlimited"
+            help-text="link to _cascade/blocks/html/Forms-primary-content"/>
         </group>
         <group identifier="external-block" label="External Block">
           <text wysiwyg="true" identifier="copy" label="Introductory Copy" field-id="ff6bcc41c0a81e5f43ef9b3707b7f5ae"/>
-          <text multi-line="true" identifier="code-block" label="Embed or IFrame Code Block" field-id="ff6bcc41c0a81e5f43ef9b3776610c3a" required="true" help-text="paste in Javascript block provided by Embed Form action or iFrame in Formstack (check checkboxes for Don&#39;t Need Jquery or Jquery UI or Modernizer)"/>
+          <text multi-line="true"
+            identifier="code-block"
+            label="Embed or IFrame Code Block"
+            field-id="ff6bcc41c0a81e5f43ef9b3776610c3a"
+            required="true"
+            help-text="paste in Javascript block provided by Embed Form action or iFrame in Formstack (check checkboxes for Don&#39;t Need Jquery or Jquery UI or Modernizer)"/>
         </group>
       </group>
       <group identifier="form" label="Form" collapsed="true">
-        <text type="radiobutton" identifier="display-form" label="Show" field-id="ff6bcc41c0a81e5f43ef9b3715eda414" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="display-form"
+          label="Show"
+          field-id="ff6bcc41c0a81e5f43ef9b3715eda414"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
         <text identifier="header" label="Header" field-id="ff6bcc41c0a81e5f43ef9b376b493414"/>
         <text wysiwyg="true" identifier="copy" label="Copy" field-id="ff6bcc42c0a81e5f43ef9b37bdfd7aff"/>
-        <asset type="block" identifier="formBlock" label="Form Block" field-id="ff6bcc42c0a81e5f43ef9b3759a96b41" render-content-depth="unlimited" help-text="link to _cascade/blocks/html/Forms-primary-content"/>
+        <asset type="block"
+          identifier="formBlock"
+          label="Form Block"
+          field-id="ff6bcc42c0a81e5f43ef9b3759a96b41"
+          render-content-depth="unlimited"
+          help-text="link to _cascade/blocks/html/Forms-primary-content"/>
       </group>
       <group identifier="contact" label="Department Contact" collapsed="true">
-        <text type="radiobutton" identifier="display-contact" label="Show" field-id="ff6bcc42c0a81e5f43ef9b37dd2be6e4" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="display-contact"
+          label="Show"
+          field-id="ff6bcc42c0a81e5f43ef9b37dd2be6e4"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
         <text identifier="heading" label="Heading" field-id="ff6bcc42c0a81e5f43ef9b37c3c2835e"/>
         <text wysiwyg="true" identifier="copy" label="Copy" field-id="ff6bcc42c0a81e5f43ef9b37c8f830b7"/>
-        <text type="radiobutton" identifier="type" label="Display" field-id="ff6bcc42c0a81e5f43ef9b37644e0efd" default="Multiple Department Listing" required="true">
+        <text type="radiobutton"
+          identifier="type"
+          label="Display"
+          field-id="ff6bcc42c0a81e5f43ef9b37644e0efd"
+          default="Multiple Department Listing"
+          required="true">
           <radio-item value="Multiple Department Listing" show-fields="primaryContent/widget/contact/umbrella"/>
           <radio-item value="Individual Department" show-fields="primaryContent/widget/contact/info"/>
         </text>
-        <asset type="block" identifier="info" label="Choose Department" field-id="ff6bcc42c0a81e5f43ef9b37ca4be169" render-content-depth="2" required="true"/>
-        <text type="dropdown" identifier="umbrella" label="Umbrella Group" field-id="ff6bcc42c0a81e5f43ef9b37efab9a56" default="All">
+        <asset type="block"
+          identifier="info"
+          label="Choose Department"
+          field-id="ff6bcc42c0a81e5f43ef9b37ca4be169"
+          render-content-depth="2"
+          required="true"/>
+        <text type="dropdown"
+          identifier="umbrella"
+          label="Umbrella Group"
+          field-id="ff6bcc42c0a81e5f43ef9b37efab9a56"
+          default="All">
           <dropdown-item value="All"/>
           <dropdown-item value="About"/>
           <dropdown-item value="Academics"/>
@@ -620,7 +1072,11 @@
           <dropdown-item value="Support Chapman"/>
           <dropdown-item value="Wilkinson College"/>
         </text>
-        <text type="dropdown" identifier="display" label="Information to Display" field-id="ff6bcc42c0a81e5f43ef9b3757ffc60f" default="Basic Address">
+        <text type="dropdown"
+          identifier="display"
+          label="Information to Display"
+          field-id="ff6bcc42c0a81e5f43ef9b3757ffc60f"
+          default="Basic Address">
           <dropdown-item value="Basic Address"/>
           <dropdown-item value="Basic Location"/>
           <dropdown-item value="Main / People"/>
@@ -628,18 +1084,37 @@
         </text>
       </group>
       <group identifier="degree" label="Degree Information" collapsed="true">
-        <text type="radiobutton" identifier="display-degree" label="Show" field-id="ff6bcc42c0a81e5f43ef9b37f342786f" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="display-degree"
+          label="Show"
+          field-id="ff6bcc42c0a81e5f43ef9b37f342786f"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
         <text identifier="heading" label="Heading" field-id="ff6bcc42c0a81e5f43ef9b3783b8b0ad"/>
         <text wysiwyg="true" identifier="copy" label="Copy" field-id="ff6bcc42c0a81e5f43ef9b37507dc7d6"/>
-        <text type="radiobutton" identifier="type" label="Display" field-id="ff6bcc42c0a81e5f43ef9b37c69195db" default="Single Degree" required="true">
+        <text type="radiobutton"
+          identifier="type"
+          label="Display"
+          field-id="ff6bcc42c0a81e5f43ef9b37c69195db"
+          default="Single Degree"
+          required="true">
           <radio-item value="Single Degree" show-fields="primaryContent/widget/degree/show, primaryContent/widget/degree/block"/>
           <radio-item value="Degree Listing" show-fields="primaryContent/widget/degree/school, primaryContent/widget/degree/cat, primaryContent/widget/degree/level"/>
         </text>
-        <asset type="block" identifier="block" label="Degree" field-id="ff6bcc42c0a81e5f43ef9b3735bcebba" render-content-depth="2" required="true"/>
-        <text type="dropdown" identifier="school" label="School Affliation" field-id="ff6bcc42c0a81e5f43ef9b376136042c" default="All">
+        <asset type="block"
+          identifier="block"
+          label="Degree"
+          field-id="ff6bcc42c0a81e5f43ef9b3735bcebba"
+          render-content-depth="2"
+          required="true"/>
+        <text type="dropdown"
+          identifier="school"
+          label="School Affliation"
+          field-id="ff6bcc42c0a81e5f43ef9b376136042c"
+          default="All">
           <dropdown-item value="All"/>
           <dropdown-item value="Argyros School of Business and Economics"/>
           <dropdown-item value="Attallah College of Educational Studies"/>
@@ -661,54 +1136,112 @@
           <checkbox-item value="Major"/>
           <checkbox-item value="Minor"/>
         </text>
-        <text type="radiobutton" identifier="show" label="Show Photo" field-id="ff6bcc42c0a81e5f43ef9b370dd3d30e" default="No" required="true">
+        <text type="radiobutton"
+          identifier="show"
+          label="Show Photo"
+          field-id="ff6bcc42c0a81e5f43ef9b370dd3d30e"
+          default="No"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
       </group>
       <group identifier="faculty" label="Faculty" collapsed="true">
-        <text type="radiobutton" identifier="display-faculty" label="Show" field-id="ff6bcc43c0a81e5f43ef9b37f95954b8" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="display-faculty"
+          label="Show"
+          field-id="ff6bcc43c0a81e5f43ef9b37f95954b8"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
         <text identifier="heading" label="Heading" field-id="ff6bcc43c0a81e5f43ef9b37cbbb13cd"/>
         <text wysiwyg="true" identifier="copy" label="Copy" field-id="ff6bcc43c0a81e5f43ef9b37c4043198"/>
-        <text type="radiobutton" identifier="type" label="Display" field-id="ff6bcc43c0a81e5f43ef9b37ffcd2967" default="Individual Faculty" required="true">
+        <text type="radiobutton"
+          identifier="type"
+          label="Display"
+          field-id="ff6bcc43c0a81e5f43ef9b37ffcd2967"
+          default="Individual Faculty"
+          required="true">
           <radio-item value="Individual Faculty" show-fields="primaryContent/widget/faculty/person"/>
           <radio-item value="Faculty Listing" label="Faculty Listing" show-fields="primaryContent/widget/faculty/school, primaryContent/widget/faculty/dept, primaryContent/widget/faculty/filter, primaryContent/widget/faculty/facultyUnit, primaryContent/widget/faculty/photo, primaryContent/widget/faculty/bio-link, primaryContent/widget/faculty/short-bio, primaryContent/widget/faculty/show-research-interests, primaryContent/widget/faculty/show-courses-taught, primaryContent/widget/faculty/office-info, primaryContent/widget/faculty/show-school-affiliations"/>
         </text>
         <group identifier="person" label="Person" multiple="true">
-          <asset type="block" identifier="faculty-block" label="Faculty Member" field-id="ff6bcc43c0a81e5f43ef9b37f0088cd0" required="true"/>
-          <text type="radiobutton" identifier="photo" label="Show Photo" field-id="ff6bcc43c0a81e5f43ef9b37a215d6b2" default="Yes" required="true">
+          <asset type="block"
+            identifier="faculty-block"
+            label="Faculty Member"
+            field-id="ff6bcc43c0a81e5f43ef9b37f0088cd0"
+            required="true"/>
+          <text type="radiobutton"
+            identifier="photo"
+            label="Show Photo"
+            field-id="ff6bcc43c0a81e5f43ef9b37a215d6b2"
+            default="Yes"
+            required="true">
             <radio-item value="Yes"/>
             <radio-item value="No"/>
           </text>
-          <text type="radiobutton" identifier="bio-link" label="Link to Full Bio" field-id="ff6bcc43c0a81e5f43ef9b3732632c2f" default="Yes" required="true">
+          <text type="radiobutton"
+            identifier="bio-link"
+            label="Link to Full Bio"
+            field-id="ff6bcc43c0a81e5f43ef9b3732632c2f"
+            default="Yes"
+            required="true">
             <radio-item value="Yes"/>
             <radio-item value="No"/>
           </text>
-          <text type="radiobutton" identifier="short-bio" label="Show Short Bio" field-id="ff6bcc43c0a81e5f43ef9b372b966444" default="No" required="true">
+          <text type="radiobutton"
+            identifier="short-bio"
+            label="Show Short Bio"
+            field-id="ff6bcc43c0a81e5f43ef9b372b966444"
+            default="No"
+            required="true">
             <radio-item value="Yes"/>
             <radio-item value="No"/>
           </text>
-          <text type="radiobutton" identifier="show-research-interests" label="Show Research Interests" field-id="ff6bcc43c0a81e5f43ef9b37ffe6ff9d" default="Yes" required="true">
+          <text type="radiobutton"
+            identifier="show-research-interests"
+            label="Show Research Interests"
+            field-id="ff6bcc43c0a81e5f43ef9b37ffe6ff9d"
+            default="Yes"
+            required="true">
             <radio-item value="Yes"/>
             <radio-item value="No"/>
           </text>
-          <text type="radiobutton" identifier="show-courses-taught" label="Show Courses Taught" field-id="ff6bcc43c0a81e5f43ef9b375e3335e5" default="Yes" required="true">
+          <text type="radiobutton"
+            identifier="show-courses-taught"
+            label="Show Courses Taught"
+            field-id="ff6bcc43c0a81e5f43ef9b375e3335e5"
+            default="Yes"
+            required="true">
             <radio-item value="Yes"/>
             <radio-item value="No"/>
           </text>
-          <text type="radiobutton" identifier="office-info" label="Show Office Info" field-id="ff6bcc43c0a81e5f43ef9b37c54dd9d5" default="No" required="true">
+          <text type="radiobutton"
+            identifier="office-info"
+            label="Show Office Info"
+            field-id="ff6bcc43c0a81e5f43ef9b37c54dd9d5"
+            default="No"
+            required="true">
             <radio-item value="Yes"/>
             <radio-item value="No"/>
           </text>
-          <text type="radiobutton" identifier="show-school-affiliations" label="Show School Affiliation(s)" field-id="ff6bcc43c0a81e5f43ef9b37127a5775" default="Yes" required="true">
+          <text type="radiobutton"
+            identifier="show-school-affiliations"
+            label="Show School Affiliation(s)"
+            field-id="ff6bcc43c0a81e5f43ef9b37127a5775"
+            default="Yes"
+            required="true">
             <radio-item value="Yes"/>
             <radio-item value="No"/>
           </text>
         </group>
-        <text type="dropdown" identifier="school" label="School Affiliation" field-id="ff6bcc43c0a81e5f43ef9b3726ca1f6c" default="All">
+        <text type="dropdown"
+          identifier="school"
+          label="School Affiliation"
+          field-id="ff6bcc43c0a81e5f43ef9b3726ca1f6c"
+          default="All">
           <dropdown-item value="All" label="All"/>
           <dropdown-item value="SBE" label="Argyros School"/>
           <dropdown-item value="CES" label="Attallah College"/>
@@ -722,7 +1255,11 @@
           <dropdown-item value="COS" label="Schmid College"/>
           <dropdown-item value="SOC" label="School of Communication"/>
         </text>
-        <text type="dropdown" identifier="dept" label="Dept Affiliation" field-id="ff6bcc43c0a81e5f43ef9b37dacfa057" default="All">
+        <text type="dropdown"
+          identifier="dept"
+          label="Dept Affiliation"
+          field-id="ff6bcc43c0a81e5f43ef9b37dacfa057"
+          default="All">
           <dropdown-item value="All"/>
           <dropdown-item value="ARTS" label="Art"/>
           <dropdown-item value="ATPE" label="Athletic Training Program "/>
@@ -767,14 +1304,23 @@
           <dropdown-item value="SOCI" label="Sociology "/>
           <dropdown-item value="THEA" label="Theatre "/>
         </text>
-        <text type="dropdown" identifier="filter" label="Filter By" field-id="ff6bcc43c0a81e5f43ef9b3766213528" default="All" required="true">
+        <text type="dropdown"
+          identifier="filter"
+          label="Filter By"
+          field-id="ff6bcc43c0a81e5f43ef9b3766213528"
+          default="All"
+          required="true">
           <dropdown-item value="All"/>
           <dropdown-item value="Emeriti only"/>
           <dropdown-item value="Presidential Fellows only"/>
           <dropdown-item value="Tenured/Tenure-Track only"/>
           <dropdown-item value="Core Faculty only"/>
         </text>
-        <text type="dropdown" identifier="facultyUnit" label="Faculty Unit" field-id="ff6bcc43c0a81e5f43ef9b37f642dfa4" default="All">
+        <text type="dropdown"
+          identifier="facultyUnit"
+          label="Faculty Unit"
+          field-id="ff6bcc43c0a81e5f43ef9b37f642dfa4"
+          default="All">
           <dropdown-item value="All"/>
           <dropdown-item value="SCST-CBFS"/>
           <dropdown-item value="SCST-LES"/>
@@ -783,31 +1329,66 @@
           <dropdown-item value="PHRM-BPS"/>
           <dropdown-item value="PHRM-PHP"/>
         </text>
-        <text type="radiobutton" identifier="photo" label="Show Photo" field-id="ff6bcc44c0a81e5f43ef9b37e77e343e" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="photo"
+          label="Show Photo"
+          field-id="ff6bcc44c0a81e5f43ef9b37e77e343e"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
-        <text type="radiobutton" identifier="bio-link" label="Link to Full Bio" field-id="ff6bcc44c0a81e5f43ef9b37fb2d0dec" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="bio-link"
+          label="Link to Full Bio"
+          field-id="ff6bcc44c0a81e5f43ef9b37fb2d0dec"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
-        <text type="radiobutton" identifier="short-bio" label="Show Short Bio" field-id="ff6bcc44c0a81e5f43ef9b3795c85665" default="No" required="true">
+        <text type="radiobutton"
+          identifier="short-bio"
+          label="Show Short Bio"
+          field-id="ff6bcc44c0a81e5f43ef9b3795c85665"
+          default="No"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
-        <text type="radiobutton" identifier="show-research-interests" label="Show Research Interests" field-id="ff6bcc44c0a81e5f43ef9b37c37e532f" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="show-research-interests"
+          label="Show Research Interests"
+          field-id="ff6bcc44c0a81e5f43ef9b37c37e532f"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
-        <text type="radiobutton" identifier="show-courses-taught" label="Show Courses Taught" field-id="ff6bcc44c0a81e5f43ef9b37256f3e17" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="show-courses-taught"
+          label="Show Courses Taught"
+          field-id="ff6bcc44c0a81e5f43ef9b37256f3e17"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
-        <text type="radiobutton" identifier="office-info" label="Show Office Info" field-id="ff6bcc44c0a81e5f43ef9b37f24c1842" default="No" required="true">
+        <text type="radiobutton"
+          identifier="office-info"
+          label="Show Office Info"
+          field-id="ff6bcc44c0a81e5f43ef9b37f24c1842"
+          default="No"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
-        <text type="radiobutton" identifier="show-school-affiliations" label="Show School Affiliation(s)" field-id="ff6bcc44c0a81e5f43ef9b3789373196" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="show-school-affiliations"
+          label="Show School Affiliation(s)"
+          field-id="ff6bcc44c0a81e5f43ef9b3789373196"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
@@ -819,7 +1400,11 @@
   -->
   <group identifier="rightColumn" label="Right Column" collapsed="true">
     <group identifier="widget" label="Widgets" multiple="true">
-      <text type="dropdown" identifier="widgetType" label="Type of Widget" field-id="ff6bcc44c0a81e5f43ef9b37cb0d526b" help-text="Choose the type of content you&#39;d like to add to the page">
+      <text type="dropdown"
+        identifier="widgetType"
+        label="Type of Widget"
+        field-id="ff6bcc44c0a81e5f43ef9b37cb0d526b"
+        help-text="Choose the type of content you&#39;d like to add to the page">
         <dropdown-item value="(select one)"/>
         <dropdown-item value="Button" show-fields="rightColumn/widget/actionButtons"/>
         <dropdown-item value="Callout Box" show-fields="rightColumn/widget/calloutBox"/>
@@ -830,7 +1415,12 @@
         <dropdown-item value="Degree Info" show-fields="rightColumn/widget/degree"/>
       </text>
       <group identifier="actionButtons" label="Buttons" collapsed="true">
-        <text type="radiobutton" identifier="display-action-buttons" label="Show" field-id="ff6bcc44c0a81e5f43ef9b3727dfafab" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="display-action-buttons"
+          label="Show"
+          field-id="ff6bcc44c0a81e5f43ef9b3727dfafab"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
@@ -847,11 +1437,20 @@
         </group>
       </group>
       <group identifier="calloutBox" label="Callout Box" collapsed="true">
-        <text type="radiobutton" identifier="display-callout-box" label="Show" field-id="ff6bcc44c0a81e5f43ef9b371aaafb1d" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="display-callout-box"
+          label="Show"
+          field-id="ff6bcc44c0a81e5f43ef9b371aaafb1d"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
-        <text type="dropdown" identifier="color-value" label="Color" field-id="ff6bcc44c0a81e5f43ef9b37fa438591" default="Grey">
+        <text type="dropdown"
+          identifier="color-value"
+          label="Color"
+          field-id="ff6bcc44c0a81e5f43ef9b37fa438591"
+          default="Grey">
           <dropdown-item value="Grey"/>
           <dropdown-item value="Red"/>
           <dropdown-item value="Black"/>
@@ -859,13 +1458,21 @@
           <dropdown-item value="White"/>
         </text>
         <text identifier="preheader" label="Preheader (Optional)" field-id="ff6bcc45c0a81e5f43ef9b37a4ff9acd" help-text="Preheader"/>
-        <text multi-line="true" identifier="headline" label="Headline" field-id="ff6bcc45c0a81e5f43ef9b37f82510a0" help-text="Headline"/>
+        <text multi-line="true"
+          identifier="headline"
+          label="Headline"
+          field-id="ff6bcc45c0a81e5f43ef9b37f82510a0"
+          help-text="Headline"/>
         <text wysiwyg="true" identifier="copy" label="Copy" field-id="ff6bcc45c0a81e5f43ef9b3734789b28"/>
         <asset type="file" identifier="image" label="Image (206px wide)" field-id="ff6bcc45c0a81e5f43ef9b37ed30f477"/>
         <text identifier="altText" label="Image Alt-Text" field-id="ff6bcc45c0a81e5f43ef9b3727469380" help-text="Alternate text to describe image (required)"/>
         <group identifier="links" label="Links">
           <group identifier="link" label="Link" multiple="true">
-            <text type="radiobutton" identifier="linkType" label="Link Type" field-id="ff6bcc45c0a81e5f43ef9b37f16ef77a" default="Internal Link">
+            <text type="radiobutton"
+              identifier="linkType"
+              label="Link Type"
+              field-id="ff6bcc45c0a81e5f43ef9b37f16ef77a"
+              default="Internal Link">
               <radio-item value="Internal Link" show-fields="rightColumn/widget/calloutBox/links/link/internalLink"/>
               <radio-item value="External Link" show-fields="rightColumn/widget/calloutBox/links/link/externalLink"/>
               <radio-item value="File Link" show-fields="rightColumn/widget/calloutBox/links/link/fileLink"/>
@@ -878,25 +1485,47 @@
         </group>
       </group>
       <group identifier="simpleForm" label="Form" collapsed="true">
-        <text type="radiobutton" identifier="display-form" label="Show" field-id="ff6bcc45c0a81e5f43ef9b37331b537d" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="display-form"
+          label="Show"
+          field-id="ff6bcc45c0a81e5f43ef9b37331b537d"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
         <text identifier="header" label="Header" field-id="ff6bcc45c0a81e5f43ef9b3728e9780c"/>
         <text wysiwyg="true" identifier="copy" label="Copy" field-id="ff6bcc45c0a81e5f43ef9b370975df06"/>
-        <asset type="block" identifier="form" label="Form Block" field-id="ff6bcc45c0a81e5f43ef9b37bcd75311" render-content-depth="unlimited" help-text="link to /_cascade/blocks/html/Short Forms"/>
+        <asset type="block"
+          identifier="form"
+          label="Form Block"
+          field-id="ff6bcc45c0a81e5f43ef9b37bcd75311"
+          render-content-depth="unlimited"
+          help-text="link to /_cascade/blocks/html/Short Forms"/>
       </group>
       <group identifier="logo-image-rotator" label="Logo Image Rotator" collapsed="true">
-        <text type="radiobutton" identifier="display-logo-image-rotator" label="Show" field-id="ff6bcc45c0a81e5f43ef9b37ac5eccfb" default="Yes">
+        <text type="radiobutton"
+          identifier="display-logo-image-rotator"
+          label="Show"
+          field-id="ff6bcc45c0a81e5f43ef9b37ac5eccfb"
+          default="Yes">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
         <text identifier="label" label="Label" field-id="ff6bcc46c0a81e5f43ef9b37aa2dab2e" maxlength="20"/>
         <group identifier="image" label="Image" multiple="true" maximum-number="25">
           <asset type="file" identifier="image-file" label="Image (114 x 100)" field-id="ff6bcc46c0a81e5f43ef9b370d7373ac"/>
-          <text identifier="altText" label="Image Alt-Text" field-id="ff6bcc46c0a81e5f43ef9b37b00b33f2" required="true" help-text="Alternate text to describe image (required)"/>
+          <text identifier="altText"
+            label="Image Alt-Text"
+            field-id="ff6bcc46c0a81e5f43ef9b37b00b33f2"
+            required="true"
+            help-text="Alternate text to describe image (required)"/>
           <group identifier="link" label="Link">
-            <text type="radiobutton" identifier="linkType" label="Link Type" field-id="ff6bcc46c0a81e5f43ef9b37151ba908" default="Internal Link">
+            <text type="radiobutton"
+              identifier="linkType"
+              label="Link Type"
+              field-id="ff6bcc46c0a81e5f43ef9b37151ba908"
+              default="Internal Link">
               <radio-item value="Internal Link" show-fields="rightColumn/widget/logo-image-rotator/image/link/internalLink"/>
               <radio-item value="External Link" show-fields="rightColumn/widget/logo-image-rotator/image/link/externalLink"/>
               <radio-item value="File Link" show-fields="rightColumn/widget/logo-image-rotator/image/link/fileLink"/>
@@ -908,11 +1537,19 @@
         </group>
       </group>
       <group identifier="picasa-gallery" label="Picasa Gallery" collapsed="true">
-        <text type="radiobutton" identifier="display-picasa-gallery" label="Show" field-id="ff6bcc46c0a81e5f43ef9b377fdbb86e" default="Yes">
+        <text type="radiobutton"
+          identifier="display-picasa-gallery"
+          label="Show"
+          field-id="ff6bcc46c0a81e5f43ef9b377fdbb86e"
+          default="Yes">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
-        <text type="dropdown" identifier="feed" label="Feed" field-id="ff6bcc46c0a81e5f43ef9b3759cc0f88" default="None">
+        <text type="dropdown"
+          identifier="feed"
+          label="Feed"
+          field-id="ff6bcc46c0a81e5f43ef9b3759cc0f88"
+          default="None">
           <dropdown-item value="None"/>
           <dropdown-item value="PicasaChapman"/>
           <dropdown-item value="PicasaOrientation"/>
@@ -921,24 +1558,47 @@
         </text>
       </group>
       <group identifier="flickr-gallery" label="Flickr Gallery" collapsed="true">
-        <text type="radiobutton" identifier="display-flickr-gallery" label="Show" field-id="ff6bcc46c0a81e5f43ef9b37400596e2" default="Yes">
+        <text type="radiobutton"
+          identifier="display-flickr-gallery"
+          label="Show"
+          field-id="ff6bcc46c0a81e5f43ef9b37400596e2"
+          default="Yes">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
-        <text type="dropdown" identifier="feed" label="Feed" field-id="ff6bcc46c0a81e5f43ef9b37149fb8df" default="None">
+        <text type="dropdown"
+          identifier="feed"
+          label="Feed"
+          field-id="ff6bcc46c0a81e5f43ef9b37149fb8df"
+          default="None">
           <dropdown-item value="None"/>
           <dropdown-item value="FlickrChapman"/>
         </text>
       </group>
       <group identifier="degree" label="Degree Information" collapsed="true">
-        <text type="radiobutton" identifier="display-degree" label="Show" field-id="ff6bcc46c0a81e5f43ef9b37d60ee436" default="Yes" required="true">
+        <text type="radiobutton"
+          identifier="display-degree"
+          label="Show"
+          field-id="ff6bcc46c0a81e5f43ef9b37d60ee436"
+          default="Yes"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
         <text identifier="heading" label="Heading" field-id="ff6bcc46c0a81e5f43ef9b3735773c31"/>
         <text wysiwyg="true" identifier="copy" label="Copy" field-id="ff6bcc46c0a81e5f43ef9b379fcd568c"/>
-        <asset type="block" identifier="block" label="Degree" field-id="ff6bcc46c0a81e5f43ef9b37fbb0345d" render-content-depth="2" required="true"/>
-        <text type="radiobutton" identifier="show" label="Show Photo" field-id="ff6bcc46c0a81e5f43ef9b3769d88ce8" default="No" required="true">
+        <asset type="block"
+          identifier="block"
+          label="Degree"
+          field-id="ff6bcc46c0a81e5f43ef9b37fbb0345d"
+          render-content-depth="2"
+          required="true"/>
+        <text type="radiobutton"
+          identifier="show"
+          label="Show Photo"
+          field-id="ff6bcc46c0a81e5f43ef9b3769d88ce8"
+          default="No"
+          required="true">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
@@ -946,17 +1606,35 @@
     </group>
   </group>
   <group identifier="meta" label="Supplemental Content" collapsed="true">
-    <asset type="block" identifier="social_accounts" label="Social Accounts" field-id="ff6bcc47c0a81e5f43ef9b37c3724288" render-content-depth="10"/>
+    <asset type="block"
+      identifier="social_accounts"
+      label="Social Accounts"
+      field-id="ff6bcc47c0a81e5f43ef9b37c3724288"
+      render-content-depth="10"/>
     <group identifier="sharing" label="Sharing " collapsed="true">
-      <asset type="file" identifier="og_image" label="OG Image" field-id="ff6bcc47c0a81e5f43ef9b37a76b6b85" help-text="Image used for sharing on facebook (130px w, 110px h exactly)"/>
+      <asset type="file"
+        identifier="og_image"
+        label="OG Image"
+        field-id="ff6bcc47c0a81e5f43ef9b37a76b6b85"
+        help-text="Image used for sharing on facebook (130px w, 110px h exactly)"/>
       <text identifier="og_title" label="OG Title" field-id="ff6bcc47c0a81e5f43ef9b37ccebc2f7" help-text="Overrides title for when page is shared to facebook (defaults to Display Name)"/>
       <text identifier="og_description" label="OG Description" field-id="ff6bcc47c0a81e5f43ef9b3763b114ff" help-text="Overrides description when page is shared to facebook"/>
       <text identifier="twitter_text" label="Twitter Share Text" field-id="ff6bcc47c0a81e5f43ef9b379ac6f748" help-text="The text that prepopulates on twitter (followed by URL and hashtags)"/>
-      <text identifier="twitter_hashtag" label="Twitter Hashtag" multiple="true" maximum-number="3" field-id="ff6bcc47c0a81e5f43ef9b3789885bc4" help-text="Hashtags to get appended to tweet (no #!)"/>
+      <text identifier="twitter_hashtag"
+        label="Twitter Hashtag"
+        multiple="true"
+        maximum-number="3"
+        field-id="ff6bcc47c0a81e5f43ef9b3789885bc4"
+        help-text="Hashtags to get appended to tweet (no #!)"/>
     </group>
     <group identifier="news-events-options" label="Featured / News / Events Feeds">
       <asset type="page" identifier="feature" label="Feature" field-id="ff6bcc47c0a81e5f43ef9b37dea5ec66"/>
-      <text type="dropdown" identifier="newsFeed" label="News Feed" field-id="ff6bcc47c0a81e5f43ef9b37a0f5b48b" default="Default" help-text="Default is stories from Newsroom maintained by Marketing Dept at Chapman">
+      <text type="dropdown"
+        identifier="newsFeed"
+        label="News Feed"
+        field-id="ff6bcc47c0a81e5f43ef9b37a0f5b48b"
+        default="Default"
+        help-text="Default is stories from Newsroom maintained by Marketing Dept at Chapman">
         <dropdown-item value="Default"/>
         <dropdown-item value="Academics"/>
         <dropdown-item value="Admissions"/>
@@ -975,7 +1653,12 @@
         <dropdown-item value="Thompson Policy Institute"/>
         <dropdown-item value="Wilkinson"/>
       </text>
-      <text type="dropdown" identifier="eventsFeed" label="Events Feed" field-id="ff6bcc47c0a81e5f43ef9b37a493519d" default="Default" help-text="Default is today&#39;s events on events.chapman.edu">
+      <text type="dropdown"
+        identifier="eventsFeed"
+        label="Events Feed"
+        field-id="ff6bcc47c0a81e5f43ef9b37a493519d"
+        default="Default"
+        help-text="Default is today&#39;s events on events.chapman.edu">
         <dropdown-item value="Default"/>
         <dropdown-item value="ASBE"/>
         <dropdown-item value="CDC"/>
