@@ -7,6 +7,30 @@ require 'uri'
 require 'yaml'
 
 # ---------------------------------------------------------------------------- #
+#                          Edit Widget - Funnels 1 Up                          #
+# ---------------------------------------------------------------------------- #
+desc 'Updates `Chapman.edu/_cascade/formats/modular/widgets/Funnels 1up` with `.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Funnels_1up.vtl`'
+task edit_widget_funnels_1_up: :environment do
+  edit_format(
+    '9cc4647fc0a81e4173d4458767e30a55',
+    '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Funnels_1up.vtl'
+  )
+end
+
+
+# ---------------------------------------------------------------------------- #
+#                          Edit Widget - Funnels 2 Up                          #
+# ---------------------------------------------------------------------------- #
+desc 'Updates `Chapman.edu/_cascade/formats/modular/widgets/Funnels 2up` with `.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Funnels_1up.vtl`'
+task edit_widget_funnels_2_up: :environment do
+  edit_format(
+    '9cc46410c0a81e4173d44587bd75f3eb',
+    '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Funnels_2up.vtl'
+  )
+end
+
+
+# ---------------------------------------------------------------------------- #
 #                            edit cascade-assets.xml                           #
 # ---------------------------------------------------------------------------- #
 desc 'Updates dev Chapman.edu/_cascade/blocks/html/cascade-assets with dist/staging/cascade-assets.xml'
@@ -115,6 +139,7 @@ task edit_cascade_assets: :environment do
 
 end
 
+
 # ---------------------------------------------------------------------------- #
 #                           edit one-column data def                           #
 # ---------------------------------------------------------------------------- #
@@ -172,6 +197,24 @@ task edit_three_col_data_def: :environment do
   )
 end
 
+
+# ---------------------------------------------------------------------------- #
+#                            edit shared image field                           #
+# ---------------------------------------------------------------------------- #
+desc 'Updates Shared Fields:image (https://dev-cascade.chapman.edu/entity/open.act?id=9cc8235cc0a81e4173d445879a2a5d7b&type=sharedfield) 
+with app/data_definitions/from_cascade/Shared Fields/image.xml'
+task edit_shared_field_image: :environment do
+  edit_shared_field(
+    '9cc8235cc0a81e4173d445879a2a5d7b',
+    'app/data_definitions/from_cascade/Shared Fields/image.xml'
+  )
+end
+
+
+
+# ---------------------------------------------------------------------------- #
+#           BASE METHODS - The methods above inherit from these tasks          #
+# ---------------------------------------------------------------------------- #
 # USAGE: rake publish TYPE=page/ PATH=Chapman.edu/test-section/nick-test/test-publish
 # 👹note the trailing slash on the TYPE
 task :publish do
@@ -297,7 +340,7 @@ def edit_format(asset_path, update_source)
          }.to_json
        )
 
-  puts "🎉 View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{
+  puts "🎉        View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{
          asset_id
        }&type=#{asset_type}".chomp('/')
 end
@@ -375,7 +418,7 @@ def edit_data_def(asset_path, update_source)
            }
          }.to_json
        )
-  puts "🎉 View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{
+  puts "🎉        View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{
          asset_id
        }&type=#{asset_type}".chomp('/')
 end
@@ -454,7 +497,99 @@ def edit_block(asset_path, update_source)
            }
          }.to_json
        )
-  puts "🎉 View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{
+  puts "🎉        View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{
+         asset_id
+       }&type=#{asset_type}".chomp('/')
+end
+
+
+def edit_shared_field(asset_path, update_source)
+  # * 1) BASE URL
+  base_url = 'https://dev-cascade.chapman.edu/api/v1/'.to_s
+
+  # * 2) REST API ACTION
+  # https://wimops.chapman.edu/wiki/WWW#Key_Links
+  # https://www.hannonhill.com/cascadecms/latest/developing-in-cascade/rest-api/index.html
+  rest_action = 'read/'.to_s # ! KEEP TRAILING SLASH
+
+  # * 3) ASSET TYPE
+  # this is easy to find in cascade's edit/preview url.
+  # ie https://dev-cascade.chapman.edu/entity/open.act?id=7f74b81ec04d744c7345a74906ded22a&type=page
+  asset_type = 'sharedfield/' # ! KEEP TRAILING SLASH
+
+  # * 4) ASSET PATH OR ID
+  # you can also use its path (ie "Chapman.edu/_cascade/formats/modular/widgets/1-column")... but.. whitespace.
+  asset_path = "#{asset_path}" # ! NO TRAILING SLASH
+
+  # * 5) SECRETS
+  # set these in environment_variables.yml
+  cascade_username = '?u=' + ENV['CASCADE_USERNAME']
+  cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
+
+  # the constructed url should look something like:
+  # https://dev-cascade.chapman.edu/api/v1/read/folder/Chapman.edu/_cascade/formats/modular/widgets/foldername?u=username&p=password
+
+  url =
+    base_url + rest_action + asset_type + asset_path + cascade_username +
+      cascade_password
+  #  puts url
+
+  # Inspect response for required details below 👇
+  response = HTTParty.get(url)
+  #  puts response.body
+  response_xml = response['asset']['sharedField']['script']
+
+  response_xml = response['asset']['sharedField']['xml']
+  site_name = response['asset']['sharedField']['siteName']
+  response_name = response['asset']['sharedField']['name']
+  response_path = response['asset']['sharedField']['path']
+
+  response_path_full = site_name + '/' + response_path
+
+  parent_folder_id = response['asset']['sharedField']['parentFolderId']
+  parent_folder_path = response['asset']['sharedField']['parentFolderPath']
+  parent_container_path = response['asset']['sharedField']['parentContainerPath']
+
+  asset_id = response['asset']['sharedField']['id']
+
+  backup_strategy(response_path_full, response, site_name)
+
+  #  puts response_xml
+  update_source = "#{update_source}"
+  data = File.read(update_source)
+  response_body = data.gsub('"', "'")
+  puts data
+
+  #  # Change URL for edit request
+  url_post =
+    base_url + 'edit/' + asset_type + asset_path + cascade_username +
+      cascade_password
+  puts url_post
+  puts "📝 Replacing #{response_path} with #{update_source}"
+
+  #  # 👹Editing assets unfortunately requires PATH, SITENAME, ID. This can be obtained by reading the asset's response.body 👆
+
+  puts HTTParty.post(
+         url_post,
+         body: {
+           "asset": {
+             "sharedField": {
+               "xml": data,
+               "parentFolderId": parent_folder_id,
+               "parentFolderPath": parent_folder_path,
+               "path": asset_path,
+               "siteId": '6fef14a3c04d744c610b81dac0a8d082',
+               "siteName": 'Chapman.edu',
+               "id": asset_id,
+               "parentContainerPath": parent_container_path,
+             }
+           }
+         }.to_json
+       )
+
+    
+
+  puts "🎉        View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{
          asset_id
        }&type=#{asset_type}".chomp('/')
 end
@@ -566,7 +701,7 @@ def create_file(file_name, asset_path, update_source)
           "success": true
         }.to_json
        )
-  # puts "🎉 View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{
+  # puts "🎉        View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{
   #        asset_id
   #      }&type=#{asset_type}".chomp('/')
 end
@@ -639,7 +774,7 @@ def create_block(asset_name, parent_folder_path, update_source)
           "success": true
         }.to_json
        )
-  # puts "🎉 View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{
+  # puts "🎉        View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{
   #        asset_id
   #      }&type=#{asset_type}".chomp('/')
 end

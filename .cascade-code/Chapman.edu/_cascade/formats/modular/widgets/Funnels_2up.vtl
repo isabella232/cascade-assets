@@ -39,9 +39,17 @@
   #set ( $headlineText = $funnel.getChild('headline').value )
   #set ( $links = $_XPathTool.selectNodes($funnel.getChild('links'), "link") )
   #set ( $details = $funnel.getChild('copy').value )
+  #set ( $imageRoleVal =  ( $region.getChild('imageAltOrDecorative').value ) )
 
   #if ( $altText == "" )
     #set ( $altText = "TODO: [photo description needed in 2up Funnel]" )
+  #end
+
+  #if ( $imageRoleVal == "Decorative Image" )
+        #set ( $imageRole = "role='presentation'" )
+        #set ( $altText = "" )
+  #else 
+     #set ( $imageRole = "" )
   #end
 
   #if ( $headlineLinkType == 'Internal Link' )
@@ -85,7 +93,9 @@
 
 #macro( buildFunnelBlockFeatureImage $imageUrl $altText )
   <div class="featureImage">
-    <img src="$imageUrl"
+  $imageRole
+    <img 
+         src="$imageUrl"
          alt="${_EscapeTool.xml($altText)}"
          height="$FUNNEL_FEATURE_IMAGE_HEIGHT"
          width="$FUNNEL_FEATURE_IMAGE_WIDTH" />

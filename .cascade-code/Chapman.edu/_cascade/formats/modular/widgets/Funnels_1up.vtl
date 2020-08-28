@@ -14,17 +14,27 @@
       #set ( $imageUrl = $region.getChild('image').getChild('path').value )
       #set ( $copy = $_SerializerTool.serialize($region.getChild('copy'), true) )
       #set ( $links = $_XPathTool.selectNodes($region.getChild('links'), "link") )
+      #set ( $imageRoleVal =  ( $region.getChild('imageAltOrDecorative').value ) )
+
       #if ( $region.getChild('altText').value != "" )
         #set ( $altText = $region.getChild('altText').value )
       #else
         #set ( $altText = "[photo description needed in 1up Funnel]" )
       #end
 
+      #if ( $imageRoleVal == "Decorative Image" )
+        #set ( $imageRole = "role='presentation'" )
+        #set ( $altText = "" )
+      #else 
+        #set ( $imageRole = "" )
+      #end
+
+
       <div class="region">
         <h2>${_EscapeTool.xml($headline)}</h2>
         <div class="content">
           <p>
-            <img alt="$altText" class="featureImage" height="150" src="$imageUrl" width="200"/>
+            <img $imageRole alt="$altText" class="featureImage" height="150" src="$imageUrl" width="200"/>
             $copy
           </p>
 
