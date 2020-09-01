@@ -59,6 +59,7 @@ h1+.next-steps-widget {
 
   .next-steps-widget__button {
     @include button-bg($cu-red);
+    --font-size: 1.6rem;
     border: none;
   }
 
@@ -161,7 +162,6 @@ h1+.next-steps-widget {
     }
   }
 
-
   +[class*="-widget"] {
     margin: 20px 0 20px 0;
   }
@@ -173,5 +173,22 @@ h1+.next-steps-widget {
   &.next-steps-widget--left-aligned {
     display: flex;
     flex-direction: column;
+  }
+}
+
+// todo: rewrite button, button-bg mixins as well as button specificity in defaults.scss
+// have to override with this level of specificity currently. 
+html body {
+
+  .next-steps-widget.next-steps-widget--left-aligned .next-steps-widget__button {
+    --font-size: 1.6rem;
+  }
+
+  .next-steps-widget--white {
+    border: 1px solid var(--color-cu-light-grey) !important;
+  }
+
+  .next-steps-widget {
+    margin-bottom: 2rem;
   }
 }

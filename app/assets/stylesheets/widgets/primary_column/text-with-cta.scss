@@ -386,3 +386,11 @@ html.three-column-template body .text-with-cta-widget--cu-safely-back {
     }
   }
 }
+
+// todo: rewrite button, button-bg mixins as well as button specificity in defaults.scss
+// have to override with this level of specificity currently. 
+html body .text-with-cta-widget .text-with-cta__button.color--white {
+  border: 1px solid var(--color-cu-light-grey);
+  background-color: white;
+  color: var(--color-panther-black);
+}
