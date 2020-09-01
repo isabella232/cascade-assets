@@ -195,6 +195,17 @@ task edit_helpers_velocity: :environment do
   )
 end
 
+# ---------------------------------------------------------------------------- #
+#   edit format `Chapman.edu/_cascade/formats/modular/widgets/Collapsibles`   #
+# ---------------------------------------------------------------------------- #
+desc 'Updates `Chapman.edu/_cascade/formats/modular/widgets/Collapsibles` with `.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Collapsibles`'
+task edit_collapsibles: :environment do
+  edit_format(
+    'Chapman.edu/_cascade/formats/modular/widgets/Collapsibles',
+    '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Collapsibles.vtl'
+  )
+end
+
 # USAGE: rake publish TYPE=page/ PATH=Chapman.edu/test-section/nick-test/test-publish
 # 👹note the trailing slash on the TYPE
 task :publish do
