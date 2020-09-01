@@ -172,6 +172,29 @@ task edit_three_col_data_def: :environment do
   )
 end
 
+
+# ---------------------------------------------------------------------------- #
+#   edit format `Chapman.edu/_cascade/formats/level/left_nav_drilldown`   #
+# ---------------------------------------------------------------------------- #
+desc 'Updates `Chapman.edu/_cascade/formats/level/left_nav_drilldown.vtl` with `.cascade-code/Chapman.edu/_cascade/formats/level/left_nav_drilldown.vtl`'
+task edit_left_nav_drilldown: :environment do
+  edit_format(
+    'Chapman.edu/_cascade/formats/level/left_nav_drilldown.vtl',
+    '.cascade-code/Chapman.edu/_cascade/formats/level/left_nav_drilldown.vtl'
+  )
+end
+
+# ---------------------------------------------------------------------------- #
+#   edit format `Chapman.edu/_cascade/formats/helpers.velocity`   #
+# ---------------------------------------------------------------------------- #
+desc 'Updates `Chapman.edu/_cascade/formats/helpers.velocity` with `.cascade-code/Chapman.edu/_cascade/formats/helpers.velocity`'
+task edit_helpers_velocity: :environment do
+  edit_format(
+    'Chapman.edu/_cascade/formats/helpers.velocity',
+    '.cascade-code/Chapman.edu/_cascade/formats/helpers.velocity'
+  )
+end
+
 # USAGE: rake publish TYPE=page/ PATH=Chapman.edu/test-section/nick-test/test-publish
 # 👹note the trailing slash on the TYPE
 task :publish do
@@ -710,4 +733,15 @@ def publish_asset(asset_type, asset_path)
   # Inspect response for required details below 👇
   response = HTTParty.get(url)
   puts response.body
+end
+
+# ---------------------------------------------------------------------------- #
+#   edit format `Chapman.edu/_cascade/formats/level/Masthead`   #
+# ---------------------------------------------------------------------------- #
+desc 'Updates `Chapman.edu/_cascade/formats/level/Masthead` with `.cascade-code/Chapman.edu/_cascade/formats/level/Masthead.vtl`'
+task edit_2_3_col_masthead: :environment do
+  edit_format(
+    'Chapman.edu/_cascade/formats/level/Masthead',
+    '.cascade-code/Chapman.edu/_cascade/formats/level/Masthead.vtl'
+  )
 end
