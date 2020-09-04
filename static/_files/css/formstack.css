@@ -1,8 +1,6 @@
 /* This file needs to be committed to version control in Cascade Assets => static/_files/css/formstack.css */
 /* Formstack allows global Theme editing via https://chapman.formstack.com/admin/form/builder/3417992/theme/505326 */
 :root {
-  /* chapman css vars */
-
   /* formstack colors */
   --\$key: undefined;
   --\$value: undefined;
