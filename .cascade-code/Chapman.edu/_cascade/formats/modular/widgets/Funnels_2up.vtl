@@ -44,12 +44,12 @@
   #set ( $linkAriaLabel =  ( $funnel.getChild('accessibility').getChild('ariaLabel').value ) )
 
   #if ( $altText == "" )
-    #set ( $altText = "" )
+    #set ( $altText = '" "' )
   #end
 
   #if ( $imageRoleVal == "Decorative Image" )
         #set ( $imageRole = "role='presentation'" )
-        #set ( $altText = '" "' )
+        #set ( $altText = '' )
   #else 
      #set ( $imageRole = "" )
   #end
