@@ -1,5 +1,5 @@
 $(function() {
    if (!($('.formstack').length)) {
-    $('body').append('<div data-detective="WCAG override via app/assets/javascripts/cascade/plugins/formstack.js" id="formstack-overrides"><style>.fsValidationError{background-color:red;-moz-box-shadow:0 0 0 calc(5px - 1px) red, 0 0 0 5px red;-webkit-box-shadow:0 0 0 calc(5px - 1px) red, 0 0 0 5px red;box-shadow:0 0 0 calc(5px - 1px) red, 0 0 0 5px red}.fsValidationError .fsLabel,.fsValidationError .fsRequiredLabel,.fsValidationError .fsRequiredMarker{color:black !important}</style></div>');
+    $('body').append('<div data-detective="WCAG override via app/assets/javascripts/cascade/plugins/formstack.js" id="formstack-overrides"><style>.fsValidationError{background-color:#a50034;-moz-box-shadow:0 0 0 calc(5px - 1px) #a50034, 0 0 0 5px #a50034;-webkit-box-shadow:0 0 0 calc(5px - 1px) #a50034, 0 0 0 5px #a50034;box-shadow:0 0 0 calc(5px - 1px) #a50034, 0 0 0 5px #a50034}.fsValidationError .fsLabel,.fsValidationError .fsRequi#a50034Label,.fsValidationError .fsRequi#a50034Marker{color:white !important}div.fsError{border:1px solid #a50034 !important;color:white !important;background-color:#a50034 !important}.fsRowBody input[type="text"],.fsRowBody input[type="email"],.fsRowBody input[type="number"],.fsRowBody input[type="tel"],.fsForm textarea,.fsSignature{color:black !important}</style></div>');
   }
 });
