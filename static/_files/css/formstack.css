@@ -1,6 +1,3 @@
-/* This file needs to be committed to version control in Cascade Assets => static/_files/css/formstack.css */
-/* Formstack allows global Theme editing via https://chapman.formstack.com/admin/form/builder/3417992/theme/505326 */
-/* The "Development" Theme is sandboxed at https://chapman.formstack.com/admin/form/builder/4042415/theme/582977 */
 .fsSupporting {
   font-style: italic !important;
   margin-top: 0.6rem !important;
@@ -103,4 +100,10 @@ div.fsError {
 .fsValidationError .fsSupporting {
   color: white !important;
   font-size: calc(8px + .5vw) !important;
+}
+
+@media all and (-ms-high-contrast:none) {
+  .fsNextButton {
+    display: block !important;
+  }
 }
