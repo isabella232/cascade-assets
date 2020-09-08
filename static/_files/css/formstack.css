@@ -101,11 +101,3 @@ div.fsError {
   color: white !important;
   font-size: calc(8px + .5vw) !important;
 }
-
-@media all and (-ms-high-contrast:none) {
-
-  .fsNextButton,
-  .fsPreviousButton {
-    display: block !important;
-  }
-}
