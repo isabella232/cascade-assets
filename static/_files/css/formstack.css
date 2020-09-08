@@ -103,7 +103,9 @@ div.fsError {
 }
 
 @media all and (-ms-high-contrast:none) {
-  .fsNextButton {
+
+  .fsNextButton,
+  .fsPreviousButton {
     display: block !important;
   }
 }
