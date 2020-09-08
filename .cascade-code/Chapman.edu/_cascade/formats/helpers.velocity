@@ -24,7 +24,6 @@ Master Version: Chapman.edu/_cascade/formats/helpers.velocity
     #set ( $wxp = $snakeCase)
 #end
 
-
 #*
 --------------------------------------------------------------------------------
  OUTPUTS IMAGES IN A COLLECTION (AN IMAGE WITHIN A SLIDE IN A SERIES OF SLIDES)
@@ -38,29 +37,19 @@ Master Version: Chapman.edu/_cascade/formats/helpers.velocity
     #set ($imageUrlInt =
     $elem.getChild('image').getChild('imageUrlInt').getChild('path').value )
     #set ($imageUrlExt =
-    $elem.getChild('image').getChild('imageUrlExt').value )
+    $elem.getChild('image').getChild('imageUrlExt').getChild('path').value )
     #set ($altText =
     $elem.getChild('image').getChild('altText').value)
     #set ($objectPositionX = $elem.getChild('image').getChild('objectPositionX').value.toLowerCase())
     #set ($objectPositionY = $elem.getChild('image').getChild('objectPositionY').value.toLowerCase())
-
-    #if ($imageType.contains("none"))
     
-    #elseif ($imageType == 'internal cascade image')
+    #if (!$imageType.contains("none"))
         <div
             class="${_EscapeTool.xml($widgetXPath)}__img--${_EscapeTool.xml($imageShape)} ${_EscapeTool.xml($widgetXPath)}__img"
             style="width: ${_EscapeTool.xml($imgSize)}; height: ${_EscapeTool.xml($imgSize)}; ">
-            
-                <img class="${_EscapeTool.xml($widgetXPath)}__img img--${_EscapeTool.xml($imageShape)} img--internal"
+                <img class="${_EscapeTool.xml($widgetXPath)}__img img--${_EscapeTool.xml($imageShape)} "
                     src="[system-asset]${_EscapeTool.xml($imageUrlInt)}[/system-asset]"
-                    alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-position:${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}" loading="lazy"/>
-        </div>
-    #else 
-        <div 
-        class="${_EscapeTool.xml($widgetXPath)}__img--${_EscapeTool.xml($imageShape)} ${_EscapeTool.xml($widgetXPath)}__img" style="width: ${_EscapeTool.xml($imgSize)}; height: ${_EscapeTool.xml($imgSize)}; ">
-            <img class="${_EscapeTool.xml($widgetXPath)}__img img--${_EscapeTool.xml($imageShape)} img--external"
-            src="${_EscapeTool.xml($imageUrlExt)}"
-            alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-position:${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}" loading="lazy"/>
+                    alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-position:${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}"/>
         </div>
     #end
 #end
@@ -93,7 +82,7 @@ USAGE: #image()
             style="width: ${_EscapeTool.xml($imgSize)}; height: ${_EscapeTool.xml($imgSize)}; ">
                 <img class="${_EscapeTool.xml($widgetXPath)}__img img--${_EscapeTool.xml($imageShape)} "
                     src="[system-asset]${_EscapeTool.xml($imageUrlInt)}[/system-asset]"
-                    alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-position:${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}" loading="lazy" />
+                    alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-position:${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}"/>
         </div>
     #end
 #end
@@ -225,11 +214,13 @@ LOG VELOCITY VARIABLES IN THE BROWSER CONSOLE ON DEV
 --------------------------------------------------------------------------------
 *#
 
-#macro ( buildDrillDownList $asset )
+#macro ( buildDrillDownList $asset, $noSibling )
   #set ( $drillDownPagePath     = $currentPage.path )
   #set ( $isVisible             = $asset.metadata.getDynamicField('Hide from navigation').value != "Yes")
   #set ( $rootPageName          = $asset.path.replaceAll("^[\w]+\/|^[\w]+-[\w]+\/", "") )
-  #set ( $assetInCurrentPath    = $_StringTool.substringAfter($currentPage.path, $asset.path).length() )
+  #set ( $assetInCurrentPath    = $_StringTool.substringAfter($drillDownPagePath, $asset.path).length() )
+  #set ( $visibleChildrenCount  = 0 )
+  #set ( $visibleSiblingCount   = 0 )
   
   #if ( $drillDownPagePath == $asset.path ) 
     #set ( $isVisible = true )
@@ -238,31 +229,52 @@ LOG VELOCITY VARIABLES IN THE BROWSER CONSOLE ON DEV
     #set( $isCurrentDrillDownPage = "drill-down-list-item")
   #end
   
+  ## setting the asset to visible regardless if its hidden in order to properly display drilldown paths parents
   #if ( $assetInCurrentPath > 0 )
     #set ( $isVisible = true )
   #end
 
   #if ($asset.assetType == "folder" && $isVisible)
-
-    #set ( $visibleChildren = false )
-    #foreach( $childAsset in $asset.children )
-      #if ($visibleChildren == false)
-        #if ( $childAsset.assetType == 'symlink' )
-          #set ( $visibleChildren = true ) 
-        #end
-        #if ( $childAsset.assetType == 'page' )
-          #set ( $visibleChildren = $childAsset.metadata.getDynamicField('Hide from navigation').value != "Yes" )
-        #end
-        #if ( $childAsset.assetType == 'folder')
-          #foreach ($childAsset in $childAsset.children)
-            #if ( $visibleChildren != true )
-              #set ( $visibleChildren = $childAsset.metadata.getDynamicField('Hide from navigation').value != "Yes" )
+    #if ($asset.metadata.displayName != '_files')
+      #set ( $visibleChildren = false )
+      #foreach( $childAsset in $asset.children )
+        #if ($visibleChildren == false || $visibleChildrenCount < 2 || $visibleSiblingCount < 1)
+          #if ( $childAsset.assetType == 'symlink' )
+            #set ( $visibleChildren = true ) 
+            #set ( $visibleChildren = $visibleChildren + 1 )
+          #end
+          #if ( $childAsset.assetType == 'page' )
+            #set ( $visibleChild =  $childAsset.metadata.getDynamicField('Hide from navigation').value != "Yes" )
+            #if ($visibleChild)
+              #set ( $visibleChildren =  $visibleChild )
+              #set ( $visibleChildrenCount = $visibleChildrenCount + 1 )
+            #end
+          #end
+          #if ( $assetInCurrentPath > 0 )
+            #set ( $hiddenAsset = $childAsset.metadata.getDynamicField('Hide from navigation').value == "Yes" )
+            #if ($hiddenAsset && $childAsset.path == $drillDownPagePath)
+              #set ( $visibleChildrenCount = $visibleChildrenCount + 1 )
+            #end
+          #end
+          #if ( $childAsset.assetType == 'folder')
+            #set ( $visibleSubFolder = $childAsset.metadata.getDynamicField('Hide from navigation').value != "Yes" )
+            #if ($visibleSubFolder && $childAsset.metadata.displayName != '_files')
+              #foreach ($lowerChildAsset in $childAsset.children)
+                #if ( $visibleChildren == false || $visibleChildrenCount < 2)
+                  #set ( $visibleSubChildren = $lowerChildAsset.metadata.getDynamicField('Hide from navigation').value == "Yes" )
+                  #if ($visibleSubChildren) 
+                    #set ( $visibleChildren =  $visibleSubChildren )
+                    #set ( $visibleChildrenCount = $visibleChildrenCount + 1)
+                  #end
+                #end
+              #end
             #end
           #end
         #end
       #end
     #end
-    #if ($visibleChildren)
+
+    #if ($visibleChildren && $visibleChildrenCount > 1 || ($isVisible && $assetInCurrentPath.length > 1))
       <li class="${isCurrentDrillDownPage}">
         <span tabindex="0" class="drill-down-parent">${_EscapeTool.xml($asset.metadata.displayName)}</span>
         <span class="toggle-drilldown"><span class="fas fa-chevron-right"></span></span>
@@ -283,16 +295,26 @@ LOG VELOCITY VARIABLES IN THE BROWSER CONSOLE ON DEV
               #set ( $isVisible = true )
             #end
             
-#if ($childAsset.assetType == 'page' && $isVisible)
+            #if ($childAsset.assetType == 'page' && $isVisible)
               <li class="${isCurrentDrillDownPage}"><a href="site://Chapman.edu/${childAsset.path}">${_EscapeTool.xml($childAsset.metadata.displayName)}</a></li>
             #elseif ($childAsset.assetType == 'symlink')
               <li class="${isCurrentDrillDownPage}"><a href="site://Chapman.edu/${childAsset.path}">${_EscapeTool.xml($childAsset.label)}
               <span class="fas fa-external-link-alt"></span></a></li>
-            #elseif ($childAsset.assetType == 'folder' && $isVisible)
+            #elseif ($childAsset.assetType == 'folder' && $isVisible && $childAsset.metadata.displayName != '_files')
               #buildDrillDownList($childAsset)
             #end
           #end
         </ul>
+      </li>
+    #elseif ($visibleChildren && $visibleChildrenCount == 1)
+      #if ( $drillDownPagePath == $asset.path || $drillDownPagePath == $asset.path + "/index" )
+        #set ( $isVisible = true )
+        #set( $isCurrentDrillDownPage = "drill-down-list-item current" )
+      #else
+        #set( $isCurrentDrillDownPage = "drill-down-list-item")
+      #end
+      <li class="${isCurrentDrillDownPage}">
+        <a href="site://Chapman.edu/${asset.path}">${_EscapeTool.xml($asset.metadata.displayName)}</a>
       </li>
     #end
   #elseif ($asset.assetType == 'page' && $isVisible)
@@ -472,89 +494,4 @@ LOG VELOCITY VARIABLES IN THE BROWSER CONSOLE ON DEV
     #set($bgColor = $element.getChild('bgColor').value)
     #set($colorClass = "${widgetClass}__#if($bgColor == 'Light')light-bg#{elseif}($bgColor == 'Medium')medium-bg#{else}dark-bg#end")
     $colorClass
-#end
-
-## Pass a certain XML structure into this macro, and get a string that looks
-## like "background-image: url('https://mycoolimage.com/file1.png')
-##
-## Useage: <div style=#addBackgroundImage($content) >
-##
-## The xml in the $content variable passed in must look like the following:
-## <media>
-##     <fileLink>
-##         <path>/_files/image1.png</path>
-##     </fileLink>
-## </media>
-
-#*
---------------------------------------------------------------------------------
-CASCADE DRILL DOWN BUILDER
-USAGE: #processAsset( $asset )
---------------------------------------------------------------------------------
-*#
-
-#macro ( determineLinkClass $asset )
-  #set ( $linkClass = "drill-down-list-item" )
-  #if ( $currentPage.path == $asset.path )
-    #set ( $linkClass = "${linkClass} current" )
-  #end
-  $linkClass
-#end
-
-#macro ( outputPageLink $page, $isTopLevel)
-  #set ( $linkClass = "${#determineLinkClass($page)}" )
-  #set ( $homeIconHtml = "" )
-  #if ($page.name == "index")
-    #set ( $linkClass = "${linkClass} home-link" )
-    #set ( $homeIconHtml = "<span class='fas fa-home'></span>" )
-  #end
-  <li class="${linkClass}">${homeIconHtml}<a href="${page.link}">${_EscapeTool.xml($page.label)}</a></li>
-#end
-
-#macro ( outputSymlinkLink $symlink)
-  #set ( $linkClass = "${#determineLinkClass($symlink)}" )
-  <li class="${linkClass}"><a href="${symlink.link}">${_EscapeTool.xml($symlink.label)} <span class="fas fa-external-link-alt"></span></a></li>
-#end
-
-#macro ( outputFolder $folder )
-  #set ( $linkClass = "${#determineLinkClass($folder)}" )
-  #set ( $childrenHtml = "" )
-
-  #if ( $folder.children.size() > 0 )
-    #foreach( $childAsset in $folder.children )
-        #log("IM THE CHILD ASSET ${childAsset}")
-      #set ( $childrenHtml = "${childrenHtml}#processAsset($childAsset)" )
-      #log("IM THE CHILD ASSET AFTERWARD ${childrenHtml}")
-    #end
-    #log("IM THE CHILD $childrenHtml")
-    #set ( $childrenHtml = $childrenHtml.replaceAll("\t\s{2,}", "").trim() )
-  #end
-
-  #if ( !$_PropertyTool.isEmpty($childrenHtml) )
-    <li class="${linkClass}">
-      <span tabindex="0" class="drill-down-parent">Back</span>
-      <span class="toggle-drilldown"><span class="fas fa-chevron-right"></span></span>
-      <ul class="drilldown-menu">
-        <li tabindex="0" class="menu-back"><span class="fas fa-chevron-left"></span>Back</li>
-        ${childrenHtml}
-      </ul>
-    </li>
-  #end
-#end
-
-#macro ( processAsset $asset )
-  #set ( $isVisible = $asset.metadata.getDynamicField('Hide from navigation').hasValue("Yes") == false )
-  #set ( $linkClass = "${#determineLinkClass}")
-
-  #if ( $currentPage.path == $asset.path )
-    #set ( $isVisible = true )
-  #end
-
-  #if ( $asset.assetType == 'page' && $isVisible )
-    #outputPageLink($asset, false)
-  #elseif ( $asset.assetType == 'symlink' )
-    #outputSymlinkLink($asset)
-##   #elseif ( $asset.assetType == 'folder' && $isVisible )
-##     #outputFolder($asset)
-  #end
 #end

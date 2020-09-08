@@ -484,17 +484,13 @@
 				<text field-id="ff6bcc14c0a81e5f43ef9b3741c03d48"
 					identifier="text"
 					label="Text"
-					required="true"
+					required="false"
 					wysiwyg="true"/>
 			</group>
 			<group collapsed="true" identifier="bannerNotificationWidget" label="Banner Notification">
 				<shared-field field-id="ff6bcc14c0a81e5f43ef9b377be016d9" identifier="display" path="display"/>
 				<shared-field field-id="ff6bcc14c0a81e5f43ef9b372af41b9f" identifier="bgColor" path="background-color"/>
-				<text field-id="ff6bcc14c0a81e5f43ef9b3702d71a16"
-					identifier="text"
-					label="Text"
-					required="true"
-					wysiwyg="true"/>
+				<text field-id="ff6bcc14c0a81e5f43ef9b3702d71a16" identifier="text" label="Text" required="true" wysiwyg="false"/>
 			</group>
 			<group collapsed="true" identifier="careerBlockWidget" label="Career Block">
 				<shared-field field-id="ff6bcc14c0a81e5f43ef9b370dd71ea5" identifier="display" path="display"/>

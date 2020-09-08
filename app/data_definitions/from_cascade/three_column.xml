@@ -369,7 +369,7 @@
           label="Program Events Display"
           field-id="ff6bcc3bc0a81e5f43ef9b3742e06df1"
           default="tiles"
-          required="true">
+          required="false">
           <radio-item value="tiles" label="Tiles"/>
           <radio-item value="bars" label="Bars"/>
         </text>
