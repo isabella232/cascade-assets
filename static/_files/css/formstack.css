@@ -1,120 +1,6 @@
 /* This file needs to be committed to version control in Cascade Assets => static/_files/css/formstack.css */
 /* Formstack allows global Theme editing via https://chapman.formstack.com/admin/form/builder/3417992/theme/505326 */
-:root {
-  /* formstack colors */
-  --\$key: undefined;
-  --\$value: undefined;
-  --extraneous_primary_color: #595d64;
-  --extraneous_secondary_color: #d4d4d4;
-  --extraneous_tertiary_color: #eaeaea;
-  --product_price_color: #595d64;
-  --matrix_label_column_position: center;
-  --matrix_label_row_position: right;
-  --rating_icon_color: #595d64;
-  --rating_icon_size: 25px;
-  --button_bgcolor: #a50034;
-  --button_border_color: transparent;
-  --button_border: 1px;
-  --button_color: #ffffff;
-  --button_font: null;
-  --button_font_size: 14px;
-  --button_font_style: normal;
-  --button_font_weight: 400;
-  --button_padding_left_right: 10px;
-  --button_rounded_corners: 3px;
-  --button_padding_top_bottom: 10px;
-  --focus_highlight_color: transparent;
-  --focus_highlight_opacity: 0;
-  --transition_duration: 0s;
-  --field_bgcolor: #ffffff;
-  --field_bordercolor: #cfd4d8;
-  --field_border: 1px;
-  --field_color: #595d64;
-  --size-field: 14px;
-  --field_font_style: normal;
-  --field_font_weight: 400;
-  --field_padding: 0;
-  --field_rounded_corners: 3px;
-  --label_color: null;
-  --label_font: null;
-  --size-label: 16px;
-  --label_size: 0;
-  --color-main: #595d64;
-  --label_requiredcolor: #595d64;
-  --label_required_font_size: 16px;
-  --field_requiredbgcolor: #ffffff;
-  --field_requiredbordercolor: #cfd4d8;
-  --field_requiredborder: 1px;
-  --supportingtext_color: #595d64;
-  --supportingtext_font_size: 14px;
-  --supportingtext_font_style: normal;
-  --supportingtext_font_weight: 400;
-  --footer_image_alignment: center;
-  --footer_image_height: 0;
-  --footer_image_width: 0;
-  --form_alignment: center;
-  --form_bgcolor: #ffffff;
-  --form_bgcolor_opacity: 1;
-  --form_border_color: transparent;
-  --form_border: 20px;
-  --form_border_rounded_corners: 3px;
-  --headerImage: https: //s3.amazonaws.com/files.formstack.com/public/838815/505326_tmpl_head_5d72e1be6c27d.;
-    --header_image_alignment: center;
-  --header_image_height: 122px;
-  --header_image_width: 600px;
-  --body_bgcolor: #f6f2e8;
-  --background_image_norepeat: false;
-  --remove_drop_shadow: false;
-  --fallbackFamily: null;
-  --font_service: google;
-  --global_font: Lato;
-  --global_font_string: null;
-  --global_font_size: 1;
-  --global_rounded_corners: 3px;
-  --global_spacing: 2;
-  --spacing: 10px;
-  --section_font: null;
-  --section_color: #595d64;
-  --section_size: 0;
-  --section_bgcolor: transparent;
-  --section_rounded_corners: 0;
-  --section_heading_alignment: left;
-  --section_headingfont: null;
-  --section_headingcolor: #231f20;
-  --section_headingsize: 24px;
-  --section_heading_font_style: normal;
-  --section_heading_font_weight: 700;
-  --button_font_size-d2: 7px;
-  --color-main-encoded: %23595d64;
-  --extraneous_secondary_color-rgb: 212,
-    212,
-    212;
-  --extraneous_tertiary_color-rgb: 234,
-    234,
-    234;
-  --field_bgcolor-encoded: %23ffffff;
-  --field_color-encoded: %23595d64;
-  --size-field-d2: 7px;
-  --size-field-x2: 28px;
-  --size-field-x3: 42px;
-  --form_bgcolor-rgb: 255,
-    255,
-    255;
-  --size-label-d2: 8px;
-  --size-label-x2: 32px;
-  --spacing-d4: 2.5px;
-  --spacing-d2: 5px;
-  --spacing-x2: 20px;
-  --spacing-x4: 40px;
-  --supportingtext_font_size-d2: 7px;
-  --supportingtext_font_size-x2: 28px;
-  --transition_spacing_top_bottom: 10px;
-  --transition_spacing_right_left: 10px;
-  --arrows-icon-source: url("data:image/svg+xml;utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201000%201805.18%22%3E%3Cpath%20fill%3D%22%23595d64%22%20d%3D%22M461.6%2C643.4L10.9%2C79.9C-14.9%2C47.7%2C8%2C0%2C49.3%2C0h901.5c41.2%2C0%2C64.1%2C47.7%2C38.4%2C79.9L538.4%2C643.4%09C518.7%2C668%2C481.3%2C668%2C461.6%2C643.4z%22%20transform%3D%22rotate%28180%20500%20902.59%29%20translate%280%201143.28%29%22%3E%3C%2Fpath%3E%3Cpath%20fill%3D%22%23595d64%22%20d%3D%22M461.6%2C643.4L10.9%2C79.9C-14.9%2C47.7%2C8%2C0%2C49.3%2C0h901.5c41.2%2C0%2C64.1%2C47.7%2C38.4%2C79.9L538.4%2C643.4%09C518.7%2C668%2C481.3%2C668%2C461.6%2C643.4z%22%20transform%3D%22translate%280%201143.28%29%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E");
-  --check-circle-icon-source: url("data:image/svg+xml;utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201000%201000%22%3E%3Cpath%20fill%3D%22%23595d64%22%20d%3D%22M500%2C0C223.9%2C0%2C0%2C223.9%2C0%2C500c0%2C276.1%2C223.9%2C500%2C500%2C500s500-223.9%2C500-500C1000%2C223.9%2C776.1%2C0%2C500%2C0z%20M749.4%2C423%09L495.6%2C676.8c-27.6%2C27.6-72.2%2C27.6-99.8%2C0L274.7%2C555.6c-27.6-27.6-27.6-72.2%2C0-99.8c27.6-27.6%2C72.2-27.6%2C99.8%2C0l71.3%2C71.3%09l203.9-203.9c27.6-27.6%2C72.2-27.6%2C99.8%2C0C777%2C350.8%2C777%2C395.5%2C749.4%2C423z%22%2F%3E%3C%2Fsvg%3E");
-  --check-icon-source: url("data:image/svg+xml;utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201000%20765.2%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M960%2C233.4L468.2%2C725.1c-53.4%2C53.4-140%2C53.4-193.3%2C0L40%2C490.3c-53.4-53.4-53.4-140%2C0-193.3c53.4-53.4%2C140-53.4%2C193.3%2C0%09l138.2%2C138.2L766.6%2C40c53.4-53.4%2C140-53.4%2C193.3%2C0C1013.3%2C93.4%2C1013.3%2C180%2C960%2C233.4z%22%2F%3E%3C%2Fsvg%3E");
-}
-
+/* The "Development" Theme is sandboxed at https://chapman.formstack.com/admin/form/builder/4042415/theme/582977 */
 .fsSupporting {
   font-style: italic !important;
   margin-top: 0.6rem !important;
@@ -211,16 +97,6 @@ div.fsError {
   color: white !important;
 }
 
-.fsRowBody input[type="radio"]::before,
-.fsRowBody input[type="radio"]:checked::before,
-.fsRowBody input[type="checkbox"]::before,
-.fsRowBody input[type="checkbox"]:checked::before {
-  width: 14px;
-  height: 14px;
-  margin-right: 7px;
-  border: 1px solid black !important;
-  background-color: #ffffff;
-}
 
 .fsValidationError .fsMatrix,
 .fsValidationError .fsOptionLabel,
