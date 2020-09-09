@@ -12,6 +12,8 @@
 /.ruby-gemset
 /.ruby-version
 
+config/environment_variables.yml
+
 # Ignore the redis database
 /*.rdb
 
@@ -36,3 +38,12 @@ npm-debug.log
 .vscode/settings.json
 
 cascade-notes.md
+
+/.prettierrc
+/public/packs
+/public/webpacker_assets
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+/_backup

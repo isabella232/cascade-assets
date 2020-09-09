@@ -20,6 +20,12 @@
       list-style: none;
       font-family: "futura-pt", arial, sans-serif;
       will-change: background-color;
+
+      &:focus-within {
+        outline-color: $cu-red;
+        outline-style: auto;
+        outline-width: 5px;
+      }
     }
 
     @include drill-down-menu-style(100%);
@@ -27,5 +33,16 @@
     @include respond(small) {
       display: none !important;
     }
+  }
+
+  .sf-hidden {
+    opacity: 0;
+    animation-delay: 150ms;
+    animation: fadein 150ms forwards;
+    -moz-animation: fadein 150ms forwards;
+    -webkit-animation: fadein 150ms forwards;
+    -o-animation: fadein 150ms forwards;
+    animation-direction: forwards;
+    -webkit-animation: fadein 150ms forwards;
   }
 }

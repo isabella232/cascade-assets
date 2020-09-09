@@ -1,9 +1,12 @@
 <div class="uninav__utility-nav--wrapper">
   <div class="uninav__utility-nav">
       <ul class="uninav__menu-item-flex uninav__menu-item-flex--utility">
-        <span class="uninav__utility-nav--audiences-container">
-            #import ( "/_cascade/formats/modular/uninav/_audiences.vtl" )
-        </span>    
+        <li class="uninav__utility-nav--audiences-container  uninav__dropdown--parent" aria-expanded="false">
+            <p tabindex="0">Info For</p>
+            <div class="uninav__dropdown--child">
+                #import ( "/_cascade/formats/modular/uninav/_audiences.vtl" )
+            </div>
+        </li>
         #import ( "/_cascade/formats/modular/uninav/_search.vtl" )
         #import ( "/_cascade/formats/modular/uninav/_login.vtl" )
       </ul>    

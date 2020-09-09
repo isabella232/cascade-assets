@@ -7,6 +7,63 @@
     a:after {
       content: " »";
     }
+
+    @include respond(phone) {
+      .undergraduate-card__text {
+        // padding-top: 0;
+      }
+    }
+  }
+}
+
+
+@include respond(tab-port) {
+  #generalInformation {
+    .homepage-news__grid-wrapper {
+      grid-template-columns: repeat(3, 1fr);
+
+      @media all and (-ms-high-contrast:none) {
+        display: block;
+      }
+    }
+
+    .undergraduate-card__text {
+
+      min-height: 570px;
+    }
+
+    .third.news-loaded:nth-child(3n) {
+      display: none;
+    }
+
+    .details {
+      margin-left: 20px;
+    }
+  }
+}
+
+@include respond(phone) {
+  #generalInformation {
+    .homepage-news__grid-wrapper {
+      grid-template-columns: repeat(1, 1fr);
+
+      @media all and (-ms-high-contrast:none) {
+        display: block;
+      }
+    }
+
+    .undergraduate-card__text {
+
+      min-height: unset;
+    }
+
+    .third.news-loaded:nth-child(3n) {
+      display: none;
+    }
+
+    .details {
+      margin-left: 20px;
+    }
   }
 }
 

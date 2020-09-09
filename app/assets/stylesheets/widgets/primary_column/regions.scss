@@ -20,7 +20,8 @@ div.four-col-float {
     padding: 20px 0 7px;
   }
 
-  .region h2, .funnel .region h3 a {
+  .region h2,
+  .funnel .region h3 a {
     font-weight: 700;
     font-size: 18px;
     font-style: normal;
@@ -28,25 +29,25 @@ div.four-col-float {
     padding: 10px 0 5px 0;
     margin: 0;
     clear: both;
-    line-height:1.25;
+    line-height: 1.25;
   }
 
   .region .featureImage {
     background: #ffffff;
-    padding:10px;
+    padding: 10px;
     float: left;
-    
+
     @include bp(mx) {
       float: none;
     }
   }
 
   .region li {
-    margin:0 0 3px 0;
+    margin: 0 0 3px 0;
   }
 
   .region h3 a:hover {
-    color:$cu_red;
+    color: $cu_red;
   }
 
   .region .content {
@@ -58,7 +59,8 @@ div.four-col-float {
       padding-left: $base-spacing*2;
       overflow: hidden;
     }
-    > p {
+
+    >p {
       margin: 0;
     }
   }
@@ -68,8 +70,23 @@ div.four-col-float {
     list-style-type: none;
     padding: 0;
     float: left;
+
     a {
       border-bottom: 0;
+
+      &:focus,
+      &:focus-within {
+        border: 2px dotted var(--color-cu-red);
+        outline: none;
+      }
+    }
+  }
+
+  a {
+
+    &:focus,
+    &:focus-within {
+      outline-offset: 1px;
     }
   }
 }

@@ -6,13 +6,16 @@
 //= require_tree ./components
 //= require_tree ./regions
 //= require_tree ./uninav
+//= require global_functions
 //= require cascade/carousel
+//= require cascade/unibuddy
+//= require cascade/covid-19-button 
 //= require cascade/back-to-top
 //= require cascade/collapsed-nav
 //= require cascade/console-log
 //= require cascade/footer
 //= require cascade/homepage
-//= require cascade/ie7
+//= require cascade/ie
 //= require cascade/main
 //= require cascade/form-validation
 //= require cascade/query-string
@@ -26,6 +29,8 @@
 // don't require cascade/shortcuts
 
 //= require cascade/plugins/amplify
+//= require cascade/plugins/aos
+
 //= require cascade/plugins/cookie
 //= require cascade/plugins/ellipsis
 //= require cascade/plugins/flexslider
@@ -38,13 +43,12 @@
 //= require cascade/plugins/super-pager
 //= require cascade/plugins/touchwipe
 //= require cascade/plugins/lightslider
-//= require cascade/plugins/slick.min
+//= require cascade/plugins/slick
 //= require cascade/plugins/isOnScreen
 //= require cascade/plugins/mousetrap
 //= require cascade/level/plugins/tipsy
 //= require cascade/level/accordion
 //= require cascade/level/three_photo_callout
-//= require cascade/level/homepage-masthead
 //= require cascade/level/career_blocks
 
 //= require cascade/level/degrees-programs
@@ -54,11 +58,14 @@
 //= require cascade/level/feature
 //= require cascade/level/flickr-picasa
 //= require cascade/level/funnel
+//= require cascade/level/cu-safely-back
 //= require cascade/iframe-titles
 //= require cascade/image-alt-text
+//= require cascade/lazy-load-images
 //= require cascade/level/left-nav
 //= require cascade/level/level
 //= require cascade/level/masthead
+//= require cascade/level/homepage-masthead
 //= require cascade/level/mosaic
 //= require cascade/level/name-bar
 //= require cascade/level/news-events

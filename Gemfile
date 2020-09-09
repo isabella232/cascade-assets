@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.5.1'
+ruby '2.7.0'
 
 gem 'autoprefixer-rails', '~> 6.4'
 gem 'awesome_print'
@@ -8,18 +8,20 @@ gem 'nokogiri'
 gem 'render_anywhere', require: false
 gem 'rubyzip'
 gem 'tzinfo-data'
+gem 'json'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.8'
+gem 'rails', '~> 6.0.3'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0.6'
+gem 'sass-rails', '~> 6.0.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 4.2'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails', '~> 5.0.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+gem 'httparty'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -42,14 +44,19 @@ gem "non-stupid-digest-assets", group: :development
 
 # Access an IRB console on exception pages or by using <%= console %> in views
 gem 'web-console', '~> 2.0', group: :development
-gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
+# gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
+
+# gem 'activemodel', '~> 4.2', '>= 4.2.6'
+
+gem 'webpacker', '~> 5.x'
+
 # Test-Only Gems
 group :test do
   # Rubocop static code analyzer: https://github.com/bbatsov/rubocop
   gem 'rubocop'
 
   # Feature-testing with Capybara and Selenium
-  gem "minitest-rails-capybara"
+  # gem "minitest-rails-capybara"
   gem 'selenium-webdriver'
 
   # PhantomJS webdriver for Capybara: https://github.com/teampoltergeist/poltergeist
@@ -64,7 +71,8 @@ end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-
+  gem 'httparty'
+  
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 

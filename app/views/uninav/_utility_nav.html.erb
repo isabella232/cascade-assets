@@ -1,78 +1,107 @@
 <div class="uninav__utility-nav--wrapper">
   <div class="uninav__utility-nav">
     <ul class="uninav__menu-item-flex uninav__menu-item-flex--utility">
-      <span class="uninav__utility-nav--audiences-container">
-        <!-- _audiences.vtl -->
-        <li
-          class="uninav__menu-item--audiences uninav__audiences-menu-item--staff uninav__menu-item-audiences--1 uninav__audiences-menu-item--dropdown-parent ">
-          <a href="#"><span class="uninav__underline--center"> Staff </span></a>
-          <span class="uninav__dropdown-wrapper">
-            <ul>
-            </ul>
-          </span>
-        </li>
-        <li class="uninav__menu-item--audiences ">
-          <a href="../students/academic-resources/registrar/student-services/course-registration/new-student/index.aspx"
-            id="uninav-audiences-students">
-            <span class="uninav__underline--center">Students</span>
-          </a>
-        </li>
-        <li class="uninav__menu-item--audiences ">
-          <a href="../index.aspx" id="uninav-audiences-industry-partners">
-            <span class="uninav__underline--center">Industry Partners</span>
-          </a>
-        </li>
-      </span>
+      <li class="uninav__utility-nav--audiences-container uninav__dropdown--parent">
+        <p tabindex="0">Info For</p>
+        <div class="uninav__dropdown--child">
+          <ul class="uninav__utility-nav--audiences-menu ">
+
+            <!-- _audiences.vtl -->
+
+            <li
+              class="uninav__menu-item--audiences uninav__audiences-menu-item--faculty-staff uninav__menu-item-audiences--1 uninav__audiences-menu-item--dropdown-parent ">
+              <a href="#"><span class="uninav__underline--center"> Faculty &amp; Staff </span></a>
+              <span class="uninav__dropdown-wrapper">
+                <ul>
+                </ul>
+
+              </span>
+            </li>
+
+            <li class="uninav__menu-item--audiences ">
+              <a href="students/academic-resources/registrar/student-services/course-registration/new-student/index.aspx"
+                id="uninav-audiences-students">
+                <span class="uninav__underline--center">Students</span>
+              </a>
+
+            </li>
+
+            <li class="uninav__menu-item--audiences ">
+              <a href="index.aspx" id="uninav-audiences-industry-partners">
+                <span class="uninav__underline--center">Industry Partners</span>
+              </a>
+
+            </li>
+
+            <li class="uninav__menu-item--audiences ">
+              <a href="index.aspx" id="uninav-audiences-parents-and-family">
+                <span class="uninav__underline--center">Parents and Family</span>
+              </a>
+
+            </li>
+
+            <li
+              class="uninav__menu-item--audiences uninav__audiences-menu-item--alumni uninav__menu-item-audiences--5 uninav__audiences-menu-item--dropdown-parent ">
+              <a href="#"><span class="uninav__underline--center"> Alumni </span></a>
+              <span class="uninav__dropdown-wrapper">
+                <ul>
+                </ul>
+
+              </span>
+            </li>
+          </ul>
+        </div>
+      </li>
       <span class="uninav__utility-nav--search-wrapper">
-          <style>
-            .gssb_c,
-            .gssb_c[style] {
-              z-index: 99999999999999999999999;
-            }
+        <style>
+          .gssb_c,
+          .gssb_c[style] {
+            z-index: 99999999999999999999999;
+          }
 
-            #gsc-i-id1 {
-              font-family: "futura-pt", Arial, sans-serif;
-            }
+          #gsc-i-id1 {
+            font-family: "futura-pt", Arial, sans-serif;
+          }
 
-            .gssb_c[style] .gsc-completion-container {
-              font-size: 1.2em;
-              font-family: "futura-pt", Arial, sans-serif !important;
-              margin-bottom: 2rem !important;
-            }
+          .gssb_c[style] .gsc-completion-container {
+            font-size: 1.2em;
+            font-family: "futura-pt", Arial, sans-serif !important;
+            margin-bottom: 2rem !important;
+          }
 
-            input#gsc-i-id1 {
-              height: 30px !important;
-              box-shadow: none !important;
-            }
+          input#gsc-i-id1 {
+            height: 30px !important;
+            box-shadow: none !important;
+          }
 
-            .gsc-overflow-hidden ul li div {
-              text-align: left;
-            }
+          .gsc-overflow-hidden ul li div {
+            text-align: left;
+          }
 
-            .gssb_e {
+          .gssb_e {
 
-              box-shadow: none;
+            box-shadow: none;
 
-            }
+          }
 
-            .gstl_50.gssb_c {
-              display: block !important;
-            }
+          .gstl_50.gssb_c {
+            display: block !important;
+          }
 
-            .gssb_a table,
-            .gssb_a table tr,
-            .gssb_a table tr td {
-              margin-top: 1rem;
-              margin-bottom: 1rem;
-            }
-
-          </style>
-          <li class="uninav__search-button--mobile" id="uninav__search-button--mobile" title="Toggle Search Input" aria-label="Toggle Search Input"></li>
-          <div class="uninav__search-input uninav__search-input--desktop">
-            <script async="true" src="https://cse.google.com/cse.js?cx=015856566681218627934:2ndbiubovo4"></script>
-            <div class="gcse-search"></div>
-          </div>
-        </span>
+          .gssb_a table,
+          .gssb_a table tr,
+          .gssb_a table tr td {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+          }
+        </style>
+        <li class="uninav__search-button--mobile" id="uninav__search-button--mobile" title="Toggle Search Input"
+          aria-label="Toggle Search Input"></li>
+        <div class="uninav__search-input uninav__search-input--desktop">
+          <script async="true" src="https://cse.google.com/cse.js?cx=015856566681218627934:2ndbiubovo4"></script>
+          <div class="gcse-search"></div>
+        </div>
+      </span>
       <li aria-expanded="false" class="uninav__login uninav__dropdown--parent" tabindex="0">
         <span class="uninav__menu-item-login">
           <span class="fas fa-paw"></span>
@@ -102,7 +131,6 @@
                     .st0 {
                       fill: #FFFFFF;
                     }
-
                   </style>
                   <path class="st0"
                     d="M0.9,37.6c0-1.5,0.9-3.2,2.2-3.9c3.7-1.9,13.5-1.1,15.9-0.4c10.4,3,14.9,15.9,39.5,9.6c9.8-2.5,17.4-0.7,19-0.1  c2,0.8,3.4,2.1,3.4,4.6c0,8.1,0,27.7-0.1,41.4c0,4-3.3,7.3-7.3,7.3c-4.9,0-10.8,0-15.3-0.1c-4,0-7.3-3.3-7.3-7.3  c0-8.5-0.2-18.3-0.4-26.8c-0.2-7.7-7.8-13.2-17.6-10.7c-1.1,0.3-1.6,0.5-1.6,1.4c0,2.4-0.2,23.6-0.3,36.1c0,4-3.3,7.3-7.4,7.3  L8.1,96c-4.1,0-7.4-3.3-7.4-7.4C0.8,74.5,0.9,44.3,0.9,37.6">
@@ -125,7 +153,6 @@
                     .st0 {
                       fill: #ffffff;
                     }
-
                   </style>
                   <polygon class="st0" points="13 14.5 0 27.5 0 14.5 "></polygon>
                   <polygon class="st0" points="0 13.6 0 0.6 13 13.6 "></polygon>
@@ -147,7 +174,6 @@
                     .st0 {
                       fill: #ffffff;
                     }
-
                   </style>
                   <polygon class="st0" points="13 14.5 0 27.5 0 14.5 "></polygon>
                   <polygon class="st0" points="0 13.6 0 0.6 13 13.6 "></polygon>
@@ -191,7 +217,6 @@
                     .st0 {
                       fill: #ffffff;
                     }
-
                   </style>
                   <polygon class="st0" points="13 14.5 0 27.5 0 14.5 "></polygon>
                   <polygon class="st0" points="0 13.6 0 0.6 13 13.6 "></polygon>

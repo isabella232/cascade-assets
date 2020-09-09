@@ -4,12 +4,14 @@
     #set ( $programEvents           = $_XPathTool.selectSingleNode($element, 'programEvents') )
     #set ( $widgetXPath             = 'programEvents')
     #set ( $displayStyle            = $programEvents.getChild('tilesBars').value)
-    #set ( $programEventText        = $programEvents.getChild('text').value)
+    #set ($programEventText = $_SerializerTool.serialize($element.getChild($widgetXPath).getChild('text'), true))
     #set ( $programEventsFeedUrl    = $programEvents.getChild('feedUrl').value )
+
 
     <div class="program-events__container">
         <div data-chapman-program-events="${_EscapeTool.xml($programEventsFeedUrl)}"></div>
-        <p class="program-events__text">${_EscapeTool.xml($programEventText)}</p>
+            <p class="program-events__text">$programEventText</p>
+            
         <div id="program-events-display" class="program-events ${_EscapeTool.xml($displayStyle)}">
         </div>
     </div>

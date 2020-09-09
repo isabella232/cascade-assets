@@ -2,7 +2,6 @@
 .homepage-masthead__container {
   --defaultPadding: 5%;
   width: 100vw;
-
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
@@ -63,6 +62,7 @@
     justify-self: end;
     @include v(color, white);
     padding-right: 2vw;
+    padding-left: 2vw;
     cursor: pointer;
     top: calc(600px - 12.5rem);
     fill-opacity: 0.9;
@@ -74,16 +74,121 @@
       transition: 150ms linear;
       fill-opacity: 1;
     }
+
+    &:focus,
+    &:focus-within {
+      outline: 2px dotted white;
+    }
   }
 
   #homepage-masthead__play-button {
     display: none;
   }
+
+  .fade-in {
+    animation: fadein 1s forwards;
+    -moz-animation: fadein 1s forwards;
+    -webkit-animation: fadein 1s forwards;
+    -o-animation: fadein 1s forwards;
+    animation-direction: forwards;
+    -webkit-animation: fadein 1s forwards;
+  }
+
+  .fade-out {
+    animation: fadeOut 3s forwards;
+    -moz-animation: fadeOut 3s forwards;
+    -webkit-animation: fadeOut 3s forwards;
+    -o-animation: fadeOut 3s forwards;
+    animation-direction: forwards;
+    -webkit-animation: fadeOut 3s forwards;
+  }
+
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @-moz-keyframes fadein {
+
+    /* Firefox */
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @-webkit-keyframes fadein {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @-o-keyframes fadein {
+
+    /* Opera */
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+
+  @-moz-keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+
+  @-webkit-keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+
+  @-o-keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
 }
 
-
 .homepage-masthead {
-
   &__heading-container {
     margin-top: 7.5rem;
     color: $white;
@@ -186,7 +291,6 @@
 
       &__button,
       .homepage a.button {
-
         $bg: $cu-red;
         --buttonMinWidth: 350px;
         background: unset;
@@ -204,6 +308,13 @@
         border-radius: 4px;
         transition: 300ms ease all;
         min-height: 54px;
+
+        @media not all and (min-resolution:.001dpcm) {
+          @supports (-webkit-appearance:none) {
+            display: flex;
+            align-items: center;
+          }
+        }
 
         &:hover,
         &:focus,
@@ -234,7 +345,6 @@
           transition: 300ms linear;
 
           @-webkit-keyframes backgroundColor {
-
             0% {
               background-color: $white;
               transition: 350ms ease;
@@ -254,7 +364,6 @@
           }
 
           @keyframes backgroundColor {
-
             0% {
               background-color: $white;
               transition: 350ms ease;
@@ -279,19 +388,13 @@
 
   &__photo-grid {
     display: -ms-grid;
-
     display: grid;
-
-
     -ms-grid-columns: 2fr 12px 1fr 12px 1fr 12px 1fr 12px 1fr;
     grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-
-
     -ms-grid-rows: fit-content(100%);
     grid-template-rows: fit-content(100%);
     justify-content: space-around;
     grid-gap: 12px;
-
     max-width: 1130px;
     -ms-grid-columns: 1fr;
     -ms-grid-rows: 1fr;
@@ -300,7 +403,6 @@
     width: 100vw;
     -webkit-animation-delay: 5s;
     animation-delay: 5s;
-
 
     h2 {
       @include v(color, white);
@@ -313,9 +415,14 @@
       background-color: $cu-red;
       -webkit-clip-path: polygon(100% 0, 0 0, 0 100%);
       clip-path: polygon(100% 0, 0 0, 0 100%);
+
+      &:hover {
+        background-color: $cu-red;
+      }
     }
 
-    a {
+    a,
+    span {
       @include v(background-color, cu-red);
       will-change: filter, brightness;
       @include qbal-slideUp-enter;
@@ -352,7 +459,7 @@
         overflow: hidden;
       }
 
-      &:last-child {
+      .diagonal {
         -webkit-clip-path: polygon(100% 0, 0 0, 0 100%);
         clip-path: polygon(100% 0, 0 0, 0 100%);
       }
@@ -377,6 +484,19 @@
         object-fit: cover;
         will-change: filter, background-color;
         transition: 150ms ease all;
+        opacity: 0;
+      }
+
+      .no-js {
+        img {
+          animation-delay: 300ms;
+          animation: fadein 3s forwards;
+          -moz-animation: fadein 3s forwards;
+          -webkit-animation: fadein 3s forwards;
+          -o-animation: fadein 3s forwards;
+          animation-direction: forwards;
+          -webkit-animation: fadein 3s forwards;
+        }
       }
 
       .svg-inline--fa.fa-chevron-circle-right.fa-w-16 {
@@ -401,6 +521,26 @@
       }
     }
 
+    span {
+
+      &:hover,
+      &:focus,
+      &:focus-within {
+        -webkit-filter: none;
+        filter: none;
+        background-color: lighten($cu-red, 8%);
+
+        img {
+          -webkit-filter: none;
+          filter: none;
+        }
+      }
+    }
+
+    .homepage-masthead__photo-grid-container__text:hover h2 span {
+      background-color: transparent;
+    }
+
     &-container {
       display: -ms-grid;
       display: grid;
@@ -419,6 +559,7 @@
       -ms-grid-column-align: center;
       justify-self: center;
     }
+
   }
 
   &__photo-grid>*:nth-child(1) {
@@ -461,6 +602,11 @@
     justify-content: space-around;
     grid-gap: 12px;
     max-width: 1130px;
+
+    picture {
+      opacity: 0;
+    }
+
   }
 
   &__photos>*:nth-child(1) {
@@ -565,7 +711,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endColorstr="#000000", GradientType=1);
 }
 
-video {
+video#homepage-masthead__video {
   -o-object-fit: cover;
   object-fit: cover;
   height: $mastheadVideoHeight;
@@ -638,6 +784,19 @@ video {
   @include respond(tab-port) {
     .homepage-masthead__photo-grid {
       padding-top: 5px;
+
+      a .svg-inline--fa.fa-chevron-circle-right.fa-w-16 {
+        max-width: 4rem;
+        font-size: 46px !important;
+        width: 46px !important;
+      }
+
+      .homepage-masthead__photo-grid-container__text {
+        h2 {
+          font-size: 2.5rem;
+          line-height: 2.5rem;
+        }
+      }
     }
 
     .homepage-masthead__photos {
@@ -671,6 +830,23 @@ video {
           font-size: 1.8rem;
           line-height: 2rem;
           font-weight: bold;
+        }
+      }
+    }
+
+    .homepage-masthead__photo-grid {
+      padding-top: 5px;
+
+      a .svg-inline--fa.fa-chevron-circle-right.fa-w-16 {
+        max-width: 4rem;
+        font-size: initial;
+        width: initial;
+      }
+
+      .homepage-masthead__photo-grid-container__text {
+        h2 {
+          font-size: initial;
+          line-height: initial;
         }
       }
     }
@@ -778,7 +954,6 @@ video {
       }
 
       .ie__fallback--object-fit {
-
         &:first-of-type {
           height: 100% !important;
           width: 100% !important;
@@ -803,16 +978,12 @@ video {
 
     &__photos {
       display: -ms-grid;
-
-
       position: relative;
       max-width: 1130px;
-
       display: -ms-grid;
       -ms-grid-columns: 400px 200px 200px 200px;
       -ms-grid-rows: 200px 200px;
       grid-gap: 12px;
-
       z-index: 3;
       max-width: 1130px;
       margin: auto;
@@ -869,7 +1040,8 @@ video {
     z-index: 3;
     max-width: 1130px;
 
-    a {
+    a,
+    span {
       display: inline-block !important;
     }
 
@@ -944,7 +1116,8 @@ video {
       margin-right: 12px;
     }
 
-    a+a {
+    a+a,
+    span+span {
       margin-right: 12px;
     }
 
@@ -993,7 +1166,6 @@ video {
     background-color: $white;
     width: 100vw;
     height: auto;
-
     position: absolute;
     top: 0;
     left: 0;
@@ -1037,5 +1209,87 @@ video {
     max-height: $mastheadVideoHeight;
     position: absolute;
     background: none;
+  }
+}
+
+.homepage-masthead__photo-grid:hover .homepage-masthead__photo-grid-container__text {
+  transition: 350ms ease-in-out;
+  background-color: #ce0041;
+
+  svg {
+    animation: nudge 3s infinite ease;
+    animation-timing-function: linear;
+  }
+
+  @keyframes nudge {
+    5% {
+      -webkit-transform: translatex(3px);
+      transform: translatex(3px);
+    }
+
+    15% {
+      -webkit-transform: translatex(2px);
+      transform: translatex(2px);
+    }
+
+    0%,
+    10%,
+    20% {
+      -webkit-transform: translatex(0);
+      transform: translatex(0);
+    }
+  }
+
+  @keyframes sonar-pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(206, 0, 65, .4);
+    }
+
+    100% {
+      box-shadow: 0 0 0 0 rgba(165, 0, 52, 0);
+    }
+  }
+
+  @-webkit-keyframes sonar-pulse-circular {
+    0% {
+      box-shadow: 0 0 0 0 rgba(206, 0, 65, .2);
+    }
+
+    70% {
+      box-shadow: 0 0 0 30px rgba(165, 0, 52, 0);
+    }
+
+    100% {
+      box-shadow: 0 0 0 0 rgba(165, 0, 52, 0);
+    }
+  }
+
+  @keyframes sonar-pulse-circular {
+    0% {
+      box-shadow: 0 0 0 0 rgba(206, 0, 65, .4);
+    }
+
+    70% {
+      box-shadow: 0 0 0 30px rgba(206, 0, 52, .6);
+    }
+
+    100% {
+      box-shadow: 0 0 0 0 rgba(206, 0, 52, .9);
+    }
+  }
+}
+
+.homepage-masthead__photo-grid .homepage-masthead__photo-grid-container__text h2 span {
+  background-color: transparent !important;
+}
+
+.no-js {
+  picture {
+    animation: fadein 1s forwards;
+    -moz-animation: fadein 1s forwards;
+    -webkit-animation: fadein 1s forwards;
+    -o-animation: fadein 1s forwards;
+    animation-direction: forwards;
+    -webkit-animation: fadein 1s forwards;
   }
 }

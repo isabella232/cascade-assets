@@ -2,11 +2,13 @@
 
 .btn-flat {
   padding: 5px 10px 5px 10px;
+
   &:after {
     font-size: 16px;
     content: "»";
     margin-left: 20px;
   }
+
   &.white {
     background-color: $white;
   }
@@ -14,6 +16,7 @@
 
 .teal {
   background-color: $teal;
+
   &:hover {
     background-color: $teal-hover;
   }
@@ -21,6 +24,7 @@
 
 .teal2 {
   background-color: $teal2;
+
   &:hover {
     background-color: $teal2-hover;
   }
@@ -28,6 +32,7 @@
 
 .red {
   background-color: $red;
+
   &:hover {
     background-color: $red-hover;
   }
@@ -35,6 +40,7 @@
 
 .grey {
   background-color: $grey;
+
   &:hover {
     background-color: $grey-hover;
   }
@@ -42,15 +48,17 @@
 
 .grey2 {
   background-color: $grey2;
+
   &:hover {
     background-color: $grey2-hover;
   }
 }
 
-.leftSlideFade, .rightSlideFade {
-	.ie7 & {
-		display: none;
-	}
+.leftSlideFade,
+.rightSlideFade {
+  .ie7 & {
+    display: none;
+  }
 }
 
 .leftSlideFade {
@@ -86,6 +94,7 @@
   background-repeat: no-repeat;
   text-align: left;
   direction: ltr;
+
   br {
     display: none;
   }
@@ -105,8 +114,11 @@
   padding: 0;
   position: absolute;
   width: 1px;
+
   &.focusable {
-    &:active, &:focus {
+
+    &:active,
+    &:focus {
       clip: auto;
       height: auto;
       margin: 0;
@@ -130,11 +142,13 @@
     content: "";
     display: table;
   }
+
   &:after {
     content: "";
     display: table;
     clear: both;
   }
+
   zoom: 1;
 }
 
@@ -144,6 +158,18 @@
 
 .js .noscript {
   display: none;
+}
+
+.noscript {
+  opacity: 0;
+
+  animation-delay: 300ms;
+  animation: fadein 300ms forwards;
+  -moz-animation: fadein 300ms forwards;
+  -webkit-animation: fadein 300ms forwards;
+  -o-animation: fadein 300ms forwards;
+  animation-direction: forwards;
+  -webkit-animation: fadein 300ms forwards;
 }
 
 .noscript p {
@@ -156,46 +182,65 @@
   font-size: 1.2em;
   line-height: 1.4em;
   background: #FFFFBD;
+
+  opacity: 0;
+  -webkit-animation: fadeIn 1s linear forwards;
+  animation: fadeIn 1s linear forwards;
+  animation-delay: 1s;
 }
+
 
 .twitter {
   background-position: -2px -1px;
+
   @include bp(m) {
     background-position: -2px -1px;
   }
 }
+
 .facebook {
   background-position: -28px -1px;
+
   @include bp(m) {
     background-position: -28px -1px;
   }
 }
+
 .pinterest {
   background-position: -54px -1px;
+
   @include bp(m) {
     background-position: -54px -1px;
   }
 }
+
 .iTunes {
   background-position: -80px -1px;
+
   @include bp(m) {
     background-position: -80px -1px;
   }
 }
+
 .youTube {
   background-position: -106px -1px;
+
   @include bp(m) {
     background-position: -106px -1px;
   }
 }
+
 .linkedIn {
   background-position: -132px -1px;
+
   @include bp(m) {
     background-position: -132px -1px;
   }
 }
+
 .googlePlus {
   background-position: -158px -1px;
+
   @include bp(m) {
     background-position: -158px -1px;
   }
@@ -203,16 +248,16 @@
 
 .fast_transition {
   -webkit-transition: left 1s ease-out, opacity 1s ease-out;
-     -moz-transition: left 1s ease-out, opacity 1s ease-out;
-       -o-transition: left 1s ease-out, opacity 1s ease-out;
-          transition: left 1s ease-out, opacity 1s ease-out;
+  -moz-transition: left 1s ease-out, opacity 1s ease-out;
+  -o-transition: left 1s ease-out, opacity 1s ease-out;
+  transition: left 1s ease-out, opacity 1s ease-out;
 }
 
 .slow_transition {
   -webkit-transition: left 2s ease-out, opacity 2s ease-out;
-     -moz-transition: left 2s ease-out, opacity 2s ease-out;
-       -o-transition: left 2s ease-out, opacity 2s ease-out;
-          transition: left 2s ease-out, opacity 2s ease-out;
+  -moz-transition: left 2s ease-out, opacity 2s ease-out;
+  -o-transition: left 2s ease-out, opacity 2s ease-out;
+  transition: left 2s ease-out, opacity 2s ease-out;
 }
 
 .maxWidth {
@@ -238,7 +283,8 @@ th.header-light {
 .tweetbox {
   color: $cu-light-grey;
   @include v(border, solid-grey);
-  margin: 0 0 20px 0 ;
+  margin: 0 0 20px 0;
+
   iframe {
     width: 100% !important;
   }

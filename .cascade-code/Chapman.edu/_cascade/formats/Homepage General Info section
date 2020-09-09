@@ -3,9 +3,11 @@
 #set ( $panel = $currentPage.getChild('system-data-structure').getChild('generalInfo') )
 #set ( $header = $panel.getChild('header').value )
 
-<section class="section light-bg" id="generalInformation" aria-label="General Campus Information">
-    <div class="maxWidth">
-        <h2 class="heading skrollable skrollable-after" data-bottom="opacity:0;" data-center="opacity:1;">$header</h2>
+
+<section class="section light-bg lazy" id="generalInformation" aria-label="General Campus Information">
+	<div class="maxWidth">
+		<h2 class="heading skrollable skrollable-after" data-bottom="opacity:0;" data-center="opacity:1;">$header</h2>
+		<div class="homepage-news__grid-wrapper">
         #set ( $stories = $_XPathTool.selectNodes($currentPage, "//system-data-structure/generalInfo/story") ) 
         #if( $stories.size() > 0 )             
         #foreach($story in $stories)
@@ -21,9 +23,10 @@
             #else
                 #set ( $link = '#' )
             #end
-            <div class="third">                
-                <!-- Images must be 480x320 for this space | unlimited images supported -->
-                <div class="imagerotator">
+            
+			<div class="third">
+				<!-- Images must be 480x320 for this space | unlimited images supported -->
+				<div class="imagerotator">
                     ## can be 1 to N number of images for each story:
                     #set ( $SlideImages = $_XPathTool.selectNodes($story, "./images") )
                     #if( $SlideImages.size() > 0 )  
@@ -38,17 +41,24 @@
                             #else
                                 #set ( $imageLink = '#' )
                             #end
-                            <img src="$imageLink" alt="$imageAltText"/>
+                            
+					<img loading="lazy" class="lazy" src="$imageLink" alt="$imageAltText"/>
                         #end
                     #end
-                    <div style="padding-bottom:67%;" class="imagerotator_clearfix"></div>
-                </div>                    
-                <h3>$story_header</h3>
-                <p>$storyCopy</p>
-                <p><a href="$link">$storylinkText</a></p>
-            </div>
+                    
+					<div style="padding-bottom:67%;" class="imagerotator_clearfix"></div>
+				</div>
+				<div class="undergraduate-card__text">
+					<h3>$story_header</h3>
+					<p>$storyCopy</p>
+					<p>
+						<a href="$link">$storylinkText</a>
+					</p>
+				</div>
+			</div>
         #end
         #end
-            
-    </div>
+    
+		</div>
+	</div>
 </section>

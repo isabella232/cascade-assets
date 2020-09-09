@@ -27,18 +27,20 @@
                 #set ( $rightButtonLink = '#' )
             #end
 
-<section class="section dark-bg" data-bottom-top="background-position: center 100px" data-top-bottom="background-position: center -100px" id="undergraduateAdmission" aria-label="Undergraduate Admission Information">
-        <div class="maxWidth">
-            <h2 class="heading" data-100-top="opacity:1;" data-top="opacity:0;">
-            #foreach ($item in $headerSet)
-                #set ( $header = $item.getChild('item').value )
-                <span class="fade-elem">$header</span>
-            #end               
-            </h2>
-            <h3 class="subheading fade-elem">$subHeader</h3>
+<section aria-label="Undergraduate Admission Information" class="section dark-bg lazy"
+                data-bottom-top="background-position: center 100px" data-top-bottom="background-position: center -100px"
+                id="undergraduateAdmission">
+                <div class="maxWidth">
+                    <h2 class="heading" data-aos="fade-up" data-aos-duration="500">
+                        <span class="fade-elem" style="opacity: 0;">START </span>
+                        <span class="fade-elem" style="opacity: 0;">SOMETHING</span>
+                        <span class="fade-elem" style="opacity: 0;">BIG.</span>
+                    </h2>
+                    <h3 class="subheading fade-elem" style="opacity: 0;">Join our vibrant intellectual community of
+                        undergraduate makers and doers.</h3>
 
-            <ul class="statistics">
-                #foreach ($fact in $factSet)
+                    <ul class="statistics">
+                         #foreach ($fact in $factSet)
                     #set ($factNumber = $fact.getChild('factNumber').value )
                     #set ($factLabel = $fact.getChild('Label').value )
                     #if ($foreach.count == 1)
@@ -61,24 +63,19 @@
                         #set ($position = "70px" )
                         <li class="fact5" data-bottom-top="top[sqrt]:$position" data-center="top:0px"><p><span class="bigstat" data-count="$factNumber">$factNumber</span> <span class="label"> $factLabel</span></p></li>
                     #end
-                #end            
-            </ul>
+                #end  
+                    </ul>
 
-            <div class="actions">
-                <a class="button white smc-cta" data-cta-id="homepage-ug-adm" data--100-bottom="opacity:1" data-bottom="opacity:0" href="site://Chapman.edu/about/index">Discover Chapman</a>
-                
-                ### popup form not used: <a class="button red request admissionCTA_start" data--100-bottom="opacity:1" data-bottom="opacity:0" href="javascript:void();">Request Information</a>
-                #if ($leftButtonTrackID != "")
-                    <a class="button white smc-cta" data-cta-id="$leftButtonTrackID" data--100-bottom="opacity:1" data-bottom="opacity:0" href="$leftButtonLink">$leftButtonLabel</a>
-                #else
-                    <a class="button white" data--100-bottom="opacity:1" data-bottom="opacity:0" href="$leftButtonLink">$leftButtonLabel</a>
-                #end
-                #if ($rightButtonTrackID != "")
-                    <a class="button white smc-cta" data-cta-id="$rightButtonTrackID" data--100-bottom="opacity:1" data-bottom="opacity:0" href='$rightButtonLink'>$rightButtonLabel</a>
-                #else
-                    <a class="button white" data--100-bottom="opacity:1" data-bottom="opacity:0" href="$rightButtonLink">$rightButtonLabel</a>
-                #end
+                    <div class="actions">
+                        <a class="button white smc-cta" data--100-bottom="opacity:1" data-bottom="opacity:0"
+                            data-cta-id="homepage-ug-adm" href="https://www.chapman.edu/about/index.aspx">Discover Chapman</a>
 
-            </div>
-        </div>
-  </section>
+                        <a class="button white smc-cta" data--100-bottom="opacity:1" data-bottom="opacity:0"
+                            data-cta-id="homepage-ug-adm" href="https://www.chapman.edu/admission/undergraduate/visit/index.aspx">Visit Us</a>
+                        <a class="button white smc-cta" data--100-bottom="opacity:1" data-bottom="opacity:0"
+                            data-cta-id="homepage-ug-adm" href="https://www.chapman.edu/admission/undergraduate/how-to-apply/index.aspx">Apply
+                            Today</a>
+
+                    </div>
+                </div>
+            </section>

@@ -29,22 +29,36 @@
       display: inline-block;
       float: none;
       margin: 0 0 0 5px;
+      border: 1px solid white;
+      border-radius: 50%;
+
+      &:focus,
+      &:focus-within {
+        outline: 2px dotted var(--color-cu-red);
+        outline-offset: 2px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+      }
 
       a {
         width: 13px;
         height: 13px;
-        background: image-url('pager_sprite.png') no-repeat;
+        background-color: white;
         background-position: -13px 0;
         text-indent: 999px;
         overflow: hidden;
+        border-radius: 50%;
 
         &:hover,
         &.flex-active {
-          background-position: 0 0;
+          background: var(--color-cu-red);
+
+
         }
       }
     }
-    
+
     @include bp(wildcard-min, 768px) {
       position: absolute !important;
       padding-top: 0;
@@ -67,7 +81,7 @@ div.slider.version-201611 {
   div.grid {
     width: 100%;
 
-    @include media($medium-screen) { 
+    @include media($medium-screen) {
       display: table;
       table-layout: fixed;
       position: relative;
@@ -76,12 +90,16 @@ div.slider.version-201611 {
     .column {
       font-family: $font-stack-heading;
 
-      @include media($medium-screen) { display: table-cell; }
+      @include media($medium-screen) {
+        display: table-cell;
+      }
 
       &.image {
-        @include media($medium-screen) { width: 65%; }
+        @include media($medium-screen) {
+          width: 65%;
+        }
 
-        img { 
+        img {
           display: block;
           width: 100%;
           height: auto;
@@ -94,7 +112,7 @@ div.slider.version-201611 {
           padding: 16px;
           font-size: 16px;
           color: $white;
-          background-color: rgba(56,56,56,0.70);
+          background-color: rgba(56, 56, 56, 0.70);
         }
       }
 
@@ -102,7 +120,7 @@ div.slider.version-201611 {
         width: 100%;
         text-align: left;
         color: $white;
-        
+
         @include media($medium-screen) {
           width: 35%;
           vertical-align: bottom;
@@ -112,7 +130,8 @@ div.slider.version-201611 {
         div.aligned {
           padding: 32px;
 
-          .faux-h2, h2 {
+          .faux-h2,
+          h2 {
             margin: 0px auto 24px;
             padding: 0px;
             font-size: 22px;
@@ -132,20 +151,21 @@ div.slider.version-201611 {
 
           hr {
             display: none;
-            
+
             @include media($medium-screen) {
-            /* See: http://stackoverflow.com/a/4151770/6763239 */
+              /* See: http://stackoverflow.com/a/4151770/6763239 */
               display: block;
               height: 2px;
               width: 35%;
-              margin:0 auto;
+              margin: 0 auto;
               color: white;
               background-color: white;
               border: none;
             }
           }
 
-          h3, .faux-h3 {
+          h3,
+          .faux-h3 {
             margin: 24px auto 0px;
             font-size: 20px;
             line-height: 30px;
@@ -164,5 +184,54 @@ div.slider.version-201611 {
         }
       }
     }
+  }
+
+
+  .peekaboo {
+    margin-left: -9999999px;
+    z-index: -9999999;
+    opacity: 0;
+  }
+
+  .peekaboo:focus,
+  .pause:focus {
+    z-index: unset !important;
+    margin-left: unset !important;
+    opacity: 1;
+    color: $white;
+    text-align: center;
+    outline: initial;
+    font-family: $arial;
+    font-weight: bold;
+  }
+
+  .skip-masthead--2-3-col {
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+  }
+
+  .miniRotatorNav.next {
+    top: 0;
+  }
+
+  .skip-masthead--2-3-col {
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+    position: absolute;
+    z-index: -1;
+
+    .peekaboo.next-section.button.red:focus {
+      border: 2px dotted;
+    }
+  }
+
+  .skip-masthead--2-3-col:focus-within {
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+    position: relative;
+    z-index: 10;
   }
 }

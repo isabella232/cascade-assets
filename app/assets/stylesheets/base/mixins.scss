@@ -491,7 +491,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
   text-transform: uppercase;
 }
 
-// the variable mixin takes a property and variable name 
+// the variable mixin takes a property and variable name
 // and an optional override to hide the fallback
 @mixin v($prop, $var, $show-fall: true) {
   // get the property's map name(s)
@@ -547,8 +547,6 @@ ORDER: Base + typography > general layout + grid > page layout > components
   background-image: -webkit-linear-gradient(to right, $color 10%, rgba(165, 0, 52, 1) 0%);
 }
 
-
-
 // button mixin
 @mixin button-bg($bg) {
   --padding: 15px;
@@ -556,9 +554,8 @@ ORDER: Base + typography > general layout + grid > page layout > components
   --font-weight: 400;
   --font-size: 2rem;
   --font-family: 400;
-  --padding-top: 10px;
+  --padding-top: 15px;
   --padding-bottom: 15px;
-
   background-color: $bg;
   border-radius: var(--border-radius);
   font-size: var(--font-size);
@@ -655,6 +652,14 @@ ORDER: Base + typography > general layout + grid > page layout > components
     display: flex;
     justify-content: space-between;
     @include v(border-bottom, solid-grey);
+
+    &:focus,
+    &:focus-within {
+      border: 2px dotted $cu-red;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
 
     a,
     .drill-down-parent {
@@ -828,7 +833,6 @@ ORDER: Base + typography > general layout + grid > page layout > components
         .drill-down-list-item {
           &:focus-within {
             outline-color: $cu-red;
-            outline-style: auto;
             outline-width: 5px;
           }
 
@@ -836,6 +840,8 @@ ORDER: Base + typography > general layout + grid > page layout > components
             &:focus-within {
               @include v(outline-color, panther-black);
               outline-style: auto;
+              outline-width: 5px;
+              outline-color: $cu-red;
               outline-width: 5px;
             }
           }
@@ -851,6 +857,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
         line-height: 1.6rem;
         font-family: $futura-regular;
         padding: 20px 15px 20px 20px;
+        border-color: var(--color-cu-white);
 
         .fas {
           margin-right: 2rem;
@@ -858,7 +865,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
 
         &:focus {
           outline-color: $cu-red;
-          outline-style: auto;
+          outline-style: none;
           outline-width: 5px;
         }
       }
@@ -950,6 +957,12 @@ ORDER: Base + typography > general layout + grid > page layout > components
   }
 }
 
+@mixin outline {
+  border: 2px dotted var(--color-cu-red);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
 // Ripple effect for clicks (https://codepen.io/finnhvman/post/pure-css-ripple-with-minimal-effort)
 @mixin ripple($focus-color, $active-color) {
@@ -964,5 +977,152 @@ ORDER: Base + typography > general layout + grid > page layout > components
     background-color: $active-color;
     background-size: 100%;
     transition: background 0s;
+  }
+}
+
+@mixin focus($color, $bg-color: null) {
+  &:hover {
+    color: $color;
+    background-color: $bg-color;
+  }
+
+  &:focus,
+  &:focus-within {
+    color: $color;
+    background-color: $bg-color;
+    border: 2px dotted var(--color-cu-red);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+
+// squiggly underline animation: https://codepen.io/kjbrum/pen/qVQRQW
+$squiggle-max-width: 800px;
+$squiggle-ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1.000);
+$squiggle-cubic-transition: 0.55s $squiggle-ease-in-out-cubic;
+$squiggle-width: 18px;
+$squiggle-height: 4px;
+
+@keyframes squiggle-background {
+  0% {
+    background-position: 0;
+  }
+
+  100% {
+    background-position: $squiggle-width;
+  }
+}
+
+.squiggle {
+  display: inline-block;
+
+  &:after {
+    display: block;
+    content: '';
+    margin-top: 2px;
+    height: $squiggle-height;
+
+    background: {
+      image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iNCIgdmlld0JveD0iMCAwIDE4IDQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPnNxdWlnZ2xlLWZsYXQ8L3RpdGxlPjxwYXRoIGQ9Ik0wIDRWMS44NzNjMS42MTEgMCAyLjU5NS0uMjMgNC4zMjMtLjg3M2wuMzctLjEzN0M2LjM1MS4yNDggNy40MDUgMCA4Ljk0IDBjMS41MDggMCAyLjU2NS4yNDMgNC4xODIuODM1bC40NDYuMTY0YzEuNzM5LjY0IDIuNzY0Ljg3NCA0LjQzLjg3NFY0Yy0xLjk0NCAwLTMuMTg0LS4yODQtNS4xMjYtLjk5OWwtLjQ0My0uMTYzYy0xLjQxNC0uNTE3LTIuMjYtLjcxLTMuNDg5LS43MS0xLjI1IDAtMi4wOTMuMTk3LTMuNTQ4LjczNUw1LjAyNiAzQzMuMDkzIDMuNzIgMS44OTQgNCAwIDR6IiBmaWxsLXJ1bGU9Im5vbnplcm8iIGZpbGw9IiNhNTAwMzQiLz48L3N2Zz4=');
+      repeat: repeat-x;
+    }
+
+    transition: 0.15s linear;
+    visibility: hidden;
+
+    animation: {
+      name: squiggle-background;
+      duration: 0.15s;
+      timing-function: linear;
+      iteration-count: infinite;
+    }
+  }
+
+  &:hover {
+    &:after {
+      visibility: visible;
+    }
+  }
+}
+
+.squiggle-1-1 {
+  &:after {
+    width: 100%;
+    opacity: 0;
+  }
+
+  &:hover {
+    &:after {
+      opacity: 1;
+    }
+  }
+}
+
+.squiggle-1-2 {
+  &:after {
+    width: 100%;
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  &:hover {
+    &:after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.squiggle-2-1 {
+  &:after {
+    width: 0;
+    transition-duration: 1s;
+  }
+
+  &:hover {
+    &:after {
+      width: 100%;
+    }
+  }
+}
+
+.squiggle-2-2 {
+  position: relative;
+
+  &:after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+    width: 0%;
+    left: 50%;
+    transition-duration: 1.3s;
+  }
+
+  &:hover {
+    &:after {
+      width: 100%;
+      left: 0%;
+    }
+  }
+}
+
+.squiggle-3 {
+  &:after {
+    visibility: visible;
+    width: 100%;
+    animation: none;
+  }
+
+  &:hover {
+    &:after {
+      animation: {
+        name: squiggle-background;
+        duration: 0.25s;
+        timing-function: linear;
+        iteration-count: infinite;
+      }
+    }
   }
 }

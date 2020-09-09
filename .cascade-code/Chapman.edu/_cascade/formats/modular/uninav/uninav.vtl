@@ -162,10 +162,10 @@ b) select (this) format: Chapman.edu: Chapman.edu: /_cascade/formats/modular/uni
   #uninavMobileIcon()
   #buildOffCanvasNav()
   #uninavLogo()
+  #uninavCTA()
   #uninavUtility()
   #uninavSearch()
   #uninavGlobal()
-  #uninavCTA()
 
   <!-- Page overlay for when search results are displayed -->
   <div id="search-results-overlay"></div>
@@ -173,9 +173,9 @@ b) select (this) format: Chapman.edu: Chapman.edu: /_cascade/formats/modular/uni
 #end
 
 #macro (uninavUmbrellaToggleButton)
-#if ( $isUmbrellaCategory )
-#offCanvasUmbrellaNavButton($umbrellaLabel)
-#end
+    #if ( $isUmbrellaCategory )
+        #offCanvasUmbrellaNavButton($umbrellaLabel)
+    #end
 #end
 
 #macro ( uninavMobileIcon)
@@ -194,15 +194,8 @@ b) select (this) format: Chapman.edu: Chapman.edu: /_cascade/formats/modular/uni
 #import ( "/_cascade/formats/modular/uninav/_search.vtl" )
 #end
 
-#macro ( uninavAudiences )
-#import ( "/_cascade/formats/modular/uninav/_audiences.vtl" )
-#end
 #macro ( uninavCTA )
 #import ( "/_cascade/formats/modular/uninav/_cta.vtl" )
-#end
-
-#macro ( uninavSeach )
-#import ( "/_cascade/formats/modular/uninav/_search.vtl" )
 #end
 
 #macro ( uninavGlobal )

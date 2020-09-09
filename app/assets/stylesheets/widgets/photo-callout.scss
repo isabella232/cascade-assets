@@ -37,8 +37,8 @@
         -ms-grid-rows: auto;
         grid-template-rows: auto;
         grid-gap: 2rem;
-        margin-top: v(marginTop);
-        margin-bottom: v(marginBottom);
+        margin-top: var(--marginTop);
+        margin-bottom: var(--marginBottom);
 
         [class*="--white"] {
             border-color: #cfcfcf;
@@ -148,8 +148,8 @@
     }
 
     &__button {
-        --marginTop: 20px;
-        --marginBottom: 20px;
+
+
 
         width: 100%;
         height: 5rem;
@@ -159,8 +159,8 @@
         grid-column-start: 1;
         grid-column-end: 4;
         display: none;
-        margin-top: v(marginTop);
-        margin-bottom: v(marginBottom);
+
+
 
         &--sand,
         &--white {
@@ -199,7 +199,7 @@ button.photo-callout-widget__load-more {
 
     &:focus,
     &:focus-within {
-        @include focus($cu-red);
+        // @include focus($cu-red);
     }
 
     &[class*="--sand"]:hover,
@@ -367,4 +367,8 @@ button.photo-callout-widget__button.photo-callout-widget__button--white {
     &:hover {
         color: $red-hover;
     }
+}
+
+.callout-box-widget--left.callout.callout-box-widget--white {
+    border: 1px solid var(--color-cu-light-grey);
 }

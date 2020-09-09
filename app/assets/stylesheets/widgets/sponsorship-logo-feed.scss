@@ -35,7 +35,8 @@
           }
         }
 
-        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+        @media all and (-ms-high-contrast: none),
+        (-ms-high-contrast: active) {
           & {
             margin-top: 9px;
           }
@@ -70,11 +71,12 @@
       li {
 
         &:focus-within {
-          outline: auto -webkit-focus-ring-color;;
+          outline: auto -webkit-focus-ring-color;
+          ;
           outline-offset: -5px;
         }
 
-        img { 
+        img {
           width: 200px;
           height: 200px;
           object-fit: contain;
@@ -83,4 +85,11 @@
       }
     }
   }
+}
+
+#big-sponsor .carousel button.slick-next.slick-arrow,
+#big-sponsor .carousel button.slick-prev.slick-arrow {
+  display: flex;
+  display: grid;
+  align-items: center;
 }

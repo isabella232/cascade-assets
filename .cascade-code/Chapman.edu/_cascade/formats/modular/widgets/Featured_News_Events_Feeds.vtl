@@ -1,27 +1,108 @@
-## sets feeds and display options (for whole page regardless if for primary or left column)
-## this is not the piece that writes out the placeholder html though for the 3 stories
-## (that is a separate format that is written out via the widgets processing)
-##
-#set ($currentPage = $_XPathTool.selectSingleNode($contentRoot, "//system-page[@current]") )
-#set ($feeds = $currentPage.getChild('system-data-structure').getChild('meta').getChild('news-events-options') )
-##
-## initialize:
-#set ($primarycontentOptions = "Do Not Show")
-#set ($leftColumnOptions = "Do Not Show")
-## overwrite with options:
-#set ($primarycontentOptions = $_XPathTool.selectSingleNode($currentPage, "//primaryContent/widget[widgetType='Featured / News / Events']/FeaturedNewsEvents/options").value )
-#set ($leftColumnOptions = $_XPathTool.selectSingleNode($currentPage, "//leftColumn/widget[widgetType='Featured / News / Events']/FeaturedNewsEvents/options").value )
-##
-<!-- formats/modular/Featured News Events Feeds -->
-<div class="hidden">
-    #set ($path = $feeds.getChild('feature').getChild('path').value )
-    #if ($path != '/')
-        <div class="featureFeed">${path}.xml</div>
+  #*
+  * Chapman.edu/_cascade/formats/modular/widgets/Featured News Events Primary Content
+  * Primary Column variant of Featured News/Events widget.
+  *
+  * Placeholder html for primary column news/event. Feeds and options for both left
+  * and primary pulled in thru different format. This is used in conjunction with
+  * /app/assets/javascripts/cascade/level/news-events.js.
+  *
+  *#
+
+  #macro( outputFeaturedNewsEvents $element )
+    ## Note: $element not actually used.
+
+    ## Static HTML output.
+    <div class="news-events-widget newsEvents">
+      <ul class="newsEventsNav">
+        <li tabindex="0" role="button" class="active">Featured</li>
+        <li tabindex="0" role="button">News</li>
+        <li tabindex="0" role="button">Events</li>
+      </ul>
+
+      #buildContentList()
+    </div>
+  #end
+
+  #macro( buildContentList )
+    <ul class="newsEventsContent">
+      ## FIXME: This should be wrapped in a no-display li tag. But doing so will break
+      ## tab functionality.
+      <a class="no-js-link" href="https://news.chapman.edu" title="View All News Stories">View All News »</a>
+      <a class="no-js-link" href="https://events.chapman.edu" title="View All Event Listings">View All Events »</a>
+
+      #buildFeaturedTabContent()
+      #buildNewsTabContent()
+      #buildEventsTabContent()
+    </ul>
+  #end
+
+  #macro( buildFeaturedTabContent )
+    <li class="active">
+      <div class="featured">
+        <div class="col1">
+          <img src="/_files/1x1placeholder.jpg" alt="Chapman University featured story" class="image" height="190" width="190"/>
+        </div>
+        <div class="col2">
+          <div class="date">
+            <div class="day"></div>
+            <div class="month"></div>
+            <div class="year"></div>
+          </div>
+          <div class="title"></div>
+          <div class="description">View the published page to see this section.</div>
+        </div>
+      </div>
+    </li>
+  #end
+
+  #macro( buildNewsTabContent )
+    <li>
+      <div class="news clearfix">
+        <img class="loading" src="/_files/level/img/ajax-loader.gif" alt="Loading news list for primary content..." />
+
+        #foreach ( $i in [1..3] )
+          #buildStoryBlock($i)
+        #end
+
+        <a class="allNews" href="#">View more news »</a>
+      </div>
+    </li>
+  #end
+
+  #macro( buildEventsTabContent )
+    <li>
+      <div class="news-events-widget events clearfix">
+        <img class="loading" src="/_files/level/img/ajax-loader.gif" alt="Loading events list for primary content..."/>
+
+        #foreach ( $i in [1..3] )
+          #buildStoryBlock($i)
+        #end
+
+        <a class="allEvents" href="#">View more events »</a>
+      </div>
+    </li>
+  #end
+
+  #macro( buildStoryBlock $i )
+    #if ( $i == 3 )
+      #set ( $futureClass = 'future' )
     #else
-        <div class="featureFeed">/_featured/Default.xml</div>
+      #set ( $futureClass = 'not-future' )
     #end
-    <div class="newsFeed">$feeds.getChild('newsFeed').value</div>
-    <div class="eventsFeed">$feeds.getChild('eventsFeed').value</div>
-    <div class="newsEventsOptions">$primarycontentOptions</div>
-    <div class="leftColumnNewsEventsOptions">$leftColumnOptions</div>
-</div>
+
+    <div class="story story${i} $futureClass" itemscope="" itemtype="http://schema.org/Article">
+      <div class="todayTomorrow">
+        <span class="today">TODAY</span>
+        <span class="tomorrow">TOMORROW</span>
+      </div>
+      <div class="date" itemprop="datePublished">
+        <div class="day"></div>
+        <div class="month"></div>
+        <div class="year"></div>
+      </div>
+      <div class="title">
+        <a href="#"></a>
+        <span class="bullet">»</span>
+      </div>
+    </div>
+  #end

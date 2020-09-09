@@ -2,6 +2,9 @@
   margin: 0 0 10px 0;
   padding-top: $base-spacing;
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 
   @include bp(l) {
     padding-top: 0;
@@ -98,5 +101,11 @@
     width: 206px;
     margin-top: 45px;
     padding-right: 0;
+  }
+}
+
+@include respond(tab-land) {
+  .rightColumn {
+    padding: 0 10px;
   }
 }

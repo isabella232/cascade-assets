@@ -16,8 +16,8 @@ $(document).ready(function () {
           tag:        new chapDOM('.homepage .third .story.story-' + i + ' a.tag'),
           permaLink:  new chapDOM('.homepage .third .story.story-' + i + ' a.permalink'),
           h2Title:    new chapDOM('.homepage .third .story.story-' + i + ' a.permalink h2.title'),
-          bgImg:      new chapDOM('.homepage .third .story.story-' + i + ' a.permalink .story-bg'),
-          img:        new chapDOM('.homepage .third .story.story-' + i + ' a.permalink img')
+          bgImg:      new chapDOM('.homepage .third .story.story-' + i + ' .story-bg'),
+          img:        new chapDOM('.homepage .third .story.story-' + i + ' img')
         }
         storySelectors.push(selector);
       }

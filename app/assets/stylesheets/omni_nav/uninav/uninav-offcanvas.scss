@@ -190,7 +190,7 @@
       }
 
 
-      .off-canvas-menu#off-canvas-umbrella + .off-canvas-menu#off-canvas-main {
+      .off-canvas-menu#off-canvas-umbrella+.off-canvas-menu#off-canvas-main {
         -webkit-transform: translateX(-$nav-width);
         transform: translateX(-$nav-width);
         display: none;
@@ -304,6 +304,22 @@
           width: 100%;
         }
 
+        .off-canvas-utility>li.drill-down-list-item {
+          background-color: #DDD;
+
+          &>.drill-down-parent,
+          a,
+          .toggle-drilldown {
+            color: $black;
+            font-weight: normal;
+          }
+
+          .drilldown-menu.active a {
+            color: black;
+            font-weight: normal;
+          }
+        }
+
         span.menu-label {
           font-weight: bold;
           color: $cu-red;
@@ -343,7 +359,7 @@
       animation: radar 3s;
       -webkit-animation-iteration-count: 2;
       animation-iteration-count: 2;
-      box-shadow:1px 1px 3px 3px rgba(0,0,0,0.15);
+      box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.15);
 
       &:hover,
       &:focus {
@@ -451,4 +467,19 @@ html.three-column-template #uninav .uninav__umbrella-nav-button-container {
 
 html.school-dept-listing-template #uninav .uninav__umbrella-nav-button-container {
   display: none;
+}
+
+.uninav__umbrella-nav-button-container:focus-within {
+  outline: 2px dotted $white;
+}
+
+#js-off-canvas-nav-container {
+  &:focus {
+    outline: 2px dotted $cu-red !important;
+  }
+
+  select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+  }
 }

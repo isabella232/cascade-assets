@@ -15,7 +15,10 @@
 	#set ( $brandedMastheadImagePath = $masthead.getChild('branded201611').getChild('image').getChild('path').value )
 	#set ( $brandedMastheadAltText = $masthead.getChild('branded201611').getChild('altText').value )
 	#set ( $brandedMastheadPhotoCaption = $masthead.getChild('branded201611').getChild('photoCaption').value )
-
+    <div class="skip-masthead--2-3-col">
+        <a class="peekaboo next-section button red" tabindex="0" href="#breadcrumbs" aria-label="skip over carousel to next section">Skip
+          over carousel to next section</a>
+    </div>
 	<div class="masthead-branded-v201611">
 		<div class="grid">
 			<div class="column image">
@@ -27,7 +30,7 @@
 				#end
 			</div>
 			<div class="column header theme-bg-color">
-				<div class="faux-h2 header">$_EscapeTool.xml($brandedMastheadHeader)</div>
+				<div class="faux-h2 h2 header">$_EscapeTool.xml($brandedMastheadHeader)</div>
 			</div>
 		</div>
 	</div>
@@ -39,6 +42,10 @@
 	#set ( $header = $_XPathTool.selectSingleNode($masthead, 'slider201611/header').value )
 	#set ( $firstSubtitle = $_XPathTool.selectSingleNode($slides[0], 'subTitle').value )
 
+<div class="skip-masthead--2-3-col">
+        <a class="peekaboo next-section button red" tabindex="0" href="#breadcrumbs" aria-label="skip over carousel to next section">Skip
+          over carousel to next section</a>
+    </div>
 	<div class="slider version-201611">
 		<div class="hidden slideOptions">
 			<div class="autoRotate">On</div>
@@ -77,7 +84,7 @@
 
 			<div class="column header theme-bg-color">
 				<div class="aligned">
-					<div class="faux-h2 header">${_EscapeTool.xml($header).replace("\n", "<br/>")}</div>
+					<div class="faux-h2 h2 header">${_EscapeTool.xml($header).replace("\n", "<br/>")}</div>
 					## for ADA compliance, only show subheader if not empty
 					<div class="subheader">
 					## HTML for subsequent slides comes from javascript
@@ -85,7 +92,7 @@
 					#if ( $firstSubtitle != '' )
 						<hr />
 						## Replace newline characters with html breaks so users can have multiline subtitles
-						<div class="faux-h3">${_EscapeTool.xml($firstSubtitle).replace("\n", "<br/>")}</div>
+						<div class="faux-h3 h3">${_EscapeTool.xml($firstSubtitle).replace("\n", "<br/>")}</div>
 					#end
 					</div>
 				</div>
@@ -120,7 +127,7 @@
 	</div>
     
     <div class="skip">
-        <a class="peekaboo next-section button red" tabindex="0" href="#" role="skip over carousel to next section">Skip
+        <a class="peekaboo next-section button red" tabindex="0" href="#breadcrumbs" role="skip over carousel to next section">Skip
           over carousel to next section</a>
     </div>
     
@@ -166,7 +173,7 @@
 									${_EscapeTool.xml($slideDescription)}
 								</div>
 								#if ( $hasMore )
-									<div class="button">More <span class="bullet">»</span></div>
+									<div class="button" aria-hidden="true">More <span class="bullet">»</span></div>
 								#end
 							</div>
 						</div>

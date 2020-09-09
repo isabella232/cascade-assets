@@ -4,9 +4,9 @@ html {
       ul {
         margin-left: 4rem;
       }
-      .text-with-cta { 
-        &__text-container {
 
+      .text-with-cta {
+        &__text-container {
           @include respond(phone) {
             display: grid;
             grid-template-columns: 100%;
@@ -14,6 +14,12 @@ html {
             grid-auto-rows: 0;
             grid-auto-columns: 0;
             margin-bottom: 2rem;
+          }
+
+          @include respond(tab-port) {
+            iframe {
+              width: 100%;
+            }
           }
         }
 
@@ -53,23 +59,338 @@ html {
           padding: 10px;
           border-radius: 5px;
           font-family: $futura;
-          margin: 0 0 .5rem 0;
+          margin: 0 0 0.5rem 0;
+
+          display: flex;
+          justify-self: center;
+          justify-content: center;
 
           a {
             border-bottom: none;
-            font-weight: normal;
+            font-weight: bold;
             color: $panther-black;
           }
 
           &.color--red {
             border: none;
 
+            &:hover,
+            &:focus {
+              background-color: lighten($cu-red, 8%);
+              transition: 350ms linear;
+            }
+
             a {
-              color: white;
+              color: $white;
+              font-weight: bold;
             }
           }
         }
       }
+
+      &--default {
+        margin-bottom: 30px;
+      }
+
+      &--pacific,
+      &--cu-safely-back {
+
+        .text-with-cta__text-container {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          width: 100%;
+
+          @media all and (-ms-high-contrast:none) {
+            display: flex;
+          }
+
+          @include respond(phone) {
+            grid-template-columns: 1fr;
+          }
+
+          .text-with-cta__text {
+            max-width: 52ch;
+
+            @include respond(phone) {
+              max-width: 100%;
+            }
+          }
+        }
+
+        .text-with-cta__col-1 {
+          display: grid;
+          align-content: center;
+          align-items: center;
+
+          @include respond(tab-port) {
+            padding-right: 20px;
+          }
+
+          @media all and (-ms-high-contrast:none) {
+            display: inline-block;
+            width: 70%;
+          }
+
+        }
+
+        .text-with-cta__col-2 {
+          @media all and (-ms-high-contrast:none) {
+            display: inline-block;
+            width: 30%;
+            float: right;
+            right: 0px;
+          }
+
+        }
+
+        .text-with-cta__title {
+          margin-top: 0;
+        }
+
+
+        .text-with-cta__text-container {
+          /* grid-template-columns: 1fr 1fr; */
+          grid-template-columns: 1fr 0.5fr;
+          padding: 30px;
+
+          @include respond(phone) {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        .text-with-cta__buttons {
+          /* float: right; */
+          /* display: flex; */
+          /* width: 25%; */
+          /* margin: 0 0 0 2rem; */
+          float: unset;
+          display: grid;
+          place-items: center;
+          align-content: center;
+          height: 100%;
+          width: 90%;
+
+          @include respond(tab-port) {
+            padding-top: 20px;
+          }
+
+          @media all and (-ms-high-contrast:none) {
+            display: block;
+          }
+        }
+
+        .text-with-cta__button {
+          --padding-top: 15px;
+          --padding-bottom: 15px;
+          width: 100%;
+          justify-self: center;
+          justify-content: center;
+          font-weight: bold;
+        }
+
+
+
+        .text-with-cta__buttons {
+          width: 90%;
+          margin: auto;
+
+          @include respond(phone) {
+            width: 100%;
+          }
+
+          a {
+            font-weight: bold;
+          }
+        }
+
+        .text-with-cta__title {
+          font-weight: normal;
+        }
+
+        .text-with-cta__emphasis {
+          font-weight: 800;
+          text-transform: uppercase !important;
+        }
+
+        .text-with-cta__button+.text-with-cta__button {
+          margin-top: 5px;
+        }
+
+        /* Inline #15 | http://localhost:3000/uninav/three_column */
+
+        .text-with-cta__title {
+          font-weight: normal;
+        }
+
+
+        .text-with-cta__button+.text-with-cta__button {
+          margin-top: 5px;
+        }
+
+        .text-with-cta__text {
+          font-weight: 400;
+        }
+
+        /* master.css | http://localhost:3000/_assets/master.css */
+
+        h2,
+        .faux-h2 {
+          /* font-size: 2.4rem; */
+          font-size: 3rem;
+        }
+
+        .text-with-cta-widget .text-with-cta__button {
+          min-width: 200px;
+          justify-self: center;
+          max-width: max-content;
+        }
+
+        .text-with-cta__button:last-of-type {
+          margin-bottom: 0;
+        }
+      }
     }
   }
+
+  &.two-column-template,
+  &.three-column-template {
+    [class*="--white"] {
+      border: none;
+    }
+  }
+
+  &.one-column-template,
+  .one-column-template {
+    .text-with-cta-widget {
+
+      &--default {
+        margin-bottom: 0;
+
+        .text-with-cta__buttons {
+          padding-top: 0;
+          padding-bottom: 0;
+
+          @include respond(tab-port) {
+            padding-top: 20px;
+            padding-bottom: 20px;
+
+            width: 100%;
+          }
+        }
+      }
+
+      a.text-with-cta__button {
+        border: none;
+      }
+
+
+      &--cu-safely-back {
+        .text-with-cta__buttons {
+          padding-top: 15px;
+          padding-bottom: 15px;
+
+        }
+
+        .text-with-cta__text-container {
+          max-width: 804px;
+          padding: 0;
+          margin-bottom: 0;
+          margin-left: 30px;
+          margin-right: 30px;
+        }
+
+      }
+
+      display: flex;
+      justify-content: center;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      padding-top: 64px;
+      padding-bottom: 64px;
+
+      &--cu-safely-back {
+        .text-with-cta__text {
+          max-width: 52ch;
+
+          @include respond(phone) {
+            max-width: 100%;
+          }
+        }
+      }
+
+      .text-with-cta__text-container {
+        max-width: 804px;
+        padding: 0;
+        margin-bottom: 0;
+      }
+
+
+      &--default {
+        @include respond(phone) {
+          .text-with-cta__buttons {
+            padding-top: 10px;
+          }
+
+          padding-bottom: 30px;
+        }
+
+        // background-color: $white;
+
+        .text-with-cta__text-container {
+          background-color: inherit;
+          // max-width: 1136px;
+
+          @include respond(tab-port) {
+            padding: 0 30px 0 30px;
+          }
+        }
+
+        .text-with-cta__title {
+          justify-content: center;
+        }
+
+        .text-with-cta__text-container {
+          max-width: 804px;
+
+          &--white {
+            border: none;
+          }
+        }
+
+        .text-with-cta-widget {
+          background-color: $white;
+        }
+      }
+    }
+
+    .one-col-spacer {
+      height: 0px;
+      display: none;
+    }
+
+    .primary-content .text-with-cta-widget:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+}
+
+html.three-column-template body .text-with-cta-widget--cu-safely-back {
+
+  .text-with-cta__text {
+    max-width: 38ch;
+
+    @include respond(phone) {
+      max-width: 100%;
+    }
+  }
+}
+
+// todo: rewrite button, button-bg mixins as well as button specificity in defaults.scss
+// have to override with this level of specificity currently. 
+html body .text-with-cta-widget .text-with-cta__button.color--white {
+  border: 1px solid var(--color-cu-light-grey);
+  background-color: white;
+  color: var(--color-panther-black);
 }
