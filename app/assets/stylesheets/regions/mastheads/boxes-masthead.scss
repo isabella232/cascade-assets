@@ -374,3 +374,21 @@ li.jcarousel-item:active .button {
   position: relative;
   z-index: 10;
 }
+
+
+.peekaboo.next-section.button.red {
+  position: absolute;
+  z-index: -999;
+  opacity: 0;
+}
+
+.peekaboo.next-section.button.red:focus {
+  position: relative;
+  z-index: 999;
+  opacity: 1;
+  border: 2px dotted white;
+  display: block;
+  margin: auto;
+  text-align: center;
+
+}
