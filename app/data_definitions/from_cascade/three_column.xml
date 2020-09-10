@@ -642,7 +642,6 @@
             <text identifier="externalLink" label="External Link" field-id="a7a67c6cc0a81e4b407da5644d7c41a0" help-text="full url (including HTTPS) to page outside of Cascade"/>
             <asset type="page" identifier="internalLink" label="Internal Link" field-id="a7a67c6cc0a81e4b407da56431c665dc"/>
             <asset type="file" identifier="fileLink" label="File Link" field-id="a7a67c6cc0a81e4b407da56439d1669e"/>
-            <text identifier="label" label="Label" field-id="a7a67c6cc0a81e4b407da564d8fe5d57"/>
             <group identifier="accessibility" label="Accessibility">
               <text identifier="ariaLabel" label="Aria Label" field-id="a7a67c6cc0a81e4b407da5641cf0adf1"/>
               <text identifier="title" label="Title" field-id="a7a67c6cc0a81e4b407da564dcc41146"/>
