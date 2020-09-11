@@ -121,8 +121,7 @@ $(function () {
       slideshow: (function () {
         var isAuto = $(".slideOptions .autoRotate").text() ? true : false;
 
-        return isAuto;
-
+        return false;
       })(),
       animationLoop: true,
       start: function (slider) {
@@ -206,8 +205,7 @@ $(function () {
       slideshow: (function () {
         var isAuto = $(".slideOptions .autoRotate").text() ? true : false;
 
-        return isAuto;
-
+        return false;
       })(),
       animationLoop: true,
       start: function (slider) {
@@ -347,8 +345,7 @@ $(function () {
       slideshow: (function () {
         var isAuto = $(".slideOptions .autoRotate").text() ? true : false;
 
-        return isAuto;
-
+        return false;
       })(),
       animationLoop: true,
       start: function (slider) {

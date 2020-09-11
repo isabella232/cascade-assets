@@ -33,13 +33,14 @@
         $alertMessage
       #end
     </div>
-    <div class="alert-link"> 
-        #if ($messageType == 'Notice')
-            For more information and frequent updates, visit: <a href="https://www.chapman.edu/notices">chapman.edu/notices</a>
-        #else
-            For more information and frequent updates, visit: <a href="https://www.chapman.edu/alerts">chapman.edu/alerts</a>
-        #end
-    </div>
   </div>
 </div>
+
+<script>
+  setTimeout(
+    function() {
+       $('.emergency-alert .alert-message').html($('.emergency-alert .alert-message').html().replace(/((http:|https:)[^\s]+[\w])/g, '<div class="alert-link" style="display:inline;"><a href="$1">$1</a></div>'));
+    }, 2500);
+</script>
+
 </section>
