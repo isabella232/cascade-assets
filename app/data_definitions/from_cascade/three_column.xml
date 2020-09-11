@@ -523,55 +523,64 @@
             required="true"/>
         </group>
       </group>
-      <group identifier="funnels-1up" label="Funnels (1up)" collapsed="true">
-        <text type="radiobutton"
+      <group collapsed="true" identifier="funnels-1up" label="Funnels (1up)">
+        <text default="Yes"
+          field-id="ff6bcc16c0a81e5f43ef9b3757eff2a4"
           identifier="display-funnels-1up"
           label="Show"
-          field-id="ff6bcc3dc0a81e5f43ef9b37530952d2"
-          default="Yes"
-          required="true">
+          required="true"
+          type="radiobutton">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
-        <group identifier="region" label="Region" multiple="true" minimum-number="0">
-          <text identifier="headline"
+        <group identifier="region" label="Region" minimum-number="0" multiple="true">
+          <text default="[headline]"
+            field-id="ff6bcc16c0a81e5f43ef9b37a8640e46"
+            identifier="headline"
             label="Headline"
-            field-id="ff6bcc3dc0a81e5f43ef9b378c7f2ec9"
-            default="[headline]"
             required="true"/>
-          <asset type="file"
+          <asset field-id="ff6bcc16c0a81e5f43ef9b3796f5e13f"
             identifier="image"
             label="Image (200x150)"
-            field-id="ff6bcc3dc0a81e5f43ef9b37f2986772"
-            required="true"/>
+            required="true"
+            type="file"/>
+
           <text default="Decorative Image"
+            field-id="320558eec0a81e8a5b6f22bb91c7ac6f"
+            help-text="Decorative images don’t add information to the content of a page. For example, the information provided by the image might already be given using adjacent text, or the image might be included to make the website more visually attractive."
             identifier="imageAltOrDecorative"
             label="Accessibility"
-            type="radiobutton"
-            help-text="Decorative images don’t add information to the content of a page. For example, the information provided by the image might already be given using adjacent text, or the image might be included to make the website more visually attractive.">
+            type="radiobutton">
             <radio-item show-fields="primaryContent/widget/funnels-1up/region/altText" value="Alt Text"/>
             <radio-item value="Decorative Image"/>
           </text>
-          <text help-text="Alternate text to describe image (required)" identifier="altText" label="Image Alt-Text" required="true"/>
-          <text wysiwyg="true" identifier="copy" label="Copy" field-id="ff6bcc3dc0a81e5f43ef9b37debfd1c2"/>
+
+          <text field-id="ff6bcc16c0a81e5f43ef9b37e797e46f"
+            help-text="Alternate text to describe image (required)"
+            identifier="altText"
+            label="Image Alt-Text"
+            required="true"/>
+
+
+          <text field-id="ff6bcc16c0a81e5f43ef9b37f180be7e" identifier="copy" label="Copy" wysiwyg="true"/>
           <group identifier="links" label="Links">
-            <group identifier="link" label="Link" multiple="true">
-              <text type="radiobutton"
+            <group identifier="link" label="Link" minimum-number="0" multiple="true">
+              <text default="Internal Link"
+                field-id="ff6bcc16c0a81e5f43ef9b3743a1b09f"
                 identifier="linkType"
                 label="Link Type"
-                field-id="ff6bcc3dc0a81e5f43ef9b37ce3b292e"
-                default="Internal Link">
-                <radio-item value="Internal Link" show-fields="primaryContent/widget/funnels-1up/region/links/link/internalLink"/>
-                <radio-item value="External Link" show-fields="primaryContent/widget/funnels-1up/region/links/link/externalLink"/>
-                <radio-item value="File Link" show-fields="primaryContent/widget/funnels-1up/region/links/link/fileLink"/>
+                type="radiobutton">
+                <radio-item show-fields="primaryContent/widget/funnels-1up/region/links/link/internalLink" value="Internal Link"/>
+                <radio-item show-fields="primaryContent/widget/funnels-1up/region/links/link/externalLink" value="External Link"/>
+                <radio-item show-fields="primaryContent/widget/funnels-1up/region/links/link/fileLink" value="File Link"/>
               </text>
-              <text identifier="externalLink" label="External Link" field-id="ff6bcc3ec0a81e5f43ef9b37e3713b82" help-text="full url (including http) to page outside of Cascade"/>
-              <asset type="page" identifier="internalLink" label="Internal Link" field-id="ff6bcc3ec0a81e5f43ef9b37c29ad89d"/>
-              <asset type="file" identifier="fileLink" label="File Link" field-id="ff6bcc3ec0a81e5f43ef9b3762e00da3"/>
-              <text identifier="label" label="Label" field-id="ff6bcc3ec0a81e5f43ef9b377eb9120f"/>
+              <text field-id="ff6bcc16c0a81e5f43ef9b377d203c09" help-text="full url (including http) to page outside of Cascade" identifier="externalLink" label="External Link"/>
+              <asset field-id="ff6bcc16c0a81e5f43ef9b37e434ef17" identifier="internalLink" label="Internal Link" type="page"/>
+              <asset field-id="ff6bcc16c0a81e5f43ef9b37f27ec24a" identifier="fileLink" label="File Link" type="file"/>
+              <text field-id="ff6bcc16c0a81e5f43ef9b3789f46601" identifier="label" label="Label"/>
               <group identifier="accessibility" label="Accessibility">
-                <text identifier="ariaLabel" label="Aria Label"/>
-                <text identifier="title" label="Title"/>
+                <text field-id="3650c2e8c0a81e8a5b6f22bb4a5db2f2" identifier="ariaLabel" label="Aria Label"/>
+                <text field-id="3650c2e9c0a81e8a5b6f22bba091cc09" identifier="title" label="Title"/>
               </group>
             </group>
           </group>

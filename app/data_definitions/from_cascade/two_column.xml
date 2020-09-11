@@ -684,14 +684,24 @@
 						label="Image (200x150)"
 						required="true"
 						type="file"/>
+
 					<text default="Decorative Image"
+						field-id="320558eec0a81e8a5b6f22bb91c7ac6f"
+						help-text="Decorative images don’t add information to the content of a page. For example, the information provided by the image might already be given using adjacent text, or the image might be included to make the website more visually attractive."
 						identifier="imageAltOrDecorative"
 						label="Accessibility"
-						type="radiobutton"
-						help-text="Decorative images don’t add information to the content of a page. For example, the information provided by the image might already be given using adjacent text, or the image might be included to make the website more visually attractive.">
+						type="radiobutton">
 						<radio-item show-fields="primaryContent/widget/funnels-1up/region/altText" value="Alt Text"/>
 						<radio-item value="Decorative Image"/>
 					</text>
+
+					<text field-id="ff6bcc16c0a81e5f43ef9b37e797e46f"
+						help-text="Alternate text to describe image (required)"
+						identifier="altText"
+						label="Image Alt-Text"
+						required="true"/>
+
+
 					<text field-id="ff6bcc16c0a81e5f43ef9b37f180be7e" identifier="copy" label="Copy" wysiwyg="true"/>
 					<group identifier="links" label="Links">
 						<group identifier="link" label="Link" minimum-number="0" multiple="true">
@@ -709,8 +719,8 @@
 							<asset field-id="ff6bcc16c0a81e5f43ef9b37f27ec24a" identifier="fileLink" label="File Link" type="file"/>
 							<text field-id="ff6bcc16c0a81e5f43ef9b3789f46601" identifier="label" label="Label"/>
 							<group identifier="accessibility" label="Accessibility">
-								<text identifier="ariaLabel" label="Aria Label"/>
-								<text identifier="title" label="Title"/>
+								<text field-id="3650c2e8c0a81e8a5b6f22bb4a5db2f2" identifier="ariaLabel" label="Aria Label"/>
+								<text field-id="3650c2e9c0a81e8a5b6f22bba091cc09" identifier="title" label="Title"/>
 							</group>
 						</group>
 					</group>
@@ -729,14 +739,19 @@
 				<group identifier="region" label="Region" multiple="true">
 					<asset field-id="ff6bcc16c0a81e5f43ef9b37b537417c" identifier="image" label="Image (290x125)" type="file"/>
 					<text default="Decorative Image"
+						field-id="325d615fc0a81e8a5b6f22bbfaec3526"
+						help-text="Decorative images don’t add information to the content of a page. For example, the information provided by the image might already be given using adjacent text, or the image might be included to make the website more visually attractive."
 						identifier="imageAltOrDecorative"
 						label="Accessibility"
-						type="radiobutton"
-						help-text="Decorative images don’t add information to the content of a page. For example, the information provided by the image might already be given using adjacent text, or the image might be included to make the website more visually attractive.">
+						type="radiobutton">
 						<radio-item show-fields="primaryContent/widget/funnels-2up/region/altText" value="Alt Text"/>
 						<radio-item value="Decorative Image"/>
 					</text>
-					<text help-text="Alternate text to describe image (required)" identifier="altText" label="Image Alt-Text" required="true"/>
+					<text field-id="325fa015c0a81e8a5b6f22bb314d9f8e"
+						help-text="Alternate text to describe image (required)"
+						identifier="altText"
+						label="Image Alt-Text"
+						required="true"/>
 					<text default="[headline]"
 						field-id="ff6bcc17c0a81e5f43ef9b3709746433"
 						identifier="headline"
@@ -772,8 +787,8 @@
 							<asset field-id="ff6bcc17c0a81e5f43ef9b377a181553" identifier="fileLink" label="File Link" type="file"/>
 							<text field-id="ff6bcc17c0a81e5f43ef9b37ee709654" identifier="label" label="Label"/>
 							<group identifier="accessibility" label="Accessibility">
-								<text identifier="ariaLabel" label="Aria Label"/>
-								<text identifier="title" label="Title"/>
+								<text field-id="3665f5d2c0a81e8a5b6f22bb7d4620ff" identifier="ariaLabel" label="Aria Label"/>
+								<text field-id="3665f5d2c0a81e8a5b6f22bb70bbe513" identifier="title" label="Title"/>
 							</group>
 						</group>
 					</group>
