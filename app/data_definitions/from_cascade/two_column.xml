@@ -970,11 +970,15 @@
 					minimum-number="3"
 					multiple="true">
 					<asset field-id="ff6bcc19c0a81e5f43ef9b374861c0f7" identifier="image" label="Image (136x96)" type="file"/>
-					<text field-id="ff6bcc1ac0a81e5f43ef9b372d58b8e1"
-						help-text="Alternate text to describe image (required)"
-						identifier="altText"
-						label="Image Alt-Text"
-						required="true"/>
+					<text default="Decorative Image"
+						help-text="Decorative images don’t add information to the content of a page. For example, the information provided by the image might already be given using adjacent text, or the image might be included to make the website more visually attractive."
+						identifier="imageAltOrDecorative"
+						label="Accessibility"
+						type="radiobutton">
+						<radio-item show-fields="primaryContent/widget/funnels-1up/region/altText" value="Alt Text"/>
+						<radio-item value="Decorative Image"/>
+					</text>
+					<text help-text="Alternate text to describe image (required)" identifier="altText" label="Image Alt-Text" required="true"/>
 					<group identifier="link" label="Link">
 						<text default="Internal Link"
 							field-id="ff6bcc1ac0a81e5f43ef9b374032390f"

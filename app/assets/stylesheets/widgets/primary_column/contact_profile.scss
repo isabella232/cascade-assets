@@ -5,14 +5,17 @@
 }
 
 .contact-profile-widget {
+  --space-medium-space: 20px;
   text-align: center;
-  @include v(margin-top, medium-space);
-  @include v(margin-bottom, medium-space);
   display: -ms-grid;
   display: grid;
   -webkit-box-pack: center;
   justify-content: center;
   align-content: center;
+
+  +[class*="-widget"] {
+    margin: 20px 0 20px 0;
+  }
 
   a {
     padding-top: 0;
@@ -20,7 +23,7 @@
 
   .contact-profile-widget {
     &__img {
-      --imgSize: 180px;
+      --space-imgSize: 180px;
       margin-top: 15px;
       margin-bottom: 10px;
       max-width: 200px;
