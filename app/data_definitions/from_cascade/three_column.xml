@@ -78,9 +78,6 @@
         <radio-item value="Yes"/>
         <radio-item value="No"/>
       </text>
-      <text type="checkbox" identifier="autoRotate" label="Auto Rotate" field-id="ff6bcc38c0a81e5f43ef9b374c2dcf37">
-        <checkbox-item value="On"/>
-      </text>
       <text identifier="startingSlideNumber" label="Starting Slide Number" field-id="ff6bcc38c0a81e5f43ef9b37e508e25b" help-text="Accepts an integer corresponding to slide number"/>
       <text identifier="speed" label="Speed" field-id="ff6bcc38c0a81e5f43ef9b3768b6e758" help-text="Number of seconds it takes a slide to auto rotate. If no value is entered, slides will rotate every ten seconds."/>
       <group identifier="slides" label="Slides">
@@ -370,7 +367,7 @@
           label="Program Events Display"
           field-id="ff6bcc3bc0a81e5f43ef9b3742e06df1"
           default="tiles"
-          required="false">
+          required="true">
           <radio-item value="tiles" label="Tiles"/>
           <radio-item value="bars" label="Bars"/>
         </text>
