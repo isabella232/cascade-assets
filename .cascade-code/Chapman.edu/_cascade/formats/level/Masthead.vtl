@@ -22,7 +22,7 @@
 	<div class="masthead-branded-v201611">
 		<div class="grid">
 			<div class="column image">
-				<img alt="${_EscapeTool.xml($brandedMastheadAltText)}" src="[system-asset]${brandedMastheadImagePath}[/system-asset]"/>
+				<img alt="${_EscapeTool.xml($brandedMastheadAltText)}" src="[system-asset]${brandedMastheadImagePath}[/system-asset]"  loading="lazy"/>
 				#if ($brandedMastheadPhotoCaption != '')
 					<div class="photo-by">
 						${_EscapeTool.xml($brandedMastheadPhotoCaption)}
@@ -48,7 +48,7 @@
     </div>
 	<div class="slider version-201611">
 		<div class="hidden slideOptions">
-			<div class="autoRotate">On</div>
+			<div class="autoRotate">Off</div>
 		</div>
 
 		<div class="grid">
@@ -65,7 +65,7 @@
 									#set ( $slideImageAltText = $_XPathTool.selectSingleNode($slide, 'altText').value )
 									#set ( $slidePhotoCaption = $_XPathTool.selectSingleNode($slide, 'photoCaption').value )
 									<li class="slide">
-										<img alt="${_EscapeTool.xml($slideImageAltText)}" src="[system-asset]${slideImagePath}[/system-asset]"/>
+										<img alt="${_EscapeTool.xml($slideImageAltText)}" src="[system-asset]${slideImagePath}[/system-asset]"  loading="lazy"/>
 										## Subtitle will be swapped out dynamically upon slide change.
 										<input class="slideSubtitle" type="hidden" value="${_EscapeTool.xml($slideSubtitle).replace("\n", "<br/>")}"/>
 										#if ($slidePhotoCaption != '')
@@ -126,7 +126,7 @@
 		</div>
 	</div>
     
-    <div class="skip">
+    <div class="skip-masthead--2-3-col">
         <a class="peekaboo next-section button red" tabindex="0" href="#breadcrumbs" role="skip over carousel to next section">Skip
           over carousel to next section</a>
     </div>
@@ -164,7 +164,7 @@
 						<img height="220"
 							 width="266"
 							 alt="${_EscapeTool.xml($slideImageAltText)}"
-							 src="[system-asset]${slideImagePath}[/system-asset]"/>
+							 src="[system-asset]${slideImagePath}[/system-asset]" loading="lazy"/>
 
 						<div class="caption ellipsis multiline">
 							<div class="inner">
