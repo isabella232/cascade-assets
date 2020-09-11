@@ -684,11 +684,14 @@
 						label="Image (200x150)"
 						required="true"
 						type="file"/>
-					<text field-id="ff6bcc16c0a81e5f43ef9b37e797e46f"
-						help-text="Alternate text to describe image (required)"
-						identifier="altText"
-						label="Image Alt-Text"
-						required="true"/>
+					<text default="Decorative Image"
+						identifier="imageAltOrDecorative"
+						label="Accessibility"
+						type="radiobutton"
+						help-text="Decorative images don’t add information to the content of a page. For example, the information provided by the image might already be given using adjacent text, or the image might be included to make the website more visually attractive.">
+						<radio-item show-fields="primaryContent/widget/funnels-1up/region/altText" value="Alt Text"/>
+						<radio-item value="Decorative Image"/>
+					</text>
 					<text field-id="ff6bcc16c0a81e5f43ef9b37f180be7e" identifier="copy" label="Copy" wysiwyg="true"/>
 					<group identifier="links" label="Links">
 						<group identifier="link" label="Link" minimum-number="0" multiple="true">
@@ -705,6 +708,10 @@
 							<asset field-id="ff6bcc16c0a81e5f43ef9b37e434ef17" identifier="internalLink" label="Internal Link" type="page"/>
 							<asset field-id="ff6bcc16c0a81e5f43ef9b37f27ec24a" identifier="fileLink" label="File Link" type="file"/>
 							<text field-id="ff6bcc16c0a81e5f43ef9b3789f46601" identifier="label" label="Label"/>
+							<group identifier="accessibility" label="Accessibility">
+								<text identifier="ariaLabel" label="Aria Label"/>
+								<text identifier="title" label="Title"/>
+							</group>
 						</group>
 					</group>
 				</group>
@@ -721,11 +728,15 @@
 				</text>
 				<group identifier="region" label="Region" multiple="true">
 					<asset field-id="ff6bcc16c0a81e5f43ef9b37b537417c" identifier="image" label="Image (290x125)" type="file"/>
-					<text field-id="ff6bcc17c0a81e5f43ef9b3762aaae88"
-						help-text="Alternate text to describe image (required)"
-						identifier="altText"
-						label="Image Alt-Text"
-						required="true"/>
+					<text default="Decorative Image"
+						identifier="imageAltOrDecorative"
+						label="Accessibility"
+						type="radiobutton"
+						help-text="Decorative images don’t add information to the content of a page. For example, the information provided by the image might already be given using adjacent text, or the image might be included to make the website more visually attractive.">
+						<radio-item show-fields="primaryContent/widget/funnels-2up/region/altText" value="Alt Text"/>
+						<radio-item value="Decorative Image"/>
+					</text>
+					<text help-text="Alternate text to describe image (required)" identifier="altText" label="Image Alt-Text" required="true"/>
 					<text default="[headline]"
 						field-id="ff6bcc17c0a81e5f43ef9b3709746433"
 						identifier="headline"
@@ -760,6 +771,10 @@
 							<asset field-id="ff6bcc17c0a81e5f43ef9b372478007f" identifier="internalLink" label="Internal Link" type="page"/>
 							<asset field-id="ff6bcc17c0a81e5f43ef9b377a181553" identifier="fileLink" label="File Link" type="file"/>
 							<text field-id="ff6bcc17c0a81e5f43ef9b37ee709654" identifier="label" label="Label"/>
+							<group identifier="accessibility" label="Accessibility">
+								<text identifier="ariaLabel" label="Aria Label"/>
+								<text identifier="title" label="Title"/>
+							</group>
 						</group>
 					</group>
 				</group>

@@ -1,6 +1,10 @@
 <system-data-structure>
 	<group identifier="image" label="Image" multiple="true">
-		<text default="Internal Cascade Image" identifier="imageType" label="Image Link" required="true" type="radiobutton">
+		<text default="Internal Cascade Image"
+			identifier="imageType"
+			label="Image Link"
+			required="true"
+			type="radiobutton">
 			<radio-item show-fields="image/imageUrlInt, image/altText, image/imageShape, image/objectPositionX, image/objectPositionY" value="Internal Cascade Image"/>
 			<radio-item show-fields="image/imageUrlExt, image/altText, image/imageShape, image/objectPositionX, image/objectPositionY" value="External Image URL"/>
 			<radio-item value="None"/>
@@ -8,7 +12,11 @@
 		<text identifier="imageUrlExt" label="External Image URL"/>
 		<asset identifier="imageUrlInt" label="Internal Cascade Image" type="file"/>
 		<text help-text="Be succinct, accurate, and equivalent in presenting the same content and function of the image. Do NOT be redundant or provide the same information as text within the context of the image. Do NOT use the phrases &quot;image of ...&quot; or &quot;graphic of ...&quot; to describe the image. https://webaim.org/techniques/alttext/" identifier="altText" label="Alternate Text" required="true"/>
-		<text default="Image Shape" help-text="Image can be square or cicular with a 1:1 aspect ratio. This will attempt to crop a square image via CSS if &quot;Circle&quot; is selected" identifier="imageShape" label="Image Shape" type="radiobutton">
+		<text default="Image Shape"
+			help-text="Image can be square or cicular with a 1:1 aspect ratio. This will attempt to crop a square image via CSS if &quot;Circle&quot; is selected"
+			identifier="imageShape"
+			label="Image Shape"
+			type="radiobutton">
 			<radio-item value="Circle"/>
 			<radio-item value="Square"/>
 		</text>
