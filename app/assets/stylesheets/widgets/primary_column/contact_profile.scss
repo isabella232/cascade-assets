@@ -29,6 +29,8 @@
       max-width: 200px;
       -ms-grid-column-align: center;
       justify-self: center;
+      height: var(--space-imgSize);
+      width: var(--space-imgSize);
     }
 
     &__heading {
