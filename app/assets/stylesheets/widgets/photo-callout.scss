@@ -85,6 +85,45 @@
             @include qbal-fade-enter;
 
         }
+
+
+        &--headshot {
+            .photo-callout-widget {
+                &__img {
+                    --max_height: 100%;
+                    --max-width: 100%;
+                    max-height: var(--max-height);
+                    height: var(--max-height);
+                    max-width: var(--max-width);
+                    width: var(--max-width);
+                }
+            }
+
+        }
+
+        &--grid-override {
+            --number-of-columns: 6;
+            grid-template-columns: repeat(var(--number-of-columns), 1fr);
+
+            .photo-callout-widget {
+                &__img {
+                    --max_height: 100%;
+                    --max-width: 100%;
+                    max-height: var(--max-height);
+                    height: var(--max-height);
+                    max-width: var(--max-width);
+                    width: var(--max-width);
+                }
+            }
+
+            @include respond(tab-port) {
+                --number-of-columns: 2;
+            }
+
+            @include respond(phone) {
+                --number-of-columns: 1;
+            }
+        }
     }
 
     &__container>*:nth-child(1) {
@@ -181,6 +220,8 @@
         margin: 0;
         max-height: 150px;
     }
+
+
 }
 
 

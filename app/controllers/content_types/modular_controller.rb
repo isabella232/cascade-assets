@@ -571,7 +571,7 @@ module ContentTypes
       # This reproduces content from static sample version
       format("%s" "%s",
       render_static_partial("widgets/primary_content/next_steps_widget"),
-        render_static_partial("widgets/primary_content/text_with_cta"),
+        render_static_partial("widgets/primary_content/three_photo_callout_1"),
         # render_static_partial("widgets/primary_content/news_events_feed_1"),
         # render_static_partial("widgets/primary_content/three_photo_callout_1")
       )
