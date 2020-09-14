@@ -1,7 +1,3 @@
-<!-- ----------------------------------------------------------------------- -->
-<!--              Shared Fields:image__rectangle-only--required              -->
-<!-- ----------------------------------------------------------------------- -->
-
 <system-data-structure>
 	<group identifier="image" label="Image" multiple="true">
 		<text default="Internal Cascade Image"
