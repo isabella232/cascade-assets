@@ -14,11 +14,14 @@
     }
 
     img {
-        --imgSize: 150px;
+
         width: 100%;
         object-fit: cover;
         width: 100%;
         height: var(--imgSize);
+        min-height: 100px;
+        min-width: 100px;
+
     }
 
     &__img {
@@ -27,6 +30,7 @@
     }
 
     &__container {
+        --imgSize: 150px;
         --marginTop: 20px;
         --marginBottom: 20px;
 
@@ -88,31 +92,38 @@
 
 
         &--headshot {
+            grid-template-columns: repeat(auto-fit, minmax(var(--imgSize), 1fr));
+
             .photo-callout-widget {
                 &__img {
-                    --max_height: 100%;
-                    --max-width: 100%;
+                    --img-height: 100%;
+                    --img-width: 100%;
                     max-height: var(--max-height);
                     height: var(--max-height);
-                    max-width: var(--max-width);
-                    width: var(--max-width);
+                    max-width: var(--img-width);
+                    width: var(--img-width);
                 }
             }
 
         }
 
         &--grid-override {
-            --number-of-columns: 6;
+            --number-of-columns: 8;
+            --img-height: 600px;
+            --img-width: 300px;
             grid-template-columns: repeat(var(--number-of-columns), 1fr);
+            // grid-template-columns: repeat(auto-fit, minmax(var(--imgSize), 1fr));
 
             .photo-callout-widget {
+
+                // max-width: 100px;
+                // min-width: 100px;
+
                 &__img {
-                    --max_height: 100%;
-                    --max-width: 100%;
                     max-height: var(--max-height);
                     height: var(--max-height);
-                    max-width: var(--max-width);
-                    width: var(--max-width);
+                    max-width: var(--img-width);
+                    width: var(--img-width);
                 }
             }
 
