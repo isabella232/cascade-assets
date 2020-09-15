@@ -19,6 +19,11 @@ const leftNav = function() {
   
       $rootElement.find('ul.active').removeClass('active');
       $menuToDrillDownTo.addClass('active');
+      // SET ARIA DRILL DOWN EXPANDED
+      $rootElement.find('.drilldown-menu').attr('aria-expanded', 'false');
+      $rootDrillDownNav.attr('aria-expanded', 'false');
+      $menuToDrillDownTo.attr('aria-expanded', 'true');
+      
   
       $rootElement.css({ height: $menuToDrillDownTo.height() });
       
@@ -38,9 +43,14 @@ const leftNav = function() {
   
       $rootDrillDownNav.css({ transform: "translateX(" + translateXVal + "px)"  });
       $(this).parent().hide();
+      // SET ARIA DRILL DOWN EXPANDED
+      $rootElement.find('.drilldown-menu').attr('aria-expanded', 'false');
+      $rootDrillDownNav.attr('aria-expanded', 'false');
+      $parentDrillDownMenu.attr('aria-expanded', 'true');
   
       if (translateXVal >= 0) {
         $rootElement.css({ height: ($rootDrillDownNav.initialHeight) });
+        $rootDrillDownNav.attr('aria-expanded', 'true');
         return;
       }
       
@@ -86,6 +96,11 @@ const leftNav = function() {
         $rootDrillDownNav.initialHeight = $rootDrillDownNav.height();
   
         $currentPathDrillDownMenu.addClass('active');
+
+        // SET ARIA DRILL DOWN EXPANDED
+        $rootElement.find('.drilldown-menu').attr('aria-expanded', 'false');
+        $rootDrillDownNav.attr('aria-expanded', 'false');
+        $currentPathDrillDownMenu.attr('aria-expanded', 'true');
   
         return;
       }
