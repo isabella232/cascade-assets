@@ -8,11 +8,11 @@ $(function () {
       controlNav: false,
       pauseOnHover: true,
       pauseOnAction: true,
-      pausePlay: true,
+      pausePlay: false,
       randomize: false,
-      slideshowSpeed: 10000,
+      slideshowSpeed: 1000,
       slideToStart: startingPane,
-      slideshow: autoplay,
+      slideshow: false,
       start: function (slider) {
         g_mySlider = slider;
         var currentSlide = slider.slides[slider.currentSlide];
@@ -74,6 +74,7 @@ $(function () {
         }
       }
     });
+  
   }
   // Remove :focus outline from rotator nav arrows
   $(".flex-direction-nav li a").each(function () {

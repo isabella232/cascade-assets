@@ -83,7 +83,8 @@
   </p>
   <pre>export CASCADE_USERNAME=username</pre>
   <pre>export CASCADE_PASWORD=password</pre>
-  </p>
+  <p>Note: if you have issues with Rails returning <code>nil</code>, try <a href="https://stackoverflow.com/a/51433154/4089199"><code>export RAILS_ENV=production && rails </code></a>. Sometimes, just <code>spring stop</code>
+ alone will help.  </p>
   <div id="thor_tasks">
     <h3> Web Services - Rake Tasks</h3>
     <p>View all Rake tasks with <code>rake -T</code></p>
@@ -98,6 +99,7 @@
       Hill's API</p>
     </p>
     <p><b>Note</b>: each of the following web services tasks is set to dev-www, not production (as of 7.16.2020)</p>
+    EDITOR="mate --wait" bin/rails credentials:edit
     <details open="">
       <summary>
         Details

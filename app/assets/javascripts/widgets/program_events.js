@@ -5,6 +5,6 @@ $(document).ready(function() {
   $programEvents.chapmanEventsFeed({ 
     feed_path: $programEvents.data().chapmanProgramEvents,
     program_events: true,
-    per: 200
+    per: 6
   });
 });
