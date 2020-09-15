@@ -256,7 +256,12 @@ html {
   &.three-column-template {
     [class*="--white"] {
       border: none;
+
+      .border-light-grey {
+        border: 1px solid var(--color-cu-light-grey);
+      }
     }
+
   }
 
   &.one-column-template,

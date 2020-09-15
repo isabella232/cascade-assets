@@ -78,9 +78,6 @@
         <radio-item value="Yes"/>
         <radio-item value="No"/>
       </text>
-      <text type="checkbox" identifier="autoRotate" label="Auto Rotate" field-id="ff6bcc38c0a81e5f43ef9b374c2dcf37">
-        <checkbox-item value="On"/>
-      </text>
       <text identifier="startingSlideNumber" label="Starting Slide Number" field-id="ff6bcc38c0a81e5f43ef9b37e508e25b" help-text="Accepts an integer corresponding to slide number"/>
       <text identifier="speed" label="Speed" field-id="ff6bcc38c0a81e5f43ef9b3768b6e758" help-text="Number of seconds it takes a slide to auto rotate. If no value is entered, slides will rotate every ten seconds."/>
       <group identifier="slides" label="Slides">
@@ -340,6 +337,7 @@
         <dropdown-item value="Testimonial" show-fields="primaryContent/widget/testimonial-widget"/>
         <dropdown-item value="Text Editor" show-fields="primaryContent/widget/wysiwyg-editor"/>
         <dropdown-item value="Three Photo Callout" show-fields="primaryContent/widget/threePhotoCallout"/>
+        <dropdown-item show-fields="primaryContent/widget/textWithCTA" value="Text with CTA"/>
         <dropdown-item value="Twitter Feed" show-fields="primaryContent/widget/twitterTimeline"/>
         <dropdown-item value="Calendar25Live" show-fields="primaryContent/widget/Calendar25Live"/>
         <dropdown-item value="A to Z Listing" show-fields="primaryContent/widget/AtoZListing"/>
@@ -369,7 +367,7 @@
           label="Program Events Display"
           field-id="ff6bcc3bc0a81e5f43ef9b3742e06df1"
           default="tiles"
-          required="false">
+          required="true">
           <radio-item value="tiles" label="Tiles"/>
           <radio-item value="bars" label="Bars"/>
         </text>
@@ -525,48 +523,65 @@
             required="true"/>
         </group>
       </group>
-      <group identifier="funnels-1up" label="Funnels (1up)" collapsed="true">
-        <text type="radiobutton"
+      <group collapsed="true" identifier="funnels-1up" label="Funnels (1up)">
+        <text default="Yes"
+          field-id="ff6bcc16c0a81e5f43ef9b3757eff2a4"
           identifier="display-funnels-1up"
           label="Show"
-          field-id="ff6bcc3dc0a81e5f43ef9b37530952d2"
-          default="Yes"
-          required="true">
+          required="true"
+          type="radiobutton">
           <radio-item value="Yes"/>
           <radio-item value="No"/>
         </text>
-        <group identifier="region" label="Region" multiple="true" minimum-number="0">
-          <text identifier="headline"
+        <group identifier="region" label="Region" minimum-number="0" multiple="true">
+          <text default="[headline]"
+            field-id="ff6bcc16c0a81e5f43ef9b37a8640e46"
+            identifier="headline"
             label="Headline"
-            field-id="ff6bcc3dc0a81e5f43ef9b378c7f2ec9"
-            default="[headline]"
             required="true"/>
-          <asset type="file"
+          <asset field-id="ff6bcc16c0a81e5f43ef9b3796f5e13f"
             identifier="image"
             label="Image (200x150)"
-            field-id="ff6bcc3dc0a81e5f43ef9b37f2986772"
-            required="true"/>
-          <text identifier="altText"
-            label="Image Alt-Text"
-            field-id="ff6bcc3dc0a81e5f43ef9b37e1d5f384"
             required="true"
-            help-text="Alternate text to describe image (required)"/>
-          <text wysiwyg="true" identifier="copy" label="Copy" field-id="ff6bcc3dc0a81e5f43ef9b37debfd1c2"/>
+            type="file"/>
+
+          <text default="Decorative Image"
+            field-id="320558eec0a81e8a5b6f22bb91c7ac6f"
+            help-text="Decorative images don’t add information to the content of a page. For example, the information provided by the image might already be given using adjacent text, or the image might be included to make the website more visually attractive."
+            identifier="imageAltOrDecorative"
+            label="Accessibility"
+            type="radiobutton">
+            <radio-item show-fields="primaryContent/widget/funnels-1up/region/altText" value="Alt Text"/>
+            <radio-item value="Decorative Image"/>
+          </text>
+
+          <text field-id="ff6bcc16c0a81e5f43ef9b37e797e46f"
+            help-text="Alternate text to describe image (required)"
+            identifier="altText"
+            label="Image Alt-Text"
+            required="true"/>
+
+
+          <text field-id="ff6bcc16c0a81e5f43ef9b37f180be7e" identifier="copy" label="Copy" wysiwyg="true"/>
           <group identifier="links" label="Links">
-            <group identifier="link" label="Link" multiple="true">
-              <text type="radiobutton"
+            <group identifier="link" label="Link" minimum-number="0" multiple="true">
+              <text default="Internal Link"
+                field-id="ff6bcc16c0a81e5f43ef9b3743a1b09f"
                 identifier="linkType"
                 label="Link Type"
-                field-id="ff6bcc3dc0a81e5f43ef9b37ce3b292e"
-                default="Internal Link">
-                <radio-item value="Internal Link" show-fields="primaryContent/widget/funnels-1up/region/links/link/internalLink"/>
-                <radio-item value="External Link" show-fields="primaryContent/widget/funnels-1up/region/links/link/externalLink"/>
-                <radio-item value="File Link" show-fields="primaryContent/widget/funnels-1up/region/links/link/fileLink"/>
+                type="radiobutton">
+                <radio-item show-fields="primaryContent/widget/funnels-1up/region/links/link/internalLink" value="Internal Link"/>
+                <radio-item show-fields="primaryContent/widget/funnels-1up/region/links/link/externalLink" value="External Link"/>
+                <radio-item show-fields="primaryContent/widget/funnels-1up/region/links/link/fileLink" value="File Link"/>
               </text>
-              <text identifier="externalLink" label="External Link" field-id="ff6bcc3ec0a81e5f43ef9b37e3713b82" help-text="full url (including http) to page outside of Cascade"/>
-              <asset type="page" identifier="internalLink" label="Internal Link" field-id="ff6bcc3ec0a81e5f43ef9b37c29ad89d"/>
-              <asset type="file" identifier="fileLink" label="File Link" field-id="ff6bcc3ec0a81e5f43ef9b3762e00da3"/>
-              <text identifier="label" label="Label" field-id="ff6bcc3ec0a81e5f43ef9b377eb9120f"/>
+              <text field-id="ff6bcc16c0a81e5f43ef9b377d203c09" help-text="full url (including http) to page outside of Cascade" identifier="externalLink" label="External Link"/>
+              <asset field-id="ff6bcc16c0a81e5f43ef9b37e434ef17" identifier="internalLink" label="Internal Link" type="page"/>
+              <asset field-id="ff6bcc16c0a81e5f43ef9b37f27ec24a" identifier="fileLink" label="File Link" type="file"/>
+              <text field-id="ff6bcc16c0a81e5f43ef9b3789f46601" identifier="label" label="Label"/>
+              <group identifier="accessibility" label="Accessibility">
+                <text field-id="3650c2e8c0a81e8a5b6f22bb4a5db2f2" identifier="ariaLabel" label="Aria Label"/>
+                <text field-id="3650c2e9c0a81e8a5b6f22bba091cc09" identifier="title" label="Title"/>
+              </group>
             </group>
           </group>
         </group>
@@ -765,11 +780,21 @@
           maximum-number="3"
           minimum-number="3">
           <asset type="file" identifier="image" label="Image (136x96)" field-id="ff6bcc3fc0a81e5f43ef9b37b3d963c7"/>
-          <text identifier="altText"
+          <text default="Decorative Image"
+            field-id="320558eec0a81e8a5b6f22bb91c7ac6f"
+            help-text="Decorative images don’t add information to the content of a page. For example, the information provided by the image might already be given using adjacent text, or the image might be included to make the website more visually attractive."
+            identifier="imageAltOrDecorative"
+            label="Accessibility"
+            type="radiobutton">
+            <radio-item show-fields="primaryContent/widget/funnels-1up/region/altText" value="Alt Text"/>
+            <radio-item value="Decorative Image"/>
+          </text>
+
+          <text field-id="ff6bcc16c0a81e5f43ef9b37e797e46f"
+            help-text="Alternate text to describe image (required)"
+            identifier="altText"
             label="Image Alt-Text"
-            field-id="ff6bcc3fc0a81e5f43ef9b372d18edaf"
-            required="true"
-            help-text="Alternate text to describe image (required)"/>
+            required="true"/>
           <group identifier="link" label="Link">
             <text type="radiobutton"
               identifier="linkType"
@@ -784,6 +809,76 @@
             <asset type="page" identifier="internalLink" label="Internal Link" field-id="ff6bcc40c0a81e5f43ef9b379cef9452"/>
             <asset type="file" identifier="fileLink" label="File Link" field-id="ff6bcc40c0a81e5f43ef9b37c31ae1ed"/>
             <text identifier="label" label="Label" field-id="ff6bcc40c0a81e5f43ef9b371e20695f"/>
+          </group>
+        </group>
+      </group>
+      <group collapsed="false" identifier="textWithCTA" label="Text with CTA">
+        <shared-field identifier="display" path="display"/>
+        <text default="Default Theme" identifier="theme" label="Theme" type="radiobutton">
+          <radio-item identifier="default" value="Default Theme" show-fields="primaryContent/widget/textWithCTA/bgColor, primaryContent/widget/textWithCTA/textWithCTAButton"/>
+          <radio-item show-fields="primaryContent/widget/textWithCTA/CUSafelyBackbgColor, primaryContent/widget/textWithCTA/textWithCTAButtonCUSafelyBack" value="CU Safely Back" identifier="pacific"/>
+        </text>
+        <text default="white"
+          identifier="bgColor"
+          label="Background Color"
+          type="radiobutton"
+          require="false">
+          <radio-item label="White" value="white"/>
+        </text>
+        <text default="pacific"
+          identifier="CUSafelyBackbgColor"
+          label="Background Color"
+          type="radiobutton"
+          require="false">
+          <radio-item label="Pacific" value="pacific"/>
+        </text>
+        <text identifier="textWithCTATitle" label="Title" help-text="Note: With 'CU Safely Back' Theme, the first two characters are emphasized"/>
+        <text identifier="text" label="Text" required="true" wysiwyg="true"/>
+        <group identifier="textWithCTAButton" label="CTA Button" maximum-number="3" multiple="true">
+          <group identifier="link" label="Call to Action">
+            <text default="white" identifier="buttonColor" label="Button Color" type="dropdown">
+              <dropdown-item label="Red" value="red"/>
+              <dropdown-item label="White" value="white"/>
+            </text>
+            <text default="Internal Link" identifier="linkType" label="Link Type" type="radiobutton">
+              <radio-item show-fields="primaryContent/widget/textWithCTA/textWithCTAButton/link/internalLink" value="Internal Link"/>
+              <radio-item show-fields="primaryContent/widget/textWithCTA/textWithCTAButton/link/externalLink" value="External Link"/>
+              <radio-item show-fields="primaryContent/widget/textWithCTA/textWithCTAButton/link/fileLink" value="File Link"/>
+            </text>
+            <text help-text="full url (including HTTPS) to page outside of Cascade" identifier="externalLink" label="External Link"/>
+            <asset identifier="internalLink" label="Internal Link" type="page"/>
+            <asset identifier="fileLink" label="File Link" type="file"/>
+            <text identifier="label" label="Label"/>
+            <group identifier="accessibility" label="Accessibility" collapsed="true">
+              <text identifier="ariaLabel" label="Aria Label"/>
+              <text identifier="title" label="Title"/>
+            </group>
+            <group identifier="tracking" label="Analytics Tracking" collapsed="true">
+              <text help-text="Replace or add custom link ID for tracking." identifier="customID" label="Override HTML ID"/>
+              <text help-text="Replace or add custom data-attr for tracking. Entering 'my-custom-thing' will result in 'data-my-custom-thing'" identifier="dataAttr" label="Data Attribute" multiple="true"/>
+            </group>
+          </group>
+        </group>
+        <!-- cu safely back CTA (no color chooser, 2 max) -->
+        <group identifier="textWithCTAButtonCUSafelyBack" label="CTA Button" maximum-number="2" multiple="true">
+          <group identifier="link" label="Call to Action">
+            <text default="Internal Link" identifier="linkType" label="Link Type" type="radiobutton">
+              <radio-item show-fields="primaryContent/widget/textWithCTA/textWithCTAButtonCUSafelyBack/link/internalLink" value="Internal Link"/>
+              <radio-item show-fields="primaryContent/widget/textWithCTA/textWithCTAButtonCUSafelyBack/link/externalLink" value="External Link"/>
+              <radio-item show-fields="primaryContent/widget/textWithCTA/textWithCTAButtonCUSafelyBack/link/fileLink" value="File Link"/>
+            </text>
+            <text help-text="full url (including HTTPS) to page outside of Cascade" identifier="externalLink" label="External Link"/>
+            <asset identifier="internalLink" label="Internal Link" type="page"/>
+            <asset identifier="fileLink" label="File Link" type="file"/>
+            <text identifier="label" label="Label"/>
+            <group identifier="accessibility" label="Accessibility" collapsed="true">
+              <text identifier="ariaLabel" label="Aria Label"/>
+              <text identifier="title" label="Title"/>
+            </group>
+            <group identifier="tracking" label="Analytics Tracking" collapsed="true">
+              <text help-text="Replace or add custom link ID for tracking." identifier="customID" label="Override HTML ID"/>
+              <text help-text="Replace or add custom data-attr for tracking. Entering 'my-custom-thing' will result in 'data-my-custom-thing'" identifier="dataAttr" label="Data Attribute" multiple="true"/>
+            </group>
           </group>
         </group>
       </group>

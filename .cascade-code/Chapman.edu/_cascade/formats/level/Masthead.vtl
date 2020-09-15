@@ -48,7 +48,7 @@
     </div>
 	<div class="slider version-201611">
 		<div class="hidden slideOptions">
-			<div class="autoRotate">On</div>
+			<div class="autoRotate">Off</div>
 		</div>
 
 		<div class="grid">
@@ -105,7 +105,6 @@
 ## Boxes Masthead
 #elseif ( $mastheadType == 'Boxes' &&  $showBoxes == 'Yes' )
 	<!-- mastheadType: Boxes -->
-	#set ( $autoRotate = $_XPathTool.selectSingleNode($masthead, 'boxes/autoRotate').value )
 	#set ( $slideStartNumber = $_XPathTool.selectSingleNode($masthead, 'boxes/startingSlideNumber').value )
 	#set ( $rotateSpeed = $_XPathTool.selectSingleNode($masthead, 'boxes/speed').value )
 	#set ( $slides = $_XPathTool.selectNodes($masthead, 'boxes/slides/slide') )
@@ -114,7 +113,7 @@
 	## would be better practice.
 	<div class="hidden slideOptions">
 		<div class="autoRotate">
-			${_EscapeTool.xml($autoRotate)}
+			Off
 		</div>
 
 		<div class="startingSlideNumber">

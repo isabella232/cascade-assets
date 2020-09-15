@@ -78,9 +78,6 @@
 				<radio-item value="Yes"/>
 				<radio-item value="No"/>
 			</text>
-			<text field-id="ff6bcc10c0a81e5f43ef9b37123a8c5e" identifier="autoRotate" label="Auto Rotate" type="checkbox">
-				<checkbox-item value="On"/>
-			</text>
 			<text field-id="ff6bcc10c0a81e5f43ef9b37489c6b39" help-text="Accepts an integer corresponding to slide number" identifier="startingSlideNumber" label="Starting Slide Number"/>
 			<text field-id="ff6bcc10c0a81e5f43ef9b37d850073b" help-text="Number of seconds it takes a slide to auto rotate. If no value is entered, slides will rotate every ten seconds." identifier="speed" label="Speed"/>
 			<group identifier="slides" label="Slides">
@@ -494,7 +491,7 @@
 					identifier="text"
 					label="Text"
 					required="true"
-					wysiwyg="false"/>
+					wysiwyg="true"/>
 			</group>
 			<group collapsed="true" identifier="careerBlockWidget" label="Career Block">
 				<shared-field field-id="ff6bcc14c0a81e5f43ef9b370dd71ea5" identifier="display" path="display"/>
@@ -687,11 +684,24 @@
 						label="Image (200x150)"
 						required="true"
 						type="file"/>
+
+					<text default="Decorative Image"
+						field-id="320558eec0a81e8a5b6f22bb91c7ac6f"
+						help-text="Decorative images don’t add information to the content of a page. For example, the information provided by the image might already be given using adjacent text, or the image might be included to make the website more visually attractive."
+						identifier="imageAltOrDecorative"
+						label="Accessibility"
+						type="radiobutton">
+						<radio-item show-fields="primaryContent/widget/funnels-1up/region/altText" value="Alt Text"/>
+						<radio-item value="Decorative Image"/>
+					</text>
+
 					<text field-id="ff6bcc16c0a81e5f43ef9b37e797e46f"
 						help-text="Alternate text to describe image (required)"
 						identifier="altText"
 						label="Image Alt-Text"
 						required="true"/>
+
+
 					<text field-id="ff6bcc16c0a81e5f43ef9b37f180be7e" identifier="copy" label="Copy" wysiwyg="true"/>
 					<group identifier="links" label="Links">
 						<group identifier="link" label="Link" minimum-number="0" multiple="true">
@@ -708,6 +718,10 @@
 							<asset field-id="ff6bcc16c0a81e5f43ef9b37e434ef17" identifier="internalLink" label="Internal Link" type="page"/>
 							<asset field-id="ff6bcc16c0a81e5f43ef9b37f27ec24a" identifier="fileLink" label="File Link" type="file"/>
 							<text field-id="ff6bcc16c0a81e5f43ef9b3789f46601" identifier="label" label="Label"/>
+							<group identifier="accessibility" label="Accessibility">
+								<text field-id="3650c2e8c0a81e8a5b6f22bb4a5db2f2" identifier="ariaLabel" label="Aria Label"/>
+								<text field-id="3650c2e9c0a81e8a5b6f22bba091cc09" identifier="title" label="Title"/>
+							</group>
 						</group>
 					</group>
 				</group>
@@ -724,7 +738,16 @@
 				</text>
 				<group identifier="region" label="Region" multiple="true">
 					<asset field-id="ff6bcc16c0a81e5f43ef9b37b537417c" identifier="image" label="Image (290x125)" type="file"/>
-					<text field-id="ff6bcc17c0a81e5f43ef9b3762aaae88"
+					<text default="Decorative Image"
+						field-id="325d615fc0a81e8a5b6f22bbfaec3526"
+						help-text="Decorative images don’t add information to the content of a page. For example, the information provided by the image might already be given using adjacent text, or the image might be included to make the website more visually attractive."
+						identifier="imageAltOrDecorative"
+						label="Accessibility"
+						type="radiobutton">
+						<radio-item show-fields="primaryContent/widget/funnels-2up/region/altText" value="Alt Text"/>
+						<radio-item value="Decorative Image"/>
+					</text>
+					<text field-id="325fa015c0a81e8a5b6f22bb314d9f8e"
 						help-text="Alternate text to describe image (required)"
 						identifier="altText"
 						label="Image Alt-Text"
@@ -763,6 +786,10 @@
 							<asset field-id="ff6bcc17c0a81e5f43ef9b372478007f" identifier="internalLink" label="Internal Link" type="page"/>
 							<asset field-id="ff6bcc17c0a81e5f43ef9b377a181553" identifier="fileLink" label="File Link" type="file"/>
 							<text field-id="ff6bcc17c0a81e5f43ef9b37ee709654" identifier="label" label="Label"/>
+							<group identifier="accessibility" label="Accessibility">
+								<text field-id="3665f5d2c0a81e8a5b6f22bb7d4620ff" identifier="ariaLabel" label="Aria Label"/>
+								<text field-id="3665f5d2c0a81e8a5b6f22bb70bbe513" identifier="title" label="Title"/>
+							</group>
 						</group>
 					</group>
 				</group>
@@ -786,22 +813,15 @@
 					multi-line="true"/>
 				<shared-field field-id="ff6bcc18c0a81e5f43ef9b37a96f2e95" identifier="link" path="cta"/>
 			</group>
-			<group collapsed="true" identifier="photoCalloutWidget" label="Photo Grid (Photo Callout)">
+			<group collapsed="true" identifier="photoCalloutWidget" label="Photo Callout">
 				<shared-field field-id="7c2e3040c0a81e5f43ef9b37a484c4f5" identifier="display" path="display"/>
 				<text default="Three Column Layout"
 					field-id="7c2e3041c0a81e5f43ef9b375add55c2"
 					identifier="numberOfColumns"
 					label="Desktop Layout"
-					type="dropdown">
-					<dropdown-item value="Two Column Layout"/>
-					<dropdown-item value="Three Column Layout"/>
-					<dropdown-item value="Four Column Layout"/>
-					<dropdown-item value="Five Column Layout"/>
-					<dropdown-item value="Six Column Layout"/>
-				</text>
-				<text default="Horizontal Images" identifier="imageOrientation" label="Image Orientation" type="radiobutton">
-					<radio-item value="Vertical Images (Headshots)"/>
-					<radio-item value="Horizontal Images (Default)"/>
+					type="radiobutton">
+					<radio-item value="Three Column Layout"/>
+					<radio-item value="Two Column Layout"/>
 				</text>
 				<text default="Show Images"
 					field-id="7c2e3041c0a81e5f43ef9b3724ef6f05"
@@ -950,11 +970,15 @@
 					minimum-number="3"
 					multiple="true">
 					<asset field-id="ff6bcc19c0a81e5f43ef9b374861c0f7" identifier="image" label="Image (136x96)" type="file"/>
-					<text field-id="ff6bcc1ac0a81e5f43ef9b372d58b8e1"
-						help-text="Alternate text to describe image (required)"
-						identifier="altText"
-						label="Image Alt-Text"
-						required="true"/>
+					<text default="Decorative Image"
+						help-text="Decorative images don’t add information to the content of a page. For example, the information provided by the image might already be given using adjacent text, or the image might be included to make the website more visually attractive."
+						identifier="imageAltOrDecorative"
+						label="Accessibility"
+						type="radiobutton">
+						<radio-item show-fields="primaryContent/widget/funnels-1up/region/altText" value="Alt Text"/>
+						<radio-item value="Decorative Image"/>
+					</text>
+					<text help-text="Alternate text to describe image (required)" identifier="altText" label="Image Alt-Text" required="false"/>
 					<group identifier="link" label="Link">
 						<text default="Internal Link"
 							field-id="ff6bcc1ac0a81e5f43ef9b374032390f"
