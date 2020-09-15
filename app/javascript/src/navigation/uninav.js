@@ -44,7 +44,6 @@ const uninav = function() {
 
   function hideCurrentDropdownWhenLoseFocus() {
     $(".uninav__dropdown--child li:last-of-type").on("keydown blur", function (e) {
-      debugger
       // SHIFT TAB KEY COMBO
       if (e.shiftKey && e.keyCode === 9) {
         $(dropdownParent).attr("aria-expanded", "false");

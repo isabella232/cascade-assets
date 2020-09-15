@@ -37,7 +37,6 @@ $(function () {
       $('.toggle-expand-collapse').text('Expand');
       return;
     }
-    debugger
     if ($parentAccordion.attr('aria-expanded') === 'false')
       return $parentAccordion.attr('aria-expanded', 'true')
 
@@ -53,7 +52,6 @@ $(function () {
   })
   // HANDLE EXPAND TOGGLES
   $(".collapsibles-widget .toggle-expand-collapse").on('click keypress', function (event) {
-    debugger
     var currentCollapsibleWidget = $(this).closest('.collapsibles-widget').attr('id'),
       currentCollapsibleWidget = '#' + currentCollapsibleWidget,
       contentClass = ' .content',
