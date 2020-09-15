@@ -21,9 +21,29 @@ $(function () {
   });
   // HANDLE CLICKS ON HEADERS
   $(".accordion .header").click(function () {
-    $(this).parent(".accordion").toggleClass("active").children(".content").slideToggle('fast');
+    var $parentAccordion = $(this).parent(".accordion");
+    $parentAccordion.toggleClass("active").children(".content").slideToggle('fast');
     $(".accordion.active .content").css("display", "block");
+    if ($('.accordion.active').length === $('.accordion').length) {
+      $('.accordion').attr('aria-expanded', 'true');
+      $('.toggle-expand-collapse').removeClass('expand').addClass('collapse');
+      $('.toggle-expand-collapse').text('Collapse');
+      return;
+    }
+
+    if ($('.accordion.active').length === 0) {
+      $('.accordion').attr('aria-expanded', 'false');
+      $('.toggle-expand-collapse').removeClass('collapse').addClass('expand');
+      $('.toggle-expand-collapse').text('Expand');
+      return;
+    }
+    if ($parentAccordion.attr('aria-expanded') === 'false')
+      return $parentAccordion.attr('aria-expanded', 'true')
+
+    if ($parentAccordion.attr('aria-expanded') === 'true')
+      return $parentAccordion.attr('aria-expanded', 'false')
   });
+  
   $(".accordion").children(".header").keydown(function (e) {
     if (e.keyCode === 32 || e.keyCode === 13) {
       $(this).parent(".accordion").toggleClass("active").children(".content").slideToggle('fast');
@@ -65,7 +85,9 @@ $(function () {
       if ((currentAccordion).length > 1) {
         $(currentToggle).text('Collapse');
         $(currentToggle).attr('aria-label', 'collapse accordion');
+        $('.accordion').attr('aria-expanded', 'true');
       }
+      
     }
     // HANDLE COLLAPSE TOGGLES
     else if ($(currentToggle).hasClass('collapse')) {
@@ -79,8 +101,11 @@ $(function () {
       if ((currentAccordion).length > 1) {
         $(currentToggle).text('Expand');
         $(currentToggle).attr('aria-label', 'expand accordion');
+        $('.accordion').attr('aria-expanded', 'false');
       }
     }
+
+    $
   });
 });
 // KEYS 🎹

@@ -40,6 +40,16 @@ Master Version: Chapman.edu/_cascade/formats/helpers.velocity
     $elem.getChild('image').getChild('imageUrlExt').getChild('path').value )
     #set ($altText =
     $elem.getChild('image').getChild('altText').value)
+
+    #set ( $imageRoleVal =  ( $elem.getChild('image').getChild('imageAltOrDecorative').value ) )
+    #if ( $imageRoleVal == "Decorative Image" )
+        #set ( $imageRole = "role='presentation'" )
+        #set ( $altText = '' )
+      #else 
+        #set ( $imageRole = "" )
+      #end
+      #log($imageRole)
+
     #set ($objectPositionX = $elem.getChild('image').getChild('objectPositionX').value.toLowerCase())
     #set ($objectPositionY = $elem.getChild('image').getChild('objectPositionY').value.toLowerCase())
     
@@ -47,7 +57,7 @@ Master Version: Chapman.edu/_cascade/formats/helpers.velocity
         <div
             class="${_EscapeTool.xml($widgetXPath)}__img--${_EscapeTool.xml($imageShape)} ${_EscapeTool.xml($widgetXPath)}__img"
             style="width: ${_EscapeTool.xml($imgSize)}; height: ${_EscapeTool.xml($imgSize)}; ">
-                <img class="${_EscapeTool.xml($widgetXPath)}__img img--${_EscapeTool.xml($imageShape)} "
+                <img $imageRole class="${_EscapeTool.xml($widgetXPath)}__img img--${_EscapeTool.xml($imageShape)} "
                     src="[system-asset]${_EscapeTool.xml($imageUrlInt)}[/system-asset]"
                     alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-position:${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}"/>
         </div>
@@ -278,7 +288,7 @@ LOG VELOCITY VARIABLES IN THE BROWSER CONSOLE ON DEV
       <li class="${isCurrentDrillDownPage}">
         <span tabindex="0" class="drill-down-parent">${_EscapeTool.xml($asset.metadata.displayName)}</span>
         <span class="toggle-drilldown"><span class="fas fa-chevron-right"></span></span>
-        <ul class="drilldown-menu">
+        <ul class="drilldown-menu" aria-expanded="false">
           <li tabindex="0" class="menu-back"><span class="fas fa-chevron-left"></span>Back</li>
           #foreach( $childAsset in $asset.children)
             #set ( $isVisible = $childAsset.metadata.getDynamicField('Hide from navigation').value != "Yes")

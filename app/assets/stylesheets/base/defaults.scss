@@ -993,3 +993,7 @@ img[loading="lazy"] {
     animation: 500ms lazyload forwards;
   }
 }
+
+.border-light-grey {
+  border: 1px solid var(--color-cu-light-grey);
+}

@@ -22,25 +22,23 @@ $element.getChild('collapsibleRegions').getChild('copy'), true ) )
     </div>
     #foreach ($collapsible in $collapsibles)
         #if ($collapsible.getChild('active').value == 'Yes')
-            <div class="accordion active">
-            #else 
-                <div class="accordion">
-                #end
+            <div class="accordion active" aria-expanded="true">
+        #else 
+            <div class="accordion" aria-expanded="false">
+        #end
                 ## if main widget header is not blank then it's H2 and collapsible headers are H3; if blank then collapsibles are H2
                 #if ($mainheader != '')
                     <h3 tabindex="0" role="button" class="header">
-                    #else
-                        <h2 tabindex="0" role="button" class="header">
-                        #end
-                        ##                    
-                        <span class="show"></span>
-                        <span class="hide"></span>
-                        #set ($header = $collapsible.getChild('header').value )
-                        ${_EscapeTool.xml($header)}
-
-                        #if ($mainheader != '')
-                        </h3>
-                    #else
+                #else
+                    <h2 tabindex="0" role="button" class="header">
+                #end
+                    <span class="show"></span>
+                    <span class="hide"></span>
+                    #set ($header = $collapsible.getChild('header').value )
+                    ${_EscapeTool.xml($header)}
+                #if ($mainheader != '')
+                    </h3>
+                #else
                     </h2>
                 #end
 
