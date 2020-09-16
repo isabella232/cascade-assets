@@ -859,8 +859,6 @@ const offCanvasNav = function () {
       var eventListeners = {
         shiftTab: false
       };
-      setTabFocus = null;
-
 
       Mousetrap(this).bind('shift+tab', function (e) {
         Mousetrap.unbind('shift+tab');

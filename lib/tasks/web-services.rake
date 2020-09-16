@@ -248,6 +248,17 @@ task edit_collapsibles: :environment do
   )
 end
 
+# ---------------------------------------------------------------------------- #
+#   edit format `Chapman.edu/_cascade/formats/modular/uninav/_offCanvas_main_menu`   #
+# ---------------------------------------------------------------------------- #
+desc 'Updates `Chapman.edu/_cascade/formats/modular/uninav/_offCanvas_main_menu` with `.cascade-code/Chapman.edu/_cascade/formats/modular/uninav/_offCanvas_main_menu`'
+task edit_offcanvas_main_menu: :environment do
+  edit_format(
+    'Chapman.edu/_cascade/formats/modular/uninav/_offCanvas_main_menu.vtl',
+    '.cascade-code/Chapman.edu/_cascade/formats/modular/uninav/_offCanvas_main_menu.vtl'
+  )
+end
+
 # USAGE: rake publish TYPE=page/ PATH=Chapman.edu/test-section/nick-test/test-publish
 # 👹note the trailing slash on the TYPE
 task :publish do
