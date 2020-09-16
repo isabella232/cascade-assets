@@ -13,23 +13,23 @@ $(document).ready(function () {
 
         if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--2-col')) {
             var photoIncrement = 2;
-            var numberOfPhotoLinksToReveal = 2;
+            var numberOfPhotoLinksToReveal = 4;
         }
         else if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--3-col')) {
             var photoIncrement = 3;
-            var numberOfPhotoLinksToReveal = 6;
+            var numberOfPhotoLinksToReveal = 5;
         }
         else if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--4-col')) {
-            var photoIncrement = 4;
+            var photoIncrement = 8;
             var numberOfPhotoLinksToReveal = 8;
         }
         else if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--5-col')) {
             var photoIncrement = 5;
-            var numberOfPhotoLinksToReveal = 5;
+            var numberOfPhotoLinksToReveal = 10;
         }
         else if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--6-col')) {
             var photoIncrement = 6;
-            var numberOfPhotoLinksToReveal = 6;
+            var numberOfPhotoLinksToReveal = 12;
         }
 
 
@@ -38,7 +38,7 @@ $(document).ready(function () {
 
         var buttonClickCounter = 0;
         console.log('number photos: ' + currentTotalNumberOfPhotos)
-        if (currentTotalNumberOfPhotos > 6) {
+        if (currentTotalNumberOfPhotos > photoIncrement) {
             $(currentButton).show();
         }
         $('button.photo-callout-widget__button--no-paginate').hide();
@@ -46,23 +46,36 @@ $(document).ready(function () {
         $(currentButton).click(function () {
             buttonClickCounter += 1;
 
-            numberOfPhotoLinksToReveal = (numberOfPhotoLinksToReveal + 6);
+            // $("img.photo-callout-widget__img:visible").css("border", "5px solid yellow");
+            // $("img.photo-callout-widget__img:visible").addClass("fade-in");
+
+            // $('#' + currentWidgetContainer + ' img:visible').addClass('fade-in');
+
+
+            numberOfPhotoLinksToReveal = (numberOfPhotoLinksToReveal + photoIncrement);
+            console.log('numberOfPhotoLinksToReveal ' + numberOfPhotoLinksToReveal);
+            console.log('photoIncrement ' + photoIncrement);
+
             $('#' + currentWidgetContainer + ' > a:lt(' + numberOfPhotoLinksToReveal + ')').show();
+
             if (buttonClickCounter < 2) {
                 $('#' + currentWidgetContainer + ' > a:lt(' + numberOfPhotoLinksToReveal + ')').show();
                 $('#' + currentWidgetContainer + ' > div:lt(' + numberOfPhotoLinksToReveal + ')').show();
-            } else if (buttonClickCounter == 2 && currentTotalNumberOfPhotos > 6) {
+            } else if (buttonClickCounter == 2 && currentTotalNumberOfPhotos > photoIncrement) {
+                console.log('currentTotalNumberOfPhotos ' + currentTotalNumberOfPhotos)
                 $(currentButton).text('Load All')
                 $('#' + currentWidgetContainer + ' > a:lt(' + numberOfPhotoLinksToReveal + ')').show();
                 $('#' + currentWidgetContainer + ' > div:lt(' + numberOfPhotoLinksToReveal + ')').show();
 
-                buttonClickCounter = 0;
+
             } else if (buttonClickCounter > 2) {
                 $('#' + currentWidgetContainer + ' > a').show(0);
                 $('#' + currentWidgetContainer + ' > div').show(0);
                 $(currentButton).text('All Photos Loaded')
                 $(currentButton).fadeOut(0);
+                buttonClickCounter = 0;
             }
+
             var currentVisible = $('#' + currentWidgetContainer + ' .photo-callout-widget:visible').size()
 
             console.log('currentVisible: ' + currentWidgetContainer + ' ' + currentVisible + 'number of photos: ' + currentTotalNumberOfPhotos)
@@ -75,6 +88,9 @@ $(document).ready(function () {
                 $(currentButton).fadeOut(0);
             }
             console.log('number of photos: ' + currentWidgetContainer + ' ' + currentTotalNumberOfPhotos)
+
+
+
         });
     });
     objectFitFallBackForIe();

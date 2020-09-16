@@ -12,6 +12,10 @@
     }
   }
 
+  .slide-up {
+    @include qbal-slideUp-enter;
+    animation-direction: forwards;
+  }
   img {
     width: 100%;
     object-fit: cover;
@@ -51,7 +55,7 @@
       }
     }
 
-    @for $i from 7 through 15 {
+    @for $i from 6 through 16 {
       :nth-child(#{$i}) {
         animation-delay: #{$i * 0.03s};
       }
@@ -135,11 +139,11 @@
     &--3-col {
       grid-template-columns: repeat(3, 1fr);
 
-      a.photo-callout-widget:nth-child(n + 4) {
+      a.photo-callout-widget:nth-child(n + 6) {
         display: none;
       }
 
-      div.photo-callout-widget:nth-child(n + 4) {
+      div.photo-callout-widget:nth-child(n + 6) {
         display: none;
       }
     }
@@ -148,22 +152,22 @@
       grid-template-columns: repeat(4, 1fr);
       grid-template-columns: repeat(auto-fit, minmax(var(--imgSize), 1fr));
 
-      a.photo-callout-widget:nth-child(n + 4) {
+      a.photo-callout-widget:nth-child(n + 8) {
         display: none;
       }
 
-      div.photo-callout-widget:nth-child(n + 4) {
+      div.photo-callout-widget:nth-child(n + 8) {
         display: none;
       }
     }
     &--5-col {
       grid-template-columns: repeat(5, 1fr);
 
-      a.photo-callout-widget:nth-child(n + 5) {
+      a.photo-callout-widget:nth-child(n + 10) {
         display: none;
       }
 
-      div.photo-callout-widget:nth-child(n + 5) {
+      div.photo-callout-widget:nth-child(n + 10) {
         display: none;
       }
     }
@@ -375,15 +379,15 @@ button.photo-callout-widget__load-more {
   }
 }
 
-:not(.photo-callout-widget__container--2-col) {
-  a.photo-callout-widget:nth-child(n + 7) {
-    display: none;
-  }
+// :not(.photo-callout-widget__container--2-col) {
+//   a.photo-callout-widget:nth-child(n + 7) {
+//     display: none;
+//   }
 
-  div.photo-callout-widget:nth-child(n + 7) {
-    display: none;
-  }
-}
+//   div.photo-callout-widget:nth-child(n + 7) {
+//     display: none;
+//   }
+// }
 
 .photo-callout-widget__container--2-col {
   a.photo-callout-widget:nth-child(n + 3) {

@@ -476,7 +476,7 @@
 				<shared-field identifier="display" path="display"/>
 				<text default="Horizontal 'Landscape' Images (4:3 Aspect Ratio)" identifier="aspectRatio" label="Image Aspect Ratio" type="radiobutton">
 					<radio-item value="Horizontal 'Landscape' Images (4:3 Aspect Ratio)" />
-					<radio-item value="Vertical 'Portrait' Images (2:3 Aspect Ratio)"/>
+					<radio-item value="Vertical 'Portrait' Images (2:3 Aspect Ratio)" show-fieds="primaryContent/widget/photoCalloutWidget/textLocation"/>
 				</text>
 				<text default="Three Column Layout" identifier="numberOfColumns" label="Desktop Layout" help-text="Number of Columns on Desktop" type="dropdown">
 					<dropdown-item value="Two Column Layout"/>
