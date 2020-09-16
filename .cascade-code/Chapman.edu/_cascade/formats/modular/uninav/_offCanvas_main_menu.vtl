@@ -27,7 +27,7 @@
                 #else
                     #set( $isCurrentPage = "drill-down-list-item")
                 #end
-                <li class="${isCurrentPage}">
+                <li class="${isCurrentPage}" role="group">
                     #if ( $pagePath == $menuItemLink.getChild('path').value ) 
                         #set( $isCurrentPage = "drill-down-list-item current" )
                     #else
@@ -35,7 +35,8 @@
                     #end
                     
                     #if ($submenuItems.size() != 0)
-                        <span tabindex="0" class="drill-down-parent">${menuItem.value}</span>    
+                        #set ( $ariaLabel = $menuItem.value.replaceAll(" ", "-").toLowerCase())
+                        <span aria-label="${_EscapeTool.xml($ariaLabel)}" tabindex="0" class="drill-down-parent">${menuItem.value}</span>    
                     #else
                         <a href="site://Chapman.edu/${menuItemLink.getChild('path').value}">${menuItem.value}</a>
                     #end
@@ -66,7 +67,7 @@
                                     #set( $isCurrentPage = "drill-down-list-item")
                                 #end
                                 #if ($linkURL != '' && $linkURL != '/' && $label != '')
-                                    <li class="${isCurrentPage}">
+                                    <li  class="${isCurrentPage}">
                                         <a href="${_EscapeTool.xml($linkURL)}" 
                                             #if ($submenuItem.getChild('ariaLabel').value != '' )
                                                 aria-label="${_EscapeTool.xml($submenuItem.getChild('ariaLabel').value)}"
