@@ -486,8 +486,12 @@
 					<dropdown-item value="Six Column Layout"/>
 				</text>
 				<text default="Show Images" field-id="7c2e3041c0a81e5f43ef9b3724ef6f05" identifier="hideImagesOnMobile" label="Mobile Layout" type="radiobutton">
-					<radio-item value="Show Images" />
+					<radio-item value="Show Images" show-fieds="primaryContent/widget/photoCalloutWidget/textLocation"/>
 					<radio-item value="Hide Images"/>
+				</text>
+				<text identifier="textLocation">
+					<radio-item value="Overlay On Image"/>
+					<radio-item value="Below Image"/>
 				</text>
 				<text default="No" field-id="7c2e3042c0a81e5f43ef9b37ff1c204d" help-text="Disabling links will remove the option to wrap each photo block in a link" identifier="enableLinks" label="Make each photo block a link?" type="radiobutton">
 					<radio-item show-fields="primaryContent/widget/photoCalloutWidget/block/link" value="Enable Links"/>
@@ -498,7 +502,6 @@
 						<radio-item value="Paginate"/>
 					</text>
 					<text identifier="paginateNumber" label="Number of Photos to Show Before Paginating" required="false"/>
-
 					<shared-field field-id="7c2e3042c0a81e5f43ef9b3725d60aca" identifier="bgColor" path="background-color"/>
 					<group identifier="block" label="Photo Block" multiple="true">
 						<shared-field field-id="7c2e3042c0a81e5f43ef9b37793a33ae" help-text="150px x 150px" identifier="image" label="Image (4:3 aspect ratio - 260px by 150px mimimum)" maximum-number="1" path="image__rectangle-only--required" required="true"/>
