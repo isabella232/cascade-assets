@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $.each($('.photo-callout-widget__container'), function (ind) {
-        $(this).attr('id', 'three-photo-callout-widget__container__' + parseInt(ind + 1));
+        $(this).attr('id', 'photo-callout-widget__container__' + parseInt(ind + 1));
         var currentWidgetContainer = $(this).closest('.photo-callout-widget__container').attr('id');
         console.log(currentWidgetContainer)
         var currentTotalNumberOfPhotos = $('#' + currentWidgetContainer + " img").size()
@@ -12,19 +12,29 @@ $(document).ready(function () {
 
 
         if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--2-col')) {
-            var photoIncrement = 6;
+            var photoIncrement = 2;
             var numberOfPhotoLinksToReveal = 2;
-
         }
-        else {
+        else if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--3-col')) {
             var photoIncrement = 3;
-
-            var numberOfPhotoLinksToReveal = 3;
-
+            var numberOfPhotoLinksToReveal = 6;
+        }
+        else if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--4-col')) {
+            var photoIncrement = 4;
+            var numberOfPhotoLinksToReveal = 8;
+        }
+        else if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--5-col')) {
+            var photoIncrement = 5;
+            var numberOfPhotoLinksToReveal = 5;
+        }
+        else if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--6-col')) {
+            var photoIncrement = 6;
+            var numberOfPhotoLinksToReveal = 6;
         }
 
-        $('#' + currentWidgetContainer + ' > a:lt(' + photoIncrement + ')').show();
-        $('#' + currentWidgetContainer + ' > div:lt(' + photoIncrement + ')').show();
+
+        // $('#' + currentWidgetContainer + ' > a:lt(' + photoIncrement + ')').show();
+        // $('#' + currentWidgetContainer + ' > div:lt(' + photoIncrement + ')').show();
 
         var buttonClickCounter = 0;
         console.log('number photos: ' + currentTotalNumberOfPhotos)
@@ -46,6 +56,7 @@ $(document).ready(function () {
                 $('#' + currentWidgetContainer + ' > a:lt(' + numberOfPhotoLinksToReveal + ')').show();
                 $('#' + currentWidgetContainer + ' > div:lt(' + numberOfPhotoLinksToReveal + ')').show();
 
+                buttonClickCounter = 0;
             } else if (buttonClickCounter > 2) {
                 $('#' + currentWidgetContainer + ' > a').show(0);
                 $('#' + currentWidgetContainer + ' > div').show(0);
