@@ -109,16 +109,17 @@ function resetbuttonClickCounterer() {
 function normalizeImageHeights() {
     $('#' + currentWidgetContainer).each(function () {
         console.log(currentWidgetContainer)
-        var highestBox = 0;
+        var widestImage = 0;
 
         $(this).find('.photo-callout-widget__img').each(function () {
             if ($(this).height() > highestBox) {
-                highestBox = $(this).height();
+                widestImage = $(this).width();
                 console.log(highestBox)
             }
         })
 
-        $(this).find('img').height(highestBox);
+        $(this).find('.photo-callout-widget__img').width(widestImage);
+
     });
 }
 
