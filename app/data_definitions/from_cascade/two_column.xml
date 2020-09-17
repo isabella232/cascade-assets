@@ -475,10 +475,10 @@
 			<group collapsed="true" identifier="photoCalloutWidget" label="Photo Callout">
 				<shared-field identifier="display" path="display" />
 				<text default="Horizontal 'Landscape' Images (4:3 Aspect Ratio)" identifier="aspectRatio" label="Image Aspect Ratio" type="radiobutton">
-					<radio-item value="Horizontal 'Landscape' Images (4:3 Aspect Ratio)" />
+					<radio-item value="Horizontal 'Landscape' Images (4:3 Aspect Ratio)" show-fields="primaryContent/widget/photoCalloutWidget/bgColor" />
 					<radio-item value="Vertical 'Portrait' Images (2:3 Aspect Ratio)" show-fields="primaryContent/widget/photoCalloutWidget/textPosition" />
 				</text>
-				<text default="Three Column Layout" identifier="numberOfColumns" label="Desktop Layout" help-text="Number of Columns on Desktop" type="dropdown">
+				<text default="Three Column Layout" identifier="numberOfColumns" label="Desktop Layout" help-text="Number of Columns on Desktop." type="dropdown">
 					<dropdown-item value="Two Column Layout" />
 					<dropdown-item value="Three Column Layout" />
 					<dropdown-item value="Four Column Layout" />
@@ -491,7 +491,7 @@
 				</text>
 				<text identifier="textPosition" label="Text Position" type="radiobutton">
 					<radio-item value="Overlay On Image" />
-					<radio-item value="Below Image" />
+					<radio-item value="Below Image" show-fields="primaryContent/widget/photoCalloutWidget/bgColor" />
 				</text>
 				<text default="No" field-id="7c2e3042c0a81e5f43ef9b37ff1c204d" help-text="Disabling links will remove the option to wrap each photo block in a link" identifier="enableLinks" label="Make each photo block a link?" type="radiobutton">
 					<radio-item show-fields="primaryContent/widget/photoCalloutWidget/block/link" value="Enable Links" />
