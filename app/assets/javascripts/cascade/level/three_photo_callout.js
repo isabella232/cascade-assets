@@ -14,7 +14,7 @@ $(document).ready(function () {
 
         if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--2-col')) {
             var photoIncrement = 2;
-            var numberOfPhotoLinksToReveal = 1;
+            var numberOfPhotoLinksToReveal = 3;
         }
         else if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--3-col')) {
             var photoIncrement = 3;
@@ -54,6 +54,7 @@ $(document).ready(function () {
 
 
             numberOfPhotoLinksToReveal = (numberOfPhotoLinksToReveal + photoIncrement);
+
             console.log('numberOfPhotoLinksToReveal ' + numberOfPhotoLinksToReveal);
             console.log('photoIncrement ' + photoIncrement);
 

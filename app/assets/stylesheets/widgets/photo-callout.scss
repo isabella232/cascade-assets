@@ -138,8 +138,12 @@
       }
     }
 
-    // hide all but X number is confusing: (n+X)
-    // so to hide all but the first
+    // hide all but X number is confusing: (n+ (X+1))
+    // so to hide all but the first 4:
+    // :nth-child(n+5) {
+    //   display:none;
+    // }
+
     &--2-col {
       grid-template-columns: repeat(2, 1fr);
 
@@ -155,19 +159,6 @@
     &--3-col {
       grid-template-columns: repeat(3, 1fr);
 
-      a.photo-callout-widget:nth-child(n + 3) {
-        display: none;
-      }
-
-      div.photo-callout-widget:nth-child(n + 3) {
-        display: none;
-      }
-    }
-
-    &--4-col {
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-columns: repeat(auto-fit, minmax(var(--imgSize), 1fr));
-
       a.photo-callout-widget:nth-child(n + 8) {
         display: none;
       }
@@ -176,8 +167,10 @@
         display: none;
       }
     }
-    &--5-col {
-      grid-template-columns: repeat(5, 1fr);
+
+    &--4-col {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(var(--imgSize), 1fr));
 
       a.photo-callout-widget:nth-child(n + 10) {
         display: none;
@@ -187,15 +180,26 @@
         display: none;
       }
     }
+    &--5-col {
+      grid-template-columns: repeat(5, 1fr);
+
+      a.photo-callout-widget:nth-child(n + 12) {
+        display: none;
+      }
+
+      div.photo-callout-widget:nth-child(n + 12) {
+        display: none;
+      }
+    }
     &--6-col {
       grid-template-columns: repeat(6, 1fr);
       grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 
-      a.photo-callout-widget:nth-child(n + 6) {
+      a.photo-callout-widget:nth-child(n + 14) {
         display: none;
       }
 
-      div.photo-callout-widget:nth-child(n + 6) {
+      div.photo-callout-widget:nth-child(n + 14) {
         display: none;
       }
     }
