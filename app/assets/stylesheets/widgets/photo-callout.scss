@@ -74,6 +74,8 @@
       grid-template-columns: repeat(2, 1fr);
     }
 
+    --number-of-columns: 2;
+
     &--hide-img-mobile {
       img {
         @include respond(phone) {
@@ -151,16 +153,18 @@
     &--2-col {
       grid-template-columns: repeat(2, 1fr);
 
-      a.photo-callout-widget:nth-child(n + 5) {
+      a.photo-callout-widget:nth-child(n + 4) {
         display: none;
       }
 
-      div.photo-callout-widget:nth-child(n + 5) {
+      div.photo-callout-widget:nth-child(n + 4) {
         display: none;
       }
     }
 
     &--3-col {
+      --number-of-columns: 3;
+
       grid-template-columns: repeat(3, 1fr);
 
       @include respond(tab-port) {
@@ -171,16 +175,18 @@
         grid-template-columns: repeat(1, 1fr);
       }
 
-      a.photo-callout-widget:nth-child(n + 9) {
+      a.photo-callout-widget:nth-child(n + 8) {
         display: none;
       }
 
-      div.photo-callout-widget:nth-child(n + 9) {
+      div.photo-callout-widget:nth-child(n + 8) {
         display: none;
       }
     }
 
     &--4-col {
+      --number-of-columns: 4;
+
       grid-template-columns: repeat(4, 1fr);
       grid-template-columns: repeat(auto-fit, minmax(var(--imgSize), 1fr));
 
@@ -201,6 +207,8 @@
       }
     }
     &--5-col {
+      --number-of-columns: 5;
+
       grid-template-columns: repeat(5, 1fr);
 
       @include respond(tab-port) {
@@ -211,11 +219,11 @@
         grid-template-columns: repeat(1, 1fr);
       }
 
-      a.photo-callout-widget:nth-child(n + 13) {
+      a.photo-callout-widget:nth-child(n + 12) {
         display: none;
       }
 
-      div.photo-callout-widget:nth-child(n + 13) {
+      div.photo-callout-widget:nth-child(n + 12) {
         display: none;
       }
 
@@ -227,6 +235,8 @@
       }
     }
     &--6-col {
+      --number-of-columns: 6;
+
       @include respond(tab-port) {
         grid-template-columns: repeat(2, 1fr);
       }

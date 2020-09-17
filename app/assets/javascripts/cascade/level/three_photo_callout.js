@@ -1,129 +1,133 @@
 $(document).ready(function () {
     $.each($('.photo-callout-widget__container'), function (ind) {
+
+        if ($(this).find(' .photo-callout-widget:hidden').size() <= 0) {
+            $(this).find('.photo-callout-widget__button').fadeOut()
+        }
+
+        // if ($(this).find("photo-callout-widget:hidden").size() <= 0) {
+        //     $(this).find('.photo-callout-widget__button').hide();
+        // }
+
         $(this).attr('id', 'photo-callout-widget__container__' + parseInt(ind + 1));
         var currentWidgetContainer = $(this).closest('.photo-callout-widget__container').attr('id');
-
         console.log(currentWidgetContainer)
-        var currentTotalNumberOfPhotos = $('#' + currentWidgetContainer + " img").size()
+        var currentTotalNumberOfPhotos = $('#' + currentWidgetContainer + " .photo-callout-widget").size()
+        var currentHidden = $('#' + currentWidgetContainer + ' .photo-callout-widget:hidden').size();
+
+
+        // debugger;
         console.log(currentWidgetContainer + currentTotalNumberOfPhotos);
         var loadMoreButtonButton = ' + .photo-callout-widget__button';
         var currentButton = '#' + currentWidgetContainer + loadMoreButtonButton;
         console.log("'" + currentButton + "'");
         var numberOfPhotoDivsToReveal = 3;
-
-
+        var photoIncrement = 2;
+        var numDivsToShow = 2;
         if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--2-col')) {
             var photoIncrement = 2;
-            var numberOfPhotoLinksToReveal = 4;
-        }
-        else if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--3-col')) {
+            var numDivsToShow = 4;
+        } else if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--3-col')) {
             var photoIncrement = 3;
-            var numberOfPhotoLinksToReveal = 6;
-        }
-        else if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--4-col')) {
+            var numDivsToShow = 6;
+        } else if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--4-col')) {
             var photoIncrement = 8;
-            var numberOfPhotoLinksToReveal = 8;
-        }
-        else if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--5-col')) {
+            var numDivsToShow = 8;
+        } else if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--5-col')) {
             var photoIncrement = 5;
-            var numberOfPhotoLinksToReveal = 10;
-        }
-        else if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--6-col')) {
+            var numDivsToShow = 10;
+        } else if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--6-col')) {
             var photoIncrement = 6;
-            var numberOfPhotoLinksToReveal = 12;
+            var numDivsToShow = 12;
         }
 
+        var currentVisible = $('#' + currentWidgetContainer + ' img:visible').length;
+        console.log(currentWidgetContainer + ' current visible ' + currentVisible)
 
-        // $('#' + currentWidgetContainer + ' > a:lt(' + photoIncrement + ')').show();
-        // $('#' + currentWidgetContainer + ' > div:lt(' + photoIncrement + ')').show();
+        // var currentVisible = $('#' + currentWidgetContainer + ' .photo-callout-widget:visible').size()
+
+
+        // Hide image wrapper divs to start
+        $('#' + currentWidgetContainer + ' > .photo-callout-widget').hide();
+
+        // Show the starting number specified above
+        $('#' + currentWidgetContainer + ' > .photo-callout-widget:lt(' + numDivsToShow + ')').show();
 
         var buttonClickCounter = 0;
-        console.log('number photos: ' + currentTotalNumberOfPhotos)
-        if (currentTotalNumberOfPhotos > photoIncrement) {
-            $(currentButton).show();
-        }
-        $('button.photo-callout-widget__button--no-paginate').hide();
 
-        $('button.photo-callout-widget__button--paginate').fadeIn();
+
+
+        var hiddenItems = $(this).find('.photo-callout-widget:hidden');
+        var button = $(this).next('.photo-callout-widget__button')
+        if (hiddenItems.length <= 0) {
+            $(button).fadeOut()
+        }
+
+
+
+        // $('button.photo-callout-widget__button--no-paginate').hide();
+        // $('button.photo-callout-widget__button--paginate').show();
+
+        // console.log(currentWidgetContainer + ' currentHidden ' + currentHidden)
+        // if ($(currentHidden <= 0)) {
+        //     $('#' + currentWidgetContainer + ' button.photo-callout-widget__button--paginate').fadeOut();
+        // }
+        // else if ($(currentHidden >= 0)) {
+        //     $('#' + currentWidgetContainer + ' button.photo-callout-widget__button--paginate').fadeIn();
+        // }
+
+
+
 
         $(currentButton).click(function () {
+            var currentVisible = $('#' + currentWidgetContainer + ' img:visible').length;
+            console.log(currentWidgetContainer + ' current visible ' + currentVisible)
+
+            // var currentVisible = $('#' + currentWidgetContainer + ' .photo-callout-widget:visible').size()
+            // console.log(currentWidgetContainer + ' current hidden ' + currentHidden)
             buttonClickCounter += 1;
-
-            // $("img.photo-callout-widget__img:visible").css("border", "5px solid yellow");
-            // $("img.photo-callout-widget__img:visible").addClass("fade-in");
-
-            // $('#' + currentWidgetContainer + ' img:visible').addClass('fade-in');
-
-
-            numberOfPhotoLinksToReveal = (numberOfPhotoLinksToReveal + photoIncrement);
-
-            console.log('numberOfPhotoLinksToReveal ' + numberOfPhotoLinksToReveal);
-            console.log('photoIncrement ' + photoIncrement);
-
-            // $('#' + currentWidgetContainer + ' > a:lt(' + numberOfPhotoLinksToReveal + ')').show();
-
+            numDivsToShow = (numDivsToShow + 6);
+            $('#' + currentWidgetContainer + ' > a:lt(' + numDivsToShow + ')').show();
             if (buttonClickCounter < 2) {
-                $('#' + currentWidgetContainer + ' > a:lt(' + numberOfPhotoLinksToReveal + ')').show();
-                $('#' + currentWidgetContainer + ' > div:lt(' + numberOfPhotoLinksToReveal + ')').show();
-            } else if (buttonClickCounter == 2 && currentTotalNumberOfPhotos > photoIncrement) {
-                console.log('currentTotalNumberOfPhotos ' + currentTotalNumberOfPhotos)
+                $('#' + currentWidgetContainer + ' > a:lt(' + numDivsToShow + ')').show();
+                $('#' + currentWidgetContainer + ' > div:lt(' + numDivsToShow + ')').show();
+            } else if (buttonClickCounter == 2 && currentTotalNumberOfPhotos > 6) {
                 $(currentButton).text('Load All')
-                $('#' + currentWidgetContainer + ' > a:lt(' + numberOfPhotoLinksToReveal + ')').show();
-                $('#' + currentWidgetContainer + ' > div:lt(' + numberOfPhotoLinksToReveal + ')').show();
-
-
+                $('#' + currentWidgetContainer + ' > a:lt(' + numDivsToShow + ')').show();
+                $('#' + currentWidgetContainer + ' > div:lt(' + numDivsToShow + ')').show();
             } else if (buttonClickCounter > 2) {
                 $('#' + currentWidgetContainer + ' > a').show(0);
                 $('#' + currentWidgetContainer + ' > div').show(0);
                 $(currentButton).text('All Photos Loaded')
                 $(currentButton).fadeOut(0);
-                buttonClickCounter = 0;
             }
-
             var currentVisible = $('#' + currentWidgetContainer + ' .photo-callout-widget:visible').size()
-
             console.log('currentVisible: ' + currentWidgetContainer + ' ' + currentVisible + 'number of photos: ' + currentTotalNumberOfPhotos)
-
-
             if (currentVisible == currentTotalNumberOfPhotos) {
                 console.log('currentVisible: ' + currentWidgetContainer + ' ' + currentVisible)
-                console.log('number of photo links to reveal: ' + currentWidgetContainer + ' ' + numberOfPhotoLinksToReveal)
+                console.log('number of photo links to reveal: ' + currentWidgetContainer + ' ' + numDivsToShow)
                 $(currentButton).text('All Photos Loaded')
                 $(currentButton).fadeOut(0);
             }
             console.log('number of photos: ' + currentWidgetContainer + ' ' + currentTotalNumberOfPhotos)
-
-
-
+            // end click function
         });
+
+        var currentHidden = $('#' + currentWidgetContainer + ' .photo-callout-widget:hidden').length;
+        console.log(currentWidgetContainer + ' current hidden ' + currentHidden)
+
+
+
+        // end each widget function
     });
     objectFitFallBackForIe();
-    // normalizeImageHeights();
 });
+
+
 function resetbuttonClickCounterer() {
     var buttonClickCounter = 0;
     console.log('buttonClickCounter ' + buttonClickCounter);
 }
-
-
-// set smallest image height to largest image in collection
-function normalizeImageHeights() {
-    $('#' + currentWidgetContainer).each(function () {
-        console.log(currentWidgetContainer)
-        var widestImage = 0;
-
-        $(this).find('.photo-callout-widget__img').each(function () {
-            if ($(this).height() > highestBox) {
-                widestImage = $(this).width();
-                console.log(highestBox)
-            }
-        })
-
-        $(this).find('.photo-callout-widget__img').width(widestImage);
-
-    });
-}
-
 // object-fit fallback for ie internet explorer
 function objectFitFallBackForIe() {
     var ua = window.navigator.userAgent;
