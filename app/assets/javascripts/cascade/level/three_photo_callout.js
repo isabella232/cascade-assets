@@ -2,6 +2,7 @@ $(document).ready(function () {
     $.each($('.photo-callout-widget__container'), function (ind) {
         $(this).attr('id', 'photo-callout-widget__container__' + parseInt(ind + 1));
         var currentWidgetContainer = $(this).closest('.photo-callout-widget__container').attr('id');
+
         console.log(currentWidgetContainer)
         var currentTotalNumberOfPhotos = $('#' + currentWidgetContainer + " img").size()
         console.log(currentWidgetContainer + currentTotalNumberOfPhotos);
@@ -101,6 +102,22 @@ function resetbuttonClickCounterer() {
 }
 
 
+// set smallest image height to largest image in collection
+function normalizeImageHeights() {
+    $('#' + currentWidgetContainer).each(function () {
+        console.log(currentWidgetContainer)
+        var highestBox = 0;
+
+        $(this).find('.photo-callout-widget__img').each(function () {
+            if ($(this).height() > highestBox) {
+                highestBox = $(this).height();
+                console.log(highestBox)
+            }
+        })
+
+        $(this).find('img').height(highestBox);
+    });
+}
 
 // object-fit fallback for ie internet explorer
 function objectFitFallBackForIe() {

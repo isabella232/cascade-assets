@@ -14,7 +14,7 @@
 #set ($numberOfColumns = $element.getChild($widgetXPath).getChild('numberOfColumns').value)
 #set ($aspectRatio = $element.getChild($widgetXPath).getChild('aspectRatio').value)
 #set ($pageinateNumber = $element.getChild($widgetXPath).getChild('pageinateNumber').value)
-#set ($textLocation = $element.getChild($widgetXPath).getChild('textLocation').value)
+#set ($textPosition = $element.getChild($widgetXPath).getChild('textPosition').value)
 
 
 #camelToSnake($widgetXPath)
@@ -35,6 +35,11 @@
     #set ($aspectRatio = 'photo-callout-widget__container--headshot' )
 #end
 
+#if ($textPosition == "Overlay On Image")
+    #set ($textPosition = 'photo-callout-widget__container--headshot-overlay' )
+#else 
+    #set ($textPosition = '' )
+#end
 
 #if ($numberOfColumns == 'Two Column Layout')
     #set( $numberOfColumnsInt = 2)
@@ -53,7 +58,6 @@
     #set ($columnOverride = 'photo-callout-widget__container--5-col' )
 #elseif ($numberOfColumns == 'Six Column Layout')
     #set( $numberOfColumnsInt = 6)
-    #set ($imageHeight = 
     #set ($columnOverride = 'photo-callout-widget__container--grid-override photo-callout-widget__container--6-col' )
 #end
 
@@ -81,7 +85,7 @@
 $aspectRatio
 $columnOverride
 $numberOfColumns
-<div class="photo-callout-widget__container $columnOverride $mobileImagOptions $pagination $columnOverride $aspectRatio">
+<div class="photo-callout-widget__container $columnOverride $mobileImagOptions $pagination $columnOverride $aspectRatio $textPosition">
 <style>
 .photo-callout-widget {--number-of-columns: $numberOfColumnsInt;}
 </style>
