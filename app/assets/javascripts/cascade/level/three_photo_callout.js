@@ -98,6 +98,7 @@ $(document).ready(function () {
         });
     });
     objectFitFallBackForIe();
+    // normalizeImageHeights();
 });
 function resetbuttonClickCounterer() {
     var buttonClickCounter = 0;

@@ -3,6 +3,9 @@
   border: none;
   @include qbal-slideUp-enter;
 
+  width: 100%;
+  min-width: 100%;
+
   &:hover,
   &:focus,
   &:focus-within {
