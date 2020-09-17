@@ -14,7 +14,7 @@ $(document).ready(function () {
 
         if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--2-col')) {
             var photoIncrement = 2;
-            var numberOfPhotoLinksToReveal = 4;
+            var numberOfPhotoLinksToReveal = 1;
         }
         else if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--3-col')) {
             var photoIncrement = 3;
@@ -57,7 +57,7 @@ $(document).ready(function () {
             console.log('numberOfPhotoLinksToReveal ' + numberOfPhotoLinksToReveal);
             console.log('photoIncrement ' + photoIncrement);
 
-            $('#' + currentWidgetContainer + ' > a:lt(' + numberOfPhotoLinksToReveal + ')').show();
+            // $('#' + currentWidgetContainer + ' > a:lt(' + numberOfPhotoLinksToReveal + ')').show();
 
             if (buttonClickCounter < 2) {
                 $('#' + currentWidgetContainer + ' > a:lt(' + numberOfPhotoLinksToReveal + ')').show();
