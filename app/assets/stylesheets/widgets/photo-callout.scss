@@ -126,6 +126,7 @@
           overflow: hidden;
           p {
             color: white;
+            word-break: break-all;
 
             &:hover {
               color: white;
