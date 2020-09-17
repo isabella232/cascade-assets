@@ -1,4 +1,10 @@
 $(document).ready(function () {
+
+
+    $.each($('.photo-callout-widget__button'), function (ind) {
+        $(this).attr('id', 'photo-callout-widget__button__' + parseInt(ind + 1));
+    })
+
     $.each($('.photo-callout-widget__container'), function (ind) {
 
         if ($(this).find(' .photo-callout-widget:hidden').size() <= 0) {
@@ -10,6 +16,7 @@ $(document).ready(function () {
         // }
 
         $(this).attr('id', 'photo-callout-widget__container__' + parseInt(ind + 1));
+
         var currentWidgetContainer = $(this).closest('.photo-callout-widget__container').attr('id');
         console.log(currentWidgetContainer)
         var currentTotalNumberOfPhotos = $('#' + currentWidgetContainer + " .photo-callout-widget").size()
@@ -56,6 +63,7 @@ $(document).ready(function () {
         var buttonClickCounter = 0;
 
 
+        $('button.photo-callout-widget__button--paginate').show();
 
         var hiddenItems = $(this).find('.photo-callout-widget:hidden');
         var button = $(this).next('.photo-callout-widget__button')
@@ -66,7 +74,6 @@ $(document).ready(function () {
 
 
         // $('button.photo-callout-widget__button--no-paginate').hide();
-        // $('button.photo-callout-widget__button--paginate').show();
 
         // console.log(currentWidgetContainer + ' currentHidden ' + currentHidden)
         // if ($(currentHidden <= 0)) {
