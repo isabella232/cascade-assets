@@ -14,11 +14,11 @@ $(document).ready(function () {
 
         if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--2-col')) {
             var photoIncrement = 2;
-            var numberOfPhotoLinksToReveal = 3;
+            var numberOfPhotoLinksToReveal = 4;
         }
         else if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--3-col')) {
             var photoIncrement = 3;
-            var numberOfPhotoLinksToReveal = 5;
+            var numberOfPhotoLinksToReveal = 6;
         }
         else if ($('#' + currentWidgetContainer).hasClass('photo-callout-widget__container--4-col')) {
             var photoIncrement = 8;
@@ -43,6 +43,8 @@ $(document).ready(function () {
             $(currentButton).show();
         }
         $('button.photo-callout-widget__button--no-paginate').hide();
+
+        $('button.photo-callout-widget__button--paginate').fadeIn();
 
         $(currentButton).click(function () {
             buttonClickCounter += 1;
