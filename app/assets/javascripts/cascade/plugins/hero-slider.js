@@ -87,7 +87,7 @@ jQuery(document).ready(function ($) {
 				$(vid).trigger('pause');
 			}
 		}
-		autoPlayDelay = 500;
+		autoPlayDelay = 1000;
 		console.log('autoplay delay ' + autoPlayDelay)
 
 	}
