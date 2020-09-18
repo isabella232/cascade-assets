@@ -20,7 +20,10 @@ $(document).ready(function () {
         $(".widget-slides").removeClass("cS-hidden");
       }
     });
-    $('.image-slider-play-toggle').insertBefore('.lSPager')
+    // $('.image-slider-play-toggle').insertBefore('.lSpg')
+    // $('.lSPager').prependTo('.image-slider-play-toggle')
+    // $('.image-slider-play-toggle').prepend('.lSPager')
+    // $('.lSPager').append('.image-slider-play-toggle')
 
 
     // slider.pause()

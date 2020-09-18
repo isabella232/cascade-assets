@@ -368,15 +368,25 @@
 }
 
 .image-slider-play-toggle {
-  position: relative;
+  // position: relative;
+}
+
+.lSPager.lSpg {
+  display: inline-block;
+  align-content: center;
+  align-items: center;
+
+  .image-slider-play-toggle {
+    margin-bottom: 0;
+  }
 }
 
 .image-slider-play,
 .image-slider-pause {
   display: block;
-  height: 30px;
+  height: 25px;
   color: white;
-  position: absolute;
+  // position: absolute;
   right: 50px;
   bottom: 0;
   cursor: pointer;
