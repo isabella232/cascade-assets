@@ -367,8 +367,12 @@
   }
 }
 
-.cd-hero-play,
-.cd-hero-pause {
+.image-slider-play-toggle {
+  position: relative;
+}
+
+.image-slider-play,
+.image-slider-pause {
   display: block;
   height: 30px;
   color: white;
@@ -378,6 +382,6 @@
   cursor: pointer;
 }
 
-.cd-hero-play {
+.image-slider-play {
   display: none;
 }
