@@ -366,3 +366,18 @@
     }
   }
 }
+
+.cd-hero-play,
+.cd-hero-pause {
+  display: block;
+  height: 30px;
+  color: white;
+  position: absolute;
+  right: 50px;
+  bottom: 0;
+  cursor: pointer;
+}
+
+.cd-hero-play {
+  display: none;
+}
