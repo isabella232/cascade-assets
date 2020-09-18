@@ -24,7 +24,7 @@ $(document).ready(function () {
     // $('.lSPager').prependTo('.image-slider-play-toggle')
     // $('.image-slider-play-toggle').prepend('.lSPager')
     // $('.lSPager').append('.image-slider-play-toggle')
-
+    // $('.image-slider-play-toggle').insertBefore('ul.lSpg li:first')
 
     // slider.pause()
 
@@ -114,8 +114,16 @@ $(document).ready(function () {
       });
     }
   }
+
 });
 
+$(window).load(function () {
+  if ($('.image-slider-play-toggle')[0]) {
+    $('.image-slider-play-toggle').insertBefore('ul.lSpg li:first')
+
+  }
+
+});
 
 
 
