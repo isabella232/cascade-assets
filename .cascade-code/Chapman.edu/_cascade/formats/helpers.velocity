@@ -349,119 +349,33 @@ LOG VELOCITY VARIABLES IN THE BROWSER CONSOLE ON DEV
   #end
 #end
 
-#macro ( buildLeftNav $asset )
-  #set ( $drillDownPagePath     = $currentPage.path )
-  #set ( $isVisible             = $asset.metadata.getDynamicField('Hide from navigation').value != "Yes")
-  #set ( $rootPageName          = $asset.path.replaceAll("^[\w]+\/|^[\w]+-[\w]+\/", "") )
-  #set ( $assetInCurrentPath    = $_StringTool.substringAfter($drillDownPagePath, $asset.path).length() )
-  #set ( $visibleChildrenCount  = 0 )
-  #set ( $visibleSiblingCount   = 0 )
-  
-  #if ( $drillDownPagePath == $asset.path ) 
+#macro ( buildSingleLeftNav $asset )
+  #set ( $drillDownPagePath         = $currentPage.path )
+  #set ( $isVisible                 = $asset.metadata.getDynamicField('Hide from navigation').value != "Yes")
+  #set ( $rootPageName              = $asset.path.replaceAll("^[\w]+\/|^[\w]+-[\w]+\/", "") )
+  #set ( $assetInCurrentPath        = $_StringTool.substringAfter($drillDownPagePath, $asset.path).length() )
+
+  #if ( $drillDownPagePath == $asset.path || $currentPage.parentFolder.path == $asset.path ) 
     #set ( $isVisible = true )
     #set ( $isCurrentDrillDownPage = "drill-down-list-item current" )
   #else
     #set( $isCurrentDrillDownPage = "drill-down-list-item")
   #end
+
   
   ## setting the asset to visible regardless if its hidden in order to properly display drilldown paths parents
-  #if ( $assetInCurrentPath > 0 )
+  #if ( $assetInCurrentPath > 0 || $asset.name == 'index')
     #set ( $isVisible = true )
   #end
 
   #if ($asset.assetType == "folder" && $isVisible)
-    #if ($asset.metadata.displayName != '_files')
-      #set ( $visibleChildren = false )
-      #foreach( $childAsset in $asset.children )
-        #if ($visibleChildren == false || $visibleChildrenCount < 2 || $visibleSiblingCount < 1)
-          #if ( $childAsset.assetType == 'symlink' )
-            #set ( $visibleChildren = true ) 
-            #set ( $visibleChildren = $visibleChildren + 1 )
-          #end
-          #if ( $childAsset.assetType == 'page' )
-            #set ( $visibleChild =  $childAsset.metadata.getDynamicField('Hide from navigation').value != "Yes" )
-            #if ($visibleChild)
-              #set ( $visibleChildren =  $visibleChild )
-              #set ( $visibleChildrenCount = $visibleChildrenCount + 1 )
-            #end
-          #end
-          #if ( $assetInCurrentPath > 0 )
-            #set ( $hiddenAsset = $childAsset.metadata.getDynamicField('Hide from navigation').value == "Yes" )
-            #if ($hiddenAsset && $childAsset.path == $drillDownPagePath)
-              #set ( $visibleChildrenCount = $visibleChildrenCount + 1 )
-            #elseif ($hiddenAsset && $childAsset.path == $drillDownPagePath.replace('/index', ''))
-              #set ( $visibleChildrenCount = $visibleChildrenCount + 1 )
-            #end
-          #end
-          #if ( $childAsset.assetType == 'folder')
-            #set ( $visibleSubFolder = $childAsset.metadata.getDynamicField('Hide from navigation').value != "Yes" )
-            #if ($visibleSubFolder && $childAsset.metadata.displayName != '_files')
-              #foreach ($lowerChildAsset in $childAsset.children)
-                #if ( $visibleChildren == false || $visibleChildrenCount < 2)
-                  #set ( $visibleSubChildren = $lowerChildAsset.metadata.getDynamicField('Hide from navigation').value != "Yes" )
-                  #if ($visibleSubChildren) 
-                    #set ( $visibleChildren =  $visibleSubChildren )
-                    #set ( $visibleChildrenCount = $visibleChildrenCount + 1)
-                  #end
-                  
-                  #if (!$visibleSubChildren && $lowerChildAsset.path == $drillDownPagePath)
-                    #set ( $visibleChildren =  true )
-                    #set ( $visibleChildrenCount = $visibleChildrenCount + 1)                  
-                  #end
-                #end
-              #end
-            #end
-          #end
-        #end
-      #end
-    #end
-    #if ($visibleChildren && $visibleChildrenCount > 1 || ($assetInCurrentPath > 1 && $visibleChildrenCount > 1))
-      <li class="${isCurrentDrillDownPage}" role="group" >
-        #set ( $ariaLabel = $asset.metadata.displayName.replaceAll(" ", "-").toLowerCase())
-        <span tabindex="0" aria-label="${_EscapeTool.xml($ariaLabel)}" class="drill-down-parent">${_EscapeTool.xml($asset.metadata.displayName)}</span>
-        <span class="toggle-drilldown"><span class="fas fa-chevron-right"></span></span>
-        <ul class="drilldown-menu" aria-expanded="false">
-          <li tabindex="0" class="menu-back"><span class="fas fa-chevron-left"></span>Back</li>
-          #foreach( $childAsset in $asset.children)
-            #set ( $isVisible = $childAsset.metadata.getDynamicField('Hide from navigation').value != "Yes")
-            #if ( $drillDownPagePath == $childAsset.path ) 
-              #set ( $isVisible = true )
-              #set( $isCurrentDrillDownPage = "drill-down-list-item current" )
-            #else
-              #set( $isCurrentDrillDownPage = "drill-down-list-item")
-            #end
-            #set ( $currentPageInHiddenFolder = $_StringTool.substringAfter($drillDownPagePath, $childAsset.path).length() )
-            
-            #if ( $currentPageInHiddenFolder > 0 )
-              #set ( $isVisible = true )
-            #end
-            
-            #if ($childAsset.assetType == 'page' && $isVisible)
-              <li class="${isCurrentDrillDownPage}"><a href="site://Chapman.edu/${childAsset.path}">${_EscapeTool.xml($childAsset.metadata.displayName)}</a></li>
-            #elseif ($childAsset.assetType == 'symlink')
-              <li class="${isCurrentDrillDownPage}"><a href="site://Chapman.edu/${childAsset.path}">${_EscapeTool.xml($childAsset.label)}
-              <span class="fas fa-external-link-alt"></span></a></li>
-            #elseif ($childAsset.assetType == 'folder' && $isVisible && $childAsset.metadata.displayName != '_files')
-              #buildDrillDownList($childAsset)
-            #end
-          #end
-        </ul>
-      </li>
-    #elseif ($visibleChildren && $visibleChildrenCount == 1 || $assetInCurrentPath > 1)
-      #if ( $drillDownPagePath == $asset.path || $drillDownPagePath == $asset.path + "/index" )
-        #set ( $isVisible = true )
-        #set( $isCurrentDrillDownPage = "drill-down-list-item current" )
-      #else
-        #set( $isCurrentDrillDownPage = "drill-down-list-item")
-      #end
-      <li class="${isCurrentDrillDownPage}">
-        <a href="site://Chapman.edu/${asset.path}">${_EscapeTool.xml($asset.metadata.displayName)}</a>
-      </li>
-    #end
+    
+    <li class="${isCurrentDrillDownPage}">
+        <a href="site://Chapman.edu/${asset.path}/index">${_EscapeTool.xml($asset.metadata.displayName)}</a>
+    </li>
   #elseif ($asset.assetType == 'page' && $isVisible)
-    #if ($rootPageName == "index")
-        <li class="${isCurrentDrillDownPage} home-menu">
-            <span class="fas fa-home"></span>
+    #if ($asset.name == 'index')
+        <li class="${isCurrentDrillDownPage} folder-item">
             <a href="site://Chapman.edu/${asset.path}">${_EscapeTool.xml($asset.metadata.displayName)}</a>
         </li>
     #else

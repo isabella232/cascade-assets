@@ -259,6 +259,17 @@ task edit_offcanvas_main_menu: :environment do
   )
 end
 
+# ---------------------------------------------------------------------------- #
+#   edit format `Chapman.edu/_cascade/formats/modular/uninav/left_nav_drilldown`   #
+# ---------------------------------------------------------------------------- #
+desc 'Updates `Chapman.edu/_cascade/formats/level/left_nav_drilldown.vtl` with `.cascade-code/Chapman.edu/_cascade/formats/level/left_nav_drilldown.vtl`'
+task edit_left_nav_drilldown: :environment do
+  edit_format(
+    'Chapman.edu/_cascade/formats/level/left_nav_drilldown.vtl',
+    '.cascade-code/Chapman.edu/_cascade/formats/level/left_nav_drilldown.vtl'
+  )
+end
+
 # USAGE: rake publish TYPE=page/ PATH=Chapman.edu/test-section/nick-test/test-publish
 # 👹note the trailing slash on the TYPE
 task :publish do
