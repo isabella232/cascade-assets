@@ -1,8 +1,88 @@
 #import( "/_cascade/formats/helpers.velocity" )
 #import( "/_cascade/formats/helpers/debug.velocity" )
 
+##  Chapman.edu: /_cascade/formats/modular/mastheads/brochure_masthead 
+
+#macro(outputBrochureMasthead $element)
+#set ( $primaryHeadline   = $element.getChild('headline').getChild('primary').value )#import( "/_cascade/formats/helpers.velocity" )
+#import( "/_cascade/formats/helpers/debug.velocity" )
+
 #macro(outputBrochureMasthead $element)
 #set ( $primaryHeadline   = $element.getChild('headline').getChild('primary').value )
+#set ( $secondaryHeadline = $element.getChild('headline').getChild('secondary').value )
+#set ( $slides            = $_XPathTool.selectNodes($element, '//brochureMasthead/slides/slide') )
+    
+
+<div class="brochure-masthead chapman2020">
+  <div class="foreground-content">
+    <div class="headline-container">
+      #if($secondaryHeadline != '')
+      <div class="headline secondary">$secondaryHeadline</div>   
+      #end            
+      <h1 class="headline primary">$primaryHeadline</h1>
+         <!-- Video Play/Pause Buttons -->
+          <svg title="Pause video" aria-label="Pause masthead video" aria-hidden="true" focusable="true"le="false"
+            data-prefix="fas" data-icon="pause-circle"
+            class="cd-hero-pause svg-inline--fa fa-pause-circle fa-w-16 homepage-masthead__toggle-play-button"
+            role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path tabindex="0" fill="currentColor"
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm-16 328c0 8.8-7.2 16-16 16h-48c-8.8 0-16-7.2-16-16V176c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16v160zm112 0c0 8.8-7.2 16-16 16h-48c-8.8 0-16-7.2-16-16V176c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16v160z">
+            </path>
+          </svg>
+
+          <svg aria-hidden="true" aria-label="Play masthead video" title="Play video" focusable="true"le="false"
+            data-prefix="fas" data-icon="play-circle"
+            class="cd-hero-play svg-inline--fa fa-play-circle fa-w-16 homepage-masthead__toggle-play-button" role="img"
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path tabindex="0" fill="currentColor"
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z">
+            </path>
+          </svg>
+
+    </div>
+  </div>
+  <div class="slider-controls">
+    <div class="control left cd-arrow-left"><a href="#">&#139;</a></div>
+    <div class="control right cd-arrow-right"><a href="#">&#155;</a></div>
+  </div>
+  <div class="background-content">
+    <div class="slider-wrapper">
+      <ul class="cd-hero-slider autoplay">
+        #foreach($slide in $slides)
+        <li class="#if($foreach.index == 0)selected#end">
+          #outputSlide($slide)
+        </li>
+        #end
+      </ul>
+    </div>
+    <div class="gradient-overlay"></div>
+  </div>
+</div>
+#end
+
+#macro(outputSlide $slide)
+#set ( $slideType = $slide.getChild('type').value )
+#set ( $altText   = $slide.getChild('alternateText').value )
+#set ( $bgImageAlignY = $slide.getChild('alignY').value )
+    
+#if ( $slideType == "Image" )
+#set ( $backgroundImage = $slide.getChild('imageFile').getChild('path').value )
+        
+<div class="background-image" role="img" aria-label="${_EscapeTool.xml($altText)}" style="background-image: url('[system-asset]${_EscapeTool.xml($backgroundImage)}[/system-asset]'); background-position: center ${bgImageAlignY.toLowerCase()};">
+</div>
+#elseif ($slideType == "Video")
+
+#set ( $backgroundVideo = $slide.getChild('videoFile').getChild('path').value )
+#set ( $fallbackImage   = $slide.getChild('fallbackImageFile').getChild('path').value )
+
+<div class="background-video-wrapper">
+  <video id="background-video" class="background-video" aria-label='${_EscapeTool.xml($altText)}' muted="muted" autoplay="true"  loop="true" poster="[system-asset]${_EscapeTool.xml($fallbackImage)}[/system-asset]">
+    <source src="[system-asset]${_EscapeTool.xml($backgroundVideo)}[/system-asset]" type="video/mp4" />
+  </video>
+</div>
+
+#end
+#end
 #set ( $secondaryHeadline = $element.getChild('headline').getChild('secondary').value )
 #set ( $slides            = $_XPathTool.selectNodes($element, '//brochureMasthead/slides/slide') )
     
@@ -13,6 +93,25 @@
       <div class="headline secondary">$secondaryHeadline</div>   
       #end            
       <h1 class="headline primary">$primaryHeadline</h1>
+         <!-- Video Play/Pause Buttons -->
+          <svg title="Pause video" aria-label="Pause masthead video" aria-hidden="true" focusable="true"le="false"
+            data-prefix="fas" data-icon="pause-circle"
+            class="cd-hero-pause svg-inline--fa fa-pause-circle fa-w-16 homepage-masthead__toggle-play-button"
+            role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path tabindex="0" fill="currentColor"
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm-16 328c0 8.8-7.2 16-16 16h-48c-8.8 0-16-7.2-16-16V176c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16v160zm112 0c0 8.8-7.2 16-16 16h-48c-8.8 0-16-7.2-16-16V176c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16v160z">
+            </path>
+          </svg>
+
+          <svg aria-hidden="true" aria-label="Play masthead video" title="Play video" focusable="true"le="false"
+            data-prefix="fas" data-icon="play-circle"
+            class="cd-hero-play svg-inline--fa fa-play-circle fa-w-16 homepage-masthead__toggle-play-button" role="img"
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path tabindex="0" fill="currentColor"
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z">
+            </path>
+          </svg>
+
     </div>
   </div>
   <div class="slider-controls">

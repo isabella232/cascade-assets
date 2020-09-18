@@ -15,7 +15,7 @@ $(document).ready(function () {
       keyPress: true,
       // pauseOnHover: true,
       adaptiveHeight: true,
-      // useCSS: true,
+      useCSS: true,
       onSliderLoad: function () {
         $(".widget-slides").removeClass("cS-hidden");
       }
@@ -38,13 +38,13 @@ $(document).ready(function () {
 
     $('.image-slider-pause').keydown(function (e) {
       if (e.which == 13) {//Enter key pressed
-
+        pause();
       }
     });
 
     $('.image-slider-play').keypress(function (e) {
       if (e.which == 13) {//Enter key pressed
-        slider.play();
+        play();
       }
     });
 
