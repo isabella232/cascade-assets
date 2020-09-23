@@ -3,26 +3,19 @@ $(document).ready(function () {
     var slider = $(".widget-slides").lightSlider({
       gallery: false,
       item: 1,
-      // thumbItem: 9,
       slideMargin: 0,
       speed: 500,
       pause: 5000,
       auto: true,
       loop: true,
       keyPress: true,
-      // pauseOnHover: true,
+      pauseOnHover: true,
       adaptiveHeight: true,
       useCSS: true,
       onSliderLoad: function () {
         $(".widget-slides").removeClass("cS-hidden");
       }
     });
-    // $('.image-slider-play-toggle').insertBefore('.lSpg')
-    // $('.lSPager').prependTo('.image-slider-play-toggle')
-    // $('.image-slider-play-toggle').prepend('.lSPager')
-    // $('.lSPager').append('.image-slider-play-toggle')
-    // $('.image-slider-play-toggle').insertBefore('ul.lSpg li:first')
-    // slider.pause()
     clickPause();
     clickPlay();
     fixActiveState();
@@ -54,27 +47,29 @@ $(document).ready(function () {
         t.hide();
       });
     }
+
     function clickPause() {
       $('.image-slider-pause').on('click', function (event) {
         pause();
       });
     }
+
     function pause() {
       $('.image-slider-pause').hide();
       $('.image-slider-play').show();
       slider.pause();
     }
+
     function clickPlay() {
       $('.image-slider-play').on('click', function (event) {
         play();
       });
     }
+
     function play() {
       $('.image-slider-play').hide();
       $('.image-slider-pause').show();
-      // $('video').trigger($('video').prop('paused') ? 'play' : 'pause');
       slider.play();
-      // $(".lSSlideWrapper").removeClass('ls-hover')
     }
   }
 });
@@ -84,6 +79,7 @@ $(window).load(function () {
     fixActiveState();
   }
 });
+
 function fixActiveState() {
   // fix plugin's 'active' class inconsitency
   $('.lSPager li').on('click', function (event) {
