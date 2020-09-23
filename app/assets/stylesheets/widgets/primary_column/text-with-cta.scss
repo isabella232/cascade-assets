@@ -94,13 +94,12 @@ html {
 
       &--pacific,
       &--cu-safely-back {
-
         .text-with-cta__text-container {
           display: grid;
           grid-template-columns: 1fr 1fr;
           width: 100%;
 
-          @media all and (-ms-high-contrast:none) {
+          @media all and (-ms-high-contrast: none) {
             display: flex;
           }
 
@@ -126,27 +125,24 @@ html {
             padding-right: 20px;
           }
 
-          @media all and (-ms-high-contrast:none) {
+          @media all and (-ms-high-contrast: none) {
             display: inline-block;
             width: 70%;
           }
-
         }
 
         .text-with-cta__col-2 {
-          @media all and (-ms-high-contrast:none) {
+          @media all and (-ms-high-contrast: none) {
             display: inline-block;
             width: 30%;
             float: right;
             right: 0px;
           }
-
         }
 
         .text-with-cta__title {
           margin-top: 0;
         }
-
 
         .text-with-cta__text-container {
           /* grid-template-columns: 1fr 1fr; */
@@ -174,7 +170,7 @@ html {
             padding-top: 20px;
           }
 
-          @media all and (-ms-high-contrast:none) {
+          @media all and (-ms-high-contrast: none) {
             display: block;
           }
         }
@@ -187,8 +183,6 @@ html {
           justify-content: center;
           font-weight: bold;
         }
-
-
 
         .text-with-cta__buttons {
           width: 90%;
@@ -212,7 +206,7 @@ html {
           text-transform: uppercase !important;
         }
 
-        .text-with-cta__button+.text-with-cta__button {
+        .text-with-cta__button + .text-with-cta__button {
           margin-top: 5px;
         }
 
@@ -222,8 +216,7 @@ html {
           font-weight: normal;
         }
 
-
-        .text-with-cta__button+.text-with-cta__button {
+        .text-with-cta__button + .text-with-cta__button {
           margin-top: 5px;
         }
 
@@ -256,18 +249,12 @@ html {
   &.three-column-template {
     [class*="--white"] {
       border: none;
-
-      .border-light-grey {
-        border: 1px solid var(--color-cu-light-grey);
-      }
     }
-
   }
 
   &.one-column-template,
   .one-column-template {
     .text-with-cta-widget {
-
       &--default {
         margin-bottom: 0;
 
@@ -288,12 +275,10 @@ html {
         border: none;
       }
 
-
       &--cu-safely-back {
         .text-with-cta__buttons {
           padding-top: 15px;
           padding-bottom: 15px;
-
         }
 
         .text-with-cta__text-container {
@@ -303,7 +288,6 @@ html {
           margin-left: 30px;
           margin-right: 30px;
         }
-
       }
 
       display: flex;
@@ -329,7 +313,6 @@ html {
         padding: 0;
         margin-bottom: 0;
       }
-
 
       &--default {
         @include respond(phone) {
@@ -378,11 +361,9 @@ html {
       margin-bottom: 0;
     }
   }
-
 }
 
 html.three-column-template body .text-with-cta-widget--cu-safely-back {
-
   .text-with-cta__text {
     max-width: 38ch;
 
@@ -393,7 +374,7 @@ html.three-column-template body .text-with-cta-widget--cu-safely-back {
 }
 
 // todo: rewrite button, button-bg mixins as well as button specificity in defaults.scss
-// have to override with this level of specificity currently. 
+// have to override with this level of specificity currently.
 html body .text-with-cta-widget .text-with-cta__button.color--white {
   border: 1px solid var(--color-cu-light-grey);
   background-color: white;

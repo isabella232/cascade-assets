@@ -37,10 +37,21 @@ Master Version: Chapman.edu/_cascade/formats/helpers.velocity
     #set ($imageUrlInt =
     $elem.getChild('image').getChild('imageUrlInt').getChild('path').value )
     #set ($imageUrlExt =
-    $elem.getChild('image').getChild('imageUrlExt').getChild('path').value )
+    $elem.getChild('image').getChild('imageUrlExt').value )
+
+
     #set ($altText =
     $elem.getChild('image').getChild('altText').value)
 
+    ## SET INT or EXT URL 
+    #if ($imageUrlExt != '')
+      #set ($imageURL = $imageUrlExt)
+    #else 
+      #set ($imageURL = $imageUrlInt)
+    #end
+
+
+    ## ACCESSIBILITY
     #set ( $imageRoleVal =  ( $elem.getChild('image').getChild('imageAltOrDecorative').value ) )
     #if ( $imageRoleVal == "Decorative Image" )
         #set ( $imageRole = "role='presentation'" )
@@ -50,15 +61,24 @@ Master Version: Chapman.edu/_cascade/formats/helpers.velocity
       #end
       #log($imageRole)
 
+    ## IMAGE OBJECT-POSITION
     #set ($objectPositionX = $elem.getChild('image').getChild('objectPositionX').value.toLowerCase())
     #set ($objectPositionY = $elem.getChild('image').getChild('objectPositionY').value.toLowerCase())
     
-    #if (!$imageType.contains("none"))
+    #if (!$imageType.contains("none") && ($imageUrlInt != '')) 
         <div
             class="${_EscapeTool.xml($widgetXPath)}__img--${_EscapeTool.xml($imageShape)} ${_EscapeTool.xml($widgetXPath)}__img"
             style="width: ${_EscapeTool.xml($imgSize)}; height: ${_EscapeTool.xml($imgSize)}; ">
-                <img $imageRole class="${_EscapeTool.xml($widgetXPath)}__img img--${_EscapeTool.xml($imageShape)} "
-                    src="[system-asset]${_EscapeTool.xml($imageUrlInt)}[/system-asset]"
+                <img $imageRole class="lazy internal-image ${_EscapeTool.xml($widgetXPath)}__img img--${_EscapeTool.xml($imageShape)} "
+                    src="${_EscapeTool.xml($imageURL)}"
+                    alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-position:${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}"/>
+        </div>
+    #elseif (!$imageType.contains("none") && ($imageUrlExt != '')) 
+         <div
+            class=" ${_EscapeTool.xml($widgetXPath)}__img--${_EscapeTool.xml($imageShape)} ${_EscapeTool.xml($widgetXPath)}__img"
+            style="width: ${_EscapeTool.xml($imgSize)}; height: ${_EscapeTool.xml($imgSize)}; ">
+                <img $imageRole class="lazy external-image ${_EscapeTool.xml($widgetXPath)}__img img--${_EscapeTool.xml($imageShape)} "
+                    src="${_EscapeTool.xml($imageURL)}"
                     alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-position:${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}"/>
         </div>
     #end
