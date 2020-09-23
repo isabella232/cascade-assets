@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    if ($('.photo-callout-widget__container')[0]) {
+    if ($('.photo-callout-widget__container').length) {
         $.each($('.photo-callout-widget__button'), function (ind) {
             $(this).attr('id', 'photo-callout-widget__button__' + parseInt(ind + 1));
         })
