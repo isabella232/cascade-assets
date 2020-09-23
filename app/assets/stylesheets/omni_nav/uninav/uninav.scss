@@ -358,6 +358,9 @@ html {
         align-content: center;
         align-items: center;
 
+        &:focus {
+          outline: 2px dotted $white;        }
+
         svg {
           height: 2rem;
 
@@ -647,41 +650,40 @@ html {
   flex-direction: column;
   position: relative;
 
-  &[aria-expanded="false"] {
-    .uninav {
-      &__dropdown-wrapper {
-        &>a {
-          &:after {
-            content: "\f0d7";
-            transform: rotate(0deg);
-            transition: all linear 0.25s;
-          }
+  .uninav__dropdown--child[aria-expanded="false"] +
+  .uninav {
+    &__dropdown-wrapper {
+      &>a {
+        &:after {
+          content: "\f0d7";
+          transform: rotate(0deg);
+          transition: all linear 0.25s;
         }
       }
     }
   }
 
-  &[aria-expanded="true"] {
-    .uninav {
-      &__dropdown-wrapper {
-        &>a {
-          &:after {
-            content: "\f0d7";
-            transform: rotate(180deg) translateX(-1rem);
-            transition: all linear 0.25s;
-          }
+  .uninav__dropdown--child[aria-expanded="true"] +
+  &.uninav {
+    &__dropdown-wrapper {
+      &>a {
+        &:after {
+          content: "\f0d7";
+          transform: rotate(180deg) translateX(-1rem);
+          transition: all linear 0.25s;
         }
       }
     }
-
-    .uninav__dropdown--child {
-      z-index: 99999999;
-      display: flex;
-      @include qbal-dropdown-enter;
-    }
   }
 
-  &[aria-expanded="false"] {
+  .uninav__dropdown--child[aria-expanded="true"] {
+    z-index: 99999999;
+    display: flex;
+    @include qbal-dropdown-enter;
+  }
+
+  .uninav__dropdown--child[aria-expanded="false"] {
+    @include qbal-shrink-exit;
 
     // TODO: refactor first .uninav__dropdown--child... display: none is not animitable.
     .uninav__dropdown--parent,

@@ -305,10 +305,11 @@ LOG VELOCITY VARIABLES IN THE BROWSER CONSOLE ON DEV
     #end
 
     #if ($visibleChildren && $visibleChildrenCount > 1 || ($isVisible && $assetInCurrentPath.length > 1))
-      <li class="${isCurrentDrillDownPage}">
-        <span tabindex="0" class="drill-down-parent">${_EscapeTool.xml($asset.metadata.displayName)}</span>
+      <li class="${isCurrentDrillDownPage}" role="group" >
+        #set ( $ariaLabel = $asset.metadata.displayName.replaceAll(" ", "-").toLowerCase())
+        <span tabindex="0" aria-label="${_EscapeTool.xml($ariaLabel)}" class="drill-down-parent">${_EscapeTool.xml($asset.metadata.displayName)}</span>
         <span class="toggle-drilldown"><span class="fas fa-chevron-right"></span></span>
-        <ul class="drilldown-menu">
+        <ul class="drilldown-menu" aria-expanded="false">
           <li tabindex="0" class="menu-back"><span class="fas fa-chevron-left"></span>Back</li>
           #foreach( $childAsset in $asset.children)
             #set ( $isVisible = $childAsset.metadata.getDynamicField('Hide from navigation').value != "Yes")

@@ -989,8 +989,28 @@ img[loading="lazy"] {
   border: 1px solid var(--color-cu-light-grey);
 }
 
+
 html body .text-with-cta-widget .text-with-cta__button.color--white {
   border: 1px solid var(--color-cu-light-grey);
   background-color: white;
   color: var(--color-panther-black);
 }
+
+/***************************************************
+* Accessbility Settings
+***************************************************/
+// Show only to screen readers.
+// Source: http://stackoverflow.com/a/39919878/6763239
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  color: white;
+  background-color: black;
+}
+

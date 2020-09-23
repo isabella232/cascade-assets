@@ -6,7 +6,7 @@
         #set ( $leftNavAssets = $_.locateFolder($currentPathRoot) )
         
         <div id="left-column-navigation" class="left-nav-drilldown">
-            <ul class="root-left-nav">
+            <ul class="root-left-nav" aria-expanded="true">
                 #foreach( $asset in $leftNavAssets.children)
                  #buildDrillDownList($asset)
                 #end

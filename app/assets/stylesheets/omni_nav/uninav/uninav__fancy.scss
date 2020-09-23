@@ -29,6 +29,11 @@ span.uninav__underline::after {
   transition: transform 0.3s ease;
 }
 
+span.uninav__underline.white-underline::before,
+span.uninav__underline.white-underline::after {
+  background-color: $white;
+}
+
 span.uninav__underline::before {
   top: 0;
   transform-origin: center right;
@@ -101,6 +106,12 @@ span.uninav {
       transform-origin: center;
       transform: translate(-50%, 0) scaleX(0);
       transition: transform 200ms ease-in-out;
+    }
+
+    &.white-underline {
+      &:before {
+        background-color: $white;
+      }
     }
 
     &:hover::before,
