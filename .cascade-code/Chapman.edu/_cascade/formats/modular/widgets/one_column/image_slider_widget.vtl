@@ -52,9 +52,7 @@
               <div class="content-text">
                 <h1 class="headline">$_EscapeTool.xml($featuredTitle)</h1>
              
-            ##  USEFUL TEXT-CLIPPING FUNCTION, PRE-WYSIWYG. NEED TO REFACTOR FOR WYSIWYG. 
-                ## <p class="description line-clamp">${_DisplayTool.truncate($featuredBody,500,"...")}</p>
-                <p class="description line-clamp">$_EscapeTool.xml($featuredBody)</p>
+                <p class="description line-clamp">$featuredBody</p>
                  #if ( $featuredLinkExists )
                       <a #outputHref($featuredLink) class="theme-bg-color theme-button">$_EscapeTool.xml($featuredLink.getChild('label').value)</a>
                 #end
@@ -67,5 +65,24 @@
         </div>
     </div>
   </div>
+  <li class="image-slider-play-toggle image-slider-play--rectangle">
+    <svg tabindex="0" aria-hidden="true" focusable="true" data-prefix="fas" data-icon="pause"
+      class="image-slider-pause svg-inline--fa fa-pause fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 448 512">
+      <path fill="currentColor"
+        d="M144 479H48c-26.5 0-48-21.5-48-48V79c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v352c0 26.5-21.5 48-48 48zm304-48V79c0-26.5-21.5-48-48-48h-96c-26.5 0-48 21.5-48 48v352c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48z">
+      </path>
+    </svg>
+
+    <svg  tabindex="0" aria-hidden="true" focusable="true" data-prefix="fas" data-icon="play"
+      class="image-slider-play svg-inline--fa fa-play fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 448 512">
+      <path fill="currentColor"
+        d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z">
+      </path>
+    </svg>
+
+  </li>
+
 </div>
  #end
