@@ -1,33 +1,17 @@
 $(document).ready(function () {
-
-
     $.each($('.photo-callout-widget__button'), function (ind) {
         $(this).attr('id', 'photo-callout-widget__button__' + parseInt(ind + 1));
     })
-
     $.each($('.photo-callout-widget__container'), function (ind) {
-
         if ($(this).find(' .photo-callout-widget:hidden').size() <= 0) {
             $(this).find('.photo-callout-widget__button').fadeOut()
         }
-
-        // if ($(this).find("photo-callout-widget:hidden").size() <= 0) {
-        //     $(this).find('.photo-callout-widget__button').hide();
-        // }
-
         $(this).attr('id', 'photo-callout-widget__container__' + parseInt(ind + 1));
-
         var currentWidgetContainer = $(this).closest('.photo-callout-widget__container').attr('id');
-        console.log(currentWidgetContainer)
         var currentTotalNumberOfPhotos = $('#' + currentWidgetContainer + " .photo-callout-widget").size()
         var currentHidden = $('#' + currentWidgetContainer + ' .photo-callout-widget:hidden').size();
-
-
-        // debugger;
-        console.log(currentWidgetContainer + currentTotalNumberOfPhotos);
         var loadMoreButtonButton = ' + .photo-callout-widget__button';
         var currentButton = '#' + currentWidgetContainer + loadMoreButtonButton;
-        console.log("'" + currentButton + "'");
         var numberOfPhotoDivsToReveal = 3;
         var photoIncrement = 2;
         var numDivsToShow = 2;
@@ -47,51 +31,21 @@ $(document).ready(function () {
             var photoIncrement = 6;
             var numDivsToShow = 12;
         }
-
         var currentVisible = $('#' + currentWidgetContainer + ' img:visible').length;
-        console.log(currentWidgetContainer + ' current visible ' + currentVisible)
-
         // var currentVisible = $('#' + currentWidgetContainer + ' .photo-callout-widget:visible').size()
-
-
         // Hide image wrapper divs to start
         $('#' + currentWidgetContainer + ' > .photo-callout-widget').hide();
-
         // Show the starting number specified above
         $('#' + currentWidgetContainer + ' > .photo-callout-widget:lt(' + numDivsToShow + ')').show();
-
         var buttonClickCounter = 0;
-
-
         $('button.photo-callout-widget__button--paginate').show();
-
         var hiddenItems = $(this).find('.photo-callout-widget:hidden');
         var button = $(this).next('.photo-callout-widget__button')
         if (hiddenItems.length <= 0) {
             $(button).fadeOut()
         }
-
-
-
-        // $('button.photo-callout-widget__button--no-paginate').hide();
-
-        // console.log(currentWidgetContainer + ' currentHidden ' + currentHidden)
-        // if ($(currentHidden <= 0)) {
-        //     $('#' + currentWidgetContainer + ' button.photo-callout-widget__button--paginate').fadeOut();
-        // }
-        // else if ($(currentHidden >= 0)) {
-        //     $('#' + currentWidgetContainer + ' button.photo-callout-widget__button--paginate').fadeIn();
-        // }
-
-
-
-
         $(currentButton).click(function () {
             var currentVisible = $('#' + currentWidgetContainer + ' img:visible').length;
-            console.log(currentWidgetContainer + ' current visible ' + currentVisible)
-
-            // var currentVisible = $('#' + currentWidgetContainer + ' .photo-callout-widget:visible').size()
-            // console.log(currentWidgetContainer + ' current hidden ' + currentHidden)
             buttonClickCounter += 1;
             numDivsToShow = (numDivsToShow + 6);
             $('#' + currentWidgetContainer + ' > a:lt(' + numDivsToShow + ')').show();
@@ -109,31 +63,20 @@ $(document).ready(function () {
                 $(currentButton).fadeOut(0);
             }
             var currentVisible = $('#' + currentWidgetContainer + ' .photo-callout-widget:visible').size()
-            console.log('currentVisible: ' + currentWidgetContainer + ' ' + currentVisible + 'number of photos: ' + currentTotalNumberOfPhotos)
             if (currentVisible == currentTotalNumberOfPhotos) {
-                console.log('currentVisible: ' + currentWidgetContainer + ' ' + currentVisible)
-                console.log('number of photo links to reveal: ' + currentWidgetContainer + ' ' + numDivsToShow)
                 $(currentButton).text('All Photos Loaded')
                 $(currentButton).fadeOut(0);
             }
-            console.log('number of photos: ' + currentWidgetContainer + ' ' + currentTotalNumberOfPhotos)
             // end click function
         });
-
         var currentHidden = $('#' + currentWidgetContainer + ' .photo-callout-widget:hidden').length;
-        console.log(currentWidgetContainer + ' current hidden ' + currentHidden)
-
-
-
         // end each widget function
     });
     objectFitFallBackForIe();
 });
 
-
 function resetbuttonClickCounterer() {
     var buttonClickCounter = 0;
-    console.log('buttonClickCounter ' + buttonClickCounter);
 }
 // object-fit fallback for ie internet explorer
 function objectFitFallBackForIe() {

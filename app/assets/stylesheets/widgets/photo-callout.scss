@@ -19,6 +19,7 @@
     @include qbal-slideUp-enter;
     animation-direction: forwards;
   }
+
   img {
     width: 100%;
     object-fit: cover;
@@ -34,6 +35,7 @@
   }
 
   &__container {
+    max-width: 100%;
     --imgSize: 150px;
     --marginTop: 20px;
     --marginBottom: 20px;
@@ -65,7 +67,7 @@
     }
 
     &--no-paginate {
-      & + button {
+      &+button {
         display: none !important;
       }
     }
@@ -108,6 +110,7 @@
           // height: 100%;
         }
       }
+
       &-overlay {
         .photo-callout-widget {
           position: relative;
@@ -118,14 +121,13 @@
           position: absolute;
           bottom: 0;
           width: 100%;
-          background: linear-gradient(
-            to bottom,
-            rgba(255, 0, 0, 0) 0%,
-            rgba(0, 0, 0, 0.65) 100%
-          );
+          background: linear-gradient(to bottom,
+              rgba(255, 0, 0, 0) 0%,
+              rgba(0, 0, 0, 0.65) 100%);
           //   height: 60px;
           margin-bottom: 4px;
           overflow: hidden;
+
           p {
             color: white;
             word-break: break-all;
@@ -134,6 +136,7 @@
               color: white;
             }
           }
+
           z-index: 1;
 
           &:hover,
@@ -206,6 +209,7 @@
         display: none;
       }
     }
+
     &--5-col {
       --number-of-columns: 5;
 
@@ -234,6 +238,7 @@
         }
       }
     }
+
     &--6-col {
       --number-of-columns: 6;
 
@@ -256,6 +261,7 @@
         display: none;
       }
     }
+
     &--grid-override {
       --number-of-columns: 6;
       --img-height: 600px;
@@ -286,24 +292,23 @@
     }
   }
 
-  &__container > *:nth-child(1) {
+  &__container>*:nth-child(1) {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
   }
 
-  &__container > *:nth-child(2) {
+  &__container>*:nth-child(2) {
     -ms-grid-row: 1;
     -ms-grid-column: 3;
   }
 
-  &__container > *:nth-child(3) {
+  &__container>*:nth-child(3) {
     -ms-grid-row: 1;
     -ms-grid-column: 5;
   }
 
   &__text {
-    display: -ms-grid;
-    display: grid;
+    display: flex;
     justify-content: center;
     align-content: center;
     padding: 4%;
@@ -364,7 +369,7 @@
       }
     }
 
-    + [class*="-widget"] {
+    +[class*="-widget"] {
       --marginTop: 20px;
       --marginBottom: 20px;
     }
@@ -490,7 +495,7 @@ button.photo-callout-widget__load-more {
   .photo-callout-widget {
     flex: 1 0 25%;
 
-    + [class*="-widget"] {
+    +[class*="-widget"] {
       margin-top: 0;
       margin-left: 20px;
       margin-bottom: 20px;
@@ -503,6 +508,7 @@ button.photo-callout-widget__load-more {
       flex-wrap: wrap;
 
       &--2-col {
+
         // .ie {
         .photo-callout-widget {
           flex: 1 0 42%;
