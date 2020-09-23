@@ -270,7 +270,7 @@ LOG VELOCITY VARIABLES IN THE BROWSER CONSOLE ON DEV
           #end
           #if ( $childAsset.assetType == 'folder')
             #set ( $visibleSubFolder = $childAsset.metadata.getDynamicField('Hide from navigation').value != "Yes" )
-            #if ($visibleSubFolder && $childAsset.metadata.displayName != '_files')
+            #if (($visibleSubFolder && $childAsset.metadata.displayName != '_files') || $assetInCurrentPath > 0)
               #foreach ($lowerChildAsset in $childAsset.children)
                 #if ( $visibleChildren == false || $visibleChildrenCount < 2)
                   #set ( $visibleSubChildren = $lowerChildAsset.metadata.getDynamicField('Hide from navigation').value != "Yes" )
@@ -322,7 +322,7 @@ LOG VELOCITY VARIABLES IN THE BROWSER CONSOLE ON DEV
           #end
         </ul>
       </li>
-    #elseif ($visibleChildren && $visibleChildrenCount == 1 || $assetInCurrentPath > 1)
+    #elseif (($visibleChildren && $visibleChildrenCount == 1) || $assetInCurrentPath > 1)
       #if ( $drillDownPagePath == $asset.path || $drillDownPagePath == $asset.path + "/index" )
         #set ( $isVisible = true )
         #set( $isCurrentDrillDownPage = "drill-down-list-item current" )
