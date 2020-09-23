@@ -117,6 +117,7 @@
         }
 
         .photo-callout-widget__text {
+          display: grid;
           background-color: transparent !important;
           position: absolute;
           bottom: 0;
