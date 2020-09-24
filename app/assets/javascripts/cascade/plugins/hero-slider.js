@@ -6,10 +6,15 @@ jQuery(document).ready(function ($) {
 
 		$('.cd-hero-pause').keypress(function (e) {
 			if (e.which == 13) { //Enter key pressed
-				clickPause();
+				$(this).trigger('click');
 			}
 		});
 
+		$('.cd-hero-play').keypress(function (e) {
+			if (e.which == 13) { //Enter key pressed
+				$(this).trigger('click');
+			}
+		});
 		function clickPause() {
 			$('.cd-hero-pause').on('click', function (event) {
 				setAutoPlayValues()
