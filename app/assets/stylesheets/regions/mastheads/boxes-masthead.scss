@@ -380,6 +380,7 @@ li.jcarousel-item:active .button {
   position: absolute;
   z-index: -999;
   opacity: 0;
+  display: none;
 }
 
 .peekaboo.next-section.button.red:focus {

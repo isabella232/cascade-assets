@@ -164,6 +164,17 @@ task edit_two_col_data_def: :environment do
   )
 end
 
+# ---------------------------------------------------------------------------- #
+#   edit format `Chapman.edu/_cascade/formats/modular/widgets/Text with CTA`   #
+# ---------------------------------------------------------------------------- #
+desc 'Updates `Chapman.edu/_cascade/formats/modular/widgets/Photo Callout` with `.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Photo Callout.vtl`'
+task edit_widget_photo_callout: :environment do
+  edit_format(
+    '80a1af4ec0a81e5f43ef9b37eed63738',
+    '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Photo Callout.vtl'
+  )
+end
+
 
 # ---------------------------------------------------------------------------- #
 #   edit format `Chapman.edu/_cascade/formats/modular/widgets/Text with CTA`   #

@@ -11,6 +11,11 @@
 #set ($bgColor =  $element.getChild($widgetXPath).getChild('bgColor').value)
 #set ($bgColor = $bgColor.toLowerCase())
 #set ($pagination = $element.getChild($widgetXPath).getChild('pagination').value)
+#set ($numberOfColumns = $element.getChild($widgetXPath).getChild('numberOfColumns').value)
+#set ($aspectRatio = $element.getChild($widgetXPath).getChild('aspectRatio').value)
+#set ($pageinateNumber = $element.getChild($widgetXPath).getChild('pageinateNumber').value)
+#set ($textPosition = $element.getChild($widgetXPath).getChild('textPosition').value)
+
 
 #camelToSnake($widgetXPath)
 #set ( $widgetXPath = $snakeCase ) 
@@ -22,10 +27,39 @@
 #set ( $imgSize = 'auto' ) 
 #set ( $imageShape = 'photo-callout' ) 
 
-#if ($numberOfColumns == 'Two Column Layout')
-    #set ($columnOverride = 'photo-callout-widget__container--2-col' )
+
+
+#if ($aspectRatio == "Horizontal 'Landscape' Images (4:3 Aspect Ratio)")
+    #set ($aspectRatio = 'photo-callout-widget__container--landscape' )
+    #set ($textPosition = '' )
 #else 
+    #set ($aspectRatio = 'photo-callout-widget__container--headshot' )
+#end
+
+#if ($textPosition == "Overlay On Image")
+    #set ($textPosition = 'photo-callout-widget__container--headshot-overlay' )
+#else 
+    #set ($textPosition = '' )
+#end
+
+#if ($numberOfColumns == 'Two Column Layout')
+    #set( $numberOfColumnsInt = 2)
+    #set ($columnOverride = 'photo-callout-widget__container--2-col' )
+#elseif ($numberOfColumns == 'Three Column Layout')
+    #set( $numberOfColumnsInt = 3)
     #set ($columnOverride = 'photo-callout-widget__container--3-col' )
+#elseif ($numberOfColumns == 'Four Column Layout')
+    #set( $numberOfColumnsInt = 4)
+    #set ($columnOverride = 'photo-callout-widget__container--4-col' )
+#elseif ($numberOfColumns == 'Five Column Layout')
+    #set( $numberOfColumnsInt = 5)
+    #set ($columnOverride = 'photo-callout-widget__container--5-col' )
+#elseif ($numberOfColumns == 'Five Column Layout')
+    #set( $numberOfColumnsInt = 5)
+    #set ($columnOverride = 'photo-callout-widget__container--5-col' )
+#elseif ($numberOfColumns == 'Six Column Layout')
+    #set( $numberOfColumnsInt = 6)
+    #set ($columnOverride = 'photo-callout-widget__container--grid-override photo-callout-widget__container--6-col' )
 #end
 
 #if ($textAlignment == 'Left Aligned Text')
@@ -48,10 +82,10 @@
     #set ($buttonPaginate = 'photo-callout-widget__button--no-paginate')
 #end
 
-
-
-<div class="photo-callout-widget__container $columnOverride $mobileImagOptions $pagination">
-
+<div class="photo-callout-widget__container $columnOverride $mobileImagOptions $pagination $aspectRatio $textPosition">
+<style>
+.photo-callout-widget {--number-of-columns: $numberOfColumnsInt;}
+</style>
     #foreach ($block in $blocks)
         
         
@@ -98,6 +132,7 @@
 </div>
 <button id="photo-callout-widget__load-more"
     class="photo-callout-widget__button photo-callout-widget__button--$bgColor $buttonPaginate" aria-role="button"
-    aria-label="Load More Photos">Load
+    aria-
+    ="Load More Photos">Load
     More</button>
 #end

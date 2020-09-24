@@ -40,12 +40,12 @@
         swipeThreshold: 40,
         responsive: [],
         /* jshint ignore:start */
-        onBeforeStart: function ($el) {},
-        onSliderLoad: function ($el) {},
-        onBeforeSlide: function ($el, scene) {},
-        onAfterSlide: function ($el, scene) {},
-        onBeforeNextSlide: function ($el, scene) {},
-        onBeforePrevSlide: function ($el, scene) {}
+        onBeforeStart: function ($el) { },
+        onSliderLoad: function ($el) { },
+        onBeforeSlide: function ($el, scene) { },
+        onAfterSlide: function ($el, scene) { },
+        onBeforeNextSlide: function ($el, scene) { },
+        onBeforePrevSlide: function ($el, scene) { }
         /* jshint ignore:end */
     };
     $.fn.lightSlider = function (options) {
@@ -1100,18 +1100,18 @@
         };
         $el.destroy = function () {
             if ($el.lightSlider) {
-                $el.goToPrevSlide = function () {};
-                $el.goToNextSlide = function () {};
-                $el.mode = function () {};
-                $el.play = function () {};
-                $el.pause = function () {};
-                $el.refresh = function () {};
-                $el.getCurrentSlideCount = function () {};
-                $el.getTotalSlideCount = function () {};
-                $el.goToSlide = function () {};
+                $el.goToPrevSlide = function () { };
+                $el.goToNextSlide = function () { };
+                $el.mode = function () { };
+                $el.play = function () { };
+                $el.pause = function () { };
+                $el.refresh = function () { };
+                $el.getCurrentSlideCount = function () { };
+                $el.getTotalSlideCount = function () { };
+                $el.goToSlide = function () { };
                 $el.lightSlider = null;
                 refresh = {
-                    init: function () {}
+                    init: function () { }
                 };
                 $el.parent().parent().find('.lSAction, .lSPager').remove();
                 $el.removeClass('lightSlider lSFade lSSlide lsGrab lsGrabbing leftEnd right').removeAttr('style').unwrap().unwrap();

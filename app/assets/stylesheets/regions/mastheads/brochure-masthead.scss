@@ -181,6 +181,23 @@
       background: linear-gradient(to right, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
     }
   }
+
+
+
+  .cd-hero-play,
+  .cd-hero-pause {
+    display: block;
+    height: 30px;
+    color: white;
+    position: absolute;
+    right: 2vw;
+    bottom: 10px;
+    cursor: pointer;
+  }
+
+  .cd-hero-play {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 768px) {
