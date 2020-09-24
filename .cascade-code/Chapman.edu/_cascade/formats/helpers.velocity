@@ -284,17 +284,24 @@ LOG VELOCITY VARIABLES IN THE BROWSER CONSOLE ON DEV
             #set ( $hiddenAsset = $childAsset.metadata.getDynamicField('Hide from navigation').value == "Yes" )
             #if ($hiddenAsset && $childAsset.path == $drillDownPagePath)
               #set ( $visibleChildrenCount = $visibleChildrenCount + 1 )
+            #elseif ($hiddenAsset && $childAsset.path == $drillDownPagePath.replace('/index', ''))
+              #set ( $visibleChildrenCount = $visibleChildrenCount + 1 )
             #end
           #end
           #if ( $childAsset.assetType == 'folder')
             #set ( $visibleSubFolder = $childAsset.metadata.getDynamicField('Hide from navigation').value != "Yes" )
-            #if ($visibleSubFolder && $childAsset.metadata.displayName != '_files')
+            #if (($visibleSubFolder && $childAsset.metadata.displayName != '_files') || $assetInCurrentPath > 0)
               #foreach ($lowerChildAsset in $childAsset.children)
                 #if ( $visibleChildren == false || $visibleChildrenCount < 2)
-                  #set ( $visibleSubChildren = $lowerChildAsset.metadata.getDynamicField('Hide from navigation').value == "Yes" )
+                  #set ( $visibleSubChildren = $lowerChildAsset.metadata.getDynamicField('Hide from navigation').value != "Yes" )
                   #if ($visibleSubChildren) 
                     #set ( $visibleChildren =  $visibleSubChildren )
                     #set ( $visibleChildrenCount = $visibleChildrenCount + 1)
+                  #end
+                  
+                  #if (!$visibleSubChildren && $lowerChildAsset.path == $drillDownPagePath)
+                    #set ( $visibleChildren =  true )
+                    #set ( $visibleChildrenCount = $visibleChildrenCount + 1)                  
                   #end
                 #end
               #end
@@ -303,8 +310,7 @@ LOG VELOCITY VARIABLES IN THE BROWSER CONSOLE ON DEV
         #end
       #end
     #end
-
-    #if ($visibleChildren && $visibleChildrenCount > 1 || ($isVisible && $assetInCurrentPath.length > 1))
+    #if ($visibleChildren && $visibleChildrenCount > 1 || ($assetInCurrentPath > 1 && $visibleChildrenCount > 1))
       <li class="${isCurrentDrillDownPage}" role="group" >
         #set ( $ariaLabel = $asset.metadata.displayName.replaceAll(" ", "-").toLowerCase())
         <span tabindex="0" aria-label="${_EscapeTool.xml($ariaLabel)}" class="drill-down-parent">${_EscapeTool.xml($asset.metadata.displayName)}</span>
@@ -313,7 +319,6 @@ LOG VELOCITY VARIABLES IN THE BROWSER CONSOLE ON DEV
           <li tabindex="0" class="menu-back"><span class="fas fa-chevron-left"></span>Back</li>
           #foreach( $childAsset in $asset.children)
             #set ( $isVisible = $childAsset.metadata.getDynamicField('Hide from navigation').value != "Yes")
-
             #if ( $drillDownPagePath == $childAsset.path ) 
               #set ( $isVisible = true )
               #set( $isCurrentDrillDownPage = "drill-down-list-item current" )
@@ -337,7 +342,7 @@ LOG VELOCITY VARIABLES IN THE BROWSER CONSOLE ON DEV
           #end
         </ul>
       </li>
-    #elseif ($visibleChildren && $visibleChildrenCount == 1)
+    #elseif (($visibleChildren && $visibleChildrenCount == 1) || $assetInCurrentPath > 1)
       #if ( $drillDownPagePath == $asset.path || $drillDownPagePath == $asset.path + "/index" )
         #set ( $isVisible = true )
         #set( $isCurrentDrillDownPage = "drill-down-list-item current" )
@@ -362,15 +367,6 @@ LOG VELOCITY VARIABLES IN THE BROWSER CONSOLE ON DEV
   #elseif ($asset.assetType == 'symlink')
     <li class="${isCurrentDrillDownPage}"><a href="site://Chapman.edu/${asset.path}">${_EscapeTool.xml($asset.label)} <span class="fas fa-external-link-alt"></span></a></li>
   #end
-#end
-
-#macro(addBackgroundImage $content)
-    #set ($linkUrl = $content.getChild('fileLink').getChild('path').value)
-    #if ($linkUrl != '')
-        "background-image: url('[system-asset]${linkUrl}[/system-asset]')"
-    #else
-        ""
-    #end
 #end
 
 #macro(alert $v)
