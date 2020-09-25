@@ -6,15 +6,6 @@
   width: 100%;
   min-width: 100%;
 
-  &:hover,
-  &:focus,
-  &:focus-within {
-    img {
-      filter: brightness(80%);
-      transition: 250ms linear;
-    }
-  }
-
   .slide-up {
     @include qbal-slideUp-enter;
     animation-direction: forwards;
@@ -25,8 +16,6 @@
     object-fit: cover;
     width: 100%;
     height: var(--imgSize);
-    // min-height: 100px;
-    // min-width: 100px;
   }
 
   &__img {
@@ -129,9 +118,22 @@
           margin-bottom: 4px;
           overflow: hidden;
 
+
           p {
             color: white;
-            word-break: break-all;
+            word-break: break-word;
+
+            &:after {
+              font-family: "Font Awesome 5 Free";
+
+              font-weight: 900;
+
+              content: "\f054";
+
+              margin-left: 5px;
+
+              font-size: 1.4rem;
+            }
 
             &:hover {
               color: white;
@@ -557,4 +559,18 @@ button.photo-callout-widget__button.photo-callout-widget__button--white {
 
 .callout-box-widget--left.callout.callout-box-widget--white {
   border: 1px solid var(--color-cu-light-grey);
+}
+
+
+.photo-callout-widget__container--headshot-overlay a .photo-callout-widget__img {
+  background-color: transparent;
+  -webkit-transition: all 350ms ease;
+  transition: all 350ms ease;
+
+  &:hover,
+  &:focus,
+  &:focus-within {
+    filter: brightness(80%);
+    transition: all 350ms ease;
+  }
 }
