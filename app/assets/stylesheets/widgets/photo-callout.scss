@@ -6,15 +6,6 @@
   width: 100%;
   min-width: 100%;
 
-  &:hover,
-  &:focus,
-  &:focus-within {
-    img {
-      // filter: brightness(80%) !important;
-      // transition: 350ms linear !important;
-    }
-  }
-
   .slide-up {
     @include qbal-slideUp-enter;
     animation-direction: forwards;
@@ -25,8 +16,6 @@
     object-fit: cover;
     width: 100%;
     height: var(--imgSize);
-    // min-height: 100px;
-    // min-width: 100px;
   }
 
   &__img {
