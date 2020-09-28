@@ -78,7 +78,7 @@ Master Version: Chapman.edu/_cascade/formats/helpers.velocity
             class=" ${_EscapeTool.xml($widgetXPath)}__img--${_EscapeTool.xml($imageShape)} ${_EscapeTool.xml($widgetXPath)}__img"
             style="width: ${_EscapeTool.xml($imgSize)}; height: ${_EscapeTool.xml($imgSize)}; ">
                 <img $imageRole class="lazy external-image ${_EscapeTool.xml($widgetXPath)}__img img--${_EscapeTool.xml($imageShape)} "
-                    src="${_EscapeTool.xml($imageURL)}"
+                    src="[system-asset]${_EscapeTool.xml($imageUrlInt)}[/system-asset]"
                     alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-position:${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}"/>
         </div>
     #end
@@ -569,4 +569,13 @@ LOG VELOCITY VARIABLES IN THE BROWSER CONSOLE ON DEV
     #set($bgColor = $element.getChild('bgColor').value)
     #set($colorClass = "${widgetClass}__#if($bgColor == 'Light')light-bg#{elseif}($bgColor == 'Medium')medium-bg#{else}dark-bg#end")
     $colorClass
+#end
+
+#macro(addBackgroundImage $content)
+    #set ($linkUrl = $content.getChild('fileLink').getChild('path').value)
+    #if ($linkUrl != '')
+        "background-image: url('[system-asset]${linkUrl}[/system-asset]')"
+    #else
+        ""
+    #end
 #end
