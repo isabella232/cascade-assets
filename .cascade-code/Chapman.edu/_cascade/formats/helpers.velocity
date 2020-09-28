@@ -522,3 +522,12 @@ LOG VELOCITY VARIABLES IN THE BROWSER CONSOLE ON DEV
     #set($colorClass = "${widgetClass}__#if($bgColor == 'Light')light-bg#{elseif}($bgColor == 'Medium')medium-bg#{else}dark-bg#end")
     $colorClass
 #end
+
+#macro(addBackgroundImage $content)
+    #set ($linkUrl = $content.getChild('fileLink').getChild('path').value)
+    #if ($linkUrl != '')
+        "background-image: url('[system-asset]${linkUrl}[/system-asset]')"
+    #else
+        ""
+    #end
+#end
