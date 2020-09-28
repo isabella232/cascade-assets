@@ -311,7 +311,7 @@
   }
 
   &__text {
-    display: flex;
+    display: grid;
     justify-content: center;
     align-content: center;
     padding: 4%;
@@ -320,6 +320,10 @@
     text-align: center;
     min-height: 66px;
     @include qbal-fade-enter;
+
+    &--white {
+      display: flex;
+    }
 
     &--left-aligned {
       text-align: left;
