@@ -3,14 +3,16 @@ jQuery(document).ready(function ($) {
 		var $slidesWrapper = $('.cd-hero-slider');
 		clickPause();
 		clickPlay();
+
 		$('.cd-hero-pause').keypress(function (e) {
 			if (e.which == 13) { //Enter key pressed
-				clickPause();
+				$(this).trigger('click');
 			}
 		});
-		$('.cd-hero-pause').keypress(function (e) {
+
+		$('.cd-hero-play').keypress(function (e) {
 			if (e.which == 13) { //Enter key pressed
-				clickPause();
+				$(this).trigger('click');
 			}
 		});
 		function clickPause() {
@@ -21,65 +23,44 @@ jQuery(document).ready(function ($) {
 				$('.brochure-masthead * ').filter('.autoplay').addClass('masthead-paused').removeClass('.autoplay');
 				autoPlayDelay = 9999999999;
 				resetAutoplay();
-				if ($('video').length) {
-					var vid = $("video");
-					if ($(vid).get(0).paused) {
-						vid.removeClass('homepage-masthead__play-video--paused')
-						$('#homepage-masthead__play-button').hide();
-						$('#homepage-masthead__pause-button').show();
-						$(vid).trigger('play');
-					} else {
-						vid.addClass('homepage-masthead__video--paused')
-						$('#homepage-masthead__pause-button').hide();
-						$('#homepage-masthead__play-button').show();
-						$(vid).trigger('pause');
-					}
-				}
+
+				pauseVideos();
 			});
 		}
+
+		function pauseVideos() {
+			if ($('video').length) {
+				var vid = $("video");
+				$(vid).trigger('pause');
+			}
+		}
+
+		function playVideos() {
+			if ($('video').length) {
+				var vid = $("video");
+				$(vid).trigger('play');
+
+			}
+		}
 		function clickPlay() {
-			setAutoPlayValues()
+			setAutoPlayValues();
 			$('.cd-hero-play').on('click keydown', function (event) {
 				$(this).hide();
 				$('.cd-hero-pause').show();
-				$('.brochure-masthead').each(function () {
-					if ($(this).hasClass('masthead-paused'))
-						$(this).addClass('autoplay').removeClass('masthead-pausd')
-				})
-				if ($('video').length) {
-					var vid = $("video");
-					if ($(vid).get(0).paused) {
-						vid.removeClass('homepage-masthead__play-video--paused')
-						$('#homepage-masthead__play-button').hide();
-						$('#homepage-masthead__pause-button').show();
-						$(vid).trigger('play');
-					} else {
-						vid.addClass('homepage-masthead__video--paused')
-						$('#homepage-masthead__pause-button').hide();
-						$('#homepage-masthead__play-button').show();
-						$(vid).trigger('pause');
-					}
-				}
-				autoPlayDelay = 500;
+
+				removePausedMashteadClass();
+
+				playVideos();
 			});
 		}
-		function toggleVideoPlay() {
-			if ($('video').length) {
-				var vid = $("video");
-				if ($(vid).get(0).paused) {
-					$(vid).trigger('play');
-				} else {
-					$(vid).trigger('pause');
-				}
-			}
-		}
+
 		//autoplay slider
 		function setAutoPlayValues() {
 			if ($($slidesWrapper).hasClass('masthead-paused')) {
 				var autoPlayDelay = 9999999999;
 				setAutoplay($slidesWrapper, slidesNumber, autoPlayDelay);
 			} else {
-				var autoPlayDelay = 500;
+				var autoPlayDelay = 10000;
 				setAutoplay($slidesWrapper, slidesNumber, autoPlayDelay);
 			}
 		}
@@ -112,6 +93,12 @@ jQuery(document).ready(function ($) {
 				var selectedPosition = (activePosition == 0) ? slidesNumber - 1 : activePosition - 1;
 				slideSelection(activePosition, selectedPosition);
 				resetAutoplay(selectedPosition);
+
+				if ($('.masthead-paused').length) {
+					// clickPause();
+					pauseVideos();
+				}
+
 			});
 			$nextSlideButton.on('click', function (event) {
 				event.preventDefault();
@@ -119,6 +106,13 @@ jQuery(document).ready(function ($) {
 				var selectedPosition = (activePosition + 1) == slidesNumber ? 0 : activePosition + 1;
 				slideSelection(activePosition, selectedPosition);
 				resetAutoplay(selectedPosition);
+
+				if ($('.masthead-paused').length) {
+					// clickPause();
+					pauseVideos();
+				}
+
+
 			});
 			$sliderNav.on('click', 'li', function (event) {
 				event.preventDefault();
@@ -221,15 +215,13 @@ jQuery(document).ready(function ($) {
 		};
 	}
 });
-function a11yClick(event) {
-	if (event.type === 'click') {
-		return true;
-	} else if (event.type === 'keypress') {
-		var code = event.charCode || event.keyCode;
-		if ((code === 32) || (code === 13)) {
-			return true;
-		}
-	} else {
-		return false;
+
+
+function removePausedMashteadClass() {
+
+	if ($('.cd-hero-slider').hasClass('masthead-paused')) {
+		$('.cd-hero-slider').addClass('autoplay').removeClass('masthead-paused')
+
 	}
+
 }
