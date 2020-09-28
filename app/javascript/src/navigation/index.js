@@ -4,7 +4,6 @@ import offCanvasNav from './offcanvas-nav';
 
 const navigation = {
   initialize() {
-    leftNav();
     uninav();
     offCanvasNav();
   }

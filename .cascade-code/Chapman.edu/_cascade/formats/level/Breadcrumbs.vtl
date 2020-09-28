@@ -1,0 +1,49 @@
+#import( "/_cascade/formats/helpers.velocity" )
+
+#macro ( buildBreadcrumbs )
+    #set ( $currentPathRoot = $currentPage.path.replaceAll('/(.*)', "") )
+
+    #macro ( buildBreadcrumbList $asset)
+      
+    #end
+
+    #if ( $currentPathRoot != "index" && $currentPathRoot != "")
+      #set ( $breadcrumbsPath           = $currentPage.path )
+      #set ( $breadcrumbAssets          = $_.locateFolder($currentPathRoot) )
+      #set ( $breadcrumbsArr            = [])
+
+      #macro ( countAssetsForBreadcrumbs $asset)
+        #foreach ($childAsset in $asset)
+          #if ($childAsset.name != '_files')
+            #set ( $assetInCurrentPath = $_StringTool.substringAfter($breadcrumbsPath, $childAsset.path).length() )
+
+            #if ( $assetInCurrentPath > 0 && $childAsset.assetType == 'folder')
+              $breadcrumbsArr.add($childAsset.path)
+              #set ( $totalAssetsForBreadcrumbs = $totalAssetsForBreadcrumbs + 1 )
+              #countAssetsForBreadcrumbs($childAsset.children)
+            #end
+          #end
+        #end
+      #end
+
+      #countAssetsForBreadcrumbs($breadcrumbAssets.children)  
+      <div>   
+        <ul>
+          #foreach ( $childAsset in $breadcrumbAssets.children )
+            #buildSingleLeftNav($childAsset)
+          #end
+        </ul>
+
+        #foreach( $breadcrumbPath in $breadcrumbsArr )
+          #set ( $breadcrumbPathFolder = $_.locateFolder($breadcrumbPath) )
+          <ul>
+            #foreach( $childAsset in $breadcrumbPathFolder.children)
+              #buildSingleLeftNav($childAsset)
+            #end
+          </ul>
+        #end
+      </div>
+    #end
+#end
+
+#buildBreadcrumbs()

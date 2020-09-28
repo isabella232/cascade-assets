@@ -246,7 +246,7 @@ module ContentTypes
         'ADDITIONAL BODY AT-END' => '',
         'ADDITIONAL HEAD' => '',
         # Dynamic Regions
-        'BREADCRUMBS' => 'TODO: _cascade/formats/level/Breadcrumbs',
+        'BREADCRUMBS' => cascade_block('_cascade/blocks/html/level/breadcrumbs'),
         'CASCADE ASSETS' =>
           cascade_block('_cascade/blocks/html/cascade_assets'),
         'FB_JS_SDK' =>
@@ -306,7 +306,7 @@ module ContentTypes
         'ADDITIONAL BODY AT-END' => '',
         'ADDITIONAL HEAD' => '',
         # Dynamic Regions
-        'BREADCRUMBS' => 'TODO: _cascade/formats/level/Breadcrumbs',
+        'BREADCRUMBS' => cascade_block('_cascade/formats/level/breadcrumbs'),
         'CASCADE ASSETS' =>
           cascade_block('_cascade/blocks/html/cascade_assets'),
         'FB_JS_SDK' =>

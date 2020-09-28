@@ -1,6 +1,4 @@
 #left-column-navigation {
-  overflow-y: hidden;
-  display: none;
 
   &.left-nav-drilldown {
     position: relative;
@@ -33,6 +31,48 @@
     @include respond(small) {
       display: none !important;
     }
+
+    ul li.folder-item {
+      justify-content: start;
+      align-items: center;
+      @include v(background-color, panther-black);
+      color: $white;
+      font-weight: bold;
+      line-height: 1.6rem;
+      font-family: $futura-regular;
+      padding: 20px 15px 20px 20px;
+      border-color: var(--color-cu-white);
+
+      &.current a, & a {
+        color: $white;
+        padding: 0 15px 0px 10px;
+
+        &:hover {
+          color: $white;
+        }
+
+        &:visited {
+          color: $white;
+        }
+  
+        &:focus {
+          outline-color: $cu-red;
+          outline-style: none;
+          outline-width: 5px;
+        }
+      }
+
+      &.current a {
+        &::before {
+          content: "\25CF";
+          color: white;
+          position: absolute;
+          left: 10px;
+        }
+      }
+    }
+    
+    
   }
 
   .sf-hidden {

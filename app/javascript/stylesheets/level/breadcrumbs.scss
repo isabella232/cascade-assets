@@ -1,0 +1,20 @@
+#breadcrumbs-dropdown {
+  display: flex;
+  justify-content: flex-start;
+
+  ul {
+    list-style-type: none;
+    margin-right: 1rem;
+
+    li {
+      display: none;
+    }
+
+    li:first-child {
+      display: block;
+    }
+  }
+
+
+
+}
