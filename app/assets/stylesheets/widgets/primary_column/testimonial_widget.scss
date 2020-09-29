@@ -479,6 +479,10 @@
     display: grid;
   }
 
+  .button.testimonial-widget__button:nth-child(3n) {
+    margin-top: 5px;
+  }
+
   .testimonial-widget__text {
     display: grid;
     align-content: center;
