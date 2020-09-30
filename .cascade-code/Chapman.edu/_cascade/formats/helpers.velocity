@@ -39,32 +39,63 @@ Master Version: Chapman.edu/_cascade/formats/helpers.velocity
     #set ($imageUrlExt =
     $elem.getChild('image').getChild('imageUrlExt').value )
 
+## IMAGE SHAPE
+    #set ($imageType =
+    $elem.getChild($widgetXPath).getChild('image').getChild('imageType').value.toLowerCase())
+    #set ($imageShape =
+    $elem.getChild($widgetXPath).getChild('image').getChild('imageShape').value.toLowerCase())
 
-    #set ($altText =
-    $elem.getChild('image').getChild('altText').value)
+    ## IMAGE POSITION (OBJECT-FIT)
+    #set ($objectPositionX = $elem.getChild($widgetXPath).getChild('image').getChild('advanced').getChild('objectPositionX').value.toLowerCase())
+    #set ($objectPositionY = $elem.getChild($widgetXPath).getChild('image').getChild('advanced').getChild('objectPositionY').value.toLowerCase())
+    #set ($objectFit = $elem.getChild($widgetXPath).getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
 
-    ## SET INT or EXT URL 
-    #if ($imageUrlExt != '')
-      #set ($imageURL = $imageUrlExt)
+
+    ## OBJECT-FIT
+    #if ($objectFit != '')
+      #set ($objectFit = $elem.getChild($widgetXPath).getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
     #else 
-      #set ($imageURL = $imageUrlInt)
+      #set ($objectFit = 'cover')
+    #end
+
+    ## IMAGE DIMENSIONS
+    #if ($imageWidth != '')
+      #set ($imageWidth = $elem.getChild($widgetXPath).getChild('image').getChild('advanced').getChild('imageWidth').value.toLowerCase())
+    #else 
+      #set ($imageWidth = '100%')
+    #end
+
+    #if ($imageHeight != '')
+      #set ($imageHeight = $elem.getChild($widgetXPath).getChild('image').getChild('advanced').getChild('imageHeight').value.toLowerCase())
+    #else 
+      #set ($imageHeight = 'auto')
     #end
 
 
+    ## ENSURE CIRCULAR IMAGES HAVE EQUAL HEIGHT AND WIDTH 
+    #if ($imageShape == 'circle')
+      ## These CSS vars can be overridden in the 'code' section below
+      #set ($imageWidth = '<style> --imgSize: 180px;  var(--smallIMgSize) </style>')
+      #set ($imageHeight = '<style> --imgSize: 180px; var(--smallIMgSize) </style>')
+    #elseif ($imageShape == 'square')
+      #set ($imageWidth = '100%')
+      #set ($imageHeight = 'auto')
+    #end
+    
+
+
     ## ACCESSIBILITY
-    #set ( $imageRoleVal =  ( $elem.getChild('image').getChild('imageAltOrDecorative').value ) )
+    #set ( $imageRoleVal =  ( $elem.getChild($widgetXPath).getChild('image').getChild('imageAltOrDecorative').value ) )
     #if ( $imageRoleVal == "Decorative Image" )
         #set ( $imageRole = "role='presentation'" )
         #set ( $altText = '' )
-      #else 
+    #else 
         #set ( $imageRole = "" )
-      #end
-      #log($imageRole)
+    #end
 
-    ## IMAGE OBJECT-POSITION
-    #set ($objectPositionX = $elem.getChild('image').getChild('objectPositionX').value.toLowerCase())
-    #set ($objectPositionY = $elem.getChild('image').getChild('objectPositionY').value.toLowerCase())
-    
+    ## Custom Code Option
+    #set ($code = $elem.getChild($widgetXPath).getChild('image').getChild('advanced').getChild('code').value.toLowerCase())
+
     #if (!$imageType.contains("none") && ($imageUrlInt != '')) 
         <div
             class="${_EscapeTool.xml($widgetXPath)}__img--${_EscapeTool.xml($imageShape)} ${_EscapeTool.xml($widgetXPath)}__img"
@@ -96,7 +127,7 @@ USAGE: #image()
     #set ($imageUrlInt =
     $element.getChild($widgetXPath).getChild('image').getChild('imageUrlInt').getChild('path').value )
     #set ($imageUrlExt =
-    $element.getChild($widgetXPath).getChild('image').getChild('imageUrlExt').getChild('path').value )
+    $element.getChild($widgetXPath).getChild('image').getChild('imageUrlExt').value )
 
     ## IMAGE SHAPE
     #set ($imageType =
@@ -141,12 +172,7 @@ USAGE: #image()
       #set ($imageHeight = 'auto')
     #end
     
-    ## SET INT or EXT URL 
-    #if ($imageUrlExt != '')
-      #set ($imageURL = $imageUrlExt)
-    #else 
-      #set ($imageURL = $imageUrlInt)
-    #end
+
 
     ## ACCESSIBILITY
     #set ( $imageRoleVal =  ( $element.getChild($widgetXPath).getChild('image').getChild('imageAltOrDecorative').value ) )
@@ -160,23 +186,35 @@ USAGE: #image()
     ## Custom Code Option
     #set ($code = $element.getChild($widgetXPath).getChild('image').getChild('advanced').getChild('code').value.toLowerCase())
 
-
-    #if (!$imageType.contains("none"))
+    #if ($imageType == 'internal cascade image')
+      #set ($imageUrlExt = '')
         <div
             class="${_EscapeTool.xml($widgetXPath)}__img--${_EscapeTool.xml($imageShape)} ${_EscapeTool.xml($widgetXPath)}__img"
             style="width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)};">
                 <img $imageRole class="${_EscapeTool.xml($widgetXPath)}__img img--${_EscapeTool.xml($imageShape)} "
                     src="[system-asset]${_EscapeTool.xml($imageUrlInt)}[/system-asset]"
-                    alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-fit: '${_EscapeTool.xml($objectFit)};' object-position:'${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)};' width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)}; "/>
+                    alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-fit: '${_EscapeTool.xml($objectFit)}'; object-position:'${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}'; width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)}; "/>
                     
                     <![CDATA[#protect
                       $code
                      #protect]]>
-                    
         </div>
-    
+
+      #end
+      #if (!$imageType.contains("none") && $imageType == 'external image url')
+        #set ($imageUrlInt = '')
+     <div
+            class="${_EscapeTool.xml($widgetXPath)}__img--${_EscapeTool.xml($imageShape)} ${_EscapeTool.xml($widgetXPath)}__img"
+            style="width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)};">
+                <img $imageRole class="${_EscapeTool.xml($widgetXPath)}__img img--${_EscapeTool.xml($imageShape)} "
+                    src="${_EscapeTool.xml($imageUrlExt)}"
+                    alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-fit: '${_EscapeTool.xml($objectFit)}'; object-position:'${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}'; width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)}; "/>
+                    
+                    <![CDATA[#protect
+                      $code
+                     #protect]]>
+        </div>
     #end
-    
 #end
 
 #*
@@ -263,9 +301,9 @@ EXAMPLE 2: Collection (slides) within a collection (slider): #wtf($slide 'link')
             #if ($linkStyle == 'Text Link')
                 <a tabindex="1" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="text--link">#escape($linkLabel)</a>
             #elseif (($linkStyle == 'Button Link') && ($bemButtonClass != '$bemButtonClass'))
-                <a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button $bemButtonClass">#escape($linkLabel)</a>
+                <a tabindex="0" href="${_EscapeTool.xml($linkURL)}" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button $bemButtonClass">#escape($linkLabel)</a>
             #else 
-                <a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button">#escape($linkLabel)</a>
+                <a tabindex="0" href="${_EscapeTool.xml($linkURL)}" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button">#escape($linkLabel)</a>
             #end    
         #end
     #end
