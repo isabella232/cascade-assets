@@ -802,38 +802,33 @@ def create_block(asset_name, parent_folder_path, update_source)
   # HTTParty.post(url_post, body: { asset: { xmlBlock: { xml: data, path: "_cascade/blocks/html/0-write-test", parentFolderId: parent_folder_id, siteName: "Chapman.edu", id: "365ae5dec0a81e8a20b1d746fd3e0778" } } }.to_json)
 
   puts HTTParty.post(
-    url_post,
-    body: {
-     "asset": {
-       "xmlBlock": {
-         "xml": data,
-         "expirationFolderRecycled": false,
-         "metadataSetId": "6fef14a3c04d744c610b81da9d165a27",
-         "metadataSetPath": "Default",
-         "metadata": {},
-         "reviewOnSchedule": false,
-         "reviewEvery": 0,
-         "parentFolderId": "8516f0a9c04d744c610b81da2d21be44",
-         "parentFolderPath":"#{parent_folder_path}",
-         "lastModifiedDate": "Sep 22, 2020 2:51:56 PM",
-         "lastModifiedBy": "cscddev01500",
-         "createdDate": "Apr 27, 2015 5:10:43 PM",
-         "createdBy": "mthomas",
-         # "path": "_cascade/blocks/html/cascade-assets-testing",
-         "siteId": "6fef14a3c04d744c610b81dac0a8d082",
-         "siteName": "Chapman.edu",
-         "tags": [],
-         "name": "#{asset_name}",
-         "id": "#{rand(36**8).to_s(36)}"
-       }
-     },
-     "success": true
-   }.to_json
-  )
-# puts "🎉        View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{
-#        asset_id
-#      }&type=#{asset_type}".chomp('/')
-
+         url_post,
+         body: {
+          "asset": {
+            "xmlBlock": {
+              "xml": data,
+              "expirationFolderRecycled": false,
+              "metadataSetId": "6fef14a3c04d744c610b81da9d165a27",
+              "metadataSetPath": "Default",
+              "metadata": {},
+              "reviewOnSchedule": false,
+              "reviewEvery": 0,
+              "parentFolderId": "8516f0a9c04d744c610b81da2d21be44",
+              "parentFolderPath": "#{parent_folder_path}",
+              "lastModifiedDate": "Jul 20, 2020, 5:48:52 PM",
+              "lastModifiedBy": "cscddev01500",
+              "createdDate": "Apr 27, 2015, 5:10:43 PM",
+              "createdBy": "mthomas",
+              # "path": "_cascade/blocks/html/#{asset_name}",
+              "siteId": "6fef14a3c04d744c610b81dac0a8d082",
+              "siteName": "Chapman.edu",
+              "tags": [],
+              "name": "#{asset_name}"
+            }
+          },
+          "success": true
+        }.to_json
+       )
   # puts "🎉        View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{
   #        asset_id
   #      }&type=#{asset_type}".chomp('/')
