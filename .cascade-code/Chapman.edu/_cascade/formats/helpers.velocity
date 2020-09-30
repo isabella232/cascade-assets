@@ -93,28 +93,90 @@ USAGE: #image()
 
 #macro(image)
     ## $widgetXPath is just a verbose alias for $wxp 
-    #set ($imageType =
-    $element.getChild($widgetXPath).getChild('image').getChild('imageType').value.toLowerCase())
-    #set ($imageShape =
-    $element.getChild($widgetXPath).getChild('image').getChild('imageShape').value.toLowerCase())
     #set ($imageUrlInt =
     $element.getChild($widgetXPath).getChild('image').getChild('imageUrlInt').getChild('path').value )
     #set ($imageUrlExt =
     $element.getChild($widgetXPath).getChild('image').getChild('imageUrlExt').getChild('path').value )
-    #set ($altText =
-    $element.getChild($widgetXPath).getChild('image').getChild('altText').value)
-    #set ($objectPositionX = $element.getChild($widgetXPath).getChild('image').getChild('objectPositionX').value.toLowerCase())
-    #set ($objectPositionY = $element.getChild($widgetXPath).getChild('image').getChild('objectPositionY').value.toLowerCase())
+
+    ## IMAGE SHAPE
+    #set ($imageType =
+    $element.getChild($widgetXPath).getChild('image').getChild('imageType').value.toLowerCase())
+    #set ($imageShape =
+    $element.getChild($widgetXPath).getChild('image').getChild('imageShape').value.toLowerCase())
+
+    ## IMAGE POSITION (OBJECT-FIT)
+    #set ($objectPositionX = $element.getChild($widgetXPath).getChild('image').getChild('advanced').getChild('objectPositionX').value.toLowerCase())
+    #set ($objectPositionY = $element.getChild($widgetXPath).getChild('image').getChild('advanced').getChild('objectPositionY').value.toLowerCase())
+    #set ($objectFit = $element.getChild($widgetXPath).getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
+
+
+    ## OBJECT-FIT
+    #if ($objectFit != '')
+      #set ($objectFit = $element.getChild($widgetXPath).getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
+    #else 
+      #set ($objectFit = 'cover')
+    #end
+
+    ## IMAGE DIMENSIONS
+    #if ($imageWidth != '')
+      #set ($imageWidth = $element.getChild($widgetXPath).getChild('image').getChild('advanced').getChild('imageWidth').value.toLowerCase())
+    #else 
+      #set ($imageWidth = '100%')
+    #end
+
+    #if ($imageHeight != '')
+      #set ($imageHeight = $element.getChild($widgetXPath).getChild('image').getChild('advanced').getChild('imageHeight').value.toLowerCase())
+    #else 
+      #set ($imageHeight = 'auto')
+    #end
+
+
+    ## ENSURE CIRCULAR IMAGES HAVE EQUAL HEIGHT AND WIDTH 
+    #if ($imageShape == 'circle')
+      ## These CSS vars can be overridden in the 'code' section below
+      #set ($imageWidth = '<style> --imgSize: 180px;  var(--smallIMgSize) </style>')
+      #set ($imageHeight = '<style> --imgSize: 180px; var(--smallIMgSize) </style>')
+    #elseif ($imageShape == 'square')
+      #set ($imageWidth = '100%')
+      #set ($imageHeight = 'auto')
+    #end
+    
+    ## SET INT or EXT URL 
+    #if ($imageUrlExt != '')
+      #set ($imageURL = $imageUrlExt)
+    #else 
+      #set ($imageURL = $imageUrlInt)
+    #end
+
+    ## ACCESSIBILITY
+    #set ( $imageRoleVal =  ( $element.getChild($widgetXPath).getChild('image').getChild('imageAltOrDecorative').value ) )
+    #if ( $imageRoleVal == "Decorative Image" )
+        #set ( $imageRole = "role='presentation'" )
+        #set ( $altText = '' )
+    #else 
+        #set ( $imageRole = "" )
+    #end
+
+    ## Custom Code Option
+    #set ($code = $element.getChild($widgetXPath).getChild('image').getChild('advanced').getChild('code').value.toLowerCase())
+
 
     #if (!$imageType.contains("none"))
         <div
             class="${_EscapeTool.xml($widgetXPath)}__img--${_EscapeTool.xml($imageShape)} ${_EscapeTool.xml($widgetXPath)}__img"
-            style="width: ${_EscapeTool.xml($imgSize)}; height: ${_EscapeTool.xml($imgSize)}; ">
-                <img class="${_EscapeTool.xml($widgetXPath)}__img img--${_EscapeTool.xml($imageShape)} "
+            style="width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)};">
+                <img $imageRole class="${_EscapeTool.xml($widgetXPath)}__img img--${_EscapeTool.xml($imageShape)} "
                     src="[system-asset]${_EscapeTool.xml($imageUrlInt)}[/system-asset]"
-                    alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-position:${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}"/>
+                    alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-fit: '${_EscapeTool.xml($objectFit)};' object-position:'${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)};' width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)}; "/>
+                    
+                    <![CDATA[#protect
+                      $code
+                     #protect]]>
+                    
         </div>
+    
     #end
+    
 #end
 
 #*
@@ -235,6 +297,46 @@ LOG VELOCITY VARIABLES IN THE BROWSER CONSOLE ON DEV
           }
       #protect]]>
   </script>
+#end
+
+
+#macro ( buildSingleLeftNav $asset )
+  #set ( $drillDownPagePath         = $currentPage.path )
+  #set ( $isVisible                 = $asset.metadata.getDynamicField('Hide from navigation').value != "Yes")
+  #set ( $rootPageName              = $asset.path.replaceAll("^[\w]+\/|^[\w]+-[\w]+\/", "") )
+  #set ( $assetInCurrentPath        = $_StringTool.substringAfter($drillDownPagePath, $asset.path).length() )
+
+  #if ( $drillDownPagePath == $asset.path || $currentPage.parentFolder.path == $asset.path ) 
+    #set ( $isVisible = true )
+    #set ( $isCurrentDrillDownPage = "drill-down-list-item current" )
+  #else
+    #set( $isCurrentDrillDownPage = "drill-down-list-item")
+  #end
+
+  
+  ## setting the asset to visible regardless if its hidden in order to properly display drilldown paths parents
+  #if ( $assetInCurrentPath > 0 || $asset.name == 'index')
+    #set ( $isVisible = true )
+  #end
+
+  #if ($asset.assetType == "folder" && $isVisible)
+    
+    <li class="${isCurrentDrillDownPage}">
+        <a href="site://Chapman.edu/${asset.path}/index">${_EscapeTool.xml($asset.metadata.displayName)}</a>
+    </li>
+  #elseif ($asset.assetType == 'page' && $isVisible)
+    #if ($asset.name == 'index')
+        <li class="${isCurrentDrillDownPage} folder-item">
+            <a href="site://Chapman.edu/${asset.path}">${_EscapeTool.xml($asset.metadata.displayName)}</a>
+        </li>
+    #else
+        <li class="${isCurrentDrillDownPage}">
+            <a href="site://Chapman.edu/${asset.path}">${_EscapeTool.xml($asset.metadata.displayName)}</a>
+        </li>
+    #end
+  #elseif ($asset.assetType == 'symlink')
+    <li class="${isCurrentDrillDownPage}"><a href="site://Chapman.edu/${asset.path}">${_EscapeTool.xml($asset.label)} <span class="fas fa-external-link-alt"></span></a></li>
+  #end
 #end
 
 
