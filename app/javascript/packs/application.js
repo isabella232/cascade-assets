@@ -21,7 +21,9 @@ const images = require.context('../images', true);
 const imagePath = (name) => images(name, true);
 
 import navigation from '../src/navigation';
+import accessibility from '../src/accessibility';
 import '../stylesheets/master.scss';
 
 navigation.initialize();
+accessibility.initialize();
 

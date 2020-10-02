@@ -2,47 +2,108 @@
 
 #macro ( buildBreadcrumbs )
     #set ( $currentPathRoot = $currentPage.path.replaceAll('/(.*)', "") )
+    #if ( "$currentPathRoot/index" != $currentPage.path )
+      #if ( $currentPathRoot != "index" && $currentPathRoot != "" )
+        #set ( $breadcrumbsPath     = $currentPage.path )
+        #set ( $breadcrumbAssets    = $_.locateFolder($currentPathRoot) )
+        #set ( $endOfBreadcrumb     = '' )
+        #set ( $breadcrumbFolders   = [$breadcrumbAssets] )
+        #set ( $visibleSiblingCount = 0 )
 
-    #macro ( buildBreadcrumbList $asset)
-      
-    #end
+        ## find the end of the bread crumb by searching through the current page asset
+        #macro ( getEndOfBreadcrumb $asset )
+          #set ( $parentDirectoryAsset  = $asset.parentFolder )
+          #set ( $visibleChildrenCount  = 0 )
 
-    #if ( $currentPathRoot != "index" && $currentPathRoot != "")
-      #set ( $breadcrumbsPath           = $currentPage.path )
-      #set ( $breadcrumbAssets          = $_.locateFolder($currentPathRoot) )
-      #set ( $breadcrumbsArr            = [])
-
-      #macro ( countAssetsForBreadcrumbs $asset)
-        #foreach ($childAsset in $asset)
-          #if ($childAsset.name != '_files')
+          #foreach ( $childAsset in $parentDirectoryAsset.children )
+            #set ( $isVisible = $childAsset.metadata.getDynamicField('Hide from navigation').value != "Yes" )
+            #set ( $assetType = $childAsset.assetType )
             #set ( $assetInCurrentPath = $_StringTool.substringAfter($breadcrumbsPath, $childAsset.path).length() )
-
-            #if ( $assetInCurrentPath > 0 && $childAsset.assetType == 'folder')
-              $breadcrumbsArr.add($childAsset.path)
-              #set ( $totalAssetsForBreadcrumbs = $totalAssetsForBreadcrumbs + 1 )
-              #countAssetsForBreadcrumbs($childAsset.children)
+            #if ( $assetType == "page" || $assetType == "folder" || $assetType == "folder" )
+              #if ( $isVisible || $assetInCurrentPath > 0 || $breadcrumbsPath == $childAsset.path)
+                #set ( $visibleChildrenCount  = $visibleChildrenCount + 1 )
+              #end
+            #end
+          #end
+          #if ( $visibleChildrenCount > 1 )
+            #set ( $endOfBreadcrumb = $parentDirectoryAsset.parentFolder.path )
+          #else
+            #set ( $parentParentFolder = $parentDirectoryAsset.parentFolder )
+            #if ( $parentParentFolder.path == $currentPathRoot )
+              #set ( $endOfBreadcrumb = '' )
+            #else
+              #set ( $endOfBreadcrumb = $parentDirectoryAsset.parentFolder.parentFolder.path )
             #end
           #end
         #end
+
+        #getEndOfBreadcrumb($currentPage)
+
+        #macro ( setSiblingCount $directory )
+          #set ( $siblingCount = 0 )
+          #foreach($childAsset in $directory.children)
+            #set ( $isVisible = $childAsset.metadata.getDynamicField('Hide from navigation').value != "Yes" )
+            #set ( $assetInCurrentPath = $_StringTool.substringAfter($breadcrumbsPath, $childAsset.path).length() )
+            #set ( $assetType = $childAsset.assetType )
+            #if ( $assetType == "page" || $assetType == "folder" || $assetType == "folder" )    
+              #if ( $isVisible || $assetInCurrentPath > 0 )
+                #set ( $siblingCount = $siblingCount + 1 )
+              #end
+            #end
+          #end
+        #end
+
+
+        #macro ( getBreadcrumbPathDirectories $asset)
+          #set ( $removedRootPath = $_StringTool.substringAfter($endOfBreadcrumb, "$currentPathRoot/") )
+          #set ( $breadcrumbPathFolders = $removedRootPath.split('/') )
+          #foreach ($childAsset in $asset)
+            #if ($childAsset.name != '_files' && $childAsset.assetType == 'folder')
+              #set ( $assetInCurrentPath = $_StringTool.substringAfter($breadcrumbsPath, $childAsset.path).length() )
+              #foreach ($folder in $breadcrumbPathFolders)
+                #if ($folder == $childAsset.name)
+                  #set ( $assetFolder = $_.locateFolder($childAsset.path) )
+                  #set ( $discard = $breadcrumbFolders.add($assetFolder) )
+                #end
+              #end
+
+              #if ( $assetInCurrentPath > 0)
+                #getBreadcrumbPathDirectories($childAsset.children)
+              #end
+            #end
+          #end
+        #end
+
+        #getBreadcrumbPathDirectories($breadcrumbAssets.children)
+        
+        #if ($endOfBreadcrumb != '' && $endOfBreadcrumb != '/')
+          <div id="breadcrumb-dropdown">
+              #foreach($asset in $breadcrumbFolders)
+                <ul class="breadcrumb-dropdown__parent">
+                  #foreach ($childAsset in $asset.children)
+                    #if ($childAsset.name == 'index')
+                      #setSiblingCount($asset)
+                      #set ( $breadcrumbIndexPage = $_.locatePage("${asset.path}/index") )
+                      <li class="#if($siblingCount > 2)breadcrumb-dropdown__container#{else}breadcrumb-dropdown__link#end">
+                        <a href="site://Chapman.edu/${breadcrumbIndexPage.path}">${_EscapeTool.xml($childAsset.metadata.displayName)}</a>
+                        #if ( $siblingCount > 2 )
+                          <ul class="breadcrumb-dropdown__child" aria-expanded="false">
+                            #foreach ( $childAsset in $asset.children )
+                              #if ($childAsset.name != '_files' && $childAsset.name != 'index')
+                                #buildSingleLeftNav($childAsset)
+                              #end
+                            #end
+                          </ul>
+                        #end
+                      </li>
+                    #end
+                  #end
+                </ul>
+              #end
+          </div>
+        #end
+        
       #end
-
-      #countAssetsForBreadcrumbs($breadcrumbAssets.children)  
-      <div>   
-        <ul>
-          #foreach ( $childAsset in $breadcrumbAssets.children )
-            #buildSingleLeftNav($childAsset)
-          #end
-        </ul>
-
-        #foreach( $breadcrumbPath in $breadcrumbsArr )
-          #set ( $breadcrumbPathFolder = $_.locateFolder($breadcrumbPath) )
-          <ul>
-            #foreach( $childAsset in $breadcrumbPathFolder.children)
-              #buildSingleLeftNav($childAsset)
-            #end
-          </ul>
-        #end
-      </div>
     #end
 #end
 

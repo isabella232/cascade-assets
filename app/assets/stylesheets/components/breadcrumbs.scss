@@ -4,6 +4,8 @@
   vertical-align: middle;
   font-family: $futura-regular;
   font-size: 1.6rme;
+  display: flex;
+  align-items: center;
 
   >ul {
     width: 100%;
@@ -97,7 +99,7 @@
   }
 
   .breadcrumbs ul:first-of-type {
-    order: 2;
+    // order: 2;
   }
 
   #social_follow_us {
