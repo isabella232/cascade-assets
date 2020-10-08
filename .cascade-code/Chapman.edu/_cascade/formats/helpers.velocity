@@ -490,13 +490,10 @@ LOG VELOCITY VARIABLES IN THE BROWSER CONSOLE ON DEV
 #macro(determineImageType $urlAsString)
     #if ($urlAsString.toString().contains("jpg"))
         #set ( $imageFileType = ".jpg")
-            ## $imageFileType
         #elseif ($urlAsString.toString().contains("jpeg"))
             #set ( $imageFileType = ".jpeg")
-            ## $imageFileType
         #elseif ($urlAsString.toString().contains("png"))
             #set ( $imageFileType = ".png")
-            ## $imageFileType
     #end
 #end
 
