@@ -6,6 +6,170 @@ require 'open-uri'
 require 'uri'
 require 'yaml'
 
+
+task debuggin: :environment do 
+  # def create_block(asset_name, parent_folder_path, update_source)
+  # p create_block("nick-test", "_cascade/blocks/html", Rails.root.join('dist', 'staging', 'cascade-assets.xml')
+
+
+  # p create_block("nick-test", "_cascade/blocks/html", "dist/staging/cascade-assets.xml")
+
+  puts HTTParty.post(
+    "https://dev-cascade.chapman.edu/api/v1/create/block/Chapman.edu/_cascade/blocks/html/wtf?u=cscddev01500&p=#{cascade_password}",
+    body: {
+      "asset": {
+        "xmlBlock": {
+          "xml": "    \r\n\r\n<![CDATA[#protect\r\n  <!-- Branch: breadcrumbs-redesign Build: 12:24AM 10-08-2020 -->\r\n#protect]]> \r\n \r\n  <!-- Preload CSS & JS -->\r\n  <link as=\"style\" href=\"//dev-www.chapman.edu/_assets/master-11f9ef72a057c39c1e724e792f7e6e848bdacd1896cbdf9218f9dbbbdfb9b3dc.css\" media=\"all\" rel=\"preload\"/>\r\n  <link as=\"script\" href=\"//dev-www.chapman.edu/_assets/master-edbddb1b835b325bec6e32481ba09b31e2ad5d6b349caf2fffab0e1b0fb6d688.js\" media=\"all\" rel=\"preload\"/>\r\n\r\n  <link defer=\"true\" src=\"//dev-www.chapman.edu/_assets/master-webpack-98e97d6cd07078870a1ba71c612ba3702471ad2b.css\"/>\r\n  <script defer=\"true\" src=\"//dev-www.chapman.edu/_assets/master-webpack-303b77bc90c47c099da5582b475d3fd8b358709f.js\"></script>\r\n \r\n  <!-- Carry on -->\r\n  <link href=\"//dev-www.chapman.edu/_assets/master-11f9ef72a057c39c1e724e792f7e6e848bdacd1896cbdf9218f9dbbbdfb9b3dc.css\" media=\"all\" rel=\"stylesheet\"/>\r\n  <script defer=\"defer\" src=\"//dev-www.chapman.edu/_assets/master-edbddb1b835b325bec6e32481ba09b31e2ad5d6b349caf2fffab0e1b0fb6d688.js\"></script>\r\n",
+          "expirationFolderRecycled": false,
+          "metadataSetId": "6fef14a3c04d744c610b81da9d165a27",
+          "metadataSetPath": "Default",
+          "metadata": {
+            "displayName": "",
+            "title": "",
+            "summary": "",
+            "teaser": "",
+            "keywords": "",
+            "metaDescription": "",
+            "author": ""
+          },
+          "reviewOnSchedule": false,
+          "reviewEvery": 0,
+          "parentFolderId": "8516f0a9c04d744c610b81da2d21be44",
+          "parentFolderPath": "_cascade/blocks/html",
+          "lastModifiedDate": "Oct 8, 2020 12:28:25 AM",
+          "lastModifiedBy": "cbryant",
+          "createdDate": "Apr 27, 2015 5:10:43 PM",
+          "createdBy": "mthomas",
+          "path": "_cascade/blocks/html/cascade-assets",
+          "siteId": "6fef14a3c04d744c610b81dac0a8d082",
+          "siteName": "Chapman.edu",
+          "tags": [],
+          "name": "cascade-assets-wtf",
+          "id": "fd5c8e3dc04d744c42ab23aad07d62a6"
+        }
+      },
+      "success": true
+    }.to_json
+  )
+end
+
+
+
+# ---------------------------------------------------------------------------- #
+#                            edit cascade-assets.xml                           #
+# ---------------------------------------------------------------------------- #
+desc 'Updates dev Chapman.edu/_cascade/blocks/html/cascade-assets with dist/staging/cascade-assets.xml'
+task edit_cascade_assets: :environment do
+
+  FileUtils.mkdir('dist/_config') unless File.directory?('dist/_config')
+
+  cascade_assets_block_name = 'cacade-assets-' + `git rev-parse --abbrev-ref HEAD`.strip
+
+  # unless File.exist?("dist/_config/run_once")
+    puts  cascade_assets_feature_branch_filename = 'cacade-assets-' + `git rev-parse --abbrev-ref HEAD`.strip
+
+    # def create_block(asset_name, parent_folder_path, update_source)
+
+
+    puts create_block("wtf", "Chapman.edu/_cascade/blocks/html", "dist/staging/cascade-assets.xml")
+
+    puts "creating new cascade-assets-block ( #{cascade_assets_feature_branch_filename} )!!"
+    # File.write("dist/_config/run_once", "ran `create_block` , created #{cascade_assets_feature_branch_filename} on dev-Chapman.edu/_cascade/blocks/html !!")
+  # end
+
+  # edit_block(
+  #   "Chapman.edu/_cascade/blocks/html/#{cascade_assets_block_name}",
+  #   'dist/staging/cascade-assets.xml'
+  # )
+  
+  # local_file = 'dist/staging/cascade-assets.xml'
+  # # url_path = URI.parse(local_file).path
+  # # html = Nokogiri.HTML(URI.open(url, read_timeout: 300))
+  # # body = html.css('body')
+
+  # webpack_manifest = File.read("dist/staging/_assets/manifest.json")
+  # puts webpack_manifest = JSON.parse(webpack_manifest)
+
+  # html = Nokogiri.HTML(URI.open(local_file, read_timeout: 300))
+  # puts master_css = html.at('link[rel="stylesheet"]')['href']
+  # puts webpack_manifest['application.css']
+  # puts master_js = html.at('link[as="script"]')['href']
+  # puts webpack_manifest['application.js']
+
+  # uri_css = URI.parse(master_css)
+  # uri_webpack_css = URI.parse(webpack_manifest['application.css'])
+  # puts uri_css = File.basename(uri_css.path)
+  # puts uri_webpack_css = File.basename(uri_webpack_css.path)
+
+  # uri_js = URI.parse("#{master_js}")
+  # uri_webpack_js = URI.parse(webpack_manifest['application.js'])
+  # puts uri_js = File.basename(uri_js.path)
+  # puts uri_webpack_js = File.basename(uri_webpack_js.path)
+
+  # # def create_file(response_name, asset_path, update_source)
+  # puts ("#{uri_css}" + 'Chapman.edu/_assets/' + "dist/development/_assets/#{uri_css}")
+
+  # puts 
+  # puts create_file("#{uri_css}", 'Chapman.edu/_assets/', "dist/staging/_assets/#{uri_css}")
+  # puts
+  # puts create_file("#{uri_webpack_css}", 'Chapman.edu/_assets/', "dist/staging/_assets/#{uri_webpack_css}")
+  # puts
+  # puts create_file("#{uri_js}", 'Chapman.edu/_assets/', "dist/staging/_assets/#{uri_js}")
+  # puts
+  # puts create_file("#{uri_webpack_js}", 'Chapman.edu/_assets/', "dist/staging/_assets/#{uri_webpack_js}")
+
+  # puts "publishing Chapman.edu/_assets/#{uri_css}"
+  # p
+  # publish_asset("file", "Chapman.edu/_assets/#{uri_css}")
+  # p
+  # puts "publishing Chapman.edu/_assets/#{uri_webpack_css}"
+  # p
+  # publish_asset("file", "Chapman.edu/_assets/#{uri_webpack_css}")
+  # p
+  # puts "publishing Chapman.edu/_assets/#{uri_js}"
+  # p
+  # publish_asset("file", "Chapman.edu/_assets/#{uri_js}")
+  # p
+  # puts "publishing Chapman.edu/_assets/#{uri_webpack_js}"
+  # p
+  # publish_asset("file", "Chapman.edu/_assets/#{uri_webpack_js}")
+  # p
+
+  # # TODO
+  # unless File.exist?("dist/_config/branch_settings.yml")
+  #   puts
+  #   puts "Done! Want to also automatically publish an associated page?"
+  #   puts
+  #   puts  "⚡️ If so enter the the asset path below WITHOUT https:// or .com"
+  #   puts " eg Chapman.edu/test-section/nick-test/two-col"
+  #   puts " 🎹 Enter the asset path (or press enter to ignore): "
+    
+  #   page = STDIN.gets.chomp
+  #   puts `thor cascade:publish page #{page}`
+
+  #   FileUtils.mkdir('dist/_config') unless File.directory?('dist/_config')
+
+  #   # File.write("dist/staging/branch_settings.yml", "page_to_publish #{page}")
+  #   File.open("dist/_config/branch_settings.yml", 'a') do |file|
+  #     file.puts "page_to_publish: #{page}"
+  #   end
+
+  #   puts "👼 Cool. This page can be reconfigured in dist/_config/branch_settings.yml"
+  # else 
+
+  #   branch_settings = YAML.load(File.read("dist/_config/branch_settings.yml"))
+  #   page = branch_settings["page_to_publish"]
+  #   puts 
+  #   puts "🔮 Automatically publishing #{page}. This can be reconfigured in dist/staging/_config/branch_settings.yml"
+
+  #   puts
+  #   puts `thor cascade:publish page #{page}`
+
+  # end
+
+end
+
+
 # ---------------------------------------------------------------------------- #
 #                          Edit Widget - Funnels 1 Up                          #
 # ---------------------------------------------------------------------------- #
@@ -28,117 +192,6 @@ task edit_widget_funnels_2_up: :environment do
     '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Funnels_2up.vtl'
   )
 end
-
-
-# ---------------------------------------------------------------------------- #
-#                            edit cascade-assets.xml                           #
-# ---------------------------------------------------------------------------- #
-desc 'Updates dev Chapman.edu/_cascade/blocks/html/cascade-assets with dist/staging/cascade-assets.xml'
-task edit_cascade_assets: :environment do
-
-  FileUtils.mkdir('dist/_config') unless File.directory?('dist/_config')
-
-  cascade_assets_block_name = 'cacade-assets-' + `git rev-parse --abbrev-ref HEAD`.strip
-  unless File.exist?("dist/_config/run_once")
-    puts  cascade_assets_feature_branch_filename = 'cacade-assets-' + `git rev-parse --abbrev-ref HEAD`.strip
-    puts create_block("#{cascade_assets_feature_branch_filename}", "_cascade/blocks/html", "dist/staging/cascade-assets.xml")
-
-    puts "creating new cascade-assets-block ( #{cascade_assets_feature_branch_filename} )!!"
-    File.write("dist/_config/run_once", "ran `create_block` , created #{cascade_assets_feature_branch_filename} on dev-Chapman.edu/_cascade/blocks/html !!")
-  end
-
-  edit_block(
-    "Chapman.edu/_cascade/blocks/html/#{cascade_assets_block_name}",
-    'dist/staging/cascade-assets.xml'
-  )
-  
-  local_file = 'dist/staging/cascade-assets.xml'
-  # url_path = URI.parse(local_file).path
-  # html = Nokogiri.HTML(URI.open(url, read_timeout: 300))
-  # body = html.css('body')
-
-  webpack_manifest = File.read("dist/staging/_assets/manifest.json")
-  puts webpack_manifest = JSON.parse(webpack_manifest)
-
-  html = Nokogiri.HTML(URI.open(local_file, read_timeout: 300))
-  puts master_css = html.at('link[rel="stylesheet"]')['href']
-  puts webpack_manifest['application.css']
-  puts master_js = html.at('link[as="script"]')['href']
-  puts webpack_manifest['application.js']
-
-  uri_css = URI.parse(master_css)
-  uri_webpack_css = URI.parse(webpack_manifest['application.css'])
-  puts uri_css = File.basename(uri_css.path)
-  puts uri_webpack_css = File.basename(uri_webpack_css.path)
-
-  uri_js = URI.parse("#{master_js}")
-  uri_webpack_js = URI.parse(webpack_manifest['application.js'])
-  puts uri_js = File.basename(uri_js.path)
-  puts uri_webpack_js = File.basename(uri_webpack_js.path)
-
-  # def create_file(response_name, asset_path, update_source)
-  puts ("#{uri_css}" + 'Chapman.edu/_assets/' + "dist/development/_assets/#{uri_css}")
-
-  puts 
-  puts create_file("#{uri_css}", 'Chapman.edu/_assets/', "dist/staging/_assets/#{uri_css}")
-  puts
-  puts create_file("#{uri_webpack_css}", 'Chapman.edu/_assets/', "dist/staging/_assets/#{uri_webpack_css}")
-  puts
-  puts create_file("#{uri_js}", 'Chapman.edu/_assets/', "dist/staging/_assets/#{uri_js}")
-  puts
-  puts create_file("#{uri_webpack_js}", 'Chapman.edu/_assets/', "dist/staging/_assets/#{uri_webpack_js}")
-
-  puts "publishing Chapman.edu/_assets/#{uri_css}"
-  p
-  publish_asset("file", "Chapman.edu/_assets/#{uri_css}")
-  p
-  puts "publishing Chapman.edu/_assets/#{uri_webpack_css}"
-  p
-  publish_asset("file", "Chapman.edu/_assets/#{uri_webpack_css}")
-  p
-  puts "publishing Chapman.edu/_assets/#{uri_js}"
-  p
-  publish_asset("file", "Chapman.edu/_assets/#{uri_js}")
-  p
-  puts "publishing Chapman.edu/_assets/#{uri_webpack_js}"
-  p
-  publish_asset("file", "Chapman.edu/_assets/#{uri_webpack_js}")
-  p
-
-  # TODO
-  unless File.exist?("dist/_config/branch_settings.yml")
-    puts
-    puts "Done! Want to also automatically publish an associated page?"
-    puts
-    puts  "⚡️ If so enter the the asset path below WITHOUT https:// or .com"
-    puts " eg Chapman.edu/test-section/nick-test/two-col"
-    puts " 🎹 Enter the asset path (or press enter to ignore): "
-    
-    page = STDIN.gets.chomp
-    puts `thor cascade:publish page #{page}`
-
-    FileUtils.mkdir('dist/_config') unless File.directory?('dist/_config')
-
-    # File.write("dist/staging/branch_settings.yml", "page_to_publish #{page}")
-    File.open("dist/_config/branch_settings.yml", 'a') do |file|
-      file.puts "page_to_publish: #{page}"
-    end
-
-    puts "👼 Cool. This page can be reconfigured in dist/_config/branch_settings.yml"
-  else 
-
-    branch_settings = YAML.load(File.read("dist/_config/branch_settings.yml"))
-    page = branch_settings["page_to_publish"]
-    puts 
-    puts "🔮 Automatically publishing #{page}. This can be reconfigured in dist/staging/_config/branch_settings.yml"
-
-    puts
-    puts `thor cascade:publish page #{page}`
-
-  end
-
-end
-
 
 # ---------------------------------------------------------------------------- #
 #                           edit one-column data def                           #
@@ -763,6 +816,11 @@ end
 
 def create_block(asset_name, parent_folder_path, update_source)
 
+  asset_name = "#{asset_name}"
+
+  p 
+  p " in create_block "
+  p 
   response_name = "#{response_name}"
   # * 1) BASE URL
   base_url = 'https://dev-cascade.chapman.edu/api/v1/'.to_s
@@ -779,7 +837,7 @@ def create_block(asset_name, parent_folder_path, update_source)
 
   # * 4) ASSET PATH OR ID
   # you can also use its path (ie "Chapman.edu/_cascade/formats/modular/widgets/1-column")... but.. whitespace.
-  asset_path = "#{asset_path}" # ! NO TRAILING SLASH
+  asset_path = "#{parent_folder_path}" # ! NO TRAILING SLASH
 
   # * 5) SECRETS
   # set these in environment_variables.yml
@@ -789,14 +847,20 @@ def create_block(asset_name, parent_folder_path, update_source)
   update_source = "#{update_source}"
 
   data = File.read(update_source)
+  
   puts data
 
   response_body = data
 
-  url_post =
-    base_url + 'create/' + asset_type + cascade_username +
-      cascade_password
+  p "asset_name #{asset_name}"
+  p "asset_type #{asset_type}"
+  p "asset_path #{parent_folder_path}"
 
+  url_post =
+    "#{base_url}create/#{asset_type}#{asset_path}/#{asset_name}#{cascade_username}#{cascade_password}"
+
+
+  p "url_post #{url_post}"
 
   # 👹Editing assets unfortunately requires PATH, SITENAME, ID. This can be obtained by reading the asset's response.body 👆
   # HTTParty.post(url_post, body: { asset: { xmlBlock: { xml: data, path: "_cascade/blocks/html/0-write-test", parentFolderId: parent_folder_id, siteName: "Chapman.edu", id: "365ae5dec0a81e8a20b1d746fd3e0778" } } }.to_json)
@@ -804,30 +868,39 @@ def create_block(asset_name, parent_folder_path, update_source)
   puts HTTParty.post(
          url_post,
          body: {
-          "asset": {
-            "xmlBlock": {
-              "xml": data,
-              "expirationFolderRecycled": false,
-              "metadataSetId": "6fef14a3c04d744c610b81da9d165a27",
-              "metadataSetPath": "Default",
-              "metadata": {},
-              "reviewOnSchedule": false,
-              "reviewEvery": 0,
-              "parentFolderId": "8516f0a9c04d744c610b81da2d21be44",
-              "parentFolderPath": "#{parent_folder_path}",
-              "lastModifiedDate": "Jul 20, 2020, 5:48:52 PM",
-              "lastModifiedBy": "cscddev01500",
-              "createdDate": "Apr 27, 2015, 5:10:43 PM",
-              "createdBy": "mthomas",
-              # "path": "_cascade/blocks/html/#{asset_name}",
-              "siteId": "6fef14a3c04d744c610b81dac0a8d082",
-              "siteName": "Chapman.edu",
-              "tags": [],
-              "name": "#{asset_name}"
-            }
-          },
-          "success": true
-        }.to_json
+  "asset": {
+    "xmlBlock": {
+      "xml": "#{data}",
+      "expirationFolderRecycled": false,
+      "metadataSetId": "6fef14a3c04d744c610b81da9d165a27",
+      "metadataSetPath": "Default",
+      "metadata": {
+        "displayName": "",
+        "title": "",
+        "summary": "",
+        "teaser": "",
+        "keywords": "",
+        "metaDescription": "",
+        "author": ""
+      },
+      "reviewOnSchedule": false,
+      "reviewEvery": 0,
+      "parentFolderId": "8516f0a9c04d744c610b81da2d21be44",
+      "parentFolderPath": "#{parent_folder_path}",
+      "lastModifiedDate": "Oct 8, 2020 12:28:25 AM",
+      "lastModifiedBy": "cbryant",
+      "createdDate": "Apr 27, 2015 5:10:43 PM",
+      "createdBy": "mthomas",
+      "path": "_cascade/blocks/html/cascade-assets",
+      "siteId": "6fef14a3c04d744c610b81dac0a8d082",
+      "siteName": "Chapman.edu",
+      "tags": [],
+      "name": "#{asset_name}",
+      "id": "fd5c8e3dc04d744c42ab23aad07d62a6"
+    }
+  },
+  "success": true
+}.to_json
        )
   # puts "🎉        View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{
   #        asset_id
