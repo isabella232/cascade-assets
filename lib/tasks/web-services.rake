@@ -65,107 +65,107 @@ task edit_cascade_assets: :environment do
 
   cascade_assets_block_name = 'cacade-assets-' + `git rev-parse --abbrev-ref HEAD`.strip
 
-  # unless File.exist?("dist/_config/run_once")
+  unless File.exist?("dist/_config/run_once.txt.txt")
     puts  cascade_assets_feature_branch_filename = 'cacade-assets-' + `git rev-parse --abbrev-ref HEAD`.strip
 
     # def create_block(asset_name, parent_folder_path, update_source)
 
 
-    puts create_block("wtf", "Chapman.edu/_cascade/blocks/html", "dist/staging/cascade-assets.xml")
+    puts create_block("#{cascade_assets_block_name}", "Chapman.edu/_cascade/blocks/html", "dist/staging/cascade-assets.xml")
 
     puts "creating new cascade-assets-block ( #{cascade_assets_feature_branch_filename} )!!"
-    # File.write("dist/_config/run_once", "ran `create_block` , created #{cascade_assets_feature_branch_filename} on dev-Chapman.edu/_cascade/blocks/html !!")
-  # end
+    File.write("dist/_config/run_once.txt.txt", "ran `create_block` , created #{cascade_assets_feature_branch_filename} on dev-Chapman.edu/_cascade/blocks/html !!")
+  end
 
-  # edit_block(
-  #   "Chapman.edu/_cascade/blocks/html/#{cascade_assets_block_name}",
-  #   'dist/staging/cascade-assets.xml'
-  # )
+  edit_block(
+    "Chapman.edu/_cascade/blocks/html/#{cascade_assets_block_name}",
+    'dist/staging/cascade-assets.xml'
+  )
   
-  # local_file = 'dist/staging/cascade-assets.xml'
-  # # url_path = URI.parse(local_file).path
-  # # html = Nokogiri.HTML(URI.open(url, read_timeout: 300))
-  # # body = html.css('body')
+  local_file = 'dist/staging/cascade-assets.xml'
+  # url_path = URI.parse(local_file).path
+  # html = Nokogiri.HTML(URI.open(url, read_timeout: 300))
+  # body = html.css('body')
 
-  # webpack_manifest = File.read("dist/staging/_assets/manifest.json")
-  # puts webpack_manifest = JSON.parse(webpack_manifest)
+  webpack_manifest = File.read("dist/staging/_assets/manifest.json")
+  puts webpack_manifest = JSON.parse(webpack_manifest)
 
-  # html = Nokogiri.HTML(URI.open(local_file, read_timeout: 300))
-  # puts master_css = html.at('link[rel="stylesheet"]')['href']
-  # puts webpack_manifest['application.css']
-  # puts master_js = html.at('link[as="script"]')['href']
-  # puts webpack_manifest['application.js']
+  html = Nokogiri.HTML(URI.open(local_file, read_timeout: 300))
+  puts master_css = html.at('link[rel="stylesheet"]')['href']
+  puts webpack_manifest['application.css']
+  puts master_js = html.at('link[as="script"]')['href']
+  puts webpack_manifest['application.js']
 
-  # uri_css = URI.parse(master_css)
-  # uri_webpack_css = URI.parse(webpack_manifest['application.css'])
-  # puts uri_css = File.basename(uri_css.path)
-  # puts uri_webpack_css = File.basename(uri_webpack_css.path)
+  uri_css = URI.parse(master_css)
+  uri_webpack_css = URI.parse(webpack_manifest['application.css'])
+  puts uri_css = File.basename(uri_css.path)
+  puts uri_webpack_css = File.basename(uri_webpack_css.path)
 
-  # uri_js = URI.parse("#{master_js}")
-  # uri_webpack_js = URI.parse(webpack_manifest['application.js'])
-  # puts uri_js = File.basename(uri_js.path)
-  # puts uri_webpack_js = File.basename(uri_webpack_js.path)
+  uri_js = URI.parse("#{master_js}")
+  uri_webpack_js = URI.parse(webpack_manifest['application.js'])
+  puts uri_js = File.basename(uri_js.path)
+  puts uri_webpack_js = File.basename(uri_webpack_js.path)
 
-  # # def create_file(response_name, asset_path, update_source)
-  # puts ("#{uri_css}" + 'Chapman.edu/_assets/' + "dist/development/_assets/#{uri_css}")
+  # def create_file(response_name, asset_path, update_source)
+  puts ("#{uri_css}" + 'Chapman.edu/_assets/' + "dist/development/_assets/#{uri_css}")
 
-  # puts 
-  # puts create_file("#{uri_css}", 'Chapman.edu/_assets/', "dist/staging/_assets/#{uri_css}")
-  # puts
-  # puts create_file("#{uri_webpack_css}", 'Chapman.edu/_assets/', "dist/staging/_assets/#{uri_webpack_css}")
-  # puts
-  # puts create_file("#{uri_js}", 'Chapman.edu/_assets/', "dist/staging/_assets/#{uri_js}")
-  # puts
-  # puts create_file("#{uri_webpack_js}", 'Chapman.edu/_assets/', "dist/staging/_assets/#{uri_webpack_js}")
+  puts 
+  puts create_file("#{uri_css}", 'Chapman.edu/_assets/', "dist/staging/_assets/#{uri_css}")
+  puts
+  puts create_file("#{uri_webpack_css}", 'Chapman.edu/_assets/', "dist/staging/_assets/#{uri_webpack_css}")
+  puts
+  puts create_file("#{uri_js}", 'Chapman.edu/_assets/', "dist/staging/_assets/#{uri_js}")
+  puts
+  puts create_file("#{uri_webpack_js}", 'Chapman.edu/_assets/', "dist/staging/_assets/#{uri_webpack_js}")
 
-  # puts "publishing Chapman.edu/_assets/#{uri_css}"
-  # p
-  # publish_asset("file", "Chapman.edu/_assets/#{uri_css}")
-  # p
-  # puts "publishing Chapman.edu/_assets/#{uri_webpack_css}"
-  # p
-  # publish_asset("file", "Chapman.edu/_assets/#{uri_webpack_css}")
-  # p
-  # puts "publishing Chapman.edu/_assets/#{uri_js}"
-  # p
-  # publish_asset("file", "Chapman.edu/_assets/#{uri_js}")
-  # p
-  # puts "publishing Chapman.edu/_assets/#{uri_webpack_js}"
-  # p
-  # publish_asset("file", "Chapman.edu/_assets/#{uri_webpack_js}")
-  # p
+  puts "publishing Chapman.edu/_assets/#{uri_css}"
+  p
+  publish_asset("file", "Chapman.edu/_assets/#{uri_css}")
+  p
+  puts "publishing Chapman.edu/_assets/#{uri_webpack_css}"
+  p
+  publish_asset("file", "Chapman.edu/_assets/#{uri_webpack_css}")
+  p
+  puts "publishing Chapman.edu/_assets/#{uri_js}"
+  p
+  publish_asset("file", "Chapman.edu/_assets/#{uri_js}")
+  p
+  puts "publishing Chapman.edu/_assets/#{uri_webpack_js}"
+  p
+  publish_asset("file", "Chapman.edu/_assets/#{uri_webpack_js}")
+  p
 
-  # # TODO
-  # unless File.exist?("dist/_config/branch_settings.yml")
-  #   puts
-  #   puts "Done! Want to also automatically publish an associated page?"
-  #   puts
-  #   puts  "⚡️ If so enter the the asset path below WITHOUT https:// or .com"
-  #   puts " eg Chapman.edu/test-section/nick-test/two-col"
-  #   puts " 🎹 Enter the asset path (or press enter to ignore): "
+  # TODO
+  unless File.exist?("dist/_config/branch_settings.yml")
+    puts
+    puts "Done! Want to also automatically publish an associated page?"
+    puts
+    puts  "⚡️ If so enter the the asset path below WITHOUT https:// or .com"
+    puts " eg Chapman.edu/test-section/nick-test/two-col"
+    puts " 🎹 Enter the asset path (or press enter to ignore): "
     
-  #   page = STDIN.gets.chomp
-  #   puts `thor cascade:publish page #{page}`
+    page = STDIN.gets.chomp
+    puts `thor cascade:publish page #{page}`
 
-  #   FileUtils.mkdir('dist/_config') unless File.directory?('dist/_config')
+    FileUtils.mkdir('dist/_config') unless File.directory?('dist/_config')
 
-  #   # File.write("dist/staging/branch_settings.yml", "page_to_publish #{page}")
-  #   File.open("dist/_config/branch_settings.yml", 'a') do |file|
-  #     file.puts "page_to_publish: #{page}"
-  #   end
+    # File.write("dist/staging/branch_settings.yml", "page_to_publish #{page}")
+    File.open("dist/_config/branch_settings.yml", 'a') do |file|
+      file.puts "page_to_publish: #{page}"
+    end
 
-  #   puts "👼 Cool. This page can be reconfigured in dist/_config/branch_settings.yml"
-  # else 
+    puts "👼 Cool. This page can be reconfigured in dist/_config/branch_settings.yml"
+  else 
 
-  #   branch_settings = YAML.load(File.read("dist/_config/branch_settings.yml"))
-  #   page = branch_settings["page_to_publish"]
-  #   puts 
-  #   puts "🔮 Automatically publishing #{page}. This can be reconfigured in dist/staging/_config/branch_settings.yml"
+    branch_settings = YAML.load(File.read("dist/_config/branch_settings.yml"))
+    page = branch_settings["page_to_publish"]
+    puts 
+    puts "🔮 Automatically publishing #{page}. This can be reconfigured in dist/staging/_config/branch_settings.yml"
 
-  #   puts
-  #   puts `thor cascade:publish page #{page}`
+    puts
+    puts `thor cascade:publish page #{page}`
 
-  # end
+  end
 
 end
 
