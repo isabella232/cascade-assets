@@ -206,7 +206,7 @@ html {
           text-transform: uppercase !important;
         }
 
-        .text-with-cta__button + .text-with-cta__button {
+        .text-with-cta__button+.text-with-cta__button {
           margin-top: 5px;
         }
 
@@ -216,7 +216,7 @@ html {
           font-weight: normal;
         }
 
-        .text-with-cta__button + .text-with-cta__button {
+        .text-with-cta__button+.text-with-cta__button {
           margin-top: 5px;
         }
 
@@ -242,13 +242,6 @@ html {
           margin-bottom: 0;
         }
       }
-    }
-  }
-
-  &.two-column-template,
-  &.three-column-template {
-    [class*="--white"] {
-      border: none;
     }
   }
 
