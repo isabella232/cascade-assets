@@ -468,17 +468,7 @@ button.photo-callout-widget__load-more {
   }
 }
 
-// :not(.photo-callout-widget__container--2-col) {
-//   a.photo-callout-widget:nth-child(n + 7) {
-//     display: none;
-//   }
-
-//   div.photo-callout-widget:nth-child(n + 7) {
-//     display: none;
-//   }
-// }
-
-.photo-callout-widget__container--no-paginate {
+.photo-callout-widget__container--no-paginate a.photo-callout-widget {
   a.photo-callout-widget:nth-child(n + 4) {
     display: grid;
   }
@@ -577,4 +567,12 @@ button.photo-callout-widget__button.photo-callout-widget__button--white {
     filter: brightness(80%);
     transition: all 350ms ease;
   }
+}
+
+.photo-callout-widget__container--no-paginate .photo-callout-widget {
+  display: grid;
+}
+
+.photo-callout-widget__text p {
+  max-width: 15ch;
 }
