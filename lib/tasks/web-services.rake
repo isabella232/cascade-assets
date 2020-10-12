@@ -65,7 +65,7 @@ task edit_cascade_assets: :environment do
 
   cascade_assets_block_name = 'cacade-assets-' + `git rev-parse --abbrev-ref HEAD`.strip
 
-  unless File.exist?("dist/_config/run_once.txt.txt")
+  unless File.exist?("dist/_config/run_once.txt")
     puts  cascade_assets_feature_branch_filename = 'cacade-assets-' + `git rev-parse --abbrev-ref HEAD`.strip
 
     # def create_block(asset_name, parent_folder_path, update_source)
@@ -74,7 +74,7 @@ task edit_cascade_assets: :environment do
     puts create_block("#{cascade_assets_block_name}", "Chapman.edu/_cascade/blocks/html", "dist/staging/cascade-assets.xml")
 
     puts "creating new cascade-assets-block ( #{cascade_assets_feature_branch_filename} )!!"
-    File.write("dist/_config/run_once.txt.txt", "ran `create_block` , created #{cascade_assets_feature_branch_filename} on dev-Chapman.edu/_cascade/blocks/html !!")
+    File.write("dist/_config/run_once.txt", "ran `create_block` , created #{cascade_assets_feature_branch_filename} on dev-Chapman.edu/_cascade/blocks/html !!")
   end
 
   edit_block(
