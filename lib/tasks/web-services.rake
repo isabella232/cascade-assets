@@ -409,7 +409,8 @@ def edit_format(asset_path, update_source)
   # set these in environment_variables.yml
   cascade_username = '?u=' + ENV['CASCADE_USERNAME']
   cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
-
+  p cascade_username
+  p cascade_password
   # the constructed url should look something like:
   # https://dev-cascade.chapman.edu/api/v1/read/folder/Chapman.edu/_cascade/formats/modular/widgets/foldername?u=username&p=password
 

@@ -326,7 +326,7 @@ module ContentTypes
         'PAGE WRAPPER OPEN' =>
           cascade_format('_cascade/formats/modular/page_wrapper_open'),
         'PRIMARY CONTENT' => render_static_two_column_primary_content,
-        'SOCIAL ACCOUNTS' => 'TODO: _cascade/formats/level/social_accounts',
+        'SOCIAL_ACCOUNTS' => cascade_block('_cascade/formats/level/social_accounts'),
         'TYPEKIT' => cascade_block('_cascade/blocks/html/typekit'),
         # TODO: convert these to cascade_format action.
         "UNINAV" => render_static_partial("uninav/uninav"),
