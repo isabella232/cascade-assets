@@ -64,28 +64,6 @@
         &:focus {
           outline: 2px dotted $cu-red;
         }
-
-        &:focus-within {
-          // outline: 2px dotted $cu-red;
-        }
-
-        // a { outline: none; }
-
-        // &::after {
-        //   font-family: "Font Awesome 5 Pro";
-        //   font-weight: 900;
-        //   content: "\f0d7";
-        //   font-size: 1.4rem;
-        //   width: 25px;
-        //   display: flex;
-        //   justify-content: center;
-        //   padding-top: 2px;
-
-        //   &:hover {
-        //     cursor: pointer;
-        //   }
-        // }
-
       }
 
       & > li.breadcrumb-dropdown__link {
@@ -145,7 +123,7 @@
     &__indicator {
 
       &:focus {
-        outline: 1px dotted $cu-red;
+        outline: 2px dotted $cu-red;
       }
 
       &:hover {
