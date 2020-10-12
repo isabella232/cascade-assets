@@ -5,7 +5,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'uri'
 require 'yaml'
-
+require 'fileutils'
 
 task debuggin: :environment do 
   # def create_block(asset_name, parent_folder_path, update_source)
@@ -61,15 +61,31 @@ end
 desc 'Updates dev Chapman.edu/_cascade/blocks/html/cascade-assets with dist/staging/cascade-assets.xml'
 task edit_cascade_assets: :environment do
 
-  FileUtils.mkdir('dist/_config') unless File.directory?('dist/_config')
 
-  cascade_assets_block_name = 'cacade-assets-' + `git rev-parse --abbrev-ref HEAD`.strip
+ 
+
+
+  FileUtils.mkdir('dist/_config') unless File.directory?('dist/_config')
+  
+  current_branch = `git rev-parse --abbrev-ref HEAD`.strip
+  cascade_assets_block_name = 'cacade-assets-' + current_branch
+
+  if(File.exist?('dist/_config/branch_settings.yml'))
+    branch_settings = YAML.load_file('dist/_config/branch_settings.yml')
+    puts branch_settings.inspect
+    last_used_branch =  branch_settings['branch']
+
+    if last_used_branch != current_branch
+      p
+      puts "🎋 Current branch is different from existing branch in branch_settings.yml. Replacing existing branch_settings.yml with a new one!"
+      p
+      FileUtils.rm_rf('dist/_config/branch_settings.yml')
+      FileUtils.rm_rf('dist/_config/run_once.txt')
+    end
+  end
 
   unless File.exist?("dist/_config/run_once.txt")
     puts  cascade_assets_feature_branch_filename = 'cacade-assets-' + `git rev-parse --abbrev-ref HEAD`.strip
-
-    # def create_block(asset_name, parent_folder_path, update_source)
-
 
     puts create_block("#{cascade_assets_block_name}", "Chapman.edu/_cascade/blocks/html", "dist/staging/cascade-assets.xml")
 
@@ -145,13 +161,17 @@ task edit_cascade_assets: :environment do
     puts " 🎹 Enter the asset path (or press enter to ignore): "
     
     page = STDIN.gets.chomp
+
+    # Run web.services.thor task to publish the specified page.
     puts `thor cascade:publish page #{page}`
 
+    
     FileUtils.mkdir('dist/_config') unless File.directory?('dist/_config')
 
     # File.write("dist/staging/branch_settings.yml", "page_to_publish #{page}")
     File.open("dist/_config/branch_settings.yml", 'a') do |file|
       file.puts "page_to_publish: #{page}"
+      file.puts "branch: #{current_branch}"
     end
 
     puts "👼 Cool. This page can be reconfigured in dist/_config/branch_settings.yml"
