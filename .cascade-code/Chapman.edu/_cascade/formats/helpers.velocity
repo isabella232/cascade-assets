@@ -516,15 +516,6 @@ LOG VELOCITY VARIABLES IN THE BROWSER CONSOLE ON DEV
   #end
 #end
 
-#macro(addBackgroundImage $content)
-    #set ($linkUrl = $content.getChild('fileLink').getChild('path').value)
-    #if ($linkUrl != '')
-        "background-image: url('[system-asset]${linkUrl}[/system-asset]')"
-    #else
-        ""
-    #end
-#end
-
 #macro(alert $v)
   <script>
       <![CDATA[#protect
