@@ -7,62 +7,11 @@ require 'uri'
 require 'yaml'
 require 'fileutils'
 
-task debuggin: :environment do 
-  # def create_block(asset_name, parent_folder_path, update_source)
-  # p create_block("nick-test", "_cascade/blocks/html", Rails.root.join('dist', 'staging', 'cascade-assets.xml')
-
-
-  # p create_block("nick-test", "_cascade/blocks/html", "dist/staging/cascade-assets.xml")
-
-  p HTTParty.post(
-    "https://dev-cascade.chapman.edu/api/v1/create/block/Chapman.edu/_cascade/blocks/html/wtf?u=cscddev01500&p=#{cascade_password}",
-    body: {
-      "asset": {
-        "xmlBlock": {
-          "xml": "    \r\n\r\n<![CDATA[#protect\r\n  <!-- Branch: breadcrumbs-redesign Build: 12:24AM 10-08-2020 -->\r\n#protect]]> \r\n \r\n  <!-- Preload CSS & JS -->\r\n  <link as=\"style\" href=\"//dev-www.chapman.edu/_assets/master-11f9ef72a057c39c1e724e792f7e6e848bdacd1896cbdf9218f9dbbbdfb9b3dc.css\" media=\"all\" rel=\"preload\"/>\r\n  <link as=\"script\" href=\"//dev-www.chapman.edu/_assets/master-edbddb1b835b325bec6e32481ba09b31e2ad5d6b349caf2fffab0e1b0fb6d688.js\" media=\"all\" rel=\"preload\"/>\r\n\r\n  <link defer=\"true\" src=\"//dev-www.chapman.edu/_assets/master-webpack-98e97d6cd07078870a1ba71c612ba3702471ad2b.css\"/>\r\n  <script defer=\"true\" src=\"//dev-www.chapman.edu/_assets/master-webpack-303b77bc90c47c099da5582b475d3fd8b358709f.js\"></script>\r\n \r\n  <!-- Carry on -->\r\n  <link href=\"//dev-www.chapman.edu/_assets/master-11f9ef72a057c39c1e724e792f7e6e848bdacd1896cbdf9218f9dbbbdfb9b3dc.css\" media=\"all\" rel=\"stylesheet\"/>\r\n  <script defer=\"defer\" src=\"//dev-www.chapman.edu/_assets/master-edbddb1b835b325bec6e32481ba09b31e2ad5d6b349caf2fffab0e1b0fb6d688.js\"></script>\r\n",
-          "expirationFolderRecycled": false,
-          "metadataSetId": "6fef14a3c04d744c610b81da9d165a27",
-          "metadataSetPath": "Default",
-          "metadata": {
-            "displayName": "",
-            "title": "",
-            "summary": "",
-            "teaser": "",
-            "keywords": "",
-            "metaDescription": "",
-            "author": ""
-          },
-          "reviewOnSchedule": false,
-          "reviewEvery": 0,
-          "parentFolderId": "8516f0a9c04d744c610b81da2d21be44",
-          "parentFolderPath": "_cascade/blocks/html",
-          "lastModifiedDate": "Oct 8, 2020 12:28:25 AM",
-          "lastModifiedBy": "cbryant",
-          "createdDate": "Apr 27, 2015 5:10:43 PM",
-          "createdBy": "mthomas",
-          "path": "_cascade/blocks/html/cascade-assets",
-          "siteId": "6fef14a3c04d744c610b81dac0a8d082",
-          "siteName": "Chapman.edu",
-          "tags": [],
-          "name": "cascade-assets-wtf",
-          "id": "fd5c8e3dc04d744c42ab23aad07d62a6"
-        }
-      },
-      "success": true
-    }.to_json
-  )
-end
-
-
-
 # ---------------------------------------------------------------------------- #
 #                            edit cascade-assets.xml                           #
 # ---------------------------------------------------------------------------- #
 desc 'Updates dev Chapman.edu/_cascade/blocks/html/cascade-assets with dist/staging/cascade-assets.xml'
 task edit_cascade_assets: :environment do
-
-
- 
 
 
   FileUtils.mkdir('dist/_config') unless File.directory?('dist/_config')
