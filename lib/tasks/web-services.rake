@@ -68,7 +68,7 @@ task edit_cascade_assets: :environment do
   FileUtils.mkdir('dist/_config') unless File.directory?('dist/_config')
   
   current_branch = `git rev-parse --abbrev-ref HEAD`.strip
-  cascade_assets_block_name = 'cacade-assets-' + current_branch
+  cascade_assets_block_name = 'cascade-assets-' + current_branch
 
   if(File.exist?('dist/_config/branch_settings.yml'))
     branch_settings = YAML.load_file('dist/_config/branch_settings.yml')
@@ -85,7 +85,7 @@ task edit_cascade_assets: :environment do
   end
 
   unless File.exist?("dist/_config/run_once.txt")
-    puts  cascade_assets_feature_branch_filename = 'cacade-assets-' + `git rev-parse --abbrev-ref HEAD`.strip
+    puts  cascade_assets_feature_branch_filename = 'cascade-assets-' + `git rev-parse --abbrev-ref HEAD`.strip
 
     puts create_block("#{cascade_assets_block_name}", "Chapman.edu/_cascade/blocks/html", "dist/staging/cascade-assets.xml")
 
