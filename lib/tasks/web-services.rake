@@ -69,7 +69,6 @@ task edit_cascade_assets: :environment do
   p uri_js = File.basename(uri_js.path)
   p uri_webpack_js = File.basename(uri_webpack_js.path)
 
-
   p ("#{uri_css}" + 'Chapman.edu/_assets/' + "dist/development/_assets/#{uri_css}")
 
   p 
@@ -98,14 +97,17 @@ task edit_cascade_assets: :environment do
   publish_asset("file", "Chapman.edu/_assets/#{uri_webpack_js}")
   p
 
-  # TODO
+  # TODO - it would be useful to:
+  # [ ] allow for an array of pages to publish
+  # [ ] allow for a folder to be published
+
   unless File.exist?("dist/_config/branch_settings.yml")
-    puts
-    p "Done! Want to also automatically publish an associated page?"
-    puts
-    p  "⚡️ If so enter the the asset path below WITHOUT https:// or .com"
-    p " eg Chapman.edu/test-section/nick-test/two-col"
-    p " 🎹 Enter the asset path (or press enter to ignore): "
+    p
+    p "     Done! Want to also automatically publish an associated page?"
+    p
+    p  "    ⚡️ If so enter the the asset path below WITHOUT https:// or .com"
+    p "     eg Chapman.edu/test-section/nick-test/two-col"
+    p "     🎹 Enter the asset path (or press enter to ignore): "
     
     page = STDIN.gets.chomp
 
@@ -121,7 +123,8 @@ task edit_cascade_assets: :environment do
       file.p "branch: #{current_branch}"
     end
 
-    p "👼 Cool. This page can be reconfigured in dist/_config/branch_settings.yml"
+    p "     👼 Cool. This page can be reconfigured in dist/_config/branch_settings.yml"
+
   else 
 
     branch_settings = YAML.load(File.read("dist/_config/branch_settings.yml"))
@@ -291,7 +294,9 @@ task edit_offcanvas_main_menu: :environment do
 end
 
 
-
+# ---------------------------------------------------------------------------- #
+#                                 Publish Asset                                #
+# ---------------------------------------------------------------------------- #
 # USAGE: rake publish TYPE=page/ PATH=Chapman.edu/test-section/nick-test/test-publish
 # 👹 note the trailing slash on the TYPE
 task :publish do
@@ -334,6 +339,9 @@ def birth(file)
   Time.at(`stat -f%B "#{file}"`.chomp.to_i)
 end
 
+# ---------------------------------------------------------------------------- #
+#                                  Edit Format                                 #
+# ---------------------------------------------------------------------------- #
 def edit_format(asset_path, update_source)
   # * 1) BASE URL
   base_url = 'https://dev-cascade.chapman.edu/api/v1/'.to_s
@@ -422,7 +430,9 @@ def edit_format(asset_path, update_source)
        }&type=#{asset_type}".chomp('/')
 end
 
-
+# ---------------------------------------------------------------------------- #
+#                             Edit Data Definition                             #
+# ---------------------------------------------------------------------------- #
 def edit_data_def(asset_path, update_source)
   # * 1) BASE URL
   base_url = 'https://dev-cascade.chapman.edu/api/v1/'.to_s
@@ -500,6 +510,9 @@ def edit_data_def(asset_path, update_source)
        }&type=#{asset_type}".chomp('/')
 end
 
+# ---------------------------------------------------------------------------- #
+#                                  Edit Block                                  #
+# ---------------------------------------------------------------------------- #
 def edit_block(asset_path, update_source)
   # * 1) BASE URL
   base_url = 'https://dev-cascade.chapman.edu/api/v1/'.to_s
@@ -579,7 +592,9 @@ def edit_block(asset_path, update_source)
        }&type=#{asset_type}".chomp('/')
 end
 
-
+# ---------------------------------------------------------------------------- #
+#                               Edit Shared Field                              #
+# ---------------------------------------------------------------------------- #
 def edit_shared_field(asset_path, update_source)
   # * 1) BASE URL
   base_url = 'https://dev-cascade.chapman.edu/api/v1/'.to_s
@@ -671,41 +686,12 @@ def edit_shared_field(asset_path, update_source)
        }&type=#{asset_type}".chomp('/')
 end
 
-def backup_strategy(response_path_full, response, site_name)
-  backup_filename = response_path_full.gsub('/', '_').gsub('.', '_')
-  asset_type = "#{asset_type}"
-  site_name = "#{site_name}"
 
-  backup_dir = "_backup/#{site_name}#{asset_type}/#{backup_filename}/"
-  p "backup_dir: #{backup_dir}"
-  p "👼 Backing up Cascade asset in #{backup_dir}"
-  FileUtils.mkdir_p(backup_dir) unless File.directory?(backup_dir)
-  time = Time.now
-
-  backup_files_count =
-    Dir[File.join(backup_dir, '**', '*')].count { |file| File.file?(file) }.to_i
-  backup_files_max = 10
-  backup_file_oldest =
-    Dir[backup_dir + '*.bak'].sort_by { |f| File.ctime(f) }.last(1)[0]
-
-  if backup_files_count <= backup_files_max
-    File.write(
-      backup_dir + backup_filename + '__' + time.strftime('%m-%d-%Y.%H.%M.%S') +
-        '.bak',
-      response['asset']
-    )
-  else
-    p "🚨 Reached file backup limit ( #{backup_files_max} )"
-    p "♻️  Overwriting oldest backup ( #{backup_file_oldest} )"
-    File.write(backup_file_oldest, response['asset'])
-    puts
-  end
-end
-
-
+# ---------------------------------------------------------------------------- #
+#                                  Create File                                 #
+# ---------------------------------------------------------------------------- #
 # create file (such as master.css or master.js)
 def create_file(file_name, asset_path, update_source)
-
   response_name = "#{response_name}"
   # * 1) BASE URL
   base_url = 'https://dev-cascade.chapman.edu/api/v1/'.to_s
@@ -783,8 +769,10 @@ def create_file(file_name, asset_path, update_source)
   #      }&type=#{asset_type}".chomp('/')
 end
 
+# ---------------------------------------------------------------------------- #
+#                                 Create Block                                 #
+# ---------------------------------------------------------------------------- #
 def create_block(asset_name, parent_folder_path, update_source)
-
   asset_name = "#{asset_name}"
 
   p 
@@ -876,6 +864,9 @@ def create_block(asset_name, parent_folder_path, update_source)
   #      }&type=#{asset_type}".chomp('/')
 end
 
+# ---------------------------------------------------------------------------- #
+#                                 Local Backups                                #
+# ---------------------------------------------------------------------------- #
 def backup_strategy(response_path_full, response, site_name)
   backup_filename = response_path_full.gsub('/', '_').gsub('.', '_')
   asset_type = "#{asset_type}"
@@ -907,7 +898,9 @@ def backup_strategy(response_path_full, response, site_name)
   end
 end
 
-
+# ---------------------------------------------------------------------------- #
+#                                 Publish Asset                                #
+# ---------------------------------------------------------------------------- #
 def publish_asset(asset_type, asset_path) 
   # * 1) BASE URL
   base_url = 'https://dev-cascade.chapman.edu/api/v1/'.to_s
