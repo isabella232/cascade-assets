@@ -7,15 +7,16 @@ require 'uri'
 require 'yaml'
 require 'fileutils'
 
+
 # ---------------------------------------------------------------------------- #
 #                            edit cascade-assets.xml                           #
 # ---------------------------------------------------------------------------- #
+# NOTE - the respective `cascade-assets.xml` file should exist before running `rake edit_cascade_assets` or it will fail. You can run `bin/build` (in build.rake) to handle creating the `cascade-assets-branch-name.xml` file. `bin/build` invokes this `edit_cascade_assets`
+
 desc 'Updates dev Chapman.edu/_cascade/blocks/html/cascade-assets with dist/staging/cascade-assets.xml'
 task edit_cascade_assets: :environment do
 
-
   FileUtils.mkdir('dist/_config') unless File.directory?('dist/_config')
-  
   current_branch = `git rev-parse --abbrev-ref HEAD`.strip
   cascade_assets_block_name = 'cascade-assets-' + current_branch
 
@@ -26,7 +27,7 @@ task edit_cascade_assets: :environment do
 
     if last_used_branch != current_branch
       p
-      p "🎋 Current branch is different from existing branch in branch_settings.yml. Replacing existing branch_settings.yml with a new one!"
+      p "🎋 Current branch is different from existing branch in branch_settings.yml. Replacing existing dist/_config/branch_settings.yml with a new one!"
       p
       FileUtils.rm_rf('dist/_config/branch_settings.yml')
       FileUtils.rm_rf('dist/_config/run_once.txt')
@@ -68,7 +69,7 @@ task edit_cascade_assets: :environment do
   p uri_js = File.basename(uri_js.path)
   p uri_webpack_js = File.basename(uri_webpack_js.path)
 
-  # def create_file(response_name, asset_path, update_source)
+
   p ("#{uri_css}" + 'Chapman.edu/_assets/' + "dist/development/_assets/#{uri_css}")
 
   p 
@@ -227,7 +228,6 @@ task edit_three_col_data_def: :environment do
   )
 end
 
-
 # ---------------------------------------------------------------------------- #
 #                            edit shared image field                           #
 # ---------------------------------------------------------------------------- #
@@ -240,13 +240,12 @@ task edit_shared_field_image: :environment do
   )
 end
 
-
-
 # ---------------------------------------------------------------------------- #
 #           BASE METHODS - The methods above inherit from these tasks          #
 # ---------------------------------------------------------------------------- #
 
-#   edit format `Chapman.edu/_cascade/formats/level/left_nav_drilldown`   #
+# ---------------------------------------------------------------------------- #
+#      edit format `Chapman.edu/_cascade/formats/level/left_nav_drilldown`     #
 # ---------------------------------------------------------------------------- #
 desc 'Updates `Chapman.edu/_cascade/formats/level/left_nav_drilldown.vtl` with `.cascade-code/Chapman.edu/_cascade/formats/level/left_nav_drilldown.vtl`'
 task edit_left_nav_drilldown: :environment do
@@ -279,7 +278,9 @@ task edit_collapsibles: :environment do
 end
 
 # ---------------------------------------------------------------------------- #
-#   edit format `Chapman.edu/_cascade/formats/modular/uninav/_offCanvas_main_menu`   #
+#                                  edit format                                 #
+# ---------------------------------------------------------------------------- #
+#      `Chapman.edu/_cascade/formats/modular/uninav/_offCanvas_main_menu`      #
 # ---------------------------------------------------------------------------- #
 desc 'Updates `Chapman.edu/_cascade/formats/modular/uninav/_offCanvas_main_menu` with `.cascade-code/Chapman.edu/_cascade/formats/modular/uninav/_offCanvas_main_menu`'
 task edit_offcanvas_main_menu: :environment do
@@ -289,8 +290,10 @@ task edit_offcanvas_main_menu: :environment do
   )
 end
 
+
+
 # USAGE: rake publish TYPE=page/ PATH=Chapman.edu/test-section/nick-test/test-publish
-# 👹note the trailing slash on the TYPE
+# 👹 note the trailing slash on the TYPE
 task :publish do
   # * 1) BASE URL
   base_url = 'https://dev-cascade.chapman.edu/api/v1/'.to_s
