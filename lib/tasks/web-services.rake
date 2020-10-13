@@ -27,10 +27,15 @@ task edit_cascade_assets: :environment do
 
     if last_used_branch != current_branch
       p
-      p "🎋 Current branch is different from existing branch in branch_settings.yml. Replacing existing dist/_config/branch_settings.yml with a new one!"
+      p "   🎋 Current branch is different from existing branch in branch_settings.yml. Replacing existing dist/_config/branch_settings.yml with a new one!"
       p
-      FileUtils.rm_rf('dist/_config/branch_settings.yml')
       FileUtils.rm_rf('dist/_config/run_once.txt')
+      FileUtils.rm_rf('dist/_config/branch_settings.yml')
+
+      File.open("dist/_config/branch_settings.yml", 'a') do |file|
+        file.puts "branch: #{current_branch}"
+      end
+
     end
   end
 
@@ -119,8 +124,8 @@ task edit_cascade_assets: :environment do
 
     # File.write("dist/staging/branch_settings.yml", "page_to_publish #{page}")
     File.open("dist/_config/branch_settings.yml", 'a') do |file|
-      file.p "page_to_publish: #{page}"
-      file.p "branch: #{current_branch}"
+      file.puts "page_to_publish: #{page}"
+      file.puts "branch: #{current_branch}"
     end
 
     p "     👼 Cool. This page can be reconfigured in dist/_config/branch_settings.yml"
