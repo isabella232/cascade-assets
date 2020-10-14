@@ -6,28 +6,53 @@ require 'open-uri'
 require 'uri'
 require 'yaml'
 
-# ---------------------------------------------------------------------------- #
-#                          Edit Widget - Funnels 1 Up                          #
-# ---------------------------------------------------------------------------- #
-desc 'Updates `Chapman.edu/_cascade/formats/modular/widgets/Funnels 1up` with `.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Funnels_1up.vtl`'
-task edit_widget_funnels_1_up: :environment do
-  edit_format(
-    '9cc4647fc0a81e4173d4458767e30a55',
-    '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Funnels_1up.vtl'
+
+task debuggin: :environment do 
+  # def create_block(asset_name, parent_folder_path, update_source)
+  # p create_block("nick-test", "_cascade/blocks/html", Rails.root.join('dist', 'staging', 'cascade-assets.xml')
+
+
+  # p create_block("nick-test", "_cascade/blocks/html", "dist/staging/cascade-assets.xml")
+
+  puts HTTParty.post(
+    "https://dev-cascade.chapman.edu/api/v1/create/block/Chapman.edu/_cascade/blocks/html/wtf?u=cscddev01500&p=#{cascade_password}",
+    body: {
+      "asset": {
+        "xmlBlock": {
+          "xml": "    \r\n\r\n<![CDATA[#protect\r\n  <!-- Branch: breadcrumbs-redesign Build: 12:24AM 10-08-2020 -->\r\n#protect]]> \r\n \r\n  <!-- Preload CSS & JS -->\r\n  <link as=\"style\" href=\"//dev-www.chapman.edu/_assets/master-11f9ef72a057c39c1e724e792f7e6e848bdacd1896cbdf9218f9dbbbdfb9b3dc.css\" media=\"all\" rel=\"preload\"/>\r\n  <link as=\"script\" href=\"//dev-www.chapman.edu/_assets/master-edbddb1b835b325bec6e32481ba09b31e2ad5d6b349caf2fffab0e1b0fb6d688.js\" media=\"all\" rel=\"preload\"/>\r\n\r\n  <link defer=\"true\" src=\"//dev-www.chapman.edu/_assets/master-webpack-98e97d6cd07078870a1ba71c612ba3702471ad2b.css\"/>\r\n  <script defer=\"true\" src=\"//dev-www.chapman.edu/_assets/master-webpack-303b77bc90c47c099da5582b475d3fd8b358709f.js\"></script>\r\n \r\n  <!-- Carry on -->\r\n  <link href=\"//dev-www.chapman.edu/_assets/master-11f9ef72a057c39c1e724e792f7e6e848bdacd1896cbdf9218f9dbbbdfb9b3dc.css\" media=\"all\" rel=\"stylesheet\"/>\r\n  <script defer=\"defer\" src=\"//dev-www.chapman.edu/_assets/master-edbddb1b835b325bec6e32481ba09b31e2ad5d6b349caf2fffab0e1b0fb6d688.js\"></script>\r\n",
+          "expirationFolderRecycled": false,
+          "metadataSetId": "6fef14a3c04d744c610b81da9d165a27",
+          "metadataSetPath": "Default",
+          "metadata": {
+            "displayName": "",
+            "title": "",
+            "summary": "",
+            "teaser": "",
+            "keywords": "",
+            "metaDescription": "",
+            "author": ""
+          },
+          "reviewOnSchedule": false,
+          "reviewEvery": 0,
+          "parentFolderId": "8516f0a9c04d744c610b81da2d21be44",
+          "parentFolderPath": "_cascade/blocks/html",
+          "lastModifiedDate": "Oct 8, 2020 12:28:25 AM",
+          "lastModifiedBy": "cbryant",
+          "createdDate": "Apr 27, 2015 5:10:43 PM",
+          "createdBy": "mthomas",
+          "path": "_cascade/blocks/html/cascade-assets",
+          "siteId": "6fef14a3c04d744c610b81dac0a8d082",
+          "siteName": "Chapman.edu",
+          "tags": [],
+          "name": "cascade-assets-wtf",
+          "id": "fd5c8e3dc04d744c42ab23aad07d62a6"
+        }
+      },
+      "success": true
+    }.to_json
   )
 end
 
-
-# ---------------------------------------------------------------------------- #
-#                          Edit Widget - Funnels 2 Up                          #
-# ---------------------------------------------------------------------------- #
-desc 'Updates `Chapman.edu/_cascade/formats/modular/widgets/Funnels 2up` with `.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Funnels_1up.vtl`'
-task edit_widget_funnels_2_up: :environment do
-  edit_format(
-    '9cc46410c0a81e4173d44587bd75f3eb',
-    '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Funnels_2up.vtl'
-  )
-end
 
 
 # ---------------------------------------------------------------------------- #
@@ -39,12 +64,17 @@ task edit_cascade_assets: :environment do
   FileUtils.mkdir('dist/_config') unless File.directory?('dist/_config')
 
   cascade_assets_block_name = 'cacade-assets-' + `git rev-parse --abbrev-ref HEAD`.strip
-  unless File.exist?("dist/_config/run_once")
+
+  unless File.exist?("dist/_config/run_once.txt")
     puts  cascade_assets_feature_branch_filename = 'cacade-assets-' + `git rev-parse --abbrev-ref HEAD`.strip
-    puts create_block("#{cascade_assets_feature_branch_filename}", "_cascade/blocks/html", "dist/staging/cascade-assets.xml")
+
+    # def create_block(asset_name, parent_folder_path, update_source)
+
+
+    puts create_block("#{cascade_assets_block_name}", "Chapman.edu/_cascade/blocks/html", "dist/staging/cascade-assets.xml")
 
     puts "creating new cascade-assets-block ( #{cascade_assets_feature_branch_filename} )!!"
-    File.write("dist/_config/run_once", "ran `create_block` , created #{cascade_assets_feature_branch_filename} on dev-Chapman.edu/_cascade/blocks/html !!")
+    File.write("dist/_config/run_once.txt", "ran `create_block` , created #{cascade_assets_feature_branch_filename} on dev-Chapman.edu/_cascade/blocks/html !!")
   end
 
   edit_block(
@@ -139,6 +169,29 @@ task edit_cascade_assets: :environment do
 
 end
 
+
+# ---------------------------------------------------------------------------- #
+#                          Edit Widget - Funnels 1 Up                          #
+# ---------------------------------------------------------------------------- #
+desc 'Updates `Chapman.edu/_cascade/formats/modular/widgets/Funnels 1up` with `.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Funnels_1up.vtl`'
+task edit_widget_funnels_1_up: :environment do
+  edit_format(
+    '9cc4647fc0a81e4173d4458767e30a55',
+    '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Funnels_1up.vtl'
+  )
+end
+
+
+# ---------------------------------------------------------------------------- #
+#                          Edit Widget - Funnels 2 Up                          #
+# ---------------------------------------------------------------------------- #
+desc 'Updates `Chapman.edu/_cascade/formats/modular/widgets/Funnels 2up` with `.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Funnels_1up.vtl`'
+task edit_widget_funnels_2_up: :environment do
+  edit_format(
+    '9cc46410c0a81e4173d44587bd75f3eb',
+    '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Funnels_2up.vtl'
+  )
+end
 
 # ---------------------------------------------------------------------------- #
 #                           edit one-column data def                           #
@@ -270,6 +323,28 @@ task edit_offcanvas_main_menu: :environment do
   )
 end
 
+# ---------------------------------------------------------------------------- #
+#   edit format `Chapman.edu/_cascade/formats/modular/uninav/left_nav_drilldown`   #
+# ---------------------------------------------------------------------------- #
+desc 'Updates `Chapman.edu/_cascade/formats/level/left_nav_drilldown.vtl` with `.cascade-code/Chapman.edu/_cascade/formats/level/left_nav_drilldown.vtl`'
+task edit_left_nav_drilldown: :environment do
+  edit_format(
+    'Chapman.edu/_cascade/formats/level/left_nav_drilldown.vtl',
+    '.cascade-code/Chapman.edu/_cascade/formats/level/left_nav_drilldown.vtl'
+  )
+end
+
+# ---------------------------------------------------------------------------- #
+#   edit format `Chapman.edu/_cascade/formats/level/Breadcrumbs.vtl`   #
+# ---------------------------------------------------------------------------- #
+desc 'Updates `Chapman.edu/_cascade/formats/level/Breadcrumbs.vtl` with `.cascade-code/Chapman.edu/_cascade/formats/level/Breadcrumbs.vtl`'
+task edit_breadcrumbs: :environment do
+  edit_format(
+    'Chapman.edu/_cascade/formats/level/Breadcrumbs.vtl',
+    '.cascade-code/Chapman.edu/_cascade/formats/level/Breadcrumbs.vtl'
+  )
+end
+
 # USAGE: rake publish TYPE=page/ PATH=Chapman.edu/test-section/nick-test/test-publish
 # 👹note the trailing slash on the TYPE
 task :publish do
@@ -334,7 +409,8 @@ def edit_format(asset_path, update_source)
   # set these in environment_variables.yml
   cascade_username = '?u=' + ENV['CASCADE_USERNAME']
   cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
-
+  p cascade_username
+  p cascade_password
   # the constructed url should look something like:
   # https://dev-cascade.chapman.edu/api/v1/read/folder/Chapman.edu/_cascade/formats/modular/widgets/foldername?u=username&p=password
 
@@ -763,6 +839,11 @@ end
 
 def create_block(asset_name, parent_folder_path, update_source)
 
+  asset_name = "#{asset_name}"
+
+  p 
+  p " in create_block "
+  p 
   response_name = "#{response_name}"
   # * 1) BASE URL
   base_url = 'https://dev-cascade.chapman.edu/api/v1/'.to_s
@@ -779,7 +860,7 @@ def create_block(asset_name, parent_folder_path, update_source)
 
   # * 4) ASSET PATH OR ID
   # you can also use its path (ie "Chapman.edu/_cascade/formats/modular/widgets/1-column")... but.. whitespace.
-  asset_path = "#{asset_path}" # ! NO TRAILING SLASH
+  asset_path = "#{parent_folder_path}" # ! NO TRAILING SLASH
 
   # * 5) SECRETS
   # set these in environment_variables.yml
@@ -789,14 +870,20 @@ def create_block(asset_name, parent_folder_path, update_source)
   update_source = "#{update_source}"
 
   data = File.read(update_source)
+  
   puts data
 
   response_body = data
 
-  url_post =
-    base_url + 'create/' + asset_type + cascade_username +
-      cascade_password
+  p "asset_name #{asset_name}"
+  p "asset_type #{asset_type}"
+  p "asset_path #{parent_folder_path}"
 
+  url_post =
+    "#{base_url}create/#{asset_type}#{asset_path}/#{asset_name}#{cascade_username}#{cascade_password}"
+
+
+  p "url_post #{url_post}"
 
   # 👹Editing assets unfortunately requires PATH, SITENAME, ID. This can be obtained by reading the asset's response.body 👆
   # HTTParty.post(url_post, body: { asset: { xmlBlock: { xml: data, path: "_cascade/blocks/html/0-write-test", parentFolderId: parent_folder_id, siteName: "Chapman.edu", id: "365ae5dec0a81e8a20b1d746fd3e0778" } } }.to_json)
@@ -804,30 +891,39 @@ def create_block(asset_name, parent_folder_path, update_source)
   puts HTTParty.post(
          url_post,
          body: {
-          "asset": {
-            "xmlBlock": {
-              "xml": data,
-              "expirationFolderRecycled": false,
-              "metadataSetId": "6fef14a3c04d744c610b81da9d165a27",
-              "metadataSetPath": "Default",
-              "metadata": {},
-              "reviewOnSchedule": false,
-              "reviewEvery": 0,
-              "parentFolderId": "8516f0a9c04d744c610b81da2d21be44",
-              "parentFolderPath": "#{parent_folder_path}",
-              "lastModifiedDate": "Jul 20, 2020, 5:48:52 PM",
-              "lastModifiedBy": "cscddev01500",
-              "createdDate": "Apr 27, 2015, 5:10:43 PM",
-              "createdBy": "mthomas",
-              # "path": "_cascade/blocks/html/#{asset_name}",
-              "siteId": "6fef14a3c04d744c610b81dac0a8d082",
-              "siteName": "Chapman.edu",
-              "tags": [],
-              "name": "#{asset_name}"
-            }
-          },
-          "success": true
-        }.to_json
+  "asset": {
+    "xmlBlock": {
+      "xml": "#{data}",
+      "expirationFolderRecycled": false,
+      "metadataSetId": "6fef14a3c04d744c610b81da9d165a27",
+      "metadataSetPath": "Default",
+      "metadata": {
+        "displayName": "",
+        "title": "",
+        "summary": "",
+        "teaser": "",
+        "keywords": "",
+        "metaDescription": "",
+        "author": ""
+      },
+      "reviewOnSchedule": false,
+      "reviewEvery": 0,
+      "parentFolderId": "8516f0a9c04d744c610b81da2d21be44",
+      "parentFolderPath": "#{parent_folder_path}",
+      "lastModifiedDate": "Oct 8, 2020 12:28:25 AM",
+      "lastModifiedBy": "cbryant",
+      "createdDate": "Apr 27, 2015 5:10:43 PM",
+      "createdBy": "mthomas",
+      "path": "_cascade/blocks/html/cascade-assets",
+      "siteId": "6fef14a3c04d744c610b81dac0a8d082",
+      "siteName": "Chapman.edu",
+      "tags": [],
+      "name": "#{asset_name}",
+      "id": "fd5c8e3dc04d744c42ab23aad07d62a6"
+    }
+  },
+  "success": true
+}.to_json
        )
   # puts "🎉        View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{
   #        asset_id

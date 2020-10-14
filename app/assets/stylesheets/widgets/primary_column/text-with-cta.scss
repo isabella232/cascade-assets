@@ -373,3 +373,13 @@ html body .text-with-cta-widget .text-with-cta__button.color--white {
   background-color: white;
   color: var(--color-panther-black);
 }
+
+html body .text-with-cta-widget .text-with-cta__button.color--white {
+  border: 1px solid var(--color-cu-light-grey);
+  background-color: white;
+  color: var(--color-panther-black);
+}
+
+html body .text-with-cta__text-container.text-with-cta__text-container--white {
+  border: none !important;
+}
