@@ -1,10 +1,8 @@
-import leftNav from './leftnav';
 import uninav from './uninav';
 import offCanvasNav from './offcanvas-nav';
 
 const navigation = {
   initialize() {
-    leftNav();
     uninav();
     offCanvasNav();
   }
