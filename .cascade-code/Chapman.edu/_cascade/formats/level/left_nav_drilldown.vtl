@@ -6,7 +6,8 @@
     #set ( $visibleSiblingCount = 0 )
     #if ( $currentPathRoot != "index" && $currentPathRoot != "")
         #set ( $leftNavAssets = $_.locateFolder($currentPageParentFolder.path) )
-        #set ( $leftParentNavAssets = $_.locateFolder($leftNavAssets.parentFolder.path) )
+        #set ( $singleSiblingParentFolder = $_StringTool.substringBefore($currentPage.path, "/${currentPage.parentFolder.name}"))
+        #set ( $leftParentNavAssets = $_.locateFolder($singleSiblingParentFolder) )
 
         #foreach ($asset in $leftNavAssets.children)
             #set ( $isVisible = $asset.metadata.getDynamicField('Hide from navigation').value != "Yes")
