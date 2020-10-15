@@ -6,8 +6,7 @@
     #set ( $visibleSiblingCount = 0 )
     #if ( $currentPathRoot != "index" && $currentPathRoot != "")
         #set ( $leftNavAssets = $_.locateFolder($currentPageParentFolder.path) )
-        #set ( $singleSiblingParentFolder = $_StringTool.substringBefore($currentPage.path, "/${currentPage.parentFolder.name}"))
-        #set ( $leftParentNavAssets = $_.locateFolder($singleSiblingParentFolder) )
+        #set ( $leftParentNavAssets = $_.locateFolder($leftNavAssets.parentFolder.path) )
 
         #foreach ($asset in $leftNavAssets.children)
             #set ( $isVisible = $asset.metadata.getDynamicField('Hide from navigation').value != "Yes")
@@ -24,11 +23,15 @@
             <ul class="root-left-nav" aria-expanded="true">
                 #if ( $visibleSiblingCount == 1 && $leftParentNavAssets)
                     #foreach( $asset in $leftParentNavAssets.children)
-                        #buildSingleLeftNav($asset, $visibleSiblingCount)
+                        #if ( $asset.name != '_files')
+                            #buildSingleLeftNav($asset)
+                        #end
                     #end
                 #else
                     #foreach( $asset in $leftNavAssets.children)
-                        #buildSingleLeftNav($asset, $visibleSiblingCount)
+                        #if ( $asset.name != '_files')
+                            #buildSingleLeftNav($asset)
+                        #end
                     #end
                 #end
             </ul>
