@@ -246,7 +246,7 @@ module ContentTypes
         'ADDITIONAL BODY AT-END' => '',
         'ADDITIONAL HEAD' => '',
         # Dynamic Regions
-        'BREADCRUMBS' => 'TODO: _cascade/formats/level/Breadcrumbs',
+        'BREADCRUMBS' => cascade_block('_cascade/blocks/html/level/breadcrumbs'),
         'CASCADE ASSETS' =>
           cascade_block('_cascade/blocks/html/cascade_assets'),
         'FB_JS_SDK' =>
@@ -306,7 +306,7 @@ module ContentTypes
         'ADDITIONAL BODY AT-END' => '',
         'ADDITIONAL HEAD' => '',
         # Dynamic Regions
-        'BREADCRUMBS' => 'TODO: _cascade/formats/level/Breadcrumbs',
+        'BREADCRUMBS' => cascade_block('_cascade/formats/level/breadcrumbs'),
         'CASCADE ASSETS' =>
           cascade_block('_cascade/blocks/html/cascade_assets'),
         'FB_JS_SDK' =>
@@ -326,7 +326,7 @@ module ContentTypes
         'PAGE WRAPPER OPEN' =>
           cascade_format('_cascade/formats/modular/page_wrapper_open'),
         'PRIMARY CONTENT' => render_static_two_column_primary_content,
-        'SOCIAL ACCOUNTS' => 'TODO: _cascade/formats/level/social_accounts',
+        'SOCIAL_ACCOUNTS' => cascade_block('_cascade/formats/level/social_accounts'),
         'TYPEKIT' => cascade_block('_cascade/blocks/html/typekit'),
         # TODO: convert these to cascade_format action.
         "UNINAV" => render_static_partial("uninav/uninav"),
@@ -590,7 +590,7 @@ module ContentTypes
         render_static_partial(
           'widgets/primary_content/featured_news_events_feed_1'
         ),
-        render_static_partial('widgets/primary_content/three_photo_callout_1'),
+        render_static_partial('widgets/primary_content/testimonial_widget'),
         render_static_partial('widgets/primary_content/next_steps_widget'),
         render_static_partial('widgets/primary_content/text_with_cta'),
         render_static_partial('widgets/primary_content/collapsables_1'),

@@ -300,6 +300,28 @@ end
 
 
 # ---------------------------------------------------------------------------- #
+#   edit format `Chapman.edu/_cascade/formats/modular/uninav/left_nav_drilldown`   #
+# ---------------------------------------------------------------------------- #
+desc 'Updates `Chapman.edu/_cascade/formats/level/left_nav_drilldown.vtl` with `.cascade-code/Chapman.edu/_cascade/formats/level/left_nav_drilldown.vtl`'
+task edit_left_nav_drilldown: :environment do
+  edit_format(
+    'Chapman.edu/_cascade/formats/level/left_nav_drilldown.vtl',
+    '.cascade-code/Chapman.edu/_cascade/formats/level/left_nav_drilldown.vtl'
+  )
+end
+
+# ---------------------------------------------------------------------------- #
+#   edit format `Chapman.edu/_cascade/formats/level/Breadcrumbs.vtl`   #
+# ---------------------------------------------------------------------------- #
+desc 'Updates `Chapman.edu/_cascade/formats/level/Breadcrumbs.vtl` with `.cascade-code/Chapman.edu/_cascade/formats/level/Breadcrumbs.vtl`'
+task edit_breadcrumbs: :environment do
+  edit_format(
+    'Chapman.edu/_cascade/formats/level/Breadcrumbs.vtl',
+    '.cascade-code/Chapman.edu/_cascade/formats/level/Breadcrumbs.vtl'
+  )
+end
+
+# ---------------------------------------------------------------------------- #
 #                                 Publish Asset                                #
 # ---------------------------------------------------------------------------- #
 # USAGE: rake publish TYPE=page/ PATH=Chapman.edu/test-section/nick-test/test-publish
@@ -344,6 +366,7 @@ def birth(file)
   Time.at(`stat -f%B "#{file}"`.chomp.to_i)
 end
 
+
 # ---------------------------------------------------------------------------- #
 #                                  Edit Format                                 #
 # ---------------------------------------------------------------------------- #
@@ -369,7 +392,8 @@ def edit_format(asset_path, update_source)
   # set these in environment_variables.yml
   cascade_username = '?u=' + ENV['CASCADE_USERNAME']
   cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
-
+  p cascade_username
+  p cascade_password
   # the constructed url should look something like:
   # https://dev-cascade.chapman.edu/api/v1/read/folder/Chapman.edu/_cascade/formats/modular/widgets/foldername?u=username&p=password
 
