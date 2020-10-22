@@ -275,6 +275,17 @@ task edit_helpers_velocity: :environment do
 end
 
 # ---------------------------------------------------------------------------- #
+# edit format `Chapman.edu/_cascade/formats/modular/widgets/Grid Block Widget`   #
+# ---------------------------------------------------------------------------- #
+desc 'Updates `Chapman.edu/_cascade/formats/modular/widgets/Collapsibles` with `.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Collapsibles`'
+task edit_grid_block_widget: :environment do
+  edit_format(
+    'Chapman.edu/_cascade/formats/modular/widgets/Grid-Block-Widget',
+    '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Grid-Block-Widget.vtl'
+  )
+end
+
+# ---------------------------------------------------------------------------- #
 #   edit format `Chapman.edu/_cascade/formats/modular/widgets/Collapsibles`   #
 # ---------------------------------------------------------------------------- #
 desc 'Updates `Chapman.edu/_cascade/formats/modular/widgets/Collapsibles` with `.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Collapsibles`'

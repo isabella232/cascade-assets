@@ -12,6 +12,7 @@
 #import( "/_cascade/formats/modular/widgets/Form Embed" )
 #import( "/_cascade/formats/modular/widgets/Form" )
 ## Note funnel-2up not used in 3 column, only 2 column
+#import( "/_cascade/formats/modular/widgets/Grid Block Widget" )
 #import( "/_cascade/formats/modular/widgets/Funnels 1up" )
 #import( "/_cascade/formats/modular/widgets/Funnels 2up" )
 #import( "/_cascade/formats/modular/widgets/Logo Image Rotator" )
@@ -142,7 +143,15 @@
             #outputFunnels1up($widget)
         #end
     #end
+##
 ##    
+    #if ($widgetType == 'Grid Block Widget')
+        #set ($displayFunnels1up = $widget.getChild('gridBlockWidget').getChild('display-widget').value)
+        #if ($display-widget == 'Yes')
+            #outputGridBlockWidget($widget)
+        #end
+    #end
+##        
     #if ($widgetType == 'Personnel Table')
         #set ($displayPersonnel = $widget.getChild('personnel').getChild('display-personnel').value)
         #if ($displayPersonnel == 'Yes')
