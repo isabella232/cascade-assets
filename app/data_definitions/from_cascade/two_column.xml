@@ -422,7 +422,7 @@
         </group>
       </group>
       <group collapsed="true" identifier="gridBlockWidget" label="Grid Block Widget">
-        <text default="display-widget-yes" field-id="240bba0cc0a81e8a5a403945c8bc7ddb" identifier="display-widget" label="Display Widget:" type="radiobutton">
+        <text default="display-widget-yes" field-id="240bba0cc0a81e8a5a403945c8bc7ddb" identifier="displayWidget" label="Display Widget:" type="radiobutton">
           <radio-item label="Yes" value="display-widget-yes" />
           <radio-item label="No" value="display-widget-no" />
         </text>
