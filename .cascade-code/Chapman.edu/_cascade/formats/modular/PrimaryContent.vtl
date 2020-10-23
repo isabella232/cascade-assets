@@ -1,4 +1,3 @@
-
 ##Import all the widget formats
 #import( "/_cascade/formats/modular/widgets/Text with CTA" )
 #import( "/_cascade/formats/modular/widgets/RSS Feed Display" )
@@ -145,12 +144,12 @@
     #end
 ##
 ##    
-    #if ($widgetType == 'Grid Block Widget')
-        #set ($displayFunnels1up = $widget.getChild('gridBlockWidget').getChild('display-widget').value)
-        #if ($display-widget == 'Yes')
-            #outputGridBlockWidget($widget)
-        #end
+#if ($widgetType == 'Grid Block')
+    #set ($displayGridBlock = $widget.getChild('gridBlockWidget').getChild('display').value)
+    #if ($displayGridBlock == 'Yes')
+        #outputGridBlockWidget($widget)
     #end
+#end
 ##        
     #if ($widgetType == 'Personnel Table')
         #set ($displayPersonnel = $widget.getChild('personnel').getChild('display-personnel').value)
