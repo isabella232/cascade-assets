@@ -1,6 +1,33 @@
 #import( "/_cascade/formats/helpers.velocity" )
 
+Chapman.edu: /_cascade/formats/modular/widgets/Grid-Block-Widget 
 
 #macro(outputGridBlockWidget $element) 
+  #set ($widgetXPath = 'gridBlockWidget')
+  
+  
+  #set ($display = $element.getChild('display').value)
+
+  ## OPTIONAL INTRO SECTION   
+  #set ($displaySectionIntro = $element.getChild($widgetXPath).getChild('displayWidget').value)
+  #if ($displaySectionIntro != 'No')
+    #set ($sectionHeader = $element.getChild($sectionHeader).getChild('displayWidget').value)
+    
+  #end
+  
+
+  #set ($bgColor =  $element.getChild($widgetXPath).getChild('bgColor').value)
+
+element $element
+xWidgetPath $widgetXPath
+<h2>display $display</h2>
+numberOfColumns $numberOfColumns
+displaySectionIntro $displaySectionIntro
+
+
+##   #set ( $blocks = $_XPathTool.selectNodes
+##   ($element, 'gridBlockWidget/block') )
+
+
 
 #end
