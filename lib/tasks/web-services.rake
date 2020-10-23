@@ -248,6 +248,15 @@ task edit_shared_field_image: :environment do
   )
 end
 
+desc 'Updates Shared Fields:section-header (https://dev-cascade.chapman.edu/entity/open.act?id=9cc8235cc0a81e4173d445879a2a5d7b&type=sharedfield) 
+with app/data_definitions/from_cascade/Shared Fields/section-header.xml'
+task edit_shared_field_section_header: :environment do
+  edit_shared_field(
+    '2e7e4d67c0a81e8a5a403945968d02e9',
+    '.cascade-code/Chapman.edu/manage_site/shared_fields/section-header.xml'
+  )
+end
+
 # ---------------------------------------------------------------------------- #
 #           BASE METHODS - The methods above inherit from these tasks          #
 # ---------------------------------------------------------------------------- #
