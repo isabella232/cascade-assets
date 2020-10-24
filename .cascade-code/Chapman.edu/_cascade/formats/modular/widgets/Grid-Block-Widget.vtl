@@ -4,30 +4,80 @@ Chapman.edu: /_cascade/formats/modular/widgets/Grid-Block-Widget
 
 #macro(outputGridBlockWidget $element) 
   #set ($widgetXPath = 'gridBlockWidget')
+  #set ($this = $widgetXPath)
   
-  
-  #set ($display = $element.getChild('display').value)
+#set ($display = $element.getChild($widgetXPath).getChild('display').value)
 
-  ## OPTIONAL INTRO SECTION   
-  #set ($displaySectionIntro = $element.getChild($widgetXPath).getChild('displayWidget').value)
+  ## INTRO SECTION   
+  #set ($displaySectionIntro = $element.getChild($widgetXPath).getChild('displaySectionIntro').value)
   #if ($displaySectionIntro != 'No')
-    #set ($sectionHeader = $element.getChild($sectionHeader).getChild('displayWidget').value)
+    #set ($sectionHeader = $element.getChild($widgetXPath).getChild('sectionButtons').getChild('sectionHeader').value)
+    #set ($sectionPreheader = $element.getChild($widgetXPath).getChild('sectionButtons').getChild('sectionPreheader').value)
+    #set ($sectionHeaderParagraph = $element.getChild($widgetXPath).getChild('sectionButtons').getChild('sectionHeaderParagraph').value)
     
+    ## INTRO SECTION - BUTTONS
+       #set ($sectionHeaderParagraph = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('displaySectionButtons').value)
+       
+       #set ($buttonLabel = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('buttonLabel').value)
+       #set ($internalOrExternalLink = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('internalOrExternalLink').value)
+       #if ($internalOrExternalLink == 'internal')
+            #set ($buttonLink = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('path').value)
+       #end
+       
+  #else 
+    #set ($sectionHeader = '')
+    #set ($sectionPreheader = '')
+    #set ($sectionHeaderParagraph = '')
   #end
+  
+  
   
 
   #set ($bgColor =  $element.getChild($widgetXPath).getChild('bgColor').value)
 
-element $element
-xWidgetPath $widgetXPath
-<h2>display $display</h2>
-numberOfColumns $numberOfColumns
-displaySectionIntro $displaySectionIntro
+<ul>
+    <li>
+  element $element
+</li>
+<li>
+  xWidgetPath $widgetXPath
+</li>
+<li>
+  display $display
+</li>
+<li>
+  numberOfColumns $numberOfColumns
+</li>
+<li>
+  displaySectionIntro $displaySectionIntro
+</li>
+<li>
+  sectionHeader $sectionHeader
+</li>
+<li>
+  sectionPreheader $sectionPreheader
+</li>
+<li>
+  sectionHeaderParagraph $sectionHeaderParagraph
+</li>
 
 
+
+<li>
+    $internalOrExternalLink
+</li>
+
+<li>
+    $buttonLabel
+</li>
+<li>
+    $buttonLink
+</li>
+</ul>
 ##   #set ( $blocks = $_XPathTool.selectNodes
 ##   ($element, 'gridBlockWidget/block') )
 
 
 
 #end
+
