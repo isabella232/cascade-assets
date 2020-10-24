@@ -11,9 +11,9 @@ Chapman.edu: /_cascade/formats/modular/widgets/Grid-Block-Widget
   ## INTRO SECTION   
   #set ($displaySectionIntro = $element.getChild($widgetXPath).getChild('displaySectionIntro').value)
   #if ($displaySectionIntro != 'No')
-    #set ($sectionHeader = $element.getChild($widgetXPath).getChild('sectionButtons').getChild('sectionHeader').value)
-    #set ($sectionPreheader = $element.getChild($widgetXPath).getChild('sectionButtons').getChild('sectionPreheader').value)
-    #set ($sectionHeaderParagraph = $element.getChild($widgetXPath).getChild('sectionButtons').getChild('sectionHeaderParagraph').value)
+    #set ($sectionHeader = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionHeader').value)
+    #set ($sectionPreheader = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionPreheader').value)
+    #set ($sectionHeaderParagraph = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionHeaderParagraph').value)
     
     ## INTRO SECTION - BUTTONS
        #set ($sectionHeaderParagraph = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('displaySectionButtons').value)
