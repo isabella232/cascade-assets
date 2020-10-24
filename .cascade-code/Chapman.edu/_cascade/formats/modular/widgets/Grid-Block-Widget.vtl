@@ -16,12 +16,12 @@ Chapman.edu: /_cascade/formats/modular/widgets/Grid-Block-Widget
     #set ($sectionHeaderParagraph = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionHeaderParagraph').value)
     
     ## INTRO SECTION - BUTTONS
-       #set ($sectionHeaderParagraph = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('displaySectionButtons').value)
+       #set ($displaySectionButtons = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('displaySectionButtons').value)
        
-       #set ($buttonLabel = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('buttonLabel').value)
-       #set ($internalOrExternalLink = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('internalOrExternalLink').value)
+       #set ($buttonLabel = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons').getChild('buttonLabel').value)
+       #set ($internalOrExternalLink = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons').getChild('internalOrExternalLink').value)
        #if ($internalOrExternalLink == 'internal')
-            #set ($buttonLink = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('path').value)
+            #set ($buttonLink = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons').getChild('internalLink').getChild('path').value)
        #end
        
   #else 
