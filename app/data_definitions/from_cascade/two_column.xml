@@ -428,13 +428,13 @@
           <radio-item label="Yes" show-fields="gridBlockWidget/sectionHeader" value="yes" />
           <radio-item label="No" value="no " />
         </text>
-        <shared-field field-id="2e8489d8c0a81e8a5a40394576fa28af" identifier="sectionHeader" path="Section Header" />
+        <shared-field field-id="2e8489d8c0a81e8a5a40394576fa28af" identifier="sectionHeaderGroup" path="Section Header" />
         <group collapsed="true" identifier="gridOptions" label="Grid Options">
           <text field-id="2994320ac0a81e8a5a403945751bbb26" identifier="Title" required="true" type="radiobutton">
             <radio-item show-fields="gridBlockWidget/gridOptions/textAlign, gridBlockWidget/gridOptions/gridBlock/Title, gridBlockWidget/gridOptions/imageOrientationCircle" value="Yes" />
             <radio-item value="No" />
           </text>
-          <text field-id="2994320ac0a81e8a5a403945b6122351" identifier="body-text" label="Body Text" required="true" type="radiobutton">
+          <text field-id="2994320ac0a81e8a5a403945b6122351" identifier="bodyText" label="Body Text" required="true" type="radiobutton">
             <radio-item show-fields="gridBlockWidget/gridOptions/textAlign, gridBlockWidget/gridOptions/imageOrientationCircle, gridBlockWidget/gridOptions/gridBlock/gridBlockText" value="Yes" />
             <radio-item value="No" />
           </text>
@@ -443,7 +443,7 @@
             <radio-item label="Center" value="center" />
             <radio-item label="Right" value="right" />
           </text>
-          <text field-id="2994320ac0a81e8a5a403945eea51dc4" help-text="Choose to display Image or Video or None" identifier="imageVideo" label="Images or Videos? " required="true" type="radiobutton">
+          <text field-id="2994320ac0a81e8a5a403945eea51dc4" help-text="Choose to display Image or Video or None" identifier="imageOrVideo" label="Images or Videos? " required="true" type="radiobutton">
             <radio-item label="Images" show-fields="gridBlockWidget/gridOptions/imageOrientation, gridBlockWidget/gridOptions/gridColumnsImages, gridBlockWidget/gridOptions/gridBlock/gridBlockImage, gridBlockWidget/gridOptions/gridBlock/altText, gridBlockWidget/gridOptions/gridBlock/imagePosition, gridBlockWidget/gridOptions/titleOverlay" value="images" />
             <radio-item label="Videos" show-fields="gridBlockWidget/gridOptions/gridColumnsVideos, gridBlockWidget/gridOptions/gridBlock/gridBlockVideo" value="videos" />
             <radio-item label="None" value="noImagesVideos" />
@@ -481,8 +481,8 @@
             <radio-item label="Rotator (will rotate up to four items at a time)" value="rotator" />
           </text>
           <group collapsed="true" identifier="gridBlock" label="Grid Block" multiple="true">
-            <text field-id="2462637fc0a81e8a5a4039452d57a512" identifier="Title" label="Title" required="true" />
-            <text field-id="3429c844c0a81e8a5a4039450d9bac85" identifier="title-link" label="Title Link?" required="true" type="radiobutton">
+            <text field-id="2462637fc0a81e8a5a4039452d57a512" identifier="gridBlockTitle" label="Title" required="true" />
+            <text field-id="3429c844c0a81e8a5a4039450d9bac85" identifier="titleLink" label="Title Link?" required="true" type="radiobutton">
               <radio-item label="Yes" value="yes" />
               <radio-item label="No" value="no" />
             </text>
