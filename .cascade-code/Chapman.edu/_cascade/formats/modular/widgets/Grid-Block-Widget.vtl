@@ -7,6 +7,7 @@ Chapman.edu: /_cascade/formats/modular/widgets/Grid-Block-Widget
   #set ($this = $widgetXPath)
   
 #set ($display = $element.getChild($widgetXPath).getChild('display').value)
+#set ($bgColor =  $element.getChild($widgetXPath).getChild('bgColor').value)
 
   ## INTRO SECTION   
   #set ($displaySectionIntro = $element.getChild($widgetXPath).getChild('displaySectionIntro').value)
@@ -20,21 +21,69 @@ Chapman.edu: /_cascade/formats/modular/widgets/Grid-Block-Widget
        
        #set ($buttonLabel = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons').getChild('buttonLabel').value)
        #set ($internalOrExternalLink = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons').getChild('internalOrExternalLink').value)
+       #set ($ariaLabel = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons').getChild('buttonAccessibility').getChild('ariaLabel').value)
+       
        #if ($internalOrExternalLink == 'internal')
             #set ($buttonLink = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons').getChild('internalLink').getChild('path').value)
+        #elseif ($internalOrExternalLink == 'external')
+            #set ($buttonLink = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons').getChild('externalLinkField').value)
+        #else 
+            #set ($internalOrExternalLink = '')
        #end
-       
   #else 
     #set ($sectionHeader = '')
     #set ($sectionPreheader = '')
     #set ($sectionHeaderParagraph = '')
+    #set ($buttonLabel = '')
+    #set ($internalOrExternalLink = '')
+    #set ($buttonLink = '')
   #end
   
   
+  #set ($parentGroup = $element.getChild($widgetXPath).getChild("gridOptions"))
+  #macro(getSetVal $parentGroup $node)
+    ## Usage: #getSetVal($parentGroup "gridColumnsVideos")
+
+    #set ($nodeVal = "$" + $node)
+
+    #set ($nodeVal = $parentGroup.getChild("$node").value)
+    ## ${_EscapeTool.xml($heading)}
+    <ul>
+        <li>$node = $nodeVal</li>
+    </ul>
+   #end
+
+##   GRID OPTIONS 
+  #getSetVal($parentGroup "title")
+  #set ($gridTitle  = $title) ##overriding node selector label
+  #getSetVal($parentGroup "textAlign")
+  #getSetVal($parentGroup "bodyText")
+  #getSetVal($parentGroup "imageOrVideo")
+  #getSetVal($parentGroup "imageOrientation")
+  #getSetVal($parentGroup "gridColumnsVideos")
+  #getSetVal($parentGroup "gridColumnsImages")
+  #getSetVal($parentGroup "gridColumnsImages")
+  #getSetVal($parentGroup "gridDisplay")
+  
+## GRID BLOCK 
+  #set ($gridBlockGroup =  $element.getChild($widgetXPath).getChild('gridOptions').getChild('gridBlock'))
   
 
-  #set ($bgColor =  $element.getChild($widgetXPath).getChild('bgColor').value)
+  #set ($parentGroup = $element.getChild($widgetXPath).getChild('gridOptions').getChild('gridBlock'))
 
+  #getSetVal($parentGroup "gridBlockTitle")
+    ## #set ($gridBlockTitle = $element.getChild($widgetXPath).getChild('gridOptions').getChild('gridBlock').getChild('gridBlockTitle').value)
+    ## gridblockTitle $gridBlockTitle
+  #getSetVal($parentGroup "titleLink")
+  #getSetVal($parentGroup "linkType")
+  #getSetVal($parentGroup "internalLink")
+  #set ($internalLinkPath = $element.getChild($widgetXPath).getChild('gridOptions').getChild('internalLink').getChild('path'))
+  #getSetVal($parentGroup "externalLink")
+  #set ($externalLinkPath = $element.getChild($widgetXPath).getChild('gridOptions').getChild('externalLink').getChild('path'))
+  
+  #getSetVal($parentGroup "content")
+  
+  
 <ul>
     <li>
   element $element
@@ -73,6 +122,27 @@ Chapman.edu: /_cascade/formats/modular/widgets/Grid-Block-Widget
 <li>
     $buttonLink
 </li>
+<li>
+    bgColor $bgColor
+</li>
+<li>
+    ariaLabel $ariaLabel
+</li>
+<li>
+   gridTitle: $gridTitle
+
+</li>
+
+<li>
+    textAlign: $textAlign
+</li>
+<li>
+    bodytext: $bodyText
+</li>
+
+    
+    
+    
 </ul>
 ##   #set ( $blocks = $_XPathTool.selectNodes
 ##   ($element, 'gridBlockWidget/block') )
