@@ -1,5 +1,5 @@
 <system-data-structure>
-  <group identifier="sectionHeader" label="Section Header">
+  <group identifier="sectionHeaderGroup" label="Section Header">
     <text field-id="2e7e4d67c0a81e8a5a403945a2b3eda0" identifier="sectionPreheader" label="Section Pre-header" />
     <text field-id="2e7e4d67c0a81e8a5a403945858f943f" identifier="sectionHeader" label="Section Header" />
     <text field-id="2e7e4d67c0a81e8a5a40394567752eaf" identifier="sectionHeaderParagraph" label="Section Paragraph" wysiwyg="true" />
@@ -18,10 +18,11 @@
       <text default="red" field-id="2e7e4d67c0a81e8a5a4039453f253ac1" identifier="buttonColor" label="Button Color" type="dropdown">
         <dropdown-item label="Chapman Red" value="red" />
         <dropdown-item label="Panther Black" value="black" />
+        bu
         <dropdown-item label="White" value="white" />
       </text>
-      <group collapsed="true" identifier="button-accessibility" label="Button Accessibility">
-        <text field-id="2e825a44c0a81e8a5a4039454e2daee8" help-text="Describe what the image looks like." identifier="altTag" label="Alt Tag" required="true" />
+      <group collapsed="true" identifier="buttonAccessibility" label="Button Accessibility">
+        <text field-id="2e825a44c0a81e8a5a4039454e2daee8" help-text="Describe what the image looks like." identifier="ariaLabel" label="Aria Label" required="true" />
       </group>
     </group>
   </group>

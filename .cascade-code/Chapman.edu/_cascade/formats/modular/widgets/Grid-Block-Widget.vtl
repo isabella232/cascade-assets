@@ -9,38 +9,9 @@ Chapman.edu: /_cascade/formats/modular/widgets/Grid-Block-Widget
 #set ($display = $element.getChild($widgetXPath).getChild('display').value)
 #set ($bgColor =  $element.getChild($widgetXPath).getChild('bgColor').value)
 
-  ## INTRO SECTION   
-  #set ($displaySectionIntro = $element.getChild($widgetXPath).getChild('displaySectionIntro').value)
-  #if ($displaySectionIntro != 'No')
-    #set ($sectionHeader = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionHeader').value)
-    #set ($sectionPreheader = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionPreheader').value)
-    #set ($sectionHeaderParagraph = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionHeaderParagraph').value)
-    
-    ## INTRO SECTION - BUTTONS
-       #set ($displaySectionButtons = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('displaySectionButtons').value)
-       
-       #set ($buttonLabel = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons').getChild('buttonLabel').value)
-       #set ($internalOrExternalLink = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons').getChild('internalOrExternalLink').value)
-       #set ($ariaLabel = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons').getChild('buttonAccessibility').getChild('ariaLabel').value)
-       
-       #if ($internalOrExternalLink == 'internal')
-            #set ($buttonLink = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons').getChild('internalLink').getChild('path').value)
-        #elseif ($internalOrExternalLink == 'external')
-            #set ($buttonLink = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons').getChild('externalLinkField').value)
-        #else 
-            #set ($internalOrExternalLink = '')
-       #end
-  #else 
-    #set ($sectionHeader = '')
-    #set ($sectionPreheader = '')
-    #set ($sectionHeaderParagraph = '')
-    #set ($buttonLabel = '')
-    #set ($internalOrExternalLink = '')
-    #set ($buttonLink = '')
-  #end
-  
-  
-  #set ($parentGroup = $element.getChild($widgetXPath).getChild("gridOptions"))
+#set ($parentGroup = $element.getChild($widgetXPath))
+  #getSetVal($parentGroup "altText")
+
   #macro(getSetVal $parentGroup $node)
     ## Usage: #getSetVal($parentGroup "gridColumnsVideos")
 
@@ -52,6 +23,53 @@ Chapman.edu: /_cascade/formats/modular/widgets/Grid-Block-Widget
         <li>$node = $nodeVal</li>
     </ul>
    #end
+
+  ## INTRO SECTION   
+##   #set ($displaySectionIntro = $element.getChild($widgetXPath).getChild('displaySectionIntro').value)
+    #set ($parentGroup = $element.getChild($widgetXPath))
+
+    ## #getSetVal($parentGroup "displaySectionIntro")
+
+  #if ($displaySectionIntro != 'No')
+    #set ($parentGroup = $element.getChild($widgetXPath).getChild('sectionHeaderGroup'))
+    #getSetVal($parentGroup "displaySectionIntro")
+    #getSetVal($parentGroup "sectionPreheader")
+    #getSetVal($parentGroup "sectionHeaderParagraph")
+
+    
+    ## INTRO SECTION - BUTTONS
+       #set ($displaySectionButtons = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('displaySectionButtons').value)
+       
+       
+       
+       #set ($parentGroup = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons'))
+       #getSetVal($parentGroup "buttonLabel")
+    ##   #set ($buttonLabel = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons').getChild('buttonLabel').value)
+        #getSetVal($parentGroup "buttonLabel")
+    ##   #set ($internalOrExternalLink = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons').getChild('internalOrExternalLink').value)
+        #getSetVal($parentGroup "internalOrExternalLink")
+        
+        
+       #set ($ariaLabel = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons').getChild('buttonAccessibility').getChild('ariaLabel').value)
+       #if ($internalOrExternalLink == 'internal')
+            #set ($buttonLink = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons').getChild('internalLink').getChild('path').value)
+        #elseif ($internalOrExternalLink == 'external')
+            #set ($buttonLink = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons').getChild('externalLinkField').value)
+        #else 
+            #set ($internalOrExternalLink = '')
+       #end
+       
+  #else 
+    #set ($sectionHeader = '')
+    #set ($sectionPreheader = '')
+    #set ($sectionHeaderParagraph = '')
+    #set ($buttonLabel = '')
+    #set ($internalOrExternalLink = '')
+    #set ($buttonLink = '')
+  #end
+  
+  
+  #set ($parentGroup = $element.getChild($widgetXPath).getChild("gridOptions"))
 
 ##   GRID OPTIONS 
   #getSetVal($parentGroup "title")
@@ -83,67 +101,17 @@ Chapman.edu: /_cascade/formats/modular/widgets/Grid-Block-Widget
   
   #getSetVal($parentGroup "content")
   
+##   Grid Block Image
+  #set ($parentGroup = $element.getChild($widgetXPath).getChild('gridOptions').getChild('gridBlock').getChild('gridBlockImage'))
+  #getSetVal($parentGroup "path")
   
-<ul>
-    <li>
-  element $element
-</li>
-<li>
-  xWidgetPath $widgetXPath
-</li>
-<li>
-  display $display
-</li>
-<li>
-  numberOfColumns $numberOfColumns
-</li>
-<li>
-  displaySectionIntro $displaySectionIntro
-</li>
-<li>
-  sectionHeader $sectionHeader
-</li>
-<li>
-  sectionPreheader $sectionPreheader
-</li>
-<li>
-  sectionHeaderParagraph $sectionHeaderParagraph
-</li>
-
-
-
-<li>
-    $internalOrExternalLink
-</li>
-
-<li>
-    $buttonLabel
-</li>
-<li>
-    $buttonLink
-</li>
-<li>
-    bgColor $bgColor
-</li>
-<li>
-    ariaLabel $ariaLabel
-</li>
-<li>
-   gridTitle: $gridTitle
-
-</li>
-
-<li>
-    textAlign: $textAlign
-</li>
-<li>
-    bodytext: $bodyText
-</li>
-
-    
-    
-    
-</ul>
+  #set ($parentGroup = $element.getChild($widgetXPath).getChild('gridOptions').getChild('gridBlock'))
+  #getSetVal($parentGroup "altText")
+  #getSetVal($parentGroup "imagePosition")
+  #getSetVal($parentGroup "gridBlockVideo")
+  #getSetVal($parentGroup "gridBlockText")
+  
+  
 ##   #set ( $blocks = $_XPathTool.selectNodes
 ##   ($element, 'gridBlockWidget/block') )
 
