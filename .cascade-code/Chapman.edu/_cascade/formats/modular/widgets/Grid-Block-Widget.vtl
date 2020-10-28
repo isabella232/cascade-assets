@@ -1,6 +1,20 @@
 #import( "/_cascade/formats/helpers.velocity" )
 
-Chapman.edu: /_cascade/formats/modular/widgets/Grid-Block-Widget 
+## Chapman.edu: /_cascade/formats/modular/widgets/Grid-Block-Widget 
+
+<style>
+    ul ul {
+        margin-left: 12px;
+    }
+</style>
+
+#macro(camel2Snake $camelCase)
+    #set( $regex = "([a-z])([A-Z]+)")
+    #set( $replacement = "$1-$2")
+    #set( $snakeCase = $camelCase.replaceAll($regex, $replacement).toLowerCase())
+    $snakeCase
+#end
+ 
 
 #macro(outputGridBlockWidget $element) 
   #set ($widgetXPath = 'gridBlockWidget')
@@ -19,16 +33,27 @@ Chapman.edu: /_cascade/formats/modular/widgets/Grid-Block-Widget
 
     #set ($nodeVal = $parentGroup.getChild("$node").value)
     ## ${_EscapeTool.xml($heading)}
-    <ul>
-        <li>$node = $nodeVal</li>
-    </ul>
+    
+    
+    #set( $regex = "([a-z])([A-Z]+)")
+    #set( $replacement = "$1-$2")
+    #set( $classNode = $node.replaceAll($regex, $replacement).toLowerCase())
+    #set( $classNodeModifier = $nodeVal.replaceAll($regex, $replacement).toLowerCase())
+    
+<ul>
+	<li>$node = $nodeVal</li>
+	<ul>
+	    <li>$classNode</li>
+	    <li>$classNodeModifier</li>
+	</ul>
+</ul>
    #end
 
   ## INTRO SECTION   
 ##   #set ($displaySectionIntro = $element.getChild($widgetXPath).getChild('displaySectionIntro').value)
     #set ($parentGroup = $element.getChild($widgetXPath))
-
-    ## #getSetVal($parentGroup "displaySectionIntro")
+    
+    #getSetVal($parentGroup  'displaySectionIntro')
 
   #if ($displaySectionIntro != 'No')
     #set ($parentGroup = $element.getChild($widgetXPath).getChild('sectionHeaderGroup'))
@@ -44,9 +69,7 @@ Chapman.edu: /_cascade/formats/modular/widgets/Grid-Block-Widget
        
        #set ($parentGroup = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons'))
        #getSetVal($parentGroup "buttonLabel")
-    ##   #set ($buttonLabel = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons').getChild('buttonLabel').value)
         #getSetVal($parentGroup "buttonLabel")
-    ##   #set ($internalOrExternalLink = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons').getChild('internalOrExternalLink').value)
         #getSetVal($parentGroup "internalOrExternalLink")
         
         
@@ -77,7 +100,15 @@ Chapman.edu: /_cascade/formats/modular/widgets/Grid-Block-Widget
   #getSetVal($parentGroup "textAlign")
   #getSetVal($parentGroup "bodyText")
   #getSetVal($parentGroup "imageOrVideo")
+  
   #getSetVal($parentGroup "imageOrientation")
+##   #set ($classImageOrientation = #camelToSnake($imageOrientation) )
+  
+  
+  imageOrientation!!! $imageOrientation
+  
+  classImageOrientation #camel2Snake($imageOrientation)
+ 
   #getSetVal($parentGroup "gridColumnsVideos")
   #getSetVal($parentGroup "gridColumnsImages")
   #getSetVal($parentGroup "gridColumnsImages")
@@ -90,8 +121,6 @@ Chapman.edu: /_cascade/formats/modular/widgets/Grid-Block-Widget
   #set ($parentGroup = $element.getChild($widgetXPath).getChild('gridOptions').getChild('gridBlock'))
 
   #getSetVal($parentGroup "gridBlockTitle")
-    ## #set ($gridBlockTitle = $element.getChild($widgetXPath).getChild('gridOptions').getChild('gridBlock').getChild('gridBlockTitle').value)
-    ## gridblockTitle $gridBlockTitle
   #getSetVal($parentGroup "titleLink")
   #getSetVal($parentGroup "linkType")
   #getSetVal($parentGroup "internalLink")
@@ -110,12 +139,11 @@ Chapman.edu: /_cascade/formats/modular/widgets/Grid-Block-Widget
   #getSetVal($parentGroup "imagePosition")
   #getSetVal($parentGroup "gridBlockVideo")
   #getSetVal($parentGroup "gridBlockText")
-  
-  
-##   #set ( $blocks = $_XPathTool.selectNodes
-##   ($element, 'gridBlockWidget/block') )
 
 
-
+  <div class="${widgetXPath}-container">
+    <div class="${widgetXPath}">
+    </div>
+  </div>
 #end
 
