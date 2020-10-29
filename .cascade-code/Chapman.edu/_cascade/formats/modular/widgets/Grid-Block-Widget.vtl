@@ -137,12 +137,8 @@
   #li("  gridTitleTextAlign: $gridTitleTextAlign")
 
 
-#set ($hasGridBodyText = $gridOptions.getChild('textAlign').value)
+#set ($hasGridBodyText = $gridOptions.getChild('bodyText').value)
   #li("hasGridBodyText $hasGridBodyText")
-
-
-#set ($gridBodyText = $gridOptions.getChild('bodyText').value)
-#li("gridBodyText $gridBodyText")
 
 
 #set ($imageOrVideo = $gridOptions.getChild('imageOrVideo').value)
@@ -198,19 +194,23 @@
     #set ($gridBlockExternalLinkPath = $block.getChild('externalLink').value)
 
     
-        #set ($gridBlockContent = $block.getChild('content').value)
+    #set ($gridBlockContent = $block.getChild('content').value)
+    #li("gridBlockContent $gridBlockContent")
 
-          #li("gridBlockContent $gridBlockContent")
+    #set ($gridBodyText = $block.getChild('gridBlockText').value)
+    #li("gridBodyText $gridBodyText")
 
     
   ##   Grid Block Image
   
     #set ($gridBlockImageGroup = $element.getChild($widgetXPath).getChild('gridOptions').getChild('gridBlock'))
 
-    #set ($gridBlockImagePath = $gridBlockImageGroup.getChild('gridBlockImage').value)
+    #set ($gridBlockImagePath = $block.getChild('gridBlockImage').getChild('path').value)
 
 
-    #li("gridBlockImagePath [system-asset]${gridBlockImagePath}[/system-asset]")
+    "[system-asset]${gridBlockImagePath}[/system-asset]"
+
+    <br/>
     #li("gridBlockImagePath $gridBlockImagePath")
 
 
@@ -248,11 +248,9 @@
   </div>
   <div class="${widgetXPath} ${widgetXPath}--${imageOrientation}">
   
-    <img class="${widgetXPath}__image" src="$gridBlockImagePath" alt="${gridBlockAltText}" />
-    
+    <img class="${widgetXPath}__image" src="[system-asset]${_EscapeTool.xml($gridBlockImagePath)}[/system-asset]" alt="${gridBlockAltText}" />
     <div class="grid-block-widget__text">
-  #getSetVal($parentGroup "bodyText")
-$bodyText
+      ${_EscapeTool.xml($gridBodyText)}
     </div>
   </div>
 </div>

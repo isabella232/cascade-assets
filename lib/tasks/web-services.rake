@@ -289,7 +289,7 @@ end
 desc 'Updates `Chapman.edu/_cascade/formats/modular/widgets/Collapsibles` with `.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Collapsibles`'
 task edit_grid_block_widget: :environment do
   edit_format(
-    'Chapman.edu/_cascade/formats/modular/widgets/Grid-Block-Widget',
+    '567ec178c0a81e8a1e5ac2884450d7c2',
     '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Grid-Block-Widget.vtl'
   )
 end
@@ -438,7 +438,7 @@ def edit_format(asset_path, update_source)
 
   asset_id = response['asset']['scriptFormat']['id']
 
-  backup_strategy(response_path_full, response, site_name)
+  # backup_strategy(response_path_full, response, site_name)
 
   #  p response_xml
   update_source = "#{update_source}"
