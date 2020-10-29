@@ -15,16 +15,27 @@
     $snakeCase
 #end
  
+ #macro(li $var)
+<ul>
+  <li>
+       $var
+     </li>
+</ul>
+ #end
 
 #macro(outputGridBlockWidget $element) 
   #set ($widgetXPath = 'gridBlockWidget')
+
+
   #set ($this = $widgetXPath)
   
 #set ($display = $element.getChild($widgetXPath).getChild('display').value)
 #set ($bgColor =  $element.getChild($widgetXPath).getChild('bgColor').value)
 
 #set ($parentGroup = $element.getChild($widgetXPath))
-  #getSetVal($parentGroup "altText")
+  ## #getSetVal($parentGroup "altText")
+  #set ($altText = $parentGroup.getChild('altText'))
+
 
   #macro(getSetVal $parentGroup $node)
     ## Usage: #getSetVal($parentGroup "gridColumnsVideos")
@@ -32,21 +43,12 @@
     #set ($nodeVal = "$" + $node)
 
     #set ($nodeVal = $parentGroup.getChild("$node").value)
-    ## ${_EscapeTool.xml($heading)}
-    
     
     #set( $regex = "([a-z])([A-Z]+)")
     #set( $replacement = "$1-$2")
     #set( $classNode = $node.replaceAll($regex, $replacement).toLowerCase())
     #set( $classNodeModifier = $nodeVal.replaceAll($regex, $replacement).toLowerCase())
     
-<ul>
-	<li>$node = $nodeVal</li>
-	<ul>
-	    <li>$classNode</li>
-	    <li>$classNodeModifier</li>
-	</ul>
-</ul>
    #end
 
   ## INTRO SECTION   
@@ -54,22 +56,46 @@
     #set ($parentGroup = $element.getChild($widgetXPath))
     
     #getSetVal($parentGroup  'displaySectionIntro')
+    #set ($displaySectionIntro = $parentGroup.getChild('displaySectionIntro').value)
 
   #if ($displaySectionIntro != 'No')
     #set ($parentGroup = $element.getChild($widgetXPath).getChild('sectionHeaderGroup'))
-    #getSetVal($parentGroup "displaySectionIntro")
-    #getSetVal($parentGroup "sectionPreheader")
-    #getSetVal($parentGroup "sectionHeaderParagraph")
+    ## #getSetVal($parentGroup "displaySectionIntro")
+    #set ($displaySectionIntro = $parentGroup.getChild('displaySectionIntro'))
 
+
+    #set ($sectionPreheader = $parentGroup.getChild('sectionPreheader').value)
+    #li("sectionPreheader $sectionPreheader")
+
+#set ($sectionHeader = $parentGroup.getChild('sectionHeader').value)
+    #li("sectionHeader $sectionHeader ")
+
+#set ($sectionHeaderParagraph = $parentGroup.getChild('sectionHeaderParagraph').value)
+    #li("sectionHeaderParagraph $sectionHeaderParagraph ")
+
+
+
+    #getSetVal($parentGroup "sectionHeaderParagraph")
     
     ## INTRO SECTION - BUTTONS
        #set ($displaySectionButtons = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('displaySectionButtons').value)
        
+      #set ( $blocks = $_XPathTool.selectNodes($element, 'gridBlockWidget/gridOptions/gridBlock'))
+
+       
        
        
        #set ($parentGroup = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons'))
-       #getSetVal($parentGroup "buttonLabel")
+       ## #getSetVal($parentGroup "buttonLabel")
+       #set ($buttonLabel = $parentGroup.getChild('buttonLabel').value)
+      #li("buttonLabel $buttonLabel")
+
+
+       
         #getSetVal($parentGroup "buttonLabel")
+
+      
+
         #getSetVal($parentGroup "internalOrExternalLink")
         
         
@@ -92,58 +118,144 @@
   #end
   
   
-  #set ($parentGroup = $element.getChild($widgetXPath).getChild("gridOptions"))
+  #set ($gridOptions = $element.getChild($widgetXPath).getChild("gridOptions"))
 
 ##   GRID OPTIONS 
-  #getSetVal($parentGroup "title")
-  #set ($gridTitle  = $title) ##overriding node selector label
-  #getSetVal($parentGroup "textAlign")
-  #getSetVal($parentGroup "bodyText")
-  #getSetVal($parentGroup "imageOrVideo")
+
+
+  #set ($hasGridTitle = $gridOptions.getChild('title').value)
   
-  #getSetVal($parentGroup "imageOrientation")
-##   #set ($classImageOrientation = #camelToSnake($imageOrientation) )
-  
-  
-  imageOrientation!!! $imageOrientation
-  
-  classImageOrientation #camel2Snake($imageOrientation)
- 
-  #getSetVal($parentGroup "gridColumnsVideos")
-  #getSetVal($parentGroup "gridColumnsImages")
-  #getSetVal($parentGroup "gridColumnsImages")
-  #getSetVal($parentGroup "gridDisplay")
-  
+  #li("hasGridTitle: ${hasGridTitle}")
+
+  #if ($hasGridTitle != "No")
+    #set ($gridTitleClass = "has-grid-title")
+  #else 
+    #set ($gridTitleClass = "no-grid-title")
+  #end
+
+  #set ($gridTitleTextAlign = $gridOptions.getChild('textAlign').value)
+  #li("  gridTitleTextAlign: $gridTitleTextAlign")
+
+
+#set ($hasGridBodyText = $gridOptions.getChild('textAlign').value)
+  #li("hasGridBodyText $hasGridBodyText")
+
+
+#set ($gridBodyText = $gridOptions.getChild('bodyText').value)
+#li("gridBodyText $gridBodyText")
+
+
+#set ($imageOrVideo = $gridOptions.getChild('imageOrVideo').value)
+
+#li("imageOrVideo $imageOrVideo")
+
+
+#set ($imageOrientation = $gridOptions.getChild('imageOrientation').value)
+
+#li("imageOrientation $imageOrientation")
+
+
+## VIDEOS
+#set ($gridColumnsVideos = $gridOptions.getChild('gridColumnsVideos').value)
+
+#li("gridColumnsVideos $gridColumnsVideos")
+
+## IMAGES 
+#set ($gridColumnsImages = $gridOptions.getChild('gridColumnsImages').value)
+
+#li("gridColumnsImages $gridColumnsImages")
+
+#set ($gridDisplay = $gridOptions.getChild('gridDisplay').value)
+
+#li("gridDisplay $gridDisplay")
+
 ## GRID BLOCK 
   #set ($gridBlockGroup =  $element.getChild($widgetXPath).getChild('gridOptions').getChild('gridBlock'))
-  
 
-  #set ($parentGroup = $element.getChild($widgetXPath).getChild('gridOptions').getChild('gridBlock'))
+  #set ($title = $block.getChild('gridBlockTitle').value )
 
-  #getSetVal($parentGroup "gridBlockTitle")
-  #getSetVal($parentGroup "titleLink")
-  #getSetVal($parentGroup "linkType")
-  #getSetVal($parentGroup "internalLink")
-  #set ($internalLinkPath = $element.getChild($widgetXPath).getChild('gridOptions').getChild('internalLink').getChild('path'))
-  #getSetVal($parentGroup "externalLink")
-  #set ($externalLinkPath = $element.getChild($widgetXPath).getChild('gridOptions').getChild('externalLink').getChild('path'))
+  #set ( $blocks = $_XPathTool.selectNodes($element, 'gridBlockWidget/gridOptions/gridBlock'))
+
+  #foreach ($block in $blocks)
+  #set ($title = $block.getChild('gridBlock').getChild('gridBlockTitle').value )
+
+    #set ($gridBlockTitle = $block.getChild('gridBlockTitle').value)
+    #li("gridBlockTitle $gridBlockTitle")
+    
+
+
+    #set ($gridBlockLinkType = $block.getChild('linkType').value)
+    #li("gridBlockLinkType $gridBlockLinkType")
+    
+    #set ($gridBlockInternalLink = $block.getChild('internalLink').value)
+    #li("gridBlockInternalLink $gridBlockInternalLink")
+
+
+    #set ($gridBlockInternalLinkPath = $block.getChild('internalLink').getChild('path'))
+    #li("gridBlockInternalLinkPath $gridBlockInternalLinkPath")
+
+
+    #set ($gridBlockExternalLinkPath = $block.getChild('externalLink').value)
+
+    
+        #set ($gridBlockContent = $block.getChild('content').value)
+
+          #li("gridBlockContent $gridBlockContent")
+
+    
+  ##   Grid Block Image
   
-  #getSetVal($parentGroup "content")
-  
-##   Grid Block Image
-  #set ($parentGroup = $element.getChild($widgetXPath).getChild('gridOptions').getChild('gridBlock').getChild('gridBlockImage'))
-  #getSetVal($parentGroup "path")
-  
-  #set ($parentGroup = $element.getChild($widgetXPath).getChild('gridOptions').getChild('gridBlock'))
-  #getSetVal($parentGroup "altText")
-  #getSetVal($parentGroup "imagePosition")
-  #getSetVal($parentGroup "gridBlockVideo")
-  #getSetVal($parentGroup "gridBlockText")
+    #set ($gridBlockImageGroup = $element.getChild($widgetXPath).getChild('gridOptions').getChild('gridBlock'))
+
+    #set ($gridBlockImagePath = $gridBlockImageGroup.getChild('gridBlockImage').value)
+
+
+    #li("gridBlockImagePath [system-asset]${gridBlockImagePath}[/system-asset]")
+    #li("gridBlockImagePath $gridBlockImagePath")
+
+
+    #set ($gridBlockAltText = $block.getChild('altText').value)
+    #li("gridBlockAltText $gridBlockAltText")
+
+    #set ($gridBlockImagePosition = $block.getChild('altText').value)
+    #li("gridBlockImagePosition $gridBlockImagePosition")
+
+    #set ($gridBlockVideo = $block.getChild('gridBlockVideo').value)
+    #li("gridBlockVideo $gridBlockVideo")
+
+    #set ($gridBlockText = $block.getChild('gridBlockText').value)
+    #li("gridBlockText $gridBlockText")
+  #end
+
+  #camelToSnake($widgetXPath)
+  #set ( $widgetXPath = $snakeCase ) 
 
 
   <div class="${widgetXPath}-container">
-    <div class="${widgetXPath}">
+  <div class="section-intro">
+    <div class="section-intro__preheader">
+      ${_EscapeTool.xml($sectionPreheader)}
+    </div>
+    <div class="section-intro__header">  
+      ${_EscapeTool.xml($sectionHeader)}
+    </div>
+    <div class="section-intro__text">
+      ${_EscapeTool.xml($sectionHeaderParagraph)}
+    </div>
+    <div class="section-intro__buttons">
+      <div class="section-intro__button"></div>
     </div>
   </div>
+  <div class="${widgetXPath} ${widgetXPath}--${imageOrientation}">
+  
+    <img class="${widgetXPath}__image" src="$gridBlockImagePath" alt="${gridBlockAltText}" />
+    
+    <div class="grid-block-widget__text">
+  #getSetVal($parentGroup "bodyText")
+$bodyText
+    </div>
+  </div>
+</div>
+
 #end
 
