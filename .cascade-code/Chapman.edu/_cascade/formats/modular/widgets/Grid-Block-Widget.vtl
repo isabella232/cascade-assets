@@ -6,6 +6,7 @@
     ul ul {
         margin-left: 12px;
     }
+
 </style>
 
 #macro(camel2Snake $camelCase)
@@ -16,11 +17,14 @@
 #end
  
  #macro(li $var)
+ <div class="debug hidden">
+ #log($var)
 <ul>
   <li>
        $var
      </li>
 </ul>
+</div>
  #end
 
 #macro(outputGridBlockWidget $element) 
@@ -174,6 +178,22 @@
 
   #set ( $blocks = $_XPathTool.selectNodes($element, 'gridBlockWidget/gridOptions/gridBlock'))
 
+#if ($displaySectionIntro != "no")
+    <div class="section-intro">
+      <div class="section-intro__preheader">
+        ${_EscapeTool.xml($sectionPreheader)}
+      </div>
+      <div class="section-intro__header">  
+        ${_EscapeTool.xml($sectionHeader)}
+      </div>
+      <div class="section-intro__text">
+        ${_EscapeTool.xml($sectionHeaderParagraph)}
+      </div>
+      <div class="section-intro__buttons">
+        <div class="section-intro__button"></div>
+      </div>
+    </div>
+  #end
   #foreach ($block in $blocks)
   #set ($title = $block.getChild('gridBlock').getChild('gridBlockTitle').value )
 
@@ -228,22 +248,7 @@
 
 
   <div class="${widgetXPath}__container ${widgetXPath}__$imageOrVideo ${widgetXPath}">
-  #if ($displaySectionIntro != "no")
-    <div class="section-intro">
-      <div class="section-intro__preheader">
-        ${_EscapeTool.xml($sectionPreheader)}
-      </div>
-      <div class="section-intro__header">  
-        ${_EscapeTool.xml($sectionHeader)}
-      </div>
-      <div class="section-intro__text">
-        ${_EscapeTool.xml($sectionHeaderParagraph)}
-      </div>
-      <div class="section-intro__buttons">
-        <div class="section-intro__button"></div>
-      </div>
-    </div>
-  #end
+  
   <div class="${widgetXPath} ${widgetXPath}--${imageOrientation} ${widgetXPath}__${gridColumnsImages}">
     <img class="${widgetXPath}__image ${widgetXPath}__image--${imageOrientation}" src="[system-asset]${_EscapeTool.xml($gridBlockImagePath)}[/system-asset]" alt="${gridBlockAltText}" />
     <div class="grid-block-widget__text">
