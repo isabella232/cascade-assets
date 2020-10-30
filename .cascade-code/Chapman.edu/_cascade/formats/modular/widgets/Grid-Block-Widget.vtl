@@ -220,9 +220,10 @@
 
     #set ($gridBlockText = $block.getChild('gridBlockText').value)
     #li("gridBlockText $gridBlockText")
-  #end
 
-  #camelToSnake($widgetXPath)
+
+    ## HTML MARKUP - INSIDE FOREACH BLOCK 
+      #camelToSnake($widgetXPath)
   #set ( $widgetXPath = $snakeCase ) 
 
 
@@ -250,6 +251,9 @@
     </div>
   </div>
 </div>
+
+  #end
+
 
 #end
 
