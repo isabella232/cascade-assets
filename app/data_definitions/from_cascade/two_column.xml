@@ -468,12 +468,12 @@
             <radio-item label="2" value="gridColumnsTwoVideos" />
             <radio-item label="3" value="gridColumnsThreeVideos" />
           </text>
-          <text default="gridColumnsThreeImages" field-id="299a1db5c0a81e8a5a4039454f88a5c3" identifier="gridColumnsImages" label="Image Grid Columns" required="true" type="radiobutton">
-            <radio-item label="2" value="gridColumnsTwoImages" />
-            <radio-item label="3" value="gridColumnsThreeImages" />
-            <radio-item label="4" value="gridColumnsFourImages" />
-            <radio-item label="5" value="gridColumnsFiveImages" />
-            <radio-item label="6" value="gridColumnsSixImages" />
+          <text default="3-col" field-id="299a1db5c0a81e8a5a4039454f88a5c3" identifier="gridColumnsImages" label="Image Grid Columns" required="true" type="radiobutton">
+            <radio-item label="2" value="2-col" />
+            <radio-item label="3" value="3-col" />
+            <radio-item label="4" value="4-col" />
+            <radio-item label="5" value="5-col" />
+            <radio-item label="6" value="6-col" />
           </text>
           <text default="showAll" field-id="243872cdc0a81e8a5a4039455373b601" help-text="How do you want your grid to be loaded?" identifier="gridDisplay" label="Grid Display" required="true" type="radiobutton">
             <radio-item label="Pagination (displays six at a time if you have more than six)" value="pagination" />
