@@ -29,12 +29,9 @@
 
 #macro(outputGridBlockWidget $element) 
   #set ($widgetXPath = 'gridBlockWidget')
-
-
-  #set ($this = $widgetXPath)
   
 #set ($display = $element.getChild($widgetXPath).getChild('display').value)
-#set ($bgColor =  $element.getChild($widgetXPath).getChild('bgColor').value)
+#set ($bgColor =  $element.getChild($widgetXPath).getChild('bgColor').value.toLowerCase())
 
 #set ($parentGroup = $element.getChild($widgetXPath))
   ## #getSetVal($parentGroup "altText")
@@ -58,17 +55,52 @@
   ## INTRO SECTION   
 ##   #set ($displaySectionIntro = $element.getChild($widgetXPath).getChild('displaySectionIntro').value)
     #set ($parentGroup = $element.getChild($widgetXPath))
+  
+
+    #set ( $buttons = $_XPathTool.selectNodes($element, 'gridBlockWidget/sectionHeaderGroup/sectionButtons'))
+    #foreach ($button in $buttons)
+       #set ($buttonLabel = $button.getChild('buttonLabel').value )
+
+       #set ($internalOrExternalLink = $button.getChild('internalOrExternalLink').value )
+
+       ## INTERNAL LINKS
+       #if ($internalOrExternalLink == 'internal')
+        #set ($linkURL = $button.getChild('internalLink').getChild('path').value )
+      #elseif ($internalOrExternalLink == 'external')
+        #set ($linkURL = $button.getChild('externalLink').getChild('path').value )
+       #end
+
+      #if ($linkType == 'Internal Link')
+            #set ($linkURL = $button.getChild('internalLink').getChild('path').value )
+            #elseif ($linkType == 'External Link')
+                #set ($linkURL = $button.getChild('externalLink').value )
+        #else 
+            #set ($linkURL = $button.getChild('fileLink').getChild('path').value )
+      #end
+
+      ## ACCESSIBILITY
+        #set ($ariaLabel = $button.getChild('buttonAccessibility').getChild('ariaLabel').value)
     
+    #if ($linkLabel != '')
+                <a tabindex="0" href="${linkURL}" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" class="button $bemButtonClass">#escape($buttonLabel)</a>  
+    #end
+    #end
+  
     
-    #getSetVal($parentGroup  'displaySectionIntro')
-    #set ($displaySectionIntro = $parentGroup.getChild('displaySectionIntro').value)
+
+
+
+  #getSetVal($parentGroup  'displaySectionIntro')
+  #set ($displaySectionIntro = $parentGroup.getChild('displaySectionIntro').value)
+
+#set ($widgetXPath = 'gridBlockWidget')
 
   #if ($displaySectionIntro != 'No')
     #set ($parentGroup = $element.getChild($widgetXPath).getChild('sectionHeaderGroup'))
     ## #getSetVal($parentGroup "displaySectionIntro")
     #set ($displaySectionIntro = $parentGroup.getChild('displaySectionIntro').value)
 
-        #li("displaySectionIntro $displaySectionIntro")
+    #li("displaySectionIntro $displaySectionIntro")
 
     #set ($sectionPreheader = $parentGroup.getChild('sectionPreheader').value)
     #li("sectionPreheader $sectionPreheader")
@@ -128,7 +160,6 @@
 
 ##   GRID OPTIONS 
 
-
   #set ($hasGridTitle = $gridOptions.getChild('title').value)
   
   #li("hasGridTitle: ${hasGridTitle}")
@@ -183,14 +214,16 @@
       <div class="section-intro__preheader">
         ${_EscapeTool.xml($sectionPreheader)}
       </div>
-      <div class="section-intro__header">  
+      <h2 class="section-intro__header">  
         ${_EscapeTool.xml($sectionHeader)}
-      </div>
+      </h2>
       <div class="section-intro__text">
         ${_EscapeTool.xml($sectionHeaderParagraph)}
       </div>
       <div class="section-intro__buttons">
-        <div class="section-intro__button"></div>
+        <div class="section-intro__button">
+        
+        </div>
       </div>
     </div>
   #end
@@ -247,7 +280,7 @@
   #set ( $widgetXPath = $snakeCase ) 
 
 
-  <div class="${widgetXPath}__container ${widgetXPath}__$imageOrVideo ${widgetXPath}">
+  <div class="${widgetXPath}__container ${widgetXPath}__$imageOrVideo ${widgetXPath}--${bgColor}">
   
   <div class="${widgetXPath} ${widgetXPath}--${imageOrientation} ${widgetXPath}__${gridColumnsImages}">
     <img class="${widgetXPath}__image ${widgetXPath}__image--${imageOrientation}" src="[system-asset]${_EscapeTool.xml($gridBlockImagePath)}[/system-asset]" alt="${gridBlockAltText}" />
@@ -260,5 +293,65 @@
   #end
 
 
+## private macros 
+#macro(sectionButtons $elem $linkXPath $wxp)
+    ## this will create 'next-steps-widget__button' down below
+    #set ($bemButtonClass = 'grid-block-widget' + '__button')
+    #set ($bemButtonClass = $bemButtonClass.value)
+    bemButtonClass $bemButtonClass
+    
+    #set ( $linkItems = $_XPathTool.selectNodes($element, 'sectionHeaderGroup/link') )
+      linkItems: $linkItems
+    #foreach ($link in $linkItems)
+        #set ($linkStyle = 'Button Link') 
+        linkStyle: $linkStyle
+        #set ($linkType =  $link.getChild('linkType').value)
+        #set ($linkLabel = $link.getChild('label').value)
+        
+        ## ACCESSIBILITY
+        #set ($ariaLabel = $link.getChild('accessibility').getChild('ariaLabel').value)
+        #set ($title = $link.getChild('accessibility').getChild('title').value)
+
+        ## ANALYTICS
+        #set ($customID = $link.getChild('tracking').getChild('customID').value)
+        #set ($dataAttr = $link.getChild('tracking').getChild('dataAttr').value)
+
+        #if ($customID != '')
+            #set ($customID = $link.getChild('customID').value)
+        #else
+            #set ( $customID = $linkLabel.replaceAll(" ", "-").replaceAll("[^a-zA-Z-]", "").replaceAll("--", "-").toLowerCase() )
+        #end
+        
+        #if ($dataAttr != '')
+            #set ($dataAttr = $link.getChild('dataAttr').value)
+            #set ($dataAttr = $dataAttr)
+        #else
+            #set ($dataAttr = '')
+        #end
+            
+        #if ($linkType == 'Internal Link')
+            #set ($linkURL = $button.getChild('internalLink').getChild('path').value )
+            #elseif ($linkType == 'External Link')
+                #set ($linkURL = $button.getChild('externalLink').value )
+        #else 
+            #set ($linkURL = $button.getChild('fileLink').getChild('path').value )
+        #end
+    
+        
+   
+        #if ($linkLabel != '')
+                <a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button $bemButtonClass">#escape($linkLabel)</a>  
+        #end
+
+    #end
 #end
+
+
+
+
+
+
+#end
+
+
 

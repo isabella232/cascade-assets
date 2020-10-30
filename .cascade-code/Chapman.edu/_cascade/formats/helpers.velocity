@@ -238,7 +238,7 @@ USAGE: #bgColorChooser('next-steps-widget'). $bgColor will result in a class suc
 #macro(bgColorChooser $wxp)
     #set ($bgColor = $element.getChild($wxp).getChild('bgColor').value.toLowerCase())
     #camelToSnake($wxp)
-    #set ($bgColor = $wxp + '--' + $bgColor)
+    #set ($bgColor = $wxp + '--' + $bgColor.toLowerCase())
 #end
 
 #*
