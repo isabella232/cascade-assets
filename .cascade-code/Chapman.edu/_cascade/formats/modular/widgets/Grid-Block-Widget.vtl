@@ -55,14 +55,16 @@
 ##   #set ($displaySectionIntro = $element.getChild($widgetXPath).getChild('displaySectionIntro').value)
     #set ($parentGroup = $element.getChild($widgetXPath))
     
+    
     #getSetVal($parentGroup  'displaySectionIntro')
     #set ($displaySectionIntro = $parentGroup.getChild('displaySectionIntro').value)
 
   #if ($displaySectionIntro != 'No')
     #set ($parentGroup = $element.getChild($widgetXPath).getChild('sectionHeaderGroup'))
     ## #getSetVal($parentGroup "displaySectionIntro")
-    #set ($displaySectionIntro = $parentGroup.getChild('displaySectionIntro'))
+    #set ($displaySectionIntro = $parentGroup.getChild('displaySectionIntro').value)
 
+        #li("displaySectionIntro $displaySectionIntro")
 
     #set ($sectionPreheader = $parentGroup.getChild('sectionPreheader').value)
     #li("sectionPreheader $sectionPreheader")
@@ -207,13 +209,6 @@
 
     #set ($gridBlockImagePath = $block.getChild('gridBlockImage').getChild('path').value)
 
-
-    "[system-asset]${gridBlockImagePath}[/system-asset]"
-
-    <br/>
-    #li("gridBlockImagePath $gridBlockImagePath")
-
-
     #set ($gridBlockAltText = $block.getChild('altText').value)
     #li("gridBlockAltText $gridBlockAltText")
 
@@ -231,23 +226,24 @@
   #set ( $widgetXPath = $snakeCase ) 
 
 
-  <div class="${widgetXPath}-container">
-  <div class="section-intro">
-    <div class="section-intro__preheader">
-      ${_EscapeTool.xml($sectionPreheader)}
+  <div class="${widgetXPath}__container ${widgetXPath}__$imageOrVideo ${widgetXPath}">
+  #if ($displaySectionIntro != "no")
+    <div class="section-intro">
+      <div class="section-intro__preheader">
+        ${_EscapeTool.xml($sectionPreheader)}
+      </div>
+      <div class="section-intro__header">  
+        ${_EscapeTool.xml($sectionHeader)}
+      </div>
+      <div class="section-intro__text">
+        ${_EscapeTool.xml($sectionHeaderParagraph)}
+      </div>
+      <div class="section-intro__buttons">
+        <div class="section-intro__button"></div>
+      </div>
     </div>
-    <div class="section-intro__header">  
-      ${_EscapeTool.xml($sectionHeader)}
-    </div>
-    <div class="section-intro__text">
-      ${_EscapeTool.xml($sectionHeaderParagraph)}
-    </div>
-    <div class="section-intro__buttons">
-      <div class="section-intro__button"></div>
-    </div>
-  </div>
-  <div class="${widgetXPath} ${widgetXPath}--${imageOrientation}">
-  
+  #end
+  <div class="${widgetXPath} ${widgetXPath}--${imageOrientation} ${widgetXPath}__${gridColumnsImages}">
     <img class="${widgetXPath}__image" src="[system-asset]${_EscapeTool.xml($gridBlockImagePath)}[/system-asset]" alt="${gridBlockAltText}" />
     <div class="grid-block-widget__text">
       ${_EscapeTool.xml($gridBodyText)}
