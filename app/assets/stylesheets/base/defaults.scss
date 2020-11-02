@@ -277,13 +277,15 @@ a {
       text-decoration: none;
     }
 
-    &.red {
+    &.red, &--red {
       background: $cu-red no-repeat center;
       color: $white;
 
       &:hover {
+        background: #c92741;
         background-color: #c92741;
         text-decoration: none;
+        transition: 300ms linear all;
       }
     }
 

@@ -54,28 +54,7 @@
 
   ## INTRO SECTION   
 ##   #set ($displaySectionIntro = $element.getChild($widgetXPath).getChild('displaySectionIntro').value)
-    #set ($parentGroup = $element.getChild($widgetXPath))
-  
 
-    #set ( $buttons = $_XPathTool.selectNodes($element, 'gridBlockWidget/sectionHeaderGroup/sectionButtons'))
-    #foreach ($button in $buttons)
-       #set ($buttonLabel = $button.getChild('buttonLabel').value )
-
-       #set ($internalOrExternalLink = $button.getChild('internalOrExternalLink').value )
-
-
-       #if ($internalOrExternalLink == 'internal')
-        #set ($linkURL = $button.getChild('internalLink').getChild('path').value )
-      #else
-        #set ($linkURL = $button.getChild('externalLinkField').value )
-       #end
-      ## ACCESSIBILITY
-        #set ($ariaLabel = $button.getChild('buttonAccessibility').getChild('ariaLabel').value)
-    
-    #if ($linkLabel != '')
-                <a tabindex="0" href="${linkURL}" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" class="button $bemButtonClass">#escape($buttonLabel)</a>  
-    #end
-    #end
   
     
 
@@ -213,7 +192,29 @@
       </div>
       <div class="section-intro__buttons">
         <div class="section-intro__button">
-        
+            #set ($parentGroup = $element.getChild($widgetXPath))
+  
+
+    #set ( $buttons = $_XPathTool.selectNodes($element, 'gridBlockWidget/sectionHeaderGroup/sectionButtons'))
+    #foreach ($button in $buttons)
+       #set ($buttonLabel = $button.getChild('buttonLabel').value )
+
+       #set ($internalOrExternalLink = $button.getChild('internalOrExternalLink').value )
+
+
+       #if ($internalOrExternalLink == 'internal')
+        #set ($linkURL = $button.getChild('internalLink').getChild('path').value )
+
+      #else
+        #set ($linkURL = $button.getChild('externalLinkField').value )
+       #end
+      ## ACCESSIBILITY
+        #set ($ariaLabel = $button.getChild('buttonAccessibility').getChild('ariaLabel').value)
+    
+    #if ($linkLabel != '')
+                <a tabindex="0" href="${linkURL}" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" class="button $bemButtonClass button--red">#escape($buttonLabel)</a>  
+    #end
+    #end
         </div>
       </div>
     </div>

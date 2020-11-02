@@ -1,0 +1,18 @@
+.grid-block-widget__container {  
+  $space: 12px;
+  margin-top: $space;
+  display: grid;
+  grid-gap: $space;
+}
+
+@mixin grid-col($num) {
+  .grid-block-widget__container--#{$num}-col {
+    grid-template-columns: repeat(#{$num}, 1fr);
+    @debug "num: #{$num}";
+  }
+}
+@include grid-col(3)
+@include grid-col(4)
+@include grid-col(5)
+@include grid-col(6)
+
