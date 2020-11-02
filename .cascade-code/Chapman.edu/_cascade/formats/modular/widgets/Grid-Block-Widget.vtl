@@ -66,10 +66,8 @@
 
        #if ($internalOrExternalLink == 'internal')
         #set ($linkURL = $button.getChild('internalLink').getChild('path').value )
-        linkURLInternal $linkURL 
       #else
         #set ($linkURL = $button.getChild('externalLinkField').value )
-        externalLinkURL: $linkURL
        #end
       ## ACCESSIBILITY
         #set ($ariaLabel = $button.getChild('buttonAccessibility').getChild('ariaLabel').value)
