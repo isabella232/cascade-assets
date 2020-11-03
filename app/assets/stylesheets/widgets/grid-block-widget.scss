@@ -1,9 +1,54 @@
+.section-intro {
+  &__preheader {
+    color: $red;
+    text-transform: uppercase;
+    font-weight: bold;
+
+  }
+  &__header {
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 4px;
+  }
+  &__text{
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+  &__buttons {
+    margin-bottom: 25px;
+  }
+  &__button {
+    font-weight: 800;
+  }
+
+  &--centered {
+    display: grid;
+    justify-items: center;
+  }
+}
+
 .grid-block-widget__container {  
   $space: 12px;
   margin-top: $space;
   display: grid;
   grid-gap: $space;
+
+  .grid-block-widget__text {
+    margin-top: 4px;
+    p {
+      font-size: 1.6rem;
+      padding: 12px;
+      text-align:center;
+      font-weight: 800;
+
+    }
+    &--sand {
+      color: $red;
+    }
+  }
+  
 }
+
 
 @mixin grid-col($num) {
   .grid-block-widget__container--#{$num}-col {
@@ -15,4 +60,3 @@
 @include grid-col(4)
 @include grid-col(5)
 @include grid-col(6)
-
