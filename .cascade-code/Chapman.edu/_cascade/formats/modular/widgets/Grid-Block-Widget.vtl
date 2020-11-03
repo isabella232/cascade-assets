@@ -229,8 +229,6 @@
     #set ($gridBlockTitle = $block.getChild('gridBlockTitle').value)
     #li("gridBlockTitle $gridBlockTitle")
     
-
-
     #set ($gridBlockLinkType = $block.getChild('linkType').value)
     #li("gridBlockLinkType $gridBlockLinkType")
     
@@ -264,8 +262,18 @@
     #set ($gridBlockImagePosition = $block.getChild('altText').value)
     #li("gridBlockImagePosition $gridBlockImagePosition")
 
-    #set ($gridBlockVideo = $block.getChild('gridBlockVideo').value)
+  ## GRID BLOCK VIDEOS
+    #set ($gridBlockVideo = $element.getChild($widgetXPath).getChild('gridOptions').getChild('gridBlock').getChild('video').value)
     #li("gridBlockVideo $gridBlockVideo")
+    gridBlockVideo $gridBlockVideo
+
+    #set ($gridBlockiFrame = $element.getChild($widgetXPath).getChild('gridOptions').getChild('gridBlock').getChild('iFrame').value)
+
+#set ($gridBlockiFrame = $gridBlockiFrame.replaceAll('allowfullscreen', 'allowfullscreen="true"'))
+
+$gridBlockiFrame gridBlockiFrame
+
+
 
     #set ($gridBlockText = $block.getChild('gridBlockText').value)
     #li("gridBlockText $gridBlockText")
@@ -276,9 +284,18 @@
   #set ( $widgetXPath = $snakeCase ) 
 
 
-  
+
   <div class="${widgetXPath} ${widgetXPath}--${imageOrientation}">
-    <img class="${widgetXPath}__image ${widgetXPath}__image--${imageOrientation}" src="[system-asset]${_EscapeTool.xml($gridBlockImagePath)}[/system-asset]" alt="${gridBlockAltText}" />
+    
+    #if ($imageOrVideo == 'images')
+      <img class="${widgetXPath}__image ${widgetXPath}__image--${imageOrientation}" src="[system-asset]${_EscapeTool.xml($gridBlockImagePath)}[/system-asset]" alt="${gridBlockAltText}" />
+    #elseif ($imageOrVideo == 'videos')
+    
+         ## <video src="${_EscapeTool.xml($gridBlockVideo)}"></video>
+      
+      
+    gridBlockIframe: $gridBlockIframe
+    #end
     <div class="grid-block-widget__text">
       ${_EscapeTool.xml($gridBodyText)}
     </div>
