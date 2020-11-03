@@ -17,14 +17,14 @@
 #end
  
  #macro(li $var)
- <div class="debug hidden">
- #log($var)
-<ul>
-  <li>
-       $var
-     </li>
-</ul>
-</div>
+## <div class="debug hidden">
+ ## #log($var)
+## <ul>
+  ## <li>
+       ## $var
+     ## </li>
+## </ul>
+## </div>
  #end
 
 #macro(outputGridBlockWidget $element) 
@@ -219,6 +219,10 @@
       </div>
     </div>
   #end
+
+ 
+  <div class="grid-block-widget__container grid-block-widget__$imageOrVideo grid-block-widget--${bgColor} grid-block-widget__container--${gridColumnsImages}">
+  
   #foreach ($block in $blocks)
   #set ($title = $block.getChild('gridBlock').getChild('gridBlockTitle').value )
 
@@ -272,17 +276,16 @@
   #set ( $widgetXPath = $snakeCase ) 
 
 
-  <div class="${widgetXPath}__container ${widgetXPath}__$imageOrVideo ${widgetXPath}--${bgColor}">
   
-  <div class="${widgetXPath} ${widgetXPath}--${imageOrientation} ${widgetXPath}__${gridColumnsImages}">
+  <div class="${widgetXPath} ${widgetXPath}--${imageOrientation}">
     <img class="${widgetXPath}__image ${widgetXPath}__image--${imageOrientation}" src="[system-asset]${_EscapeTool.xml($gridBlockImagePath)}[/system-asset]" alt="${gridBlockAltText}" />
     <div class="grid-block-widget__text">
       ${_EscapeTool.xml($gridBodyText)}
     </div>
   </div>
-</div>
 
   #end
+</div>
 
 
 ## private macros 
