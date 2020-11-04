@@ -1,4 +1,5 @@
 .section-intro {
+  margin-top: 50px;
   &__preheader {
     color: $red;
     text-transform: uppercase;
@@ -33,15 +34,25 @@
   display: grid;
   grid-gap: $space;
 
-  .grid-block-widget__text {
+  &--portrait {
+    img {
+      object-fit: cover;
+      height: 100%;
+    }
+    .grid-block-widget {  
+      height: max-content;
+    }
+  }
+  .grid-block-widget { 
+    &__text {
     margin-top: 4px;
     p {
       font-size: 1.4rem;
       padding: 12px;
       text-align:center;
       font-weight: 800;
-
     }
+  }
     &--sand {
       color: $red;
     }
@@ -52,15 +63,33 @@
     }
   }
   
+  &--videos {
+    .grid-block-widget {
+      height: max-content;
+    }
+    iframe {
+      position: relative;
+      height: 100%;
+      width: 100%; 
+    }
+  }
+  
+  
 }
-
 
 @mixin grid-col($num) {
   .grid-block-widget__container--#{$num}-col {
     grid-template-columns: repeat(#{$num}, 1fr);
-    @debug "num: #{$num}";
+
+    @include respond(tab-port) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include respond(tab-port) {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 }
+@include grid-col(2)
 @include grid-col(3)
 @include grid-col(4)
 @include grid-col(5)

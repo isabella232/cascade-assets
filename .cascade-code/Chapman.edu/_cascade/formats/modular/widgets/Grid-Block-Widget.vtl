@@ -221,7 +221,7 @@
   #end
 
  
-  <div class="grid-block-widget__container grid-block-widget__$imageOrVideo grid-block-widget--${bgColor} grid-block-widget__container--${gridColumnsImages}">
+  <div class="grid-block-widget__container grid-block-widget__container--$imageOrVideo grid-block-widget__container--${gridColumnsImages}">
   
   #foreach ($block in $blocks)
   #set ($title = $block.getChild('gridBlock').getChild('gridBlockTitle').value )
@@ -263,15 +263,14 @@
     #li("gridBlockImagePosition $gridBlockImagePosition")
 
   ## GRID BLOCK VIDEOS
-    #set ($gridBlockVideo = $element.getChild($widgetXPath).getChild('gridOptions').getChild('gridBlock').getChild('video').value)
+    #set ($gridBlockVideo = $block.getChild('video').value)
     #li("gridBlockVideo $gridBlockVideo")
-    gridBlockVideo $gridBlockVideo
 
-    #set ($gridBlockiFrame = $element.getChild($widgetXPath).getChild('gridOptions').getChild('gridBlock').getChild('iFrame').value)
+    #set ($gridBlockiFrame = $block.getChild('iFrame').value)
 
 #set ($gridBlockiFrame = $gridBlockiFrame.replaceAll('allowfullscreen', 'allowfullscreen="true"'))
 
-$gridBlockiFrame gridBlockiFrame
+
 
 
 
@@ -292,9 +291,7 @@ $gridBlockiFrame gridBlockiFrame
     #elseif ($imageOrVideo == 'videos')
     
          ## <video src="${_EscapeTool.xml($gridBlockVideo)}"></video>
-      
-      
-    gridBlockIframe: $gridBlockIframe
+          $gridBlockiFrame 
     #end
     <div class="grid-block-widget__text">
       ${_EscapeTool.xml($gridBodyText)}
@@ -313,10 +310,10 @@ $gridBlockiFrame gridBlockiFrame
     bemButtonClass $bemButtonClass
     
     #set ( $linkItems = $_XPathTool.selectNodes($element, 'sectionHeaderGroup/link') )
-      linkItems: $linkItems
+
     #foreach ($link in $linkItems)
         #set ($linkStyle = 'Button Link') 
-        linkStyle: $linkStyle
+
         #set ($linkType =  $link.getChild('linkType').value)
         #set ($linkLabel = $link.getChild('label').value)
         
