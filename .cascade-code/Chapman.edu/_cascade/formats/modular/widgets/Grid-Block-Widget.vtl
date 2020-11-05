@@ -65,20 +65,22 @@
 
 #set ($widgetXPath = 'gridBlockWidget')
 
-  #if ($displaySectionIntro != 'No')
+#set ($displaySectionIntro = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('displaySectionIntro').value)
+displaySectionIntro $displaySectionIntro
+  #if ($displaySectionIntro != 'no')
     #set ($parentGroup = $element.getChild($widgetXPath).getChild('sectionHeaderGroup'))
     ## #getSetVal($parentGroup "displaySectionIntro")
-    #set ($displaySectionIntro = $parentGroup.getChild('displaySectionIntro').value)
+
 
     #li("displaySectionIntro $displaySectionIntro")
 
     #set ($sectionPreheader = $parentGroup.getChild('sectionPreheader').value)
     #li("sectionPreheader $sectionPreheader")
 
-#set ($sectionHeader = $parentGroup.getChild('sectionHeader').value)
+    #set ($sectionHeader = $parentGroup.getChild('sectionHeader').value)
     #li("sectionHeader $sectionHeader ")
 
-#set ($sectionHeaderParagraph = $parentGroup.getChild('sectionHeaderParagraph').value)
+    #set ($sectionHeaderParagraph = $parentGroup.getChild('sectionHeaderParagraph').value)
     #li("sectionHeaderParagraph $sectionHeaderParagraph ")
 
 
@@ -87,16 +89,18 @@
     
     ## INTRO SECTION - BUTTONS
        #set ($displaySectionButtons = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('displaySectionButtons').value)
-       
-      #set ( $blocks = $_XPathTool.selectNodes($element, 'gridBlockWidget/gridOptions/gridBlock'))
+       displaySectionButtons $displaySectionButtons
+       #if ($displaySectionButtons == 'yes')
+       DO display buttons
+        #set ( $blocks = $_XPathTool.selectNodes($element, 'gridBlockWidget/gridOptions/gridBlock'))
 
        
        
        
-       #set ($parentGroup = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons'))
-       ## #getSetVal($parentGroup "buttonLabel")
-       #set ($buttonLabel = $parentGroup.getChild('buttonLabel').value)
-      #li("buttonLabel $buttonLabel")
+        #set ($parentGroup = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons'))
+        ## #getSetVal($parentGroup "buttonLabel")
+        #set ($buttonLabel = $parentGroup.getChild('buttonLabel').value)
+        #li("buttonLabel $buttonLabel")
 
 
        
@@ -115,6 +119,7 @@
         #else 
             #set ($internalOrExternalLink = '')
        #end
+      #end
        
   #else 
     #set ($sectionHeader = '')
@@ -179,7 +184,7 @@
 
   #set ( $blocks = $_XPathTool.selectNodes($element, 'gridBlockWidget/gridOptions/gridBlock'))
 
-#if ($displaySectionIntro != "no")
+#if ($displaySectionIntro == "yes")
     <div class="section-intro">
       <div class="section-intro__preheader">
         ${_EscapeTool.xml($sectionPreheader)}
