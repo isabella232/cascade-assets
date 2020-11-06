@@ -66,7 +66,7 @@
 #set ($widgetXPath = 'gridBlockWidget')
 
 #set ($displaySectionIntro = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('displaySectionIntro').value)
-displaySectionIntro $displaySectionIntro
+
   #if ($displaySectionIntro != 'no')
     #set ($parentGroup = $element.getChild($widgetXPath).getChild('sectionHeaderGroup'))
     ## #getSetVal($parentGroup "displaySectionIntro")
@@ -89,9 +89,8 @@ displaySectionIntro $displaySectionIntro
     
     ## INTRO SECTION - BUTTONS
        #set ($displaySectionButtons = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('displaySectionButtons').value)
-       displaySectionButtons $displaySectionButtons
+
        #if ($displaySectionButtons == 'yes')
-       DO display buttons
         #set ( $blocks = $_XPathTool.selectNodes($element, 'gridBlockWidget/gridOptions/gridBlock'))
 
        
@@ -145,8 +144,8 @@ displaySectionIntro $displaySectionIntro
     #set ($gridTitleClass = "no-grid-title")
   #end
 
-  #set ($gridTitleTextAlign = $gridOptions.getChild('textAlign').value)
-  #li("  gridTitleTextAlign: $gridTitleTextAlign")
+  #set ($textAlignment = $gridOptions.getChild('textAlign').value)
+  #li("  textAlignment: $textAlignment")
 
 
 #set ($hasGridBodyText = $gridOptions.getChild('bodyText').value)
@@ -180,8 +179,6 @@ displaySectionIntro $displaySectionIntro
 ## GRID BLOCK 
   #set ($gridBlockGroup =  $element.getChild($widgetXPath).getChild('gridOptions').getChild('gridBlock'))
 
-  #set ($title = $block.getChild('gridBlockTitle').value )
-
   #set ( $blocks = $_XPathTool.selectNodes($element, 'gridBlockWidget/gridOptions/gridBlock'))
 
 #if ($displaySectionIntro == "yes")
@@ -192,13 +189,15 @@ displaySectionIntro $displaySectionIntro
       <h2 class="section-intro__header">  
         ${_EscapeTool.xml($sectionHeader)}
       </h2>
-      <div class="section-intro__text">
+      <div class="section-intro__title">
         ${_EscapeTool.xml($sectionHeaderParagraph)}
       </div>
+      #if ($displaySectionButtons == 'yes')
       <div class="section-intro__buttons">
         <div class="section-intro__button">
             #set ($parentGroup = $element.getChild($widgetXPath))
   
+
 
     #set ( $buttons = $_XPathTool.selectNodes($element, 'gridBlockWidget/sectionHeaderGroup/sectionButtons'))
     #foreach ($button in $buttons)
@@ -222,14 +221,17 @@ displaySectionIntro $displaySectionIntro
     #end
         </div>
       </div>
+      #end
     </div>
+    
   #end
 
  
-  <div class="grid-block-widget__container grid-block-widget__container--$imageOrVideo grid-block-widget__container--${gridColumnsImages}">
+  <div id="grid-block-widget__container--${_MathTool.add($foreach.index, 1)}" class="grid-block-widget__container grid-block-widget__container--$imageOrVideo grid-block-widget__container--${gridColumnsImages} grid-block-widget__container--${imageOrientation}">
   
   #foreach ($block in $blocks)
-  #set ($title = $block.getChild('gridBlock').getChild('gridBlockTitle').value )
+
+    #set ($title = $block.getChild('gridBlock').getChild('gridBlockTitle').value )
 
     #set ($gridBlockTitle = $block.getChild('gridBlockTitle').value)
     #li("gridBlockTitle $gridBlockTitle")
@@ -273,7 +275,7 @@ displaySectionIntro $displaySectionIntro
 
     #set ($gridBlockiFrame = $block.getChild('iFrame').value)
 
-#set ($gridBlockiFrame = $gridBlockiFrame.replaceAll('allowfullscreen', 'allowfullscreen="true"'))
+    #set ($gridBlockiFrame = $gridBlockiFrame.replaceAll('allowfullscreen', 'allowfullscreen="true"'))
 
 
 
@@ -291,15 +293,25 @@ displaySectionIntro $displaySectionIntro
 
   <div class="${widgetXPath} ${widgetXPath}--${imageOrientation}">
     
-    #if ($imageOrVideo == 'images')
+    #if ($imageOrVideo == 'images' && $imageOrientation != 'none')
       <img class="${widgetXPath}__image ${widgetXPath}__image--${imageOrientation}" src="[system-asset]${_EscapeTool.xml($gridBlockImagePath)}[/system-asset]" alt="${gridBlockAltText}" />
-    #elseif ($imageOrVideo == 'videos')
     
+    #elseif ($imageOrVideo == 'videos' && $imageOrientation != 'none')
          ## <video src="${_EscapeTool.xml($gridBlockVideo)}"></video>
           $gridBlockiFrame 
     #end
-    <div class="grid-block-widget__text">
-      ${_EscapeTool.xml($gridBodyText)}
+    #if ($imageOrientation != 'circle')
+      #set ($titleBgColor = $bgColor)
+    #else 
+      #set ($titleBgColor = 'no-bg')
+    #end 
+    #if ($hasGridTitle == 'Yes')
+      <div class="grid-block-widget__title text-align--${textAlignment} grid-block-widget__title--${titleBgColor}">
+        ${_EscapeTool.xml($gridBlockTitle)}
+      </div>
+    #end
+    <div class="grid-block-widget__text grid-block-widget__text--${titleBgColor} grid-block-widget__text--${textAlignment}">
+      <p>${_EscapeTool.xml($gridBodyText)}</p>
     </div>
   </div>
 
