@@ -160,7 +160,29 @@
     }
   }
   .grid-block-widget__reveal {
+    position: absolute;
+    margin-top: 20px;
+    &--more {
+      &::before {
+        content: "\f078";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        margin-right: 5px;
+        font-size: 1.4rem;
+      }
+    }
+    &--less {
+      &::before {
+        content: "\f077";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        margin-right: 5px;
+        font-size: 1.4rem;
+      }
+    }
     cursor: pointer;
+  }
+  .grid-block-widget__text--truncated {
   }
 }
 
