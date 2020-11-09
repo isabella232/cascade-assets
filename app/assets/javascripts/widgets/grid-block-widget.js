@@ -5,6 +5,9 @@ $(function () {
       $(this).attr("data-height", textHeight);
       $(this).addClass("grid-block-widget__text--truncated");
 
+      $(this)
+        .parent(".grid-block-widget")
+        .addClass("grid-block-widget--text-overflow");
       if ($(this).attr("data-height") >= 150) {
         $(this).parent().find(".grid-block-widget__reveal--more").show();
       }
@@ -17,7 +20,7 @@ $(function () {
           .removeClass("grid-block-widget__text--truncated")
           .addClass("grid-block-widget__text--revealed");
         $(this).hide();
-        $(".grid-block-widget__reveal--less").show();
+        $(parent).find(".grid-block-widget__reveal--less").show();
       }
     });
     $(".grid-block-widget__reveal--less").on("click keydown", function (e) {
@@ -28,7 +31,7 @@ $(function () {
           .addClass("grid-block-widget__text--truncated")
           .removeClass("grid-block-widget__text--revealed");
         $(this).hide();
-        $(".grid-block-widget__reveal--more").show();
+        $(parent).find(".grid-block-widget__reveal--more").show();
       }
     });
   }

@@ -151,6 +151,10 @@
         padding: 12px 0 12px 0;
       }
     }
+    // .GRID-BLOCK-WIDGET PARENT WITH LONG TEXT
+    &--text-overflow {
+      margin-bottom: 50px;
+    }
   }
 
   &--videos {
@@ -163,9 +167,11 @@
       width: 100%;
     }
   }
+
   .grid-block-widget__reveal {
     position: absolute;
     margin-top: 20px;
+    @include qbal-drop-enter;
     &--more {
       @include qbal-drop-enter;
       &::before {
@@ -177,7 +183,6 @@
       }
     }
     &--less {
-      @include qbal-drop-enter;
       margin-top: 0;
       &::before {
         content: "\f077 ";
