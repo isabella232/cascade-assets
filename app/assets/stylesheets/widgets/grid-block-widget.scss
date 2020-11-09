@@ -37,6 +37,14 @@
   display: grid;
   grid-gap: $space;
 
+  img {
+    &:hover,
+    &:focus,
+    &:focus-within {
+      filter: brightness(110%);
+      transition: 350ms ease all;
+    }
+  }
   &--landscape {
     --imgSize: 200px;
     img {
