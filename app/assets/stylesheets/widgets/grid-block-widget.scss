@@ -124,6 +124,10 @@
       &--truncated {
         max-height: 150px;
         overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 7;
+        overflow: hidden;
       }
 
       &--white {
@@ -163,8 +167,9 @@
     position: absolute;
     margin-top: 20px;
     &--more {
+      @include qbal-drop-enter;
       &::before {
-        content: "\f078";
+        content: "\f078 ";
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
         margin-right: 5px;
@@ -172,8 +177,10 @@
       }
     }
     &--less {
+      @include qbal-drop-enter;
+      margin-top: 0;
       &::before {
-        content: "\f077";
+        content: "\f077 ";
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
         margin-right: 5px;
@@ -182,7 +189,11 @@
     }
     cursor: pointer;
   }
-  .grid-block-widget__text--truncated {
+  .grid-block-widget__text--revealed {
+    @include qbal-grow-enter;
+  }
+  .grid-block-widget__text:not(.grid-block-widget__text--revealed) {
+    @include qbal-slideUp-enter;
   }
 }
 
