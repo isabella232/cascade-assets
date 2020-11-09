@@ -21,6 +21,9 @@ $(function () {
           .addClass("grid-block-widget__text--revealed");
         $(this).hide();
         $(parent).find(".grid-block-widget__reveal--less").show();
+        $(parent)
+          .find(".grid-block-widget__text")
+          .attr("aria-expanded", "true");
       }
     });
     $(".grid-block-widget__reveal--less").on("click keydown", function (e) {
@@ -32,6 +35,9 @@ $(function () {
           .removeClass("grid-block-widget__text--revealed");
         $(this).hide();
         $(parent).find(".grid-block-widget__reveal--more").show();
+        $(parent)
+          .find(".grid-block-widget__text")
+          .attr("aria-expanded", "false");
       }
     });
   }
