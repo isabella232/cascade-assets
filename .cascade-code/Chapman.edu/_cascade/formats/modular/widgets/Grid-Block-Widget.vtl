@@ -161,6 +161,13 @@
 
 #li("imageOrientation $imageOrientation")
 
+
+#set ($titleOverlay = $gridOptions.getChild('titleOverlay').value )
+  #if ($titleOverlay != 'No') 
+    #set ($widgetPosition = "relative")
+    #set ($overlayClass = 'overlay') 
+  #end
+
 #set ($textBackgroundColor = $gridOptions.getChild('textBackgroundColor').value)
 
 ## VIDEOS
@@ -228,7 +235,7 @@
   #end
 
  
-  <div id="grid-block-widget__container--${_MathTool.add($foreach.index, 1)}" class="grid-block-widget__container grid-block-widget__container--$imageOrVideo grid-block-widget__container--${gridColumnsImages} grid-block-widget__container--${imageOrientation}">
+  <div id="grid-block-widget__container--${_MathTool.add($foreach.index, 1)}" class="grid-block-widget__container grid-block-widget__container--$imageOrVideo grid-block-widget__container--${gridColumnsImages} grid-block-widget__container--${imageOrientation} grid-block-widget__container--${overlayClass}">
   
   #foreach ($block in $blocks)
 
@@ -237,20 +244,19 @@
     #set ($gridBlockTitle = $block.getChild('gridBlockTitle').value)
     #li("gridBlockTitle $gridBlockTitle")
     
+
     #set ($gridBlockLinkType = $block.getChild('linkType').value)
     #li("gridBlockLinkType $gridBlockLinkType")
-    
-    #set ($gridBlockInternalLink = $block.getChild('internalLink').value)
-    #li("gridBlockInternalLink $gridBlockInternalLink")
 
+      #if ($gridBlockLinkType == 'Internal Link')
+        #set ($gridBlockLinkURL = $block.getChild('internalLink').value)
+      #elseif ($gridBlockLinkType == 'External Link')
+        #set ($gridBlockLinkURL = $block.getChild('externalLink').value )
+      #else 
+        #set ($gridBlockLinkURL = $block.getChild('fileLink').getChild('path').value )
+     #end
+        #set ($gridBlockLinkURL = $block.getChild('externalLink').value )
 
-    #set ($gridBlockInternalLinkPath = $block.getChild('internalLink').getChild('path'))
-    #li("gridBlockInternalLinkPath $gridBlockInternalLinkPath")
-
-
-    #set ($gridBlockExternalLinkPath = $block.getChild('externalLink').value)
-
-    
     #set ($gridBlockContent = $block.getChild('content').value)
     #li("gridBlockContent $gridBlockContent")
 
@@ -291,9 +297,11 @@
   #set ( $widgetXPath = $snakeCase ) 
 
 
-
+  
   <div class="${widgetXPath} ${widgetXPath}--${imageOrientation}">
-    
+    #if ($titleOverlay != 'No')  
+      <div class="grid-block-widget__overlay">
+    #end
     #if ($imageOrVideo == 'images' && $imageOrientation != 'none')
       <img class="${widgetXPath}__image ${widgetXPath}__image--${imageOrientation}" src="[system-asset]${_EscapeTool.xml($gridBlockImagePath)}[/system-asset]" alt="${gridBlockAltText}" />
     
@@ -306,9 +314,12 @@
     #else 
       #set ($titleBgColor = 'no-bg')
     #end 
-    #if ($hasGridTitle == 'Yes')
-      <div class="grid-block-widget__title text-align--${textAlignment} grid-block-widget__title--${titleBgColor}">
+    #if ($hasGridTitle == 'Yes' && $linkURL != '' )
+      <a href="${gridBlockLinkURL}" class="grid-block-widget__title text-align--${textAlignment} grid-block-widget__title--${titleBgColor}">
         ${_EscapeTool.xml($gridBlockTitle)}
+      </a>
+    #end
+    #if ($titleOverlay != 'No')  
       </div>
     #end
     <div class="grid-block-widget__text grid-block-widget__text--${textBackgroundColor} grid-block-widget__text--${textAlignment}">

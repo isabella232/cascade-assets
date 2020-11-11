@@ -13,21 +13,25 @@
 <!-- Text Overflow -->
 <h2>Text Overflow</h2>
 <div
-  class="grid-block-widget__container grid-block-widget__container--images grid-block-widget__container--3-col grid-block-widget__container--portrait"
+  class="grid-block-widget__container grid-block-widget__container--images grid-block-widget__container--3-col grid-block-widget__container--portrait grid-block-widget__container--overlay"
   id="grid-block-widget__container--9"
 >
   <div class="grid-block-widget grid-block-widget--portrait">
-    <img
-      alt="Microsoft Bliss"
-      class="grid-block-widget__image grid-block-widget__image--portrait"
-      src="/renderfile/6fef14a3c04d744c610b81dac0a8d082/test-section/nick-test/2x3.jpg"
-    />
+    <span class="grid-block-widget__relative">
+      <span class="grid-block-widget__gradient-overlay"></span>
+      <img
+        alt="Microsoft Bliss"
+        class="grid-block-widget__image grid-block-widget__image--portrait"
+        src="/renderfile/6fef14a3c04d744c610b81dac0a8d082/test-section/nick-test/2x3.jpg"
+      />
+      <a
+        href="https://duck.com"
+        class="grid-block-widget__title text-align--center grid-block-widget__title--white"
+      >
+        A Very Clever Block Title!
+      </a>
+    </span>
 
-    <div
-      class="grid-block-widget__title text-align--center grid-block-widget__title--white"
-    >
-      A Very Clever Block Title!
-    </div>
     <div
       class="grid-block-widget__text grid-block-widget__text--white grid-block-widget__text--center"
     >
@@ -35,6 +39,7 @@
         Congratulations!Today is your day.You're off to Great Places!You're off
         and away!
       </p>
+      <a href="https://protonmail.com">Protonmail</a>
     </div>
   </div>
 
@@ -340,15 +345,19 @@
   grid-block-widget__container--4-col
   grid-block-widget__images grid-block-widget__container--landscape"
 >
-  <div class="grid-block-widget grid-block-widget--landscape ">
-    <img
-      alt="Microsoft Bliss"
-      class="grid-block-widget__image grid-block-widget__image--landscape"
-      src=" https://placedog.net/480/600?random"
-    />
-    <div class="grid-block-widget__title grid-block-widget__title--sand">
-      <p>Wilkinson Colleges of Arts, Humanities, and Social Sciences</p>
-    </div>
+  <div
+    class="grid-block-widget grid-block-widget--landscape grid-block-widget--overlay"
+  >
+    <span class="grid-block-widget__overlay--gradiet">
+      <img
+        alt="Microsoft Bliss"
+        class="grid-block-widget__image grid-block-widget__image--landscape"
+        src=" https://placedog.net/480/600?random"
+      />
+      <div class="grid-block-widget__title grid-block-widget__title--sand">
+        <p>Wilkinson Colleges of Arts, Humanities, and Social Sciences</p>
+      </div>
+    </span>
   </div>
 
   <div

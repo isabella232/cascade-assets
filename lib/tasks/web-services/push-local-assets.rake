@@ -35,7 +35,7 @@ task push_noncompiled_assets: :environment do
   
   base_url = 'https://dev-cascade.chapman.edu/api/v1/'.to_s
   url_post =
-  base_url + 'edit/' + 'file' + '_assets/master-ed688107f1e1b642819e7dfd607c5c005f895c3a0971cc13b6f249328e3bdf101.css' + cascade_username +
+  base_url + 'edit/' + 'file' + 'Chapman.edu/test-section/nick-test/grid-block.css' + cascade_username +
     cascade_password
 p url_post
 
@@ -53,39 +53,39 @@ p url_post
               111
             ],
             "rewriteLinks": false,
-            "maintainAbsoluteLinks": false,
-            "shouldBePublished": true,
-            "shouldBeIndexed": true,
-            "lastPublishedDate": "Nov 5, 2020 12:36:14 PM",
-            "lastPublishedBy": "cscddev01500",
-            "expirationFolderRecycled": false,
-            "metadataSetId": "6fef14a3c04d744c610b81da9d165a27",
-            "metadataSetPath": "Default",
-            "metadata": {},
-            "reviewOnSchedule": false,
-            "reviewEvery": 180,
-            "parentFolderId": "fd5121b0c04d744c42ab23aa0aba0ba8",
-            "parentFolderPath": "_assets",
-            "lastModifiedDate": "Nov 5, 2020 12:34:38 PM",
-            "lastModifiedBy": "cscddev01500",
-            "createdDate": "Nov 5, 2020 12:34:38 PM",
-            "createdBy": "cscddev01500",
-            "path": "_assets/master-ed688107f1e1b642819e7dfd607c5c005f895c3a0971cc13b6f249328e3bdf10.css",
-            "siteId": "6fef14a3c04d744c610b81dac0a8d082",
-            "siteName": "Chapman.edu",
-            "tags": [],
-            "name": "master-ed688107f1e1b642819e7dfd607c5c005f895c3a0971cc13b6f249328e3bdf10.css",
-            "id": "9a1e4c0fc0a81e8a57740fff022b9d11"
+      "maintainAbsoluteLinks": false,
+      "shouldBePublished": true,
+      "shouldBeIndexed": true,
+      "lastPublishedDate": "Nov 5, 2020 9:16:49 AM",
+      "lastPublishedBy": "cscddev01500",
+      "expirationFolderRecycled": false,
+      "metadataSetId": "6fef14a3c04d744c610b81da9d165a27",
+      "metadataSetPath": "Default",
+      "metadata": {},
+      "reviewOnSchedule": false,
+      "reviewEvery": 180,
+      "parentFolderId": "7f4306c1c0a81e411677d28d4eb74357",
+      "parentFolderPath": "test-section/nick-test",
+      "lastModifiedDate": "Nov 5, 2020 9:16:44 AM",
+      "lastModifiedBy": "cscddev01500",
+      "createdDate": "Nov 4, 2020 8:29:51 PM",
+      "createdBy": "nnadel",
+      "path": "test-section/nick-test/grid-block.css",
+      "siteId": "6fef14a3c04d744c610b81dac0a8d082",
+      "siteName": "Chapman.edu",
+      "tags": [],
+      "name": "grid-block.css",
+      "id": "96ab024cc0a81e8a57740fffa611a0af"
           }
         },
         "success": true
       }.to_json
      )
 
-     publish_asset('file', '9a1e4c0fc0a81e8a57740fff022b9d11')
+     publish_asset('file', '96ab024cc0a81e8a57740fffa611a0af')
 
     #  JAVASCRIPT
-    base_url + 'edit/' + 'file' + '_assets/master-2531a8a8277542900a52c268edd56316b1fa2e4ecc44c802e02a47f8009e59c7.js' + cascade_username +
+    base_url + 'edit/' + 'file' + 'Chapman.edu/test-section/nick-test/grid-block.js' + cascade_username +
     cascade_password
 p url_post
 
@@ -103,36 +103,44 @@ p url_post
               111
             ],
             "rewriteLinks": false,
-            "maintainAbsoluteLinks": false,
-            "shouldBePublished": true,
-            "shouldBeIndexed": true,
-            "lastPublishedDate": "Nov 5, 2020 12:36:14 PM",
-            "lastPublishedBy": "cscddev01500",
-            "expirationFolderRecycled": false,
-            "metadataSetId": "6fef14a3c04d744c610b81da9d165a27",
-            "metadataSetPath": "Default",
-            "metadata": {},
-            "reviewOnSchedule": false,
-            "reviewEvery": 180,
-            "parentFolderId": "fd5121b0c04d744c42ab23aa0aba0ba8",
-            "parentFolderPath": "_assets",
-            "lastModifiedDate": "Nov 5, 2020 12:34:38 PM",
-            "lastModifiedBy": "cscddev01500",
-            "createdDate": "Nov 5, 2020 12:34:38 PM",
-            "createdBy": "cscddev01500",
-            "path": "_assets/master-2531a8a8277542900a52c268edd56316b1fa2e4ecc44c802e02a47f8009e59c7.js",
-            "siteId": "6fef14a3c04d744c610b81dac0a8d082",
-            "siteName": "Chapman.edu",
-            "tags": [],
-            "name": "_assets/master-2531a8a8277542900a52c268edd56316b1fa2e4ecc44c802e02a47f8009e59c7.js",
-            "id": "9a1e4c0fc0a81e8a57740fff022b9d11"
+      "maintainAbsoluteLinks": false,
+      "shouldBePublished": true,
+      "shouldBeIndexed": true,
+      "lastPublishedDate": "Nov 10, 2020 11:00:54 AM",
+      "lastPublishedBy": "nnadel",
+      "expirationFolderRecycled": false,
+      "metadataSetId": "6fef14a3c04d744c610b81da9d165a27",
+      "metadataSetPath": "Default",
+      "metadata": {
+        "displayName": "",
+        "title": "",
+        "summary": "",
+        "teaser": "",
+        "keywords": "",
+        "metaDescription": "",
+        "author": ""
+      },
+      "reviewOnSchedule": false,
+      "reviewEvery": 180,
+      "parentFolderId": "7f4306c1c0a81e411677d28d4eb74357",
+      "parentFolderPath": "test-section/nick-test",
+      "lastModifiedDate": "Nov 10, 2020 11:05:30 AM",
+      "lastModifiedBy": "nnadel",
+      "createdDate": "Nov 10, 2020 11:00:31 AM",
+      "createdBy": "nnadel",
+      "path": "test-section/nick-test/grid-block.js",
+      "siteId": "6fef14a3c04d744c610b81dac0a8d082",
+      "siteName": "Chapman.edu",
+      "tags": [],
+      "name": "grid-block.js",
+      "id": "b387eec9c0a81e8a57740fff3593b66c"
           }
         },
         "success": true
       }.to_json
      )
 
-     publish_asset('file', '9a1e4c0fc0a81e8a57740fff022b9d11')
+     publish_asset('file', 'b387eec9c0a81e8a57740fff3593b66c')
 
   # edit_format(
   #   '567ec178c0a81e8a1e5ac2884450d7c2',
