@@ -11,7 +11,7 @@ task push_noncompiled_assets: :environment do
   #   File.delete('.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Grid-Block-Widget.vtl.rb') if File.exist?('.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Grid-Block-Widget.vtl.rb')
 
   #   FileUtils.cp('.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Grid-Block-Widget.vtl', '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Grid-Block-Widget.vtl.rb')
-
+  `rake assets:precompile`
   localhost_css_contents = Net::HTTP.get(URI.parse('http://localhost:3000/_assets/master.css'))
 
   localhost_js_contents = Net::HTTP.get(URI.parse('http://localhost:3000/_assets/master.js'))

@@ -28,6 +28,7 @@
  #end
 
 #macro(outputGridBlockWidget $element) 
+## <div id="grid-columns"><input type="range" id="columns" name="columns" min="2" max="6" value="3" step="1" /> <label for="columns">columns</label></div>
   #set ($widgetXPath = 'gridBlockWidget')
   
 #set ($display = $element.getChild($widgetXPath).getChild('display').value)

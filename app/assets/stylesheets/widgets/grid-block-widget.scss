@@ -1,3 +1,6 @@
+:root {
+  --gridBlockWidgetColumns: 3;
+}
 .section-intro {
   margin-top: 50px;
   &__preheader {
@@ -293,4 +296,16 @@
 // !!!DON'T MERGE!!!
 #uninav-static-placeholder {
   display: none !important;
+}
+
+#clone {
+  position: fixed;
+  top: 200px;
+  left: 20px;
+}
+
+#grid-columns {
+  position: fixed;
+  top: 250px;
+  left: 20px;
 }
