@@ -79,7 +79,9 @@
       height: var(--imgSize);
     }
   }
-
+  .grid-block-widget__gradient-overlay {
+    display: none;
+  }
   &.grid-block-widget__container--overlay {
     .grid-block-widget {
       &:hover,
@@ -98,6 +100,7 @@
         }
       }
       &__gradient-overlay {
+        display: block;
         position: absolute;
         background-color: black;
         z-index: 2;
