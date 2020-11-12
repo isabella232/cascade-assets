@@ -5,7 +5,7 @@ $(function () {
   setInterval(function () {
     refreshCSS();
     refreshJS();
-  }, 10000); // Interval set to 4 seconds
+  }, 10000); // 10 seconds
 
   // function tick() {
   //   //get the mins of the current time
@@ -174,7 +174,7 @@ refreshJS = () => {
   let scripts = document.getElementsByTagName("script");
   for (let i = 0; i < scripts.length; i++) {
     if (scripts[i].getAttribute("rel") == "stylesheet") {
-      let href = scripts[i].getAttribute("href").split("?")[0];
+      let href = scripts[i].getAttribute("src").split("?")[0];
 
       let source = href + "?version=" + new Date().getMilliseconds();
 
