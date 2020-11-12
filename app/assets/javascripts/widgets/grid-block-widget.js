@@ -70,11 +70,22 @@ function debugging() {
   );
 
   $(document).on("input change", "#columns", function () {
-    $("#grid-col-val").html($(this).val() + " Columns");
-    $('.grid-block-widget__container [class*="-col"]').addClass(
-      "grid-block-widget__container--" +
-        $("#grid-col-val").html($(this).val() + "-col")
-    );
+    var numberOfColumns = $(this).val();
+    $("#grid-col-val").html(numberOfColumns + " Columns");
+
+    var gridBlockWidgetColumns = $("#columns").html($(this).val());
+    var bodyStyles = window.getComputedStyle(document.body);
+    var fooBar = bodyStyles.getPropertyValue("--gridBlockWidgetColumns"); //get
+    document.body.style.setProperty(
+      "--gridBlockWidgetColumns",
+      gridBlockWidgetColumns
+    ); //set
+
+    $(".grid-block-widget__container").each(function () {
+      $(this).append(
+        "<style>.grid-block-widget__container {grid-template-columns: repeat(--var(gridTemplateColumns), 1fr)}</style>"
+      );
+    });
   });
 
   $("#clone").click(function () {

@@ -300,9 +300,11 @@
 
   
   <div class="${widgetXPath} ${widgetXPath}--${imageOrientation}">
-    <div class="grid-block-widget__relative">
+    
+    #if ($titleOverlay != 'No')  
+      <div class="grid-block-widget__relative">
       <span class="grid-block-widget__gradient-overlay"></span>
-  
+    #end
     #if ($imageOrVideo == 'images' && $imageOrientation != 'none')
       <img class="${widgetXPath}__image ${widgetXPath}__image--${imageOrientation}" src="[system-asset]${_EscapeTool.xml($gridBlockImagePath)}[/system-asset]" alt="${gridBlockAltText}" />
     
@@ -320,7 +322,10 @@
         ${_EscapeTool.xml($gridBlockTitle)}
       </a>
     #end
-      </div>
+      
+      #if ($titleOverlay != 'No')  
+        </div>
+      #end
 
     <div class="grid-block-widget__text grid-block-widget__text--${textBackgroundColor} grid-block-widget__text--${textAlignment}">
       <p>${_EscapeTool.xml($gridBodyText)}</p>
@@ -338,6 +343,7 @@
       >Less</span
     >
   </div>
+  
   #end
 </div>
 
