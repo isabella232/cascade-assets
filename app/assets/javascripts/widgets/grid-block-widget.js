@@ -81,9 +81,22 @@ function debugging() {
       gridBlockWidgetColumns
     ); //set
 
+    $("#grid-col-val").text().split(" ")[0];
+
+    var gridBlockWidgetColumns = $("#grid-col-val").text().split(" ")[0];
+    var bodyStyles = window.getComputedStyle(document.body);
+    var fooBar = bodyStyles.getPropertyValue("--gridBlockWidgetColumns"); //get
+    document.body.style.setProperty(
+      "--gridBlockWidgetColumns",
+      gridBlockWidgetColumns
+    ); //set
+
+    $(".grid-block-widget__container").addClass(
+      ".grid-block-widget__container--" + gridBlockWidgetColumns
+    );
     $(".grid-block-widget__container").each(function () {
       $(this).append(
-        "<style>.grid-block-widget__container {grid-template-columns: repeat(--var(gridTemplateColumns), 1fr)}</style>"
+        "<style>.grid-block-widget__container {grid-template-columns: repeat(var(--gridBlockWidgetColumns), 1fr)}</style>"
       );
     });
   });
