@@ -297,10 +297,19 @@
   .grid-block-widget__image--circle {
     --imgSize: 150px;
   }
+  .grid-block-widget__container--portrait img {
+    // --imgSize: 150px;
+  }
 }
 .grid-block-widget__container--6-col {
   .grid-block-widget__image--circle {
     --imgSize: 120px;
+  }
+  .grid-block-widget__container--portrait {
+    img {
+      min-width: 140px;
+      max-width: 140px;
+    }
   }
 }
 
@@ -325,11 +334,15 @@
 
 #clone {
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 
 #grid-columns {
   position: relative;
   display: block;
+  display: flex;
+  justify-content: space-around;
 }
 
 #columns {

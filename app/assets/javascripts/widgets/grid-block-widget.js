@@ -66,7 +66,7 @@ function debugging() {
 
   $("head").append('<meta http-equiv="expires" content="timestamp">');
   $("#theme").append(
-    '<div id="testing-tools"><a id="clone" class="button button--red">Clone Grid Blocks</a><div id="grid-columns"><input type="range" id="columns" name="columns" min="2" max="6" value="3" step="1" /><label id="grid-col-val" for="columns">columns</label></div><a id="content-editable" class="button button--red">Editable Text</a></div>'
+    '<div id="testing-tools"><a id="clone" class="button button--red">Clone Grid Blocks</a><div id="grid-columns"><input type="range" id="columns" name="columns" min="2" max="6" value="3" step="1" /><label id="grid-col-val" for="columns">3 columns</label></div><a id="content-editable" class="button button--red">Editable Text</a><a id="random-images" class="button button--red">Randomly Sized Images</a></div>'
   );
 
   $(document).on("input change", "#columns", function () {
@@ -122,6 +122,18 @@ function debugging() {
     $(
       ".section-intro, .grid-block-widget__title,  .grid-block-widget__text, .grid-block-widget__button"
     ).attr("contentEditable", true);
+    clickHandlers();
+  });
+  $("#random-images").click(function () {
+    console.log("editable content");
+    $(".grid-block-widget__container img").each(function () {
+      var width = Math.floor(Math.random() * 200) + 200;
+      var height = Math.floor(Math.random() * 600) + 300;
+      $(this).attr(
+        "src",
+        " https://placedog.net/" + width + "/" + height + "?random"
+      );
+    });
     clickHandlers();
   });
 }
