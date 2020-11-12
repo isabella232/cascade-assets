@@ -201,7 +201,8 @@
 				<dropdown-item show-fields="primaryContent/widget/byTheNumbers" value="By the Numbers"/>
 				<dropdown-item show-fields="primaryContent/widget/imageSliderWidget" value="Image Slider Widget"/>
 				<dropdown-item show-fields="primaryContent/widget/campusMapWidget" value="Campus Map Widget"/>
-				<dropdown-item show-fields="primaryContent/widget/googleMapWidget" value="Google Map Widget"/>
+        <dropdown-item show-fields="primaryContent/widget/googleMapWidget" value="Google Map Widget"/>
+        <dropdown-item show-fields="primaryContent/widget/gridBlockWidget" value="Grid Block" />
 			</text>
 			<group collapsed="true" identifier="googleMapWidget" label="Google Map Widget">
 				<group collapsed="true" identifier="address" label="Address">

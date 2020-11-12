@@ -294,18 +294,31 @@
 @include grid-col(6);
 
 // !!!DON'T MERGE!!!
+#testing-tools {
+  background-color: rgba(255, 255, 255, 0.8);
+  position: fixed;
+  z-index: 2;
+  width: max-content;
+  left: 0;
+  top: 0;
+  height: 100%;
+  display: grid;
+  align-content: space-evenly;
+  padding: 2%;
+}
 #uninav-static-placeholder {
   display: none !important;
 }
 
 #clone {
-  position: fixed;
-  top: 200px;
-  left: 20px;
+  position: relative;
 }
 
 #grid-columns {
-  position: fixed;
-  top: 250px;
-  left: 20px;
+  position: relative;
+  display: block;
+}
+
+#columns {
+  width: 100px;
 }

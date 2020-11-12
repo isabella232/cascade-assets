@@ -66,7 +66,7 @@ function debugging() {
 
   $("head").append('<meta http-equiv="expires" content="timestamp">');
   $("#theme").append(
-    '<button id="clone" class="button button--red">Clone Grid Blocks</button><div id="grid-columns"><input type="range" id="columns" name="columns" min="2" max="6" value="3" step="1" /> <label id="grid-col-val" for="columns">columns</label></div>'
+    '<div id="testing-tools"><a id="clone" class="button button--red">Clone Grid Blocks</a><div id="grid-columns"><input type="range" id="columns" name="columns" min="2" max="6" value="3" step="1" /> <label id="grid-col-val" for="columns">columns</label></div></div>'
   );
 
   $(document).on("input change", "#columns", function () {
@@ -91,13 +91,18 @@ function debugging() {
       gridBlockWidgetColumns
     ); //set
 
-    $(".grid-block-widget__container").addClass(
-      ".grid-block-widget__container--" + gridBlockWidgetColumns
-    );
-    $(".grid-block-widget__container").each(function () {
-      $(this).append(
-        "<style>.grid-block-widget__container {grid-template-columns: repeat(var(--gridBlockWidgetColumns), 1fr)}</style>"
+    $(".grid-block-widget__container")
+      .removeClass(
+        "grid-block-widget__container--2-col grid-block-widget__container--3-col grid-block-widget__container--4-col grid-block-widget__container--5-col grid-block-widget__container--6-col"
+      )
+      .addClass(
+        "grid-block-widget__container--" + gridBlockWidgetColumns + "-col"
       );
+    $(".grid-block-widget__container").each(function () {
+      $(this)
+        .append
+        // "<style>.grid-block-widget__container {grid-template-columns: repeat(var(--gridBlockWidgetColumns), 1fr)}</style>"
+        ();
     });
   });
 
