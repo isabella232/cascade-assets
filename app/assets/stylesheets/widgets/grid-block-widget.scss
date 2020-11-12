@@ -293,6 +293,17 @@
 @include grid-col(5);
 @include grid-col(6);
 
+.grid-block-widget__container--5-col {
+  .grid-block-widget__image--circle {
+    --imgSize: 150px;
+  }
+}
+.grid-block-widget__container--6-col {
+  .grid-block-widget__image--circle {
+    --imgSize: 120px;
+  }
+}
+
 // !!!DON'T MERGE!!!
 #testing-tools {
   background-color: rgba(255, 255, 255, 0.8);
