@@ -169,7 +169,6 @@ refreshCSS = () => {
   }
 };
 
-refreshJS();
 refreshJS = () => {
   console.log("hot swapping JS");
   var scripts = document.getElementsByTagName("script");
