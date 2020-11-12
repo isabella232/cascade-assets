@@ -66,7 +66,7 @@ function debugging() {
 
   $("head").append('<meta http-equiv="expires" content="timestamp">');
   $("#theme").append(
-    '<div id="testing-tools"><a id="clone" class="button button--red">Clone Grid Blocks</a><div id="grid-columns"><input type="range" id="columns" name="columns" min="2" max="6" value="3" step="1" /> <label id="grid-col-val" for="columns">columns</label></div></div>'
+    '<div id="testing-tools"><a id="clone" class="button button--red">Clone Grid Blocks</a><div id="grid-columns"><input type="range" id="columns" name="columns" min="2" max="6" value="3" step="1" /><label id="grid-col-val" for="columns">columns</label></div><a id="content-editable" class="button button--red">Editable Text</a></div>'
   );
 
   $(document).on("input change", "#columns", function () {
@@ -115,6 +115,13 @@ function debugging() {
         $col.clone().appendTo($(this));
       }
     });
+    clickHandlers();
+  });
+  $("#content-editable").click(function () {
+    console.log("editable content");
+    $(
+      ".section-intro, .grid-block-widget__title,  .grid-block-widget__text, .grid-block-widget__button"
+    ).attr("contentEditable", true);
     clickHandlers();
   });
 }

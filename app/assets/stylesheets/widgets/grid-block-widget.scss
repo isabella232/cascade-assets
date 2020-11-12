@@ -305,6 +305,8 @@
   display: grid;
   align-content: space-evenly;
   padding: 2%;
+  resize: both;
+  overflow: auto;
 }
 #uninav-static-placeholder {
   display: none !important;
@@ -321,4 +323,7 @@
 
 #columns {
   width: 100px;
+}
+#content-editable {
+  text-align: center;
 }
