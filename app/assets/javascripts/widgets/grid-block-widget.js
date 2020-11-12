@@ -169,16 +169,13 @@ refreshCSS = () => {
   }
 };
 
+refreshJS();
 refreshJS = () => {
   console.log("hot swapping JS");
-  let scripts = document.getElementsByTagName("script");
-  for (let i = 0; i < scripts.length; i++) {
-    if (scripts[i].getAttribute("rel") == "stylesheet") {
-      let href = scripts[i].getAttribute("src").split("?")[0];
-
-      let source = href + "?version=" + new Date().getMilliseconds();
-
-      scripts[i].setAttribute("src", source);
-    }
+  var scripts = document.getElementsByTagName("script");
+  for (var i = 0; i < scripts.length; i++) {
+    var href = scripts[i].src.split("?")[0];
+    var source = href + "?version=" + new Date().getMilliseconds();
+    scripts[i].setAttribute("src", source);
   }
 };
