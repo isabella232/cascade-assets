@@ -1,6 +1,23 @@
 $(function () {
   debugging();
   gridBlockWidget();
+
+  setInterval(function () {
+    refreshCSS();
+    refreshJS();
+  }, 10000); // Interval set to 4 seconds
+
+  // function tick() {
+  //   //get the mins of the current time
+  //   var mins = new Date().getMinutes();
+  //   if (mins == "00") {
+  //     refreshCSS();
+  //     refreshJS();
+  //   }
+  //   console.log("Tick " + mins);
+  // }
+
+  // setInterval(tick, 1);
 });
 
 function gridBlockWidget() {
@@ -137,3 +154,31 @@ function debugging() {
     clickHandlers();
   });
 }
+
+refreshCSS = () => {
+  console.log("hot swapping CSS");
+  let links = document.getElementsByTagName("link");
+  for (let i = 0; i < links.length; i++) {
+    if (links[i].getAttribute("rel") == "stylesheet") {
+      let href = links[i].getAttribute("href").split("?")[0];
+
+      let newHref = href + "?version=" + new Date().getMilliseconds();
+
+      links[i].setAttribute("href", newHref);
+    }
+  }
+};
+
+refreshJS = () => {
+  console.log("hot swapping JS");
+  let scripts = document.getElementsByTagName("script");
+  for (let i = 0; i < scripts.length; i++) {
+    if (scripts[i].getAttribute("rel") == "stylesheet") {
+      let href = scripts[i].getAttribute("href").split("?")[0];
+
+      let source = href + "?version=" + new Date().getMilliseconds();
+
+      scripts[i].setAttribute("src", source);
+    }
+  }
+};
