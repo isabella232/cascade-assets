@@ -165,7 +165,9 @@
 #set ($titleOverlay = $gridOptions.getChild('titleOverlay').value )
   #if ($titleOverlay != 'No') 
     #set ($widgetPosition = "relative")
-    #set ($overlayClass = 'overlay') 
+    #set ($overlayClass = 'grid-block-widget__container--overlay') 
+  #else 
+    #set ($overlayClass = '') 
   #end
 
 #set ($textBackgroundColor = $gridOptions.getChild('textBackgroundColor').value)
@@ -183,8 +185,9 @@
 #set ($gridDisplay = $gridOptions.getChild('gridDisplay').value)
 
 
-  #if ($gridDisplay.contains('pagination') )
-    #set ($pagination = 'grid-block-widget__container--paginate')
+  #set ($pagination = '')
+  #if ($gridDisplay != 'Display All Grid Items') )
+    #set ($pagination = 'wtf')
   #end
 #li("gridDisplay $gridDisplay")
 
@@ -239,8 +242,10 @@
   #end
 
  
-  <div id="grid-block-widget__container--${_MathTool.add($foreach.index, 1)}" class="grid-block-widget__container grid-block-widget__container--$imageOrVideo grid-block-widget__container--${gridColumnsImages} grid-block-widget__container--${imageOrientation} grid-block-widget__container--${overlayClass} ${pagination}">
+  <div id="grid-block-widget__container--${_MathTool.add($foreach.index, 1)}" class="grid-block-widget__container grid-block-widget__container--$imageOrVideo grid-block-widget__container--${gridColumnsImages} ${overlayClass} grid-block-widget__container--${imageOrientation}  ${pagination}">
   
+  gridDisplay $gridDisplay
+
   #foreach ($block in $blocks)
 
     #set ($title = $block.getChild('gridBlock').getChild('gridBlockTitle').value )
