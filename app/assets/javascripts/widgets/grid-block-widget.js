@@ -5,7 +5,7 @@ $(function () {
   setInterval(function () {
     // refreshCSS();
     refreshJS();
-  }, 10000); // 10 seconds
+  }, 60000); // 60 seconds
 
   $("#clone").trigger("click");
 });
@@ -64,11 +64,9 @@ function gridBlockWidget() {
         }
 
         if (buttonClickCounter > 1) {
-          //           $(currentButton).text('Show All');
           $(currentButton).fadeOut();
           $("#" + currentWidgetContainer)
             .find(".grid-block-widget")
-            //             .slice(currentVisible, currentHidden)
             .show();
         }
       });
