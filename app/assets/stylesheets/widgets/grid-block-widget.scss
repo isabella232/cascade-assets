@@ -332,6 +332,13 @@
   font-weight: bold;
   border-radius: 4px;
 
+  &--grey {
+    &:hover,
+    &:focus {
+      background-color: lighten($cu-light-grey, 4%);
+      transition: all 350ms ease;
+    }
+  }
   &--sand,
   &--white {
     color: $cu-red;
@@ -342,7 +349,7 @@
   }
 
   + [class*="-widget"] {
-    --marginTop: 20px;
+    --marginTop: 12px;
     --marginBottom: 20px;
   }
 }
