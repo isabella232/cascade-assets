@@ -143,6 +143,7 @@
       display: none;
     }
   }
+
   .grid-block-widget {
     position: relative;
 
@@ -319,6 +320,30 @@
       min-width: 140px;
       max-width: 140px;
     }
+  }
+}
+
+// load more actually sits outside of the container
+.grid-block-widget__button {
+  margin-top: 12px;
+  width: 100%;
+  height: 5rem;
+  font-family: $futura-regular;
+  font-weight: bold;
+  border-radius: 4px;
+
+  &--sand,
+  &--white {
+    color: $cu-red;
+
+    &:hover {
+      color: $red-hover;
+    }
+  }
+
+  + [class*="-widget"] {
+    --marginTop: 20px;
+    --marginBottom: 20px;
   }
 }
 

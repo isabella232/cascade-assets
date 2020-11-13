@@ -330,9 +330,11 @@
         </div>
       #end
 
-    <div class="grid-block-widget__text grid-block-widget__text--${textBackgroundColor} grid-block-widget__text--${textAlignment}">
-      <p>${_EscapeTool.xml($gridBodyText)}</p>
-    </div>
+    #if ($gridBodyText != '')
+      <div class="grid-block-widget__text grid-block-widget__text--${textBackgroundColor} grid-block-widget__text--${textAlignment}">
+        <p>${_EscapeTool.xml($gridBodyText)}</p>
+      </div>
+    #end
     <span
       style="display:none;"
       tabindex="0"

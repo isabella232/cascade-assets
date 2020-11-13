@@ -50,7 +50,7 @@ function gridBlockWidget() {
           ).length;
           console.log("current hidden: " + currentHidden);
 
-          if (buttonClickCounter == 1) {
+          if (buttonClickCounter <= 1) {
             // $(this).parent().find(".grid-block-widget").nextAll().show();
             // $(this).parent().find(".grid-block-widget").slice(0, 6).show();
             console.log("parent: " + currentWidgetContainer);
