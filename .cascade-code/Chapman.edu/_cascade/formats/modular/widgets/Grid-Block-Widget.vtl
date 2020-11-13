@@ -184,10 +184,12 @@
 
 #set ($gridDisplay = $gridOptions.getChild('gridDisplay').value)
 
-
-  #set ($pagination = '')
-  #if ($gridDisplay != 'Display All Grid Items') )
-    #set ($pagination = 'wtf')
+  #if ($gridDisplay == 'showAll')
+    #set ($pagination = 'grid-block-container__display-all')
+  #elseif ($gridDisplay == 'pagination')
+    #set ($pagination = 'grid-block-container__paginate')
+  #elseif ($gridDisplay == 'rotator')
+    #set ($pagination = 'grid-block-container__rotate')
   #end
 #li("gridDisplay $gridDisplay")
 
@@ -241,10 +243,8 @@
     
   #end
 
- 
-  <div id="grid-block-widget__container--${_MathTool.add($foreach.index, 1)}" class="grid-block-widget__container grid-block-widget__container--$imageOrVideo grid-block-widget__container--${gridColumnsImages} ${overlayClass} grid-block-widget__container--${imageOrientation}  ${pagination}">
+  <div id="grid-block-widget__container--${_MathTool.add($foreach.index, 1)}" class="grid-block-widget__container grid-block-widget__container--$imageOrVideo grid-block-widget__container--${gridColumnsImages} ${overlayClass} grid-block-widget__container--${imageOrientation}  wtf-${pagination}">
   
-  gridDisplay $gridDisplay
 
   #foreach ($block in $blocks)
 
