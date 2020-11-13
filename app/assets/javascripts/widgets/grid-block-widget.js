@@ -3,21 +3,11 @@ $(function () {
   gridBlockWidget();
 
   setInterval(function () {
-    refreshCSS();
+    // refreshCSS();
     refreshJS();
   }, 10000); // 10 seconds
 
-  // function tick() {
-  //   //get the mins of the current time
-  //   var mins = new Date().getMinutes();
-  //   if (mins == "00") {
-  //     refreshCSS();
-  //     refreshJS();
-  //   }
-  //   console.log("Tick " + mins);
-  // }
-
-  // setInterval(tick, 1);
+  $("#clone").trigger("click");
 });
 
 function gridBlockWidget() {
@@ -33,6 +23,55 @@ function gridBlockWidget() {
       if ($(this).attr("data-height") >= 150) {
         $(this).parent().find(".grid-block-widget__reveal--more").show();
       }
+    });
+
+    var buttonClickCounter = 0;
+
+    $(".grid-block-widget__container").each(function () {
+      // IDs are assigned via velocity format
+      var currentWidgetContainer = $(this).attr("id");
+      var loadMoreButtonButton = " + .grid-block-widget__button";
+      var currentButton = "#" + currentWidgetContainer + loadMoreButtonButton;
+
+      $(currentButton).on("click keydown", function (e) {
+        if (accessibleClick(event)) {
+          console.log("clicked");
+          console.log("current widget container: #" + currentWidgetContainer);
+          console.log("current widget button: " + currentButton);
+
+          buttonClickCounter += 1;
+          console.log("button click counter " + buttonClickCounter);
+
+          var currentVisible = $("#" + currentWidgetContainer).find(
+            ".grid-block-widget:visible"
+          ).length;
+          var currentHidden = $("#" + currentWidgetContainer).find(
+            ".grid-block-widget:hidden"
+          ).length;
+          console.log("current hidden: " + currentHidden);
+
+          if (buttonClickCounter == 1) {
+            // $(this).parent().find(".grid-block-widget").nextAll().show();
+            // $(this).parent().find(".grid-block-widget").slice(0, 6).show();
+            console.log("parent: " + currentWidgetContainer);
+            $("#" + currentWidgetContainer)
+              .find(".grid-block-widget")
+              .slice(0, 6)
+              .show();
+
+            $(currentButton).text("Show All");
+          }
+        }
+
+        if (buttonClickCounter > 1) {
+          //           $(currentButton).text('Show All');
+          $(currentButton).fadeOut();
+          $("#" + currentWidgetContainer)
+            .find(".grid-block-widget")
+            //             .slice(currentVisible, currentHidden)
+            .show();
+        }
+      });
     });
     clickHandlers();
   }
@@ -63,6 +102,20 @@ function clickHandlers() {
       $(parent).find(".grid-block-widget__text").attr("aria-expanded", "false");
     }
   });
+}
+
+function paginate() {
+  // $(".grid-block-widget__button").on("click keydown", function (e) {
+  //   if (accessibleClick(event)) {
+  //     console.log("clicked");
+  //     // $(this).parent().find(".grid-block-widget").nextAll().show();
+  //     // $(this).parent().find(".grid-block-widget").slice(0, 6).show();
+  //     console.log(
+  //       "parent: " +
+  //         $(currentWidgetContainer).find(".grid-block-widget__container")
+  //     );
+  //   }
+  // });
 }
 function debugging() {
   // !!! THIS IS FOR TESTING ONLY - DO NOT MERGE THIS INTO DEV/PROD !!!

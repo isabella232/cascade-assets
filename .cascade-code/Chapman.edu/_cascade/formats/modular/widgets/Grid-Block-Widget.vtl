@@ -6,9 +6,8 @@
     ul ul {
         margin-left: 12px;
     }
-
 </style>
-
+<script src="https://pagination.js.org/dist/2.1.5/pagination.min.js"></script>
 #macro(camel2Snake $camelCase)
     #set( $regex = "([a-z])([A-Z]+)")
     #set( $replacement = "$1-$2")
@@ -183,6 +182,10 @@
 
 #set ($gridDisplay = $gridOptions.getChild('gridDisplay').value)
 
+
+  #if ($gridDisplay.contains('pagination') )
+    #set ($pagination = 'grid-block-widget__container--paginate')
+  #end
 #li("gridDisplay $gridDisplay")
 
 ## GRID BLOCK 
@@ -236,7 +239,7 @@
   #end
 
  
-  <div id="grid-block-widget__container--${_MathTool.add($foreach.index, 1)}" class="grid-block-widget__container grid-block-widget__container--$imageOrVideo grid-block-widget__container--${gridColumnsImages} grid-block-widget__container--${imageOrientation} grid-block-widget__container--${overlayClass}">
+  <div id="grid-block-widget__container--${_MathTool.add($foreach.index, 1)}" class="grid-block-widget__container grid-block-widget__container--$imageOrVideo grid-block-widget__container--${gridColumnsImages} grid-block-widget__container--${imageOrientation} grid-block-widget__container--${overlayClass} ${pagination}">
   
   #foreach ($block in $blocks)
 
@@ -345,63 +348,17 @@
   </div>
   
   #end
-
-
   ## CLOSE GRID-BLOCK-WIDGET__CONTAINER DIV
 </div>
-
-
-## private macros 
-#macro(sectionButtons $elem $linkXPath $wxp)
-    ## this will create 'next-steps-widget__button' down below
-    #set ($bemButtonClass = 'grid-block-widget' + '__button')
-    #set ($bemButtonClass = $bemButtonClass.value)
-    bemButtonClass $bemButtonClass
-    
-    #set ( $linkItems = $_XPathTool.selectNodes($element, 'sectionHeaderGroup/link') )
-
-    #foreach ($link in $linkItems)
-        #set ($linkStyle = 'Button Link') 
-
-        #set ($linkType =  $link.getChild('linkType').value)
-        #set ($linkLabel = $link.getChild('label').value)
-        
-        ## ACCESSIBILITY
-        #set ($ariaLabel = $link.getChild('accessibility').getChild('ariaLabel').value)
-        #set ($title = $link.getChild('accessibility').getChild('title').value)
-
-        ## ANALYTICS
-        #set ($customID = $link.getChild('tracking').getChild('customID').value)
-        #set ($dataAttr = $link.getChild('tracking').getChild('dataAttr').value)
-
-        #if ($customID != '')
-            #set ($customID = $link.getChild('customID').value)
-        #else
-            #set ( $customID = $linkLabel.replaceAll(" ", "-").replaceAll("[^a-zA-Z-]", "").replaceAll("--", "-").toLowerCase() )
-        #end
-        
-        #if ($dataAttr != '')
-            #set ($dataAttr = $link.getChild('dataAttr').value)
-            #set ($dataAttr = $dataAttr)
-        #else
-            #set ($dataAttr = '')
-        #end
-            
-        #if ($linkType == 'Internal Link')
-            #set ($linkURL = $button.getChild('internalLink').getChild('path').value )
-            #elseif ($linkType == 'External Link')
-                #set ($linkURL = $button.getChild('externalLink').value )
-        #else 
-            #set ($linkURL = $button.getChild('fileLink').getChild('path').value )
-        #end
-    
-        
-   
-        #if ($linkLabel != '')
-                <a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button $bemButtonClass">#escape($linkLabel)</a>  
-        #end
-
-    #end
+#if ($gridDisplay.contains('pagination') )
+  <button
+    id="grid-block-widget__button--${_MathTool.add($foreach.index, 1)}"
+    aria-label="Load More Photos"
+    aria-role="button"
+    class="button grid-block-widget__button grid-block-widget__button---grey"
+  >
+    Load More
+  </button>
 #end
 
 
@@ -410,6 +367,4 @@
 
 
 #end
-
-
 

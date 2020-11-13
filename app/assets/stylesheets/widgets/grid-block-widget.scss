@@ -134,6 +134,15 @@
     }
   }
 
+  &--paginate {
+    .grid-block-widget:nth-child(n + 4) {
+      display: none;
+    }
+
+    .grid-block-widget:nth-child(n + 4) {
+      display: none;
+    }
+  }
   .grid-block-widget {
     position: relative;
 
@@ -327,6 +336,7 @@
   padding: 2%;
   resize: both;
   overflow: auto;
+  margin-top: 60px;
 }
 #uninav-static-placeholder {
   display: none !important;
