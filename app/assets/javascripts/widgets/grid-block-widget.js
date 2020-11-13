@@ -1,13 +1,14 @@
 $(function () {
   debugging();
   gridBlockWidget();
+  $("#clone").trigger("click");
+
+  gridBlockCarousel();
 
   setInterval(function () {
     // refreshCSS();
-    refreshJS();
+    // refreshJS();
   }, 60000); // 60 seconds
-
-  $("#clone").trigger("click");
 });
 
 function gridBlockWidget() {
@@ -206,6 +207,16 @@ function debugging() {
   });
 }
 
+function gridBlockCarousel() {
+  $(".grid-block-widget__container--rotate").slick({
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: true,
+    dots: true,
+    infinite: true,
+  });
+}
 refreshCSS = () => {
   console.log("hot swapping CSS");
   let links = document.getElementsByTagName("link");
