@@ -135,7 +135,7 @@ function debugging() {
 
   $("head").append('<meta http-equiv="expires" content="timestamp">');
   $("#theme").append(
-    '<div id="testing-tools"><a id="clone" class="button button--red">Clone Grid Blocks</a><div id="grid-columns"><input type="range" id="columns" name="columns" min="2" max="6" value="3" step="1" /><label id="grid-col-val" for="columns">3 columns</label></div><a id="content-editable" class="button button--red">Editable Text</a><a id="random-images" class="button button--red">Randomly Sized Images</a></div>'
+    '<div id="testing-tools"><a id="close-testing-tools">X</a><a id="clone" class="button button--red">Clone Grid Blocks</a><div id="grid-columns"><input type="range" id="columns" name="columns" min="2" max="6" value="3" step="1" /><label id="grid-col-val" for="columns">3 columns</label></div><a id="content-editable" class="button button--red">Editable Text</a><a id="random-images" class="button button--red">Randomly Sized Images</a></div>'
   );
 
   $(document).on("input change", "#columns", function () {
@@ -205,6 +205,11 @@ function debugging() {
     });
     clickHandlers();
   });
+  $("#close-testing-tools").click(function () {
+    console.log("cloning");
+    $("#testing-tools").hide();
+    clickHandlers();
+  });
 }
 
 function gridBlockCarousel() {
@@ -215,6 +220,34 @@ function gridBlockCarousel() {
     arrows: true,
     dots: true,
     infinite: true,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      // You can unslick at a given breakpoint now by adding:
+      // settings: "unslick"
+      // instead of a settings object
+    ],
   });
 }
 refreshCSS = () => {

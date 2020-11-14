@@ -50,12 +50,19 @@
   }
   &--landscape {
     --imgSize: 200px;
+    --width: 100%;
+    --maxWidth: 100%;
+    --minWidth: 100%;
+    --maxHeight: 120px;
+    --minHeight: 100%;
+    --height: 100%;
     img {
       -o-object-fit: cover;
       object-fit: cover;
-      width: 100%;
-      min-width: 100%;
+      width: var(--width);
+      min-width: var(--minWidth);
       height: auto;
+      max-height: var(--maxHeight);
     }
   }
   &--portrait {
@@ -148,9 +155,15 @@
     .slick-slide > div {
       padding: 0 0.5rem;
     }
+
+    @include respond(phone) {
+      .slick-dots li {
+        display: none;
+      }
+    }
     .slick-dots li {
-      height: 20px;
-      width: 25px;
+      // height: 20px;
+      // width: 25px;
 
       button::before {
         content: "";
@@ -391,12 +404,15 @@
 }
 .grid-block-widget__container--6-col {
   .grid-block-widget__image--circle {
-    --imgSize: 120px;
+    --imgSize: 100px;
+  }
+  &.grid-block-widget__container--portrait {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   }
   .grid-block-widget__container--portrait {
     img {
-      min-width: 140px;
-      max-width: 140px;
+      // min-width: 140px;
+      // max-width: 140px;
     }
   }
 }
@@ -447,6 +463,9 @@
   resize: both;
   overflow: auto;
   margin-top: 60px;
+  > a {
+    cursor: pointer;
+  }
 }
 #uninav-static-placeholder {
   display: none !important;
