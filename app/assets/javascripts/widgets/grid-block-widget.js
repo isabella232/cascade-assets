@@ -1,7 +1,7 @@
 $(function () {
   debugging();
   gridBlockWidget();
-  $("#clone").trigger("click");
+  // $("#clone").trigger("click");
 
   gridBlockCarousel();
 
