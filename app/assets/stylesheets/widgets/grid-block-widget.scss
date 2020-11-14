@@ -397,9 +397,12 @@
 .grid-block-widget__container--5-col {
   .grid-block-widget__image--circle {
     --imgSize: 150px;
-  }
+  }-
 }
 .grid-block-widget__container--6-col {
+  &.grid-block-widget__container--landscape {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
   .grid-block-widget__image--circle {
     --imgSize: 120px;
   }
