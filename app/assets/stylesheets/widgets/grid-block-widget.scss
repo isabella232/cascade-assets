@@ -398,13 +398,10 @@
   .grid-block-widget__image--circle {
     --imgSize: 150px;
   }
-  .grid-block-widget__container--portrait img {
-    // --imgSize: 150px;
-  }
 }
 .grid-block-widget__container--6-col {
   .grid-block-widget__image--circle {
-    --imgSize: 100px;
+    --imgSize: 120px;
   }
   &.grid-block-widget__container--portrait {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
