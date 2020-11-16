@@ -1,4 +1,4 @@
-#import( "/_cascade/formats/helpers.velocity" )
+  #import( "/_cascade/formats/helpers.velocity" )
 
 ## Chapman.edu: /_cascade/formats/modular/widgets/Grid-Block-Widget 
 
@@ -32,6 +32,7 @@
   
 #set ($display = $element.getChild($widgetXPath).getChild('display').value)
 #set ($bgColor =  $element.getChild($widgetXPath).getChild('bgColor').value.toLowerCase())
+
 
 #set ($parentGroup = $element.getChild($widgetXPath))
   ## #getSetVal($parentGroup "altText")
@@ -182,6 +183,7 @@
 
 #li("gridColumnsImages $gridColumnsImages")
 
+
 #set ($gridDisplay = $gridOptions.getChild('gridDisplay').value)
 
   #if ($gridDisplay == 'showAll')
@@ -198,6 +200,8 @@
 
   #set ( $blocks = $_XPathTool.selectNodes($element, 'gridBlockWidget/gridOptions/gridBlock'))
 
+<div class="grid-block-widget__wrapper">
+<div class="inner-container">
 #if ($displaySectionIntro == "yes")
     <div class="section-intro">
       <div class="section-intro__preheader">
@@ -243,7 +247,7 @@
     
   #end
 
-  <div id="grid-block-widget__container--${_MathTool.add($foreach.index, 1)}" class="grid-block-widget__container grid-block-widget__container--$imageOrVideo grid-block-widget__container--${gridColumnsImages} ${overlayClass} grid-block-widget__container--${imageOrientation} ${pagination}">
+  <div id="grid-block-widget__container--${_MathTool.add($foreach.index, 1)}" class="grid-block-widget__container grid-block-widget__container--$imageOrVideo grid-block-widget__container--${gridColumnsImages} ${overlayClass} grid-block-widget__container--${imageOrientation} ${pagination}" data-columns="${dataColumns}">
   
 
   #foreach ($block in $blocks)
@@ -371,7 +375,8 @@
     Load More
   </button>
 #end
-
+</div>
+</div>
 
 
 

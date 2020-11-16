@@ -50,14 +50,16 @@ function gridBlockWidget() {
             ".grid-block-widget:hidden"
           ).length;
           console.log("current hidden: " + currentHidden);
-
+          var dataColumns = $("#" + currentWidgetContainer).data("columns");
+          var numToReveal = $("#" + currentWidgetContainer).data("columns") * 3;
+          console.log("numtoreveal: " + numToReveal);
           if (buttonClickCounter <= 1) {
             // $(this).parent().find(".grid-block-widget").nextAll().show();
             // $(this).parent().find(".grid-block-widget").slice(0, 6).show();
             console.log("parent: " + currentWidgetContainer);
             $("#" + currentWidgetContainer)
               .find(".grid-block-widget")
-              .slice(0, 6)
+              .slice(dataColumns, numToReveal)
               .show();
 
             $(currentButton).text("Show All");
@@ -168,10 +170,8 @@ function debugging() {
         "grid-block-widget__container--" + gridBlockWidgetColumns + "-col"
       );
     $(".grid-block-widget__container").each(function () {
-      $(this)
-        .append
-        // "<style>.grid-block-widget__container {grid-template-columns: repeat(var(--gridBlockWidgetColumns), 1fr)}</style>"
-        ();
+      $(this).attr("data-columns", gridBlockWidgetColumns);
+      console.log("gridBlockWidgetColumns " + gridBlockWidgetColumns);
     });
   });
 
@@ -179,8 +179,10 @@ function debugging() {
     console.log("cloning");
     $(".grid-block-widget__container").each(function () {
       // 	var parent_id = $(this)
+      var dataColumns = $("#" + currentWidgetContainer).data("columns");
+      var numClone = dataColumns * 4;
       var $col = $(this).find("> .grid-block-widget");
-      for (var i = 0; i < 10; i++) {
+      for (var i = 0; i < numClone; i++) {
         $col.clone().appendTo($(this));
       }
     });
