@@ -109,6 +109,15 @@
     #if ($widgetType == 'Google Map Widget')
         #outputGoogleMapWidget($widget)
     #end
+
+    ##    
+    #if ($widgetType == 'Grid Block')
+        #set ($displayGridBlock = $widget.getChild('gridBlockWidget').getChild('display').value)
+        #if ($displayGridBlock == 'Yes')
+            #outputGridBlockWidget($widget)
+        #end
+    #end
+    ##     
     ## #if ($widgetType == 'Google Map Widget - Address')
     ##     #outputGoogleMapWidgetAddress($widget)
     ## #end

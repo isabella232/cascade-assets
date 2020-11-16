@@ -312,6 +312,10 @@
     #if ($titleOverlay != 'No')  
       <div class="grid-block-widget__relative">
       <span class="grid-block-widget__gradient-overlay"></span>
+      ## better approach to deal with responsive image sizes? 
+##       .grid-block-widget__container--overlay img {
+##     filter: brightness(50%);
+## }
     #end
     #if ($imageOrVideo == 'images' && $imageOrientation != 'none')
       <img class="${widgetXPath}__image ${widgetXPath}__image--${imageOrientation}" src="[system-asset]${_EscapeTool.xml($gridBlockImagePath)}[/system-asset]" alt="${gridBlockAltText}" />

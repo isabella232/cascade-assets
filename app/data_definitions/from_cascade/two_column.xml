@@ -184,6 +184,7 @@
         <dropdown-item show-fields="primaryContent/widget/funnels-2up" value="Funnels 2up" />
         <dropdown-item show-fields="primaryContent/widget/funnels-1up" value="Funnels 1up" />
         <dropdown-item show-fields="primaryContent/widget/gridBlockWidget" value="Grid Block" />
+        <dropdown-item show-fields="primaryContent/widget/hideFromSearch" value="Hide From Search" restrict-to-groups="Administrators, Web-Coordinators" />
         <dropdown-item show-fields="primaryContent/widget/logo-image-rotator" value="Logo Image Rotator" />
         <dropdown-item show-fields="primaryContent/widget/personnel" value="Personnel Table" />
         <dropdown-item show-fields="primaryContent/widget/tabs" value="Tabs" />
@@ -502,7 +503,6 @@
           </group>
         </group>
       </group>
-
 
       <group collapsed="true" identifier="funnels-2up" label="Funnels (2up)">
         <text default="Yes" field-id="ff6bcc16c0a81e5f43ef9b3713f5e436" identifier="display-funnels-2up" label="Show" required="true" type="radiobutton">

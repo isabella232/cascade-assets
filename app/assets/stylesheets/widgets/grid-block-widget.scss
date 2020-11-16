@@ -67,12 +67,15 @@
   }
   &--portrait {
     --imgSize: 400px;
+    --height: 400px;
+    --maxHeight: 400px;
+    --minHeight: 400px;
     img {
       -o-object-fit: cover;
       object-fit: cover;
       height: 100%;
-      min-height: var(--imgSize);
-      max-height: var(--imgSize);
+      min-height: var(--minHeight);
+      max-height: var(--maxHeight);
       min-width: 100%;
     }
     .grid-block-widget {
@@ -81,12 +84,13 @@
   }
 
   &--square {
-    --imgSize: 250px;
+    --height: 250px;
+    --width: 250px;
     img {
       -o-object-fit: cover;
       object-fit: cover;
-      width: var(--imgSize);
-      height: var(--imgSize);
+      width: var(--height);
+      height: var(--width);
     }
   }
   .grid-block-widget__gradient-overlay {
@@ -131,6 +135,21 @@
             height: var(--imgSize);
             border-radius: 50%;
             overflow: hidden;
+          }
+        }
+      }
+      &--portrait {
+        .grid-block-widget {
+          &__gradient-overlay {
+            height: var(--maxHeight);
+          }
+        }
+      }
+      &--square {
+        .grid-block-widget {
+          &__gradient-overlay {
+            height: var(--height);
+            width: var(--height);
           }
         }
       }
