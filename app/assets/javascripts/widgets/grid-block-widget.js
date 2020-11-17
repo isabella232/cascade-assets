@@ -175,7 +175,6 @@ function debugging() {
     });
 
     refreshCSS();
-    refreshJS();
   });
 
   $("#clone").click(function () {
@@ -183,7 +182,7 @@ function debugging() {
     $(".grid-block-widget__container").each(function () {
       // 	var parent_id = $(this)
       var dataColumns = $(this).data("columns");
-      var numClone = dataColumns * 4;
+      var numClone = 24;
       var $col = $(this).find("> .grid-block-widget");
       for (var i = 0; i < numClone; i++) {
         $col.clone().appendTo($(this));

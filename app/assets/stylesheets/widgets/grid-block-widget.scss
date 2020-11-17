@@ -219,6 +219,13 @@
       }
     }
 
+    button.slick-arrow {
+      &:focus,
+      &:focus-within {
+        border: 2px dotted $cu-red;
+      }
+    }
+
     button {
       height: 35px;
       width: 35px;
@@ -516,6 +523,8 @@
   margin-top: 60px;
   > a {
     cursor: pointer;
+    display: flex;
+    justify-content: center;
   }
 }
 #uninav-static-placeholder {
