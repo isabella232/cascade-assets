@@ -279,7 +279,7 @@
           <group collapsed="true" identifier="gridBlock" label="Grid Block" multiple="true">
             <text field-id="2462637fc0a81e8a5a4039452d57a512" identifier="gridBlockTitle" label="Title" required="true" />
             <text field-id="3429c844c0a81e8a5a4039450d9bac85" identifier="titleLink" label="Title Link?" required="true" type="radiobutton">
-              <radio-item label="Yes" value="yes" />
+              <radio-item label="Yes" value="yes" show-fields="primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/linkType" />
               <radio-item label="No" value="no" />
             </text>
             <text field-id="3429c844c0a81e8a5a40394579d1d114" identifier="linkType" required="true" type="radiobutton">

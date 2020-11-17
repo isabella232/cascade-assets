@@ -424,7 +424,7 @@
       </group>
       <group collapsed="true" identifier="gridBlockWidget" label="Grid Block Widget">
         <shared-field identifier="display" path="display" />
-        <shared-field field-id="2ec23c65c0a81e8a5a403945714f24c6" identifier="bgColor" path="background-color" />
+        <shared-field field-id="2ec23c65c0a81e8a5a403945714f24c6" identifier="bgColor" path="background-color-radio-buttons" />
         <text default="yes" field-id="2e5ae630c0a81e8a5a403945f880d1a6" identifier="displaySectionIntro" label="Display Section Intro?" type="radiobutton">
           <radio-item label="Yes" show-fields="primaryContent/widget/gridBlockWidget/sectionHeaderGroup" value="yes" />
           <radio-item label="No" value="no " />
@@ -484,7 +484,7 @@
           <group collapsed="true" identifier="gridBlock" label="Grid Block" multiple="true">
             <text field-id="2462637fc0a81e8a5a4039452d57a512" identifier="gridBlockTitle" label="Title" required="true" />
             <text field-id="3429c844c0a81e8a5a4039450d9bac85" identifier="titleLink" label="Title Link?" required="true" type="radiobutton">
-              <radio-item label="Yes" value="yes" />
+              <radio-item label="Yes" value="yes" show-fields="primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/linkType" />
               <radio-item label="No" value="no" />
             </text>
             <text field-id="3429c844c0a81e8a5a40394579d1d114" identifier="linkType" required="true" type="radiobutton">
