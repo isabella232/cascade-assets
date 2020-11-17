@@ -137,7 +137,7 @@ function debugging() {
 
   $("head").append('<meta http-equiv="expires" content="timestamp">');
   $("#theme").append(
-    '<div id="testing-tools"><a id="close-testing-tools">X</a><a id="clone" class="button button--red">Clone Grid Blocks</a><div id="grid-columns"><input type="range" id="columns" name="columns" min="2" max="6" value="3" step="1" /><label id="grid-col-val" for="columns">3 columns</label></div><a id="content-editable" class="button button--red">Editable Text</a><a id="random-images" class="button button--red">Randomly Sized Images</a></div>'
+    '<div id="testing-tools"><a id="close-testing-tools">X</a><a id="clone" class="button button--red">Clone Grid Blocks</a><div id="grid-columns"><input type="range" id="columns" name="columns" min="2" max="6" value="3" step="1" /><label id="grid-col-val" for="columns">3 columns</label></div><p>Note: Column slider will not affect rotators</p><a id="content-editable" class="button button--red">Editable Text</a><a id="random-images" class="button button--red">Randomly Sized Images</a></div>'
   );
 
   $(document).on("input change", "#columns", function () {
@@ -173,13 +173,16 @@ function debugging() {
       $(this).attr("data-columns", gridBlockWidgetColumns);
       console.log("gridBlockWidgetColumns " + gridBlockWidgetColumns);
     });
+
+    refreshCSS();
+    refreshJS();
   });
 
   $("#clone").click(function () {
     console.log("cloning");
     $(".grid-block-widget__container").each(function () {
       // 	var parent_id = $(this)
-      var dataColumns = $("#" + currentWidgetContainer).data("columns");
+      var dataColumns = $(this).data("columns");
       var numClone = dataColumns * 4;
       var $col = $(this).find("> .grid-block-widget");
       for (var i = 0; i < numClone; i++) {

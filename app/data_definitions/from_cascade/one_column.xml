@@ -219,7 +219,7 @@
       </group>
       <group collapsed="true" identifier="gridBlockWidget" label="Grid Block Widget">
         <shared-field identifier="display" path="display" />
-        <shared-field field-id="2ec23c65c0a81e8a5a403945714f24c6" identifier="bgColor" path="background-color" />
+        <shared-field field-id="2ec23c65c0a81e8a5a403945714f24c6" identifier="bgColor" path="background-color-radio-buttons" />
         <text default="yes" field-id="2e5ae630c0a81e8a5a403945f880d1a6" identifier="displaySectionIntro" label="Display Section Intro?" type="radiobutton">
           <radio-item label="Yes" show-fields="primaryContent/widget/gridBlockWidget/sectionHeaderGroup" value="yes" />
           <radio-item label="No" value="no " />

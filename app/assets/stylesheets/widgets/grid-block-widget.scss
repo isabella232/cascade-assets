@@ -24,7 +24,7 @@
   &__buttons {
     margin-bottom: 25px;
   }
-  &__button {
+  .button {
     font-weight: 800;
   }
 
@@ -576,6 +576,16 @@
           color: $panther-black;
         }
       }
+    }
+
+    .slick-prev.slick-arrow {
+      transform: translate(-10px, -20px);
+      z-index: 10;
+    }
+
+    .slick-next.slick-arrow {
+      transform: translate(10px, -20px);
+      z-index: 10;
     }
   }
 
