@@ -107,7 +107,9 @@
       height: 100%;
       min-height: var(--minHeight);
       max-height: var(--maxHeight);
-      min-width: 100%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     .grid-block-widget {
       height: max-content;
@@ -130,7 +132,7 @@
   &.grid-block-widget__container--overlay {
     .grid-block-widget {
       &__relative {
-        max-width: max-content;
+        max-width: 100%;
       }
       &:hover,
       &:focus,
@@ -557,13 +559,13 @@
 
 // !!!DON'T MERGE!!!
 #testing-tools {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.99);
   position: fixed;
   z-index: 2;
   width: max-content;
   left: 0;
   top: 0;
-  height: 100%;
+  height: 90vh;
   display: grid;
   align-content: space-evenly;
   padding: 2%;
@@ -575,6 +577,10 @@
     display: flex;
     justify-content: center;
   }
+}
+
+#close-testing-tools {
+  justify-content: start !important;
 }
 #uninav-static-placeholder {
   display: none !important;
@@ -608,6 +614,13 @@
     padding-top: 60px;
     padding-bottom: 60px;
 
+    &--black {
+      .grid-block-widget {
+        &__title {
+          color: $white;
+        }
+      }
+    }
     &--red {
       .grid-block-widget {
         &__title {
@@ -636,6 +649,9 @@
       }
     }
 
+    button.slick-arrow {
+      display: block !important;
+    }
     .slick-prev.slick-arrow {
       transform: translate(-10px, -20px);
       z-index: 10;

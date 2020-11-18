@@ -2,13 +2,15 @@ $(function () {
   debugging();
   gridBlockWidget();
   $("#clone").trigger("click");
-
+  $("#random-images").trigger("click");
   gridBlockCarousel();
 
+  refreshCSS();
+  refreshJS();
   setInterval(function () {
-    refreshCSS();
+    // refreshCSS();
     // refreshJS();
-  }, 10000); // 10 seconds
+  }, 60000); // 60 seconds
 });
 
 function gridBlockWidget() {
@@ -217,6 +219,7 @@ function debugging() {
       );
     });
     clickHandlers();
+    refreshCSS();
   });
   $("#close-testing-tools").click(function () {
     console.log("cloning");
@@ -263,23 +266,18 @@ function gridBlockCarousel() {
     ],
   });
 }
-
 refreshCSS = () => {
   console.log("hot swapping CSS");
   let links = document.getElementsByTagName("link");
-  $("link[rel='stylesheet']").each(function () {
-    $(this).attr("data-clone", "false");
-    $(this).clone().attr("data-clone", "true").appendTo($("head"));
-  });
+  for (let i = 0; i < links.length; i++) {
+    if (links[i].getAttribute("rel") == "stylesheet") {
+      let href = links[i].getAttribute("href").split("?")[0];
 
-  $('link[data-clone="false"]').each(function () {
-    var href = $(this).attr("href").split("?")[0];
-    $(this).attr("href", href + "?version=" + new Date().getMilliseconds());
-  });
+      let newHref = href + "?version=" + new Date().getMilliseconds();
 
-  window.setTimeout(function () {
-    $('link[data-clone="true"]').remove();
-  }, 5000);
+      links[i].setAttribute("href", newHref);
+    }
+  }
 };
 
 refreshJS = () => {
