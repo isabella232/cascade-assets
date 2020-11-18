@@ -557,58 +557,26 @@
   }
 }
 
-// !!!DON'T MERGE!!!
-#testing-tools {
-  background-color: rgba(255, 255, 255, 0.99);
-  position: fixed;
-  z-index: 2;
-  width: max-content;
-  left: 0;
-  top: 0;
-  height: 90vh;
-  display: grid;
-  align-content: space-evenly;
-  padding: 2%;
-  resize: both;
-  overflow: auto;
-  margin-top: 60px;
-  > a {
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-  }
-}
-
-#close-testing-tools {
-  justify-content: start !important;
-}
-#uninav-static-placeholder {
-  display: none !important;
-}
-
-#clone {
-  position: relative;
-  display: flex;
-  justify-content: center;
-}
-
-#grid-columns {
-  position: relative;
-  display: block;
-  display: flex;
-  justify-content: space-around;
-}
-
-#columns {
-  width: 100px;
-}
-#content-editable {
-  text-align: center;
-}
-
 .one-column {
   .section-intro {
     margin-top: 0;
+
+    &__title {
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+    &__text {
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+    &__buttons {
+      padding: 0 !important;
+      margin-top: 25px;
+      margin-bottom: 25px;
+    }
+    &__button {
+      padding: 0 !important;
+    }
   }
   .grid-block-widget__wrapper {
     &--black {
@@ -678,4 +646,71 @@
   .section-intro__button {
     background-color: transparent !important;
   }
+  .grid-block-widget__container {
+    &--rotate {
+      &.grid-block-widget__container {
+        &--square {
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
 }
+
+// !!!DON'T MERGE!!!
+#uninav {
+  display: none !important;
+}
+html {
+  padding-top: 0 !important;
+}
+#testing-tools {
+  background-color: rgba(255, 255, 255, 0.99);
+  position: fixed;
+  z-index: 2;
+  width: max-content;
+  left: 0;
+  top: 0;
+  height: 90vh;
+  display: grid;
+  align-content: space-evenly;
+  padding: 2%;
+  resize: both;
+  overflow: auto;
+  margin-top: 60px;
+  > a {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+#close-testing-tools {
+  justify-content: start !important;
+}
+#uninav-static-placeholder {
+  display: none !important;
+}
+
+#clone {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+#grid-columns {
+  position: relative;
+  display: block;
+  display: flex;
+  justify-content: space-around;
+}
+
+#columns {
+  width: 100px;
+}
+#content-editable {
+  text-align: center;
+}
+// END !!!DON'T MERGE!!!
