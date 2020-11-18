@@ -611,6 +611,15 @@
     margin-top: 0;
   }
   .grid-block-widget__wrapper {
+    &--black {
+      .section-intro {
+        &__preheader {
+          color: white;
+        }
+      }
+    }
+  }
+  .grid-block-widget__wrapper {
     padding-top: 60px;
     padding-bottom: 60px;
 
