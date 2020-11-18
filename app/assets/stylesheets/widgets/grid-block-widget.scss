@@ -24,6 +24,26 @@
   &__buttons {
     margin-bottom: 25px;
   }
+  &__button {
+    background-color: transparent !important;
+    &--white {
+      color: $panther-black;
+    }
+  }
+  a.button {
+    &:hover,
+    &:focus,
+    &:focus-within {
+      transition: 350ms linear;
+    }
+    &--white {
+      &:hover,
+      &:focus,
+      &:focus-within {
+        background-color: $cu-light-grey !important;
+      }
+    }
+  }
   .button {
     font-weight: 800;
   }
@@ -98,6 +118,9 @@
   }
   &.grid-block-widget__container--overlay {
     .grid-block-widget {
+      &__relative {
+        max-width: max-content;
+      }
       &:hover,
       &:focus,
       &:focus-within {
@@ -113,6 +136,11 @@
           // );
         }
       }
+
+      img {
+        filter: brightness(60%);
+      }
+
       &__gradient-overlay {
         display: block;
         position: absolute;

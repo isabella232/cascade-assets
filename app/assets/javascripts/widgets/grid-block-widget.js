@@ -1,13 +1,13 @@
 $(function () {
   debugging();
   gridBlockWidget();
-  $("#clone").trigger("click");
+  // $("#clone").trigger("click");
 
   gridBlockCarousel();
 
   setInterval(function () {
     // refreshCSS();
-    // refreshJS();
+    refreshJS();
   }, 60000); // 60 seconds
 });
 
