@@ -93,6 +93,7 @@
       min-width: var(--minWidth);
       height: auto;
       max-height: var(--maxHeight);
+      min-height: var(--maxHeight);
     }
   }
   &--portrait {

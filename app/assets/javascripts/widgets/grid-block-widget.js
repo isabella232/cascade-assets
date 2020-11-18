@@ -1,13 +1,13 @@
 $(function () {
   debugging();
   gridBlockWidget();
-  // $("#clone").trigger("click");
+  $("#clone").trigger("click");
 
   gridBlockCarousel();
 
   setInterval(function () {
     // refreshCSS();
-    refreshJS();
+    // refreshJS();
   }, 60000); // 60 seconds
 });
 
@@ -174,7 +174,7 @@ function debugging() {
       console.log("gridBlockWidgetColumns " + gridBlockWidgetColumns);
     });
 
-    refreshCSS();
+    // refreshCSS();
   });
 
   $("#clone").click(function () {
@@ -202,6 +202,15 @@ function debugging() {
     $(".grid-block-widget__container img").each(function () {
       var width = Math.floor(Math.random() * 200) + 200;
       var height = Math.floor(Math.random() * 600) + 300;
+
+      var widths = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1024, 1920];
+      var width = widths[Math.floor(Math.random() * widths.length)];
+      console.log("width " + width);
+
+      var heights = [100, 300, 400, 500, 600, 700, 768, 800, 900, 1024, 1920];
+      var height = heights[Math.floor(Math.random() * heights.length)];
+      console.log("height " + height);
+
       $(this).attr(
         "src",
         " https://placedog.net/" + width + "/" + height + "?random"
