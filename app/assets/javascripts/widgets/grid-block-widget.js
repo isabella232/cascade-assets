@@ -6,9 +6,9 @@ $(function () {
   gridBlockCarousel();
 
   setInterval(function () {
-    // refreshCSS();
+    refreshCSS();
     // refreshJS();
-  }, 60000); // 60 seconds
+  }, 10000); // 10 seconds
 });
 
 function gridBlockWidget() {
@@ -263,18 +263,23 @@ function gridBlockCarousel() {
     ],
   });
 }
+
 refreshCSS = () => {
   console.log("hot swapping CSS");
   let links = document.getElementsByTagName("link");
-  for (let i = 0; i < links.length; i++) {
-    if (links[i].getAttribute("rel") == "stylesheet") {
-      let href = links[i].getAttribute("href").split("?")[0];
+  $("link[rel='stylesheet']").each(function () {
+    $(this).attr("data-clone", "false");
+    $(this).clone().attr("data-clone", "true").appendTo($("head"));
+  });
 
-      let newHref = href + "?version=" + new Date().getMilliseconds();
+  $('link[data-clone="false"]').each(function () {
+    var href = $(this).attr("href").split("?")[0];
+    $(this).attr("href", href + "?version=" + new Date().getMilliseconds());
+  });
 
-      links[i].setAttribute("href", newHref);
-    }
-  }
+  window.setTimeout(function () {
+    $('link[data-clone="true"]').remove();
+  }, 5000);
 };
 
 refreshJS = () => {
