@@ -694,7 +694,7 @@ html body {
     }
   }
 
-  [class*="--widget-black"] {
+  [class*="--black"] {
     background-color: $panther-black;
     color: $white;
 
@@ -721,7 +721,7 @@ html body {
     }
   }
 
-  [class*="--widget-white"] {
+  [class*="--white"] {
     background-color: $white;
     border: 1px solid $cu-light-grey;
     color: $panther-black;
@@ -736,7 +736,7 @@ html body {
     }
   }
 
-  [class*="--widget-sand"] {
+  [class*="--sand"] {
     background-color: $sand;
 
     [class*="__heading"] {
@@ -749,7 +749,7 @@ html body {
     }
   }
 
-  [class*="widget--red"] {
+  [class*="--red"] {
     background-color: $red;
     color: $white;
 
@@ -795,7 +795,7 @@ html body {
     }
   }
 
-  [class*="--widget-grey"] {
+  [class*="--grey"] {
     background-color: $cu-light-grey;
 
     [class*="__heading"] {
@@ -812,8 +812,8 @@ html body {
     }
   }
 
-  [class*="--widget-teal"],
-  [class*="--widget-pacific"] {
+  [class*="--teal"],
+  [class*="--pacific"] {
     background-color: $pacific;
     color: $white;
 
