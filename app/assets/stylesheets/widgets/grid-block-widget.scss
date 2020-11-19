@@ -120,11 +120,17 @@
   &--square {
     --height: 250px;
     --width: 250px;
-    img {
-      -o-object-fit: cover;
-      object-fit: cover;
-      width: var(--height);
-      height: var(--width);
+    .grid-block-widget {
+      @include respond(phone) {
+        display: flex;
+      }
+
+      img {
+        -o-object-fit: cover;
+        object-fit: cover;
+        width: var(--height);
+        height: var(--width);
+      }
     }
   }
   .grid-block-widget__gradient-overlay {
