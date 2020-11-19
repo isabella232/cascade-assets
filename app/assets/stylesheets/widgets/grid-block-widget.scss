@@ -27,7 +27,7 @@
   &__button {
     background-color: transparent !important;
     &--white {
-      color: $panther-black;
+      color: $panther-black !important;
     }
   }
   a.button {
@@ -40,6 +40,7 @@
       transition: all 0.2s ease;
     }
     &--white {
+      color: $panther-black !important;
       &:hover,
       &:focus,
       &:focus-within {
@@ -130,6 +131,13 @@
     display: none;
   }
   &.grid-block-widget__container--overlay {
+    &.grid-block-widget__container--square {
+      .grid-block-widget {
+        &__relative {
+          max-width: max-content;
+        }
+      }
+    }
     .grid-block-widget {
       &__relative {
         max-width: 100%;
@@ -510,19 +518,16 @@
 }
 .grid-block-widget__container--6-col {
   &.grid-block-widget__container--landscape {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    // grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(6, 1fr);
   }
   .grid-block-widget__image--circle {
     --imgSize: 120px;
   }
   &.grid-block-widget__container--portrait {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  }
-  .grid-block-widget__container--portrait {
-    img {
-      // min-width: 140px;
-      // max-width: 140px;
-    }
+    // grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    // grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   }
 }
 

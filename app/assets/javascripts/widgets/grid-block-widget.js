@@ -2,11 +2,11 @@ $(function () {
   debugging();
   gridBlockWidget();
   $("#clone").trigger("click");
-  $("#random-images").trigger("click");
+  // $("#random-images").trigger("click");
   gridBlockCarousel();
 
   refreshCSS();
-  refreshJS();
+  // refreshJS();
   setInterval(function () {
     // refreshCSS();
     // refreshJS();
@@ -219,7 +219,7 @@ function debugging() {
       );
     });
     clickHandlers();
-    refreshCSS();
+    // refreshCSS();
   });
   $("#close-testing-tools").click(function () {
     console.log("cloning");
