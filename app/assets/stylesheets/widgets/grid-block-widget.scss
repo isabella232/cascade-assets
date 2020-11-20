@@ -1,6 +1,7 @@
 :root {
   --gridBlockWidgetColumns: 3;
 }
+
 .section-intro {
   margin-top: 50px;
   &__preheader {
@@ -26,35 +27,37 @@
   }
   &__button {
     background-color: transparent !important;
-    &--white {
-      color: $panther-black !important;
-    }
-  }
-  a.button {
-    border: none;
-    &:hover,
-    &:focus,
-    &:focus-within {
-      box-shadow: 0px 4px 25px -7px rgba(0, 0, 0, 0.6);
-      transform: translateY(-2px);
-      transition: all 0.2s ease;
-    }
-    &--white {
-      color: $panther-black !important;
+
+    a.button {
+      border: none;
       &:hover,
       &:focus,
       &:focus-within {
-        background-color: $cu-light-grey !important;
+        box-shadow: 0px 4px 25px -7px rgba(0, 0, 0, 0.6);
+        transform: translateY(-2px);
+        transition: all 0.2s ease;
       }
-    }
-    &--black {
-      &:hover,
-      &:focus,
-      &:focus-within {
-        background-color: black !important;
+      &--white {
+        $bg: $white;
+        color: $panther-black !important;
+        background-color: $white !important;
+        &:hover,
+        &:focus,
+        &:focus-within {
+          $bg: $white;
+          background-color: $white !important;
+        }
+      }
+      &--black {
+        &:hover,
+        &:focus,
+        &:focus-within {
+          background-color: black !important;
+        }
       }
     }
   }
+
   .button {
     font-weight: 800;
   }
@@ -473,7 +476,7 @@
       @include qbal-drop-enter;
       &::before {
         content: "\f078 ";
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-weight: 900;
         margin-right: 5px;
         font-size: 1.4rem;
@@ -483,7 +486,7 @@
       margin-top: 0;
       &::before {
         content: "\f077 ";
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-weight: 900;
         margin-right: 5px;
         font-size: 1.4rem;
@@ -568,7 +571,9 @@
   }
 }
 
+// ONE COLUMN
 .one-column {
+  // INTRO SECTION
   .section-intro {
     margin-top: 0;
 
@@ -588,21 +593,21 @@
     &__button {
       padding: 0 !important;
     }
-  }
+    @include respond(phone) {
+      padding: 32px 16px;
+    }
+  } // END INTRO SECTION
+
   .grid-block-widget__wrapper {
+    padding-top: 60px;
+    padding-bottom: 60px;
+
     &--black {
       .section-intro {
         &__preheader {
           color: white;
         }
       }
-    }
-  }
-  .grid-block-widget__wrapper {
-    padding-top: 60px;
-    padding-bottom: 60px;
-
-    &--black {
       .grid-block-widget {
         &__title {
           color: $white;
@@ -649,6 +654,12 @@
       transform: translate(10px, -20px);
       z-index: 10;
     }
+    // ONE COL - ACTUAL WIDGET (NOT CONTAINER OR WRAPPER)
+    .grid-block-widget {
+      &--landscape {
+        --maxHeight: 200px;
+      }
+    } // END ONE COL - ACTUAL WIDGET (NOT CONTAINER OR WRAPPER)
   }
 
   .inner-container {
@@ -658,6 +669,9 @@
     background-color: transparent !important;
   }
   .grid-block-widget__container {
+    @include respond(phone) {
+      padding: 32px 16px;
+    }
     &--rotate {
       &.grid-block-widget__container {
         &--square {
@@ -670,6 +684,18 @@
   }
 }
 
+// TODO: Refactor Defaults.scss button wildcards
+// (html body ... [class*="__button--white"] )
+html body .section-intro__button a.button--white {
+  border: 1px solid $cu-light-grey;
+  &:hover,
+  &:focus,
+  &:focus-within {
+    $bg: $white;
+    background-color: $white !important;
+  }
+}
+
 // !!!DON'T MERGE!!!
 #uninav {
   display: none !important;
@@ -678,6 +704,9 @@ html {
   padding-top: 0 !important;
 }
 #testing-tools {
+  @include respond(phone) {
+    display: none;
+  }
   background-color: rgba(255, 255, 255, 0.99);
   position: fixed;
   z-index: 2;
