@@ -641,6 +641,21 @@
         }
       }
     }
+    &--red {
+      a.button--red {
+        box-shadow: 0px 4px 25px -7px rgba(0, 0, 0, 0.6);
+
+        &:hover,
+        &:focus,
+        &:focus-within {
+          background-color: $red-hover;
+          box-shadow: 0px 4px 25px -7px rgba(0, 0, 0, 0.9);
+        }
+      }
+      .slick-dots li button {
+        background-color: white;
+      }
+    }
 
     button.slick-arrow {
       display: block !important;
@@ -693,6 +708,18 @@ html body .section-intro__button a.button--white {
   &:focus-within {
     $bg: $white;
     background-color: $white !important;
+  }
+}
+
+html
+  body
+  .grid-block-widget__wrapper--red
+  .section-intro__button
+  a.button--red {
+  &:hover,
+  &:focus,
+  &:focus-within {
+    background-color: $red-hover;
   }
 }
 
