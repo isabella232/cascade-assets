@@ -446,7 +446,7 @@
           </text>
           <text field-id="2994320ac0a81e8a5a403945eea51dc4" help-text="Choose to display Image or Video or None" identifier="imageOrVideo" label="Images or Videos? " required="true" type="radiobutton">
             <radio-item label="Images" show-fields="primaryContent/widget/gridBlockWidget/gridOptions/imageOrientation, primaryContent/widget/gridBlockWidget/gridOptions/gridColumnsImages, primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/gridBlockImage, primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/altText, primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/imagePosition, primaryContent/widget/gridBlockWidget/gridOptions/titleOverlay" value="images" />
-            <radio-item label="Videos" show-fields="primaryContent/widget/gridBlockWidget/gridOptions/gridColumnsVideos, primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/video, primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/iFrame" value="videos" />
+            <radio-item label="Videos" show-fields="primaryContent/widget/gridBlockWidget/gridOptions/gridColumnsVideos, primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/iFrame" value="videos" />
             <radio-item label="None" value="noImagesVideos" />
           </text>
           <text field-id="29a6571ec0a81e8a5a403945bee85bf0" identifier="imageOrientation" label="Image Orientation" required="true" type="dropdown">
@@ -496,9 +496,7 @@
             <asset field-id="24682989c0a81e8a5a4039456688d569" identifier="gridBlockImage" label="Image" required="true" type="file" />
             <text field-id="2819d3aec0a81e8a5a40394590beb62b" identifier="altText" label="Image Alt Text" required="true" />
             <text field-id="2819d3aec0a81e8a5a4039450b676935" identifier="imagePosition" label="Image Position" />
-            <text field-id="281260f2c0a81e8a5a40394510043585" help-text="Youtube or Vimeo" identifier="video" label="Video URL" required="true" />
-            <text help-text="iFrame" identifier="iFrame" label="iFrame" required="true" />
-
+            <text help-text="Youtube or Vimeo <iframe>. Copy and paste <iframe> .... (code)... </iframe> only -- nothing after the closing tag." identifier="iFrame" label="iFrame" required="true" />
             <text field-id="24682989c0a81e8a5a40394504b245f8" identifier="gridBlockText" label="Grid Block Text" required="true" wysiwyg="true" />
           </group>
         </group>

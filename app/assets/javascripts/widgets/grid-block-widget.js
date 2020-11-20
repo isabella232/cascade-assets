@@ -6,11 +6,11 @@ $(function () {
   gridBlockCarousel();
 
   refreshCSS();
-  // refreshJS();
+  refreshJS();
   setInterval(function () {
     // refreshCSS();
     // refreshJS();
-  }, 60000); // 60 seconds
+  }, 10000); // 60 seconds
 });
 
 function gridBlockWidget() {
@@ -242,6 +242,43 @@ function gridBlockCarousel() {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      // You can unslick at a given breakpoint now by adding:
+      // settings: "unslick"
+      // instead of a settings object
+    ],
+  });
+
+  $(".one-column .grid-block-widget__container--rotate").slick({
+    infinite: true,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    arrows: true,
+    dots: true,
+    infinite: true,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 5,
           infinite: true,
           dots: true,
         },
