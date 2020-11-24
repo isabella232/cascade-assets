@@ -4,32 +4,39 @@
 
 .section-intro {
   margin-top: 50px;
+
   &__preheader {
     color: $red;
     text-transform: uppercase;
     font-weight: bold;
   }
+
   &__header {
     text-transform: uppercase;
     font-weight: bold;
     margin-top: 4px;
   }
+
   &__title {
     margin-top: 25px;
     margin-bottom: 25px;
   }
+
   &__text {
     margin-top: 25px;
     margin-bottom: 25px;
   }
+
   &__buttons {
     margin-bottom: 25px;
   }
+
   &__button {
     background-color: transparent !important;
 
     a.button {
       border: none;
+
       &:hover,
       &:focus,
       &:focus-within {
@@ -37,10 +44,12 @@
         transform: translateY(-2px);
         transition: all 0.2s ease;
       }
+
       &--white {
         $bg: $white;
         color: $panther-black !important;
         background-color: $white !important;
+
         &:hover,
         &:focus,
         &:focus-within {
@@ -48,6 +57,7 @@
           background-color: $white !important;
         }
       }
+
       &--black {
         &:hover,
         &:focus,
@@ -82,6 +92,7 @@
       transition: 350ms ease all;
     }
   }
+
   &--landscape {
     --imgSize: 200px;
     --width: 100%;
@@ -90,6 +101,7 @@
     --maxHeight: 120px;
     --minHeight: 100%;
     --height: 100%;
+
     img {
       -o-object-fit: cover;
       object-fit: cover;
@@ -100,11 +112,13 @@
       min-height: var(--maxHeight);
     }
   }
+
   &--portrait {
     --imgSize: 400px;
     --height: 400px;
     --maxHeight: 400px;
     --minHeight: 400px;
+
     img {
       -o-object-fit: cover;
       object-fit: cover;
@@ -115,6 +129,7 @@
       height: 100%;
       object-fit: cover;
     }
+
     .grid-block-widget {
       height: max-content;
     }
@@ -123,6 +138,7 @@
   &--square {
     --height: 250px;
     --width: 250px;
+
     .grid-block-widget {
       @include respond(phone) {
         display: flex;
@@ -136,9 +152,11 @@
       }
     }
   }
+
   .grid-block-widget__gradient-overlay {
     display: none;
   }
+
   &.grid-block-widget__container--overlay {
     &.grid-block-widget__container--square {
       .grid-block-widget {
@@ -147,10 +165,12 @@
         }
       }
     }
+
     .grid-block-widget {
       &__relative {
         max-width: 100%;
       }
+
       &:hover,
       &:focus,
       &:focus-within {
@@ -190,6 +210,7 @@
           &__title {
             border-radius: 50%;
           }
+
           &__gradient-overlay {
             height: var(--height);
             width: var(--imgSize);
@@ -199,6 +220,7 @@
           }
         }
       }
+
       &--portrait {
         .grid-block-widget {
           &__gradient-overlay {
@@ -206,6 +228,7 @@
           }
         }
       }
+
       &--square {
         .grid-block-widget {
           &__gradient-overlay {
@@ -214,6 +237,7 @@
           }
         }
       }
+
       &__relative {
         position: relative;
         height: min-content;
@@ -246,21 +270,25 @@
         display: none;
       }
     }
+
     &.grid-block-widget__container--3-col {
       .grid-block-widget:nth-child(n + 7) {
         display: none;
       }
     }
+
     &.grid-block-widget__container--4-col {
       .grid-block-widget:nth-child(n + 9) {
         display: none;
       }
     }
+
     &.grid-block-widget__container--5-col {
       .grid-block-widget:nth-child(n + 11) {
         display: none;
       }
     }
+
     &.grid-block-widget__container--6-col {
       .grid-block-widget:nth-child(n + 13) {
         display: none;
@@ -278,6 +306,7 @@
         display: none;
       }
     }
+
     .slick-dots li {
       // height: 20px;
       // width: 25px;
@@ -365,6 +394,7 @@
     &__title {
       border: none !important;
     }
+
     &--circle {
       --imgSize: 180px;
       --height: 180px;
@@ -381,6 +411,7 @@
         object-fit: cover;
         // margin: 25px 0 25px 0;
       }
+
       a.grid-block-widget,
       .grid-block-widget {
         &__title {
@@ -403,16 +434,19 @@
         border: none;
       }
     }
+
     &__title {
       &--black {
         color: $white;
       }
+
       &--sand {
         p {
           color: $red;
         }
       }
     }
+
     &__text {
       font-family: $futura-regular;
 
@@ -429,6 +463,7 @@
         border: none;
       }
     }
+
     &--white {
       border: none !important;
       color: $red;
@@ -439,6 +474,7 @@
         display: flex;
         justify-content: center;
       }
+
       &--left {
         display: flex;
         justify-content: start;
@@ -446,10 +482,12 @@
         padding: 12px 0 12px 0;
       }
     }
+
     // .GRID-BLOCK-WIDGET PARENT WITH LONG TEXT
     &--text-overflow {
       margin-bottom: 50px;
     }
+
     &--overlay {
       .grid-block-widget {
         position: relative;
@@ -461,6 +499,7 @@
     .grid-block-widget {
       height: max-content;
     }
+
     iframe {
       position: relative;
       height: 100%;
@@ -472,8 +511,10 @@
     position: absolute;
     margin-top: 20px;
     @include qbal-drop-enter;
+
     &--more {
       @include qbal-drop-enter;
+
       &::before {
         content: "\f078 ";
         font-family: "Font Awesome 5 Pro";
@@ -482,8 +523,10 @@
         font-size: 1.4rem;
       }
     }
+
     &--less {
       margin-top: 0;
+
       &::before {
         content: "\f077 ";
         font-family: "Font Awesome 5 Pro";
@@ -492,11 +535,14 @@
         font-size: 1.4rem;
       }
     }
+
     cursor: pointer;
   }
+
   .grid-block-widget__text--revealed {
     @include qbal-grow-enter;
   }
+
   .grid-block-widget__text:not(.grid-block-widget__text--revealed) {
     @include qbal-slideUp-enter;
   }
@@ -509,11 +555,54 @@
     @include respond(tab-port) {
       grid-template-columns: repeat(2, 1fr);
     }
+
     @include respond(phone) {
       grid-template-columns: repeat(1, 1fr);
     }
   }
 }
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .grid-block-widget {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    min-width: 200px;
+    // width: calc((100% / #{$num}) - 30px);
+    width: calc((100% / 3) - 30px);
+
+    &--portrait {
+      img {
+        min-height: 400px;
+        max-height: 400px;
+        overflow: hidden;
+        min-width: 200px;
+        max-width: 200px;
+      }
+    }
+
+    & > div[class^="grid-block-widget__"] {
+      max-width: 200px;
+    }
+    & + .grid-block-widget {
+      margin-left: 12px;
+    }
+
+    &__wrapper {
+      display: table;
+      clear: both;
+      position: relative;
+      margin-top: 60px;
+    }
+    &__container {
+      display: flex !important;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+}
+
 @include grid-col(2);
 @include grid-col(3);
 @include grid-col(4);
@@ -525,14 +614,17 @@
     --imgSize: 150px;
   }
 }
+
 .grid-block-widget__container--6-col {
   &.grid-block-widget__container--landscape {
     // grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     grid-template-columns: repeat(6, 1fr);
   }
+
   .grid-block-widget__image--circle {
     --imgSize: 120px;
   }
+
   &.grid-block-widget__container--portrait {
     // grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     // grid-template-columns: repeat(6, 1fr);
@@ -556,6 +648,7 @@
       transition: all 350ms ease;
     }
   }
+
   &--sand,
   &--white {
     color: $cu-red;
@@ -581,22 +674,28 @@
       margin-top: 15px;
       margin-bottom: 15px;
     }
+
     &__text {
       margin-top: 15px;
       margin-bottom: 15px;
     }
+
     &__buttons {
       padding: 0 !important;
       margin-top: 25px;
       margin-bottom: 25px;
     }
+
     &__button {
       padding: 0 !important;
     }
+
     @include respond(phone) {
       padding: 32px 16px;
     }
-  } // END INTRO SECTION
+  }
+
+  // END INTRO SECTION
 
   .grid-block-widget__wrapper {
     padding-top: 60px;
@@ -608,12 +707,14 @@
           color: white;
         }
       }
+
       .grid-block-widget {
         &__title {
           color: $white;
         }
       }
     }
+
     &--red {
       .grid-block-widget {
         &__title {
@@ -621,26 +722,31 @@
         }
       }
     }
+
     &--white {
       .grid-block-widget {
         &__title {
           color: $cu-red;
         }
+
         &__text {
           color: $panther-black;
         }
       }
     }
+
     &--sand {
       .grid-block-widget {
         &__title {
           color: $cu-red;
         }
+
         &__text {
           color: $panther-black;
         }
       }
     }
+
     &--red {
       a.button--red {
         box-shadow: 0px 4px 25px -7px rgba(0, 0, 0, 0.6);
@@ -652,6 +758,7 @@
           box-shadow: 0px 4px 25px -7px rgba(0, 0, 0, 0.9);
         }
       }
+
       .slick-dots li button {
         background-color: white;
       }
@@ -660,6 +767,7 @@
     button.slick-arrow {
       display: block !important;
     }
+
     .slick-prev.slick-arrow {
       transform: translate(-10px, -20px);
       z-index: 10;
@@ -669,24 +777,30 @@
       transform: translate(10px, -20px);
       z-index: 10;
     }
+
     // ONE COL - ACTUAL WIDGET (NOT CONTAINER OR WRAPPER)
     .grid-block-widget {
       &--landscape {
         --maxHeight: 200px;
       }
-    } // END ONE COL - ACTUAL WIDGET (NOT CONTAINER OR WRAPPER)
+    }
+
+    // END ONE COL - ACTUAL WIDGET (NOT CONTAINER OR WRAPPER)
   }
 
   .inner-container {
     @include outer-container;
   }
+
   .section-intro__button {
     background-color: transparent !important;
   }
+
   .grid-block-widget__container {
     @include respond(phone) {
       padding: 32px 16px;
     }
+
     &--rotate {
       &.grid-block-widget__container {
         &--square {
@@ -703,6 +817,7 @@
 // (html body ... [class*="__button--white"] )
 html body .section-intro__button a.button--white {
   border: 1px solid $cu-light-grey;
+
   &:hover,
   &:focus,
   &:focus-within {
@@ -723,17 +838,30 @@ html
   }
 }
 
+.ie {
+  .grid-block-widget__container--3-col {
+    display: flex;
+    flex-direction: row;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
 // !!!DON'T MERGE!!!
 #uninav {
-  display: none !important;
+  // display: none !important;
 }
+
 html {
-  padding-top: 0 !important;
+  // padding-top: 0 !important;
 }
+
 #testing-tools {
   @include respond(phone) {
     display: none;
   }
+
   background-color: rgba(255, 255, 255, 0.99);
   position: fixed;
   z-index: 2;
@@ -747,6 +875,7 @@ html {
   resize: both;
   overflow: auto;
   margin-top: 60px;
+
   > a {
     cursor: pointer;
     display: flex;
@@ -757,6 +886,7 @@ html {
 #close-testing-tools {
   justify-content: start !important;
 }
+
 #uninav-static-placeholder {
   display: none !important;
 }
@@ -777,7 +907,9 @@ html {
 #columns {
   width: 100px;
 }
+
 #content-editable {
   text-align: center;
 }
+
 // END !!!DON'T MERGE!!!

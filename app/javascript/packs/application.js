@@ -18,8 +18,8 @@ import "regenerator-runtime/runtime";
 
 const images = require.context("../images", true);
 const imagePath = (name) => images(name, true);
-import("@fortawesome/fontawesome-pro/js/all");
-import "@fortawesome/fontawesome-free/js/all";
+// import("@fortawesome/fontawesome-pro/js/all");
+// import "@fortawesome/fontawesome-free/js/all";
 import navigation from "../src/navigation";
 import accessibility from "../src/accessibility";
 import "../stylesheets/master.scss";

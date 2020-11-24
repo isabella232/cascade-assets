@@ -1,9 +1,10 @@
 $(function () {
-  debugging();
+  // debugging();
   gridBlockWidget();
   $("#clone").trigger("click");
   // $("#random-images").trigger("click");
   gridBlockCarousel();
+  ieObjectFitFallback();
 
   refreshCSS();
   refreshJS();
@@ -326,3 +327,39 @@ refreshJS = () => {
     scripts[i].setAttribute("src", source);
   }
 };
+
+function ieObjectFitFallback() {
+  var ua = window.navigator.userAgent;
+  var msie = ua.indexOf("MSIE ");
+  if (
+    msie > 0 ||
+    (!!navigator.userAgent.match(/Trident.*rv\:11\./) &&
+      $(".grid-block-widget img").length)
+  ) {
+    console.log("detected ie -- changing object-fit to background images");
+
+    $(".ie__fallback--object-fit").show();
+
+    $(".grid-block-widget img").hide();
+
+    // $(".grid-block-widget img").each(function () {
+    //   $(this).parent().prepend('<div class="ie__fallback--object-fit"></div>');
+    //   var imgSrc = $(this).attr("src");
+    //   var fitType = "cover";
+
+    //   if ($(this).data("fit-type")) {
+    //     fitType = $(this).data("fit-type");
+    //   }
+
+    //   $(".ie__fallback--object-fit").css({
+    //     background:
+    //       'transparent url("' +
+    //       imgSrc +
+    //       '") no-repeat center center/' +
+    //       fitType,
+    //   });
+    //   $(this).remove();
+    // });
+    $(".ie__fallback-object-fit:first-of-type").css("height", "100%");
+  }
+}
