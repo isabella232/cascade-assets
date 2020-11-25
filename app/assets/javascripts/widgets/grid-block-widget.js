@@ -1,13 +1,13 @@
 $(function () {
   // debugging();
-  gridBlockWidget();
-  $("#clone").trigger("click");
-  // $("#random-images").trigger("click");
-  gridBlockCarousel();
-  ieObjectFitFallback();
-
   refreshCSS();
   refreshJS();
+  ieObjectFitFallback();
+  gridBlockWidget();
+  // $("#clone").trigger("click");
+  // $("#random-images").trigger("click");
+  // gridBlockCarousel();
+
   setInterval(function () {
     // refreshCSS();
     // refreshJS();
@@ -304,7 +304,7 @@ function gridBlockCarousel() {
     ],
   });
 }
-refreshCSS = () => {
+function refreshCSS() {
   console.log("hot swapping CSS");
   let links = document.getElementsByTagName("link");
   for (let i = 0; i < links.length; i++) {
@@ -316,9 +316,9 @@ refreshCSS = () => {
       links[i].setAttribute("href", newHref);
     }
   }
-};
+}
 
-refreshJS = () => {
+function refreshJS() {
   console.log("hot swapping JS");
   var scripts = document.getElementsByTagName("script");
   for (var i = 0; i < scripts.length; i++) {
@@ -326,40 +326,35 @@ refreshJS = () => {
     var source = href + "?version=" + new Date().getMilliseconds();
     scripts[i].setAttribute("src", source);
   }
-};
+}
 
 function ieObjectFitFallback() {
   var ua = window.navigator.userAgent;
   var msie = ua.indexOf("MSIE ");
-  if (
-    msie > 0 ||
-    (!!navigator.userAgent.match(/Trident.*rv\:11\./) &&
-      $(".grid-block-widget img").length)
-  ) {
-    console.log("detected ie -- changing object-fit to background images");
+  if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+    if ($(".grid-block-widget").length) {
+      $(".grid-block-widget img").each(function () {
+        console.log("detected ie -- changing object-fit to background images");
 
-    $(".ie__fallback--object-fit").show();
-
-    $(".grid-block-widget img").hide();
-
-    // $(".grid-block-widget img").each(function () {
-    //   $(this).parent().prepend('<div class="ie__fallback--object-fit"></div>');
-    //   var imgSrc = $(this).attr("src");
-    //   var fitType = "cover";
-
-    //   if ($(this).data("fit-type")) {
-    //     fitType = $(this).data("fit-type");
-    //   }
-
-    //   $(".ie__fallback--object-fit").css({
-    //     background:
-    //       'transparent url("' +
-    //       imgSrc +
-    //       '") no-repeat center center/' +
-    //       fitType,
-    //   });
-    //   $(this).remove();
-    // });
-    $(".ie__fallback-object-fit:first-of-type").css("height", "100%");
+        var t = jQuery(this),
+          s = "url(" + t.attr("src") + ")",
+          p = t.parent(),
+          parentClasses = t.attr("class"),
+          d = jQuery(
+            "<div class='ie__fallback--object-fit grid-block-widget__image'></div>"
+          );
+        console.log("parentClasses" + parentClasses);
+        p.prepend(d);
+        d.css({
+          "min-height": "200px",
+          "background-size": "cover",
+          "background-repeat": "no-repeat",
+          "background-position": "50% 50%",
+          "background-image": s,
+        });
+        d.attr("class", parentClasses);
+        t.hide();
+      });
+    }
   }
 }
