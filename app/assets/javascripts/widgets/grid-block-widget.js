@@ -9,8 +9,8 @@ $(function () {
   gridBlockCarousel();
 
   setInterval(function () {
-    // refreshCSS();
-    // refreshJS();
+    refreshCSS();
+    refreshJS();
   }, 10000); // 60 seconds
 });
 
@@ -24,7 +24,7 @@ function gridBlockWidget() {
       $(this)
         .parent(".grid-block-widget")
         .addClass("grid-block-widget--text-overflow");
-      if ($(this).attr("data-height") >= 150) {
+      if ($(this).attr("data-height") >= 35) {
         $(this).parent().find(".grid-block-widget__reveal--more").show();
       }
     });
@@ -192,6 +192,7 @@ function debugging() {
       }
     });
     clickHandlers();
+    refreshJS();
   });
   $("#content-editable").click(function () {
     console.log("editable content");
