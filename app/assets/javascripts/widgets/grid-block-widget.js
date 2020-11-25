@@ -1,12 +1,12 @@
 $(function () {
-  // debugging();
+  debugging();
   refreshCSS();
   refreshJS();
   ieObjectFitFallback();
   gridBlockWidget();
-  // $("#clone").trigger("click");
+  $("#clone").trigger("click");
   // $("#random-images").trigger("click");
-  // gridBlockCarousel();
+  gridBlockCarousel();
 
   setInterval(function () {
     // refreshCSS();
