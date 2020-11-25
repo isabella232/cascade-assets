@@ -284,7 +284,12 @@
 
     #set ($gridBlockImagePath = $block.getChild('gridBlockImage').getChild('path').value)
 
+    #set ($objectFitPosition = $block.getChild('imagePosition').value)
+    #set ($objectFitPsoition = ${_EscapeTool.xml($objectFitPosition)})
+
     #set ($gridBlockAltText = $block.getChild('altText').value)
+    #set ($gridBlockAltText = ${_EscapeTool.xml($gridBlockAltText)})
+    
     #li("gridBlockAltText $gridBlockAltText")
 
     #set ($gridBlockImagePosition = $block.getChild('altText').value)
@@ -323,7 +328,7 @@
 ## }
     #end
     #if ($imageOrVideo == 'images' && $imageOrientation != 'none')
-      <img class="${widgetXPath}__image ${widgetXPath}__image--${imageOrientation}" src="[system-asset]${_EscapeTool.xml($gridBlockImagePath)}[/system-asset]" alt="${gridBlockAltText}" />
+      <img class="${widgetXPath}__image ${widgetXPath}__image--${imageOrientation}" src="[system-asset]${_EscapeTool.xml($gridBlockImagePath)}[/system-asset]" alt="${gridBlockAltText}" style="object-position: ${objectFitPosition}" />
     
     #elseif ($imageOrVideo == 'videos' && $imageOrientation != 'none')
          ## <video src="${_EscapeTool.xml($gridBlockVideo)}"></video>
