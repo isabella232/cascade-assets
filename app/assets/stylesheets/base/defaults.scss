@@ -277,13 +277,16 @@ a {
       text-decoration: none;
     }
 
-    &.red {
+    &.red,
+    &--red {
       background: $cu-red no-repeat center;
       color: $white;
 
       &:hover {
+        background: #c92741;
         background-color: #c92741;
         text-decoration: none;
+        transition: 300ms linear all;
       }
     }
 
@@ -648,7 +651,9 @@ p {
 }
 
 html body {
-  .no-border {border: none !important;}
+  .no-border {
+    border: none !important;
+  }
   [class*="__button--white"],
   .border-light-grey {
     border: 1px solid var(--color-cu-light-grey) !important;
@@ -990,6 +995,11 @@ img[loading="lazy"] {
   border: 1px solid var(--color-cu-light-grey);
 }
 
+// for consistent WYSIWYG spacing
+ul + p {
+  margin-top: 2rem;
+}
+
 /***************************************************
 * Accessbility Settings
 ***************************************************/
@@ -1007,4 +1017,3 @@ img[loading="lazy"] {
   color: white;
   background-color: black;
 }
-
