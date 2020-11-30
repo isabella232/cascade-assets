@@ -1,7 +1,7 @@
 $(function () {
   debugging();
-  refreshCSS();
-  refreshJS();
+  // refreshCSS();
+  // refreshJS();
   ieObjectFitFallback();
   gridBlockWidget();
   $("#clone").trigger("click");
@@ -9,8 +9,8 @@ $(function () {
   gridBlockCarousel();
 
   setInterval(function () {
-    refreshCSS();
-    refreshJS();
+    // refreshCSS();
+    // refreshJS();
   }, 10000); // 60 seconds
 });
 
