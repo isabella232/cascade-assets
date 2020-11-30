@@ -713,6 +713,9 @@
           color: $white;
         }
       }
+      .slick-dots li button {
+        background-color: $white;
+      }
     }
 
     &--red {
@@ -720,6 +723,9 @@
         &__title {
           color: $white;
         }
+      }
+      a.button--black {
+        border: 1px solid $panther-black !important;
       }
     }
 
@@ -910,6 +916,13 @@ html {
 
 #content-editable {
   text-align: center;
+}
+
+.grid-block-widget__title {
+  width: 100%;
+  position: relative;
+  display: block;
+  border: none !important;
 }
 
 // END !!!DON'T MERGE!!!
