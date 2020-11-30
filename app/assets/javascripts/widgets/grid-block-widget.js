@@ -1,10 +1,10 @@
 $(function () {
   debugging();
   // refreshCSS();
-  // refreshJS();
+  refreshJS();
   ieObjectFitFallback();
   gridBlockWidget();
-  $("#clone").trigger("click");
+  // $("#clone").trigger("click");
   // $("#random-images").trigger("click");
   gridBlockCarousel();
 
@@ -14,20 +14,26 @@ $(function () {
   }, 10000); // 60 seconds
 });
 
+function calculateDataHeight() {
+  console.log("calculating text data height");
+
+  $(".grid-block-widget__text").each(function () {
+    var textHeight = $(this).height();
+    $(this).attr("data-height", textHeight);
+    $(this).addClass("grid-block-widget__text--truncated");
+
+    $(this)
+      .parent(".grid-block-widget")
+      .addClass("grid-block-widget--text-overflow");
+    if ($(this).attr("data-height") >= 35) {
+      $(this).parent().find(".grid-block-widget__reveal--more").show();
+    }
+  });
+}
+
 function gridBlockWidget() {
   if ($(".grid-block-widget").length) {
-    $(".grid-block-widget__text").each(function () {
-      var textHeight = $(this).height();
-      $(this).attr("data-height", textHeight);
-      $(this).addClass("grid-block-widget__text--truncated");
-
-      $(this)
-        .parent(".grid-block-widget")
-        .addClass("grid-block-widget--text-overflow");
-      if ($(this).attr("data-height") >= 35) {
-        $(this).parent().find(".grid-block-widget__reveal--more").show();
-      }
-    });
+    calculateDataHeight();
 
     var buttonClickCounter = 0;
 
@@ -36,6 +42,7 @@ function gridBlockWidget() {
       var currentWidgetContainer = $(this).attr("id");
       var loadMoreButtonButton = " + .grid-block-widget__button";
       var currentButton = "#" + currentWidgetContainer + loadMoreButtonButton;
+      var gridBlockWidgetColumns = $("#columns").html($(this).val());
 
       $(currentButton).on("click keydown", function (e) {
         if (accessibleClick(event)) {
@@ -56,6 +63,7 @@ function gridBlockWidget() {
           var dataColumns = $("#" + currentWidgetContainer).data("columns");
           var numToReveal = $("#" + currentWidgetContainer).data("columns") * 3;
           console.log("numtoreveal: " + numToReveal);
+          calculateDataHeight();
           if (buttonClickCounter <= 1) {
             // $(this).parent().find(".grid-block-widget").nextAll().show();
             // $(this).parent().find(".grid-block-widget").slice(0, 6).show();
@@ -66,17 +74,20 @@ function gridBlockWidget() {
               .show();
 
             $(currentButton).text("Show All");
+            calculateDataHeight();
           }
         }
 
-        if (buttonClickCounter > 1) {
+        if (buttonClickCounter >= 1) {
           $(currentButton).fadeOut();
           $("#" + currentWidgetContainer)
             .find(".grid-block-widget")
             .show();
+          calculateDataHeight();
         }
       });
     });
+
     clickHandlers();
   }
 }
