@@ -179,6 +179,16 @@
 ## IMAGES 
 #set ($gridColumnsImages = $gridOptions.getChild('gridColumnsImages').value)
 
+
+#if ($gridColumnsImages != '')
+  #set ($dataColumns = $gridColumnsImages.split("-")[0])
+  
+#elseif ($gridColumnsVideos != '')
+    #set ($dataColumns = $gridColumnsVideos)
+#else 
+    #set ($dataColumns = '')
+#end
+
 #li("gridColumnsImages $gridColumnsImages")
 
 #set ($gridDisplay = $gridOptions.getChild('gridDisplay').value)
