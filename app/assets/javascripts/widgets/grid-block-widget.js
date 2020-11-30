@@ -78,7 +78,7 @@ function gridBlockWidget() {
           }
         }
 
-        if (buttonClickCounter >= 1) {
+        if (buttonClickCounter > 1) {
           $(currentButton).fadeOut();
           $("#" + currentWidgetContainer)
             .find(".grid-block-widget")
