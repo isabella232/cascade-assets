@@ -394,6 +394,12 @@
     &__title {
       border: none !important;
     }
+    &__text {
+      p {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
 
     &--circle {
       --imgSize: 180px;
@@ -479,7 +485,8 @@
         display: flex;
         justify-content: start;
         text-align: left;
-        padding: 12px 0 12px 0;
+        padding-left: 1rem;
+        padding-right: 1rem;
       }
     }
 
@@ -510,6 +517,11 @@
   .grid-block-widget__reveal {
     position: absolute;
     margin-top: 20px;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+    color: $cu-red;
+    font-family: $futura-regular;
     @include qbal-drop-enter;
 
     &--more {
@@ -640,6 +652,11 @@
   font-family: $futura-regular;
   font-weight: bold;
   border-radius: 4px;
+
+  font-size: 1.4rem !important;
+  text-transform: uppercase;
+  font-weight: bold !important;
+  font-family: $futura-regular;
 
   &--grey {
     &:hover,
@@ -923,6 +940,8 @@ html {
   position: relative;
   display: block;
   border: none !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
 }
 
 // END !!!DON'T MERGE!!!
