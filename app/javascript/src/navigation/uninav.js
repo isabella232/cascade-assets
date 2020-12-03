@@ -207,7 +207,6 @@ const uninav = function () {
     var html = document.querySelector("html");
     var scrollbarWidth = window.innerWidth - html.offsetWidth;
     $(".uninav__utility-nav--wrapper").css("margin-right", scrollbarWidth);
-    console.log(scrollbarWidth);
   }
 };
 
