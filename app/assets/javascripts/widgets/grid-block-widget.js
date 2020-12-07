@@ -1,17 +1,60 @@
 $(function () {
-  debugging();
-  // refreshCSS();
-  refreshJS();
-  ieObjectFitFallback();
-  gridBlockWidget();
-  // $("#clone").trigger("click");
-  // $("#random-images").trigger("click");
-  gridBlockCarousel();
+  if ($(".grid-block-widget").length) {
+    // debugging();
+    refreshCSS();
+    refreshJS();
 
-  setInterval(function () {
-    // refreshCSS();
-    // refreshJS();
-  }, 10000); // 60 seconds
+    gridBlockWidget();
+    // $("#clone").trigger("click");
+    // $("#random-images").trigger("click");
+    gridBlockCarousel();
+
+    setInterval(function () {
+      // refreshCSS();
+      // refreshJS();
+    }, 10000); // 60 seconds
+
+    if (isIE()) {
+      console.log("internet explorer");
+
+      $(".grid-block-widget img").each(function () {
+        console.log("detected ie -- changing object-fit to background images");
+
+        var t = jQuery(this),
+          s = "url(" + t.attr("src") + ")",
+          p = t.parent(),
+          parentClasses = t.attr("class"),
+          d = jQuery(
+            "<div class='ie__fallback--object-fit grid-block-widget__image'></div>"
+          );
+        console.log("parentClasses" + parentClasses);
+        p.prepend(d);
+        d.css({
+          "min-height": "200px",
+          "background-size": "cover",
+          "background-repeat": "no-repeat",
+          "background-position": "50% 50%",
+          "background-image": s,
+        });
+        d.attr("class", parentClasses);
+        // $(".grid-block-widget__title").css("max-width", "200px");
+        t.remove();
+      });
+
+      $(".grid-block-widget__reveal--more").on("click keydown", function (e) {
+        parent = $(this).parent();
+        $(parent)
+          .find(".grid-block-widget__text")
+          .removeClass("grid-block-widget__text--truncated")
+          .addClass("grid-block-widget__text--revealed");
+        $(this).hide();
+        $(parent).find(".grid-block-widget__reveal--less").show();
+        $(parent)
+          .find(".grid-block-widget__text")
+          .attr("aria-expanded", "true");
+      });
+    }
+  }
 });
 
 function calculateDataHeight() {
@@ -32,64 +75,62 @@ function calculateDataHeight() {
 }
 
 function gridBlockWidget() {
-  if ($(".grid-block-widget").length) {
-    calculateDataHeight();
+  calculateDataHeight();
 
-    var buttonClickCounter = 0;
+  var buttonClickCounter = 0;
 
-    $(".grid-block-widget__container").each(function () {
-      // IDs are assigned via velocity format
-      var currentWidgetContainer = $(this).attr("id");
-      var loadMoreButtonButton = " + .grid-block-widget__button";
-      var currentButton = "#" + currentWidgetContainer + loadMoreButtonButton;
-      var gridBlockWidgetColumns = $("#columns").html($(this).val());
+  $(".grid-block-widget__container").each(function () {
+    // IDs are assigned via velocity format
+    var currentWidgetContainer = $(this).attr("id");
+    var loadMoreButtonButton = " + .grid-block-widget__button";
+    var currentButton = "#" + currentWidgetContainer + loadMoreButtonButton;
+    var gridBlockWidgetColumns = $("#columns").html($(this).val());
 
-      $(currentButton).on("click keydown", function (e) {
-        if (accessibleClick(event)) {
-          console.log("clicked");
-          console.log("current widget container: #" + currentWidgetContainer);
-          console.log("current widget button: " + currentButton);
+    $(currentButton).on("click keydown", function (e) {
+      if (accessibleClick(event)) {
+        console.log("clicked");
+        console.log("current widget container: #" + currentWidgetContainer);
+        console.log("current widget button: " + currentButton);
 
-          buttonClickCounter += 1;
-          console.log("button click counter " + buttonClickCounter);
+        buttonClickCounter += 1;
+        console.log("button click counter " + buttonClickCounter);
 
-          var currentVisible = $("#" + currentWidgetContainer).find(
-            ".grid-block-widget:visible"
-          ).length;
-          var currentHidden = $("#" + currentWidgetContainer).find(
-            ".grid-block-widget:hidden"
-          ).length;
-          console.log("current hidden: " + currentHidden);
-          var dataColumns = $("#" + currentWidgetContainer).data("columns");
-          var numToReveal = $("#" + currentWidgetContainer).data("columns") * 3;
-          console.log("numtoreveal: " + numToReveal);
-          calculateDataHeight();
-          if (buttonClickCounter <= 1) {
-            // $(this).parent().find(".grid-block-widget").nextAll().show();
-            // $(this).parent().find(".grid-block-widget").slice(0, 6).show();
-            console.log("parent: " + currentWidgetContainer);
-            $("#" + currentWidgetContainer)
-              .find(".grid-block-widget")
-              .slice(dataColumns, numToReveal)
-              .show();
-
-            $(currentButton).text("Show All");
-            calculateDataHeight();
-          }
-        }
-
-        if (buttonClickCounter > 1) {
-          $(currentButton).fadeOut();
+        var currentVisible = $("#" + currentWidgetContainer).find(
+          ".grid-block-widget:visible"
+        ).length;
+        var currentHidden = $("#" + currentWidgetContainer).find(
+          ".grid-block-widget:hidden"
+        ).length;
+        console.log("current hidden: " + currentHidden);
+        var dataColumns = $("#" + currentWidgetContainer).data("columns");
+        var numToReveal = $("#" + currentWidgetContainer).data("columns") * 3;
+        console.log("numtoreveal: " + numToReveal);
+        calculateDataHeight();
+        if (buttonClickCounter <= 1) {
+          // $(this).parent().find(".grid-block-widget").nextAll().show();
+          // $(this).parent().find(".grid-block-widget").slice(0, 6).show();
+          console.log("parent: " + currentWidgetContainer);
           $("#" + currentWidgetContainer)
             .find(".grid-block-widget")
+            .slice(dataColumns, numToReveal)
             .show();
+
+          $(currentButton).text("Show All");
           calculateDataHeight();
         }
-      });
-    });
+      }
 
-    clickHandlers();
-  }
+      if (buttonClickCounter > 1) {
+        $(currentButton).fadeOut();
+        $("#" + currentWidgetContainer)
+          .find(".grid-block-widget")
+          .show();
+        calculateDataHeight();
+      }
+    });
+  });
+
+  clickHandlers();
 }
 
 function clickHandlers() {
@@ -236,7 +277,7 @@ function debugging() {
   });
   $("#close-testing-tools").click(function () {
     console.log("cloning");
-    $("#testing-tools").hide();
+    $("div#testing-tools").hide();
     clickHandlers();
   });
 }
@@ -341,32 +382,29 @@ function refreshJS() {
 }
 
 function ieObjectFitFallback() {
-  var ua = window.navigator.userAgent;
-  var msie = ua.indexOf("MSIE ");
-  if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
-    if ($(".grid-block-widget").length) {
-      $(".grid-block-widget img").each(function () {
-        console.log("detected ie -- changing object-fit to background images");
+  console.log("internet explorer");
 
-        var t = jQuery(this),
-          s = "url(" + t.attr("src") + ")",
-          p = t.parent(),
-          parentClasses = t.attr("class"),
-          d = jQuery(
-            "<div class='ie__fallback--object-fit grid-block-widget__image'></div>"
-          );
-        console.log("parentClasses" + parentClasses);
-        p.prepend(d);
-        d.css({
-          "min-height": "200px",
-          "background-size": "cover",
-          "background-repeat": "no-repeat",
-          "background-position": "50% 50%",
-          "background-image": s,
-        });
-        d.attr("class", parentClasses);
-        t.hide();
-      });
-    }
-  }
+  $(".grid-block-widget img").each(function () {
+    console.log("detected ie -- changing object-fit to background images");
+
+    var t = jQuery(this),
+      s = "url(" + t.attr("src") + ")",
+      p = t.parent(),
+      parentClasses = t.attr("class"),
+      d = jQuery(
+        "<div class='ie__fallback--object-fit grid-block-widget__image'></div>"
+      );
+    console.log("parentClasses" + parentClasses);
+    p.prepend(d);
+    d.css({
+      "min-height": "200px",
+      "background-size": "cover",
+      "background-repeat": "no-repeat",
+      "background-position": "50% 50%",
+      "background-image": s,
+    });
+    d.attr("class", parentClasses);
+
+    t.remove();
+  });
 }

@@ -457,7 +457,7 @@
       font-family: $futura-regular;
 
       &--truncated {
-        max-height: 150px;
+        max-height: 158px;
         overflow: hidden;
         display: -webkit-box;
         -webkit-box-orient: vertical;
@@ -572,45 +572,50 @@
       grid-template-columns: repeat(1, 1fr);
     }
   }
-}
 
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-  .grid-block-widget {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-
-    min-width: 200px;
-    // width: calc((100% / #{$num}) - 30px);
-    width: calc((100% / 3) - 30px);
-
-    &--portrait {
-      img {
-        min-height: 400px;
-        max-height: 400px;
-        overflow: hidden;
-        min-width: 200px;
-        max-width: 200px;
-      }
-    }
-
-    & > div[class^="grid-block-widget__"] {
-      max-width: 200px;
-    }
-    & + .grid-block-widget {
-      margin-left: 12px;
-    }
-
-    &__wrapper {
-      display: table;
-      clear: both;
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .grid-block-widget {
+      display: flex;
+      flex-direction: column;
       position: relative;
-      margin-top: 60px;
-    }
-    &__container {
-      display: flex !important;
-      flex-direction: row;
-      flex-wrap: wrap;
+
+      min-width: 200px;
+      // width: calc((100% / #{$num}) - 12px);
+      width: calc((100% / 3) - 30px);
+
+      &--portrait {
+        img {
+          min-height: 400px;
+          max-height: 400px;
+          overflow: hidden;
+          min-width: 200px;
+          max-width: 100%;
+        }
+      }
+
+      & > div[class^="grid-block-widget__"] {
+        max-width: 100%;
+        width: 100%;
+      }
+      & + .grid-block-widget {
+        margin-left: 12px;
+      }
+
+      &__wrapper {
+        // display: table;
+        // clear: both;
+        display: flex;
+        flex-direction: column;
+        max-width: 100%;
+        flex-wrap: wrap;
+        position: relative;
+        margin-top: 60px;
+      }
+      &__container {
+        display: flex !important;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
     }
   }
 }

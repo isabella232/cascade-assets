@@ -1,79 +1,83 @@
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-  @mixin grid-col($num) {
-    .grid-block-widget {
-      .ie__fallback--object-fit {
-        min-height: 200px;
-      }
+// @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+//   @mixin grid-col($num) {
+//     .grid-block-widget {
+//       .ie__fallback--object-fit {
+//         min-height: 200px;
+//       }
 
-      display: flex;
-      flex-direction: column;
-      position: relative;
+//       display: flex;
+//       flex-direction: column;
+//       position: relative;
 
-      min-width: 200px;
-      width: calc((100% / #{$num}) - 30px);
-      // width: calc((100% / 3) - 30px);
+//       min-width: 200px;
+//       width: calc((100% / #{$num}) - 30px);
+//       // width: calc((100% / 3) - 30px);
 
-      & > div[class^="grid-block-widget__"] {
-        // max-width: 200px;
-      }
-      & + .grid-block-widget:not(:first-child) {
-        margin-left: 12px;
-      }
-      &:first-child {
-        margin-left: 0;
-      }
+//       & > div[class^="grid-block-widget__"] {
+//         max-width: calc((100% / #{$num}) - 30px) !important;
+//       }
+//       & + .grid-block-widget:not(:first-child) {
+//         margin-left: 12px;
+//       }
+//       &:first-child {
+//         margin-left: 0;
+//       }
 
-      &__wrapper {
-        display: table;
-        clear: both;
-        position: relative;
-        margin-top: 60px;
-      }
-      &__container {
-        display: flex !important;
-        flex-direction: row;
-        flex-wrap: wrap;
-      }
-    }
-  }
-  html body .grid-block-widget__wrapper .grid-block-widget__container {
-    &--overlay {
-      .grid-block-widget {
-        &--landscape {
-          min-width: 300px;
-          a {
-            min-width: 300px;
-          }
-        }
-      }
-    }
-    .grid-block-widget {
-      &--circle {
-        width: 100%;
-      }
-      &__image {
-        &--landscape {
-          width: 300px !important;
-          height: 200px !important;
-        }
-        &--portrait {
-          min-height: 400px !important;
-          max-height: 400px !important;
-          overflow: hidden !important;
-          min-width: 200px !important;
-          max-width: 200px !important;
-        }
-        &--circle {
-          min-height: 120px !important;
-          max-height: 120px !important;
-          overflow: hidden !important;
-          min-width: 120px !important;
-          max-width: 120px !important;
-          width: 120px !important;
-          height: 120px !important;
-          border-radius: 50% !important;
-        }
-      }
-    }
-  }
-}
+//       &__wrapper {
+//         display: table;
+//         clear: both;
+//         position: relative;
+//         margin-top: 60px;
+//       }
+//       &__container {
+//         display: flex !important;
+//         flex-direction: row;
+//         flex-wrap: wrap;
+//       }
+//     }
+//     .grid-block-widget__title {
+//       max-width: 200px !important;
+//       display: none !important;
+//     }
+//   }
+//   html body .grid-block-widget__wrapper .grid-block-widget__container {
+//     &--overlay {
+//       .grid-block-widget {
+//         &--landscape {
+//           min-width: 300px;
+//           a {
+//             min-width: 300px;
+//           }
+//         }
+//       }
+//     }
+//     .grid-block-widget {
+//       &--circle {
+//         width: 100%;
+//       }
+//       &__image {
+//         &--landscape {
+//           width: 300px !important;
+//           height: 200px !important;
+//         }
+//         &--portrait {
+//           min-height: 400px !important;
+//           max-height: 400px !important;
+//           overflow: hidden !important;
+//           min-width: 200px !important;
+//           max-width: 200px !important;
+//         }
+//         &--circle {
+//           min-height: 120px !important;
+//           max-height: 120px !important;
+//           overflow: hidden !important;
+//           min-width: 120px !important;
+//           max-width: 120px !important;
+//           width: 120px !important;
+//           height: 120px !important;
+//           border-radius: 50% !important;
+//         }
+//       }
+//     }
+//   }
+// }
