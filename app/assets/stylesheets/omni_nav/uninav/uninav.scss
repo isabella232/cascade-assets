@@ -544,7 +544,7 @@ html {
             padding-top: 1rem;
             padding-bottom: 1rem;
             padding-left: 2rem;
-            animation-duration: 150ms;
+            animation-duration: 200ms;
             @include uninav-slideLeft-enter;
 
             &:first-child {
@@ -553,7 +553,7 @@ html {
 
             @for $i from 1 to 10 {
               &:nth-child(#{$i}) {
-                animation-delay: $i * 10ms;
+                animation-delay: $i * 12ms;
               }
             }
             // @for $i from 5 to 10 {
