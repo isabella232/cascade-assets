@@ -1,8 +1,8 @@
 @mixin delay($rule, $number, $value) {
   @for $i from 1 to ($number + 1) {
     &:nth-child(#{$i}) {
-      -webkit-#{$rule}-delay: (#{$i*$value});
-      #{$rule}-delay: (#{$i*$value});
+      -webkit-#{$rule}-delay: (#{$i * $value});
+      #{$rule}-delay: (#{$i * $value});
     }
   }
 }
@@ -19,7 +19,7 @@ span.uninav__underline {
 
 span.uninav__underline::before,
 span.uninav__underline::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   right: 0;
@@ -61,7 +61,7 @@ span.uninav__underline--pillar {
 
 span.uninav__underline--pillar::before,
 span.uninav__underline--pillar::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   bottom: 0;
@@ -96,7 +96,7 @@ span.uninav {
     position: relative;
 
     &:before {
-      content: '';
+      content: "";
       position: absolute;
       left: 50%;
       bottom: 0;
@@ -122,8 +122,8 @@ span.uninav {
   }
 }
 
-a:focus,
-a:focus-within {
+li.uninav__dropdown--parent:focus,
+li.uninav__dropdown--parent:focus-within {
   span.uninav__underline--center {
     &::before {
       transform: translate(-50%, 0) scaleX(1);
@@ -131,15 +131,13 @@ a:focus-within {
   }
 }
 
-
-
 span.uninav__overline--bars {
   position: relative;
 }
 
 span.uninav__overline--bars::before,
 span.uninav__overline--bars::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   right: 0;
