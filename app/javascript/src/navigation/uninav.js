@@ -1,12 +1,12 @@
 // uninav accessibility
 const uninav = function () {
   $(function () {
+    offsetScrollbar();
     hideCurrentDropdownWhenLoseFocus();
     closePrevDropdownWhenFocusChanges();
     toggleAriaExpandVal();
     handleEscapeKeypress();
     gs__setSearchResultsZIndex();
-    offsetScrollbar();
   });
 
   function closePrevDropdownWhenFocusChanges() {
@@ -44,6 +44,13 @@ const uninav = function () {
             .attr("aria-expanded", "true");
         }
       }
+    });
+
+    $("#uninav li").bind("mouseenter", function (e) {
+      $(this).find(".uninav__dropdown--child").attr("aria-expanded", "true");
+    });
+    $("#uninav li").bind("mouseleave", function (e) {
+      $(this).find(".uninav__dropdown--child").attr("aria-expanded", "false");
     });
   }
 

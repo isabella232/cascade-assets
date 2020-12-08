@@ -48,7 +48,6 @@ html {
     padding-top: $uninav-div-height;
   }
 
-
   .uninav {
     uninav-logo--mobile {
       display: none;
@@ -158,8 +157,6 @@ html {
       .chapman-logo {
         width: 300px;
       }
-
-
     }
 
     &__cta {
@@ -179,12 +176,11 @@ html {
         display: flex;
 
         &::after {
-          content: '|';
-          color: #CFCFCF;
+          content: "|";
+          color: #cfcfcf;
         }
 
-        &>li {
-
+        & > li {
           a {
             @include futura-pt;
             margin: 0 7px;
@@ -208,7 +204,6 @@ html {
           &:last-child {
             padding-right: 1rem;
           }
-
         }
       }
     }
@@ -277,7 +272,6 @@ html {
         display: inline;
         z-index: -1;
         position: absolute;
-
       }
 
       ul {
@@ -359,7 +353,8 @@ html {
         align-items: center;
 
         &:focus {
-          outline: 2px dotted $white;        }
+          outline: 2px dotted $white;
+        }
 
         svg {
           height: 2rem;
@@ -467,13 +462,13 @@ html {
         top: 0;
         right: 21rem;
         background-color: #ffffff;
-        border: 1px solid #CFCFCF;
+        border: 1px solid #cfcfcf;
 
         li {
           width: 100%;
           padding: 15px 15px 15px 30px;
           line-height: 1.8rem;
-          border-bottom: 1px solid #CFCFCF;
+          border-bottom: 1px solid #cfcfcf;
         }
       }
     }
@@ -484,7 +479,7 @@ html {
       border-top: 1px solid $cu-light-grey;
       border-bottom: none;
 
-      >ul>li {
+      > ul > li {
         flex: unset;
         margin-left: 30px;
         margin-right: 30px;
@@ -511,8 +506,9 @@ html {
     &__dropdown {
       &--child {
         // box-shadow: 1px -1px 1px rgba(50, 50, 50, 0.05);
-        margin-top: 10px;
+        margin-top: 0;
         min-width: 300px;
+        padding-top: 10px;
 
         ul {
           display: flex;
@@ -539,12 +535,16 @@ html {
             padding-bottom: 1rem;
             padding-left: 2rem;
             @include uninav-border-bottom;
-            animation-duration: 0.05s;
-            @include qbal-drop-enter;
+            // animation-duration: 300ms;
+            // @include qbal-slideLeft-enter;
 
-            @for $i from 1 to 10 {
+            &:first-child {
+              // animation-duration: 200ms;
+            }
+
+            @for $i from 3 to 10 {
               &:nth-child(#{$i}) {
-                animation-delay: $i * 0.01s;
+                // animation-delay: $i * 0.005s;
               }
             }
           }
@@ -581,7 +581,7 @@ html {
     border-right: 1px solid $cu-light-grey;
   }
 
-  .uninav__dropdown-wrapper>a::after {
+  .uninav__dropdown-wrapper > a::after {
     font-family: "Font Awesome 5 Pro";
     font-weight: 900;
     content: "\f0d7";
@@ -589,7 +589,7 @@ html {
     font-size: 1.4rem;
   }
 
-  &>ul {
+  & > ul {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -607,15 +607,15 @@ html {
   }
 }
 
-#uninav>nav {
+#uninav > nav {
   // grid-area: nav;
 }
 
-#uninav>global {
+#uninav > global {
   // grid-area: global;
 }
 
-#uninav>div.uninav__logo--primary {
+#uninav > div.uninav__logo--primary {
   width: 300px;
   // grid-area: logo;
 }
@@ -630,9 +630,10 @@ html {
   width: 100%;
   background-color: $white;
   flex-direction: column;
+  @include qbal-fade-enter;
   @include uninav-drop-shadow();
 
-  >ul {
+  > ul {
     flex-direction: column;
     justify-content: start;
     text-align: left;
@@ -650,10 +651,16 @@ html {
   flex-direction: column;
   position: relative;
 
-  .uninav__dropdown--child[aria-expanded="false"] +
-  .uninav {
+  &:hover {
+    .uninav__dropdown--child {
+      // z-index: 99999999;
+      // display: flex;
+      // @include qbal-fade-enter;
+    }
+  }
+  .uninav__dropdown--child[aria-expanded="false"] + .uninav {
     &__dropdown-wrapper {
-      &>a {
+      & > a {
         &:after {
           content: "\f0d7";
           transform: rotate(0deg);
@@ -663,10 +670,9 @@ html {
     }
   }
 
-  .uninav__dropdown--child[aria-expanded="true"] +
-  &.uninav {
+  .uninav__dropdown--child[aria-expanded="true"] + &.uninav {
     &__dropdown-wrapper {
-      &>a {
+      & > a {
         &:after {
           content: "\f0d7";
           transform: rotate(180deg) translateX(-1rem);
@@ -679,16 +685,23 @@ html {
   .uninav__dropdown--child[aria-expanded="true"] {
     z-index: 99999999;
     display: flex;
-    @include qbal-dropdown-enter;
+  }
+
+  &:hover {
+    .uninav__dropdown--child {
+      // z-index: 99999999;
+      // display: flex;
+      // @include qbal-dropdown-enter;
+    }
   }
 
   .uninav__dropdown--child[aria-expanded="false"] {
-    @include qbal-shrink-exit;
+    // @include qbal-shrink-exit;
 
     // TODO: refactor first .uninav__dropdown--child... display: none is not animitable.
     .uninav__dropdown--parent,
     .uninav__dropdown--child {
-      @include qbal-shrink-exit;
+      // @include qbal-shrink-exit;
     }
   }
 }
@@ -745,7 +758,7 @@ html {
       @include qbal-growExaggerated-enter;
 
       ul li,
-      &>a {
+      & > a {
         color: $panther-black;
       }
     }
@@ -768,7 +781,6 @@ html {
   }
 }
 
-
 @media only screen and (max-width: 1300px) {
   .uninav--has-secondary-menu {
     .uninav {
@@ -785,7 +797,6 @@ html {
         }
       }
     }
-
 
     .uninav__search-button--mobile {
       width: 80px;
@@ -825,7 +836,6 @@ html {
 // TABLET LANDSCAPE
 @include respond(tab-land) {
   #uninav {
-
     .uninav {
       &__logo {
         &--secondary {
@@ -833,7 +843,7 @@ html {
         }
       }
 
-      &__menu-item-dropdown-child:hover>ul {
+      &__menu-item-dropdown-child:hover > ul {
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -896,7 +906,7 @@ html {
       }
     }
 
-    .uninav__global-nav>ul>li {
+    .uninav__global-nav > ul > li {
       margin-left: auto;
       margin-right: auto;
     }
@@ -954,7 +964,6 @@ html {
 // TABLET PORTRAIT
 @include respond(tab-port) {
   #uninav {
-
     .uninav {
       &__logo {
         margin-left: 0;
@@ -1029,7 +1038,7 @@ html {
       @include qbal-grow-enter;
       border-bottom: none;
 
-      @media all and (-ms-high-contrast:none) {
+      @media all and (-ms-high-contrast: none) {
         -ms-grid-column: 2;
         -ms-grid-column-span: 1;
       }
@@ -1052,7 +1061,6 @@ html {
 @media only screen and (max-width: 750px) {
   #uninav {
     .uninav {
-
       &__logo,
       .chapman-logo {
         border-bottom: none;
@@ -1071,7 +1079,6 @@ html {
   }
 
   #uninav {
-
     .logo--underneath {
       @include qbal-slideLeft-exit;
       width: 0 !important;
@@ -1079,7 +1086,6 @@ html {
     }
 
     .uninav {
-
       &__logo {
         display: grid;
         align-content: center;
@@ -1204,7 +1210,6 @@ html {
     grid-template-columns: 1fr 1fr;
 
     .uninav {
-
       &__global-nav,
       &__logo {
         display: none;
@@ -1292,10 +1297,8 @@ html.off-canvas__blur {
 }
 
 #uninav .uninav__search-input {
-
   &:focus,
   &:focus-within {
-
     .gsc-search-box-tools,
     .sc-search-button {
       border: 2px dotted var(--color-cu-red);
@@ -1317,13 +1320,12 @@ html.off-canvas__blur {
   animation: changeLetter 150ms linear 1 forwards;
 
   @keyframes changeLetter {
-
     0% {
       opacity: 0;
     }
 
     50% {
-      opacity: .5;
+      opacity: 0.5;
     }
 
     100% {
@@ -1333,12 +1335,9 @@ html.off-canvas__blur {
       padding: 2%;
     }
   }
-
 }
 
-
 #js-off-canvas-nav-container * {
-
   &:focus,
   &:focus-within {
     outline: 2px dotted $red;
@@ -1367,5 +1366,10 @@ html.off-canvas__blur {
 
   100% {
     background-color: initial;
+  }
+}
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .uninav__utility-nav--wrapper {
+    margin-right: 17px;
   }
 }
