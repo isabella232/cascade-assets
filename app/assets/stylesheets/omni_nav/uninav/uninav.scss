@@ -715,7 +715,7 @@ html {
     content: "\f0d7";
     transform: rotate(0deg);
     transition: all linear 0.35s;
-    transition-delay: 100ms;
+    transition-delay: 150ms;
   }
 
   &:hover {
@@ -723,7 +723,7 @@ html {
       content: "\f0d7";
       transform: rotate(180deg) translateX(-1rem);
       transition: all linear 0.35s;
-      transition-delay: 100ms;
+      transition-delay: 150ms;
     }
   }
 }
