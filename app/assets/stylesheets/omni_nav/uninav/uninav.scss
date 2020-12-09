@@ -677,13 +677,6 @@ html {
   flex-direction: column;
   position: relative;
 
-  &:hover {
-    .uninav__dropdown--child {
-      // z-index: 99999999;
-      // display: flex;
-      // @include qbal-fade-enter;
-    }
-  }
   .uninav__dropdown--child[aria-expanded="false"] + .uninav {
     &__dropdown-wrapper {
       & > a {
@@ -708,26 +701,29 @@ html {
     }
   }
 
+  .uninav__global-nav .uninav__dropdown-wrapper > a::after {
+    content: "\f0d7";
+    transform: rotate(180deg) translateX(-1rem);
+    transition: all linear 0.15s;
+  }
   .uninav__dropdown--child[aria-expanded="true"] {
     z-index: 99999999;
     display: flex;
   }
 
-  &:hover {
-    .uninav__dropdown--child {
-      // z-index: 99999999;
-      // display: flex;
-      // @include qbal-dropdown-enter;
-    }
+  .uninav__dropdown-wrapper > a::after {
+    content: "\f0d7";
+    transform: rotate(0deg);
+    transition: all linear 0.35s;
+    transition-delay: 100ms;
   }
 
-  .uninav__dropdown--child[aria-expanded="false"] {
-    // @include qbal-shrink-exit;
-
-    // TODO: refactor first .uninav__dropdown--child... display: none is not animitable.
-    .uninav__dropdown--parent,
-    .uninav__dropdown--child {
-      // @include qbal-shrink-exit;
+  &:hover {
+    .uninav__dropdown-wrapper > a::after {
+      content: "\f0d7";
+      transform: rotate(180deg) translateX(-1rem);
+      transition: all linear 0.35s;
+      transition-delay: 100ms;
     }
   }
 }
