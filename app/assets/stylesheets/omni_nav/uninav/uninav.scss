@@ -1399,3 +1399,13 @@ html.off-canvas__blur {
     margin-right: 17px;
   }
 }
+
+.no-js {
+  .uninav__dropdown--parent:hover .uninav__dropdown--child {
+    z-index: 99999999;
+    display: flex;
+  }
+  .uninav__utility-nav--wrapper {
+    margin-right: 17px !important;
+  }
+}
