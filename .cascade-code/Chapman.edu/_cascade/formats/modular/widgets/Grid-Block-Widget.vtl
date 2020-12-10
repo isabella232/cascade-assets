@@ -160,6 +160,11 @@
 
 #li("imageOrientation $imageOrientation")
 
+#if ($imageOrientation != 'circle')
+      #set ($titleBgColor = $bgColor)
+    #else 
+      #set ($titleBgColor = 'no-bg')
+    #end 
 
 #set ($titleOverlay = $gridOptions.getChild('titleOverlay').value )
   #if ($titleOverlay != 'No') 
@@ -328,7 +333,7 @@
 
 
   
-  <div class="${widgetXPath} ${widgetXPath}--${imageOrientation}">
+  <div class="${widgetXPath} grid-block-widget--${titleBgColor} ${widgetXPath}--${imageOrientation}">
     
     #if ($titleOverlay != 'No')  
       <div class="grid-block-widget__relative">
@@ -345,11 +350,7 @@
          ## <video src="${_EscapeTool.xml($gridBlockVideo)}"></video>
           $gridBlockiFrame 
     #end
-    #if ($imageOrientation != 'circle')
-      #set ($titleBgColor = $bgColor)
-    #else 
-      #set ($titleBgColor = 'no-bg')
-    #end 
+    
     #if ($hasGridTitle == 'Yes' && $linkURL != '' )
       <a href="${gridBlockLinkURL}" class="grid-block-widget__title text-align--${textAlignment} grid-block-widget__title--${titleBgColor}">
         ${_EscapeTool.xml($gridBlockTitle)}
@@ -368,14 +369,14 @@
     <span
       style="display:none;"
       tabindex="0"
-      class="grid-block-widget__reveal grid-block-widget__reveal--more"
-      >More</span
+      class="grid-block-widget__reveal grid-block-widget__reveal--more grid-block-widget__reveal--${titleBgColor}"
+      >Show More</span
     >
     <span
       style="display:none;"
       tabindex="0"
-      class="grid-block-widget__reveal grid-block-widget__reveal--less"
-      >Less</span
+      class="grid-block-widget__reveal grid-block-widget__reveal--less grid-block-widget__reveal--${titleBgColor}"
+      >Show Less</span
     >
   </div>
   

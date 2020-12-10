@@ -1,5 +1,8 @@
 $(function () {
   if ($(".grid-block-widget").length) {
+    // alert(
+    //   "Hello -- Nick is currently adding your changes, so things may appear broken"
+    // );
     // debugging();
     refreshCSS();
     refreshJS();
