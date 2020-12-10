@@ -90,43 +90,84 @@ span.uninav__underline--pillar:hover::after {
   transform-origin: center top;
   transform: scaleY(1);
 }
+.uninav__underline--center {
+  position: relative;
+}
+#uninav .uninav__login--wrapper li a:hover > .uninav__underline--center:after {
+  background-image: linear-gradient(90deg, $white 50%, transparent 50%),
+    linear-gradient(90deg, $white 50%, transparent 50%),
+    linear-gradient(0deg, $white 50%, transparent 50%),
+    linear-gradient(0deg, $white 50%, transparent 50%),
+    linear-gradient(0deg, $white 50%, transparent 50%);
+}
+#uninav li a:hover > .uninav__underline--center:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  /*   border-bottom: 2px dotted red; */
+  /*   animation: rotate 20s linear infinite; */
+  background-image: linear-gradient(90deg, #a50034 50%, transparent 50%),
+    linear-gradient(90deg, #a50034 50%, transparent 50%),
+    linear-gradient(0deg, #a50034 50%, transparent 50%),
+    linear-gradient(0deg, #a50034 50%, transparent 50%),
+    linear-gradient(0deg, #a50034 50%, transparent 50%);
+  background-repeat: repeat-x;
+  /*     background-size: 15px 2px, 15px 2px, 2px 15px, 2px 15px; */
+  background-size: 0px 0px, 5px 2px, 0px 0px, 0px 0px;
+  background-position: left top, right bottom, left bottom, right top;
+  animation: border-dance 700ms ease-out;
+  animation-iteration-count: 1;
+}
 
-span.uninav {
-  &__underline--center {
-    position: relative;
-    border-bottom: 1px solid rgba(0, 0, 0, 0);
-
-    &:hover,
-    &:focus {
-      transition: 150ms linear;
-      border-bottom: 1px dotted $cu-red;
-    }
-    // &:before {
-    //   content: "";
-    //   position: absolute;
-    //   left: 50%;
-    //   bottom: 0;
-    //   width: 100%;
-    //   height: 2px;
-    //   background-color: #a50034;
-    //   transform-origin: center;
-    //   transform: translate(-50%, 0) scaleX(0);
-    //   transition: transform 200ms ease-in-out;
-    // }
-
-    &.white-underline {
-      &:before {
-        background-color: $white;
-      }
-    }
-
-    // &:hover::before,
-    // &:focus::before,
-    // &:focus-within::before {
-    //   transform: translate(-50%, 0) scaleX(1);
-    // }
+@keyframes border-dance {
+  0% {
+    background-position: left top, right bottom, left bottom, right top;
+  }
+  100% {
+    background-position: left 15px top, right 15px bottom, left bottom 15px,
+      right top 15px;
   }
 }
+
+// span.uninav {
+//   &__underline--center {
+//     position: relative;
+//     // border-bottom: 1px solid rgba(0, 0, 0, 0);
+
+//     &:hover,
+//     &:focus {
+//       // transition: 150ms linear;
+//       // border-bottom: 1px dotted $cu-red;
+//     }
+//     // &:before {
+//     //   content: "";
+//     //   position: absolute;
+//     //   left: 50%;
+//     //   bottom: 0;
+//     //   width: 100%;
+//     //   height: 2px;
+//     //   background-color: #a50034;
+//     //   transform-origin: center;
+//     //   transform: translate(-50%, 0) scaleX(0);
+//     //   transition: transform 200ms ease-in-out;
+//     // }
+
+//     &.white-underline {
+//       &:before {
+//         background-color: $white;
+//       }
+//     }
+
+//     // &:hover::before,
+//     // &:focus::before,
+//     // &:focus-within::before {
+//     //   transform: translate(-50%, 0) scaleX(1);
+//     // }
+//   }
+// }
 
 li.uninav__dropdown--parent:focus,
 li.uninav__dropdown--parent:focus-within {

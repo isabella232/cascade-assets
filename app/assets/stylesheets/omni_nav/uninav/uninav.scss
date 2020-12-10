@@ -180,6 +180,22 @@ html {
           color: #cfcfcf;
         }
 
+        li {
+          &:hover,
+          &:focus {
+            > .uninav__underline--center:after {
+              background-image: linear-gradient(
+                  90deg,
+                  $white 50%,
+                  transparent 50%
+                ),
+                linear-gradient(90deg, $cu-red 50%, transparent 50%),
+                linear-gradient(0deg, $cu-red 50%, transparent 50%),
+                linear-gradient(0deg, $cu-red 50%, transparent 50%),
+                linear-gradient(0deg, $cu-red 50%, transparent 50%);
+            }
+          }
+        }
         & > li {
           a {
             @include futura-pt;
@@ -193,12 +209,6 @@ html {
             font-weight: 600;
             animation-duration: 3s;
             text-transform: uppercase;
-            border-bottom: 1px solid rgba(0, 0, 0, 0);
-
-            &:hover,
-            &:focus {
-              border-bottom: 1px dotted $cu-red;
-            }
 
             @for $i from 1 to 5 {
               &:nth-child(#{$i}) {
@@ -241,6 +251,10 @@ html {
         &__menu-item--audiences {
           a {
             color: $panther-black;
+
+            &:hover {
+              border-bottom: none;
+            }
           }
         }
 
@@ -524,6 +538,34 @@ html {
         }
       }
 
+      li.uninav__dropdown--parent:hover > .uninav__underline--center::after {
+        content: " ";
+        position: absolute;
+      }
+
+      .uninav__underline--center::after {
+        background-image: linear-gradient(90deg, #a50034 50%, transparent 50%),
+          linear-gradient(90deg, #a50034 50%, transparent 50%),
+          linear-gradient(0deg, #a50034 50%, transparent 50%),
+          linear-gradient(0deg, #a50034 50%, transparent 50%),
+          linear-gradient(0deg, #a50034 50%, transparent 50%);
+        background-repeat: repeat-x;
+        /*     background-size: 15px 2px, 15px 2px, 2px 15px, 2px 15px; */
+        background-size: 0px 0px, 5px 2px, 0px 0px, 0px 0px;
+        background-position: left top, right bottom, left bottom, right top;
+        animation: border-dance 700ms ease-out;
+        animation-iteration-count: 1;
+      }
+      @keyframes border-dance {
+        0% {
+          background-position: left top, right bottom, left bottom, right top;
+        }
+        100% {
+          background-position: left 15px top, right 15px bottom,
+            left bottom 15px, right top 15px;
+        }
+      }
+
       a {
         color: $panther-black;
         border-right: none;
@@ -531,7 +573,7 @@ html {
         &:hover,
         &:focus {
           & > span.uninav__underline--center {
-            border-bottom: 1px dotted $cu-red !important;
+            // border-bottom: 1px dotted $cu-red !important;
           }
         }
       }
