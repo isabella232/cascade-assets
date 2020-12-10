@@ -474,7 +474,7 @@ html {
               content: "\f0d7";
               transform: rotate(180deg) translateX(-1rem);
               transition: all ease 0.35s;
-              transition-delay: 150ms;
+              transition-delay: 0;
               color: $cu-red;
             }
           }
@@ -818,7 +818,7 @@ html {
     content: "\f0d7";
     transform: rotate(0deg);
     transition: all ease 0.35s;
-    transition-delay: 150ms;
+    transition-delay: 0;
   }
 
   &:hover {
@@ -826,7 +826,7 @@ html {
       content: "\f0d7";
       transform: rotate(180deg) translateX(-1rem);
       transition: all ease 0.35s;
-      transition-delay: 150ms;
+      transition-delay: 0;
       color: $cu-red;
     }
   }
