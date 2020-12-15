@@ -890,6 +890,11 @@
       "resolved": "https://registry.npmjs.org/@csstools/convert-colors/-/convert-colors-1.4.0.tgz",
       "integrity": "sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw=="
     },
+    "@fortawesome/fontawesome-pro": {
+      "version": "5.13.1",
+      "resolved": "https://npm.fontawesome.com/@fortawesome/fontawesome-pro/-/5.13.1/fontawesome-pro-5.13.1.tgz",
+      "integrity": "sha512-8ENkNq6N4FAaCL8zyi2tt2DuWn/TEFJb9mMU0k1IMRsrIh3eYhe8sQ2F1IDSVSUh9xej36MPzTwEQuBNPkQHdQ=="
+    },
     "@rails/activestorage": {
       "version": "6.0.3-2",
       "resolved": "https://registry.npmjs.org/@rails/activestorage/-/activestorage-6.0.3-2.tgz",

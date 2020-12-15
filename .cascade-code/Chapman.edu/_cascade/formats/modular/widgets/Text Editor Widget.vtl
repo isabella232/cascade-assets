@@ -1,0 +1,146 @@
+#macro(outputTextEditorWidget $element)
+  #import( "/_cascade/formats/helpers.velocity" )
+
+  #set ( $textEditor = $_XPathTool.selectSingleNode($element, 'textEditorWidget'))
+  #set ( $bgColor = $textEditor.getChild('backgroundColor').value )
+  #set ( $textLayout = $textEditor.getChild('textLayout').value )
+  #set ( $buttonsLinks = $textEditor.getChild('buttonsLinks').value)
+  #set ( $header = $textEditor.getChild('textOptions').getChild('header').value)
+  #set ( $preHeader = $textEditor.getChild('textOptions').getChild('preHeader').value)
+  #set ( $serializedText = $_SerializerTool.serialize($textEditor.getChild('textOptions').getChild('text'),true))
+  #set ( $textOnlyAlignment = $textEditor.getChild('textOnlyAlignment').value )
+  #set ( $textAlignment = $textEditor.getChild('textAlignment').value )
+  #set ( $imageGroup = $textEditor.getChild('image') )
+  #set ( $wrapImage = $imageGroup.getChild('wrapImage').value)
+  #set ( $imageShape = $imageGroup.getChild('imageShape').value)
+
+  <div
+    img-video="$textLayout"
+    img-wrap="#if($wrapImage=='yes')true#end"
+    img-shape="$imageShape"
+    text-align="$textAlignment"
+    text-only-align="$textOnlyAlignment"
+    class='text-editor-widget bg-color--$bgColor'>
+
+    #if ($textLayout == 'text')
+      <div class="grid-text__${textOnlyAlignment} #if($buttonsLinks=='none')full#end no-image">
+        #if ($preHeader != '')
+            <h3>${_EscapeTool.xml(${preHeader})}</h3>
+        #end
+        #if ($header != '')
+            <h2>${_EscapeTool.xml(${header})}</h2>
+        #end
+        <p>$serializedText</p>
+      </div>
+      #outputButtonsLinks()
+    #elseif ($textLayout == 'textImage')
+      #set ( $textVerticalAlignment = $textEditor.getChild('textVerticalAlignment').value )
+      #set ( $imageUrl = $imageGroup.getChild('image').getChild('path').value)
+
+      #if ($wrapImage == 'yes')
+        <div class="grid-text__wrap wrap-align-${textAlignment}">
+            #if ($preHeader != '')
+                <h3>${_EscapeTool.xml(${preHeader})}</h3>
+            #end
+            #if ($header != '')
+                <h2>${_EscapeTool.xml(${header})}</h2>
+            #end
+            <div class="grid-text__float-container align-${textVerticalAlignment}">
+                <div class="grid-text__img-container ${imageShape}"><img src="[system-asset:local]${imageUrl}[/system-asset:local]"/></div>
+                <p>$serializedText</p>
+            </div>
+        </div>
+        #outputButtonsLinks()
+      #else
+        #outputButtonsLinks()
+        <div class="grid-text__${textAlignment} align-${textVerticalAlignment}">
+            #if ($preHeader != '')
+                <h3>${_EscapeTool.xml(${preHeader})}</h3>
+            #end
+            #if ($header != '')
+                <h2>${_EscapeTool.xml(${header})}</h2>
+            #end
+            <span>$serializedText</span>
+        </div>
+        <div class="text-image__container ${imageShape}"><img src="[system-asset:local]${imageUrl}[/system-asset:local]"/></div>
+      #end
+    #elseif ($textLayout == 'textVideo')
+        #set ( $videoUrl = $textEditor.getChild('video').getChild('videoLink').value )
+        #set ( $textVerticalAlignment = $textEditor.getChild('textVerticalAlignment').value )
+
+        #if ($videoUrl.contains('vimeo'))
+            #set ($videoUrl = $videoUrl.replaceAll("vimeo\.com", "player\.vimeo\.com\/video"))
+        #else
+            #set ($videoUrl = $videoUrl.replaceAll("youtu\.be", "www\.youtube\.com\/embed"))
+        #end
+        #outputButtonsLinks()
+        <div class="grid-text__${textAlignment} align-${textVerticalAlignment}">
+            #if ($preHeader != '')
+                <h3>${_EscapeTool.xml(${preHeader})}</h3>
+            #end
+            #if ($header != '')
+                <h2>${_EscapeTool.xml(${header})}</h2>
+            #end
+            <span>$serializedText</span>
+        </div>
+        <div class='grid-video__container'>
+            <iframe width="400" height="225" src="$_EscapeTool.xml($videoUrl)" frameborder="0"></iframe>
+        </div>
+    #else
+        <div class='grid-text__custom'>$serializedText</div>
+    #end
+
+    #macro (outputButtonsLinks)
+      #if ($buttonsLinks == 'buttons')
+        #set ( $buttonGroup = $textEditor.getChild('buttonGroup'))
+        #set ( $buttonAlignmentStacked = $buttonGroup.getChild('buttonAlignmentStacked').value)
+        #set ( $buttons = $buttonGroup.getChild('button'))
+
+        <div
+          class="button-container#if($textOnlyAlignment=='stacked'&&$textLayout=='text')__$buttonAlignmentStacked#end"
+        >
+          #foreach ($button in $buttonGroup.getChildren('button'))
+            #set ( $buttonLabel = $button.getChild('buttonLabel').value )
+            #set ( $buttonLinkType = $button.getChild('link').value )
+            #set ( $linkUrl = '')
+            #if ($buttonLinkType == 'internal')
+              #set ($linkUrl = "${button.getChild('internal').getChild('path').value}")
+            #else
+              #set ($linkUrl = $button.getChild('externalLink').value)
+            #end
+
+            #if ($bgColor == 'white' || $bgColor == 'sand' || $bgColor == 'grey')
+              #set ( $buttonColor = $button.getChild('buttonColorWhiteSandGrey').value)
+              <a class="$buttonColor text-editor-widget__button" href="${_EscapeTool.xml(${linkUrl})}">${_EscapeTool.xml(${buttonLabel})}</a>
+              #elseif ($bgColor == 'black')
+              #set ( $buttonColor = $button.getChild('buttonColorBlackBg').value)
+              <a class="$buttonColor text-editor-widget__button" href="${_EscapeTool.xml(${linkUrl})}">${_EscapeTool.xml(${buttonLabel})}</a>
+            #else
+              #set ( $buttonColor = $button.getChild('buttonColorsBgRed').value)
+              <a class="$buttonColor text-editor-widget__button" href="${_EscapeTool.xml(${linkUrl})}">${_EscapeTool.xml(${buttonLabel})}</a>
+            #end
+          #end
+        </div>
+      #end
+
+      #if ($buttonsLinks == 'links')
+        #set ( $linkGroup = $textEditor.getChild('link'))
+        <ul class='link-container'>
+          #foreach ($link in $linkGroup.getChildren('link'))
+            #set ( $linkLabel = $link.getChild('linkLabel').value )
+            #set ( $linkType = $link.getChild('internalExternalLink').value )
+            #set ( $linkUrl = '')
+            #if ($linkType == 'internal')
+              #set ($linkUrl = "${link.getChild('internalTextLink').getChild('path').value}")
+            #else
+              #set ($linkUrl = $link.getChild('externalLink').value)
+            #end
+            <li class='link-container__link'>
+              <a href="${_EscapeTool.xml(${linkUrl})}">${_EscapeTool.xml(${linkLabel})}</a>
+            </li>
+          #end
+        </ul>
+      #end
+    #end
+  </div>
+#end
