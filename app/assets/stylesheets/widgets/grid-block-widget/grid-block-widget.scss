@@ -850,6 +850,10 @@
       }
     }
   }
+  .no-bg {
+    background-color: transparent !important;
+    color: currentColor !important;
+  }
 }
 
 // TODO: Refactor Defaults.scss button wildcards
