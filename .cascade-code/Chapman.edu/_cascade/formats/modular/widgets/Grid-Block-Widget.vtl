@@ -1,12 +1,13 @@
   #import( "/_cascade/formats/helpers.velocity" )
 
-## Chapman.edu: /_cascade/formats/modular/widgets/Grid-Block-Widget 
+## Chapman.edu: /_cascade/formats/modular/widgets/Grid-Block-Widget (MODULAR)
+<div class="hidden">currentpage: $currentPage <br/> Content Type: $currentPage.contentType.path /_cascade/formats/modular/widgets/Grid-Block-Widget (MODULAR) </div>
 
-<style>
-    ul ul {
-        margin-left: 12px;
-    }
-</style>
+#set ($templateType = $currentPage.contentType.path )
+
+<div class="hidden">templatetype: $templateType</div>
+
+
 
 #macro(camel2Snake $camelCase)
     #set( $regex = "([a-z])([A-Z]+)")
@@ -30,9 +31,25 @@
 ## <div id="grid-columns"><input type="range" id="columns" name="columns" min="2" max="6" value="3" step="1" /> <label for="columns">columns</label></div>
   #set ($widgetXPath = 'gridBlockWidget')
   
+#set ($templateType = $currentPage.contentType.path )
+
+
 #set ($display = $element.getChild($widgetXPath).getChild('display').value)
 #set ($bgColor =  $element.getChild($widgetXPath).getChild('bgColor').value.toLowerCase())
 
+#if ($templateType == ("Modular/1 Column"))
+    #set ( $oneColWrapperBackgroundColor = "grid-block-widget__wrapper--" + ${bgColor} ) 
+    #set ($oneColNoBg = "no-bg")
+    #set ($textBackgroundColor = $oneColNoBg )
+    
+   #if ($imageOrientation != 'circle')	
+      #set ($titleBgColor = $bgColor)	
+    #else 	
+      #set ($titleBgColor = 'no-bg')	
+    #end 
+#else 
+    #set ( $oneColWrapperBackgroundColor = "")
+#end
 
 #set ($parentGroup = $element.getChild($widgetXPath))
   ## #getSetVal($parentGroup "altText")
@@ -64,6 +81,7 @@
   #getSetVal($parentGroup  'displaySectionIntro')
   #set ($displaySectionIntro = $parentGroup.getChild('displaySectionIntro').value)
 
+#set ($currentPage = $_XPathTool.selectSingleNode($contentRoot, "//system-page[@current]") )
 #set ($widgetXPath = 'gridBlockWidget')
 
 #set ($displaySectionIntro = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('displaySectionIntro').value)
@@ -213,7 +231,7 @@
 
   #set ( $blocks = $_XPathTool.selectNodes($element, 'gridBlockWidget/gridOptions/gridBlock'))
 
-<div class="grid-block-widget__wrapper">
+<div class="grid-block-widget__wrapper $oneColWrapperBackgroundColor">
 <div class="inner-container">
 #if ($displaySectionIntro == "yes")
     <div class="section-intro">
@@ -362,20 +380,20 @@
       #end
 
     #if ($gridBodyText != '')
-      <div class="grid-block-widget__text grid-block-widget__text--${textBackgroundColor} grid-block-widget__text--${textAlignment}">
+      <div class="grid-block-widget__text grid-block-widget__text--${textBackgroundColor} grid-block-widget__text--${textAlignment} grid-block-widget__text--${textAlignment} ${oneColNoBg}">
         <p>${_EscapeTool.xml($gridBodyText)}</p>
       </div>
     #end
     <span
       style="display:none;"
       tabindex="0"
-      class="grid-block-widget__reveal grid-block-widget__reveal--more grid-block-widget__reveal--${titleBgColor}"
+      class="grid-block-widget__reveal grid-block-widget__reveal--more grid-block-widget__reveal--${titleBgColor} ${oneColNoBg}"
       >Show More</span
     >
     <span
       style="display:none;"
       tabindex="0"
-      class="grid-block-widget__reveal grid-block-widget__reveal--less grid-block-widget__reveal--${titleBgColor}"
+      class="grid-block-widget__reveal grid-block-widget__reveal--less grid-block-widget__reveal--${titleBgColor} ${oneColNoBg}"
       >Show Less</span
     >
   </div>

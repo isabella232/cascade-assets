@@ -5,6 +5,8 @@
 .section-intro {
   margin-top: 50px;
 
+  font-family: $futura-regular;
+
   &__preheader {
     color: $red;
     text-transform: uppercase;
@@ -752,6 +754,9 @@
     }
 
     &--red {
+      .section-intro__preheader {
+        color: $white !important;
+      }
       .grid-block-widget {
         &__title {
           color: $white;
@@ -853,6 +858,9 @@
   .no-bg {
     background-color: transparent !important;
     color: currentColor !important;
+  }
+  .grid-block-widget__reveal--sand.no-bg {
+    color: $cu-red !important;
   }
 }
 
