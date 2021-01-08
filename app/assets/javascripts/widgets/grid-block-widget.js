@@ -4,8 +4,8 @@ $(function () {
     //   "Hello -- Nick is currently adding your changes, so things may appear broken"
     // );
     // debugging();
-    refreshCSS();
-    refreshJS();
+    // refreshCSS();
+    // refreshJS();
 
     gridBlockWidget();
     // $("#clone").trigger("click");
@@ -286,6 +286,7 @@ function debugging() {
 }
 
 function gridBlockCarousel() {
+  alert("just a heads up - nick is working on the Grid Block carousel");
   $(".grid-block-widget__container--rotate").slick({
     infinite: true,
     slidesToShow: 4,
@@ -360,6 +361,16 @@ function gridBlockCarousel() {
     ],
   });
 }
+
+function adjustCarouselButtonHeight() {
+  $(".one-column .grid-block-widget__container--rotate").each(function () {
+    var imgHeight = $(this).find(".grid-block-widget__image").height();
+    var buttonHeight = imgHeight / 2;
+    var slickButton = $(this)
+      .find("button.slick-arrow")
+      .css("top", buttonHeight);
+  });
+}
 function refreshCSS() {
   console.log("hot swapping CSS");
   let links = document.getElementsByTagName("link");
@@ -411,3 +422,7 @@ function ieObjectFitFallback() {
     t.remove();
   });
 }
+
+$(window).load(function () {
+  adjustCarouselButtonHeight();
+});
