@@ -4,8 +4,8 @@ $(function () {
     //   "Hello -- Nick is currently adding your changes, so things may appear broken"
     // );
     // debugging();
-    // refreshCSS();
-    // refreshJS();
+    refreshCSS();
+    refreshJS();
 
     gridBlockWidget();
     // $("#clone").trigger("click");
@@ -286,7 +286,6 @@ function debugging() {
 }
 
 function gridBlockCarousel() {
-  alert("just a heads up - nick is working on the Grid Block carousel");
   $(".grid-block-widget__container--rotate").slick({
     infinite: true,
     slidesToShow: 4,
@@ -294,6 +293,7 @@ function gridBlockCarousel() {
     arrows: true,
     dots: false,
     infinite: true,
+    // accessibility: true,
     responsive: [
       {
         breakpoint: 1200,
@@ -425,4 +425,19 @@ function ieObjectFitFallback() {
 
 $(window).load(function () {
   adjustCarouselButtonHeight();
+  $("button.slick-arrow").on("click keydown", function (e) {
+    if (accessibleClick(event)) {
+      $(".grid-block-widget__reveal--less").trigger("click");
+    }
+  });
+  $("button.slick-prev").on("keydown", function (e) {
+    if (accessibleClick(event)) {
+      $("button.slick-prev").trigger("click");
+    }
+  });
+  $("button.slick-next").on("keydown", function (e) {
+    if (accessibleClick(event)) {
+      $("button.slick-next").trigger("click");
+    }
+  });
 });
