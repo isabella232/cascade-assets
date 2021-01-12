@@ -671,7 +671,6 @@
   font-family: $futura-regular;
   font-weight: bold;
   border-radius: 4px;
-
   font-size: 1.4rem !important;
   text-transform: uppercase;
   font-weight: bold !important;
@@ -971,6 +970,17 @@ html {
   border: none !important;
   padding-left: 24px !important;
   padding-right: 24px !important;
+}
+
+a.grid-block-widget__button {
+  display: flex !important;
+  justify-content: center;
+  text-decoration: underline;
+  color: $cu-red !important;
+
+  &--transparent {
+    background-color: transparent !important;
+  }
 }
 
 // END !!!DON'T MERGE!!!

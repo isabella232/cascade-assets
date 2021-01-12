@@ -402,14 +402,14 @@
   ## CLOSE GRID-BLOCK-WIDGET__CONTAINER DIV
 </div>
 #if ($gridDisplay.contains('pagination') )
-  <button
+  <a
     id="grid-block-widget__button--${_MathTool.add($foreach.index, 1)}"
     aria-label="Load More Photos"
     aria-role="button"
-    class="button grid-block-widget__button grid-block-widget__button--grey"
+    class="button grid-block-widget__button grid-block-widget__button--transparent"
   >
     Load More
-  </button>
+  </a>
 #end
 </div>
 </div>
