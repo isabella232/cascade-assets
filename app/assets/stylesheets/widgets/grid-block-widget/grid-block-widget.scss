@@ -972,17 +972,18 @@ html {
   padding-right: 24px !important;
 }
 
-a.grid-block-widget__button {
-  display: flex !important;
-  justify-content: center;
-  text-decoration: underline;
-  color: $cu-red !important;
+html body {
+  a.grid-block-widget__button {
+    display: flex;
+    justify-content: center;
+    text-decoration: underline;
+    color: $cu-red !important;
 
-  &--transparent {
-    background-color: transparent !important;
+    &--transparent {
+      background-color: transparent !important;
+    }
   }
 }
-
 // END !!!DON'T MERGE!!!
 
 @import "grid-block-widget-ie.scss";

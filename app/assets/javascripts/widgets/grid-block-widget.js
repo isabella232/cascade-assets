@@ -109,6 +109,7 @@ function gridBlockWidget() {
         var numToReveal = $("#" + currentWidgetContainer).data("columns") * 3;
         console.log("numtoreveal: " + numToReveal);
         calculateDataHeight();
+        $(".grid-block-widget__reveal--less").hide();
         if (buttonClickCounter <= 1) {
           // $(this).parent().find(".grid-block-widget").nextAll().show();
           // $(this).parent().find(".grid-block-widget").slice(0, 6).show();
@@ -119,7 +120,6 @@ function gridBlockWidget() {
             .show();
 
           $(currentButton).text("Show All");
-          calculateDataHeight();
         }
       }
 
