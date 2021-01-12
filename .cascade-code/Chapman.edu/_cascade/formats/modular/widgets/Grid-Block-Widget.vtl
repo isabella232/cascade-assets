@@ -102,8 +102,6 @@
     #set ($sectionHeaderParagraph = $parentGroup.getChild('sectionHeaderParagraph').value)
     #li("sectionHeaderParagraph $sectionHeaderParagraph ")
 
-
-
     #getSetVal($parentGroup "sectionHeaderParagraph")
     
     ## INTRO SECTION - BUTTONS
@@ -241,8 +239,8 @@
       <h2 class="section-intro__header">  
         ${_EscapeTool.xml($sectionHeader)}
       </h2>
-      <div class="section-intro__title">
-        ${_EscapeTool.xml($sectionHeaderParagraph)}
+      <div class="section-intro__title">     
+        $_SerializerTool.serialize($element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionHeaderParagraph'), true)
       </div>
       #if ($displaySectionButtons == 'yes')
       <div class="section-intro__buttons">
@@ -381,7 +379,9 @@
 
     #if ($gridBodyText != '')
       <div class="grid-block-widget__text grid-block-widget__text--${textBackgroundColor} grid-block-widget__text--${textAlignment} grid-block-widget__text--${textAlignment} ${oneColNoBg}">
-        <p>${_EscapeTool.xml($gridBodyText)}</p>
+        <p>
+          $_SerializerTool.serialize($block.getChild('gridBlockText'), true)
+        </p>
       </div>
     #end
     <span
