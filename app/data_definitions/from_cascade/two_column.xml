@@ -594,7 +594,7 @@
             <text field-id="3429c844c0a81e8a5a403945371c3e9f" identifier="externalLink" label="External Link" required="true" />
             <asset field-id="24682989c0a81e8a5a4039456688d569" identifier="gridBlockImage" label="Image" required="true" type="file" />
             <text field-id="2819d3aec0a81e8a5a40394590beb62b" identifier="altText" label="Image Alt Text" required="true" />
-            <text field-id="2819d3aec0a81e8a5a4039450b676935" identifier="imagePosition" label="Image Position" default="center center" help-text="Example: 'bottom left' or 'top right' or 'center center'" />
+            <text field-id="2819d3aec0a81e8a5a4039450b676935" identifier="imagePosition" label="Image Position" default="center center" help-text="Changes image focal point. See https://developer.mozilla.org/en-US/docs/Web/CSS/object-position" />
             <text help-text='Youtube or Vimeo iframe' identifier="iFrame" label="iFrame" required="true" />
             <text field-id="24682989c0a81e8a5a40394504b245f8" identifier="gridBlockText" label="Grid Block Text" required="true" wysiwyg="true" />
           </group>
@@ -973,7 +973,7 @@
           <dropdown-item value="Schmid College of Science and Technology" />
           <dropdown-item value="School of Communication" />
         </text>
-        <text field-id="ff6bcc1dc0a81e5f43ef9b3726aa885f" identifier="level" label="Degree Level" type="checkbox">
+        <text field-id="" identifier="level" label="Degree Level" type="checkbox">
           <checkbox-item value="Bachelors" />
           <checkbox-item value="Masters" />
           <checkbox-item value="Doctorate" />
@@ -1136,6 +1136,10 @@
     </group>
   </group>
   <group collapsed="true" identifier="meta" label="Supplemental Content">
+    <text field-id="ff6bcc1dc0a81e5f43ef9b3726aa885f" identifier="level" label="Prevent SEO Indexing and Hide From Search" type="checkbox">
+      <checkbox-item value="hideFromSearch" label="Prevent SEO Indexing and Hide From Search" show-fields="meta/hideFromSearchConfirm" />
+      <checkbox-item value="hideFromSearch" label="I understand that this page will no longer be indexed by Google and other search engines" />
+    </text>
     <asset field-id="ff6bcc1fc0a81e5f43ef9b373c7b5737" identifier="social_accounts" label="Social Accounts" render-content-depth="10" type="block" />
     <group collapsed="true" identifier="sharing" label="Sharing ">
       <asset field-id="ff6bcc1fc0a81e5f43ef9b37eac7b597" help-text="Image used for sharing on facebook (130px w, 110px h exactly)" identifier="og_image" label="OG Image" type="file" />
@@ -1188,4 +1192,6 @@
       </text>
     </group>
   </group>
+
+  <group collapsed="true" identifier="reports" label="Reports"></group>
 </system-data-structure>
