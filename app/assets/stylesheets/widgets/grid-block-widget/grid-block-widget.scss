@@ -535,10 +535,10 @@
     padding: 1rem;
 
     font-family: $futura-regular;
-    @include qbal-drop-enter;
+    // @include qbal-drop-enter;
 
     &--more {
-      @include qbal-drop-enter;
+      // @include qbal-drop-enter;
 
       &::before {
         content: "\f078 ";
@@ -565,11 +565,11 @@
   }
 
   .grid-block-widget__text--revealed {
-    @include qbal-grow-enter;
+    // @include qbal-grow-enter;
   }
 
   .grid-block-widget__text:not(.grid-block-widget__text--revealed) {
-    @include qbal-slideUp-enter;
+    // @include qbal-slideUp-enter;
   }
 }
 
