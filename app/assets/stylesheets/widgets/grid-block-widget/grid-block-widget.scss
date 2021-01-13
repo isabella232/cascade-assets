@@ -82,6 +82,18 @@
 
 .grid-block-widget__cta {
   display: flex;
+  min-height: 100px;
+  align-items: center;
+  a {
+    margin-top: 0;
+  }
+
+  &--left-aligned {
+    justify-content: start;
+  }
+  &--centered {
+    justify-content: center;
+  }
 }
 .grid-block-widget__wrapper {
   .grid-block-widget__cta .button {

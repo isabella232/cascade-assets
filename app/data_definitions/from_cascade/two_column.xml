@@ -528,6 +528,18 @@
           <radio-item label="Yes" show-fields="primaryContent/widget/gridBlockWidget/sectionHeaderGroup" value="yes" />
           <radio-item label="No" value="no " />
         </text>
+
+        <text default="no" field-id="" identifier="displayCTAButtons" label="Display CTA Buttons at Bottom?" type="radiobutton">
+
+          <radio-item label="Yes" show-fields="primaryContent/widget/gridBlockWidget/link, primaryContent/widget/gridBlockWidget/ctaAlignment" value="yes" />
+          <radio-item label="No" value="no " />
+        </text>
+
+        <text default="left-aligned" field-id="" identifier="ctaAlignment" label="CTA Button Alignment" type="radiobutton">
+          <radio-item label="Left Aligned" value="left-aligned" />
+          <radio-item label="Centered" value="centered" />
+        </text>
+
         <shared-field field-id="2e8489d8c0a81e8a5a40394576fa28af" identifier="sectionHeaderGroup" path="Section Header" />
         <group collapsed="true" identifier="gridOptions" label="Grid Options">
           <text field-id="2994320ac0a81e8a5a403945751bbb26" identifier="title" required="true" type="radiobutton">
@@ -599,7 +611,7 @@
             <text field-id="24682989c0a81e8a5a40394504b245f8" identifier="gridBlockText" label="Grid Block Text" required="true" wysiwyg="true" />
           </group>
         </group>
-        <shared-field field-id="" identifier="link" path="cta" />
+        <shared-field field-id="" identifier="link" path="cta__buttons-only" />
       </group>
 
       <group collapsed="true" identifier="funnels-2up" label="Funnels (2up)">

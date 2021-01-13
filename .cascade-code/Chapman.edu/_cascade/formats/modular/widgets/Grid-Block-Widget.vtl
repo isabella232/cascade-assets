@@ -81,6 +81,16 @@
   #getSetVal($parentGroup  'displaySectionIntro')
   #set ($displaySectionIntro = $parentGroup.getChild('displaySectionIntro').value)
 
+  #set ($displayCTA = $element.getChild($widgetXPath).getChild('displayCTAButtons').value)
+
+
+
+
+#set ($ctaAlignment = $element.getChild($widgetXPath).getChild('ctaAlignment').value)
+
+
+
+
 #set ($currentPage = $_XPathTool.selectSingleNode($contentRoot, "//system-page[@current]") )
 #set ($widgetXPath = 'gridBlockWidget')
 
@@ -413,9 +423,17 @@
   </a>
 
 #end
-  <div class="grid-block-widget__cta">
+
+
+
+
+
+
+#if ($displayCTA != 'no')
+  <div class="grid-block-widget__cta grid-block-widget__cta--${ctaAlignment}">
     #gbCTA($element, 'gridBlockWidget/link')
   </div>
+#end
 </div>
 </div>
 
@@ -423,7 +441,7 @@
     ## this will create 'next-steps-widget__button' down below
     #set ($bemButtonClass = $wxp + '__button')
     #set ($bemButtonClass = $bemButtonClass.value)
-    
+
     #set ( $linkItems = $_XPathTool.selectNodes($elem, $linkXPath) )
     #foreach ($link in $linkItems)
         #set ($linkStyle = $link.getChild('linkStyle').value) 
