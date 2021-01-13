@@ -650,7 +650,7 @@ p {
   margin-bottom: 2rem;
 }
 
-html body {
+#main {
   .no-border {
     border: none !important;
   }
@@ -856,6 +856,79 @@ html body {
     * {
       animation: none;
       -webkit-animation: none;
+    }
+  }
+
+  .button--black {
+    background-color: $panther-black;
+    &:hover,
+    &:focus {
+      background-color: black;
+    }
+
+    &:active {
+      background-color: black;
+    }
+
+    &:focus,
+    &:focus-within {
+      border: 2px dotted $white;
+    }
+  }
+
+  .button--red {
+    color: $white;
+    background-color: $cu-red;
+    &:hover,
+    &:focus {
+      background-color: $red-button-hover;
+    }
+
+    &:active {
+      background-color: $red-button-active;
+    }
+
+    &:focus,
+    &:focus-within {
+      border: 2px dotted $white;
+    }
+  }
+
+  .button--sand {
+    background-color: $sand;
+    &:hover,
+    &:focus {
+      transition: 300ms linear;
+      background-color: darken($sand, 4%) !important;
+      // outline: 1px solid $panther-black;
+    }
+
+    &:active {
+      background-color: $sand-alpha;
+    }
+
+    &:focus,
+    &:focus-within {
+      border: 2px solid $cu-red;
+    }
+  }
+  .button--white {
+    background-color: $white;
+    border: 1px solid $cu-light-grey !important;
+    &:hover,
+    &:focus {
+      // background-color: $cu-light-grey;
+      outline: 1px solid $panther-black;
+      transition: 300ms linear;
+    }
+
+    &:active {
+      background-color: $cu-light-grey;
+    }
+
+    &:focus,
+    &:focus-within {
+      border: 2px dotted $cu-light-grey;
     }
   }
 }

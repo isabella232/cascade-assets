@@ -465,9 +465,9 @@
             #if ($linkStyle == 'Text Link')
                 <a tabindex="1" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="text--link">#escape($linkLabel)</a>
             #elseif (($linkStyle == 'Button Link') && ($bemButtonClass != '$bemButtonClass'))
-                <a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button $bemButtonClass grid-block-widget--${titleBgColor}">#escape($linkLabel)</a>
+                <a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button $bemButtonClass button--${titleBgColor}">#escape($linkLabel)</a>
             #else 
-                <a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button grid-block-widget--${titleBgColor}">#escape($linkLabel)</a>
+                <a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button button--${titleBgColor}">#escape($linkLabel)</a>
             #end    
         #end
     #end

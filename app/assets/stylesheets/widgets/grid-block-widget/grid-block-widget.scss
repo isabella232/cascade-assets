@@ -80,11 +80,14 @@
   }
 }
 
+.grid-block-widget__cta {
+  display: flex;
+}
 .grid-block-widget__wrapper {
-  .grid-block-widget__cta a.button {
+  .grid-block-widget__cta .button {
     display: inline-block;
-    & + .grid-block-widget__cta a.button {
-      margin-left: 12px;
+    & + .button {
+      margin-left: 5px;
     }
   }
 }
