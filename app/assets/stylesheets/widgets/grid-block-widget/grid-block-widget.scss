@@ -80,6 +80,14 @@
   }
 }
 
+.grid-block-widget__wrapper {
+  .grid-block-widget__cta a.button {
+    display: inline-block;
+    & + .grid-block-widget__cta a.button {
+      margin-left: 12px;
+    }
+  }
+}
 .grid-block-widget__container {
   $space: 12px;
   margin-top: $space;
@@ -395,10 +403,13 @@
 
     &__title {
       border: none !important;
-      margin-top: 0 !important;
-      margin-top: 0;
+      margin-top: -4px;
       padding-top: 16px;
       padding-bottom: 16px;
+
+      &--red {
+        color: $white !important;
+      }
     }
     &__text {
       p {
@@ -435,7 +446,6 @@
     }
 
     &__title {
-      margin-top: 4px;
       color: $red;
       font-size: 1.4rem;
       padding: 24px;
@@ -525,9 +535,7 @@
     text-transform: capitalize;
     font-size: 14px;
     font-weight: bold;
-    color: $cu-red;
-
-    background-color: $sand;
+    // color: $cu-red;
     position: relative;
     position: relative;
     width: 100% !important;
@@ -535,6 +543,14 @@
     top: 0;
     margin-top: 0;
     padding: 24px;
+
+    &--sand {
+      color: $cu-red;
+    }
+
+    &--red {
+      color: $white;
+    }
 
     font-family: $futura-regular;
     // @include qbal-drop-enter;
@@ -784,7 +800,7 @@
         border: 1px solid $panther-black !important;
       }
       a.grid-block-widget__button--transparent {
-        color: $panther-black;
+        color: $white !important;
         &:hover,
         &:focus {
           background-color: transparent !important;
@@ -853,7 +869,6 @@
         --maxHeight: 200px;
       }
     }
-
     // END ONE COL - ACTUAL WIDGET (NOT CONTAINER OR WRAPPER)
   }
 
@@ -998,15 +1013,12 @@ html {
 }
 
 html body {
-  a.grid-block-widget__button {
+  a.grid-block-widget__button--transparent {
     display: flex;
     justify-content: center;
     text-decoration: underline;
     color: $cu-red !important;
-
-    &--transparent {
-      background-color: transparent !important;
-    }
+    background-color: transparent !important;
   }
 }
 // END !!!DON'T MERGE!!!
