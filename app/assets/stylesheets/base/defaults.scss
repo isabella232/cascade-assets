@@ -864,6 +864,7 @@ p {
     &:hover,
     &:focus {
       background-color: black;
+      transition: 300ms linear;
     }
 
     &:active {
