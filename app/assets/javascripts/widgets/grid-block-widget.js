@@ -108,7 +108,7 @@ function gridBlockWidget() {
         var dataColumns = $("#" + currentWidgetContainer).data("columns");
         var numToReveal = $("#" + currentWidgetContainer).data("columns") * 3;
         console.log("numtoreveal: " + numToReveal);
-        calculateDataHeight();
+
         $(".grid-block-widget__reveal--less").hide();
         if (buttonClickCounter <= 1) {
           // $(this).parent().find(".grid-block-widget").nextAll().show();
@@ -128,8 +128,8 @@ function gridBlockWidget() {
         $("#" + currentWidgetContainer)
           .find(".grid-block-widget")
           .show();
-        calculateDataHeight();
       }
+      calculateDataHeight();
     });
   });
 
