@@ -650,7 +650,7 @@ p {
   margin-bottom: 2rem;
 }
 
-#main {
+body {
   .no-border {
     border: none !important;
   }
@@ -723,7 +723,7 @@ p {
 
   [class*="--white"] {
     background-color: $white;
-    border: 1px solid $cu-light-grey;
+    // border: 1px solid $cu-light-grey;
     color: $panther-black;
 
     [class*="__heading"] {
