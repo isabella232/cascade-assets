@@ -58,11 +58,13 @@ $(function () {
       });
     }
   }
+  normalizeHeights();
 });
 
 function calculateDataHeight() {
   console.log("calculating text data height");
 
+  // truncated text - 2 col
   $(".grid-block-widget__text").each(function () {
     var textHeight = $(this).height();
     $(this).attr("data-height", textHeight);
@@ -71,7 +73,7 @@ function calculateDataHeight() {
     $(this)
       .parent(".grid-block-widget")
       .addClass("grid-block-widget--text-overflow");
-    if ($(this).attr("data-height") >= 35) {
+    if ($(this).attr("data-height") > 110) {
       $(this).parent().find(".grid-block-widget__reveal--more").show();
     }
   });
@@ -441,3 +443,21 @@ $(window).load(function () {
     }
   });
 });
+
+function normalizeHeights() {
+  $(".grid-block-widget__container").each(function () {
+    // Get an array of all element heights
+    var elementHeights = $(this)
+      .find(".grid-block-widget")
+      .map(function () {
+        return $(this).height();
+      })
+      .get();
+    // Math.max takes a variable number of arguments
+    // `apply` is equivalent to passing each height as an argument
+    var maxHeight = Math.max.apply(null, elementHeights);
+    // Set each height to the max height
+    //   $('.grid-block-widget').height(maxHeight);
+    $(this).find(".grid-block-widget").height(maxHeight);
+  });
+}

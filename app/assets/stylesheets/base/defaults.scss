@@ -861,6 +861,7 @@ p {
 
   .button--black {
     background-color: $panther-black;
+    border: none;
     &:hover,
     &:focus {
       background-color: black;
@@ -880,6 +881,7 @@ p {
   .button--red {
     color: $white;
     background-color: $cu-red;
+    border: none;
     &:hover,
     &:focus {
       background-color: $red-button-hover;
@@ -897,6 +899,7 @@ p {
 
   .button--sand {
     background-color: $sand;
+    border: none;
     &:hover,
     &:focus {
       transition: 300ms linear;
