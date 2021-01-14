@@ -455,9 +455,9 @@ function normalizeHeights() {
       .get();
     // Math.max takes a variable number of arguments
     // `apply` is equivalent to passing each height as an argument
-    var maxHeight = Math.max.apply(null, elementHeights);
+    var tallest = Math.max.apply(null, elementHeights);
     // Set each height to the max height
-    //   $('.grid-block-widget').height(maxHeight);
-    $(this).find(".grid-block-widget").height(maxHeight);
+    //   $('.grid-block-widget').height(tallest);
+    $(this).find(".grid-block-widget").css("min-height", tallest);
   });
 }
