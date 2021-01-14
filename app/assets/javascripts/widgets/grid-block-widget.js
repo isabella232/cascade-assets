@@ -58,7 +58,6 @@ $(function () {
       });
     }
   }
-  normalizeHeights();
 });
 
 function calculateDataHeight() {
@@ -442,6 +441,7 @@ $(window).load(function () {
       $("button.slick-next").trigger("click");
     }
   });
+  normalizeHeights();
 });
 
 function normalizeHeights() {

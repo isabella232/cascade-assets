@@ -196,6 +196,30 @@ textarea {
   color: $cu-font-color;
 }
 
+.futura-regular {
+  font-family: $futura-regular;
+}
+.fw-regular {
+  font-weight: regular;
+}
+.fw-bold {
+  font-weight: bold;
+}
+.focus-no-border {
+  &:focus {
+    border: none;
+  }
+}
+
+.border-bottom {
+  &--dotted {
+    border-bottom: 2px dotted currentColor;
+  }
+  &--none {
+    border-bottom: none !important;
+  }
+}
+
 ::-moz-selection,
 ::selection {
   background: $cu-red;
@@ -769,6 +793,7 @@ body {
     }
 
     .button {
+      font-family: $futura-regular;
       &:hover,
       &:active,
       &:focus {
@@ -874,7 +899,7 @@ body {
 
     &:focus,
     &:focus-within {
-      border: 2px dotted $white;
+      outline: 2px dotted $white;
     }
   }
 
@@ -893,7 +918,7 @@ body {
 
     &:focus,
     &:focus-within {
-      border: 2px dotted $white;
+      outline: 2px dotted $cu-red;
     }
   }
 
@@ -913,7 +938,7 @@ body {
 
     &:focus,
     &:focus-within {
-      border: 2px solid $cu-red;
+      outline: 2px dotted $cu-red;
     }
   }
   .button--white {
@@ -932,7 +957,27 @@ body {
 
     &:focus,
     &:focus-within {
-      border: 2px dotted $cu-light-grey;
+      outline: 2px dotted $cu-light-grey;
+    }
+  }
+
+  .button--grey {
+    background-color: $cu-light-grey;
+    border: 1px solid $cu-light-grey !important;
+    &:hover,
+    &:focus {
+      // background-color: $cu-light-grey;
+      outline: 1px solid $panther-black;
+      transition: 300ms linear;
+    }
+
+    &:active {
+      background-color: $white;
+    }
+
+    &:focus,
+    &:focus-within {
+      outline: 2px dotted $cu-light-grey;
     }
   }
 }

@@ -73,13 +73,9 @@
   ## INTRO SECTION   
 ##   #set ($displaySectionIntro = $element.getChild($widgetXPath).getChild('displaySectionIntro').value)
 
-  
-    
-
-
-
   #getSetVal($parentGroup  'displaySectionIntro')
   #set ($displaySectionIntro = $parentGroup.getChild('displaySectionIntro').value)
+  
 
   #set ($displayCTA = $element.getChild($widgetXPath).getChild('displayCTAButtons').value)
 
@@ -116,7 +112,7 @@
     
     ## INTRO SECTION - BUTTONS
        #set ($displaySectionButtons = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('displaySectionButtons').value)
-
+      #set ($sectionButtonAlignment = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtonAlignment').value)
        #if ($displaySectionButtons == 'yes')
         #set ( $blocks = $_XPathTool.selectNodes($element, 'gridBlockWidget/gridOptions/gridBlock'))
 
@@ -255,7 +251,7 @@
       #if ($displaySectionButtons == 'yes')
       <div class="section-intro__buttons">
       
-        <div class="section-intro__button">
+        <div class="section-intro__button text-align--${sectionButtonAlignment}">
             #set ($parentGroup = $element.getChild($widgetXPath))
   
 
@@ -378,8 +374,8 @@
     #end
     
     #if ($hasGridTitle == 'Yes' && $linkURL != '' )
-      <a href="${gridBlockLinkURL}" class="grid-block-widget__title text-align--${textAlignment} grid-block-widget__title--${titleBgColor}">
-        ${_EscapeTool.xml($gridBlockTitle)}
+      <a href="${gridBlockLinkURL}" class="grid-block-widget__title text-align--${textAlignment} grid-block-widget__title--${titleBgColor} focus-no-border border-bottom--none">
+        <span class="label border-bottom--dotted">${_EscapeTool.xml($gridBlockTitle)}</span>
       </a>
     #end
       
@@ -418,6 +414,7 @@
     aria-label="Load More Photos"
     aria-role="button"
     class="button grid-block-widget__button grid-block-widget__button--transparent"
+    tabindex="0"
   >
     Load More
   </a>
@@ -430,7 +427,7 @@
 
 
 #if ($displayCTA != 'no')
-  <div class="grid-block-widget__cta grid-block-widget__cta--${ctaAlignment}">
+  <div class="grid-block-widget__cta grid-block-widget__cta--${ctaAlignment} futura-regular fw-bold">
     #gbCTA($element, 'gridBlockWidget/link')
   </div>
 #end
@@ -477,15 +474,14 @@
             #set ($linkURL = $link.getChild('fileLink').getChild('path').value )
         #end
     
-        
-   
+      
         #if ($linkLabel != '')
             #if ($linkStyle == 'Text Link')
                 <a tabindex="1" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="text--link">#escape($linkLabel)</a>
             #elseif (($linkStyle == 'Button Link') && ($bemButtonClass != '$bemButtonClass'))
-                <a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button $bemButtonClass button--${titleBgColor}">#escape($linkLabel)</a>
+                <a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button $bemButtonClass button--${titleBgColor} border-bottom--none">#escape($linkLabel)</a>
             #else 
-                <a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button button--${titleBgColor}">#escape($linkLabel)</a>
+                <a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button button--${titleBgColor} border-bottom--none">#escape($linkLabel)</a>
             #end    
         #end
     #end
