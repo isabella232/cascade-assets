@@ -1,11 +1,15 @@
 <system-data-structure>
-  <group identifier="sectionHeaderGroup" label="Section Header">
+  <group collapsed="true" identifier="sectionHeaderGroup" label="Section Header">
     <text field-id="2e7e4d67c0a81e8a5a403945a2b3eda0" identifier="sectionPreheader" label="Section Pre-header" />
     <text field-id="2e7e4d67c0a81e8a5a403945858f943f" identifier="sectionHeader" label="Section Header" />
     <text field-id="2e7e4d67c0a81e8a5a40394567752eaf" identifier="sectionHeaderParagraph" label="Section Paragraph" wysiwyg="true" />
     <text field-id="2e7e4d67c0a81e8a5a403945f9fb5f13" identifier="displaySectionButtons" label="Display Section Buttons?" required="true" type="radiobutton">
-      <radio-item label="Yes" show-fields="sectionHeader/sectionButtons" value="yes" />
+      <radio-item label="Yes" show-fields="sectionHeader/sectionButtons, sectionHeader/sectionButtonAlignment" value="yes" />
       <radio-item label="No" value="no" />
+    </text>
+    <text default="left-aligned" field-id="02c55d9dc0a81e8a768838d3ea172382" identifier="sectionButtonAlignment" label="Button Alignment" type="radiobutton">
+      <radio-item label="Left Aligned" value="left-aligned" />
+      <radio-item label="Centered" value="centered" />
     </text>
     <group collapsed="true" identifier="sectionButtons" label="Section Buttons" maximum-number="3" multiple="true">
       <text field-id="2e825a44c0a81e8a5a403945b9364f37" identifier="buttonLabel" label="Button Label" required="true" />
@@ -18,7 +22,6 @@
       <text default="red" field-id="2e7e4d67c0a81e8a5a4039453f253ac1" identifier="buttonColor" label="Button Color" type="dropdown">
         <dropdown-item label="Chapman Red" value="red" />
         <dropdown-item label="Panther Black" value="black" />
-        bu
         <dropdown-item label="White" value="white" />
       </text>
       <group collapsed="true" identifier="buttonAccessibility" label="Button Accessibility">
