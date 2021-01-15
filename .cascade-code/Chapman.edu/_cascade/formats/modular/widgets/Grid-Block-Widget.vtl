@@ -7,8 +7,6 @@
 
 <div class="hidden">templatetype: $templateType</div>
 
-
-
 #macro(camel2Snake $camelCase)
     #set( $regex = "([a-z])([A-Z]+)")
     #set( $replacement = "$1-$2")
@@ -41,7 +39,6 @@
     #set ( $oneColWrapperBackgroundColor = "grid-block-widget__wrapper--" + ${bgColor} ) 
     #set ($oneColNoBg = "no-bg")
     #set ($textBackgroundColor = $oneColNoBg )
-    
    #if ($imageOrientation != 'circle')	
       #set ($titleBgColor = $bgColor)	
     #else 	
@@ -427,6 +424,7 @@
 
 
 #if ($displayCTA != 'no')
+
   <div class="grid-block-widget__cta grid-block-widget__cta--${ctaAlignment} futura-regular fw-bold">
     #gbCTA($element, 'gridBlockWidget/link')
   </div>
@@ -435,6 +433,16 @@
 </div>
 
 #macro(gbCTA $elem $linkXPath $wxp)
+
+#if ($templateType == ("Modular/1 Column"))
+    #set ($ctaColor = 'red' )
+  #if ($bgColor == 'Chapman Red')
+    #set ($ctaColor = 'white')
+  #end
+  #elseif ($templateType !=("Modular/1 Column"))
+    #set ($ctaColor = $titleBgColor)
+#end
+
     ## this will create 'next-steps-widget__button' down below
     #set ($bemButtonClass = $wxp + '__button')
     #set ($bemButtonClass = $bemButtonClass.value)
@@ -481,7 +489,7 @@
             #elseif (($linkStyle == 'Button Link') && ($bemButtonClass != '$bemButtonClass'))
                 <a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button $bemButtonClass button--${titleBgColor} border-bottom--none">#escape($linkLabel)</a>
             #else 
-                <a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button button--${titleBgColor} border-bottom--none">#escape($linkLabel)</a>
+                <a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button border-bottom--none button--${ctaColor}">#escape($linkLabel)</a>
             #end    
         #end
     #end

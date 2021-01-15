@@ -1026,6 +1026,24 @@ html body .one-column {
       outline: 2px dotted $white;
       border: none;
     }
+    a.grid-block-widget__button--transparent {
+      color: $white !important;
+      &:hover,
+      &:focus {
+        background-color: transparent !important;
+      }
+      &:focus {
+        outline-color: $white !important;
+      }
+    }
+  }
+
+  .grid-block-widget__wrapper--black {
+    .grid-block-widget__cta {
+      a.button {
+        // @include button-bg($cu-red);
+      }
+    }
   }
   .grid-block-widget__wrapper--red .section-intro__button a.button--red {
     &:hover,
