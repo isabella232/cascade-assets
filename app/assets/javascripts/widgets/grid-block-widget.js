@@ -64,7 +64,7 @@ function calculateDataHeight() {
   console.log("calculating text data height");
 
   // truncated text - 2 col
-  $(".grid-block-widget__text").each(function () {
+  $(".grid-block-widget__text p").each(function () {
     var textHeight = $(this).height();
     $(this).attr("data-height", textHeight);
     $(this).addClass("grid-block-widget__text--truncated");
