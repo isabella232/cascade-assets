@@ -48,7 +48,7 @@
     <!-- IF NOT ONE COL TEMPLATE --> 
 #else 
     #set ( $oneColWrapperBackgroundColor = "")
-    #set ($oneColNoBg = "no-bg")
+    #set ($oneColNoBg = "")
 #end
     <!-- IF NOT ONE COL TEMPLATE --> 
 
@@ -374,10 +374,14 @@
           $gridBlockiFrame 
     #end
     
-    #if ($hasGridTitle == 'Yes' && $linkURL != '' )
+    #if ($hasGridTitle == 'Yes' && $linkURL != '' && $gridBlockLinkType != '' )
       <a href="${gridBlockLinkURL}" class="grid-block-widget__title text-align--${textAlignment} grid-block-widget__title--${titleBgColor} focus-no-border border-bottom--none">
         <span class="label border-bottom--dotted">${_EscapeTool.xml($gridBlockTitle)}</span>
       </a>
+    #else 
+    <div class="grid-block-widget__title text-align--${textAlignment} grid-block-widget__title--${titleBgColor} focus-no-border border-bottom--none">
+        <span class="label border-bottom--dotted">${_EscapeTool.xml($gridBlockTitle)}</span>
+      </div>
     #end
       
       #if ($titleOverlay != 'No')  
