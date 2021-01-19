@@ -37,16 +37,20 @@
 
 #if ($templateType == ("Modular/1 Column"))
     #set ( $oneColWrapperBackgroundColor = "grid-block-widget__wrapper--" + ${bgColor} ) 
-    #set ($oneColNoBg = "no-bg")
     #set ($textBackgroundColor = $oneColNoBg )
+    <!-- IF CIRCLE --> 
    #if ($imageOrientation != 'circle')	
       #set ($titleBgColor = $bgColor)	
     #else 	
       #set ($titleBgColor = 'no-bg')	
     #end 
+    <!-- END IF CIRCLE --> 
+    <!-- IF NOT ONE COL TEMPLATE --> 
 #else 
     #set ( $oneColWrapperBackgroundColor = "")
+    #set ($oneColNoBg = "no-bg")
 #end
+    <!-- IF NOT ONE COL TEMPLATE --> 
 
 #set ($parentGroup = $element.getChild($widgetXPath))
   ## #getSetVal($parentGroup "altText")
