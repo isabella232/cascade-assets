@@ -211,6 +211,12 @@ textarea {
   }
 }
 
+.focus-no-border {
+  &:focus {
+    border: none;
+  }
+}
+
 .border-bottom {
   &--dotted {
     border-bottom: 2px dotted currentColor;
@@ -947,7 +953,7 @@ body {
     &:hover,
     &:focus {
       // background-color: $cu-light-grey;
-      outline: 1px solid $panther-black;
+      border: 1px solid $cu-light-grey-2;
       transition: 300ms linear;
     }
 
