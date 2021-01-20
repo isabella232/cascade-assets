@@ -64,7 +64,7 @@ function calculateDataHeight() {
   console.log("calculating text data height");
 
   // truncated text - 2 col
-  $(".grid-block-widget__text p").each(function () {
+  $(".grid-block-widget__text").each(function () {
     var textHeight = $(this).height();
     $(this).attr("data-height", textHeight);
     $(this).addClass("grid-block-widget__text--truncated");
@@ -72,7 +72,7 @@ function calculateDataHeight() {
     $(this)
       .parent(".grid-block-widget")
       .addClass("grid-block-widget--text-overflow");
-    if ($(this).attr("data-height") > 154) {
+    if ($(this).attr("data-height") > 110) {
       $(this).parent().find(".grid-block-widget__reveal--more").show();
     }
   });
@@ -442,24 +442,8 @@ $(window).load(function () {
     }
   });
   normalizeHeights();
-  calculateDataHeight();
-  hidePaginationButton();
 });
 
-function hidePaginationButton() {
-  $(".grid-block-widget__container").each(function () {
-    var hidden = $(this).find(".grid-block-widget:hidden").length;
-    var button = $(this).find(".grid-block-widget__button");
-    console.log("hidden " + hidden);
-    var currentWidgetContainer = $(this).attr("id");
-    var loadMoreButtonButton = " + .grid-block-widget__button";
-    var currentButton = "#" + currentWidgetContainer + loadMoreButtonButton;
-
-    if ($(this).find(".grid-block-widget:hidden").length <= 0) {
-      $(currentButton).hide();
-    }
-  });
-}
 function normalizeHeights() {
   $(".grid-block-widget__container").each(function () {
     // Get an array of all element heights
