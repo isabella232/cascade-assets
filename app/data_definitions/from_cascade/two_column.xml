@@ -528,20 +528,20 @@
           <radio-item label="Yes" show-fields="primaryContent/widget/gridBlockWidget/sectionHeaderGroup" value="yes" />
           <radio-item label="No" value="no " />
         </text>
-
-        <text default="no" field-id="" identifier="displayCTAButtons" label="Display CTA Buttons at Bottom?" type="radiobutton">
-
-          <radio-item label="Yes" show-fields="primaryContent/widget/gridBlockWidget/link, primaryContent/widget/gridBlockWidget/ctaAlignment" value="yes" />
-          <radio-item label="No" value="no " />
-        </text>
-
-        <text default="left-aligned" field-id="" identifier="ctaAlignment" label="CTA Button Alignment" type="radiobutton">
+        <text default="left-aligned" field-id="" identifier="textAlignment" label="Text Alignment" type="radiobutton" help-text="Text Alignment for Intro Section and CTA Buttons">
           <radio-item label="Left Aligned" value="left-aligned" />
           <radio-item label="Centered" value="centered" />
         </text>
 
+        <text default="no" field-id="" identifier="displayCTAButtons" label="Display CTA Buttons at Bottom?" type="radiobutton">
+
+          <radio-item label="Yes" show-fields="primaryContent/widget/gridBlockWidget/link, primaryContent/widget/gridBlockWidget/textAlignment" value="yes" />
+          <radio-item label="No" value="no " />
+        </text>
+
+
         <shared-field field-id="2e8489d8c0a81e8a5a40394576fa28af" identifier="sectionHeaderGroup" path="Section Header" />
-        <group collapsed="true" identifier="gridOptions" label="Grid Options">
+        <group collapsed="true" identifier="gridOptions" label="Grid Blocks Options">
           <text field-id="2994320ac0a81e8a5a403945751bbb26" identifier="title" required="true" type="radiobutton">
             <radio-item show-fields="primaryContent/widget/gridBlockWidget/gridOptions/textAlign, primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/gridBlockTitle, primaryContent/widget/gridBlockWidget/gridOptions/circle, primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/titleLink" value="Yes" />
             <radio-item value="No" />

@@ -99,6 +99,19 @@ body {
         padding: 0 !important;
       }
     }
+
+    &.text-align {
+      &--centered {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+      }
+      &--left {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+      }
+    }
   }
   a.button + a.button {
     margin-left: 12px;
