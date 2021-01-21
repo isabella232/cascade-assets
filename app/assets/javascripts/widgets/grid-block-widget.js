@@ -442,6 +442,7 @@ $(window).load(function () {
     }
   });
   normalizeHeights();
+  calculateDataHeight();
 });
 
 function normalizeHeights() {
@@ -459,5 +460,21 @@ function normalizeHeights() {
     // Set each height to the max height
     //   $('.grid-block-widget').height(tallest);
     $(this).find(".grid-block-widget").css("min-height", tallest);
+  });
+  hidePaginationButton();
+}
+
+function hidePaginationButton() {
+  $(".grid-block-widget__container").each(function () {
+    var hidden = $(this).find(".grid-block-widget:hidden").length;
+    var button = $(this).find(".grid-block-widget__button");
+    console.log("hidden " + hidden);
+    var currentWidgetContainer = $(this).attr("id");
+    var loadMoreButtonButton = " + .grid-block-widget__button";
+    var currentButton = "#" + currentWidgetContainer + loadMoreButtonButton;
+
+    if ($(this).find(".grid-block-widget:hidden").length <= 0) {
+      $(currentButton).remove();
+    }
   });
 }
