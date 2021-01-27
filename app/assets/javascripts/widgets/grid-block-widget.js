@@ -72,7 +72,7 @@ function calculateDataHeight() {
     $(this)
       .parent(".grid-block-widget")
       .addClass("grid-block-widget--text-overflow");
-    if ($(this).attr("data-height") > 110) {
+    if ($(this).attr("data-height") >= 158) {
       $(this).parent().find(".grid-block-widget__reveal--more").show();
     }
   });
