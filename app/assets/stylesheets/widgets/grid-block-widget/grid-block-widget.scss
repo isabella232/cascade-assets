@@ -481,6 +481,10 @@ body {
       p {
         padding-left: 24px;
         padding-right: 24px;
+
+        &:first-child {
+          margin-bottom: 0;
+        }
       }
 
       padding-bottom: 24px;
