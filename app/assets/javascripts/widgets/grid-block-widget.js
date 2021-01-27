@@ -63,16 +63,16 @@ $(function () {
 function calculateDataHeight() {
   console.log("calculating text data height");
 
-  // truncated text - 2 col
   $(".grid-block-widget__text").each(function () {
-    var textHeight = $(this).height();
-    $(this).attr("data-height", textHeight);
     $(this).addClass("grid-block-widget__text--truncated");
+
+    var scrollHeight = $(this)[0].scrollHeight;
+    $(this).attr("data-scroll-height", scrollHeight);
 
     $(this)
       .parent(".grid-block-widget")
       .addClass("grid-block-widget--text-overflow");
-    if ($(this).attr("data-height") > 110) {
+    if ($(this).attr("data-scroll-height") >= 158) {
       $(this).parent().find(".grid-block-widget__reveal--more").show();
     }
   });
