@@ -48,10 +48,12 @@
       #end 
       <!-- END IF CIRCLE --> 
     <!-- END IF ONE COLUMN TEMPLATE --> 
+    
     <!-- IF NOT ONE COL TEMPLATE --> 
     #else 
         #set ( $oneColWrapperBackgroundColor = "")
         #set ($oneColNoBg = "")
+        #set ($titleBgColor = $element.getChild($widgetXPath).getChild("gridOptions").getChild('textBackgroundColor').value)
     #end
     <!-- END IF NOT ONE COL TEMPLATE --> 
 
