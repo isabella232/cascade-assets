@@ -24,6 +24,18 @@ b) select (this) format: Chapman.edu: Chapman.edu: /_cascade/formats/modular/uni
 #import( "/_cascade/formats/helpers.velocity" )
 #import ("/_cascade/formats/modular/uninav/_offCanvas_umbrella_nav_button.vtl")
 
+#set ( $isCustomNavigation = $_XPathTool.selectSingleNode($contentRoot, "/system-data-structure/uninav/custom-navigation").value )
+
+#if ($isCustomNavigation == 'Yes')
+    #set ($customNavigation = 'custom-navigation')
+    <style>
+        .custom-navigation .uninav__umbrella-nav-button-container {
+    display: none !important;
+}
+    </style>
+#else 
+    #set ($customNavigation = '')
+#end
 ## Log velocity variables in the browser console on dev
 
 ##
@@ -68,6 +80,7 @@ b) select (this) format: Chapman.edu: Chapman.edu: /_cascade/formats/modular/uni
 ##
 ## Cascade provides a $currentPage object to every format.
 #set ( $pagePath = $currentPage.path )
+#set ( $parentFolder = $currentPage.parentFolder.name ) 
 
 ## This will be set by data macros below.
 #set ( $pageUmbrellaCategory = [] )
@@ -150,7 +163,7 @@ b) select (this) format: Chapman.edu: Chapman.edu: /_cascade/formats/modular/uni
 ##
 ## start uninav begin
 #macro ( buildOmniNav )
-<nav id="uninav" class="$brandClass">
+<nav id="uninav" class="$brandClass $customNavigation $parentFolder">
   <!-- pagePath: $pagePath -->
   <!-- pageUmbrellaCategory: $pageUmbrellaCategory -->
   <!-- umbrellaAssets count: $umbrellaAssets.size() -->
