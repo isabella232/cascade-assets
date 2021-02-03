@@ -1,0 +1,18 @@
+.grid-block-widget {
+  &__container {
+    .grid-block-widget {
+      &__text {
+        &--white {
+          a {
+            color: $red;
+          }
+          &--black {
+            a {
+              color: $white;
+            }
+          }
+        }
+      }
+    }
+  }
+}
