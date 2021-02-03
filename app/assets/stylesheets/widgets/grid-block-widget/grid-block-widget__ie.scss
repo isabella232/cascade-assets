@@ -1,3 +1,13 @@
+.ie {
+  .grid-block-widget__container--3-col {
+    display: flex;
+    flex-direction: row;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
 // @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
 //   @mixin grid-col($num) {
 //     .grid-block-widget {

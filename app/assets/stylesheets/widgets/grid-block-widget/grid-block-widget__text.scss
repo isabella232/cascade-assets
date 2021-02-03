@@ -1,6 +1,13 @@
 .grid-block-widget {
   &__container {
     .grid-block-widget {
+      &__title {
+        width: 100%;
+        position: relative;
+        display: block;
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+      }
       &__text {
         &--white {
           a {
