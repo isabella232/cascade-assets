@@ -6,9 +6,14 @@ html body .text-editor-widget {
   margin: 2rem 0;
   padding: 5rem;
 
+  @include respond(phone) {
+    padding: 2rem;
+  }
+
   h3 {
     margin-top: 0;
     margin-bottom: 2rem;
+    text-transform: uppercase;
   }
 
   h2 {
@@ -16,11 +21,12 @@ html body .text-editor-widget {
   }
 
   .text-image__container,
-  .text-video__container {
+  .grid-video__container {
     grid-row: 1 / span 2
   }
 
   .grid-text {
+
     &__left,
     &__right,
     &__middle {
@@ -31,21 +37,11 @@ html body .text-editor-widget {
       }
     }
 
-    &__left.full
-    &__right.full
-    &__stacked.full {
+    &__left.full &__right.full &__stacked.full {
       grid-column: 1 / span 2;
     }
 
     &__left {
-
-      &.align-top {
-
-      }
-
-      &.align-middle {
-        
-      }
 
       &.align-bottom {
         display: flex;
@@ -53,7 +49,7 @@ html body .text-editor-widget {
         justify-content: flex-end;
       }
 
-      &.no-image + .button-container {
+      &.no-image+.button-container {
         flex-direction: column;
         margin: 0 0 0 5rem;
 
@@ -72,8 +68,12 @@ html body .text-editor-widget {
         }
       }
 
-      & + .text-image__container,
-      & + .grid-video__container {
+      &.no-image+.link-container {
+        flex-direction: column;
+      }
+
+      &+.text-image__container,
+      &+.grid-video__container {
         margin-left: 5rem;
       }
     }
@@ -85,19 +85,7 @@ html body .text-editor-widget {
         grid-column: 1 / span 2;
       }
 
-      &.align-top {
-        
-      }
-
-      &.align-middle {
-        
-      }
-
-      &.align-bottom {
-        
-      }
-
-      &.no-image + .button-container {
+      &.no-image+.button-container {
         flex-direction: column;
         margin: 0 5rem 0 0;
 
@@ -116,15 +104,23 @@ html body .text-editor-widget {
         }
       }
 
-      & + .text-image__container,
-      & + .grid-video__container {
+      &.no-image+.link-container {
+        flex-direction: column;
+      }
+
+      &+.text-image__container,
+      &+.grid-video__container {
         margin-right: 5rem;
       }
 
-      & + .link-container {
+      &+.link-container {
         flex-direction: column;
         margin-top: 0;
         margin-right: 5rem;
+
+        @include respond(small) {
+          flex-direction: row;
+        }
       }
     }
 
@@ -132,27 +128,74 @@ html body .text-editor-widget {
       grid-row: 1 / span 1;
       text-align: center;
 
-      & + .button-container__center {
+      &+.button-container__center {
         flex-direction: row;
         justify-content: center;
       }
 
-      & + .link-container {
+      &+.link-container {
         grid-column: 1 / span 2;
         text-align: center;
         display: flex;
         justify-content: center;
       }
     }
+
+    &__float-container {
+      margin-top: 2rem;
+
+      .grid-text__img-container {
+        float: left;
+        width: 200px;
+        height: 200px;
+        margin-right: 5rem;
+        margin-bottom: 2rem;
+      }
+    }
+  }
+
+  &[text-only-align="left"][img-video="text"]>.button-container,
+  &[text-only-align="left"][img-video="text"]>.link-container {
+    grid-column: 2 /span 1;
+  }
+
+  @include respond(small) {
+
+    &[text-only-align="left"][img-video="text"]>.button-container,
+    &[text-only-align="left"]>.link-container {
+      grid-column: 1 /span 2;
+    }
+  }
+
+  &[text-only-align="right"][img-video="text"]>.button-container,
+  &[text-only-align="right"][img-video="text"]>.link-container {
+    grid-column: 1 /span 1;
+  }
+
+  @include respond(small) {
+
+    &[text-only-align="right"][img-video="text"]>.button-container,
+    &[text-only-align="right"][img-video="text"]>.link-container {
+      grid-column: 1 /span 2;
+    }
+  }
+
+  &[text-only-align="stacked"][img-video="text"]>.link-container {
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 2;
   }
 
   @include respond(tab-port) {
-    &[img-shape="landscape"] > .grid-text__left {
+
+    &[img-shape="landscape"]>.grid-text__left,
+    &[img-video="textVideo"]>.grid-text__left,
+    &[img-video="textVideo"]>.grid-text__right {
       grid-column: 1 / span 2;
       grid-row: 2 / span 1;
     }
 
-    &[img-video="textImage"] > .text-image__container.landscape {
+    &[img-video="textImage"]>.text-image__container.landscape,
+    &[img-video="textVideo"]>.grid-video__container {
       grid-column: 1 / span 2;
       grid-row: 1 / span 1;
       margin: 0 auto 3rem auto;
@@ -160,18 +203,21 @@ html body .text-editor-widget {
   }
 
   @include respond(small) {
-    &[img-video="textImage"] > .grid-text__left,
-    &[img-video="textImage"] > .grid-text__right {
+
+    &[img-video="textImage"]>.grid-text__left,
+    &[img-video="textImage"]>.grid-text__right {
       grid-column: 1 / span 2;
-      grid-row: 1 / span 1;    
+      grid-row: 2 / span 1;
     }
 
-    &[img-video="textImage"] > .text-image__container {
+    &[img-video="textImage"]>.text-image__container {
       grid-column: 1 / span 2;
       grid-row: 1 / span 1;
       margin: 0 auto 3rem auto;
     }
   }
+
+
 
   .text-image {
 
@@ -186,21 +232,9 @@ html body .text-editor-widget {
         object-fit: cover;
       }
 
-      &.square {
-        img {
-
-        }
-      }
-
       &.circle {
         img {
           border-radius: 50%;
-        }
-      }
-
-      &.portrait {
-        img {
-          
         }
       }
 
@@ -208,10 +242,32 @@ html body .text-editor-widget {
         width: 400px;
         height: 225px;
 
-        img {
-          
+        @include respond(phone) {
+          width: 265px;
+
+          img {
+            width: 100%;
+          }
         }
       }
+    }
+  }
+
+  .grid-video__container.desktop {
+    display: flex;
+    align-self: center;
+
+    @include respond(wildcard, 30em) {
+      display: none;
+    }
+  }
+
+  .grid-video__container.mobile {
+    display: none;
+    align-self: center;
+
+    @include respond(wildcard, 30em) {
+      display: flex;
     }
   }
 
@@ -240,17 +296,32 @@ html body .text-editor-widget {
     margin-top: 2rem;
     flex-wrap: wrap;
     grid-column: 1 / span 2;
+    font-size: 1.6rem;
 
     a {
       margin-bottom: 1rem;
+      font-size: 1.6rem;
+    }
+
+    @include respond(small) {
+      width: 100%;
+
+      div[class*="button-container"] {
+        width: 100%;
+      }
     }
   }
 
-  &[text-align="right"] > div[class*="button-container"] {
-    justify-self: flex-end;
+  ul.link-container {
+    grid-column: 1 / span 2;
   }
 
-  .grid-text__stacked + div[class*="button-container"] {
+  &[text-align="right"]>div[class*="button-container"],
+  &[text-align="right"]>ul.link-container {
+    justify-self: flex-start;
+  }
+
+  .grid-text__stacked+div[class*="button-container"] {
     grid-row: 2 / span 1;
     grid-column: 1 / span 2;
   }
@@ -270,16 +341,22 @@ html body .text-editor-widget {
     &.black {
       background-color: black;
       color: white;
+
+      &:hover {
+        background-color: black;
+        color: white;
+      }
     }
 
     &.white {
       background-color: white;
-      border: 1px solid rgba(0,0,0,0.25);
+      border: 1px solid rgba(0, 0, 0, 0.25);
       color: black;
-    }
 
-    &.red {
-
+      &:hover {
+        background-color: white;
+        color: black;
+      }
     }
   }
 
@@ -296,5 +373,60 @@ html body .text-editor-widget {
         border-bottom: 1px solid currentColor;
       }
     }
+
+    @include respond(small) {
+      & {
+        grid-column: 1 / span 2;
+      }
+    }
+  }
+
+  &[img-wrap="true"][img-video="textImage"]>.link-container {
+    grid-row: 2 / span 1;
+  }
+}
+
+html.three-column-template body .text-editor-widget {
+
+  &[img-shape="landscape"]>.grid-text__left,
+  &[img-shape="landscape"]>.grid-text__right {
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 2;
+  }
+
+  .text-image__container.landscape {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 2;
+    margin: 0 auto 2rem auto;
+  }
+
+  &[img-video="textVideo"]>.grid-text__left,
+  &[img-video="textVideo"]>.grid-text__right {
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 2;
+  }
+
+  &[img-video="textVideo"]>.grid-video__container {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 2;
+    margin: 0 auto 2rem auto;
+  }
+
+  &[img-video="textVideo"]>.link-container {
+    grid-column: 1 / span 2;
+  }
+}
+
+html.one-column-template body .text-editor-widget {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 5rem 25rem;
+}
+
+html.one-column-template body [class*="--grey"] {
+  background-color: #e5e5e5;
+
+  &.text-editor-widget {
+    border: 1px solid rgba(0, 0, 0, 0.10);
   }
 }

@@ -277,7 +277,7 @@ module ContentTypes
 
     def two_column_communications
       # Cascade Data Models
-      @configuration_set = ConfigurationSet.two_column
+      @configuration_set = ConfigurationSet.one_column
       @metadata_set =
         MetadataSet.page(title: 'Modular Two Column School of Communications')
       @data_definition = DataDefinitions::TwoColumn.default
@@ -570,6 +570,9 @@ module ContentTypes
     def render_static_two_column_primary_content
       # This reproduces content from static sample version
       format("%s",
+      # render_static_partial("widgets/primary_content/text_editor_text_only"),
+      # render_static_partial("widgets/primary_content/text_editor_text_wrap"),
+      # render_static_partial("widgets/primary_content/text_editor_text_video"),
       render_static_partial("widgets/primary_content/text_editor_text_image"),
         # render_static_partial("widgets/primary_content/three_photo_callout_1"),
         # render_static_partial("widgets/primary_content/news_events_feed_1"),

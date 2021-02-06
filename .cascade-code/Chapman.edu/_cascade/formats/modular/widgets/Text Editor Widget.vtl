@@ -83,8 +83,11 @@
             #end
             <span>$serializedText</span>
         </div>
-        <div class='grid-video__container'>
+        <div class='grid-video__container desktop'>
             <iframe width="400" height="225" src="$_EscapeTool.xml($videoUrl)" frameborder="0"></iframe>
+        </div>
+        <div class='grid-video__container mobile'>
+            <iframe width="300" height="225" src="$_EscapeTool.xml($videoUrl)" frameborder="0"></iframe>
         </div>
     #else
         <div class='grid-text__custom'>$serializedText</div>
