@@ -25,6 +25,72 @@
           #if ($currentPage.parentFolder.metadata.getDynamicField('NN Test - Custom Navigation').value != '')
           
           foldername $currentPage.parentFolder.name
+          
+        ##   traversing for subfolders 
+    
+          
+        currentPage Children: $currentPage.parentFolder.children
+          
+        #set( $folder    = $_.locateFolder('/test-section/nick-test', 'Chapman.edu') )
+        folder: $folder
+        
+        #set( $children  = $folder.children )
+    
+            #if( $children.size() > 0 )
+            #set( $children    = $folder.children )
+            #set ($query = $_.query())
+            children: $children
+            
+            #set( $linkAbleAssetTypes = ["folder"] )
+            $linkAbleAssetTypes
+            
+        #traverseFolder($folder, 1)##
+        
+        #macro(traverseFolder $folderRef $depth)##
+              #if($folderRef.children.size() > 0)##
+                    #set($array = [])
+                    #set($arrayOfFolderIDs = [])
+                    #foreach($child in $folderRef.children)##
+                        
+                        #if ($linkAbleAssetTypes.contains($child.identifier.type) )##
+                               
+                            #if ( $child.assetType == "folder" ) 
+                              
+                              #set ($currentFolderPath = $child.path)
+                              #set ($currentfolderID = "'" + $child.identifier.id + "'")
+                              
+                              child folder name: $child.name
+                              child folder metadata: $child.metadata.displayName
+                              child folder metadata: $child.metadata.getDynamicField('Custom Navigation').value
+                              #set ($child.metadata.getDynamicField('Custom Navigation') = 'nick was here')
+                            ##   $array.add($child.name)
+                              $array.add($currentFolderPath)
+                              
+                              $arrayOfFolderIDs.add($currentfolderID)
+
+                              array: $array
+                              arrayOfFolderIDs: $arrayOfFolderIDs
+                                 
+
+                            #end
+                            #elseif ($child.identifier.type == "folder" && $depth < 20)##
+                                #traverseFolder($child, $_MathTool.add($depth, 1))##
+                            #end
+                        #end##
+                  #end##
+                            final array: $array
+                            final array of folder IDs: $arrayOfFolderIDs
+                    
+        
+        
+            #end##
+            
+        #end ## closes #if( $children.size() > 0 )
+
+          
+          
+          
+          
         ##   #if ($currentPage.parentFolder.name == 'nick-test')
           <li>Custom Nav enabled</li>
             
@@ -49,6 +115,51 @@ var editURL =
   "${currentPageID}" +
   "?" +
   "apiKey=25c1b597-04f0-4888-90ed-68719408964c";
+  
+// DEAL WITH THE ARRAY OF SUBFOLDERS - WE NEED TO ADD THE CUSTOM NAVIGATION BLOCK PATH TO THE METADADTA FIELD
+        ## for (var i = 0; i < ${arrayOfFolderIDs}.length; i++) {
+        ##     console.log('current folder ID ' + ${arrayOfFolderIDs}[i]);
+            
+            ##   var readURLFolder =
+            ##   "https://dev-cascade.chapman.edu/api/v1/read/folder/" +
+            ##   ${arrayOfFolderIDs}[i] +
+            ##   "?" +
+            ##   "apiKey=25c1b597-04f0-4888-90ed-68719408964c";
+              
+        ##     console.log(` current folder readurl ${readURLFolder} `);
+            
+            
+        ##     var editURLFolder =
+        ##       "https://dev-cascade.chapman.edu/api/v1/edit/folder/" +
+        ##       "${arrayOfFolderIDs}[i]" +
+        ##       "?" +
+        ##       "apiKey=25c1b597-04f0-4888-90ed-68719408964c";
+        ## }
+        
+        ${arrayOfFolderIDs}.forEach(function (item, index) {
+          console.log(item, index);
+          
+          var readURLFolder =
+          "https://dev-cascade.chapman.edu/api/v1/read/folder/" +
+          item +
+          "?" +
+          "apiKey=25c1b597-04f0-4888-90ed-68719408964c";
+          
+          var editURLFolder =
+          "https://dev-cascade.chapman.edu/api/v1/read/folder/" +
+          item +
+          "?" +
+          "apiKey=25c1b597-04f0-4888-90ed-68719408964c";
+          
+          console.log('readurlfolder ' + readURLFolder);
+          
+          getDataFromFolders(readURLFolder);
+          
+        });
+        
+        
+// END DEAL WITH THE ARRAY OF SUBFOLDERS - WE NEED TO ADD THE CUSTOM NAVIGATION BLOCK PATH TO THE METADADTA FIELD
+
 
 console.log("API read url: " + readURL);
 
@@ -72,6 +183,23 @@ async function getData() {
 
     let data = await response.json();
 
+    return data;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+}
+
+async function getDataFromFolders(url) {
+  try {
+    // GET some data from whereever
+    let response = await fetch(url);
+
+    let data = await response.json();
+    console.log('subfolder data ' + data.asset.folder.metadata.displayName);
+    console.log('subfolder data ' + data.asset.folder.metadata.dynamicFields[0].name);
+    console.log('subfolder data ' + data.asset.folder.metadata.dynamicFields[0].fieldValues[0].value);
+    ## console.log('subfolder metadata dynamicfields ' + data.asset.folder.metadata.displayName);
     return data;
   } catch (err) {
     console.log(err);
@@ -137,7 +265,48 @@ async function getData() {
     .catch((error) => {
       console.error("Error:", error);
     });
-})();
+})
+();
+
+
+
+// IIFE to use `await` at the top level
+## (async function manipulateDataFolder() {
+##   // this is an infinite loop, for developing you might want
+##   // a way to stop it, can crash your browser if you mess
+##   // it up inside =)...
+##   // while (true) {
+##   console.log("getting subfolder data...");
+##   let data = await getDataFromFolders();
+##   console.log('subfolder data ' + data);
+
+##   var folderMetadataDynamicFieldsArray = data;
+##   console.log('folderMetadataDynamicFieldsArray ' + folderMetadataDynamicFieldsArray)
+  
+##   data.folder.metadata.dynamicFields.forEach(function (key, index) {
+##     if (key.name == "Custom Navigation") {
+##       console.log('found custom navigation field in a subfolder')
+      
+##     } // pageConfigArray.forEach() callback end
+##   });
+##   console.log(data.asset.page.pageConfigurations);
+
+##   fetch(editURL, {
+##     method: "POST", // or 'PUT'
+##     headers: {
+##       "Content-Type": "application/json",
+##     },
+##     body: JSON.stringify(data),
+##   })
+##     .then((response) => response.json())
+##     .then((data) => {
+##       console.log("Success:", data);
+##     })
+##     .catch((error) => {
+##       console.error("Error:", error);
+##     });
+## })
+## ();
 
            });
             </script>
