@@ -153,6 +153,8 @@ var editURL =
           
           console.log('readurlfolder ' + readURLFolder);
           
+          console.log('editURLFolder ' + editURLFolder);
+
           getDataFromFolders(readURLFolder);
           
         });
@@ -196,10 +198,11 @@ async function getDataFromFolders(url) {
     let response = await fetch(url);
 
     let data = await response.json();
-    console.log('subfolder data ' + data.asset.folder.metadata.displayName);
-    console.log('subfolder data ' + data.asset.folder.metadata.dynamicFields[0].name);
-    console.log('subfolder data ' + data.asset.folder.metadata.dynamicFields[0].fieldValues[0].value);
-    ## console.log('subfolder metadata dynamicfields ' + data.asset.folder.metadata.displayName);
+    console.log('folder object ' +  JSON.stringify(data.asset.folder))
+
+    console.log(data.asset.folder.metadata.displayName + ' ' + data.asset.folder.metadata.dynamicFields[0].fieldValues[0].value);
+    data.asset.folder.metadata.dynamicFields[0].fieldValues[0].value = "${customBlockPath}"
+    console.log('updated folder object ' + data.asset.folder)
     return data;
   } catch (err) {
     console.log(err);
