@@ -6,13 +6,100 @@
         current page path $currentPage.path
         current page StructuredData $currentPage.StructuredData
         #set ($structuredData = $currentPage.StructuredData ) 
+        
+     
+         #set( $folder    = $_.locateFolder('/test-section/nick-test', 'Chapman.edu') )
+        folder: $folder
+        
+        #set( $children  = $folder.children )
     
-        ## $_PropertyTool.outputProperties($currentPage)
+            #if( $children.size() > 0 )
+            #set( $children    = $folder.children )
+            #set ($query = $_.query())
+            children: $children
+            
+            #set( $linkAbleAssetTypes = ["folder"] )
+            $linkAbleAssetTypes
+            
+            
+            parentfolder: $folder.parentFolder.name
+        #traverseFolder($folder, 1)##
+
+   
+   metafield $currentPage.parentFolder.metadata.getDynamicField("Custom Navigation").value
+   
+#macro(traverseFolder $folderRef $depth)##
+## OBJECTIVE: SET THE METADATA DYNAMIC FIELD CALLED "CUSTOM NAVIGATION"
+## THIS WILL ULTIMATELY ALLOW SUBDIRECTORY'S CHILD PAGES TO INHERIT A CUSTOM NAVIGATION SET ON THE TOP LEVEL DIRECTORY
+
+traversal: 
+  #if($folderRef.children.size() > 0)##
+        #foreach($child in $folderRef.children)##
+         
+        ## INITIALIZE EMPTY FOLDER ID ARRAYS. WE'LL USE THESE IN THE JAVASCRIPT READ/EDIT BELOW
+         #if (!$array)
+             #set($array = [])
+             #set($arrayOfFolderIDs = [])
+         #end
+         
+        ##  FOLDERS ONLY, BECAUSE WE'RE SETTING THE METADATA DYNAMIC FIELD CALLED "CUSTOM NAVIGATION"
+           #if ( $child.assetType == "folder") 
+            ##   $child.name
+              #set ($currentFolderPath = "'" + $child.path + "'")
+              #set ($currentfolderID = "'" + $child.identifier.id + "'")
+              $array.add($currentFolderPath)
+              $arrayOfFolderIDs.add($currentfolderID)
+            ##   array: $array
+              
+              
+            #set ($subFolderCustomNav = $child.metadata.getDynamicField('Custom Navigation'))
+            ##   ugh! $_PropertyTool.isNull( $child.metadata.getDynamicField('Custom Navigation'))
+            ## #if ($subfolderval != '""')
+            ##     subfolderval $subFolderCustomNav.value
+            ## #end
+            
+            #if (!$_PropertyTool.isNull($subFolderCustomNav) && !$_PropertyTool.isEmpty($subFolderCustomNav.value))
+                hereitis $child.name | $subFolderCustomNav.value
+            #else 
+                no custom navigation detected on this $child.name folder
+                #traverseFolder($child, $_MathTool.add($depth, 1))##
+            #end
+            
+            props $_PropertyTool.outputProperties($subFolderCustomNav)
+      
+            
         
-        #set ($customNavigationFolderPath = $_.locateFolder('/_cascade/blocks/html/custom-navigation', 'Chapman.edu'))
+            
+           
         
+            ## dynamicfieldvalue: $child.metadata.getDynamicField('Custom Navigation').value
+            ## isEmpty: $_PropertyTool.isEmpty( $child.metadata.getDynamicField('Custom Navigation') )
+            ## #if ($_PropertyTool.isEmpty( $child.metadata.getDynamicField('Custom Navigation')) == "false" )
+            ##     found non-blank custom navigation field
+            ##     #set ($subFolderCustomNav = $child.metadata.getDynamicField('Custom Navigation'))
+            ##     SUBFOLDER CUSTOM NAV initial: $currentFolderPath | $subFolderCustomNav.value
+            ##     #set ($subFolderCustomNav = "${customBlockPath}")
+            ##     ## SUBFOLDER CUSTOM NAV updated: $child.metadata.getDynamicField('Custom Navigation')
+            ## #elseif ($_PropertyTool.isEmpty( $child.metadata.getDynamicField('Custom Navigation') ))
+            ##     no custom navigation detected on this folder
+            ##     #traverseFolder($child, $_MathTool.add($depth, 1))##
+            ## #end
+        #end
+    #end
+        
+  #end##
+#end
+#set ($totalArray = $array)
+#set ($totalArrayOfFolderIds = $arrayOfFolderIDs)
+totalArray: $totalArray
+totalArray IDs: $arrayOfFolderIDs
+totalArray Size: $array.size()
+#end
 
         
+        
+        #set ($customNavigationFolderPath = $_.locateFolder('/_cascade/blocks/html/custom-navigation', 'Chapman.edu'))
+
         #foreach($child in $customNavigationFolderPath.children)
             navblock: $child.name
             
@@ -50,7 +137,6 @@
           #if ($currentPage.parentFolder.metadata.getDynamicField('NN Test - Custom Navigation').value != '')
           
           foldername $currentPage.parentFolder.name
-        ##   #if ($currentPage.parentFolder.name == 'nick-test')
           <li>Custom Nav enabled</li>
             
             
@@ -168,71 +254,6 @@ async function getData() {
             </script>
         #protect]]>    
 
-                
-                
-                ## logo: $customBlock.getStructuredDataNode("uninav/logo").identifier
-                
-                ## #set ($menuItems =  $customBlock.getStructuredDataNodes('uninav/globalNav/menuItem/label'))
-                
-                
-                
-
-
-
-                ## menuItems:
-                
-                
-                
-                
-        ##         #foreach ($menuItem in $menuItems)
-        ##         ## menuItem props $_PropertyTool.outputProperties($menuItem)
-                
-                    
-        ##             $menuItem.textValue
-                    
-        ##             $menuItem.identifier
-                    
-        ##             ## $menuItem.getStructuredDataNodes("//menuItem[label='${menuItem.value}']/menuLink")
-                    
-        ##             $menuItem.textValueAsXMLElement
-
-                    
-        ##         #end
-                
-        ##         ##  #set ($submenuItems = $_XPathTool.selectNodes($menuItems,
-        ##         ## "//menuItem[label='${menuItem.value}']/submenuItem[label!='']") )
-        ##         #set ($submenuItems =  $customBlock.getStructuredDataNodes('uninav/globalNav/menuItem/submenuItem'))
-        ##         #set ($link = $customBlock.getStructuredDataNodes('uninav/globalNav/menuItem/submenuItem').textvalue )
-
-        ##         submenuItems:
-                
-                
-        ##         ## $_PropertyTool.outputProperties($submenuItems)
-                
-                
-        ##         #foreach ($submenuItem in $submenuItems)
-                
-        ##         ## $_PropertyTool.outputProperties($submenuItem)
-        ##             ${_EscapeTool.xml($submenuItem.getChild('label').textValue)}
-        ##             ${_EscapeTool.xml($submenuItem.getChild('linkType').textValue)}
-        ##             ${_EscapeTool.xml($submenuItem.assetIdentifier)}
-        ##             ## Identifier.Path.PathAsString
-                    
-                    
-                    
-                    
-
-        ##         #end
-
-        ##         svg: $customBlock.getStructuredDataNode('uninav/logo/icon_svg').textValue
-             
-                
-              
-
-
-        
-        
-        
         #end
         
 
