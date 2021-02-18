@@ -29,7 +29,7 @@
             foreachblock: $block : $currentPage.path
             
             #if ($currentPage.path.contains($block))
-                aha! $block
+                #log("aha! ${block}")
                 #set ($customNavBlock = $block)
             #end
          #end
