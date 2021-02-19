@@ -51,9 +51,21 @@ traversal:
             ##   - $_PropertyTool.outputProperties($parentFolder)
               - parentfolder isnull? $_PropertyTool.isNull($parentFolder)
               
-            #if (!$_PropertyTool.isNull($parentFolder) && $depth < 20) 
+            #if (!$_PropertyTool.isNull($parentFolder) && $depth < 10) 
             ## #if (!$_PropertyTool.isNull($parentFolder) && !$_PropertyTool.isEmpty($parentFolder.value))
-                #set ($currentParentFolder = $_.locateFolder($parentFolder.path, 'Chapman.edu') )
+                
+                #set ($currentParentFolder = $child.parentFolder.path)
+                #set ($grandParentFolder = $child.parentFolder.parentFolder.path)
+
+                $child.parentFolder.parentFolder.path
+                :( path $child.parentFolder.path
+                :( :( path $child.parentFolder.parentFolder.path
+                
+                ## example:
+                ## #set( $folder    = $_.locateFolder($currentPage.parentFolder.path, 'Chapman.edu') )
+                
+                #set ($currentParentFolder = $_.locateFolder($child.parentFolder.parentFolder.path, 'Chapman.edu') )
+                ## #set ($currentParentFolder = $_.locateFolder($parentFolder.path, 'Chapman.edu') )
                 depth: $depth
                 the parent folder: $parentFolder.path
                 #traverseFolder($currentParentFolder, $_MathTool.add($depth, 1))##
