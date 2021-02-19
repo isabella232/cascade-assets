@@ -7,8 +7,13 @@
         current page StructuredData $currentPage.StructuredData
         #set ($structuredData = $currentPage.StructuredData ) 
         
-     
-         #set( $folder    = $_.locateFolder('/test-section/nick-test', 'Chapman.edu') )
+        currentPgae Parentfolder: $currentPage.parentFolder.path
+        ## #set( $folder    = $_.locateFolder("$currentPage.parentFolder.path", 'Chapman.edu') )
+        
+        
+        ## #set( $folder    = $_.locateFolder('test-section/nick-test/contextual-uninav/students/health-and-safety/health-services', 'Chapman.edu') )
+        #set( $folder    = $_.locateFolder($currentPage.parentFolder.path, 'Chapman.edu') )
+        ##  #set( $folder    = $_.locateFolder('/test-section/nick-test', 'Chapman.edu') )
         folder: $folder
         
         #set( $children  = $folder.children )
@@ -22,8 +27,8 @@
             $linkAbleAssetTypes
             
             
-            parentfolder: $folder.parentFolder.name
-        #traverseFolder($folder, 1)##
+            parentfolder: $folder.parentFolder.path
+            #traverseFolder($folder, 1)##
 
    
    metafield $currentPage.parentFolder.metadata.getDynamicField("Custom Navigation").value
@@ -35,71 +40,65 @@
 traversal: 
   #if($folderRef.children.size() > 0)##
         #foreach($child in $folderRef.children)##
-         
-        ## INITIALIZE EMPTY FOLDER ID ARRAYS. WE'LL USE THESE IN THE JAVASCRIPT READ/EDIT BELOW
-         #if (!$array)
-             #set($array = [])
-             #set($arrayOfFolderIDs = [])
-         #end
-         
         ##  FOLDERS ONLY, BECAUSE WE'RE SETTING THE METADATA DYNAMIC FIELD CALLED "CUSTOM NAVIGATION"
            #if ( $child.assetType == "folder") 
-            ##   $child.name
               #set ($currentFolderPath = "'" + $child.path + "'")
               #set ($currentfolderID = "'" + $child.identifier.id + "'")
-              $array.add($currentFolderPath)
-              $arrayOfFolderIDs.add($currentfolderID)
-            ##   array: $array
               
+              #set ($parentFolder = $child.parentFolder)
+              current directory: $child.path | parentFolder:  $parentFolder.path
               
+            ##   - $_PropertyTool.outputProperties($parentFolder)
+              - parentfolder isnull? $_PropertyTool.isNull($parentFolder)
+              
+            #if (!$_PropertyTool.isNull($parentFolder) && $depth < 20) 
+            ## #if (!$_PropertyTool.isNull($parentFolder) && !$_PropertyTool.isEmpty($parentFolder.value))
+                #set ($currentParentFolder = $_.locateFolder($parentFolder.path, 'Chapman.edu') )
+                depth: $depth
+                the parent folder: $parentFolder.path
+                #traverseFolder($currentParentFolder, $_MathTool.add($depth, 1))##
+
+                
+                ## #traverseFolder($_.locateFolder('test-section/nick-test/contextual-uninav/students/health-and-safety/health-services', 'Chapman.edu'), 1)##
+                ## #traverseFolder($_.locateFolder($parentFolder, 'Chapman.edu'), 1)##
+
+                
+
+        
+            #elseif ($_PropertyTool.isNull($parentFolder)) 
+                This must be a top-level directory...
+                (No PARENT FOLDER detected on this $child.path folder)
+                ## #traverseFolder($child, $_MathTool.add($depth, 1))##
+            #end
+              
+            ##  #if ($child.parentFolder.size() == 0 )
+            ##     this is a top-level directory with no parent folders
+            ##  #end
+        
+        
+            ## GET THE CUSTOM NAVIGATION METADATA DYNAMIC FIELD, IF IT EXISTS:
             #set ($subFolderCustomNav = $child.metadata.getDynamicField('Custom Navigation'))
-            ##   ugh! $_PropertyTool.isNull( $child.metadata.getDynamicField('Custom Navigation'))
-            ## #if ($subfolderval != '""')
-            ##     subfolderval $subFolderCustomNav.value
-            ## #end
-            
             #if (!$_PropertyTool.isNull($subFolderCustomNav) && !$_PropertyTool.isEmpty($subFolderCustomNav.value))
                 hereitis $child.name | $subFolderCustomNav.value
             #else 
                 no custom navigation detected on this $child.name folder
-                #traverseFolder($child, $_MathTool.add($depth, 1))##
+                ## #traverseFolder($child, $_MathTool.add($depth, 1))##
             #end
             
-            props $_PropertyTool.outputProperties($subFolderCustomNav)
+            ## props $_PropertyTool.outputProperties($subFolderCustomNav)
       
-            
-        
-            
-           
-        
-            ## dynamicfieldvalue: $child.metadata.getDynamicField('Custom Navigation').value
-            ## isEmpty: $_PropertyTool.isEmpty( $child.metadata.getDynamicField('Custom Navigation') )
-            ## #if ($_PropertyTool.isEmpty( $child.metadata.getDynamicField('Custom Navigation')) == "false" )
-            ##     found non-blank custom navigation field
-            ##     #set ($subFolderCustomNav = $child.metadata.getDynamicField('Custom Navigation'))
-            ##     SUBFOLDER CUSTOM NAV initial: $currentFolderPath | $subFolderCustomNav.value
-            ##     #set ($subFolderCustomNav = "${customBlockPath}")
-            ##     ## SUBFOLDER CUSTOM NAV updated: $child.metadata.getDynamicField('Custom Navigation')
-            ## #elseif ($_PropertyTool.isEmpty( $child.metadata.getDynamicField('Custom Navigation') ))
-            ##     no custom navigation detected on this folder
-            ##     #traverseFolder($child, $_MathTool.add($depth, 1))##
-            ## #end
+    
         #end
     #end
         
   #end##
 #end
-#set ($totalArray = $array)
-#set ($totalArrayOfFolderIds = $arrayOfFolderIDs)
-totalArray: $totalArray
-totalArray IDs: $arrayOfFolderIDs
-totalArray Size: $array.size()
 #end
 
         
         
         #set ($customNavigationFolderPath = $_.locateFolder('/_cascade/blocks/html/custom-navigation', 'Chapman.edu'))
-
+            custom block loop:
         #foreach($child in $customNavigationFolderPath.children)
             navblock: $child.name
             
