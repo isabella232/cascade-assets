@@ -11,8 +11,8 @@
         ## #set( $folder    = $_.locateFolder("$currentPage.parentFolder.path", 'Chapman.edu') )
         
         
-        ## #set( $folder    = $_.locateFolder('test-section/nick-test/contextual-uninav/students/health-and-safety/health-services', 'Chapman.edu') )
-        #set( $folder    = $_.locateFolder($currentPage.parentFolder.path, 'Chapman.edu') )
+        #set( $folder    = $_.locateFolder('test-section/nick-test/contextual-uninav/students/health-and-safety/health-services', 'Chapman.edu') )
+        ## #set( $folder    = $_.locateFolder($currentPage.parentFolder.path, 'Chapman.edu') )
         ##  #set( $folder    = $_.locateFolder('/test-section/nick-test', 'Chapman.edu') )
         folder: $folder
         
@@ -51,7 +51,7 @@ traversal:
             ##   - $_PropertyTool.outputProperties($parentFolder)
               - parentfolder isnull? $_PropertyTool.isNull($parentFolder)
               
-            #if (!$_PropertyTool.isNull($parentFolder) && $depth < 10) 
+            #if (!$_PropertyTool.isNull($parentFolder) && $depth < 5) 
             ## #if (!$_PropertyTool.isNull($parentFolder) && !$_PropertyTool.isEmpty($parentFolder.value))
                 
                 #set ($currentParentFolder = $child.parentFolder.path)
@@ -66,6 +66,7 @@ traversal:
                 
                 #set ($currentParentFolder = $_.locateFolder($child.parentFolder.parentFolder.path, 'Chapman.edu') )
                 ## #set ($currentParentFolder = $_.locateFolder($parentFolder.path, 'Chapman.edu') )
+                current: $child.parentFolder.path
                 depth: $depth
                 the parent folder: $parentFolder.path
                 #traverseFolder($currentParentFolder, $_MathTool.add($depth, 1))##
