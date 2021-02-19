@@ -8,35 +8,7 @@
         #set ($structuredData = $currentPage.StructuredData ) 
         
         currentPgae Parentfolder: $currentPage.parentFolder.path
-        ## #set( $folder    = $_.locateFolder("$currentPage.parentFolder.path", 'Chapman.edu') )
         
-        
-        ## #set( $folder    = $_.locateFolder('test-section/nick-test/contextual-uninav/students/health-and-safety/health-services', 'Chapman.edu') )
-        ## #set( $folder    = $_.locateFolder($currentPage.parentFolder.path, 'Chapman.edu') )
-        ##  #set( $folder    = $_.locateFolder('/test-section/nick-test', 'Chapman.edu') )
-        
-        
-##         #set( $children  = $folder.children )
-    
-##             #if( $children.size() > 0 )
-##             #set( $children    = $folder.children )
-##             #set ($query = $_.query())
-##             children: $children
-            
-##             #set( $linkAbleAssetTypes = ["folder"] )
-##             $linkAbleAssetTypes
-            
-            
-##             parentfolder: $folder.parentFolder.path
-            
-##             ## #traverseFolder($folder, 1)##
-
-   
-##   metafield $currentPage.parentFolder.metadata.getDynamicField("Custom Navigation").value
-   
-
-
-
 #set ($customNavConfig = 'Uninav')
 ## PSEUDO CODE
 #macro(findCustomNavPath $folderRef $depth)##
@@ -45,16 +17,15 @@ folder: $folderRef.path
     #if ($depth > 15 ) 
     depth greater than 15
     #elseif ((!$_PropertyTool.isEmpty($folderRef.metadata.getDynamicField('Custom Navigation').value) ) )
-    
         dynamic metadata field: $folderRef.metadata.getDynamicField('Custom Navigation').value
-        #set ($customNavConfig = $folderRef.metadata.getDynamicField('Custom Navigation').value)
-        
+        #set ($customNavConfig = $folderRef.metadata.getDynamicField('Custom Navigation').value.replaceAll("Chapman.edu", ""))
         node is set on: $folderRef.path
-        customnavConfig: $customNavConfig
+        #set ($customNavObj = $_.locateBlock("${customNavConfig}", "Chapman.edu") )
+        custom nav detected: string: $customNavConfig | api object: $customNavObj
     #elseif ($_PropertyTool.isEmpty($folderRef.parentFolder) || $folderRef.path == '/')
         this is a root-level item
         #set ($customNavConfig = 'Uninav')
-        customnavConfig: $customNavConfig (this will probably have to be an API-object via locateblock)
+        customnavConfig: $customNavConfig $customNavConfig.path (this will probably have to be an API-object via locateblock)
     #else ## assume parent folder exists
         calling  find custom path on parent folder $folderRef.path
         ## folderref props: $_PropertyTool.outputProperties($folderRef)
@@ -68,7 +39,7 @@ folder: $folderRef.path
 #end
 
 ## #set( $folder    = $_.locateFolder('test-section/nick-test/contextual-uninav/students/health-and-safety/health-services', 'Chapman.edu') )
-#set( $folder    = $_.locateFolder('admission', 'Chapman.edu') )
+#set( $folder    = $_.locateFolder('test-section/nick-test', 'Chapman.edu') )
 folder path: $folder.path
 
 
