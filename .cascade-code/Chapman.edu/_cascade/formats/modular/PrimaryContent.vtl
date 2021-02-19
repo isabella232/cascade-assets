@@ -11,262 +11,76 @@
         ## #set( $folder    = $_.locateFolder("$currentPage.parentFolder.path", 'Chapman.edu') )
         
         
-        #set( $folder    = $_.locateFolder('test-section/nick-test/contextual-uninav/students/health-and-safety/health-services', 'Chapman.edu') )
+        ## #set( $folder    = $_.locateFolder('test-section/nick-test/contextual-uninav/students/health-and-safety/health-services', 'Chapman.edu') )
         ## #set( $folder    = $_.locateFolder($currentPage.parentFolder.path, 'Chapman.edu') )
         ##  #set( $folder    = $_.locateFolder('/test-section/nick-test', 'Chapman.edu') )
-        folder: $folder
         
-        #set( $children  = $folder.children )
+        
+##         #set( $children  = $folder.children )
     
-            #if( $children.size() > 0 )
-            #set( $children    = $folder.children )
-            #set ($query = $_.query())
-            children: $children
+##             #if( $children.size() > 0 )
+##             #set( $children    = $folder.children )
+##             #set ($query = $_.query())
+##             children: $children
             
-            #set( $linkAbleAssetTypes = ["folder"] )
-            $linkAbleAssetTypes
+##             #set( $linkAbleAssetTypes = ["folder"] )
+##             $linkAbleAssetTypes
             
             
-            parentfolder: $folder.parentFolder.path
-            #traverseFolder($folder, 1)##
+##             parentfolder: $folder.parentFolder.path
+            
+##             ## #traverseFolder($folder, 1)##
 
    
-   metafield $currentPage.parentFolder.metadata.getDynamicField("Custom Navigation").value
+##   metafield $currentPage.parentFolder.metadata.getDynamicField("Custom Navigation").value
    
-#macro(traverseFolder $folderRef $depth)##
-## OBJECTIVE: SET THE METADATA DYNAMIC FIELD CALLED "CUSTOM NAVIGATION"
-## THIS WILL ULTIMATELY ALLOW SUBDIRECTORY'S CHILD PAGES TO INHERIT A CUSTOM NAVIGATION SET ON THE TOP LEVEL DIRECTORY
 
-traversal: 
-  #if($folderRef.children.size() > 0)##
-        #foreach($child in $folderRef.children)##
-        ##  FOLDERS ONLY, BECAUSE WE'RE SETTING THE METADATA DYNAMIC FIELD CALLED "CUSTOM NAVIGATION"
-           #if ( $child.assetType == "folder") 
-              #set ($currentFolderPath = "'" + $child.path + "'")
-              #set ($currentfolderID = "'" + $child.identifier.id + "'")
-              
-              #set ($parentFolder = $child.parentFolder)
-              current directory: $child.path | parentFolder:  $parentFolder.path
-              
-            ##   - $_PropertyTool.outputProperties($parentFolder)
-              - parentfolder isnull? $_PropertyTool.isNull($parentFolder)
-              
-            #if (!$_PropertyTool.isNull($parentFolder) && $depth < 5) 
-            ## #if (!$_PropertyTool.isNull($parentFolder) && !$_PropertyTool.isEmpty($parentFolder.value))
-                
-                #set ($currentParentFolder = $child.parentFolder.path)
-                #set ($grandParentFolder = $child.parentFolder.parentFolder.path)
 
-                $child.parentFolder.parentFolder.path
-                :( path $child.parentFolder.path
-                :( :( path $child.parentFolder.parentFolder.path
-                
-                ## example:
-                ## #set( $folder    = $_.locateFolder($currentPage.parentFolder.path, 'Chapman.edu') )
-                
-                #set ($currentParentFolder = $_.locateFolder($child.parentFolder.parentFolder.path, 'Chapman.edu') )
-                ## #set ($currentParentFolder = $_.locateFolder($parentFolder.path, 'Chapman.edu') )
-                current: $child.parentFolder.path
-                depth: $depth
-                the parent folder: $parentFolder.path
-                #traverseFolder($currentParentFolder, $_MathTool.add($depth, 1))##
 
-                
-                ## #traverseFolder($_.locateFolder('test-section/nick-test/contextual-uninav/students/health-and-safety/health-services', 'Chapman.edu'), 1)##
-                ## #traverseFolder($_.locateFolder($parentFolder, 'Chapman.edu'), 1)##
+#set ($customNavConfig = 'Uninav')
+## PSEUDO CODE
+#macro(findCustomNavPath $folderRef $depth)##
+folder: $folderRef.path
 
-                
-
-        
-            #elseif ($_PropertyTool.isNull($parentFolder)) 
-                This must be a top-level directory...
-                (No PARENT FOLDER detected on this $child.path folder)
-                ## #traverseFolder($child, $_MathTool.add($depth, 1))##
-            #end
-              
-            ##  #if ($child.parentFolder.size() == 0 )
-            ##     this is a top-level directory with no parent folders
-            ##  #end
-        
-        
-            ## GET THE CUSTOM NAVIGATION METADATA DYNAMIC FIELD, IF IT EXISTS:
-            #set ($subFolderCustomNav = $child.metadata.getDynamicField('Custom Navigation'))
-            #if (!$_PropertyTool.isNull($subFolderCustomNav) && !$_PropertyTool.isEmpty($subFolderCustomNav.value))
-                hereitis $child.name | $subFolderCustomNav.value
-            #else 
-                no custom navigation detected on this $child.name folder
-                ## #traverseFolder($child, $_MathTool.add($depth, 1))##
-            #end
-            
-            ## props $_PropertyTool.outputProperties($subFolderCustomNav)
-      
+    #if ($depth > 15 ) 
+    depth greater than 15
+    #elseif ((!$_PropertyTool.isEmpty($folderRef.metadata.getDynamicField('Custom Navigation').value) ) )
     
-        #end
+        dynamic metadata field: $folderRef.metadata.getDynamicField('Custom Navigation').value
+        #set ($customNavConfig = $folderRef.metadata.getDynamicField('Custom Navigation').value)
+        
+        node is set on: $folderRef.path
+        customnavConfig: $customNavConfig
+    #elseif ($_PropertyTool.isEmpty($folderRef.parentFolder) || $folderRef.path == '/')
+        this is a root-level item
+        #set ($customNavConfig = 'Uninav')
+        customnavConfig: $customNavConfig (this will probably have to be an API-object via locateblock)
+    #else ## assume parent folder exists
+        calling  find custom path on parent folder $folderRef.path
+        ## folderref props: $_PropertyTool.outputProperties($folderRef)
+        
+        #set ($parentNode = $_.locateFolder($folderRef.parentFolder.path, 'Chapman.edu'))
+        
+        parentNode: $parentNode
+        #findCustomNavPath($parentNode, $_MathTool.add($depth, 1))
+        ## #end
     #end
-        
-  #end##
-#end
 #end
 
+## #set( $folder    = $_.locateFolder('test-section/nick-test/contextual-uninav/students/health-and-safety/health-services', 'Chapman.edu') )
+#set( $folder    = $_.locateFolder('admission', 'Chapman.edu') )
+folder path: $folder.path
+
+
+#findCustomNavPath($folder, 1)
+
+## #end
+
         
         
-        #set ($customNavigationFolderPath = $_.locateFolder('/_cascade/blocks/html/custom-navigation', 'Chapman.edu'))
-            custom block loop:
-        #foreach($child in $customNavigationFolderPath.children)
-            navblock: $child.name
-            
-            #if (!$customNavArray)
-              #set($customNavArray = [])
-            #end
-            $customNavArray.add($child.name)
-        #end
-         customNavarray: $customNavArray
-         $currentPage.path
-         
-         #foreach( $block in $customNavArray )
-            ## #set ($block = $block.replace('Custom Navigation - '))
-            foreachblock: $block : $currentPage.path
-            
-            #if ($currentPage.path.contains($block))
-                #log("aha! ${block}")
-                #set ($customNavBlock = $block)
-            #end
-         #end
-         
-        ## #set ($customNavBlock = $currentPage.parentFolder.metadata.getDynamicField('Custom Navigation').value.replaceAll("Chapman.edu", "")))
-        <li>Custom Navigation Path: $customNavBlock.path</li>
-        
-        #set ($currentPagePath = $currentPage.path)
-        #set ($customBlock = $_.locateBlock("_cascade/blocks/html/custom-navigation/${customNavBlock}", "Chapman.edu"))
-        customblock path: $customBlock.path
-        #set ($customBlockPath = $customBlock.path)
-        #log($customBlockPath)
-        
-        $customBlock.StructuredData
-        #set ($customBlockID = $customBlock.identifier.id)
-          
-          customBlock ID: $customBlockID
-          #if ($currentPage.parentFolder.metadata.getDynamicField('NN Test - Custom Navigation').value != '')
-          
-          foldername $currentPage.parentFolder.name
-          <li>Custom Nav enabled</li>
-            
-            
-            #set ($currentPageID = $currentPage.identifier.id)
-            ## $currentPage
-            currentPageID $currentPageID 
-            
-            <![CDATA[#protect 
-            <script>
+       
 
-           $(function () {
-           console.log('current page ID: ' + "$currentPageID")
-           var readURL =
-  "https://dev-cascade.chapman.edu/api/v1/read/page/" +
-  "${currentPageID}" +
-  "?" +
-  "apiKey=25c1b597-04f0-4888-90ed-68719408964c";
-
-var editURL =
-  "https://dev-cascade.chapman.edu/api/v1/edit/page/" +
-  "${currentPageID}" +
-  "?" +
-  "apiKey=25c1b597-04f0-4888-90ed-68719408964c";
-
-console.log("API read url: " + readURL);
-
-// Not declared `async` because it returns a promise already
-function wait(ms) {
-  // Returns a promise that we can `await`
-  return new Promise((resolve, reject) => {
-    setTimeout(function () {
-      console.log(`Waiting for ${ms}ms`);
-      // Resolve the promise with the timeout value,
-      // not really important here with what it is resolved
-      resolve(ms);
-    }, ms);
-  });
-}
-
-async function getData() {
-  try {
-    // GET some data from whereever
-    let response = await fetch(readURL);
-
-    let data = await response.json();
-
-    return data;
-  } catch (err) {
-    console.log(err);
-    return null;
-  }
-}
-
-// IIFE to use `await` at the top level
-(async function manipulateData() {
-  // this is an infinite loop, for developing you might want
-  // a way to stop it, can crash your browser if you mess
-  // it up inside =)...
-  // while (true) {
-  console.log("getting data...");
-  let data = await getData();
-  console.log(data);
-
-  var pageConfigArray = data.asset.page.pageConfigurations;
-  pageConfigArray.forEach(function (config, index) {
-    if (config.name == "html") {
-      var configPageRegions = config.pageRegions;
-      console.log(configPageRegions);
-
-      configPageRegions.forEach(function (config, index) {
-        if (config.name == "UNINAV") {
-          // CURRENT PAGE CONFIG VALUES - WE WILL UPDATE THESE BELOW!
-          let blockID = config.blockId;
-          let blockPath = config.blockPath;
-          console.log("current block id: " + blockID);
-          console.log("current block path: " + blockPath);
-
-          // UPDATE PAGE CONFIG WITH OUR NEW VALUES FROM THE PARENT FOLDER METADATA
-          // TESTING DATA ONLY - ( REPLACE THESE VALUES WITH VELOCITY VALUES )
-        ##   const customBlockPath =
-        ##     "$customBlockPath";
-        ##   const customBlockID = "$customBlockID";
-
-        config.blockId = "${customBlockID}";
-        config.blockPath = "${customBlockPath}";
-
-          return blockID;
-          return blockPath;
-
-        ##   console.log("updated custom block ID: " + config.blockId);
-        ##   console.log("updated custom block PATH: " + config.blockPath);
-        }
-      });
-    } // pageConfigArray.forEach() callback end
-  });
-  console.log(data.asset.page.pageConfigurations);
-
-  fetch(editURL, {
-    method: "POST", // or 'PUT'
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Success:", data);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-})();
-
-           });
-            </script>
-        #protect]]>    
-
-        #end
+        ## #end
         
 
       
