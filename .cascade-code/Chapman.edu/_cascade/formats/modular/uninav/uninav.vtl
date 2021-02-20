@@ -1,3 +1,85 @@
+<div class="hidden">
+    
+#set ($customNavConfig = 'Uninav')
+## PSEUDO CODE
+#macro(findCustomNavPath $folderRef $depth)##
+folder: $folderRef.path
+
+    #if ($depth > 15 ) 
+    depth greater than 15
+    #elseif ((!$_PropertyTool.isEmpty($folderRef.metadata.getDynamicField('Custom Navigation').value) ) )
+        ## dynamic metadata field: $folderRef.metadata.getDynamicField('Custom Navigation').value
+        #set ($customNavConfig = $folderRef.metadata.getDynamicField('Custom Navigation').value.replaceAll("Chapman.edu", ""))
+        ## node is set on: $folderRef.path
+        #set ($customNavObj = $_.locateBlock("${customNavConfig}", "Chapman.edu") )
+        ## custom nav detected: string: $customNavConfig | api object: $customNavObj
+        #set ($logoContainer = $customNavObj.getStructuredDataNode('uninav/logo').textValue)
+        ## #sest ($logoLink = $customNavObj.getStructuredDataNode('uninav/logo/
+        #set ($logo = $customNavObj.getStructuredDataNode('uninav/logo/icon_svg').textValue)
+        ## icon: $logo
+        
+        $_PropertyTool.outputProperties($logoContainer)
+        #set ($logoLinkType = $customNavObj.getStructuredDataNode('uninav/logo/linkType').textValue)
+        logoLinkType $logoLinkType
+        
+        #if ($logoLinkType == 'Internal Link')
+            filelink path: $customNavObj.getStructuredDataNode('uninav/logo/fileLink').asset.link)
+            ## logoLinkSrc $logoLinkSrc
+            $logoLinkSrc.Asset.Identifier.Path.PathAsString
+        #end
+        
+        
+        
+        #set ($audienceMenuItems = $customNavObj.getStructuredDataNodes('uninav/audienceNav/menuItem'))
+        
+
+         #foreach ($menuItem in $audienceMenuItems)
+         #set ($label = $menuItem.getChild('label').textValue)
+            ${_EscapeTool.xml($label)}
+            $_PropertyTool.outputProperties($menuItem)
+         #end
+        audienceMenuItems: $audienceMenuItems $audienceMenuItems.label
+        
+    
+    #elseif ($_PropertyTool.isEmpty($folderRef.parentFolder) || $folderRef.path == '/')
+        this is a root-level item
+        #set ($customNavConfig = 'Uninav')
+        customnavConfig: $customNavConfig $customNavConfig.path (this will probably have to be an API-object via locateblock)
+    #else ## assume parent folder exists
+        calling  find custom path on parent folder $folderRef.path
+        ## folderref props: $_PropertyTool.outputProperties($folderRef)
+        
+        #set ($parentNode = $_.locateFolder($folderRef.parentFolder.path, 'Chapman.edu'))
+        
+        parentNode: $parentNode
+        #findCustomNavPath($parentNode, $_MathTool.add($depth, 1))
+        ## #end
+    #end
+#end
+
+## #set( $folder    = $_.locateFolder('test-section/nick-test/contextual-uninav/students/health-and-safety/health-services', 'Chapman.edu') )
+#set( $folder    = $_.locateFolder('test-section/nick-test', 'Chapman.edu') )
+folder path: $folder.path
+
+
+#findCustomNavPath($folder, 1)
+
+
+## #end
+
+<nav id="uninav" class="$brandClass $customNavigation $parentFolder">
+    <div class="uninav__logo">
+        <div class="uninav__logo--primary">
+            $logo
+        </div>
+    </div>
+</nav>
+        
+</div> ## closing hidden div
+
+
+
+
 #*
 * OmniNav v3 format.
 * Chapman.edu/_cascade/formats/modular/uninav/uninav.vtl
