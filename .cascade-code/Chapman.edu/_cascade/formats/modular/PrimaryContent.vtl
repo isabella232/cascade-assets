@@ -65,15 +65,11 @@ folder path: $folder.path
            console.log('current page ID: ' + "$currentPageID")
            var readURL =
   "https://dev-cascade.chapman.edu/api/v1/read/page/" +
-  "${currentPageID}" +
-  "?" +
-  "apiKey=25c1b597-04f0-4888-90ed-68719408964c";
+  "${currentPageID}";
 
 var editURL =
   "https://dev-cascade.chapman.edu/api/v1/edit/page/" +
-  "${currentPageID}" +
-  "?" +
-  "apiKey=25c1b597-04f0-4888-90ed-68719408964c";
+  "${currentPageID}";
 
 console.log("API read url: " + readURL);
 
@@ -90,10 +86,31 @@ function wait(ms) {
   });
 }
 
+
+
+
 async function getData() {
+
+const myHeaders = new Headers({
+    'Content-Type': 'application/json',
+    "authentication": {
+        "apiKey": "25c1b597-04f0-4888-90ed-68719408964c"
+    }
+});
+
+
+
+
   try {
     // GET some data from whereever
-    let response = await fetch(readURL);
+    let response = await fetch(readURL, {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer 25c1b597-04f0-4888-90ed-68719408964c'
+      }
+    })
+    
+
 
     let data = await response.json();
 
@@ -160,6 +177,7 @@ var refreshIframe = false;
     method: "POST", // or 'PUT'
     headers: {
       "Content-Type": "application/json",
+       'Authorization': 'Bearer 25c1b597-04f0-4888-90ed-68719408964c',
     },
     body: JSON.stringify(data),
   })
