@@ -1,43 +1,43 @@
-#set ($customNavConfig = 'Uninav')
+#set ($customNavConfig = '_cascade/blocks/html/Uninav') ## DEFAULT TO "DEFAULT" UNINAV
 #macro(findCustomNavPath $folderRef $depth)##
-folder: $folderRef.path
+## folder: $folderRef.path
 
     #if ($depth > 15 ) 
-    depth greater than 15
+    ## depth greater than 15
     #elseif ((!$_PropertyTool.isEmpty($folderRef.metadata.getDynamicField('Custom Navigation').value) ) )
-        
-        dynamic metadata field: $folderRef.metadata.getDynamicField('Custom Navigation').value
+        ## dynamic metadata field: $folderRef.metadata.getDynamicField('Custom Navigation').value
         #set ($customNavConfig = $folderRef.metadata.getDynamicField('Custom Navigation').value.replaceAll("Chapman.edu", ""))
-        node is set on: $folderRef.path
+        
+        ## node is set on: $folderRef.path
         #set ($customNavObj = $_.locateBlock("${customNavConfig}", "Chapman.edu") )
-        custom nav detected: string: $customNavConfig | api object: $customNavObj
+        ## custom nav detected: string: $customNavConfig | api object: $customNavObj
         #set ($customNavID = $customNavObj.identifier.id )
-        customNavID: $customNavID
+        ## customNavID: $customNavID
         #set ($customNavPath = $customNavObj.path )
-        customNavPath: $customNavPath
+        ## customNavPath: $customNavPath
     
     #elseif ($_PropertyTool.isEmpty($folderRef.parentFolder) || $folderRef.path == '/')
-        this is a root-level item
-        #set ($customNavConfig = 'Uninav')
-        customnavConfig: $customNavConfig $customNavConfig.path (this will probably have to be an API-object via locateblock)
+        ## this is a root-level item
+        #set ($customNavConfig = '_cascade/blocks/html/Uninav')
+        ## customnavConfig: $customNavConfig $customNavConfig.path (this will probably have to be an API-object via locateblock)
     #else ## assume parent folder exists
-        calling  find custom path on parent folder $folderRef.path
+        ## calling  find custom path on parent folder $folderRef.path
         ## folderref props: $_PropertyTool.outputProperties($folderRef)
         
         #set ($parentNode = $_.locateFolder($folderRef.parentFolder.path, 'Chapman.edu'))
         
-        parentNode: $parentNode
+        ## parentNode: $parentNode
         #findCustomNavPath($parentNode, $_MathTool.add($depth, 1))
         ## #end
     #end
 #end
 
 ## #set( $folder    = $_.locateFolder('test-section/nick-test/contextual-uninav/students/health-and-safety/health-services', 'Chapman.edu') )
-current page parent folder: $currentPage.parentFolder.path
+## current page parent folder: $currentPage.parentFolder.path
 #set ($currentPageID = $currentPage.identifier.id)
 
 #set( $folder    = $_.locateFolder("$currentPage.parentFolder.path", 'Chapman.edu') )
-folder path: $folder.path
+## folder path: $folder.path
 
 
 #findCustomNavPath($folder, 1)
@@ -49,11 +49,17 @@ folder path: $folder.path
 ## logoLinkType $logoLinkType
 
 #if ($logoLinkType == 'Internal Link')
-    ## filelink path: $customNavObj.getStructuredDataNode('uninav/logo/internalLink'))
-      #set ($logoLinkPath = $customNavObj.getStructuredDataNode('uninav/logo/internalLink').asset.link)
-    ##  logoLinkPath $logoLinkPath
+    #set ($logoLinkPath = $customNavObj.getStructuredDataNode('uninav/logo/internalLink').asset.link)
+#elseif ($logoLinkType == 'External Link')
+    #set ($logoLinkPath = $customNavObj.getStructuredDataNode('uninav/logo/externalLink').textValue)
+#elseif ($logoLinkType == 'File Link')
+    #set ($logoLinkPath = $customNavObj.getStructuredDataNode('uninav/logo/fileLink').asset.link)
 #end
 
+<div style="display:none">
+logoLinkType $logoLinkType
+logolinkpath $logoLinkPath
+</div>
 #set ($audienceMenuItems = $customNavObj.getStructuredDataNodes('uninav/audienceNav/menuItem'))
 
   #foreach ($menuItem in $audienceMenuItems)
@@ -64,7 +70,7 @@ folder path: $folder.path
 
 ## #end
 
-<nav id="uninav" class="$brandClass $customNavigation $parentFolder">
+<nav id="uninav" class="$brandClass contextual-navigation $currentPage.parentFolder.name" data-navigation-block="${_EscapeTool.xml($customNavConfig)}">
     <div class="uninav__logo">
         <div class="uninav__logo--primary" id="uninav__logo--primary">
             <a href="${logoLinkPath}" id="uninav-logo-chapman-university" target="_parent" title="Chapman University">
@@ -86,9 +92,23 @@ folder path: $folder.path
                  #foreach ($menuItem in $ctaMenuItems)
                 ##  CTA MENU ITEM:
                  #set ($label = $menuItem.getChild('label').textValue)
-                 #set ($link = $menuItem.getChild('internalLink').asset.link)
+                 #set ($linkType = $menuItem.getChild('linkType').textValue)
+                 
+                 #set ($${_EscapeTool.xml($icon)} = '')
+                 #set ($icon = $menuItem.getChild('icon_cssClass').textValue)
+                 #set ($ariaLabel = '')
+                 #set ($ariaLabel = $menuItem.getChild('ariaLabel').textValue)
+                 
+                #if ($linkType == 'Internal Link')
+                    #set ($link = $menuItem.getChild('internalLink').asset.link)
+                 #elseif ($linkType == 'External Link')
+                    #set ($link = $menuItem.getChild('externalLink').textValue)
+                #elseif ($linkType == 'File Link')
+                    #set ($link = $menuItem.getChild('fileLink').asset.link)
+                #end
+                 
                 <li class="uninav__menu-item-cta">
-                    <a href="$link">
+                    <a class="icon ${_EscapeTool.xml($icon)} ${_EscapeTool.xml($icon)}" aria-label="${_EscapeTool.xml($ariaLabel)}" href="$link">
                         ${_EscapeTool.xml($label)}
                     </a>
                 </li>
@@ -105,23 +125,55 @@ folder path: $folder.path
                     <p tabindex="0">Info For</p>
                     <div class="uninav__dropdown--child" aria-expanded="false">
                         <ul class="uninav__utility-nav--audiences-menu">
-                            <li class="uninav__menu-item--audiences ">
-                                #set ($audienceMenuItems = $customNavObj.getStructuredDataNodes('uninav/audienceNav/menuItem'))
+                            #set ($audienceMenuItems = $customNavObj.getStructuredDataNodes('uninav/audienceNav/menuItem'))
                                  #foreach ($menuItem in $audienceMenuItems)
                                     ## INFO FOR AUDIENCE MENU ITEM:
                                     #set ($label = $menuItem.getChild('label').textValue)
                                     #set ($link = $menuItem.getChild('internalLink').asset.link)
-                                    <li class="uninav__menu-item--audiences ">
-                                        <a href="${_EscapeTool.xml($link)}">
-                                            <span class="uninav__underline--center">${_EscapeTool.xml($label)}</span>
-                                        </a>    
-                                    </li>
-                                #end
-                            </li>
+                                    
+                                    #set ($icon = '')
+                                    #set ($icon = $menuItem.getChild('icon_cssClass').textValue)
+                                    #set ($ariaLabel = '')
+                                    #set ($ariaLabel = $menuItem.getChild('ariaLabel').textValue)
+                                     
+                                    #if ($linkType == 'Internal Link')
+                                        #set ($link = $menuItem.getChild('internalLink').asset.link)
+                                     #elseif ($linkType == 'External Link')
+                                        #set ($link = $menuItem.getChild('externalLink').textValue)
+                                    #elseif ($linkType == 'File Link')
+                                        #set ($link = $menuItem.getChild('fileLink').asset.link)
+                                    #end
+                                    #if ($link != '')
+                                        <li class="uninav__menu-item--audiences ">
+                                            <a class="icon ${_EscapeTool.xml($icon)}" aria-label="${_EscapeTool.xml($ariaLabel)}" href="${_EscapeTool.xml($link)}">
+                                                <span class="uninav__underline--center">${_EscapeTool.xml($label)}</span>
+                                            </a>    
+                                        </li>
+                                    #end
+                                        #end
                         </ul>
                     </div>
                 </li>
-                    <span class="uninav__utility-nav--search-wrapper">
+                ## SEARCH 
+                #set ( $pagePath = $currentPage.path )
+                <span class="uninav__utility-nav--search-wrapper">
+                    #if ($pagePath.contains('header_latest'))
+                        <style>
+                            .gsc-input {
+                                opacity: 1 !important;
+                                box-shadow: none !important;
+                            }
+                
+                        </style>
+                    #end
+                    #if ($pagePath.contains('navsNoJs'))
+                        <style>
+                            .uninav__utility-nav--search-wrapper {
+                                display: none;
+                            }
+                        </style>
+                    #end 
+                
                     <style>
                     input.gsc-input {
                       opacity: 1 !important;
@@ -176,8 +228,7 @@ folder path: $folder.path
                     <div class="uninav__search-input uninav__search-input--desktop">
                      <label for="gsc-i-id1"><span class="sr-only">Search</span></label>
                         <script async="true" src="https://cse.google.com/cse.js?cx=015856566681218627934:2ndbiubovo4"></script>
-                        <div id="___gcse_0"></div>
-                            ## INSERT GOOGLE SEARCH
+                        <div class="gcse-search"></div>
                     </div>
                 </span>
                 <li aria-expanded="false" aria-label="login dropdown menu" class="uninav__login uninav__dropdown--parent uninav__login--custom" tabindex="0">
@@ -190,8 +241,31 @@ folder path: $folder.path
                             #foreach ($menuItem in $loginMenuItems)
                                 #set ($label = $menuItem.getChild('label').textValue)
                                 #set ($link = $menuItem.getChild('internalLink').asset.link)
+                                
+                                #set ($iconType = $menuItem.getChild('icon').textValue)
+                                #set ($icon = '')
+                                
+                                #if ($iconType == 'SVG')
+                                    #set ($icon = $menuItem.getChild('icon_svg').textValue)    
+                                #elseif ($iconType == 'css')
+                                    #set ($icon = $menuItem.getChild('icon_cssClass').textValue)    
+                                #end
+                                
+                                
+                                #set ($ariaLabel = '')
+                                #set ($ariaLabel = $menuItem.getChild('ariaLabel').textValue)
+                                 
+                                #if ($linkType == 'Internal Link')
+                                    #set ($link = $menuItem.getChild('internalLink').asset.link)
+                                 #elseif ($linkType == 'External Link')
+                                    #set ($link = $menuItem.getChild('externalLink').textValue)
+                                #elseif ($linkType == 'File Link')
+                                    #set ($link = $menuItem.getChild('fileLink').asset.link)
+                                #end
+                                
                                 <li class="login-item">
                                     <a href="${_EscapeTool.xml($link)}">
+                                        $icon
                                         <span class="uninav__underline--center white-underline">
                                             ${_EscapeTool.xml($label)}
                                         </span>
@@ -212,9 +286,22 @@ folder path: $folder.path
             #foreach ($menuItem in $globalMenuItems)
                 #set ($label = $menuItem.getChild('label').textValue)
                 #set ($link = $menuItem.getChild('internalLink').asset.link)
+                
+                #set ($icon = '')
+                #set ($icon = $menuItem.getChild('icon_cssClass').textValue)
+                #set ($ariaLabel = '')
+                #set ($ariaLabel = $menuItem.getChild('ariaLabel').textValue)
+                 
+                #if ($linkType == 'Internal Link')
+                    #set ($link = $menuItem.getChild('internalLink').asset.link)
+                 #elseif ($linkType == 'External Link')
+                    #set ($link = $menuItem.getChild('externalLink').textValue)
+                #elseif ($linkType == 'File Link')
+                    #set ($link = $menuItem.getChild('fileLink').asset.link)
+                #end
                 <li class="uninav__dropdown--parent global-menu-item__parent">
                   <span class="uninav__dropdown-wrapper">
-                    <a tabindex="0">
+                    <a class="icon ${_EscapeTool.xml($icon)}" aria-label="${_EscapeTool.xml($ariaLabel)}" tabindex="0">
                       <span class="uninav__underline--center">${_EscapeTool.xml($label)}</span>
                     </a>
                     <div class="uninav__dropdown--child" aria-expanded="false">
@@ -224,8 +311,24 @@ folder path: $folder.path
                             #foreach ($menuItem in $globalSubmenuItems)
                                 #set ($label = $menuItem.getChild('label').textValue)
                                 #set ($link = $menuItem.getChild('internalLink').asset.link)
+                                
+                                #set ($iconType = $menuItem.getChild('icon').textValue)
+                                #set ($icon = '')
+                                
+                                #set ($icon = $menuItem.getChild('iconClass').textValue)    
+                                #set ($ariaLabel = '')
+                                #set ($ariaLabel = $menuItem.getChild('ariaLabel').textValue)
+                                 
+                                ## #if ($linkType == 'Internal Link')
+                                ##     #set ($link = $menuItem.getChild('internalLink').asset.link)
+                                ## #elseif ($linkType == 'External Link')
+                                ##     #set ($link = $menuItem.getChild('externalLink').textValue)
+                                ## #elseif ($linkType == 'File Link')
+                                ##     #set ($link = $menuItem.getChild('fileLink').asset.link)
+                                ## #end
+                                
                                 <li class="uninav__global--dropdown-child global-menu-item__child">
-                                    <a href="$link">
+                                    <a class="icon ${_EscapeTool.xml($icon)}" aria-label="${_EscapeTool.xml($ariaLabel)}" href="$link">
                                         <span class="uninav__underline--center">${_EscapeTool.xml($label)}</span>
                                     </a>
                                 </li> 
@@ -241,380 +344,6 @@ folder path: $folder.path
       </ul>
     </div>
 </nav>
-        
-        
 
 
 
-
-
-## #*
-## * OmniNav v3 format.
-## * Chapman.edu/_cascade/formats/modular/uninav/uninav.vtl
-## *
-## * Note: the site://Chapman.edu/ seen in most href is not a hardcoded subdomain but a Cascade variable
-## * that allows path to render correctly even when a page published to other webservers not www
-## - the format is configured via its respective block at:
-## Chapman.edu/_cascade/blocks/html/uninav
-## (https://dev-cascade.chapman.edu/entity/open.act?id=a94c5727c0a81e4b22b523b8699a6359&type=block_STRUCTUREDDATA)
-
-## On a page level, configure via:
-## 1) edit
-## 2) configure
-## 3) 'Omni-Nav'
-## a) select block: Chapman.edu/_cascade/blocks/html/uninav
-## b) select (this) format: Chapman.edu: Chapman.edu: /_cascade/formats/modular/uninav/uninav.vtl
-## *#
-
-## ##
-## ## Imports
-## ##
-## #import( "/_config/global_nav.vm" )
-## #import( "/_config/global_nav_law.vm" )
-## #import( "/_cascade/formats/helpers.velocity" )
-## #import ("/_cascade/formats/modular/uninav/_offCanvas_umbrella_nav_button.vtl")
-
-## #set ( $isCustomNavigation = $_XPathTool.selectSingleNode($contentRoot, "/system-data-structure/uninav/custom-navigation").value )
-
-## #if ($isCustomNavigation == 'Yes')
-##     #set ($customNavigation = 'custom-navigation')
-##     <style>
-##         .custom-navigation .uninav__umbrella-nav-button-container {
-##     display: none !important;
-## }
-##     </style>
-## #else 
-##     #set ($customNavigation = '')
-## #end
-## ## Log velocity variables in the browser console on dev
-
-## ##
-## ## Hardcoded Params
-## ##
-## ## umbrellaCategories
-## ## These are locations for which OmniNav should build the secondary off-canvas-nav menu.
-## ## umbrellaCategory is the term product owners use.
-## ## I would prefer that each inner array item within the array were only 2 items and
-## ## all other vars be derived from those:
-## ## [$umbrellaFolderId, $umbrellaLabel]
-## ## Current inner array values:
-## ## [ $umbrellaDirectory, $umbrellaLabel/$umbrellaBrandLabel ]
-## #set ( $umbrellaCategories = [
-## [ 'business', 'Argyros School' ],
-## [ 'education', 'Attallah College' ],
-## [ 'dodge', 'Dodge College' ],
-## [ 'crean', 'Crean College' ],
-## [ 'wilkinson', 'Wilkinson College' ],
-## [ 'copa', 'College of Performing Arts' ],
-## [ 'engineering', 'Fowler School of Engineering' ],
-## [ 'pharmacy', 'School of Pharmacy' ],
-## [ 'law', 'Fowler School of Law' ],
-## [ 'library', 'Leatherby Libraries' ],
-## [ 'scst', 'Schmid College' ],
-## [ 'communication', 'School of Communication' ],
-## [ 'about', 'About' ],
-## [ 'academics', 'Academics' ],
-## [ 'admission', 'Admission' ],
-## [ 'alumni', 'Alumni' ],
-## [ 'campus-services', 'Campus Services' ],
-## [ 'campus-services/career-professional-development', 'Career' ],
-## [ 'faculty-staff', 'Faculty and Staff' ],
-## [ 'families', 'Families' ],
-## [ 'research', 'Research' ],
-## [ 'students', 'Students' ],
-## [ 'support-chapman', 'Support Chapman' ]
-## ])
-
-## ##
-## ## Vars
-## ##
-## ## Cascade provides a $currentPage object to every format.
-## #set ( $pagePath = $currentPage.path )
-## #set ( $parentFolder = $currentPage.parentFolder.name ) 
-
-## ## This will be set by data macros below.
-## #set ( $pageUmbrellaCategory = [] )
-## #set ( $isUmbrellaCategory = false )
-## #set ( $umbrellaDirectory = '' )
-## #set ( $umbrellaDirectoryPath = '' )
-## #set ( $umbrellaLabel = '' )
-## #set ( $umbrellaBrandLabel = '' )
-## #set ( $umbrellaAssets = [] )
-## #set ( $brandClass = '' )
-## #set ( $globalNavLinks = [] )
-
-## ##
-## ## Var Macros
-## ##
-## #macro ( setVars )
-## #setPageUmbrellaCategory()
-
-## #set ( $isUmbrellaCategory = $pageUmbrellaCategory.size() > 0 )
-
-## #if ( $isUmbrellaCategory )
-## #set ( $umbrellaDirectory = $pageUmbrellaCategory[0] )
-
-## ## These 2 were originally different values and could differ in the future.
-## #set ( $umbrellaLabel = $pageUmbrellaCategory[1] )
-## #set ( $umbrellaBrandLabel = $pageUmbrellaCategory[1] )
-
-## #set ( $umbrellaDirectoryPath = "/${umbrellaDirectory}" )
-
-## #set ( $brandClass = 'branded' )
-## #else
-## #set ( $brandClass = 'unbranded' )
-## #end
-
-## ## Currently law is the only page with different global nav content
-## #if( $umbrellaDirectory == 'law' )
-## #set( $globalNavLinks = $GLOBAL_NAV_LAW_CONFIG )
-## #else
-## #set( $globalNavLinks = $GLOBAL_NAV_CONFIG )
-## #end
-## #end
-
-## #macro ( setPageUmbrellaCategory )
-## ## Is current path under one of specified $umbrellaCategories?
-## #foreach ( $umbrellaCategory in $umbrellaCategories )
-## #set ( $dirName = $umbrellaCategory[0] )
-
-## ## Define substr range to compare umbrella dir with current page path.
-## ## pagePath does not include leading /.
-## #set ( $startSubStr = 0 )
-## #set ( $endSubStr = $dirName.length() )
-
-## ## Make sure endSubStr not long than pagePath else will throw exception
-## #if ( $endSubStr > $pagePath.length() )
-## #set ( $endSubStr = $pagePath.length() )
-## #end
-
-## #set ( $pagePathDir = $pagePath.substring($startSubStr, $endSubStr) )
-
-## ## Is current page directory $pagePathDir under this $navDirectory? If so,
-## ## we found our $navDirectory.
-## #if ( $pagePath.contains($dirName) && $pagePathDir == $dirName )
-## ## A page can enter this loop more than once if it falls under multiple umbrella categories
-## ## e.g. a page under both Campus Services and Career umbrellas
-## ## First check if it hasn't been set yet
-## #if ( $pageUmbrellaCategory.size() == 0 )
-## #set ( $pageUmbrellaCategory = $umbrellaCategory )
-## ## If it has been set, pages should use the umbrella category that's more specific
-## ## This ensures the page uses the closest matching directory out of all the umbrella categories
-## ## e.g. a page under Career should use campus-services/career umbrella not campus-services
-## #elseif ( $pagePathDir.length() > $pageUmbrellaCategory[0].length() )
-## #set ( $pageUmbrellaCategory = $umbrellaCategory )
-## #end
-## #end
-## #end
-## #end
-
-## ##
-## ## Template Macros
-## ##
-## ## start uninav begin
-## #macro ( buildOmniNav )
-## <nav id="uninav" class="$brandClass $customNavigation $parentFolder">
-##   <!-- pagePath: $pagePath -->
-##   <!-- pageUmbrellaCategory: $pageUmbrellaCategory -->
-##   <!-- umbrellaAssets count: $umbrellaAssets.size() -->
-
-##   ## Uncomment to list pageUmbrella child assets.
-##   ##debugUmbrellaAssets()
-
-##   #uninavUmbrellaToggleButton()
-##   #uninavMobileIcon()
-##   #buildOffCanvasNav()
-##   #uninavLogo()
-##   #uninavCTA()
-##   #uninavUtility()
-##   #uninavSearch()
-##   #uninavGlobal()
-
-##   <!-- Page overlay for when search results are displayed -->
-##   <div id="search-results-overlay"></div>
-## </nav>
-## #end
-
-## #macro (uninavUmbrellaToggleButton)
-##     #if ( $isUmbrellaCategory )
-##         #offCanvasUmbrellaNavButton($umbrellaLabel)
-##     #end
-## #end
-
-## #macro ( uninavMobileIcon)
-##     #import ("/_cascade/formats/modular/uninav/_mobile_hamburger_toggle_icon.vtl")
-## #end
-
-## #macro ( uninavLogo )
-##     #import ( "/_cascade/formats/modular/uninav/_logo.vtl" )
-## #end
-
-## #macro ( uninavUtility )
-##     #import ( "/_cascade/formats/modular/uninav/_utilityNav.vtl" )
-## #end
-
-## #macro ( uninavSearch )
-##     #import ( "/_cascade/formats/modular/uninav/_search.vtl" )
-## #end
-
-## #macro ( uninavCTA )
-##     #import ( "/_cascade/formats/modular/uninav/_cta.vtl" )
-## #end
-
-## #macro ( uninavGlobal )
-##     #import ( "/_cascade/formats/modular/uninav/_global.vtl" )
-## #end
-
-## ##
-## ## Utility Nav Macros
-## ##
-## #macro ( buildUtilityNav )
-## <div class="utility-nav">
-##   <nav aria-label="utility navigation bar">
-##     #buildUtilityNavLinks()
-##     #buildSearchComponent()
-##   </nav>
-## </div>
-## #end
-
-## #macro ( buildUtilityNavLinks )
-## <div class="utility-nav-container utility-links">
-##   <ul class="utility-list">
-##     #import ( "/_cascade/formats/modular/uninav/_utility_nav_findInfoFor_menu.vtl" )
-##     #import ( "/_cascade/formats/modular/uninav/_utility_nav_links.vtl" )
-##     #import ( "/_cascade/formats/modular/uninav/_utility_nav_social_menu.vtl" )
-##   </ul>
-## </div>
-## #end
-
-## #macro ( buildSearchComponent )
-## #set ($searchFilters = ["All", "Blog Stories", "Faculty Directory", "Events", "Main Website"])
-
-## <div class="utility-nav-container utility-search" id="utility-nav-search">
-##   <ul class="utility-list">
-##     <li class="utility-cell search-type utility-has-dropdown">
-##       <a tabindex="0" class="selected-search-filter">Search From</a>
-##       <div class="utility-dropdown dropdown">
-##         <ul>
-##           #foreach ($filter in $searchFilters)
-##           <li class="search-filter-option"><a tabindex="0">$filter</a></li>
-##           #end
-##         </ul>
-##       </div>
-##     </li>
-##     <li class="utility-cell">
-##       #buildSearchBox()
-##     </li>
-##   </ul>
-## </div>
-## #end
-
-## ##
-## ## Off-Canvas Nav Macros
-## ##
-## #macro ( buildOffCanvasNav )
-## <div class="off-canvas-overlay" id="js-off-canvas-overlay"></div>
-## <div class="off-canvas-nav-container" id="js-off-canvas-nav-container">
-##   #buildOffCanvasNavHeader()
-##   #buildOffCanvasNavMenus()
-## </div>
-## #end
-
-## #macro ( buildOffCanvasNavHeader )
-## <div class="cu-off-canvas-header">
-##   <div class="cu-logo-wrapper">
-##     <div id="main-logo" class="toggle-logo">
-##       <a class="default off-logo" href="site://Chapman.edu/index" title="Chapman University Website Home Page">
-##         <!-- logo set as background image by class -->
-##         Chapman University Logo
-##       </a>
-##       #buildOffCanvasNavCloseIcon()
-##     </div>
-##   </div>
-## </div>
-## #end
-
-## #macro ( buildOffCanvasNavMenus )
-## ## For umbrella cats, build secondary menu.
-## <div class="off-canvas-nav clearfix" id="js-off-canvas-nav">
-##   #buildOffCanvasDirectoryMenu()
-##   #buildOffCanvasNavMainMenu()
-## </div>
-## #end
-
-## #macro ( buildOffCanvasNavMainMenu )
-## #set ( $currentPathRoot = $currentPage.path.replaceAll('/(.*)', "") )
-
-## <div id="off-canvas-main" class="off-canvas-menu">
-##   <div class="menu-header">
-##     <span tabindex="0" class="menu-label">Chapman Menu</span>
-
-##     #if ( $isUmbrellaCategory )
-##     <span tabindex="0" class="toggle-menu-label">${umbrellaLabel} Menu</span>
-##     #elseif ( $currentPathRoot != "index" && $currentPathRoot != "")
-##     <span tabindex="0" class="toggle-menu-label">${currentPathRoot} Menu</span>
-##     #end
-##   </div>
-
-##   #import( "/_cascade/formats/modular/uninav/_offCanvas_main_menu.vtl" )
-
-## </div>
-## #end
-
-## #macro ( buildOffCanvasDirectoryMenu )
-## #set ( $currentPathRoot = $currentPage.path.replaceAll('/(.*)', "") )
-
-## #if ( $currentPathRoot != "index" && $currentPathRoot != "")
-## #set ( $offCanvasNavAssets = $_.locateFolder($currentPathRoot) )
-## #set ( $offCanvasLabel = $offCanvasNavAssets.label)
-
-## <div id="off-canvas-umbrella" class="off-canvas-menu">
-##   <div class="menu-header">
-##     <span tabindex="0" class="menu-label">${_EscapeTool.xml($offCanvasLabel)}</span>
-##     <span tabindex="0" class="toggle-menu-label">Chapman Menu</span>
-##   </div>
-
-##   <div id="off-canvas-umbrella-navigation" class="off-canvas-menu">
-##     <ul class="root-umbrella-nav">
-##       #foreach( $asset in $offCanvasNavAssets.children)
-##       #buildDrillDownList($asset)
-##       #end
-##     </ul>
-##   </div>
-## </div>
-## #end
-## #end
-
-## #import ( "/_cascade/formats/modular/uninav/_buildToggleIcon_macro.vtl")
-
-## #macro ( buildOffCanvasNavCloseIcon )
-## <span tabindex="0" class="close js-close-off-canvas-nav">
-##   <span class="fas fa-times-circle">
-##     <span class="sr-only">Close Off-Canvas Menu</span>
-##   </span>
-## </span>
-## #end
-
-
-## ##
-## ## Helper Macros
-## ##
-## #macro( buildSearchBox )
-## <div class="cu-search-box"></div>
-## <div class="search-results-container">
-##   <div class="cu-search-results"></div>
-## </div>
-## #end
-
-## #macro( debugUmbrellaAssets )
-## #foreach ( $asset in $umbrellaAssets )
-## <!-- $asset.name : $asset.path ($asset.children.size()) -->
-## #end
-## #end
-
-
-## ##
-## ## Main OmniNav HTML Block
-## ##
-## #setVars()
-## #buildOmniNav()
