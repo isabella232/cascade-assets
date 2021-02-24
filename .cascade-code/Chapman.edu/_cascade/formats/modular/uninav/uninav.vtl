@@ -1,10 +1,10 @@
 #set ($customNavConfig = 'Uninav')
 ## PSEUDO CODE
 #macro(findCustomNavPath $folderRef $depth)##
-folder: $folderRef.path
+## folder: $folderRef.path
 
     #if ($depth > 15 ) 
-    depth greater than 15
+    ## depth greater than 15
     #elseif ((!$_PropertyTool.isEmpty($folderRef.metadata.getDynamicField('Custom Navigation').value) ) )
         ## dynamic metadata field: $folderRef.metadata.getDynamicField('Custom Navigation').value
         #set ($customNavConfig = $folderRef.metadata.getDynamicField('Custom Navigation').value.replaceAll("Chapman.edu", ""))
@@ -18,12 +18,12 @@ folder: $folderRef.path
         
         $_PropertyTool.outputProperties($logoContainer)
         #set ($logoLinkType = $customNavObj.getStructuredDataNode('uninav/logo/linkType').textValue)
-        logoLinkType $logoLinkType
+        ## logoLinkType $logoLinkType
         
         #if ($logoLinkType == 'Internal Link')
-            filelink path: $customNavObj.getStructuredDataNode('uninav/logo/internalLink'))
+            ## filelink path: $customNavObj.getStructuredDataNode('uninav/logo/internalLink'))
              #set ($logoLinkPath = $customNavObj.getStructuredDataNode('uninav/logo/internalLink').asset.link)
-             logoLinkPath $logoLinkPath
+            ##  logoLinkPath $logoLinkPath
         #end
 
         #set ($audienceMenuItems = $customNavObj.getStructuredDataNodes('uninav/audienceNav/menuItem'))
@@ -31,21 +31,17 @@ folder: $folderRef.path
          #foreach ($menuItem in $audienceMenuItems)
         ##  AUDIENCE MENU ITEM:
          #set ($label = $menuItem.getChild('label').textValue)
-            ${_EscapeTool.xml($label)}
-            $menuItem.asset.link
-            
          #end
-        audienceMenuItems: $audienceMenuItems $audienceMenuItems.label
 
     #elseif ($_PropertyTool.isEmpty($folderRef.parentFolder) || $folderRef.path == '/')
-        this is a root-level item
+        ## this is a root-level item
         #set ($customNavConfig = 'Uninav')
-        customnavConfig: $customNavConfig $customNavConfig.path (this will probably have to be an API-object via locateblock)
+        ## customnavConfig: $customNavConfig $customNavConfig.path (this will probably have to be an API-object via locateblock)
     #else ## assume parent folder exists
-        calling  find custom path on parent folder $folderRef.path
+        ## calling  find custom path on parent folder $folderRef.path
         ## folderref props: $_PropertyTool.outputProperties($folderRef)
         #set ($parentNode = $_.locateFolder($folderRef.parentFolder.path, 'Chapman.edu'))
-        parentNode: $parentNode
+        ## parentNode: $parentNode
         #findCustomNavPath($parentNode, $_MathTool.add($depth, 1))
         ## #end
     #end
@@ -53,7 +49,7 @@ folder: $folderRef.path
 
 ## #set( $folder    = $_.locateFolder('test-section/nick-test/contextual-uninav/students/health-and-safety/health-services', 'Chapman.edu') )
 #set( $folder    = $_.locateFolder('test-section/nick-test', 'Chapman.edu') )
-folder path: $folder.path
+## folder path: $folder.path
 
 
 #findCustomNavPath($folder, 1)
@@ -108,9 +104,11 @@ folder path: $folder.path
                                     ## INFO FOR AUDIENCE MENU ITEM:
                                     #set ($label = $menuItem.getChild('label').textValue)
                                     #set ($link = $menuItem.getChild('internalLink').asset.link)
-                                    <a href="${_EscapeTool.xml($link)}">
-                                        <span class="uninav__underline--center">${_EscapeTool.xml($label)}</span>
-                                    </a>
+                                    <li class="uninav__menu-item--audiences ">
+                                        <a href="${_EscapeTool.xml($link)}">
+                                            <span class="uninav__underline--center">${_EscapeTool.xml($label)}</span>
+                                        </a>    
+                                    </li>
                                 #end
                             </li>
                         </ul>
@@ -186,7 +184,11 @@ folder path: $folder.path
                                 #set ($label = $menuItem.getChild('label').textValue)
                                 #set ($link = $menuItem.getChild('internalLink').asset.link)
                                 <li class="login-item">
-                                    <a href="${_EscapeTool.xml($link)}">${_EscapeTool.xml($label)}</a>
+                                    <a href="${_EscapeTool.xml($link)}">
+                                        <span class="uninav__underline--center white-underline">
+                                            ${_EscapeTool.xml($label)}
+                                        </span>
+                                    </a>
                                 </li>
                             #end
                         </ul>
@@ -208,22 +210,23 @@ folder path: $folder.path
                     <a tabindex="0">
                       <span class="uninav__underline--center">${_EscapeTool.xml($label)}</span>
                     </a>
+                    <div class="uninav__dropdown--child" aria-expanded="false">
+                        <ul>
+                            ## #set ($globalSubmenuItems = $customNavObj.getStructuredDataNodes('uninav/globalNav/menuItem/submenuItem'))
+                            #set ($globalSubmenuItems = $menuItem.getChildren('submenuItem'))
+                            #foreach ($menuItem in $globalSubmenuItems)
+                                #set ($label = $menuItem.getChild('label').textValue)
+                                #set ($link = $menuItem.getChild('internalLink').asset.link)
+                                <li class="uninav__global--dropdown-child global-menu-item__child">
+                                    <a href="$link">
+                                        <span class="uninav__underline--center">${_EscapeTool.xml($label)}</span>
+                                    </a>
+                                </li> 
+                            #end
+                          
+                        </ul>
+                    </div>
                   </span>
-                  <div class="uninav__dropdown--child" aria-expanded="false">
-                    <ul>
-                        #set ($globalSubmenuItems = $customNavObj.getStructuredDataNodes('uninav/globalNav/menuItem/submenuItem'))
-                        #foreach ($menuItem in $globalMenuItems)
-                            #set ($label = $menuItem.getChild('label').textValue)
-                            #set ($link = $menuItem.getChild('internalLink').asset.link)
-                            <li class="uninav__global--dropdown-child global-menu-item__child">
-                                <a href="$link">
-                                    <span class="uninav__underline--center">${_EscapeTool.xml($label)}</span>
-                                </a>
-                            </li> 
-                        #end
-                      
-                    </ul>
-                  </div>
                 </li>
                 <span class="uninav__pipe"></span>
             #end
