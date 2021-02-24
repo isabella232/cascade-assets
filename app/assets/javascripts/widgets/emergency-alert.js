@@ -73,8 +73,8 @@ var EmergencyAlert = (function() {
 
   var displayNotification = function() {
     var $notificationLink = $("<a>", {
-      href: "https://www.chapman.edu/notices",
-      text: 'chapman.edu/notices'
+      href: "https://cusafelyback.chapman.edu",
+      text: 'cusafelyback.chapman.edu'
     });
     $('.emergency-alert').addClass('notification');
     $('.alert-heading').text('Chapman Notice');

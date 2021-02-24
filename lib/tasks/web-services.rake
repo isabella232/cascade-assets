@@ -248,6 +248,15 @@ task edit_shared_field_image: :environment do
   )
 end
 
+desc 'Updates Shared Fields:section-header (https://dev-cascade.chapman.edu/entity/open.act?id=9cc8235cc0a81e4173d445879a2a5d7b&type=sharedfield) 
+with app/data_definitions/from_cascade/Shared Fields/section-header.xml'
+task edit_shared_field_section_header: :environment do
+  edit_shared_field(
+    '2e7e4d67c0a81e8a5a403945968d02e9',
+    '.cascade-code/Chapman.edu/manage_site/shared_fields/section-header.xml'
+  )
+end
+
 # ---------------------------------------------------------------------------- #
 #           BASE METHODS - The methods above inherit from these tasks          #
 # ---------------------------------------------------------------------------- #
@@ -271,6 +280,17 @@ task edit_helpers_velocity: :environment do
   edit_format(
     'Chapman.edu/_cascade/formats/helpers.velocity',
     '.cascade-code/Chapman.edu/_cascade/formats/helpers.velocity'
+  )
+end
+
+# ---------------------------------------------------------------------------- #
+# edit format `Chapman.edu/_cascade/formats/modular/widgets/Grid Block Widget`   #
+# ---------------------------------------------------------------------------- #
+desc 'Updates `Chapman.edu/_cascade/formats/modular/widgets/Collapsibles` with `.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Collapsibles`'
+task edit_grid_block_widget: :environment do
+  edit_format(
+    '567ec178c0a81e8a1e5ac2884450d7c2',
+    '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Grid-Block-Widget.vtl'
   )
 end
 
@@ -418,7 +438,7 @@ def edit_format(asset_path, update_source)
 
   asset_id = response['asset']['scriptFormat']['id']
 
-  backup_strategy(response_path_full, response, site_name)
+  # backup_strategy(response_path_full, response, site_name)
 
   #  p response_xml
   update_source = "#{update_source}"

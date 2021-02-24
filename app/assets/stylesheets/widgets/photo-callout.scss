@@ -56,7 +56,7 @@
     }
 
     &--no-paginate {
-      &+button {
+      & + button {
         display: none !important;
       }
     }
@@ -111,13 +111,14 @@
           position: absolute;
           bottom: 0;
           width: 100%;
-          background: linear-gradient(to bottom,
-              rgba(255, 0, 0, 0) 0%,
-              rgba(0, 0, 0, 0.65) 100%);
+          background: linear-gradient(
+            to bottom,
+            rgba(255, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 0.65) 100%
+          );
           //   height: 60px;
           margin-bottom: 4px;
           overflow: hidden;
-
 
           p {
             color: white;
@@ -295,17 +296,17 @@
     }
   }
 
-  &__container>*:nth-child(1) {
+  &__container > *:nth-child(1) {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
   }
 
-  &__container>*:nth-child(2) {
+  &__container > *:nth-child(2) {
     -ms-grid-row: 1;
     -ms-grid-column: 3;
   }
 
-  &__container>*:nth-child(3) {
+  &__container > *:nth-child(3) {
     -ms-grid-row: 1;
     -ms-grid-column: 5;
   }
@@ -376,7 +377,7 @@
       }
     }
 
-    +[class*="-widget"] {
+    + [class*="-widget"] {
       --marginTop: 20px;
       --marginBottom: 20px;
     }
@@ -492,7 +493,7 @@ button.photo-callout-widget__load-more {
   .photo-callout-widget {
     flex: 1 0 25%;
 
-    +[class*="-widget"] {
+    + [class*="-widget"] {
       margin-top: 0;
       margin-left: 20px;
       margin-bottom: 20px;
@@ -505,7 +506,6 @@ button.photo-callout-widget__load-more {
       flex-wrap: wrap;
 
       &--2-col {
-
         // .ie {
         .photo-callout-widget {
           flex: 1 0 42%;
@@ -555,8 +555,9 @@ button.photo-callout-widget__button.photo-callout-widget__button--white {
   border: 1px solid var(--color-cu-light-grey);
 }
 
-
-.photo-callout-widget__container--headshot-overlay a .photo-callout-widget__img {
+.photo-callout-widget__container--headshot-overlay
+  a
+  .photo-callout-widget__img {
   background-color: transparent;
   -webkit-transition: all 350ms ease;
   transition: all 350ms ease;

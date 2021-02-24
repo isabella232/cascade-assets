@@ -1,0 +1,404 @@
+  #import( "/_cascade/formats/helpers.velocity" )
+
+## Chapman.edu: /_cascade/formats/modular/widgets/Grid-Block-Widget 
+
+<style>
+    ul ul {
+        margin-left: 12px;
+    }
+</style>
+<script src="https://pagination.js.org/dist/2.1.5/pagination.min.js"></script>
+#macro(camel2Snake $camelCase)
+    #set( $regex = "([a-z])([A-Z]+)")
+    #set( $replacement = "$1-$2")
+    #set( $snakeCase = $camelCase.replaceAll($regex, $replacement).toLowerCase())
+    $snakeCase
+#end
+ 
+ #macro(li $var)
+## <div class="debug hidden">
+ ## #log($var)
+## <ul>
+  ## <li>
+       ## $var
+     ## </li>
+## </ul>
+## </div>
+ #end
+
+#macro(outputGridBlockWidget $element) 
+## <div id="grid-columns"><input type="range" id="columns" name="columns" min="2" max="6" value="3" step="1" /> <label for="columns">columns</label></div>
+  #set ($widgetXPath = 'gridBlockWidget')
+  
+#set ($display = $element.getChild($widgetXPath).getChild('display').value)
+#set ($bgColor =  $element.getChild($widgetXPath).getChild('bgColor').value.toLowerCase())
+
+
+#set ($parentGroup = $element.getChild($widgetXPath))
+  ## #getSetVal($parentGroup "altText")
+  #set ($altText = $parentGroup.getChild('altText'))
+
+
+  #macro(getSetVal $parentGroup $node)
+    ## Usage: #getSetVal($parentGroup "gridColumnsVideos")
+
+    #set ($nodeVal = "$" + $node)
+
+    #set ($nodeVal = $parentGroup.getChild("$node").value)
+    
+    #set( $regex = "([a-z])([A-Z]+)")
+    #set( $replacement = "$1-$2")
+    #set( $classNode = $node.replaceAll($regex, $replacement).toLowerCase())
+    #set( $classNodeModifier = $nodeVal.replaceAll($regex, $replacement).toLowerCase())
+    
+   #end
+
+  ## INTRO SECTION   
+##   #set ($displaySectionIntro = $element.getChild($widgetXPath).getChild('displaySectionIntro').value)
+
+  
+    
+
+
+#set ($currentPage = $_XPathTool.selectSingleNode($contentRoot, "//system-page[@current]") )
+
+
+  #getSetVal($parentGroup  'displaySectionIntro')
+  #set ($displaySectionIntro = $parentGroup.getChild('displaySectionIntro').value)
+
+#set ($widgetXPath = 'gridBlockWidget')
+
+#set ($displaySectionIntro = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('displaySectionIntro').value)
+
+  #if ($displaySectionIntro != 'no')
+    #set ($parentGroup = $element.getChild($widgetXPath).getChild('sectionHeaderGroup'))
+    ## #getSetVal($parentGroup "displaySectionIntro")
+
+
+    #li("displaySectionIntro $displaySectionIntro")
+
+    #set ($sectionPreheader = $parentGroup.getChild('sectionPreheader').value)
+    #li("sectionPreheader $sectionPreheader")
+
+    #set ($sectionHeader = $parentGroup.getChild('sectionHeader').value)
+    #li("sectionHeader $sectionHeader ")
+
+    #set ($sectionHeaderParagraph = $parentGroup.getChild('sectionHeaderParagraph').value)
+    #li("sectionHeaderParagraph $sectionHeaderParagraph ")
+
+
+
+    #getSetVal($parentGroup "sectionHeaderParagraph")
+    
+    ## INTRO SECTION - BUTTONS
+       #set ($displaySectionButtons = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('displaySectionButtons').value)
+
+       #if ($displaySectionButtons == 'yes')
+        #set ( $blocks = $_XPathTool.selectNodes($element, 'gridBlockWidget/gridOptions/gridBlock'))
+
+       
+       
+       
+        #set ($parentGroup = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons'))
+        ## #getSetVal($parentGroup "buttonLabel")
+        #set ($buttonLabel = $parentGroup.getChild('buttonLabel').value)
+        #li("buttonLabel $buttonLabel")
+
+
+       
+        #getSetVal($parentGroup "buttonLabel")
+
+      
+
+        #getSetVal($parentGroup "internalOrExternalLink")
+        
+        
+       #set ($ariaLabel = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons').getChild('buttonAccessibility').getChild('ariaLabel').value)
+       #if ($internalOrExternalLink == 'internal')
+            #set ($buttonLink = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons').getChild('internalLink').getChild('path').value)
+        #elseif ($internalOrExternalLink == 'external')
+            #set ($buttonLink = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionButtons').getChild('externalLinkField').value)
+        #else 
+            #set ($internalOrExternalLink = '')
+       #end
+      #end
+       
+  #else 
+    #set ($sectionHeader = '')
+    #set ($sectionPreheader = '')
+    #set ($sectionHeaderParagraph = '')
+    #set ($buttonLabel = '')
+    #set ($internalOrExternalLink = '')
+    #set ($buttonLink = '')
+  #end
+  
+  
+  #set ($gridOptions = $element.getChild($widgetXPath).getChild("gridOptions"))
+
+##   GRID OPTIONS 
+
+  #set ($hasGridTitle = $gridOptions.getChild('title').value)
+  
+  #li("hasGridTitle: ${hasGridTitle}")
+
+  #if ($hasGridTitle != "No")
+    #set ($gridTitleClass = "has-grid-title")
+  #else 
+    #set ($gridTitleClass = "no-grid-title")
+  #end
+
+  #set ($textAlignment = $gridOptions.getChild('textAlign').value)
+  #li("  textAlignment: $textAlignment")
+
+
+#set ($hasGridBodyText = $gridOptions.getChild('bodyText').value)
+  #li("hasGridBodyText $hasGridBodyText")
+
+
+#set ($imageOrVideo = $gridOptions.getChild('imageOrVideo').value)
+
+#li("imageOrVideo $imageOrVideo")
+
+
+#set ($imageOrientation = $gridOptions.getChild('imageOrientation').value)
+
+#li("imageOrientation $imageOrientation")
+
+
+#set ($titleOverlay = $gridOptions.getChild('titleOverlay').value )
+  #if ($titleOverlay != 'No') 
+    #set ($widgetPosition = "relative")
+    #set ($overlayClass = 'grid-block-widget__container--overlay') 
+  #else 
+    #set ($overlayClass = '') 
+  #end
+
+#set ($textBackgroundColor = $gridOptions.getChild('textBackgroundColor').value)
+
+## VIDEOS
+#set ($gridColumnsVideos = $gridOptions.getChild('gridColumnsVideos').value)
+
+#li("gridColumnsVideos $gridColumnsVideos")
+
+  ## IMAGES 
+  #set ($gridColumnsImages = $gridOptions.getChild('gridColumnsImages').value)
+
+
+  #if ($gridColumnsImages != '')
+    #set ($dataColumns = $gridColumnsImages.split("-")[0])
+    
+  #elseif ($gridColumnsVideos != '')
+      #set ($dataColumns = $gridColumnsVideos)
+  #else 
+      #set ($dataColumns = '')
+  #end
+
+#li("gridColumnsImages $gridColumnsImages")
+
+#set ($gridDisplay = $gridOptions.getChild('gridDisplay').value)
+
+  #if ($gridDisplay == 'showAll')
+    #set ($pagination = 'grid-block-widget__container--display-all')
+  #elseif ($gridDisplay == 'pagination')
+    #set ($pagination = 'grid-block-widget__container--paginate')
+  #elseif ($gridDisplay == 'rotator')
+    #set ($pagination = 'grid-block-widget__container--rotate')
+  #end
+#li("gridDisplay $gridDisplay")
+
+## GRID BLOCK 
+  #set ($gridBlockGroup =  $element.getChild($widgetXPath).getChild('gridOptions').getChild('gridBlock'))
+
+  #set ( $blocks = $_XPathTool.selectNodes($element, 'gridBlockWidget/gridOptions/gridBlock'))
+
+<div class="grid-block-widget__wrapper grid-block-widget__wrapper--${bgColor}">
+<div class="inner-container">
+#if ($displaySectionIntro == "yes")
+    <div class="section-intro">
+      <div class="section-intro__preheader">
+        ${_EscapeTool.xml($sectionPreheader)}
+      </div>
+      <h2 class="section-intro__header">  
+        ${_EscapeTool.xml($sectionHeader)}
+      </h2>
+      <div class="section-intro__title">
+        ${_EscapeTool.xml($sectionHeaderParagraph)}
+      </div>
+      #if ($displaySectionButtons == 'yes')
+      <div class="section-intro__buttons">
+        <div class="section-intro__button">
+            #set ($parentGroup = $element.getChild($widgetXPath))
+  
+
+
+    #set ( $buttons = $_XPathTool.selectNodes($element, 'gridBlockWidget/sectionHeaderGroup/sectionButtons'))
+    #foreach ($button in $buttons)
+       #set ($buttonLabel = $button.getChild('buttonLabel').value )
+
+       #set ($internalOrExternalLink = $button.getChild('internalOrExternalLink').value )
+
+
+       #if ($internalOrExternalLink == 'internal')
+        #set ($linkURL = $button.getChild('internalLink').getChild('path').value )
+
+      #else
+        #set ($linkURL = $button.getChild('externalLinkField').value )
+       #end
+       
+     #set ($buttonColor = $button.getChild('buttonColor').value )
+
+      ## ACCESSIBILITY
+        #set ($ariaLabel = $button.getChild('buttonAccessibility').getChild('ariaLabel').value)
+    
+    #if ($linkLabel != '')
+                <a tabindex="0" href="${linkURL}" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" class="button $bemButtonClass button--${buttonColor}">#escape($buttonLabel)</a>  
+    #end
+    #end
+        </div>
+      </div>
+      #end
+    </div>
+    
+  #end
+
+  <div id="grid-block-widget__container--${_MathTool.add($foreach.index, 1)}" class="grid-block-widget__container grid-block-widget__container--$imageOrVideo grid-block-widget__container--${gridColumnsImages} ${overlayClass} grid-block-widget__container--${imageOrientation} ${pagination}" data-columns="${dataColumns}">
+  
+
+  #foreach ($block in $blocks)
+
+    #set ($title = $block.getChild('gridBlock').getChild('gridBlockTitle').value )
+
+    #set ($gridBlockTitle = $block.getChild('gridBlockTitle').value)
+    #li("gridBlockTitle $gridBlockTitle")
+    
+
+    #set ($gridBlockLinkType = $block.getChild('linkType').value)
+    #li("gridBlockLinkType $gridBlockLinkType")
+
+      #if ($gridBlockLinkType == 'Internal Link')
+        #set ($gridBlockLinkURL = $block.getChild('internalLink').value)
+      #elseif ($gridBlockLinkType == 'External Link')
+        #set ($gridBlockLinkURL = $block.getChild('externalLink').value )
+      #else 
+        #set ($gridBlockLinkURL = $block.getChild('fileLink').getChild('path').value )
+     #end
+        #set ($gridBlockLinkURL = $block.getChild('externalLink').value )
+
+    #set ($gridBlockContent = $block.getChild('content').value)
+    #li("gridBlockContent $gridBlockContent")
+
+    #set ($gridBodyText = $block.getChild('gridBlockText').value)
+    #li("gridBodyText $gridBodyText")
+
+    
+  ##   Grid Block Image
+  
+    #set ($gridBlockImageGroup = $element.getChild($widgetXPath).getChild('gridOptions').getChild('gridBlock'))
+
+    #set ($gridBlockImagePath = $block.getChild('gridBlockImage').getChild('path').value)
+
+    #set ($objectFitPosition = $block.getChild('imagePosition').value)
+    #set ($objectFitPsoition = ${_EscapeTool.xml($objectFitPosition)})
+
+    #set ($gridBlockAltText = $block.getChild('altText').value)
+    #set ($gridBlockAltText = ${_EscapeTool.xml($gridBlockAltText)})
+    
+
+    #set ($gridBlockImagePosition = $block.getChild('altText').value)
+    #li("gridBlockImagePosition $gridBlockImagePosition")
+
+  ## GRID BLOCK VIDEOS
+    #set ($gridBlockVideo = $block.getChild('video').value)
+    #li("gridBlockVideo $gridBlockVideo")
+
+    #set ($gridBlockiFrame = $block.getChild('iFrame').value)
+
+    #set ($gridBlockiFrame = $gridBlockiFrame.replaceAll('allowfullscreen', 'allowfullscreen="true"'))
+
+
+
+
+
+    #set ($gridBlockText = $block.getChild('gridBlockText').value)
+    #li("gridBlockText $gridBlockText")
+
+
+    ## HTML MARKUP - INSIDE FOREACH BLOCK 
+      #camelToSnake($widgetXPath)
+  #set ( $widgetXPath = $snakeCase ) 
+
+
+  
+  <div class="${widgetXPath} ${widgetXPath}--${imageOrientation}">
+    
+    #if ($titleOverlay != 'No')  
+      <div class="grid-block-widget__relative">
+      <span class="grid-block-widget__gradient-overlay"></span>
+      ## better approach to deal with responsive image sizes? 
+##       .grid-block-widget__container--overlay img {
+##     filter: brightness(50%);
+## }
+    #end
+    #if ($imageOrVideo == 'images' && $imageOrientation != 'none')
+      <img class="${widgetXPath}__image ${widgetXPath}__image--${imageOrientation}" src="[system-asset]${_EscapeTool.xml($gridBlockImagePath)}[/system-asset]" alt="${gridBlockAltText}" style="object-position: ${objectFitPosition}" />
+    
+    #elseif ($imageOrVideo == 'videos' && $imageOrientation != 'none')
+         ## <video src="${_EscapeTool.xml($gridBlockVideo)}"></video>
+          $gridBlockiFrame 
+    #end
+    #if ($imageOrientation != 'circle')
+      #set ($titleBgColor = $bgColor)
+    #else 
+      #set ($titleBgColor = 'no-bg')
+    #end 
+    #if ($hasGridTitle == 'Yes' && $linkURL != '' )
+      <a href="${gridBlockLinkURL}" class="grid-block-widget__title text-align--${textAlignment} grid-block-widget__title">
+        ${_EscapeTool.xml($gridBlockTitle)}
+      </a>
+    #end
+      
+      #if ($titleOverlay != 'No')  
+        </div>
+      #end
+
+    #if ($gridBodyText != '')
+      <div class="grid-block-widget__text grid-block-widget__text--${textAlignment}">
+        <p>${_EscapeTool.xml($gridBodyText)}</p>
+      </div>
+    #end
+    <span
+      style="display:none;"
+      tabindex="0"
+      class="grid-block-widget__reveal grid-block-widget__reveal--more"
+      >More</span
+    >
+    <span
+      style="display:none;"
+      tabindex="0"
+      class="grid-block-widget__reveal grid-block-widget__reveal--less"
+      >Less</span
+    >
+  </div>
+  
+  #end
+  ## CLOSE GRID-BLOCK-WIDGET__CONTAINER DIV
+</div>
+#if ($gridDisplay.contains('pagination') )
+  <button
+    id="grid-block-widget__button--${_MathTool.add($foreach.index, 1)}"
+    aria-label="Load More Photos"
+    aria-role="button"
+    class="button grid-block-widget__button grid-block-widget__button--grey"
+  >
+    Load More
+  </button>
+#end
+</div>
+</div>
+
+
+
+
+
+#end
+
