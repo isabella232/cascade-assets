@@ -1,11 +1,12 @@
 $(document).ready(function() {
   var $rssFeedContainer = document.querySelector('.rss-feed-display-widget')
-
+console.log("rss feed display.js");
   // NO RSS FEED WIDGET ON PAGE
   if (!$rssFeedContainer) return;
 
   var rssFeedItemColor = $rssFeedContainer.getAttribute('data-bg-color'),
-  rssFeedUrl           = $rssFeedContainer.getAttribute('data-rss-feed');
+  rssFeedUrl           = $rssFeedContainer.getAttribute('data-rss-feed'),
+  showImage            = $rssFeedContainer.getAttribute('data-show-image');
 
   if (!rssFeedUrl.length) return;
 
@@ -88,6 +89,7 @@ $(document).ready(function() {
       $feedItemDateContainer        = document.createElement('div'),
       $feedItemDate                 = document.createElement('p'),
       $feedItemTime                 = document.createElement('p');
+      $feedItemImage                = document.createElement('img');
 
       // ADDED CSS CLASS TO FIRST FOUR RSS DIPSLAY ELEMENTS IN FEED 
       // HIDE THE REST ADD APPROPRIATE CLASSES TO EACH ELEMENT
@@ -98,6 +100,7 @@ $(document).ready(function() {
       $feedItemDateContainer.className        = 'rss-feed-item__date-container';
       $feedItemDate.className                 = 'rss-feed-item__date text__bold';
       $feedItemTime.className                 = 'rss-feed-item__time';
+      $feedItemImage.className                = 'rss-feed-item__image';
 
       // ADDED INNER TEXT, DATE, AND TIME TO APPOPRIATE RSS DISPLAY ELEMENTS
       $feedItemDescription.innerHTML  = feedItemDescription;
@@ -106,6 +109,22 @@ $(document).ready(function() {
       $feedItemTime.innerHTML         = feedItemDate.time;
 
       $feedItemLink.setAttribute('href', feedItem.link[0]);
+
+      // CREATE IMAGE ELEMENT
+      if (showImage == "Yes") {
+        var itemImage = feedItem.image[0][0];
+        var itemImageWidth = itemImage[0],
+        itemImageHeight = itemImage[1],
+        itemImageSource = itemImage[2],
+        itemImageAlt = itemImage[3],
+        itemImageSrcset = itemImage[4];
+
+        $feedItemImage.attr('width',itemImageAlt);
+        $feedItemImage.attr('height',itemImageAlt);
+        $feedItemImage.attr('src',itemImageSource);
+        $feedItemImage.attr('alt',itemImageAlt);
+        $feedItemImage.attr('srcset',itemImageSrcset);
+      }
 
       // APPENDING APPROPRIATE RSS ITEMS TO ELEMENTS AND THEN CONTAINER
       $feedItemDateContainer.appendChild($feedItemDate)

@@ -271,6 +271,10 @@
           <dropdown-item label="Sand" value="sand" />
           <dropdown-item label="Grey" value="grey" />
         </text>
+        <text default="No" identifier="showImage" label="Show Image" required="true" type="radiobutton">
+          <radio-item value="Yes" />
+          <radio-item value="No" />
+        </text>
         <text field-id="ff6bcc14c0a81e5f43ef9b37844b1f7c" identifier="feedUrl" label="Feed Url" required="true" />
       </group>
       <group collapsed="true" identifier="programEvents" label="Program Events">
