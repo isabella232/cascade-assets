@@ -1,4 +1,4 @@
-  #import( "/_cascade/formats/helpers.velocity" )
+#import( "/_cascade/formats/helpers.velocity" )
 
 ## Chapman.edu: /_cascade/formats/modular/widgets/Grid-Block-Widget (MODULAR)
 <div class="hidden">currentpage: $currentPage <br/> Content Type: $currentPage.contentType.path /_cascade/formats/modular/widgets/Grid-Block-Widget (MODULAR) </div>
@@ -13,17 +13,6 @@
     #set( $snakeCase = $camelCase.replaceAll($regex, $replacement).toLowerCase())
     $snakeCase
 #end
- 
- #macro(li $var)
-## <div class="debug hidden">
- ## #log($var)
-## <ul>
-  ## <li>
-       ## $var
-     ## </li>
-## </ul>
-## </div>
- #end
 
 #macro(outputGridBlockWidget $element) 
 ## <div id="grid-columns"><input type="range" id="columns" name="columns" min="2" max="6" value="3" step="1" /> <label for="columns">columns</label></div>
@@ -310,11 +299,6 @@
     
     #if ($titleOverlay != 'No')  
       <div class="grid-block-widget__relative">
-      ## <span class="grid-block-widget__gradient-overlay"></span>
-      ## better approach to deal with responsive image sizes? 
-##       .grid-block-widget__container--overlay img {
-##     filter: brightness(50%);
-## }
     #end
     #if ($imageOrVideo == 'images' && $imageOrientation != 'none')
       <img class="${widgetXPath}__image ${widgetXPath}__image--${imageOrientation}" src="[system-asset]${_EscapeTool.xml($gridBlockImagePath)}[/system-asset]" alt="${gridBlockAltText}" style="object-position: ${objectFitPosition}" />
