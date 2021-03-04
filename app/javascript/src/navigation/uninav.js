@@ -1,12 +1,12 @@
 // uninav accessibility
 const uninav = function () {
   $(function () {
+    offsetScrollbar();
     hideCurrentDropdownWhenLoseFocus();
     closePrevDropdownWhenFocusChanges();
     toggleAriaExpandVal();
     handleEscapeKeypress();
     gs__setSearchResultsZIndex();
-    offsetScrollbar();
   });
 
   function closePrevDropdownWhenFocusChanges() {
@@ -30,7 +30,7 @@ const uninav = function () {
   }
 
   function toggleAriaExpandVal() {
-    $("#uninav li").on("click keypress", function (e) {
+    $("#uninav .uninav__dropdown--parent").on("click keypress", function (e) {
       if (a11yClick(event) === true) {
         var menuItem = $(e.currentTarget).find(".uninav__dropdown--child");
 
@@ -44,6 +44,13 @@ const uninav = function () {
             .attr("aria-expanded", "true");
         }
       }
+    });
+
+    $("#uninav .uninav__dropdown--parent").bind("mouseenter", function (e) {
+      $(this).find(".uninav__dropdown--child").attr("aria-expanded", "true");
+    });
+    $("#uninav li").bind("mouseleave", function (e) {
+      $(this).find(".uninav__dropdown--child").attr("aria-expanded", "false");
     });
   }
 
