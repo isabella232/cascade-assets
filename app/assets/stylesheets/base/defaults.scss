@@ -196,6 +196,36 @@ textarea {
   color: $cu-font-color;
 }
 
+.futura-regular {
+  font-family: $futura-regular;
+}
+.fw-regular {
+  font-weight: regular;
+}
+.fw-bold {
+  font-weight: bold;
+}
+.focus-no-border {
+  &:focus {
+    border: none;
+  }
+}
+
+.focus-no-border {
+  &:focus {
+    border: none;
+  }
+}
+
+.border-bottom {
+  &--dotted {
+    border-bottom: 2px dotted currentColor;
+  }
+  &--none {
+    border-bottom: none !important;
+  }
+}
+
 ::-moz-selection,
 ::selection {
   background: $cu-red;
@@ -277,13 +307,16 @@ a {
       text-decoration: none;
     }
 
-    &.red {
+    &.red,
+    &--red {
       background: $cu-red no-repeat center;
       color: $white;
 
       &:hover {
+        background: #c92741;
         background-color: #c92741;
         text-decoration: none;
+        transition: 300ms linear all;
       }
     }
 
@@ -647,8 +680,10 @@ p {
   margin-bottom: 2rem;
 }
 
-html body {
-  .no-border {border: none !important;}
+body {
+  .no-border {
+    border: none !important;
+  }
   [class*="__button--white"],
   .border-light-grey {
     border: 1px solid var(--color-cu-light-grey) !important;
@@ -718,7 +753,7 @@ html body {
 
   [class*="--white"] {
     background-color: $white;
-    border: 1px solid $cu-light-grey;
+    // border: 1px solid $cu-light-grey;
     color: $panther-black;
 
     [class*="__heading"] {
@@ -764,6 +799,7 @@ html body {
     }
 
     .button {
+      font-family: $futura-regular;
       &:hover,
       &:active,
       &:focus {
@@ -851,6 +887,103 @@ html body {
     * {
       animation: none;
       -webkit-animation: none;
+    }
+  }
+
+  .button--black {
+    background-color: $panther-black;
+    border: none;
+    &:hover,
+    &:focus {
+      background-color: black;
+      transition: 300ms linear;
+    }
+
+    &:active {
+      background-color: black;
+    }
+
+    &:focus,
+    &:focus-within {
+      outline: 2px dotted $white;
+    }
+  }
+
+  .button--red {
+    color: $white;
+    background-color: $cu-red;
+    border: none;
+    &:hover,
+    &:focus {
+      background-color: $red-button-hover;
+    }
+
+    &:active {
+      background-color: $red-button-active;
+    }
+
+    &:focus,
+    &:focus-within {
+      outline: 2px dotted $cu-red;
+    }
+  }
+
+  .button--sand {
+    background-color: $sand;
+    border: none;
+    &:hover,
+    &:focus {
+      transition: 300ms linear;
+      background-color: darken($sand, 4%) !important;
+      // outline: 1px solid $panther-black;
+    }
+
+    &:active {
+      background-color: $sand-alpha;
+    }
+
+    &:focus,
+    &:focus-within {
+      outline: 2px dotted $cu-red;
+    }
+  }
+  .button--white {
+    background-color: $white;
+    border: 1px solid $cu-light-grey !important;
+    &:hover,
+    &:focus {
+      // background-color: $cu-light-grey;
+      border: 1px solid $cu-light-grey-2;
+      transition: 300ms linear;
+    }
+
+    &:active {
+      background-color: $cu-light-grey;
+    }
+
+    &:focus,
+    &:focus-within {
+      outline: 2px dotted $cu-light-grey;
+    }
+  }
+
+  .button--grey {
+    background-color: $cu-light-grey;
+    border: 1px solid $cu-light-grey !important;
+    &:hover,
+    &:focus {
+      // background-color: $cu-light-grey;
+      outline: 1px solid $panther-black;
+      transition: 300ms linear;
+    }
+
+    &:active {
+      background-color: $white;
+    }
+
+    &:focus,
+    &:focus-within {
+      outline: 2px dotted $cu-light-grey;
     }
   }
 }
@@ -990,6 +1123,11 @@ img[loading="lazy"] {
   border: 1px solid var(--color-cu-light-grey);
 }
 
+// for consistent WYSIWYG spacing
+ul + p {
+  margin-top: 2rem;
+}
+
 /***************************************************
 * Accessbility Settings
 ***************************************************/
@@ -1007,4 +1145,3 @@ img[loading="lazy"] {
   color: white;
   background-color: black;
 }
-

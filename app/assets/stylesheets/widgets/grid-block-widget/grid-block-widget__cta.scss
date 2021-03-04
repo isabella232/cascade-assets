@@ -1,0 +1,37 @@
+.grid-block-widget__cta {
+  display: flex;
+  min-height: 100px;
+  align-items: center;
+  a {
+    margin-top: 0;
+  }
+
+  &--left-aligned {
+    justify-content: start;
+  }
+  &--centered {
+    justify-content: center;
+  }
+}
+
+.grid-block-widget__wrapper {
+  .grid-block-widget__cta .button {
+    display: inline-block;
+    & + .button {
+      margin-left: 5px;
+    }
+  }
+}
+
+// TODO: Refactor Defaults.scss button wildcards
+// (html body ... [class*="__button--white"] )
+html body .section-intro__button a.button--white {
+  border: 1px solid $cu-light-grey;
+
+  &:hover,
+  &:focus,
+  &:focus-within {
+    $bg: $white;
+    background-color: $white !important;
+  }
+}
