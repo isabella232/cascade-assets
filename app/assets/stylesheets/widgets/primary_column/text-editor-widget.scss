@@ -22,11 +22,10 @@ html body .text-editor-widget {
 
   .text-image__container,
   .grid-video__container {
-    grid-row: 1 / span 2
+    grid-row: 1 / span 2;
   }
 
   .grid-text {
-
     &__left,
     &__right,
     &__middle {
@@ -42,14 +41,13 @@ html body .text-editor-widget {
     }
 
     &__left {
-
       &.align-bottom {
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
       }
 
-      &.no-image+.button-container {
+      &.no-image + .button-container {
         flex-direction: column;
         margin: 0 0 0 5rem;
 
@@ -68,12 +66,12 @@ html body .text-editor-widget {
         }
       }
 
-      &.no-image+.link-container {
+      &.no-image + .link-container {
         flex-direction: column;
       }
 
-      &+.text-image__container,
-      &+.grid-video__container {
+      & + .text-image__container,
+      & + .grid-video__container {
         margin-left: 5rem;
       }
     }
@@ -85,7 +83,7 @@ html body .text-editor-widget {
         grid-column: 1 / span 2;
       }
 
-      &.no-image+.button-container {
+      &.no-image + .button-container {
         flex-direction: column;
         margin: 0 5rem 0 0;
 
@@ -104,16 +102,16 @@ html body .text-editor-widget {
         }
       }
 
-      &.no-image+.link-container {
+      &.no-image + .link-container {
         flex-direction: column;
       }
 
-      &+.text-image__container,
-      &+.grid-video__container {
+      & + .text-image__container,
+      & + .grid-video__container {
         margin-right: 5rem;
       }
 
-      &+.link-container {
+      & + .link-container {
         flex-direction: column;
         margin-top: 0;
         margin-right: 5rem;
@@ -128,12 +126,12 @@ html body .text-editor-widget {
       grid-row: 1 / span 1;
       text-align: center;
 
-      &+.button-container__center {
+      & + .button-container__center {
         flex-direction: row;
         justify-content: center;
       }
 
-      &+.link-container {
+      & + .link-container {
         grid-column: 1 / span 2;
         text-align: center;
         display: flex;
@@ -154,48 +152,45 @@ html body .text-editor-widget {
     }
   }
 
-  &[text-only-align="left"][img-video="text"]>.button-container,
-  &[text-only-align="left"][img-video="text"]>.link-container {
-    grid-column: 2 /span 1;
+  &[text-only-align="left"][img-video="text"] > .button-container,
+  &[text-only-align="left"][img-video="text"] > .link-container {
+    grid-column: 2 / span 1;
   }
 
   @include respond(small) {
-
-    &[text-only-align="left"][img-video="text"]>.button-container,
-    &[text-only-align="left"]>.link-container {
-      grid-column: 1 /span 2;
+    &[text-only-align="left"][img-video="text"] > .button-container,
+    &[text-only-align="left"] > .link-container {
+      grid-column: 1 / span 2;
     }
   }
 
-  &[text-only-align="right"][img-video="text"]>.button-container,
-  &[text-only-align="right"][img-video="text"]>.link-container {
-    grid-column: 1 /span 1;
+  &[text-only-align="right"][img-video="text"] > .button-container,
+  &[text-only-align="right"][img-video="text"] > .link-container {
+    grid-column: 1 / span 1;
   }
 
   @include respond(small) {
-
-    &[text-only-align="right"][img-video="text"]>.button-container,
-    &[text-only-align="right"][img-video="text"]>.link-container {
-      grid-column: 1 /span 2;
+    &[text-only-align="right"][img-video="text"] > .button-container,
+    &[text-only-align="right"][img-video="text"] > .link-container {
+      grid-column: 1 / span 2;
     }
   }
 
-  &[text-only-align="stacked"][img-video="text"]>.link-container {
+  &[text-only-align="stacked"][img-video="text"] > .link-container {
     grid-row: 2 / span 1;
     grid-column: 1 / span 2;
   }
 
   @include respond(tab-port) {
-
-    &[img-shape="landscape"]>.grid-text__left,
-    &[img-video="textVideo"]>.grid-text__left,
-    &[img-video="textVideo"]>.grid-text__right {
+    &[img-shape="landscape"] > .grid-text__left,
+    &[img-video="textVideo"] > .grid-text__left,
+    &[img-video="textVideo"] > .grid-text__right {
       grid-column: 1 / span 2;
       grid-row: 2 / span 1;
     }
 
-    &[img-video="textImage"]>.text-image__container.landscape,
-    &[img-video="textVideo"]>.grid-video__container {
+    &[img-video="textImage"] > .text-image__container.landscape,
+    &[img-video="textVideo"] > .grid-video__container {
       grid-column: 1 / span 2;
       grid-row: 1 / span 1;
       margin: 0 auto 3rem auto;
@@ -203,24 +198,20 @@ html body .text-editor-widget {
   }
 
   @include respond(small) {
-
-    &[img-video="textImage"]>.grid-text__left,
-    &[img-video="textImage"]>.grid-text__right {
+    &[img-video="textImage"] > .grid-text__left,
+    &[img-video="textImage"] > .grid-text__right {
       grid-column: 1 / span 2;
       grid-row: 2 / span 1;
     }
 
-    &[img-video="textImage"]>.text-image__container {
+    &[img-video="textImage"] > .text-image__container {
       grid-column: 1 / span 2;
       grid-row: 1 / span 1;
       margin: 0 auto 3rem auto;
     }
   }
 
-
-
   .text-image {
-
     &__container {
       width: 200px;
       height: 200px;
@@ -316,12 +307,12 @@ html body .text-editor-widget {
     grid-column: 1 / span 2;
   }
 
-  &[text-align="right"]>div[class*="button-container"],
-  &[text-align="right"]>ul.link-container {
+  &[text-align="right"] > div[class*="button-container"],
+  &[text-align="right"] > ul.link-container {
     justify-self: flex-start;
   }
 
-  .grid-text__stacked+div[class*="button-container"] {
+  .grid-text__stacked + div[class*="button-container"] {
     grid-row: 2 / span 1;
     grid-column: 1 / span 2;
   }
@@ -381,15 +372,14 @@ html body .text-editor-widget {
     }
   }
 
-  &[img-wrap="true"][img-video="textImage"]>.link-container {
+  &[img-wrap="true"][img-video="textImage"] > .link-container {
     grid-row: 2 / span 1;
   }
 }
 
 html.three-column-template body .text-editor-widget {
-
-  &[img-shape="landscape"]>.grid-text__left,
-  &[img-shape="landscape"]>.grid-text__right {
+  &[img-shape="landscape"] > .grid-text__left,
+  &[img-shape="landscape"] > .grid-text__right {
     grid-row: 2 / span 1;
     grid-column: 1 / span 2;
   }
@@ -400,19 +390,19 @@ html.three-column-template body .text-editor-widget {
     margin: 0 auto 2rem auto;
   }
 
-  &[img-video="textVideo"]>.grid-text__left,
-  &[img-video="textVideo"]>.grid-text__right {
+  &[img-video="textVideo"] > .grid-text__left,
+  &[img-video="textVideo"] > .grid-text__right {
     grid-row: 2 / span 1;
     grid-column: 1 / span 2;
   }
 
-  &[img-video="textVideo"]>.grid-video__container {
+  &[img-video="textVideo"] > .grid-video__container {
     grid-row: 1 / span 1;
     grid-column: 1 / span 2;
     margin: 0 auto 2rem auto;
   }
 
-  &[img-video="textVideo"]>.link-container {
+  &[img-video="textVideo"] > .link-container {
     grid-column: 1 / span 2;
   }
 }
@@ -427,6 +417,25 @@ html.one-column-template body [class*="--grey"] {
   background-color: #e5e5e5;
 
   &.text-editor-widget {
-    border: 1px solid rgba(0, 0, 0, 0.10);
+    border: 1px solid rgba(0, 0, 0, 0.1);
   }
+}
+
+html body .text-editor-widget .grid-text__left,
+html body .text-editor-widget .grid-text__right,
+html body .text-editor-widget .grid-text__middle {
+  -ms-grid-row-span: 2;
+  -ms-grid-row: 1;
+  grid-row: 1 / span 2;
+  max-width: 1130px;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+html.one-column-template body .text-editor-widget {
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
 }
