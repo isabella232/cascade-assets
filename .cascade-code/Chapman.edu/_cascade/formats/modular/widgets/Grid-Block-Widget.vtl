@@ -238,30 +238,23 @@
   
 
   #foreach ($block in $blocks)
-
     #set ($title = $block.getChild('gridBlock').getChild('gridBlockTitle').value )
-
     #set ($gridBlockTitle = $block.getChild('gridBlockTitle').value)
-    
-
     #set ($gridBlockLinkType = $block.getChild('linkType').value)
 
-      #if ($gridBlockLinkType == 'Internal Link')
+    #if ($gridBlockLinkType == 'Internal Link')
         #set ($gridBlockLinkURL = $block.getChild('internalLink').value)
       #elseif ($gridBlockLinkType == 'External Link')
         #set ($gridBlockLinkURL = $block.getChild('externalLink').value )
       #else 
         #set ($gridBlockLinkURL = $block.getChild('fileLink').getChild('path').value )
-     #end
-        #set ($gridBlockLinkURL = $block.getChild('externalLink').value )
-
+    #end
+    #set ($gridBlockLinkURL = $block.getChild('externalLink').value )
     #set ($gridBlockContent = $block.getChild('content').value)
-
     #set ($gridBodyText = $block.getChild('gridBlockText').value)
 
     
   ##   Grid Block Image
-  
     #set ($gridBlockImageGroup = $element.getChild($widgetXPath).getChild('gridOptions').getChild('gridBlock'))
 
     #set ($gridBlockImagePath = $block.getChild('gridBlockImage').getChild('path').value)
@@ -281,20 +274,12 @@
     #set ($gridBlockiFrame = $block.getChild('iFrame').value)
 
     #set ($gridBlockiFrame = $gridBlockiFrame.replaceAll('allowfullscreen', 'allowfullscreen="true"'))
-
-
-
-
-
     #set ($gridBlockText = $block.getChild('gridBlockText').value)
 
-
     ## HTML MARKUP - INSIDE FOREACH BLOCK 
-      #camelToSnake($widgetXPath)
-  #set ( $widgetXPath = $snakeCase ) 
+    #camelToSnake($widgetXPath)
+    #set ( $widgetXPath = $snakeCase ) 
 
-
-  
   <div class="${widgetXPath} grid-block-widget--${titleBgColor} ${widgetXPath}--${imageOrientation}">
     
     #if ($titleOverlay != 'No')  
