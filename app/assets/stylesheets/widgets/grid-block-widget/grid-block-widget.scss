@@ -20,9 +20,7 @@
       display: flex;
       flex-direction: column;
       position: relative;
-
       min-width: 200px;
-      // width: calc((100% / #{$num}) - 12px);
       width: calc((100% / 3) - 30px);
 
       &--portrait {
@@ -44,8 +42,6 @@
       }
 
       &__wrapper {
-        // display: table;
-        // clear: both;
         display: flex;
         flex-direction: column;
         max-width: 100%;
@@ -76,7 +72,6 @@
 
 .grid-block-widget__container--6-col {
   &.grid-block-widget__container--landscape {
-    // grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     grid-template-columns: repeat(6, 1fr);
   }
 
@@ -85,78 +80,6 @@
   }
 
   &.grid-block-widget__container--portrait {
-    // grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    // grid-template-columns: repeat(6, 1fr);
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   }
 }
-
-// .grid-block-widget--white .grid-block-widget__text:before {
-//   content: "";
-//   display: block;
-//   position: absolute;
-//   background: -webkit-linear-gradient(
-//     top,
-//     rgba(255, 255, 255, 0) 0%,
-//     rgba(255, 255, 255, 0.9) 100%
-//   );
-//   /*  height: 100%; */
-//   height: 100px;
-//   width: 100%;
-//   bottom: 0;
-// }
-
-// .grid-block-widget--red .grid-block-widget__text:before {
-//   content: "";
-//   display: block;
-//   position: absolute;
-//   background: -webkit-linear-gradient(
-//     top,
-//     rgba(255, 255, 255, 0) 0%,
-//     rgba(165, 0, 52, 0.8) 99%
-//   );
-//   /*  height: 100%; */
-//   height: 50px;
-//   width: 100%;
-//   bottom: 0;
-// }
-// .grid-block-widget--sand .grid-block-widget__text:before {
-//   content: "";
-//   display: block;
-//   position: absolute;
-//   background: -webkit-linear-gradient(
-//     top,
-//     rgba(255, 255, 255, 0) 0%,
-//     rgba(246, 242, 232, 0.9) 99%
-//   );
-//   /*  height: 100%; */
-//   height: 50px;
-//   width: 100%;
-//   bottom: 0;
-// }
-
-// .grid-block-widget--black .grid-block-widget__text:before {
-//   content: "";
-//   display: block;
-//   position: absolute;
-//   background: -webkit-linear-gradient(
-//     top,
-//     rgba(255, 255, 255, 0) 0%,
-//     rgba(35, 31, 32, 0.9) 99%
-//   );
-//   /*  height: 100%; */
-//   height: 50px;
-//   width: 100%;
-//   bottom: 0;
-// }
-
-// !!!DON'T MERGE!!!
-#uninav {
-  // display: none !important;
-}
-
-html {
-  // padding-top: 0 !important;
-}
-
-// END !!!DON'T MERGE!!!
