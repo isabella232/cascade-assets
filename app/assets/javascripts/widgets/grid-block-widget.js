@@ -67,6 +67,11 @@ function calculateDataHeight() {
       .addClass("grid-block-widget--text-overflow");
     if ($(this).attr("data-scroll-height") >= 158) {
       $(this).parent().find(".grid-block-widget__reveal--more").show();
+    } elseif ($(this).attr("data-scroll-height") < 158) {
+      $(this)
+        .parent()
+        .append('<span class="reveal--no-reveal spacer"></span>')
+        .show();
     }
   });
 }
