@@ -1,22 +1,7 @@
 $(function () {
   if ($(".grid-block-widget").length) {
-    // alert(
-    //   "Hello -- Nick is currently adding your changes, so things may appear broken"
-    // );
-    // debugging();
-    refreshCSS();
-    refreshJS();
-
     gridBlockWidget();
-    // $("#clone").trigger("click");
-    // $("#random-images").trigger("click");
     gridBlockCarousel();
-
-    setInterval(function () {
-      // refreshCSS();
-      // refreshJS();
-    }, 10000); // 60 seconds
-
     if (isIE()) {
       $(".grid-block-widget img").each(function () {
         var t = jQuery(this),
@@ -35,10 +20,8 @@ $(function () {
           "background-image": s,
         });
         d.attr("class", parentClasses);
-        // $(".grid-block-widget__title").css("max-width", "200px");
         t.remove();
       });
-
       $(".grid-block-widget__reveal--more").on("click keydown", function (e) {
         parent = $(this).parent();
         $(parent)
@@ -54,44 +37,35 @@ $(function () {
     }
   }
 });
-
 function calculateDataHeight() {
   $(".grid-block-widget__text").each(function () {
     $(this).addClass("grid-block-widget__text--truncated");
-
     var scrollHeight = $(this)[0].scrollHeight;
     $(this).attr("data-scroll-height", scrollHeight);
-
-    $(this)
-      .parent(".grid-block-widget")
-      .addClass("grid-block-widget--text-overflow");
     if ($(this).attr("data-scroll-height") >= 158) {
+      $(this)
+        .parent(".grid-block-widget")
+        .addClass("grid-block-widget--text-overflow");
       $(this).parent().find(".grid-block-widget__reveal--more").show();
-    } elseif ($(this).attr("data-scroll-height") < 158) {
+    } else {
       $(this)
         .parent()
-        .append('<span class="reveal--no-reveal spacer"></span>')
-        .show();
+        .find(".grid-block-widget__reveal--more")
+        .append('<span class="reveal--no-reveal spacer"></span>');
     }
   });
 }
-
 function gridBlockWidget() {
-  calculateDataHeight();
-
   var buttonClickCounter = 0;
-
   $(".grid-block-widget__container").each(function () {
     // IDs are assigned via velocity format
     var currentWidgetContainer = $(this).attr("id");
     var loadMoreButtonButton = " + .grid-block-widget__button";
     var currentButton = "#" + currentWidgetContainer + loadMoreButtonButton;
     var gridBlockWidgetColumns = $("#columns").html($(this).val());
-
     $(currentButton).on("click keydown", function (e) {
       if (accessibleClick(event)) {
         buttonClickCounter += 1;
-
         var currentVisible = $("#" + currentWidgetContainer).find(
           ".grid-block-widget:visible"
         ).length;
@@ -100,7 +74,6 @@ function gridBlockWidget() {
         ).length;
         var dataColumns = $("#" + currentWidgetContainer).data("columns");
         var numToReveal = $("#" + currentWidgetContainer).data("columns") * 3;
-
         $(".grid-block-widget__reveal--less").hide();
         if (buttonClickCounter <= 1) {
           // $(this).parent().find(".grid-block-widget").nextAll().show();
@@ -109,11 +82,9 @@ function gridBlockWidget() {
             .find(".grid-block-widget")
             .slice(dataColumns, numToReveal)
             .show();
-
           $(currentButton).text("Show All");
         }
       }
-
       if (buttonClickCounter > 1) {
         $(currentButton).fadeOut();
         $("#" + currentWidgetContainer)
@@ -123,10 +94,9 @@ function gridBlockWidget() {
       calculateDataHeight();
     });
   });
-
   clickHandlers();
+  calculateDataHeight();
 }
-
 function clickHandlers() {
   $(".grid-block-widget__reveal--more").on("click keydown", function (e) {
     if (accessibleClick(event)) {
@@ -153,119 +123,6 @@ function clickHandlers() {
     }
   });
 }
-
-function paginate() {
-  // $(".grid-block-widget__button").on("click keydown", function (e) {
-  //   if (accessibleClick(event)) {
-  //     // $(this).parent().find(".grid-block-widget").nextAll().show();
-  //     // $(this).parent().find(".grid-block-widget").slice(0, 6).show();
-  //       "parent: " +
-  //         $(currentWidgetContainer).find(".grid-block-widget__container")
-  //     );
-  //   }
-  // });
-}
-function debugging() {
-  // !!! THIS IS FOR TESTING ONLY - DO NOT MERGE THIS INTO DEV/PROD !!!
-  // function clearCache() {
-  //   //get the mins of the current time
-  //   var mins = new Date().getMinutes();
-  //   if (mins == "00") {
-  //     window.location.reload(true);
-  //   }
-  // }
-
-  // setInterval(clearCache, 1000);
-  // if (!$("html").hasClass("cleared-cache")) {
-  //   $("html").addClass("cleared-cache");
-  //   window.location.reload(true);
-  // }
-
-  $("head").append('<meta http-equiv="expires" content="timestamp">');
-  $("#theme").append(
-    '<div id="testing-tools"><a id="close-testing-tools">X</a><a id="clone" class="button button--red">Clone Grid Blocks</a><div id="grid-columns"><input type="range" id="columns" name="columns" min="2" max="6" value="3" step="1" /><label id="grid-col-val" for="columns">3 columns</label></div><p>Note: Column slider will not affect rotators</p><a id="content-editable" class="button button--red">Editable Text</a><a id="random-images" class="button button--red">Randomly Sized Images</a></div>'
-  );
-
-  $(document).on("input change", "#columns", function () {
-    var numberOfColumns = $(this).val();
-    $("#grid-col-val").html(numberOfColumns + " Columns");
-
-    var gridBlockWidgetColumns = $("#columns").html($(this).val());
-    var bodyStyles = window.getComputedStyle(document.body);
-    var fooBar = bodyStyles.getPropertyValue("--gridBlockWidgetColumns"); //get
-    document.body.style.setProperty(
-      "--gridBlockWidgetColumns",
-      gridBlockWidgetColumns
-    ); //set
-
-    $("#grid-col-val").text().split(" ")[0];
-
-    var gridBlockWidgetColumns = $("#grid-col-val").text().split(" ")[0];
-    var bodyStyles = window.getComputedStyle(document.body);
-    var fooBar = bodyStyles.getPropertyValue("--gridBlockWidgetColumns"); //get
-    document.body.style.setProperty(
-      "--gridBlockWidgetColumns",
-      gridBlockWidgetColumns
-    ); //set
-
-    $(".grid-block-widget__container")
-      .removeClass(
-        "grid-block-widget__container--2-col grid-block-widget__container--3-col grid-block-widget__container--4-col grid-block-widget__container--5-col grid-block-widget__container--6-col"
-      )
-      .addClass(
-        "grid-block-widget__container--" + gridBlockWidgetColumns + "-col"
-      );
-    $(".grid-block-widget__container").each(function () {
-      $(this).attr("data-columns", gridBlockWidgetColumns);
-    });
-
-    // refreshCSS();
-  });
-
-  $("#clone").click(function () {
-    $(".grid-block-widget__container").each(function () {
-      // 	var parent_id = $(this)
-      var dataColumns = $(this).data("columns");
-      var numClone = 24;
-      var $col = $(this).find("> .grid-block-widget");
-      for (var i = 0; i < numClone; i++) {
-        $col.clone().appendTo($(this));
-      }
-    });
-    clickHandlers();
-    refreshJS();
-  });
-  $("#content-editable").click(function () {
-    $(
-      ".section-intro, .grid-block-widget__title,  .grid-block-widget__text, .grid-block-widget__button"
-    ).attr("contentEditable", true);
-    clickHandlers();
-  });
-  $("#random-images").click(function () {
-    $(".grid-block-widget__container img").each(function () {
-      var width = Math.floor(Math.random() * 200) + 200;
-      var height = Math.floor(Math.random() * 600) + 300;
-
-      var widths = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1024, 1920];
-      var width = widths[Math.floor(Math.random() * widths.length)];
-
-      var heights = [100, 300, 400, 500, 600, 700, 768, 800, 900, 1024, 1920];
-      var height = heights[Math.floor(Math.random() * heights.length)];
-
-      $(this).attr(
-        "src",
-        " https://placedog.net/" + width + "/" + height + "?random"
-      );
-    });
-    clickHandlers();
-    // refreshCSS();
-  });
-  $("#close-testing-tools").click(function () {
-    $("div#testing-tools").hide();
-    clickHandlers();
-  });
-}
-
 function gridBlockCarousel() {
   $(".grid-block-widget__container--rotate").slick({
     infinite: true,
@@ -304,7 +161,6 @@ function gridBlockCarousel() {
       // instead of a settings object
     ],
   });
-
   $(".one-column .grid-block-widget__container--rotate").slick({
     infinite: true,
     slidesToShow: 5,
@@ -342,7 +198,6 @@ function gridBlockCarousel() {
     ],
   });
 }
-
 function adjustCarouselButtonHeight() {
   $(".one-column .grid-block-widget__container--rotate").each(function () {
     var imgHeight = $(this).find(".grid-block-widget__image").height();
@@ -357,14 +212,11 @@ function refreshCSS() {
   for (let i = 0; i < links.length; i++) {
     if (links[i].getAttribute("rel") == "stylesheet") {
       let href = links[i].getAttribute("href").split("?")[0];
-
       let newHref = href + "?version=" + new Date().getMilliseconds();
-
       links[i].setAttribute("href", newHref);
     }
   }
 }
-
 function refreshJS() {
   var scripts = document.getElementsByTagName("script");
   for (var i = 0; i < scripts.length; i++) {
@@ -373,7 +225,6 @@ function refreshJS() {
     scripts[i].setAttribute("src", source);
   }
 }
-
 function ieObjectFitFallback() {
   $(".grid-block-widget img").each(function () {
     var t = jQuery(this),
@@ -392,11 +243,9 @@ function ieObjectFitFallback() {
       "background-image": s,
     });
     d.attr("class", parentClasses);
-
     t.remove();
   });
 }
-
 $(window).load(function () {
   adjustCarouselButtonHeight();
   $("button.slick-arrow").on("click keydown", function (e) {
@@ -417,12 +266,11 @@ $(window).load(function () {
   normalizeHeights();
   calculateDataHeight();
 });
-
 function normalizeHeights() {
   $(".grid-block-widget__container").each(function () {
     // Get an array of all element heights
     var elementHeights = $(this)
-      .find(".grid-block-widget p")
+      .find(".grid-block-widget")
       .map(function () {
         return $(this).height();
       })
@@ -431,13 +279,11 @@ function normalizeHeights() {
     // `apply` is equivalent to passing each height as an argument
     var tallest = Math.max.apply(null, elementHeights);
     // Set each height to the max height
-    //   $('.grid-block-widget').height(tallest);
-    $(this).find(".grid-block-widget p").css("min-height", tallest);
-    $(this).find(".grid-block-widget p").addClass("normalized-height", tallest);
+    $(this).find(".grid-block-widget").css("min-height", tallest);
+    $(this).find(".grid-block-widget").addClass("normalized-height", tallest);
   });
   hidePaginationButton();
 }
-
 function hidePaginationButton() {
   $(".grid-block-widget__container").each(function () {
     var hidden = $(this).find(".grid-block-widget:hidden").length;
@@ -445,7 +291,6 @@ function hidePaginationButton() {
     var currentWidgetContainer = $(this).attr("id");
     var loadMoreButtonButton = " + .grid-block-widget__button";
     var currentButton = "#" + currentWidgetContainer + loadMoreButtonButton;
-
     if ($(this).find(".grid-block-widget:hidden").length <= 0) {
       $(currentButton).remove();
     }
