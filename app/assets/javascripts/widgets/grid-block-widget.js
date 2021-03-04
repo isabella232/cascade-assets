@@ -1,5 +1,8 @@
 $(function () {
   if ($(".grid-block-widget").length) {
+    // alert(
+    //   "Hello -- Nick is currently adding your changes, so things may appear broken"
+    // );
     // debugging();
     refreshCSS();
     refreshJS();
@@ -61,14 +64,15 @@ function calculateDataHeight() {
   console.log("calculating text data height");
 
   $(".grid-block-widget__text").each(function () {
-    var textHeight = $(this).height();
-    $(this).attr("data-height", textHeight);
     $(this).addClass("grid-block-widget__text--truncated");
+
+    var scrollHeight = $(this)[0].scrollHeight;
+    $(this).attr("data-scroll-height", scrollHeight);
 
     $(this)
       .parent(".grid-block-widget")
       .addClass("grid-block-widget--text-overflow");
-    if ($(this).attr("data-height") >= 35) {
+    if ($(this).attr("data-scroll-height") >= 158) {
       $(this).parent().find(".grid-block-widget__reveal--more").show();
     }
   });
@@ -105,7 +109,8 @@ function gridBlockWidget() {
         var dataColumns = $("#" + currentWidgetContainer).data("columns");
         var numToReveal = $("#" + currentWidgetContainer).data("columns") * 3;
         console.log("numtoreveal: " + numToReveal);
-        calculateDataHeight();
+
+        $(".grid-block-widget__reveal--less").hide();
         if (buttonClickCounter <= 1) {
           // $(this).parent().find(".grid-block-widget").nextAll().show();
           // $(this).parent().find(".grid-block-widget").slice(0, 6).show();
@@ -116,7 +121,6 @@ function gridBlockWidget() {
             .show();
 
           $(currentButton).text("Show All");
-          calculateDataHeight();
         }
       }
 
@@ -125,8 +129,8 @@ function gridBlockWidget() {
         $("#" + currentWidgetContainer)
           .find(".grid-block-widget")
           .show();
-        calculateDataHeight();
       }
+      calculateDataHeight();
     });
   });
 
@@ -290,6 +294,7 @@ function gridBlockCarousel() {
     arrows: true,
     dots: false,
     infinite: true,
+    // accessibility: true,
     responsive: [
       {
         breakpoint: 1200,
@@ -357,6 +362,16 @@ function gridBlockCarousel() {
     ],
   });
 }
+
+function adjustCarouselButtonHeight() {
+  $(".one-column .grid-block-widget__container--rotate").each(function () {
+    var imgHeight = $(this).find(".grid-block-widget__image").height();
+    var buttonHeight = imgHeight / 2;
+    var slickButton = $(this)
+      .find("button.slick-arrow")
+      .css("top", buttonHeight);
+  });
+}
 function refreshCSS() {
   console.log("hot swapping CSS");
   let links = document.getElementsByTagName("link");
@@ -406,5 +421,60 @@ function ieObjectFitFallback() {
     d.attr("class", parentClasses);
 
     t.remove();
+  });
+}
+
+$(window).load(function () {
+  adjustCarouselButtonHeight();
+  $("button.slick-arrow").on("click keydown", function (e) {
+    if (accessibleClick(event)) {
+      $(".grid-block-widget__reveal--less").trigger("click");
+    }
+  });
+  $("button.slick-prev").on("keydown", function (e) {
+    if (accessibleClick(event)) {
+      $("button.slick-prev").trigger("click");
+    }
+  });
+  $("button.slick-next").on("keydown", function (e) {
+    if (accessibleClick(event)) {
+      $("button.slick-next").trigger("click");
+    }
+  });
+  normalizeHeights();
+  calculateDataHeight();
+});
+
+function normalizeHeights() {
+  $(".grid-block-widget__container").each(function () {
+    // Get an array of all element heights
+    var elementHeights = $(this)
+      .find(".grid-block-widget")
+      .map(function () {
+        return $(this).height();
+      })
+      .get();
+    // Math.max takes a variable number of arguments
+    // `apply` is equivalent to passing each height as an argument
+    var tallest = Math.max.apply(null, elementHeights);
+    // Set each height to the max height
+    //   $('.grid-block-widget').height(tallest);
+    $(this).find(".grid-block-widget").css("min-height", tallest);
+  });
+  hidePaginationButton();
+}
+
+function hidePaginationButton() {
+  $(".grid-block-widget__container").each(function () {
+    var hidden = $(this).find(".grid-block-widget:hidden").length;
+    var button = $(this).find(".grid-block-widget__button");
+    console.log("hidden " + hidden);
+    var currentWidgetContainer = $(this).attr("id");
+    var loadMoreButtonButton = " + .grid-block-widget__button";
+    var currentButton = "#" + currentWidgetContainer + loadMoreButtonButton;
+
+    if ($(this).find(".grid-block-widget:hidden").length <= 0) {
+      $(currentButton).remove();
+    }
   });
 }
