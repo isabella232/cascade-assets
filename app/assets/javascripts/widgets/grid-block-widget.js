@@ -270,7 +270,7 @@ function normalizeHeights() {
   $(".grid-block-widget__container").each(function () {
     // Get an array of all element heights
     var elementHeights = $(this)
-      .find(".grid-block-widget")
+      .find(".grid-block-widget p")
       .map(function () {
         return $(this).height();
       })
@@ -279,8 +279,8 @@ function normalizeHeights() {
     // `apply` is equivalent to passing each height as an argument
     var tallest = Math.max.apply(null, elementHeights);
     // Set each height to the max height
-    $(this).find(".grid-block-widget").css("min-height", tallest);
-    $(this).find(".grid-block-widget").addClass("normalized-height", tallest);
+    $(this).find(".grid-block-widget p").css("min-height", tallest);
+    $(this).find(".grid-block-widget p").addClass("normalized-height", tallest);
   });
   hidePaginationButton();
 }
