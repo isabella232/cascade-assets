@@ -3,7 +3,9 @@ $(function () {
     gridBlockWidget();
     gridBlockCarousel();
     if (isIE()) {
+      console.log("internet explorer");
       $(".grid-block-widget img").each(function () {
+        console.log("detected ie -- changing object-fit to background images");
         var t = jQuery(this),
           s = "url(" + t.attr("src") + ")",
           p = t.parent(),
@@ -11,6 +13,7 @@ $(function () {
           d = jQuery(
             "<div class='ie__fallback--object-fit grid-block-widget__image'></div>"
           );
+        console.log("parentClasses" + parentClasses);
         p.prepend(d);
         d.css({
           "min-height": "200px",
@@ -20,6 +23,7 @@ $(function () {
           "background-image": s,
         });
         d.attr("class", parentClasses);
+        // $(".grid-block-widget__title").css("max-width", "200px");
         t.remove();
       });
       $(".grid-block-widget__reveal--more").on("click keydown", function (e) {
@@ -37,25 +41,24 @@ $(function () {
     }
   }
 });
+
 function calculateDataHeight() {
+  console.log("calculating text data height");
   $(".grid-block-widget__text").each(function () {
     $(this).addClass("grid-block-widget__text--truncated");
     var scrollHeight = $(this)[0].scrollHeight;
     $(this).attr("data-scroll-height", scrollHeight);
+    $(this)
+      .parent(".grid-block-widget")
+      .addClass("grid-block-widget--text-overflow");
     if ($(this).attr("data-scroll-height") >= 158) {
-      $(this)
-        .parent(".grid-block-widget")
-        .addClass("grid-block-widget--text-overflow");
       $(this).parent().find(".grid-block-widget__reveal--more").show();
-    } else {
-      $(this)
-        .parent()
-        .find(".grid-block-widget__reveal--more")
-        .append('<span class="reveal--no-reveal spacer"></span>');
     }
   });
 }
+
 function gridBlockWidget() {
+  calculateDataHeight();
   var buttonClickCounter = 0;
   $(".grid-block-widget__container").each(function () {
     // IDs are assigned via velocity format
@@ -65,19 +68,24 @@ function gridBlockWidget() {
     var gridBlockWidgetColumns = $("#columns").html($(this).val());
     $(currentButton).on("click keydown", function (e) {
       if (accessibleClick(event)) {
+        console.log("clicked");
+        console.log("current widget container: #" + currentWidgetContainer);
+        console.log("current widget button: " + currentButton);
         buttonClickCounter += 1;
+        console.log("button click counter " + buttonClickCounter);
         var currentVisible = $("#" + currentWidgetContainer).find(
           ".grid-block-widget:visible"
         ).length;
         var currentHidden = $("#" + currentWidgetContainer).find(
           ".grid-block-widget:hidden"
         ).length;
+        console.log("current hidden: " + currentHidden);
         var dataColumns = $("#" + currentWidgetContainer).data("columns");
         var numToReveal = $("#" + currentWidgetContainer).data("columns") * 3;
+        console.log("numtoreveal: " + numToReveal);
         $(".grid-block-widget__reveal--less").hide();
         if (buttonClickCounter <= 1) {
-          // $(this).parent().find(".grid-block-widget").nextAll().show();
-          // $(this).parent().find(".grid-block-widget").slice(0, 6).show();
+          console.log("parent: " + currentWidgetContainer);
           $("#" + currentWidgetContainer)
             .find(".grid-block-widget")
             .slice(dataColumns, numToReveal)
@@ -95,8 +103,8 @@ function gridBlockWidget() {
     });
   });
   clickHandlers();
-  calculateDataHeight();
 }
+
 function clickHandlers() {
   $(".grid-block-widget__reveal--more").on("click keydown", function (e) {
     if (accessibleClick(event)) {
@@ -123,6 +131,7 @@ function clickHandlers() {
     }
   });
 }
+
 function gridBlockCarousel() {
   $(".grid-block-widget__container--rotate").slick({
     infinite: true,
@@ -198,6 +207,7 @@ function gridBlockCarousel() {
     ],
   });
 }
+
 function adjustCarouselButtonHeight() {
   $(".one-column .grid-block-widget__container--rotate").each(function () {
     var imgHeight = $(this).find(".grid-block-widget__image").height();
@@ -207,26 +217,11 @@ function adjustCarouselButtonHeight() {
       .css("top", buttonHeight);
   });
 }
-function refreshCSS() {
-  let links = document.getElementsByTagName("link");
-  for (let i = 0; i < links.length; i++) {
-    if (links[i].getAttribute("rel") == "stylesheet") {
-      let href = links[i].getAttribute("href").split("?")[0];
-      let newHref = href + "?version=" + new Date().getMilliseconds();
-      links[i].setAttribute("href", newHref);
-    }
-  }
-}
-function refreshJS() {
-  var scripts = document.getElementsByTagName("script");
-  for (var i = 0; i < scripts.length; i++) {
-    var href = scripts[i].src.split("?")[0];
-    var source = href + "?version=" + new Date().getMilliseconds();
-    scripts[i].setAttribute("src", source);
-  }
-}
+
 function ieObjectFitFallback() {
+  console.log("internet explorer");
   $(".grid-block-widget img").each(function () {
+    console.log("detected ie -- changing object-fit to background images");
     var t = jQuery(this),
       s = "url(" + t.attr("src") + ")",
       p = t.parent(),
@@ -234,6 +229,7 @@ function ieObjectFitFallback() {
       d = jQuery(
         "<div class='ie__fallback--object-fit grid-block-widget__image'></div>"
       );
+    console.log("parentClasses" + parentClasses);
     p.prepend(d);
     d.css({
       "min-height": "200px",
@@ -266,11 +262,12 @@ $(window).load(function () {
   normalizeHeights();
   calculateDataHeight();
 });
+
 function normalizeHeights() {
   $(".grid-block-widget__container").each(function () {
     // Get an array of all element heights
     var elementHeights = $(this)
-      .find(".grid-block-widget p")
+      .find(".grid-block-widget")
       .map(function () {
         return $(this).height();
       })
@@ -279,15 +276,16 @@ function normalizeHeights() {
     // `apply` is equivalent to passing each height as an argument
     var tallest = Math.max.apply(null, elementHeights);
     // Set each height to the max height
-    $(this).find(".grid-block-widget p").css("min-height", tallest);
-    $(this).find(".grid-block-widget p").addClass("normalized-height", tallest);
+    $(this).find(".grid-block-widget").css("min-height", tallest);
   });
   hidePaginationButton();
 }
+
 function hidePaginationButton() {
   $(".grid-block-widget__container").each(function () {
     var hidden = $(this).find(".grid-block-widget:hidden").length;
     var button = $(this).find(".grid-block-widget__button");
+    console.log("hidden " + hidden);
     var currentWidgetContainer = $(this).attr("id");
     var loadMoreButtonButton = " + .grid-block-widget__button";
     var currentButton = "#" + currentWidgetContainer + loadMoreButtonButton;
