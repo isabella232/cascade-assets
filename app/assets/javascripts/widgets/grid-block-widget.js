@@ -3,9 +3,7 @@ $(function () {
     gridBlockWidget();
     gridBlockCarousel();
     if (isIE()) {
-      console.log("internet explorer");
       $(".grid-block-widget img").each(function () {
-        console.log("detected ie -- changing object-fit to background images");
         var t = jQuery(this),
           s = "url(" + t.attr("src") + ")",
           p = t.parent(),
@@ -13,7 +11,6 @@ $(function () {
           d = jQuery(
             "<div class='ie__fallback--object-fit grid-block-widget__image'></div>"
           );
-        console.log("parentClasses" + parentClasses);
         p.prepend(d);
         d.css({
           "min-height": "200px",
@@ -43,7 +40,6 @@ $(function () {
 });
 
 function calculateDataHeight() {
-  console.log("calculating text data height");
   $(".grid-block-widget__text").each(function () {
     $(this).addClass("grid-block-widget__text--truncated");
     var scrollHeight = $(this)[0].scrollHeight;
@@ -68,24 +64,17 @@ function gridBlockWidget() {
     var gridBlockWidgetColumns = $("#columns").html($(this).val());
     $(currentButton).on("click keydown", function (e) {
       if (accessibleClick(event)) {
-        console.log("clicked");
-        console.log("current widget container: #" + currentWidgetContainer);
-        console.log("current widget button: " + currentButton);
         buttonClickCounter += 1;
-        console.log("button click counter " + buttonClickCounter);
         var currentVisible = $("#" + currentWidgetContainer).find(
           ".grid-block-widget:visible"
         ).length;
         var currentHidden = $("#" + currentWidgetContainer).find(
           ".grid-block-widget:hidden"
         ).length;
-        console.log("current hidden: " + currentHidden);
         var dataColumns = $("#" + currentWidgetContainer).data("columns");
         var numToReveal = $("#" + currentWidgetContainer).data("columns") * 3;
-        console.log("numtoreveal: " + numToReveal);
         $(".grid-block-widget__reveal--less").hide();
         if (buttonClickCounter <= 1) {
-          console.log("parent: " + currentWidgetContainer);
           $("#" + currentWidgetContainer)
             .find(".grid-block-widget")
             .slice(dataColumns, numToReveal)
@@ -219,9 +208,7 @@ function adjustCarouselButtonHeight() {
 }
 
 function ieObjectFitFallback() {
-  console.log("internet explorer");
   $(".grid-block-widget img").each(function () {
-    console.log("detected ie -- changing object-fit to background images");
     var t = jQuery(this),
       s = "url(" + t.attr("src") + ")",
       p = t.parent(),
@@ -229,7 +216,6 @@ function ieObjectFitFallback() {
       d = jQuery(
         "<div class='ie__fallback--object-fit grid-block-widget__image'></div>"
       );
-    console.log("parentClasses" + parentClasses);
     p.prepend(d);
     d.css({
       "min-height": "200px",
@@ -285,7 +271,6 @@ function hidePaginationButton() {
   $(".grid-block-widget__container").each(function () {
     var hidden = $(this).find(".grid-block-widget:hidden").length;
     var button = $(this).find(".grid-block-widget__button");
-    console.log("hidden " + hidden);
     var currentWidgetContainer = $(this).attr("id");
     var loadMoreButtonButton = " + .grid-block-widget__button";
     var currentButton = "#" + currentWidgetContainer + loadMoreButtonButton;
