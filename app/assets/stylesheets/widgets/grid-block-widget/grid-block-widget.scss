@@ -83,3 +83,8 @@
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   }
 }
+
+.reveal--no-reveal.spacer {
+  height: 28px;
+  display: block;
+}
