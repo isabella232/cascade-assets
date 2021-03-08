@@ -43,7 +43,9 @@ $(function () {
 
 function calculateDataHeight() {
   // 2 & 3 COLUMN
-  $(".two-column-template .grid-block-widget__text, .three-column-template .grid-block-widget__text").each(function () {
+  $(
+    ".two-column-template .grid-block-widget__text, .three-column-template .grid-block-widget__text"
+  ).each(function () {
     $(this).addClass("grid-block-widget__text--truncated");
     var scrollHeight = $(this)[0].scrollHeight;
     $(this).attr("data-scroll-height", scrollHeight);
@@ -52,9 +54,6 @@ function calculateDataHeight() {
       .addClass("grid-block-widget--text-overflow");
     if ($(this).attr("data-scroll-height") >= 158) {
       $(this).parent().find(".grid-block-widget__reveal--more").show();
-    }
-    else {
-      $(this).parent().find(".grid-block-widget__reveal--more").hide();
     }
   });
   // ONE COLUMN
@@ -65,11 +64,8 @@ function calculateDataHeight() {
     $(this)
       .parent(".grid-block-widget")
       .addClass("grid-block-widget--text-overflow");
-    if ($(this).attr("data-scroll-height") >= 288) {
+    if ($(this).attr("data-scroll-height") >= 158) {
       $(this).parent().find(".grid-block-widget__reveal--more").show();
-    }
-    else {
-      $(this).parent().find(".grid-block-widget__reveal--more").hide();
     }
   });
 }
