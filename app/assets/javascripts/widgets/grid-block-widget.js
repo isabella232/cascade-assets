@@ -1,4 +1,6 @@
 $(function () {
+  refreshJS();
+  refreshCSS();
   if ($(".grid-block-widget").length) {
     gridBlockWidget();
     gridBlockCarousel();
@@ -40,7 +42,8 @@ $(function () {
 });
 
 function calculateDataHeight() {
-  $(".grid-block-widget__text").each(function () {
+  // 2 & 3 COLUMN
+  $(".two-column-template .grid-block-widget__text, .three-column-template .grid-block-widget__text").each(function () {
     $(this).addClass("grid-block-widget__text--truncated");
     var scrollHeight = $(this)[0].scrollHeight;
     $(this).attr("data-scroll-height", scrollHeight);
@@ -49,6 +52,24 @@ function calculateDataHeight() {
       .addClass("grid-block-widget--text-overflow");
     if ($(this).attr("data-scroll-height") >= 158) {
       $(this).parent().find(".grid-block-widget__reveal--more").show();
+    }
+    else {
+      $(this).parent().find(".grid-block-widget__reveal--more").hide();
+    }
+  });
+  // ONE COLUMN
+  $(".one-column .grid-block-widget__text").each(function () {
+    $(this).addClass("grid-block-widget__text--truncated");
+    var scrollHeight = $(this)[0].scrollHeight;
+    $(this).attr("data-scroll-height", scrollHeight);
+    $(this)
+      .parent(".grid-block-widget")
+      .addClass("grid-block-widget--text-overflow");
+    if ($(this).attr("data-scroll-height") >= 288) {
+      $(this).parent().find(".grid-block-widget__reveal--more").show();
+    }
+    else {
+      $(this).parent().find(".grid-block-widget__reveal--more").hide();
     }
   });
 }
@@ -253,7 +274,7 @@ function normalizeHeights() {
   $(".grid-block-widget__container").each(function () {
     // Get an array of all element heights
     var elementHeights = $(this)
-      .find(".grid-block-widget")
+      .find(".grid-block-widget__text")
       .map(function () {
         return $(this).height();
       })
@@ -262,7 +283,7 @@ function normalizeHeights() {
     // `apply` is equivalent to passing each height as an argument
     var tallest = Math.max.apply(null, elementHeights);
     // Set each height to the max height
-    $(this).find(".grid-block-widget").css("min-height", tallest);
+    // $(this).find(".grid-block-widget__text").css("min-height", tallest);
   });
   hidePaginationButton();
 }
@@ -278,4 +299,26 @@ function hidePaginationButton() {
       $(currentButton).remove();
     }
   });
+}
+
+function refreshCSS() {
+  let links = document.getElementsByTagName("link");
+  for (let i = 0; i < links.length; i++) {
+    if (links[i].getAttribute("rel") == "stylesheet") {
+      let href = links[i].getAttribute("href").split("?")[0];
+
+      let newHref = href + "?version=" + new Date().getMilliseconds();
+
+      links[i].setAttribute("href", newHref);
+    }
+  }
+}
+
+function refreshJS() {
+  var scripts = document.getElementsByTagName("script");
+  for (var i = 0; i < scripts.length; i++) {
+    var href = scripts[i].src.split("?")[0];
+    var source = href + "?version=" + new Date().getMilliseconds();
+    scripts[i].setAttribute("src", source);
+  }
 }

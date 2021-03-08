@@ -454,6 +454,13 @@
         padding-left: 24px;
         padding-right: 24px;
       }
+      &--right {
+        display: flex;
+        justify-content: end;
+        text-align: right;
+        padding-left: 24px;
+        padding-right: 24px;
+      }
     }
 
     // .GRID-BLOCK-WIDGET PARENT WITH LONG TEXT
