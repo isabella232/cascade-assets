@@ -170,7 +170,7 @@
     <group identifier="widget" label="Widgets" multiple="true">
       <text type="dropdown" identifier="widgetType" label="Type of Widget" field-id="ff6bcc3bc0a81e5f43ef9b372ea525f7" help-text="Choose the type of content you&#39;d like to add to the page">
         <dropdown-item value="(select one)" />
-        <dropdown-item value="RSS Feed Display" show-fields="primaryContent/widget/rssFeedDisplay" />
+        <dropdown-item value="RSS Feed Display" show-fields="primaryContent/widget/rssFeedDisplay" label="RSS Feed Display (limit 1)"/>
         <dropdown-item value="Program Events" show-fields="primaryContent/widget/programEvents" />
         <dropdown-item value="Banner Notification" show-fields="primaryContent/widget/bannerNotificationWidget" />
         <dropdown-item value="Career Block" show-fields="primaryContent/widget/careerBlockWidget" />
@@ -199,10 +199,10 @@
         <dropdown-item value="Photo Callout" show-fields="primaryContent/widget/photoCalloutWidget" />
         <dropdown-item value="Next Steps" show-fields="primaryContent/widget/next-steps-widget" />
       </text>
-      <group identifier="rssFeedDisplay" label="RSS Feed Display" collapsed="true">
+      <group identifier="rssFeedDisplay" label="RSS Feed Display (limit 1)" collapsed="true">
         <shared-field path="display" identifier="display" field-id="ff6bcc3bc0a81e5f43ef9b370404edfd" />
         <text identifier="feedTitle" label="Feed Title" field-id="ff6bcc3bc0a81e5f43ef9b37d3baf23b" required="true" />
-        <text type="dropdown" identifier="bgColor" label="Background Color" field-id="ff6bcc3bc0a81e5f43ef9b37df775fb0" default="Sand">
+        <text type="dropdown" identifier="bgColor" label="Background Color" field-id="ff6bcc3bc0a81e5f43ef9b37df775fb0" required="true" default="sand">
           <dropdown-item value="sand" label="Sand" />
           <dropdown-item value="grey" label="Grey" />
         </text>
@@ -210,7 +210,7 @@
           <radio-item value="Yes" />
           <radio-item value="No" />
         </text>
-        <text identifier="feedUrl" label="Feed Url" field-id="ff6bcc3bc0a81e5f43ef9b37cbe996ee" required="true" />
+        <text identifier="feedUrl" label="Feed Url" field-id="ff6bcc3bc0a81e5f43ef9b37cbe996ee" required="true" help-text="This widget can currently only display Wordpress RSS Feeds. Example: https://news.chapman.edu/category/alumni/feed/" />
       </group>
       <group identifier="programEvents" label="Program Events" collapsed="true">
         <shared-field path="display" identifier="display" field-id="ff6bcc3bc0a81e5f43ef9b37f4046c5f" />
