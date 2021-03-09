@@ -1,12 +1,8 @@
 #import( "/_cascade/formats/helpers.velocity" )
 
 ## Chapman.edu: /_cascade/formats/modular/widgets/Grid-Block-Widget (MODULAR)
-<div class="hidden">currentpage: $currentPage <br/> Content Type: $currentPage.contentType.path /_cascade/formats/modular/widgets/Grid-Block-Widget (MODULAR) </div>
 
 #set ($templateType = $currentPage.contentType.path )
-
-<div class="hidden">templatetype: $templateType</div>
-
 #macro(camel2Snake $camelCase)
     #set( $regex = "([a-z])([A-Z]+)")
     #set( $replacement = "$1-$2")
@@ -66,14 +62,13 @@
    #end
 
   ## INTRO SECTION   
-##   #set ($displaySectionIntro = $element.getChild($widgetXPath).getChild('displaySectionIntro').value)
-
   #getSetVal($parentGroup  'displaySectionIntro')
   #set ($displaySectionIntro = $parentGroup.getChild('displaySectionIntro').value)
   
 
   #set ($displayCTA = $element.getChild($widgetXPath).getChild('displayCTAButtons').value)
-
+  
+ 
   #set ($introAndOutroTextAlignment = $element.getChild($widgetXPath).getChild('textAlignment').value)
 
 
@@ -205,6 +200,7 @@
 
   #if ($gridDisplay == 'showAll')
     #set ($pagination = 'grid-block-widget__container--display-all')
+    #set ($paginationButtonDisplayClass = "hidden")
   #elseif ($gridDisplay == 'pagination')
     #set ($pagination = 'grid-block-widget__container--paginate')
   #elseif ($gridDisplay == 'rotator')
@@ -308,7 +304,7 @@
       #end
 
     #if ($gridBodyText != '')
-      <div class="grid-block-widget__text grid-block-widget__text--${textBackgroundColor} grid-block-widget__text--${textAlignment} grid-block-widget__text--${textAlignment} ${oneColNoBg}">
+      <div class="grid-block-widget__text grid-block-widget__text--${textBackgroundColor} grid-block-widget__text--${textAlignment} text-align--${textAlignment} ${oneColNoBg}">
         <p>
           $_SerializerTool.serialize($block.getChild('gridBlockText'), true)
         </p>
@@ -331,13 +327,13 @@
   #end
   ## CLOSE GRID-BLOCK-WIDGET__CONTAINER DIV
 </div>
-#if ($gridDisplay.contains('pagination') )
+#if ($gridDisplay.contains('pagination'))
 
   <a
     id="grid-block-widget__button--${_MathTool.add($foreach.index, 1)}"
     aria-label="Load More Photos"
     aria-role="button"
-    class="button grid-block-widget__button grid-block-widget__button--transparent"
+    class="button grid-block-widget__button grid-block-widget__button--transparent $paginationButtonDisplayClass"
     tabindex="0"
   >
     Load More
@@ -350,9 +346,9 @@
 
 
 
-#if ($displayCTA != 'no')
+#if ($displayCTA.trim() != 'no')
 
-  <div class="grid-block-widget__cta grid-block-widget__cta--${introAndOutroTextAlignment} futura-regular fw-bold">
+  <div data-display-cta="${displayCTA}" class="grid-block-widget__cta grid-block-widget__cta--${introAndOutroTextAlignment} futura-regular fw-bold">
     #gbCTA($element, 'gridBlockWidget/link')
   </div>
 #end

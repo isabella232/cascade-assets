@@ -8,17 +8,22 @@ body {
       color: $red;
       text-transform: uppercase;
       font-weight: bold;
+      font-size: 1.8rem;
+      line-height: 2.2rem;
     }
 
     &__header {
       text-transform: uppercase;
       font-weight: bold;
       margin-top: 4px;
+      line-height: 2.2rem;
     }
 
     &__title {
       margin-top: 25px;
       margin-bottom: 25px;
+      font-size: 1.8rem;
+      line-height: 2.2rem;
     }
 
     .grid-block-widget__title {
@@ -31,6 +36,8 @@ body {
     &__text {
       margin-top: 25px;
       margin-bottom: 25px;
+      font-size: 1.8rem;
+      line-height: 2.2rem;
     }
 
     &__buttons {

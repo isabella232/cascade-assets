@@ -14,50 +14,6 @@
       grid-template-columns: repeat(1, 1fr);
     }
   }
-
-  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-    .grid-block-widget {
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      min-width: 200px;
-      width: calc((100% / 3) - 30px);
-
-      &--portrait {
-        img {
-          min-height: 400px;
-          max-height: 400px;
-          overflow: hidden;
-          min-width: 200px;
-          max-width: 100%;
-        }
-      }
-
-      & > div[class^="grid-block-widget__"] {
-        max-width: 100%;
-        width: 100%;
-      }
-
-      & + .grid-block-widget {
-        margin-left: 12px;
-      }
-
-      &__wrapper {
-        display: flex;
-        flex-direction: column;
-        max-width: 100%;
-        flex-wrap: wrap;
-        position: relative;
-        margin-top: 60px;
-      }
-
-      &__container {
-        display: flex !important;
-        flex-direction: row;
-        flex-wrap: wrap;
-      }
-    }
-  }
 }
 
 @include grid-col(2);
@@ -90,27 +46,3 @@
   height: 28px;
   display: block;
 }
-
-// .grid-block-widget__text.text-align--center {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   justify-items: center;
-//   text-align: center;
-// }
-
-// .grid-block-widget__text.text-align--left * {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: start;
-//   justify-items: start;
-//   text-align: left;
-// }
-
-// .grid-block-widget__text.text-align--right * {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: end;
-//   justify-items: end;
-//   text-align: right;
-// }
