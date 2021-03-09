@@ -39,8 +39,39 @@ $(function () {
   }
 });
 
+var accessibleClick = function (event) {
+  var code = event.charCode || event.keyCode,
+    type = event.type;
+
+  if (type === "click") {
+    return true;
+  } else if (type === "keydown") {
+    if (code === 32 || code === 13) {
+      event.preventDefault();
+      return true;
+    }
+  } else {
+    return false;
+  }
+};
+
 function calculateDataHeight() {
-  $(".grid-block-widget__text").each(function () {
+  // 2 & 3 COLUMN
+  $(
+    ".two-column-template .grid-block-widget__text, .three-column-template .grid-block-widget__text"
+  ).each(function () {
+    $(this).addClass("grid-block-widget__text--truncated");
+    var scrollHeight = $(this)[0].scrollHeight;
+    $(this).attr("data-scroll-height", scrollHeight);
+    $(this)
+      .parent(".grid-block-widget")
+      .addClass("grid-block-widget--text-overflow");
+    if ($(this).attr("data-scroll-height") >= 158) {
+      $(this).parent().find(".grid-block-widget__reveal--more").show();
+    }
+  });
+  // ONE COLUMN
+  $(".one-column .grid-block-widget__text").each(function () {
     $(this).addClass("grid-block-widget__text--truncated");
     var scrollHeight = $(this)[0].scrollHeight;
     $(this).attr("data-scroll-height", scrollHeight);
@@ -253,7 +284,7 @@ function normalizeHeights() {
   $(".grid-block-widget__container").each(function () {
     // Get an array of all element heights
     var elementHeights = $(this)
-      .find(".grid-block-widget")
+      .find(".grid-block-widget__text")
       .map(function () {
         return $(this).height();
       })
@@ -262,7 +293,7 @@ function normalizeHeights() {
     // `apply` is equivalent to passing each height as an argument
     var tallest = Math.max.apply(null, elementHeights);
     // Set each height to the max height
-    $(this).find(".grid-block-widget").css("min-height", tallest);
+    // $(this).find(".grid-block-widget__text").css("min-height", tallest);
   });
   hidePaginationButton();
 }
