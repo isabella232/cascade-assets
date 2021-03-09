@@ -30,13 +30,6 @@
 ## Widgets
 #foreach ($widget in $widgets)
     #set ($widgetType = $widget.getChild('widgetType').value)
-    
-    #if ($widgetType == 'New Text Editor')
-      #set ($displayWidget = $widget.getChild('textEditorWidget').getChild('display').value)
-      #if ($displayWidget == 'Yes')
-          #outputTextEditorWidget($widget)
-      #end
-    #end
 
     #if ($widgetType == 'Fact Cards with Text')
         #outputFactCardsWithText($widget)
