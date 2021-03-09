@@ -509,7 +509,7 @@ module ContentTypes
       # This reproduces content from static sample version
       format(
         '%s %s %s %s %s %s',
-        render_static_partial('widgets/single_column/call_to_action_block'),
+        render_static_partial('widgets/single_column/widgets/single_column/_image_slider_2018'),
         render_static_partial('widgets/primary_content/multi_photo_callout'),
         render_static_partial('widgets/single_column/chapman_events_feed'),
         render_static_partial('widgets/single_column/messaging_1_column_facts'),

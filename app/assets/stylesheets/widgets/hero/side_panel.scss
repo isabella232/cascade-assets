@@ -1,6 +1,6 @@
 .side-panel-hero {
 	position: relative;
-	background-color: #eaeaea;
+	background-color: $white;
 
 	+ div {
 		// Whatever is under this hero area should have double padding to account for the overlap
@@ -16,7 +16,7 @@
 	.background-video-wrapper {
 		padding-bottom: $one-column-widget-spacing/2;
 		pointer-events: none;
-		background-color: #eaeaea;
+		background-color: $white;
 
 		@include media($medium-screen) {
 			padding: 0;
@@ -109,7 +109,7 @@
 			padding: $one-column-widget-spacing/4 0;
 			max-width: 100%;
 			margin-bottom: 0;
-			background-color: #eaeaea;
+			background-color: $white;
 		}
 
 		.slider-bottom-border {

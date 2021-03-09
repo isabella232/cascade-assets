@@ -221,7 +221,7 @@
         <shared-field identifier="display" path="display" />
         <shared-field field-id="2ec23c65c0a81e8a5a403945714f24c6" identifier="bgColor" path="background-color-radio-buttons" />
         <text default="yes" field-id="2e5ae630c0a81e8a5a403945f880d1a6" identifier="displaySectionIntro" label="Display Section Intro?" type="radiobutton">
-          <radio-item label="Yes" show-fields="primaryContent/widget/gridBlockWidget/sectionHeaderGroup" value="yes" />
+          <radio-item label="Yes" show-fields="primaryContent/widget/gridBlockWidget/sectionHeaderGroup, primaryContent/widget/gridBlockWidget/textAlignment" value="yes" />
           <radio-item label="No" value="no " />
         </text>
         <text default="left-aligned" field-id="" identifier="textAlignment" label="Text Alignment" type="radiobutton" help-text="Text Alignment for Intro Section and CTA Buttons">
@@ -230,7 +230,7 @@
         </text>
         <text default="no" field-id="" identifier="displayCTAButtons" label="Display CTA Buttons at Bottom?" type="radiobutton">
           <radio-item label="Yes" show-fields="primaryContent/widget/gridBlockWidget/link, primaryContent/widget/gridBlockWidget/textAlignment" value="yes" />
-          <radio-item label="No" value="no " />
+          <radio-item label="No" value="no" />
         </text>
         <shared-field field-id="2e8489d8c0a81e8a5a40394576fa28af" identifier="sectionHeaderGroup" path="Section Header" />
         <group collapsed="true" identifier="gridOptions" label="Grid Block Options">
@@ -299,7 +299,6 @@
             <asset field-id="24682989c0a81e8a5a4039456688d569" identifier="gridBlockImage" label="Image" required="true" type="file" />
             <text field-id="2819d3aec0a81e8a5a40394590beb62b" identifier="altText" label="Image Alt Text" required="true" />
             <text field-id="2819d3aec0a81e8a5a4039450b676935" identifier="imagePosition" label="Image Position" default="center center" help-text="Changes image focal point. See https://developer.mozilla.org/en-US/docs/Web/CSS/object-position" />
-            <text field-id="281260f2c0a81e8a5a40394510043585" help-text="Youtube or Vimeo" identifier="video" label="Video URL" required="true" />
             <text help-text="Youtube or Vimeo iframe" identifier="iFrame" label="iFrame" required="true" />
             <text field-id="24682989c0a81e8a5a40394504b245f8" identifier="gridBlockText" label="Grid Block Text" required="true" wysiwyg="true" />
           </group>

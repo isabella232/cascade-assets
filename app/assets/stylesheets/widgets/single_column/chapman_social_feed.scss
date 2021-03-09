@@ -4,7 +4,7 @@ $tile_width: 335px;
 .chapman-social-feed-widget {
   padding: $one-column-widget-spacing 0;
   text-align: center;
-	background-color: #eaeaea;
+	background-color: $white;
 
 	.outer-container {
 		@include outer-container();
