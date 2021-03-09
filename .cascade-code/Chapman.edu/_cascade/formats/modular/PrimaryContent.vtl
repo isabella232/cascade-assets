@@ -56,23 +56,8 @@
     #set ($widgetType = $widget.getChild('widgetType').value )
 <!-- in forEach loop for $widgetType widget -->
 
-
-
- ##
-    #if ($widgetType == 'Hide From Search')
-          #outputHideFromSearch($widget)
-    #end
-##
 ##
     #if ($widgetType == 'Restricted Widgets (Permission-Based or Retiring)')
-      #set ($displayWidget = $widget.getChild('textEditorWidget').getChild('display').value)
-      #if ($displayWidget == 'Yes')
-          #outputTextEditorWidget($widget)
-      #end
-    #end
-##
-##
-    #if ($widgetType == 'New Text Editor')
       #set ($displayWidget = $widget.getChild('textEditorWidget').getChild('display').value)
       #if ($displayWidget == 'Yes')
           #outputTextEditorWidget($widget)
