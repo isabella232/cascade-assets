@@ -1,6 +1,6 @@
 $(document).ready(function() {
   var $rssFeedContainer = document.querySelector('.rss-feed-display-widget')
-console.log("rss feed display.js");
+  console.log("rss feed display.js");
   // NO RSS FEED WIDGET ON PAGE
   if (!$rssFeedContainer) return;
 
@@ -88,7 +88,7 @@ console.log("rss feed display.js");
       $feedItemLink                 = document.createElement('a'),
       $feedItemDateContainer        = document.createElement('div'),
       $feedItemDate                 = document.createElement('p'),
-      $feedItemTime                 = document.createElement('p');
+      $feedItemTime                 = document.createElement('p'),
       $feedItemImage                = document.createElement('img');
 
       // ADDED CSS CLASS TO FIRST FOUR RSS DIPSLAY ELEMENTS IN FEED 
@@ -112,27 +112,34 @@ console.log("rss feed display.js");
 
       // CREATE IMAGE ELEMENT
       if (showImage == "Yes") {
-        var itemImage = feedItem.image[0][0];
-        var itemImageWidth = itemImage[0],
-        itemImageHeight = itemImage[1],
-        itemImageSource = itemImage[2],
-        itemImageAlt = itemImage[3],
-        itemImageSrcset = itemImage[4];
+        if (feedItem.image !== undefined && feedItem.image.length) {
+          console.log(feedItem.image[0].img[0].$);
 
-        $feedItemImage.attr('width',itemImageAlt);
-        $feedItemImage.attr('height',itemImageAlt);
-        $feedItemImage.attr('src',itemImageSource);
-        $feedItemImage.attr('alt',itemImageAlt);
-        $feedItemImage.attr('srcset',itemImageSrcset);
+          var itemImage = feedItem.image[0].img[0].$;
+          var itemImageWidth = itemImage.width,
+          itemImageHeight = itemImage.heigh,
+          itemImageSource = itemImage.src,
+          itemImageAlt = itemImage.alt,
+          itemImageSrcset = itemImage.srcset;
+
+          $feedItemImage.setAttribute('width',itemImageAlt);
+          $feedItemImage.setAttribute('height',itemImageAlt);
+          $feedItemImage.setAttribute('src',itemImageSource);
+          $feedItemImage.setAttribute('alt',itemImageAlt);
+          $feedItemImage.setAttribute('srcset',itemImageSrcset);
+        }
       }
 
       // APPENDING APPROPRIATE RSS ITEMS TO ELEMENTS AND THEN CONTAINER
-      $feedItemDateContainer.appendChild($feedItemDate)
-      $feedItemDateContainer.appendChild($feedItemTime)
-      $feedItemDescriptionContainer.appendChild($feedItemLink)
-      $feedItemDescriptionContainer.appendChild($feedItemDescription)
-      $feedItemContainer.appendChild($feedItemDateContainer)
-      $feedItemContainer.appendChild($feedItemDescriptionContainer)
+      $feedItemDateContainer.appendChild($feedItemDate);
+      $feedItemDateContainer.appendChild($feedItemTime);
+      $feedItemDescriptionContainer.appendChild($feedItemLink);
+      $feedItemDescriptionContainer.appendChild($feedItemDescription);
+      $feedItemContainer.appendChild($feedItemDateContainer);
+      $feedItemContainer.appendChild($feedItemDescriptionContainer);
+      if (showImage == "Yes") {
+        $feedItemContainer.appendChild($feedItemImage);
+      }
       $rssFeedContainer.appendChild($feedItemContainer);
 
     });
