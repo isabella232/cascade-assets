@@ -32,8 +32,6 @@
     #end
 #end
 
-## #set( $folder    = $_.locateFolder('test-section/nick-test/contextual-uninav/students/health-and-safety/health-services', 'Chapman.edu') )
-## current page parent folder: $currentPage.parentFolder.path
 #set ($currentPageID = $currentPage.identifier.id)
 
 #set( $folder    = $_.locateFolder("$currentPage.parentFolder.path", 'Chapman.edu') )
