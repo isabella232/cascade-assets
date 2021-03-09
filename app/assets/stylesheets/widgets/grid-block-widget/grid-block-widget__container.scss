@@ -443,16 +443,17 @@
 
     .text-align {
       &--center {
-        display: flex;
-        justify-content: center;
+        display: block;
+        text-align: center;
       }
 
       &--left {
-        display: flex;
-        justify-content: start;
+        display: block;
         text-align: left;
-        padding-left: 24px;
-        padding-right: 24px;
+      }
+      &--right {
+        display: block;
+        text-align: right;
       }
     }
 
