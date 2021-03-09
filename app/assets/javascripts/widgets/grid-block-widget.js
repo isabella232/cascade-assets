@@ -1,6 +1,4 @@
 $(function () {
-  refreshJS();
-  refreshCSS();
   if ($(".grid-block-widget").length) {
     gridBlockWidget();
     gridBlockCarousel();
@@ -46,7 +44,6 @@ var accessibleClick = function (event) {
     type = event.type;
 
   if (type === "click") {
-    console.log("click");
     return true;
   } else if (type === "keydown") {
     if (code === 32 || code === 13) {
@@ -312,26 +309,4 @@ function hidePaginationButton() {
       $(currentButton).remove();
     }
   });
-}
-
-function refreshCSS() {
-  let links = document.getElementsByTagName("link");
-  for (let i = 0; i < links.length; i++) {
-    if (links[i].getAttribute("rel") == "stylesheet") {
-      let href = links[i].getAttribute("href").split("?")[0];
-
-      let newHref = href + "?version=" + new Date().getMilliseconds();
-
-      links[i].setAttribute("href", newHref);
-    }
-  }
-}
-
-function refreshJS() {
-  var scripts = document.getElementsByTagName("script");
-  for (var i = 0; i < scripts.length; i++) {
-    var href = scripts[i].src.split("?")[0];
-    var source = href + "?version=" + new Date().getMilliseconds();
-    scripts[i].setAttribute("src", source);
-  }
 }
