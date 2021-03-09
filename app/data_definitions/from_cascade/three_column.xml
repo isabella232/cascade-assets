@@ -338,7 +338,7 @@
       <group collapsed="true" identifier="gridBlockWidget" label="Grid Block Widget">
         <shared-field field-id="1a2f2699c0a81e8a006059d0a2633faa" identifier="display" path="display" />
         <text default="yes" field-id="2e5ae630c0a81e8a5a403945f880d1a6" identifier="displaySectionIntro" label="Display Section Intro?" type="radiobutton">
-          <radio-item label="Yes" show-fields="primaryContent/widget/gridBlockWidget/sectionHeaderGroup" value="yes" />
+          <radio-item label="Yes" show-fields="primaryContent/widget/gridBlockWidget/sectionHeaderGroup, primaryContent/widget/gridBlockWidget/textAlignment" value="yes" />
           <radio-item label="No" value="no " />
         </text>
         <shared-field field-id="1a2f269ac0a81e8a006059d083b4537c" identifier="sectionHeaderGroup" path="Section Header" />
