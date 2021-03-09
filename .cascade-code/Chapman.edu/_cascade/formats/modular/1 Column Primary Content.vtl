@@ -1,10 +1,12 @@
 #import( "/_cascade/formats/helpers.velocity" )
+#import( "/_cascade/formats/modular/widgets/Text Editor Widget" )
 #import( "/_cascade/formats/modular/widgets/1 Column/fact_cards_with_text" )
 #import( "/_cascade/formats/modular/widgets/1 Column/video_with_text" )
 #import( "/_cascade/formats/modular/widgets/1 Column/image_with_text" )
 #import( "/_cascade/formats/modular/widgets/1 Column/circle_image_with_text" )
 #import( "/_cascade/formats/modular/widgets/1 Column/text_only" )
 #import( "/_cascade/formats/modular/widgets/Text with CTA" )
+#import( "/_cascade/formats/modular/widgets/Grid Block Widget" )
 #import( "/_cascade/formats/modular/widgets/1 Column/call_to_action_3_up" )
 #import( "/_cascade/formats/modular/widgets/1 Column/chapman_social_feed" )
 #import( "/_cascade/formats/modular/widgets/1 Column/subscribe" )
@@ -29,6 +31,13 @@
 #foreach ($widget in $widgets)
     #set ($widgetType = $widget.getChild('widgetType').value)
     
+    #if ($widgetType == 'New Text Editor')
+      #set ($displayWidget = $widget.getChild('textEditorWidget').getChild('display').value)
+      #if ($displayWidget == 'Yes')
+          #outputTextEditorWidget($widget)
+      #end
+    #end
+
     #if ($widgetType == 'Fact Cards with Text')
         #outputFactCardsWithText($widget)
     #end
@@ -108,8 +117,13 @@
     #if ($widgetType == 'Google Map Widget')
         #outputGoogleMapWidget($widget)
     #end
-    ## #if ($widgetType == 'Google Map Widget - Address')
-    ##     #outputGoogleMapWidgetAddress($widget)
-    ## #end
+
+    ##    
+    #if ($widgetType == 'Grid Block')
+        #set ($displayGridBlock = $widget.getChild('gridBlockWidget').getChild('display').value)
+        #if ($displayGridBlock == 'Yes')
+            #outputGridBlockWidget($widget)
+        #end
+    #end
 #end
 ###inspectXML($widget)
