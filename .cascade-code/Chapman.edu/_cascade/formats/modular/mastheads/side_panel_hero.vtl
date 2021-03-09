@@ -17,6 +17,14 @@
   ## Featured Content Slides
   #set ( $slides = $_XPathTool.selectNodes($element, '//sidePanelHero/featuredContent') )
 
+<style>
+    .side-panel-hero video {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
+        
+</style>
   <div class="side-panel-hero">
 
     <div class="hero-content">
@@ -90,7 +98,7 @@
               #elseif ( $backgroundType == 'Video' )
                 <div class="background-video-wrapper">
                   <article class="theme-bg-color-alpha">
-                    <video autoplay="true" loop="true" poster="[system-asset]${_EscapeTool.xml($backgroundFallbackImage)}[/system-asset]">
+                    <video autoplay="true" muted="true" loop="true" poster="[system-asset]${_EscapeTool.xml($backgroundFallbackImage)}[/system-asset]">
                       <source src="[system-asset]${_EscapeTool.xml($backgroundVideo)}[/system-asset]" type="video/mp4" />
                     </video>
                     #if ( $featuredContentExists == 'true' )
@@ -105,7 +113,7 @@
                       </div>
                     #end
                   </article>
-                  <video id="background-video" class="background-video" autoplay="true" loop="true" poster="[system-asset]${_EscapeTool.xml($backgroundFallbackImage)}[/system-asset]">
+                  <video id="background-video" class="background-video" muted="true" autoplay="true" loop="true" poster="[system-asset]${_EscapeTool.xml($backgroundFallbackImage)}[/system-asset]">
                     <source src="[system-asset]${_EscapeTool.xml($backgroundVideo)}[/system-asset]" type="video/mp4" />
                   </video>
                 </div>
