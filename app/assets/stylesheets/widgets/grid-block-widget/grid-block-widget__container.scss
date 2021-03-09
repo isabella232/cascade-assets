@@ -176,6 +176,8 @@
         z-index: 3;
         height: 100%;
         align-items: flex-end;
+        font-size: 1.8rem;
+        line-height: 2.2rem;
 
         bottom: 4px;
         background: linear-gradient(
@@ -380,7 +382,7 @@
 
     &__title {
       color: $red;
-      font-size: 1.4rem;
+      font-size: 1.8rem;
       padding: 24px;
       text-align: center;
       font-weight: 800;
@@ -405,7 +407,10 @@
 
     &__text {
       font-family: $futura-regular;
-
+      p {
+        font-size: 1.8rem;
+        line-height: 2.2rem;
+      }
       &--truncated {
         max-height: 150px;
 
@@ -417,18 +422,9 @@
         display: -webkit-box;
         -webkit-box-orient: vertical;
         position: relative;
-
-        line-height: 1.2;
         overflow: hidden;
         text-overflow: ellipsis;
         padding: 0 !important;
-
-        // &:after {
-        //   content: "...";
-        //   position: absolute;
-        //   bottom: 0;
-        //   right: 0;
-        // }
       }
 
       &--white {
@@ -483,7 +479,7 @@
 
   .grid-block-widget__reveal {
     text-transform: capitalize;
-    font-size: 14px;
+    font-size: 1.6rem;
     font-weight: bold;
     // color: $cu-red;
     position: relative;
