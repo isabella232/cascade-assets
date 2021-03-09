@@ -3,7 +3,7 @@ $call-to-action-block-screen-height: 150px;
 
 .call-to-action-block-widget {
   padding: $one-column-widget-spacing 0;
-  background-color: #eaeaea;
+  background-color: $white;
 
   .outer-container {
     @include outer-container();
