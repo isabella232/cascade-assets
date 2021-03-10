@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   get 'uninav/tuition', to: 'uninav#tuition'
   get 'uninav/home_cascade', to: 'uninav#home_cascade'
   get 'uninav/one_column', to: 'uninav#one_column'
-  get 'uninav/one_column_grid_block', to: 'uninav#one_column_grid_block'
+  get 'uninav/grid_block_one_col', to: 'uninav#grid_block_one_col'
   get 'uninav/two_column_grid_block', to: 'uninav#two_column_grid_block'
 
 
