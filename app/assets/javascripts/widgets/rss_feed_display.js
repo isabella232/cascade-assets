@@ -109,24 +109,6 @@ $(document).ready(function() {
 
       $feedItemLink.setAttribute('href', feedItem.link[0]);
 
-      // Only works for Wordpress specific images
-      if (showImage == "Yes") {
-        if (feedItem.image !== undefined && feedItem.image.length) {
-          var itemImage = feedItem.image[0].img[0].$;
-          var itemImageWidth = itemImage.width,
-          itemImageHeight = itemImage.heigh,
-          itemImageSource = itemImage.src,
-          itemImageAlt = itemImage.alt,
-          itemImageSrcset = itemImage.srcset;
-
-          $feedItemImage.setAttribute('width',itemImageAlt);
-          $feedItemImage.setAttribute('height',itemImageAlt);
-          $feedItemImage.setAttribute('src',itemImageSource);
-          $feedItemImage.setAttribute('alt',itemImageAlt);
-          $feedItemImage.setAttribute('srcset',itemImageSrcset);
-        }
-      }
-
       // APPENDING APPROPRIATE RSS ITEMS TO ELEMENTS AND THEN CONTAINER
       $feedItemDateContainer.appendChild($feedItemDate);
       $feedItemDateContainer.appendChild($feedItemTime);
@@ -134,9 +116,20 @@ $(document).ready(function() {
       $feedItemDescriptionContainer.appendChild($feedItemDescription);
       $feedItemContainer.appendChild($feedItemDateContainer);
       $feedItemContainer.appendChild($feedItemDescriptionContainer);
+
+      // Construct and append image. Only works for Wordpress specific images
       if (showImage == "Yes") {
+        if (feedItem.image !== undefined && feedItem.image.length) {
+          var itemImage = feedItem.image[0].img[0].$;
+          $feedItemImage.setAttribute('width',itemImage.width);
+          $feedItemImage.setAttribute('height',itemImage.height);
+          $feedItemImage.setAttribute('src',itemImage.src);
+          $feedItemImage.setAttribute('alt',itemImage.alt);
+          $feedItemImage.setAttribute('srcset',itemImage.srcset);
+        }
         $feedItemContainer.appendChild($feedItemImage);
       }
+
       $rssFeedContainer.appendChild($feedItemContainer);
 
     });
