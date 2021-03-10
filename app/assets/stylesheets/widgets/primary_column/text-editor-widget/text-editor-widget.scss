@@ -1,0 +1,376 @@
+html body .text-editor-widget {
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  grid-template-columns: repeat(2, auto);
+  grid-auto-rows: min-content;
+  margin: 2rem 0;
+  padding: 5rem;
+  @include respond(phone) {
+    padding: 2rem;
+    display: grid;
+  }
+  @include respond(tab-port) {
+    display: grid;
+  }
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+  h2 {
+    margin-top: 0;
+  }
+  .text-image__container,
+  .grid-video__container {
+    grid-row: 1 / span 2;
+  }
+  .grid-text {
+    &__left,
+    &__right,
+    &__middle {
+      grid-row: 1 / span 2;
+      @include respond(small) {
+        grid-column: 1 / span 2;
+      }
+    }
+    &__left.full &__right.full &__stacked.full {
+      grid-column: 1 / span 2;
+    }
+    &__left {
+      &.align-bottom {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+      &.no-image + .button-container {
+        flex-direction: column;
+        margin: 0 0 0 5rem;
+        a {
+          width: 18rem;
+          margin-bottom: 1rem;
+        }
+        @include respond(small) {
+          margin: 0;
+          width: 100%;
+          a {
+            width: 100%;
+          }
+        }
+      }
+      &.no-image + .link-container {
+        flex-direction: column;
+      }
+      & + .text-image__container,
+      & + .grid-video__container {
+        margin-left: 5rem;
+      }
+    }
+    &__right {
+      grid-column: 2 / span 1;
+      @include respond(small) {
+        grid-column: 1 / span 2;
+      }
+      &.no-image + .button-container {
+        flex-direction: column;
+        margin: 0 5rem 0 0;
+        a {
+          width: 18rem;
+          margin-bottom: 1rem;
+        }
+        @include respond(small) {
+          margin: 0;
+          width: 100%;
+          a {
+            width: 100%;
+          }
+        }
+      }
+      &.no-image + .link-container {
+        flex-direction: column;
+      }
+      & + .text-image__container,
+      & + .grid-video__container {
+        margin-right: 5rem;
+      }
+      & + .link-container {
+        flex-direction: column;
+        margin-top: 0;
+        margin-right: 5rem;
+        @include respond(small) {
+          flex-direction: row;
+        }
+      }
+    }
+    &__stacked {
+      grid-row: 1 / span 1;
+      text-align: center;
+      & + .button-container__center {
+        flex-direction: row;
+        justify-content: center;
+      }
+      & + .link-container {
+        grid-column: 1 / span 2;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+      }
+    }
+    &__float-container {
+      margin-top: 2rem;
+      .grid-text__img-container {
+        float: left;
+        width: 200px;
+        height: 200px;
+        margin-right: 5rem;
+        margin-bottom: 2rem;
+      }
+    }
+  }
+  &[text-only-align="left"][img-video="text"] > .button-container,
+  &[text-only-align="left"][img-video="text"] > .link-container {
+    grid-column: 2 / span 1;
+  }
+  @include respond(small) {
+    &[text-only-align="left"][img-video="text"] > .button-container,
+    &[text-only-align="left"] > .link-container {
+      grid-column: 1 / span 2;
+    }
+  }
+  &[text-only-align="right"][img-video="text"] > .button-container,
+  &[text-only-align="right"][img-video="text"] > .link-container {
+    grid-column: 1 / span 1;
+  }
+  @include respond(small) {
+    &[text-only-align="right"][img-video="text"] > .button-container,
+    &[text-only-align="right"][img-video="text"] > .link-container {
+      grid-column: 1 / span 2;
+    }
+  }
+  &[text-only-align="stacked"][img-video="text"] > .link-container {
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 2;
+  }
+  @include respond(tab-port) {
+    display: grid;
+
+    &[img-shape="landscape"] > .grid-text__left,
+    &[img-video="textVideo"] > .grid-text__left,
+    &[img-video="textVideo"] > .grid-text__right {
+      grid-column: 1 / span 2;
+      grid-row: 2 / span 1;
+    }
+    &[img-video="textImage"] > .text-image__container.landscape,
+    &[img-video="textVideo"] > .grid-video__container {
+      grid-column: 1 / span 2;
+      grid-row: 1 / span 1;
+      margin: 0 auto 3rem auto;
+    }
+    //nick
+    .grid-video__container {
+      margin: unset;
+      width: 100%;
+      position: relative;
+      padding-bottom: 56.25%;
+      padding-top: 25px;
+      height: 0;
+      max-width: 100%;
+    }
+    .grid-video__container iframe {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    //nick
+  }
+  @include respond(small) {
+    &[img-video="textImage"] > .grid-text__left,
+    &[img-video="textImage"] > .grid-text__right {
+      grid-column: 1 / span 2;
+      grid-row: 2 / span 1;
+    }
+    &[img-video="textImage"] > .text-image__container {
+      grid-column: 1 / span 2;
+      grid-row: 1 / span 1;
+      margin: 0 auto 3rem auto;
+    }
+    // nick
+    .text-editor-widget * {
+      display: flex;
+      flex-direction: column;
+    }
+    html
+      body
+      .text-editor-widget
+      .grid-text__float-container
+      .grid-text__img-container {
+      width: 100%;
+      height: 100%;
+    }
+    .text-editor-widget * {
+      display: flex;
+      flex-direction: column;
+    }
+    html
+      body
+      .text-editor-widget
+      .grid-text__float-container
+      .grid-text__img-container {
+      width: 100%;
+      height: 100%;
+    }
+    ul.link-container {
+      width: 100%;
+    }
+    ul.link-container li {
+      width: max-content;
+    }
+    .text-image__container.square {
+      width: 100% !important;
+    }
+
+    // nick
+  }
+  .text-image {
+    &__container {
+      width: 200px;
+      height: 200px;
+      align-self: center;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+      &.circle {
+        img {
+          border-radius: 50%;
+        }
+      }
+      &.landscape {
+        width: 400px;
+        height: 225px;
+        @include respond(phone) {
+          width: 265px;
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  .grid-video__container.desktop {
+    display: flex;
+    align-self: center;
+    @include respond(wildcard, 30em) {
+      display: none;
+    }
+  }
+  .grid-video__container.mobile {
+    display: none;
+    align-self: center;
+    @include respond(wildcard, 30em) {
+      display: flex;
+    }
+  }
+  .button-container {
+    display: flex;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    @include respond(small) {
+      grid-column: 1 / span 2;
+      margin: 0;
+    }
+    &__center {
+      flex-direction: row;
+      justify-content: center;
+    }
+    &__right {
+      justify-content: flex-end;
+    }
+  }
+  div[class*="button-container"] {
+    display: flex;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    grid-column: 1 / span 2;
+    font-size: 1.6rem;
+    a {
+      margin-bottom: 1rem;
+      font-size: 1.6rem;
+    }
+    @include respond(small) {
+      width: 100%;
+      div[class*="button-container"] {
+        width: 100%;
+      }
+    }
+  }
+  ul.link-container {
+    grid-column: 1 / span 2;
+  }
+  &[text-align="right"] > div[class*="button-container"],
+  &[text-align="right"] > ul.link-container {
+    justify-self: flex-end;
+  }
+  .grid-text__stacked + div[class*="button-container"] {
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 2;
+  }
+  &__button {
+    width: 13rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    @include respond(small) {
+      width: 100%;
+    }
+    &.black {
+      background-color: black;
+      color: white;
+      &:hover {
+        background-color: black;
+        color: white;
+      }
+    }
+    &.white {
+      background-color: white;
+      border: 1px solid rgba(0, 0, 0, 0.25);
+      color: black;
+      &:hover {
+        background-color: white;
+        color: black;
+      }
+    }
+  }
+  .link-container {
+    margin-top: 1rem;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    &__link {
+      margin-right: 1rem;
+      a {
+        border-bottom: 1px solid currentColor;
+      }
+    }
+    @include respond(small) {
+      & {
+        grid-column: 1 / span 2;
+      }
+    }
+  }
+  &[img-wrap="true"][img-video="textImage"] > .link-container {
+    grid-row: 2 / span 1;
+  }
+  @include respond(phone) {
+    .link-container {
+      grid-column: 1 !important;
+    }
+  }
+}

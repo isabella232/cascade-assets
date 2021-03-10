@@ -1,0 +1,38 @@
+html.one-column-template body .text-editor-widget {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 5rem 25rem;
+}
+html.one-column-template body [class*="--grey"] {
+  background-color: #e5e5e5;
+  &.text-editor-widget {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+}
+html body .text-editor-widget .grid-text__left,
+html body .text-editor-widget .grid-text__right,
+html body .text-editor-widget .grid-text__middle {
+  -ms-grid-row-span: 2;
+  -ms-grid-row: 1;
+  grid-row: 1 / span 2;
+  max-width: 1130px;
+  justify-content: center;
+  display: grid;
+  flex-direction: column;
+}
+html.one-column-template body .text-editor-widget {
+  max-width: 100%;
+  margin: 0 auto;
+  display: grid;
+  justify-content: center;
+
+  @include respond(tab-port) {
+    display: grid;
+    padding: 2rem;
+  }
+
+  @include respond(phone) {
+    padding: 2rem;
+    display: grid;
+  }
+}

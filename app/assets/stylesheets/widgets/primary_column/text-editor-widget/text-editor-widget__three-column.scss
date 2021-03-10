@@ -1,0 +1,36 @@
+html.three-column-template body .text-editor-widget {
+  &[img-shape="landscape"] > .grid-text__left,
+  &[img-shape="landscape"] > .grid-text__right {
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 2;
+  }
+  .text-image__container.landscape {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 2;
+    margin: 0 auto 2rem auto;
+  }
+  &[img-video="textVideo"] > .grid-text__left,
+  &[img-video="textVideo"] > .grid-text__right {
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 2;
+  }
+  &[img-video="textVideo"] > .grid-video__container {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 2;
+    margin: 0 auto 2rem auto;
+  }
+  &[img-video="textVideo"] > .link-container {
+    grid-column: 1 / span 2;
+  }
+  .link-container {
+    @include respond(phone) {
+      grid-column: 1;
+    }
+  }
+
+  @include respond(phone) {
+    .link-container {
+      grid-column: 1 !important;
+    }
+  }
+}
