@@ -312,6 +312,11 @@ html body .one-column {
     .grid-block-widget__text {
     margin-bottom: 20px;
   }
+  .grid-block-widget__wrapper
+    .grid-block-widget__container--circle
+    .grid-block-widget__title {
+    padding: 20px 0px 10px;
+  }
 
   .grid-block-widget__text.text-align--center p {
     padding-left: 24px !important;
