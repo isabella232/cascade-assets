@@ -119,12 +119,6 @@ html body .text-editor-widget {
     }
     &__float-container {
       margin-top: 2rem;
-
-      @include respond(phone) {
-        &.align-middle .grid-text__img-container {
-          margin-bottom: 0;
-        }
-      }
       .grid-text__img-container {
         float: left;
         width: 200px;
