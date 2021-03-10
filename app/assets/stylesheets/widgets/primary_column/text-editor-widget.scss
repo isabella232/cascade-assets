@@ -14,6 +14,7 @@ html body .text-editor-widget {
     margin-top: 0;
     margin-bottom: 2rem;
     text-transform: uppercase;
+    font-size: 14px;
   }
 
   h2 {
@@ -209,6 +210,49 @@ html body .text-editor-widget {
       grid-row: 1 / span 1;
       margin: 0 auto 3rem auto;
     }
+
+    // nick
+    .text-editor-widget * {
+      display: flex;
+      flex-direction: column;
+    }
+
+    html
+      body
+      .text-editor-widget
+      .grid-text__float-container
+      .grid-text__img-container {
+      width: 100%;
+      height: 100%;
+    }
+
+    .text-editor-widget * {
+      display: flex;
+      flex-direction: column;
+    }
+
+    html
+      body
+      .text-editor-widget
+      .grid-text__float-container
+      .grid-text__img-container {
+      width: 100%;
+      height: 100%;
+    }
+
+    ul.link-container {
+      width: 100%;
+    }
+
+    ul.link-container li {
+      width: max-content;
+    }
+
+    .text-image__container.square {
+      width: 100% !important;
+    }
+
+    // nick
   }
 
   .text-image {
