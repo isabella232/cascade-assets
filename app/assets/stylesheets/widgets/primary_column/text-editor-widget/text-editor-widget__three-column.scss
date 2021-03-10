@@ -27,7 +27,23 @@ html.three-column-template body .text-editor-widget {
       grid-column: 1;
     }
   }
-
+  .grid-video__container {
+    margin: unset;
+    width: 100%;
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 25px;
+    height: 0;
+    max-width: 100%;
+  }
+  .grid-video__container iframe {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
   @include respond(phone) {
     .link-container {
       grid-column: 1 !important;
