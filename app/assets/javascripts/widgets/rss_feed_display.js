@@ -1,6 +1,5 @@
 $(document).ready(function() {
   var $rssFeedContainer = document.querySelector('.rss-feed-display-widget')
-  console.log("rss feed display.js");
   // NO RSS FEED WIDGET ON PAGE
   if (!$rssFeedContainer) return;
 
@@ -110,11 +109,9 @@ $(document).ready(function() {
 
       $feedItemLink.setAttribute('href', feedItem.link[0]);
 
-      // CREATE IMAGE ELEMENT
+      // Only works for Wordpress specific images
       if (showImage == "Yes") {
         if (feedItem.image !== undefined && feedItem.image.length) {
-          console.log(feedItem.image[0].img[0].$);
-
           var itemImage = feedItem.image[0].img[0].$;
           var itemImageWidth = itemImage.width,
           itemImageHeight = itemImage.heigh,
