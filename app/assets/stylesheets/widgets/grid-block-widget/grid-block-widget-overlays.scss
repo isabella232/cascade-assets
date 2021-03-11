@@ -1,5 +1,7 @@
 html body {
-  .grid-block-widget__container .grid-block-widget .grid-block-widget__title {
+  .grid-block-widget__container--overlay
+    .grid-block-widget
+    .grid-block-widget__title {
     display: grid !important;
     padding: 2rem !important;
 
