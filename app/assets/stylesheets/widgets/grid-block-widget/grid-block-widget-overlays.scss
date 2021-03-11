@@ -1,5 +1,22 @@
-// .grid-block-widget__container--overlay {
-//   &.grid-block-widget__container--portrait {
-//     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-//   }
-// }
+html body {
+  .grid-block-widget__container .grid-block-widget .grid-block-widget__title {
+    display: grid !important;
+    padding: 2rem !important;
+
+    &.text-align {
+      &--right {
+        justify-content: end;
+      }
+      &--left {
+        justify-content: start;
+      }
+      &--center {
+        justify-content: center;
+      }
+    }
+
+    .border-bottom--dotted {
+      width: max-content;
+    }
+  }
+}

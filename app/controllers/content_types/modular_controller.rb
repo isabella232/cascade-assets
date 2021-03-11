@@ -246,7 +246,7 @@ module ContentTypes
         'ADDITIONAL BODY AT-END' => '',
         'ADDITIONAL HEAD' => '',
         # Dynamic Regions
-        # 'BREADCRUMBS' => cascade_block('_cascade/blocks/html/level/breadcrumbs'),
+        'BREADCRUMBS' => 'TODO: _cascade/formats/level/Breadcrumbs',
         'CASCADE ASSETS' =>
           cascade_block('_cascade/blocks/html/cascade_assets'),
         'FB_JS_SDK' =>
@@ -306,7 +306,7 @@ module ContentTypes
         'ADDITIONAL BODY AT-END' => '',
         'ADDITIONAL HEAD' => '',
         # Dynamic Regions
-        'BREADCRUMBS' => cascade_block('_cascade/formats/level/breadcrumbs'),
+        'BREADCRUMBS' => 'TODO: _cascade/formats/level/Breadcrumbs',
         'CASCADE ASSETS' =>
           cascade_block('_cascade/blocks/html/cascade_assets'),
         'FB_JS_SDK' =>
@@ -326,7 +326,7 @@ module ContentTypes
         'PAGE WRAPPER OPEN' =>
           cascade_format('_cascade/formats/modular/page_wrapper_open'),
         'PRIMARY CONTENT' => render_static_two_column_primary_content,
-        'SOCIAL_ACCOUNTS' => cascade_block('_cascade/formats/level/social_accounts'),
+        'SOCIAL ACCOUNTS' => 'TODO: _cascade/formats/level/social_accounts',
         'TYPEKIT' => cascade_block('_cascade/blocks/html/typekit'),
         # TODO: convert these to cascade_format action.
         "UNINAV" => render_static_partial("uninav/uninav"),
@@ -509,7 +509,7 @@ module ContentTypes
       # This reproduces content from static sample version
       format(
         '%s %s %s %s %s %s',
-        render_static_partial('widgets/single_column/call_to_action_block'),
+        render_static_partial('widgets/primary_content/grid_block_widget'),
         render_static_partial('widgets/primary_content/multi_photo_callout'),
         render_static_partial('widgets/single_column/chapman_events_feed'),
         render_static_partial('widgets/single_column/messaging_1_column_facts'),
@@ -570,7 +570,7 @@ module ContentTypes
     def render_static_two_column_primary_content
       # This reproduces content from static sample version
       format("%s" "%s",
-      render_static_partial("widgets/primary_content/grid_block_widget"),
+      render_static_partial("widgets/primary_content/next_steps_widget"),
         render_static_partial("widgets/primary_content/three_photo_callout_1"),
         # render_static_partial("widgets/primary_content/news_events_feed_1"),
         # render_static_partial("widgets/primary_content/three_photo_callout_1")
