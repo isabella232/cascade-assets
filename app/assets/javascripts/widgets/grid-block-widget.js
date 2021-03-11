@@ -1,7 +1,6 @@
 $(function () {
   if ($(".grid-block-widget").length) {
     gridBlockWidget();
-    gridBlockCarousel();
     if (isIE()) {
       $(".grid-block-widget img").each(function () {
         var t = jQuery(this),
@@ -276,6 +275,7 @@ $(window).load(function () {
       $("button.slick-next").trigger("click");
     }
   });
+  gridBlockCarousel();
   normalizeHeights();
   calculateDataHeight();
 });
