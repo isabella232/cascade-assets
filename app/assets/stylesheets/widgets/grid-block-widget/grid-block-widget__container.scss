@@ -4,6 +4,10 @@
   display: grid;
   grid-gap: $space;
 
+  [class*="__title"] {
+    line-height: 2.8rem;
+  }
+
   img {
     &:hover,
     &:focus,
