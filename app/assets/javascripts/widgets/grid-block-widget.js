@@ -1,6 +1,7 @@
 $(function () {
   if ($(".grid-block-widget").length) {
     gridBlockWidget();
+    removeEmptyPTagsinWYSIWYG();
     if (isIE()) {
       $(".grid-block-widget img").each(function () {
         var t = jQuery(this),
@@ -54,6 +55,16 @@ var accessibleClick = function (event) {
   }
 };
 
+function removeEmptyPTagsinWYSIWYG() {
+  // Ross requested this
+  $(".grid-block-widget__text p").each(function () {
+    var $this = $(this);
+    $(this)
+      .parent()
+      .attr("data-js", "removed empty <p> tags via grid-block-widget.js");
+    if ($this.html().replace(/\s|&nbsp;/g, "").length == 0) $this.remove();
+  });
+}
 function calculateDataHeight() {
   // 2 & 3 COLUMN
   $(
