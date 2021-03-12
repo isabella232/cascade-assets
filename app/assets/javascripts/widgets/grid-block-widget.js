@@ -241,7 +241,9 @@ $(window).load(function () {
   adjustCarouselButtonHeight();
   $("button.slick-arrow").on("click keydown", function (e) {
     if (accessibleClick(event)) {
-      $(".grid-block-widget__reveal--less").trigger("click");
+      if ($(this).find($(".grid-block-widget__reveal--less").is(":visible"))) {
+        $(".grid-block-widget__reveal--less").trigger("click");
+      }
     }
   });
   $("button.slick-prev").on("keydown", function (e) {
@@ -260,6 +262,7 @@ $(window).load(function () {
 });
 
 function normalizeHeights() {
+  // Normalizes height discrepancies on grid block
   $(".grid-block-widget__container").each(function () {
     // Get an array of all element heights
     var elementHeights = $(this)
