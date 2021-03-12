@@ -1,7 +1,6 @@
 body {
   .section-intro {
     margin-top: 50px;
-
     font-family: $futura-regular;
 
     &__preheader {
@@ -24,6 +23,11 @@ body {
       margin-bottom: 25px;
       font-size: 1.8rem;
       line-height: 2.2rem;
+      flex-direction: column;
+
+      a {
+        width: max-content;
+      }
     }
 
     .grid-block-widget__title {
