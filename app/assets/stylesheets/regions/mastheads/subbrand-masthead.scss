@@ -1,8 +1,13 @@
 .subbrand-masthead-wrapper {
+  #background-video {
+    width: 100vw;
+  }
   .brochure-masthead .background-content .gradient-overlay {
-    background: linear-gradient(to bottom,
+    background: linear-gradient(
+      to bottom,
       rgba(0, 0, 0, 0) 40%,
-      rgba(0, 0, 0, 0.75));
+      rgba(0, 0, 0, 0.75)
+    );
     background-size: cover;
   }
 
@@ -70,7 +75,6 @@
     border-bottom: 1px dotted $cardinal;
   }
 
-
   /* Change color of dropdown links on hover */
   .dropdown-content a:hover {
     background-color: #ddd;
@@ -116,7 +120,6 @@
       background-color: $red-button-active;
     }
   }
-
 
   .brochure-masthead .foreground-content {
     bottom: 30px !important;
@@ -310,7 +313,6 @@
 
   p.source {
     a {
-
       &:link,
       &:visited {
         color: $cu-red;
@@ -433,7 +435,6 @@
   }
 
   nav {
-
     ul,
     ol {
       list-style: none;
@@ -506,7 +507,6 @@
   }
 
   input {
-
     &[type="button"],
     &[type="reset"],
     &[type="submit"] {
@@ -564,31 +564,40 @@
     @include paragraph;
   }
 
-  h1, .faux-h1
-  h2, .faux-h2,
-  h3, .faux-h3 {
+  h1,
+  .faux-h1 h2,
+  .faux-h2,
+  h3,
+  .faux-h3 {
     font-family: $font-stack-heading;
   }
 
-  h3, .faux-h3,
-  h4, .faux-h4,
-  h5, .faux-h5,
-  h6, .faux-h6 {
+  h3,
+  .faux-h3,
+  h4,
+  .faux-h4,
+  h5,
+  .faux-h5,
+  h6,
+  .faux-h6 {
     font-weight: 200;
   }
 
-  h1, .faux-h1 {
+  h1,
+  .faux-h1 {
     font-size: 30px;
     font-weight: 800;
   }
 
-  h2, .faux-h2 {
+  h2,
+  .faux-h2 {
     font-size: 20px;
     font-weight: 600;
     line-height: 1.2em;
   }
 
-  h3, .faux-h3 {
+  h3,
+  .faux-h3 {
     font-size: 16px;
     font-weight: 600;
     line-height: 1.4em;
@@ -596,17 +605,20 @@
     margin-bottom: 15px;
   }
 
-  h4, .faux-h4 {
+  h4,
+  .faux-h4 {
     font-size: 14px;
     font-weight: 500;
   }
 
-  h5, .faux-h5 {
+  h5,
+  .faux-h5 {
     font-size: 14px;
     font-weight: 500;
   }
 
-  h2.headline.secondary.subhead, .faux-h2.headline.secondary.subhead {
+  h2.headline.secondary.subhead,
+  .faux-h2.headline.secondary.subhead {
     font-size: 30px;
     color: $white;
     font-family: $futura-condensed;
@@ -616,7 +628,8 @@
     line-height: 1.2em;
   }
 
-  h1.headline.primary.title, .faux-h1.headline.primary.title {
+  h1.headline.primary.title,
+  .faux-h1.headline.primary.title {
     font-size: 72px;
     color: $white;
     font-family: $futura-condensed;
@@ -637,23 +650,27 @@
 
   // medium
   @media screen and (max-width: 1180px) {
-    h1.headline.primary.title, .faux-h1.headline.primary.title {
+    h1.headline.primary.title,
+    .faux-h1.headline.primary.title {
       font-size: 60px;
       margin-top: -5px;
     }
 
-    h2.headline.secondary.subhead, .faux-h2.headline.secondary.subhead {
+    h2.headline.secondary.subhead,
+    .faux-h2.headline.secondary.subhead {
       font-size: 24px;
     }
   }
 
   // Tablet
   @media screen and (max-width: 780px) {
-    h1.headline.primary.title, .faux-h1.headline.primary.title {
+    h1.headline.primary.title,
+    .faux-h1.headline.primary.title {
       font-size: 48px;
     }
 
-    h2.headline.secondary.subhead, .faux-h2.headline.secondary.subhead {
+    h2.headline.secondary.subhead,
+    .faux-h2.headline.secondary.subhead {
       font-size: 18px;
     }
 
@@ -681,11 +698,13 @@
       line-height: 1.2em;
     }
 
-    h1.headline.primary.title, .faux-h1.headline.primary.title {
+    h1.headline.primary.title,
+    .faux-h1.headline.primary.title {
       font-size: 2rem;
     }
 
-    h2.headline.secondary.subhead, .faux-h2.headline.secondary.subhead {
+    h2.headline.secondary.subhead,
+    .faux-h2.headline.secondary.subhead {
       font-size: 1.2rem;
     }
   }
@@ -697,16 +716,21 @@
       border-top: 10px solid $cardinal;
     }
 
-    h1.headline.primary.title, .faux-h1.headline.primary.title {
+    h1.headline.primary.title,
+    .faux-h1.headline.primary.title {
       font-size: 2rem;
     }
 
-    h2.headline.secondary.subhead, .faux-h2.headline.secondary.subhead {
+    h2.headline.secondary.subhead,
+    .faux-h2.headline.secondary.subhead {
       font-size: 1.2rem;
     }
 
     .brochure-masthead .background-content .gradient-overlay,
-    .subbrand-masthead-wrapper .brochure-masthead .background-content .gradient-overlay {
+    .subbrand-masthead-wrapper
+      .brochure-masthead
+      .background-content
+      .gradient-overlay {
       background: rgba(0, 0, 0, 0.75) !important;
       background-size: cover;
     }
@@ -720,7 +744,8 @@
 }
 
 @media screen and (min-width: 1480px) {
-  h2.headline.secondary.subhead, .faux-h2.headline.secondary.subhead {
+  h2.headline.secondary.subhead,
+  .faux-h2.headline.secondary.subhead {
     margin-bottom: -10px;
   }
 }

@@ -1,7 +1,7 @@
 $(function () {
   if ($(".grid-block-widget").length) {
     gridBlockWidget();
-    gridBlockCarousel();
+    removeEmptyPTagsinWYSIWYG();
     if (isIE()) {
       $(".grid-block-widget img").each(function () {
         var t = jQuery(this),
@@ -55,6 +55,16 @@ var accessibleClick = function (event) {
   }
 };
 
+function removeEmptyPTagsinWYSIWYG() {
+  // Ross requested this
+  $(".grid-block-widget__text p").each(function () {
+    var $this = $(this);
+    $(this)
+      .parent()
+      .attr("data-js", "removed empty <p> tags via grid-block-widget.js");
+    if ($this.html().replace(/\s|&nbsp;/g, "").length == 0) $this.remove();
+  });
+}
 function calculateDataHeight() {
   // 2 & 3 COLUMN
   $(
@@ -153,79 +163,47 @@ function clickHandlers() {
 }
 
 function gridBlockCarousel() {
-  $(".grid-block-widget__container--rotate").slick({
-    infinite: true,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    arrows: true,
-    dots: false,
-    infinite: true,
-    // accessibility: true,
-    responsive: [
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 900,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-      // You can unslick at a given breakpoint now by adding:
-      // settings: "unslick"
-      // instead of a settings object
-    ],
-  });
-  $(".one-column .grid-block-widget__container--rotate").slick({
-    infinite: true,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    arrows: true,
-    dots: true,
-    infinite: true,
-    responsive: [
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 5,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 900,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-      // You can unslick at a given breakpoint now by adding:
-      // settings: "unslick"
-      // instead of a settings object
-    ],
-  });
+  if ($(".grid-block-widget__container--rotate").length) {
+    $(".grid-block-widget__container--rotate")
+      .not(".slick-initialized")
+      .slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        arrows: true,
+        dots: false,
+        infinite: true,
+        // accessibility: true,
+        responsive: [
+          {
+            breakpoint: 1200,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              infinite: true,
+              dots: true,
+            },
+          },
+          {
+            breakpoint: 900,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+            },
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+            },
+          },
+          // You can unslick at a given breakpoint now by adding:
+          // settings: "unslick"
+          // instead of a settings object
+        ],
+      });
+  }
 }
 
 function adjustCarouselButtonHeight() {
@@ -263,7 +241,9 @@ $(window).load(function () {
   adjustCarouselButtonHeight();
   $("button.slick-arrow").on("click keydown", function (e) {
     if (accessibleClick(event)) {
-      $(".grid-block-widget__reveal--less").trigger("click");
+      if ($(this).find($(".grid-block-widget__reveal--less").is(":visible"))) {
+        $(".grid-block-widget__reveal--less").trigger("click");
+      }
     }
   });
   $("button.slick-prev").on("keydown", function (e) {
@@ -276,11 +256,13 @@ $(window).load(function () {
       $("button.slick-next").trigger("click");
     }
   });
+  gridBlockCarousel();
   normalizeHeights();
   calculateDataHeight();
 });
 
 function normalizeHeights() {
+  // Normalizes height discrepancies on grid block
   $(".grid-block-widget__container").each(function () {
     // Get an array of all element heights
     var elementHeights = $(this)
