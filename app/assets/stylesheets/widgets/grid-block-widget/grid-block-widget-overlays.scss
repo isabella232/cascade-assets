@@ -1,24 +1,32 @@
 html body {
-  .grid-block-widget__container--overlay
-    .grid-block-widget
-    .grid-block-widget__title {
-    display: grid !important;
-    padding: 2rem !important;
-
-    &.text-align {
-      &--right {
-        justify-content: end;
-      }
-      &--left {
-        justify-content: start;
-      }
-      &--center {
-        justify-content: center;
+  .grid-block-widget__container--overlay .grid-block-widget {
+    a.grid-block-widget__title {
+      span.label.border-bottom--dotted {
+        border-bottom: none;
+        text-decoration: 2px dotted underline;
+        width: auto;
       }
     }
+    .grid-block-widget__title {
+      display: grid !important;
+      padding: 2rem !important;
 
-    .border-bottom--dotted {
-      width: max-content;
+      &.text-align {
+        &--right {
+          justify-content: end;
+        }
+        &--left {
+          justify-content: start;
+        }
+        &--center {
+          justify-content: center;
+        }
+      }
+      span.label.border-bottom--dotted {
+        border-bottom: none;
+        text-decoration: none;
+        width: auto;
+      }
     }
   }
 }
