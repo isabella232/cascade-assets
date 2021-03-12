@@ -1,3 +1,32 @@
+$(function () {
+  if (window.location.href.indexOf("dev-www.chapman.edu") > -1) {
+    refreshCSS();
+    refreshJS();
+  }
+});
+
+function refreshCSS() {
+  let links = document.getElementsByTagName("link");
+  for (let i = 0; i < links.length; i++) {
+    if (links[i].getAttribute("rel") == "stylesheet") {
+      let href = links[i].getAttribute("href").split("?")[0];
+
+      let newHref = href + "?version=" + new Date().getMilliseconds();
+
+      links[i].setAttribute("href", newHref);
+    }
+  }
+}
+
+function refreshJS() {
+  var scripts = document.getElementsByTagName("script");
+  for (var i = 0; i < scripts.length; i++) {
+    var href = scripts[i].src.split("?")[0];
+    var source = href + "?version=" + new Date().getMilliseconds();
+    scripts[i].setAttribute("src", source);
+  }
+}
+
 var accessibleClick = function (event) {
   var code = event.charCode || event.keyCode,
     type = event.type;
