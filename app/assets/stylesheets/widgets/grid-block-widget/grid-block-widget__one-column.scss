@@ -1,3 +1,24 @@
+$sides: (
+  "b": "bottom",
+  "t": "top",
+  "l": "left",
+  "r": "right",
+);
+@each $prefix, $value in $sides {
+  @for $i from 0 through 1000 {
+    html body .m#{$prefix} {
+      &#{($i * 1)} {
+        margin-#{$value}: #{($i * 1)}px !important;
+      }
+    }
+    html body .p#{$prefix} {
+      &#{($i * 1)} {
+        padding-#{$value}: #{($i * 1)}px !important;
+      }
+    }
+  }
+}
+
 body {
   // ONE COLUMN
   .one-column {
@@ -16,7 +37,7 @@ body {
       }
 
       &__buttons {
-        padding: 0 !important;
+        padding: 0;
         margin-top: 25px;
         margin-bottom: 25px;
       }
@@ -33,19 +54,19 @@ body {
 
       .grid-block-widget {
         &__title {
-          padding-left: 0 !important;
-          padding-right: 0 !important;
+          padding-left: 0;
+          padding-right: 0;
           padding-bottom: 10px;
         }
         &__text {
           p {
-            padding-left: 0 !important;
-            padding-right: 0 !important;
+            padding-left: 0;
+            padding-right: 0;
           }
         }
         .grid-block-widget__reveal {
-          padding-left: 0 !important;
-          padding-right: 0 !important;
+          padding-left: 0;
+          padding-right: 0;
         }
       }
 
@@ -59,6 +80,10 @@ body {
         .grid-block-widget {
           &__title {
             color: $white;
+
+            &--white {
+              color: $panther-black;
+            }
           }
         }
         .slick-dots li button {
@@ -76,7 +101,7 @@ body {
           }
         }
         a.button--black {
-          border: 1px solid $panther-black !important;
+          border: 1px solid $panther-black;
 
           &:focus {
             border: 2px dotted $white;
@@ -122,6 +147,10 @@ body {
 
       &--sand {
         .grid-block-widget {
+          a {
+            color: $cu-red;
+          }
+
           &__title {
             color: $cu-red;
           }
@@ -163,14 +192,18 @@ body {
         z-index: 10;
       }
 
-      // ONE COL - ACTUAL WIDGET (NOT CONTAINER OR WRAPPER)
       .grid-block-widget {
+        // ONE COL - ACTUAL WIDGET (NOT CONTAINER OR WRAPPER)
         &--landscape {
           --maxHeight: 200px;
         }
       }
-      // END ONE COL - ACTUAL WIDGET (NOT CONTAINER OR WRAPPER)
-    }
+
+      .one-col-text-padding {
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+      }
+    } // END ONE COL - ACTUAL WIDGET (NOT CONTAINER OR WRAPPER)
 
     .inner-container {
       @include outer-container;
@@ -218,6 +251,26 @@ html body .one-column {
   .grid-block-widget__wrapper--red,
   .grid-block-widget__wrapper--black {
     .section-intro__title {
+      &[class*="--sand"] {
+        a {
+          color: $cu-red !important;
+        }
+      }
+      &[class*="--white"] {
+        a {
+          color: $cu-red !important;
+        }
+      }
+      &[class*="--black"] {
+        a {
+          color: white !important;
+        }
+      }
+      &[class*="--red"] {
+        a {
+          color: white !important;
+        }
+      }
       a {
         $border-color: $white;
         border-bottom: 2px dotted $white;
@@ -330,7 +383,7 @@ html body .one-column {
 
   .grid-block-widget__wrapper.grid-block-widget__wrapper--white
     .grid-block-widget__text {
-    color: $panther-black !important;
+    color: $panther-black;
   }
 
   .grid-block-widget__wrapper--red a,
