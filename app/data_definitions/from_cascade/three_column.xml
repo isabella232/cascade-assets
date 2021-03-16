@@ -206,7 +206,7 @@
           <dropdown-item value="sand" label="Sand" />
           <dropdown-item value="grey" label="Grey" />
         </text>
-        <text default="Yes" identifier="showDateTime" label="Show Date & Time" required="true" type="radiobutton">
+        <text default="Yes" identifier="showDateTime" label="Show Date/Time" required="true" type="radiobutton">
           <radio-item value="Yes" />
           <radio-item value="No" />
         </text>
