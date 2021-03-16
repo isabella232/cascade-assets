@@ -246,7 +246,7 @@ module ContentTypes
         'ADDITIONAL BODY AT-END' => '',
         'ADDITIONAL HEAD' => '',
         # Dynamic Regions
-        'BREADCRUMBS' => cascade_block('_cascade/blocks/html/level/breadcrumbs'),
+        # 'BREADCRUMBS' => cascade_block('_cascade/blocks/html/level/breadcrumbs'),
         'CASCADE ASSETS' =>
           cascade_block('_cascade/blocks/html/cascade_assets'),
         'FB_JS_SDK' =>
@@ -509,7 +509,7 @@ module ContentTypes
       # This reproduces content from static sample version
       format(
         '%s %s %s %s %s %s',
-        render_static_partial('widgets/single_column/call_to_action_block'),
+        render_static_partial('widgets/primary_content/text_editor_text_video'),
         render_static_partial('widgets/primary_content/multi_photo_callout'),
         render_static_partial('widgets/single_column/chapman_events_feed'),
         render_static_partial('widgets/single_column/messaging_1_column_facts'),
@@ -547,7 +547,7 @@ module ContentTypes
       # This reproduces content from static sample version
       format(
         '%s %s %s',
-        render_static_partial('widgets/single_column/messaging_1_column_facts'),
+        render_static_partial('widgets/primary_content/text_editor_text_video'),
         render_static_partial('widgets/single_column/image_slider_2018'),
         render_static_partial('widgets/single_column/campus_map'),
         render_static_partial('widgets/single_column/google_map'),

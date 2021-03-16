@@ -36,3 +36,16 @@ html.one-column-template body .text-editor-widget {
     display: grid;
   }
 }
+
+html.one-column-template body {
+  .align-middle {
+    height: min-content;
+    align-self: center;
+  }
+  .align-top {
+    align-self: start;
+  }
+  .align-bottom {
+    align-self: end;
+  }
+}
