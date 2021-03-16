@@ -5,6 +5,7 @@ $(document).ready(function() {
 
   var rssFeedItemColor = $rssFeedContainer.getAttribute('data-bg-color'),
   rssFeedUrl           = $rssFeedContainer.getAttribute('data-rss-feed'),
+  showDateTime         = $rssFeedContainer.getAttribute('data-show-datetime'),
   showImage            = $rssFeedContainer.getAttribute('data-show-image');
 
   if (!rssFeedUrl.length) return;
@@ -104,17 +105,19 @@ $(document).ready(function() {
       // ADDED INNER TEXT, DATE, AND TIME TO APPOPRIATE RSS DISPLAY ELEMENTS
       $feedItemDescription.innerHTML  = feedItemDescription;
       $feedItemLink.innerHTML         = feedItem.title[0];
-      $feedItemDate.innerHTML         = feedItemDate.date;
-      $feedItemTime.innerHTML         = feedItemDate.time;
-
       $feedItemLink.setAttribute('href', feedItem.link[0]);
 
       // APPENDING APPROPRIATE RSS ITEMS TO ELEMENTS AND THEN CONTAINER
-      $feedItemDateContainer.appendChild($feedItemDate);
-      $feedItemDateContainer.appendChild($feedItemTime);
+      if (showDateTime == "Yes") {
+        $feedItemDate.innerHTML = feedItemDate.date;
+        $feedItemTime.innerHTML = feedItemDate.time;
+        $feedItemDateContainer.appendChild($feedItemDate);
+        $feedItemDateContainer.appendChild($feedItemTime);
+        $feedItemContainer.appendChild($feedItemDateContainer);
+      }
+
       $feedItemDescriptionContainer.appendChild($feedItemLink);
       $feedItemDescriptionContainer.appendChild($feedItemDescription);
-      $feedItemContainer.appendChild($feedItemDateContainer);
       $feedItemContainer.appendChild($feedItemDescriptionContainer);
 
       // Construct and append image. Only works for Wordpress specific images
