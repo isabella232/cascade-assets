@@ -1,0 +1,39 @@
+<script>
+  $(function () {
+    function set(replaceThis, withThis) {
+      $(".personnel-widget__wrapper").children().each(function () {
+        var text = $(this).text();
+        $(this).text(text.replace(replaceThis, withThis));
+      });
+    }
+
+    // wow this is working. can i replace this awful js with ruby and spit out actual velocity that can be used in the Cascade format?
+    // like #set ($phoneNumber = '714-524-2000')
+
+    set('$phoneNumber', '714-524-2000')
+    set('$emailAddress', 'human@chapman.edu')
+    set('$emailAddress', 'human@chapman.edu')
+
+  });
+</script>
+
+
+<div class="personnel-widget__wrapper">
+  <div class="banner personnel-widget__banner"></div>
+  <div class="image personnel-widget__image-wrapper">
+    <img class="img--circle personnel-widget__image" src="http://placekitten.com/200/300" alt="${altText}">
+  </div>
+  <div class="name personnel-widget__name"></div>
+  <div class="title personnel-widget__title"></div>
+
+  <div class="phone personnel-widget__phone">Phone</div>
+  <div class="phone-number personnel-widget__phone-number"><a href="tel:+${phoneNumber}">$phoneNumber</a></div>
+  <div class="email personnel-widget__email">Email</div>
+  <div class="email-address personnel-widget__email-address">
+    <a href="mailto:${emailAddress}">$emailAddress</a>
+    <div class="optional office-info personnel-widget__office-info"></div>
+    <hr>
+    <div class="link-bottom personnel-widget__link-bottom"></div>
+  </div>
+  <div class="show-more personnel-widget__show-more underline">Show More</div>
+</div>

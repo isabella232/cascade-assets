@@ -1,0 +1,24 @@
+.personnel-widget {
+  &__wrapper {
+    position: relative;
+    display: grid;
+    min-height: 100%;
+  }
+  &__banner {
+    height: 30px;
+    background-color: $cu-red;
+  }
+  &__image-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    .img--circle {
+      height: 120px;
+      width: 120px;
+      margin-top: -20px;
+    }
+  }
+  &__image {
+    border: 2px solid $white;
+  }
+}
