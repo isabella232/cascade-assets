@@ -328,9 +328,15 @@ html body .text-editor-widget {
     grid-row: 2 / span 1;
     grid-column: 1 / span 2;
   }
+
+  [class*="__button"] {
+    --padding-bottom: 16px;
+    --padding: 16px;
+    --padding-top: 16px;
+  }
   &__button {
     width: 13rem;
-    height: 4rem;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
