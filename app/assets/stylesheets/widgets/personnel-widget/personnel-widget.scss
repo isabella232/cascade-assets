@@ -22,8 +22,7 @@
 
 .personnel-widget {
   font-family: $futura-regular;
-  display: flex;
-  flex-direction: column;
+  display: block;
   border: 2px solid var(--color-cu-light-grey);
   border-radius: 8px;
   text-align: center;
