@@ -1,7 +1,7 @@
-<script>
+<!-- <script>
   $(function () {
     function set(replaceThis, withThis) {
-      $(".personnel-widget__wrapper").children().each(function () {
+      $(".personnel-widget__container").children().each(function () {
         var text = $(this).text();
         $(this).text(text.replace(replaceThis, withThis));
       });
@@ -13,27 +13,207 @@
     set('$phoneNumber', '714-524-2000')
     set('$emailAddress', 'human@chapman.edu')
     set('$emailAddress', 'human@chapman.edu')
+    set('#{$num}', '3')
+
 
   });
-</script>
+</script> -->
 
 
-<div class="personnel-widget__wrapper">
-  <div class="banner personnel-widget__banner"></div>
-  <div class="image personnel-widget__image-wrapper">
-    <img class="img--circle personnel-widget__image" src="http://placekitten.com/200/300" alt="${altText}">
-  </div>
-  <div class="name personnel-widget__name"></div>
-  <div class="title personnel-widget__title"></div>
+<div class="personnel-widget__container personnel-widget__container--2-col">
+  <div class="personnel-widget">
+    <div class="banner personnel-widget__banner"></div>
+    <div class="image personnel-widget__image-wrapper">
+      <img class="personnel-widget__image personnel-widget__image--circle" src="http://placekitten.com/200/300"
+        alt="${altText}">
+    </div>
+    <div class="name personnel-widget__name">Dr. Danielle Struppa</div>
+    <div class="title personnel-widget__title"></div>
 
-  <div class="phone personnel-widget__phone">Phone</div>
-  <div class="phone-number personnel-widget__phone-number"><a href="tel:+${phoneNumber}">$phoneNumber</a></div>
-  <div class="email personnel-widget__email">Email</div>
-  <div class="email-address personnel-widget__email-address">
-    <a href="mailto:${emailAddress}">$emailAddress</a>
+    <div class="phone personnel-widget__phone">Phone</div>
+    <div class="phone-number personnel-widget__phone-number"><a href="tel:+${phoneNumber}">$phoneNumber</a></div>
+    <div class="email personnel-widget__email">Email</div>
+    <div class="email-address personnel-widget__email-address">
+      <a href="mailto:${emailAddress}">$emailAddress</a>
+    </div>
     <div class="optional office-info personnel-widget__office-info"></div>
     <hr>
     <div class="link-bottom personnel-widget__link-bottom"></div>
+
   </div>
-  <div class="show-more personnel-widget__show-more underline">Show More</div>
+  <div class="personnel-widget">
+    <div class="banner personnel-widget__banner"></div>
+    <div class="image personnel-widget__image-wrapper">
+      <img class="personnel-widget__image--circle personnel-widget__image" src="http://placekitten.com/200/300"
+        alt="${altText}">
+    </div>
+    <div class="name personnel-widget__name">Dr. Danielle Struppa</div>
+    <div class="title personnel-widget__title">President of Chapman University</div>
+
+    <div class="phone personnel-widget__phone">Phone</div>
+    <div class="phone-number personnel-widget__phone-number"><a href="tel:+${phoneNumber}">714-444-5555</a></div>
+    <div class="email personnel-widget__email">Email</div>
+    <div class="email-address personnel-widget__email-address">
+      <a href="mailto:${emailAddress}">$emailAddress</a>
+    </div>
+    <div class="optional office-info personnel-widget__office-info">
+      123 University Avenue
+    </div>
+    <hr>
+    <a href="#" class="link-bottom personnel-widget__link-bottom">Learn More About This</a>
+
+  </div>
+
+  <div class="personnel-widget">
+    <div class="banner personnel-widget__banner"></div>
+    <div class="image personnel-widget__image-wrapper">
+      <img class="personnel-widget__image--circle personnel-widget__image" src="http://placekitten.com/200/300"
+        alt="${altText}">
+    </div>
+
+    <div class="name personnel-widget__name">Dr. Danielle Struppa</div>
+    <div class="title personnel-widget__title">Associate Professor
+      Co-Program Director for the Faculty of
+      Chemistry and Biochemistry</div>
+
+    <div class="phone personnel-widget__phone">Phone</div>
+    <div class="phone-number personnel-widget__phone-number"><a href="tel:+${phoneNumber}">$phoneNumber</a></div>
+    <div class="email personnel-widget__email">Email</div>
+    <div class="email-address personnel-widget__email-address">
+      <a href="mailto:${emailAddress}">$emailAddress</a>
+    </div>
+    <div class="optional office-info personnel-widget__office-info"></div>
+    <hr>
+    <div class="link-bottom personnel-widget__link-bottom"></div>
+
+  </div>
+
+  <div class="personnel-widget">
+    <div class="banner personnel-widget__banner"></div>
+    <div class="image personnel-widget__image-wrapper">
+      <img class="personnel-widget__image--circle personnel-widget__image" src="http://placekitten.com/200/300"
+        alt="${altText}">
+    </div>
+    <div class="name personnel-widget__name">Dr. Danielle Struppa</div>
+    <div class="title personnel-widget__title"></div>
+
+    <div class="phone personnel-widget__phone">Phone</div>
+    <div class="phone-number personnel-widget__phone-number"><a href="tel:+${phoneNumber}">$phoneNumber</a></div>
+    <div class="email personnel-widget__email">Email</div>
+    <div class="email-address personnel-widget__email-address">
+      <a href="mailto:${emailAddress}">$emailAddress</a>
+    </div>
+    <div class="optional office-info personnel-widget__office-info"></div>
+    <hr>
+    <div class="link-bottom personnel-widget__link-bottom"></div>
+
+  </div>
+
+  <div class="personnel-widget">
+    <div class="banner personnel-widget__banner"></div>
+    <div class="image personnel-widget__image-wrapper">
+      <img class="personnel-widget__image--circle personnel-widget__image" src="http://placekitten.com/200/300"
+        alt="${altText}">
+    </div>
+    <div class="name personnel-widget__name">Dr. Danielle Struppa</div>
+    <div class="title personnel-widget__title"></div>
+
+    <div class="phone personnel-widget__phone">Phone</div>
+    <div class="phone-number personnel-widget__phone-number"><a href="tel:+${phoneNumber}">$phoneNumber</a></div>
+    <div class="email personnel-widget__email">Email</div>
+    <div class="email-address personnel-widget__email-address">
+      <a href="mailto:${emailAddress}">$emailAddress</a>
+    </div>
+    <div class="optional office-info personnel-widget__office-info"></div>
+    <hr>
+    <div class="link-bottom personnel-widget__link-bottom"></div>
+
+  </div>
+
+  <div class="personnel-widget">
+    <div class="banner personnel-widget__banner"></div>
+    <div class="image personnel-widget__image-wrapper">
+      <img class="personnel-widget__image--circle personnel-widget__image" src="http://placekitten.com/200/300"
+        alt="${altText}">
+    </div>
+    <div class="name personnel-widget__name">Dr. Danielle Struppa</div>
+    <div class="title personnel-widget__title"></div>
+
+    <div class="phone personnel-widget__phone">Phone</div>
+    <div class="phone-number personnel-widget__phone-number"><a href="tel:+${phoneNumber}">$phoneNumber</a></div>
+    <div class="email personnel-widget__email">Email</div>
+    <div class="email-address personnel-widget__email-address">
+      <a href="mailto:${emailAddress}">$emailAddress</a>
+    </div>
+    <div class="optional office-info personnel-widget__office-info"></div>
+    <hr>
+    <div class="link-bottom personnel-widget__link-bottom"></div>
+
+  </div>
+
+  <div class="personnel-widget">
+    <div class="banner personnel-widget__banner"></div>
+    <div class="image personnel-widget__image-wrapper">
+      <img class="personnel-widget__image--circle personnel-widget__image" src="http://placekitten.com/200/300"
+        alt="${altText}">
+    </div>
+    <div class="name personnel-widget__name">Dr. Danielle Struppa</div>
+    <div class="title personnel-widget__title"></div>
+
+    <div class="phone personnel-widget__phone">Phone</div>
+    <div class="phone-number personnel-widget__phone-number"><a href="tel:+${phoneNumber}">$phoneNumber</a></div>
+    <div class="email personnel-widget__email">Email</div>
+    <div class="email-address personnel-widget__email-address">
+      <a href="mailto:${emailAddress}">$emailAddress</a>
+    </div>
+    <div class="optional office-info personnel-widget__office-info"></div>
+    <hr>
+    <div class="link-bottom personnel-widget__link-bottom"></div>
+
+  </div>
+
+  <div class="personnel-widget">
+    <div class="banner personnel-widget__banner"></div>
+    <div class="image personnel-widget__image-wrapper">
+      <img class="personnel-widget__image--circle personnel-widget__image" src="http://placekitten.com/200/300"
+        alt="${altText}">
+    </div>
+    <div class="name personnel-widget__name">Dr. Danielle Struppa</div>
+    <div class="title personnel-widget__title"></div>
+
+    <div class="phone personnel-widget__phone">Phone</div>
+    <div class="phone-number personnel-widget__phone-number"><a href="tel:+${phoneNumber}">$phoneNumber</a></div>
+    <div class="email personnel-widget__email">Email</div>
+    <div class="email-address personnel-widget__email-address">
+      <a href="mailto:${emailAddress}">$emailAddress</a>
+    </div>
+    <div class="optional office-info personnel-widget__office-info"></div>
+    <hr>
+    <div class="link-bottom personnel-widget__link-bottom"></div>
+
+  </div>
+
+  <div class="personnel-widget">
+    <div class="banner personnel-widget__banner"></div>
+    <div class="image personnel-widget__image-wrapper">
+      <img class="personnel-widget__image--circle personnel-widget__image" src="http://placekitten.com/200/300"
+        alt="${altText}">
+    </div>
+    <div class="name personnel-widget__name">Dr. Danielle Struppa</div>
+    <div class="title personnel-widget__title"></div>
+
+    <div class="phone personnel-widget__phone">Phone</div>
+    <div class="phone-number personnel-widget__phone-number"><a href="tel:+${phoneNumber}">$phoneNumber</a></div>
+    <div class="email personnel-widget__email">Email</div>
+    <div class="email-address personnel-widget__email-address">
+      <a href="mailto:${emailAddress}">$emailAddress</a>
+    </div>
+    <div class="optional office-info personnel-widget__office-info"></div>
+    <hr>
+    <div class="link-bottom personnel-widget__link-bottom"></div>
+
+  </div>
 </div>
+
+
+<div class="show-more personnel-widget__show-more underline">Show More</div>

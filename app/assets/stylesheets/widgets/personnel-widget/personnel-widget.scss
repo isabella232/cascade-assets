@@ -1,8 +1,43 @@
+@mixin grid($num) {
+  .personnel-widget__container--#{$num}-col {
+    display: grid;
+    grid-template-columns: repeat(#{$num}, 1fr);
+
+    @include respond(tab-port) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond(phone) {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+}
+@include grid(2);
+@include grid(3);
+@include grid(4);
+@include grid(5);
+@include grid(6);
+
 .personnel-widget {
-  &__wrapper {
+  font-family: $futura-regular;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--color-cu-light-grey);
+  border-radius: 4px;
+  text-align: center;
+
+  &__container {
+    --circularImageSize: 80px;
+    grid-gap: 12px;
     position: relative;
     display: grid;
     min-height: 100%;
+
+    &--5-col {
+      --circularImageSize: 50px;
+    }
   }
   &__banner {
     height: 30px;
@@ -12,13 +47,68 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    .img--circle {
-      height: 120px;
-      width: 120px;
-      margin-top: -20px;
-    }
   }
   &__image {
     border: 2px solid $white;
+
+    &--circle {
+      border-radius: 50%;
+      object-fit: cover;
+      height: var(--circularImageSize);
+      width: var(--circularImageSize);
+      margin-top: -20px;
+    }
+  } // end __image
+  &__name {
+    font-weight: bold;
+    color: $black;
+    margin-top: 10px;
+  }
+  &__title {
+    font-style: italic;
+    padding-left: 12%;
+    padding-right: 12%;
+  }
+  &__phone {
+    margin-top: 20px;
+  }
+
+  hr {
+    width: 50%;
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+  }
+}
+
+// non
+.personnel-widget__wrapper {
+  .dog-ear {
+    width: 0px;
+    height: 0px;
+    border-top: transparent 17px solid; /*inside part*/
+    border-right: transparent 25px solid; /*outside part*/
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    -webkit-box-shadow: 3px 2px 5px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 3px 2px 5px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 3px 2px 5px 0px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+
+  .dog-ear:hover {
+    width: 0px;
+    height: 0px;
+    border-top: #09f 17px solid; /*inside part*/
+    border-right: white 25px solid; /*outside part*/
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    -webkit-box-shadow: -3px -2px 5px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: -3px -2px 5px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: -3px -2px 5px 0px rgba(0, 0, 0, 0.2);
   }
 }
