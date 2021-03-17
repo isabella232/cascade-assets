@@ -1,6 +1,13 @@
 $(function () {
   if ($(".personnel-widget__container").length) {
     normalizeHeights();
+
+    $(".personnel-widget").each(function () {
+      // IF NO 'LEARN MORE' LINK, REMOVE <hr>
+      if ($(this).find(".personnel-widget__link-bottom a").length <= 0) {
+        $(this).find("hr").hide();
+      }
+    });
   }
 });
 function normalizeHeights() {
