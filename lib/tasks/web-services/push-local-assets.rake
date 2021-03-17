@@ -141,7 +141,7 @@ p url_post
      )
 
      publish_asset('file', 'b387eec9c0a81e8a57740fff3593b66c')
-
+     p url_post
   # edit_format(
   #   '567ec178c0a81e8a1e5ac2884450d7c2',
   #   '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Grid-Block-Widget.vtl.rb'

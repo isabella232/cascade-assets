@@ -4,6 +4,10 @@
   display: grid;
   grid-gap: $space;
 
+  [class*="__title"] {
+    line-height: 2.8rem;
+  }
+
   img {
     &:hover,
     &:focus,
@@ -384,6 +388,7 @@
       color: $red;
       font-size: 1.8rem;
       padding: 24px;
+      padding-bottom: 10px;
       text-align: center;
       font-weight: 800;
       margin-bottom: unset;
