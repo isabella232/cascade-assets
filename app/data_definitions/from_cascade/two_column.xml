@@ -437,7 +437,7 @@
             <radio-item label="Right" value="right" />
           </text>
           <text field-id="2994320ac0a81e8a5a403945eea51dc4" help-text="Choose to display Image or Video or None" identifier="imageOrVideo" label="Images or Videos? " required="true" type="radiobutton">
-            <radio-item label="Images" show-fields="primaryContent/widget/gridBlockWidget/gridOptions/imageOrientation, primaryContent/widget/gridBlockWidget/gridOptions/gridColumnsImages, primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/gridBlockImage, primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/altText, primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/imagePosition, primaryContent/widget/gridBlockWidget/gridOptions/titleOverlay" value="images" />
+            <radio-item label="Images" show-fields="primaryContent/widget/gridBlockWidget/gridOptions/imageOrientation, primaryContent/widget/gridBlockWidget/gridOptions/gridColumnsImages, primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/gridBlockImage, primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/imageAltOrDecorative, primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/imagePosition, primaryContent/widget/gridBlockWidget/gridOptions/titleOverlay" value="images" />
             <radio-item label="Videos" show-fields="primaryContent/widget/gridBlockWidget/gridOptions/gridColumnsVideos, primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/iFrame" value="videos" />
             <radio-item label="None" value="noImagesVideos" />
           </text>
@@ -480,6 +480,12 @@
             <asset field-id="3429c844c0a81e8a5a403945850e2ff7" identifier="internalLink" label="Internal Link" required="true" type="page" />
             <text field-id="3429c844c0a81e8a5a403945371c3e9f" identifier="externalLink" label="External Link" required="true" />
             <asset field-id="24682989c0a81e8a5a4039456688d569" identifier="gridBlockImage" label="Image" required="true" type="file" />
+
+            <text default="Decorative Image" field-id="" help-text="Decorative images don’t add information to the content of a page. For example, the information provided by the image might already be given using adjacent text, or the image might be included to make the website more visually attractive." identifier="imageAltOrDecorative" label="Accessibility" type="radiobutton">
+            <radio-item show-fields="primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/altText" value="Alt Text" />
+            <radio-item value="Decorative Image" />
+            </text>
+
             <text field-id="2819d3aec0a81e8a5a40394590beb62b" identifier="altText" label="Image Alt Text" required="true" />
             <text field-id="2819d3aec0a81e8a5a4039450b676935" identifier="imagePosition" label="Image Position" default="center center" help-text="Changes image focal point. See https://developer.mozilla.org/en-US/docs/Web/CSS/object-position" />
             <text help-text='Youtube or Vimeo iframe' identifier="iFrame" label="iFrame" required="true" />
@@ -488,7 +494,6 @@
         </group>
         <shared-field field-id="" identifier="link" path="cta__buttons-only" />
       </group>
-
       <group collapsed="true" identifier="funnels-2up" label="Funnels (2up)">
         <text default="Yes" field-id="ff6bcc16c0a81e5f43ef9b3713f5e436" identifier="display-funnels-2up" label="Show" required="true" type="radiobutton">
           <radio-item value="Yes" />
@@ -497,7 +502,7 @@
         <group identifier="region" label="Region" multiple="true">
           <asset field-id="ff6bcc16c0a81e5f43ef9b37b537417c" identifier="image" label="Image (290x125)" type="file" />
           <text default="Decorative Image" field-id="325d615fc0a81e8a5b6f22bbfaec3526" help-text="Decorative images don’t add information to the content of a page. For example, the information provided by the image might already be given using adjacent text, or the image might be included to make the website more visually attractive." identifier="imageAltOrDecorative" label="Accessibility" type="radiobutton">
-            <radio-item show-fields="primaryContent/widget/funnels-2up/region/altText" value="Alt Text" />
+            <radio-item show-fields="primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/imageAltOrDecorative" value="Alt Text" />
             <radio-item value="Decorative Image" />
           </text>
           <text field-id="325fa015c0a81e8a5b6f22bb314d9f8e" help-text="Alternate text to describe image (required)" identifier="altText" label="Image Alt-Text" required="true" />

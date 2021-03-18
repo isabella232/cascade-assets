@@ -251,25 +251,28 @@
     #set ($gridBodyText = $block.getChild('gridBlockText').value)
 
     
-  ##   Grid Block Image
+    ## Grid Block Image
     #set ($gridBlockImageGroup = $element.getChild($widgetXPath).getChild('gridOptions').getChild('gridBlock'))
-
     #set ($gridBlockImagePath = $block.getChild('gridBlockImage').getChild('path').value)
 
     #set ($objectFitPosition = $block.getChild('imagePosition').value)
-    #set ($objectFitPsoition = ${_EscapeTool.xml($objectFitPosition)})
+    #set ($objectFitPosition = ${_EscapeTool.xml($objectFitPosition)})
 
-    #set ($gridBlockAltText = $block.getChild('altText').value)
-    #set ($gridBlockAltText = ${_EscapeTool.xml($gridBlockAltText)})
-    
 
-    #set ($gridBlockImagePosition = $block.getChild('altText').value)
+    ## ACCESSIBILITY
+    #set ( $imageRoleVal = $block.getChild('imageAltOrDecorative').value ) 
+    #if ( $imageRoleVal == "Decorative Image" )
+        #set ( $imageRole = "role='presentation'" )
+        #set ( $gridBlockAltText = '' )
+    #else 
+        #set ( $imageRole = "" )
+        #set ($gridBlockAltText = $block.getChild('altText').value)
+        #set ($gridBlockAltText = ${_EscapeTool.xml($gridBlockAltText)})
+    #end
 
   ## GRID BLOCK VIDEOS
     #set ($gridBlockVideo = $block.getChild('video').value)
-
     #set ($gridBlockiFrame = $block.getChild('iFrame').value)
-
     #set ($gridBlockiFrame = $gridBlockiFrame.replaceAll('allowfullscreen', 'allowfullscreen="true"'))
     #set ($gridBlockText = $block.getChild('gridBlockText').value)
 
@@ -289,7 +292,7 @@
       <div class="grid-block-widget__relative">
     #end
     #if ($imageOrVideo == 'images' && $imageOrientation != 'none')
-      <img class="${widgetXPath}__image ${widgetXPath}__image--${imageOrientation}" src="[system-asset]${_EscapeTool.xml($gridBlockImagePath)}[/system-asset]" alt="${gridBlockAltText}" style="object-position: ${objectFitPosition}" />
+      <img class="${widgetXPath}__image ${widgetXPath}__image--${imageOrientation}" src="[system-asset]${_EscapeTool.xml($gridBlockImagePath)}[/system-asset]" alt="${gridBlockAltText}" $imageRole  style="object-position: ${objectFitPosition}" />
     
     #elseif ($imageOrVideo == 'videos' && $imageOrientation != 'none')
          ## <video src="${_EscapeTool.xml($gridBlockVideo)}"></video>
