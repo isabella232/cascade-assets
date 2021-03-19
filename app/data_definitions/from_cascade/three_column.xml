@@ -326,7 +326,7 @@
               <asset field-id="ff6bcc16c0a81e5f43ef9b37e434ef17" identifier="internalLink" label="Internal Link" type="page" />
               <asset field-id="ff6bcc16c0a81e5f43ef9b37f27ec24a" identifier="fileLink" label="File Link" type="file" />
               <text field-id="ff6bcc16c0a81e5f43ef9b3789f46601" identifier="label" label="Label" />
-              <group identifier="accessibility" label="Accessibility">
+              <group identifier="accessibility" label="Image Accessibility">
                 <text field-id="3650c2e8c0a81e8a5b6f22bb4a5db2f2" identifier="ariaLabel" label="Aria Label" />
                 <text field-id="3650c2e9c0a81e8a5b6f22bba091cc09" identifier="title" label="Title" />
               </group>
