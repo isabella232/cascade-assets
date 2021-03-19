@@ -384,6 +384,11 @@ html body .one-column {
       display: block;
       text-align: right;
     }
+    .grid-block-widget__title.text-align--left {
+      display: block;
+      text-align: left;
+      padding-left: 0 !important;
+    }
   }
   .grid-block-widget__text {
     display: flex;
