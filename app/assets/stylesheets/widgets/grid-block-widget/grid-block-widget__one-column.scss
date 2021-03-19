@@ -22,6 +22,8 @@ $sides: (
 html body {
   // ONE COLUMN
   .one-column {
+    --padding-left: 24px;
+    --padding-right: 24px;
     // INTRO SECTION
     .section-intro {
       margin-top: 0;
@@ -387,7 +389,7 @@ html body .one-column {
     .grid-block-widget__title.text-align--left {
       display: block;
       text-align: left;
-      padding-left: 0 !important;
+      padding-left: 0;
     }
   }
   .grid-block-widget__text {

@@ -1,3 +1,4 @@
+// includes one col bg colors
 #import( "/_cascade/formats/helpers.velocity" )
 
 ## Chapman.edu: Chapman.edu: /_cascade/formats/modular/widgets/Grid Block Widget
@@ -19,15 +20,21 @@
 
 #set ($display = $element.getChild($widgetXPath).getChild('display').value)
 #set ($bgColor =  $element.getChild($widgetXPath).getChild('bgColor').value.toLowerCase())
+#set ($oneColTextPadding = "")
 
 #if ($templateType == ("Modular/1 Column"))
   <!-- IF ONE COLUMN TEMPLATE --> 
     #set ( $oneColWrapperBackgroundColor = "grid-block-widget__wrapper--" + ${bgColor} ) 
     ## #set ($oneColNoBg = "no-bg")
     ## #set ($textBackgroundColor = $oneColNoBg )
+    
+    
+    
+    
+    #set ($titleBgColor = $element.getChild($widgetXPath).getChild("gridOptions").getChild('textBackgroundColor').value)
       <!-- IF CIRCLE --> 
     #if ($imageOrientation != 'circle')	
-        #set ($titleBgColor = $bgColor)	
+        ## #set ($titleBgColor = $bgColor)	
       #else 	
         #set ($titleBgColor = 'no-bg')	
       #end 
@@ -43,8 +50,8 @@
     <!-- END IF NOT ONE COL TEMPLATE --> 
 
 #set ($parentGroup = $element.getChild($widgetXPath))
-  ## #getSetVal($parentGroup "altText")
-  #set ($altText = $parentGroup.getChild('altText'))
+ 
+  
 
 
   #macro(getSetVal $parentGroup $node)
@@ -139,7 +146,6 @@
 
 ##   GRID OPTIONS 
 
-
   #set ($hasGridTitle = $gridOptions.getChild('title').value)
   
 
@@ -177,6 +183,7 @@
   #end
 
 #set ($textBackgroundColor = $gridOptions.getChild('textBackgroundColor').value)
+
 
 ## VIDEOS
 #set ($gridColumnsVideos = $gridOptions.getChild('gridColumnsVideos').value)
@@ -251,15 +258,15 @@
     #set ($gridBodyText = $block.getChild('gridBlockText').value)
 
     
-    ## Grid Block Image
+  ##   Grid Block Image
     #set ($gridBlockImageGroup = $element.getChild($widgetXPath).getChild('gridOptions').getChild('gridBlock'))
+
     #set ($gridBlockImagePath = $block.getChild('gridBlockImage').getChild('path').value)
 
     #set ($objectFitPosition = $block.getChild('imagePosition').value)
-    #set ($objectFitPosition = ${_EscapeTool.xml($objectFitPosition)})
+    #set ($objectFitPsoition = ${_EscapeTool.xml($objectFitPosition)})
 
-
-    ## ACCESSIBILITY
+     ## ACCESSIBILITY
     #set ( $imageRoleVal = $block.getChild('imageAltOrDecorative').value ) 
     #if ( $imageRoleVal == "Decorative Image" )
         #set ( $imageRole = "role='presentation'" )
@@ -270,10 +277,15 @@
         #set ($gridBlockAltText = ${_EscapeTool.xml($gridBlockAltText)})
         #set ($gridBlockAltText = 'alt="' + $gridBlockAltText + '"')
     #end
+    
+
+    #set ($gridBlockImagePosition = $block.getChild('altText').value)
 
   ## GRID BLOCK VIDEOS
     #set ($gridBlockVideo = $block.getChild('video').value)
+
     #set ($gridBlockiFrame = $block.getChild('iFrame').value)
+
     #set ($gridBlockiFrame = $gridBlockiFrame.replaceAll('allowfullscreen', 'allowfullscreen="true"'))
     #set ($gridBlockText = $block.getChild('gridBlockText').value)
 
@@ -282,12 +294,17 @@
     #set ( $widgetXPath = $snakeCase ) 
 
 #if ($templateType == ("Modular/1 Column"))
-  #set ($textBackgroundColor = $gridOptions.getChild('textBackgroundColor').value)
-  #set ($titleBgColor = $element.getChild($widgetXPath).getChild("gridOptions").getChild('textBackgroundColor').value)
+  #set ($titleBgColor = $gridOptions.getChild('textBackgroundColor').value)
+  #if ($bgColor != $textBackgroundColor)
+        #set ($oneColTextPadding = "padding-left: 24px; padding-right: 24px;")
+    #else 
+        #set ($oneColTextPadding = "one-col-no-text-padding")
+    #end
+    
+    
 #end
 
-
-  <div class="${widgetXPath} grid-block-widget--${titleBgColor} ${widgetXPath}--${imageOrientation}" title-bg-color="${titleBgColor}">
+  <div class="${widgetXPath} grid-block-widget--${titleBgColor} ${widgetXPath}--${imageOrientation}">
     
     #if ($titleOverlay != 'No')  
       <div class="grid-block-widget__relative">
@@ -296,16 +313,15 @@
       <img class="${widgetXPath}__image ${widgetXPath}__image--${imageOrientation}" src="[system-asset]${_EscapeTool.xml($gridBlockImagePath)}[/system-asset]" $gridBlockAltText $imageRole  style="object-position: ${objectFitPosition}" />
     
     #elseif ($imageOrVideo == 'videos' && $imageOrientation != 'none')
-         ## <video src="${_EscapeTool.xml($gridBlockVideo)}"></video>
           $gridBlockiFrame 
     #end
     
     #if ($hasGridTitle == 'Yes' && $linkURL != '' && $gridBlockLinkType != '' )
-      <a href="${gridBlockLinkURL}" class="grid-block-widget__title text-align--${textAlignment} grid-block-widget__title--${titleBgColor} focus-no-border border-bottom--none">
+      <a style="  ${oneColTextPadding}" href="${gridBlockLinkURL}" class="grid-block-widget__title text-align--${textAlignment} grid-block-widget__title--${titleBgColor} focus-no-border border-bottom--none">
         <span class="label border-bottom--dotted">${_EscapeTool.xml($gridBlockTitle)}</span>
       </a>
     #else 
-    <div class="grid-block-widget__title text-align--${textAlignment} grid-block-widget__title--${titleBgColor} focus-no-border border-bottom--none">
+    <div style="  ${oneColTextPadding}" class="grid-block-widget__title text-align--${textAlignment} grid-block-widget__title--${titleBgColor}  focus-no-border border-bottom--none">
         <span class="label border-bottom--none">${_EscapeTool.xml($gridBlockTitle)}</span>
       </div>
     #end
@@ -315,22 +331,22 @@
       #end
 
     #if ($gridBodyText != '')
-      <div class="grid-block-widget__text grid-block-widget__text--${textBackgroundColor} grid-block-widget__text--${textAlignment} text-align--${textAlignment} ">
+      <div style="  ${oneColTextPadding}" class="grid-block-widget__text grid-block-widget__text--${textBackgroundColor} ${textForegroundColor} grid-block-widget__text--${textAlignment} text-align--${textAlignment} ${oneColNoBg}">
         <p>
           $_SerializerTool.serialize($block.getChild('gridBlockText'), true)
         </p>
       </div>
     #end
     <span
-      style="display:none;"
+      style="display:none;  ${oneColTextPadding}"
       tabindex="0"
-      class="grid-block-widget__reveal grid-block-widget__reveal--more grid-block-widget__reveal--${titleBgColor} "
+      class="grid-block-widget__reveal grid-block-widget__reveal--more grid-block-widget__reveal--${titleBgColor} ${oneColNoBg}"
       >Show More</span
     >
     <span
-      style="display:none;"
+      style="display:none;  ${oneColTextPadding}"
       tabindex="0"
-      class="grid-block-widget__reveal grid-block-widget__reveal--less grid-block-widget__reveal--${titleBgColor} "
+      class="grid-block-widget__reveal grid-block-widget__reveal--less grid-block-widget__reveal--${titleBgColor} ${oneColNoBg}"
       >Show Less</span
     >
   </div>
