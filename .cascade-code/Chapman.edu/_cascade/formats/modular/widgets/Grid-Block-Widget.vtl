@@ -297,9 +297,9 @@
   #set ($titleBgColor = $gridOptions.getChild('textBackgroundColor').value)
   #if ($bgColor != $textBackgroundColor)
         #set ($oneColTextPadding = "padding-left: 24px; padding-right: 24px;")
-    #else 
-        #set ($oneColTextPadding = "one-col-no-text-padding")
-    #end
+  #else 
+        #set ($oneColTextPadding = "padding-left: 0; padding-right: 0;")
+  #end  
     
     
 #end
