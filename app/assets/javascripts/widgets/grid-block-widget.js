@@ -97,6 +97,7 @@ function removeEmptyPTagsinWYSIWYG() {
 
 function isOverflown(element) {
   console.log("scrollHeight: " + element.scrollHeight);
+
   return (
     element.scrollHeight > element.clientHeight ||
     element.scrollWidth > element.clientWidth
@@ -126,11 +127,6 @@ function calculateDataHeight() {
           .show();
 
         console.log($(parent).text());
-
-        // $(parent)
-        //   .parent(".grid-block-widget")
-        //   .find(".grid-block-widget__reveal--more")
-        //   .addClass("nick");
       }
     });
   });
