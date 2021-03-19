@@ -264,10 +264,11 @@
     #if ( $imageRoleVal == "Decorative Image" )
         #set ( $imageRole = "role='presentation'" )
         #set ( $gridBlockAltText = '' )
-    #else 
+    #elseif ( $imageRoleVal == "Alt Text" )
         #set ( $imageRole = "" )
         #set ($gridBlockAltText = $block.getChild('altText').value)
         #set ($gridBlockAltText = ${_EscapeTool.xml($gridBlockAltText)})
+        #set ($gridBlockAltText = 'alt="' + $gridBlockAltText + '"')
     #end
 
   ## GRID BLOCK VIDEOS
@@ -292,7 +293,7 @@
       <div class="grid-block-widget__relative">
     #end
     #if ($imageOrVideo == 'images' && $imageOrientation != 'none')
-      <img class="${widgetXPath}__image ${widgetXPath}__image--${imageOrientation}" src="[system-asset]${_EscapeTool.xml($gridBlockImagePath)}[/system-asset]" alt="${gridBlockAltText}" $imageRole  style="object-position: ${objectFitPosition}" />
+      <img class="${widgetXPath}__image ${widgetXPath}__image--${imageOrientation}" src="[system-asset]${_EscapeTool.xml($gridBlockImagePath)}[/system-asset]" $gridBlockAltText $imageRole  style="object-position: ${objectFitPosition}" />
     
     #elseif ($imageOrVideo == 'videos' && $imageOrientation != 'none')
          ## <video src="${_EscapeTool.xml($gridBlockVideo)}"></video>
