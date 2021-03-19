@@ -412,20 +412,19 @@
 
     &__text {
       font-family: $futura-regular;
+      min-height: 250px;
       p {
         font-size: 1.8rem;
         line-height: 2.2rem;
       }
       &--truncated {
-        max-height: 150px;
+        max-height: 250px;
 
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 7;
         overflow: hidden;
-
-        display: block;
+        text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3; /* number of lines to show */
         position: relative;
         overflow: hidden;
         text-overflow: ellipsis;
