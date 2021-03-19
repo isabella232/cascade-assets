@@ -335,24 +335,32 @@
         </group>
       </group>
       <group collapsed="true" identifier="gridBlockWidget" label="Grid Block Widget">
-        <shared-field field-id="1a2f2699c0a81e8a006059d0a2633faa" identifier="display" path="display" />
+        <shared-field identifier="display" path="display" />
         <text default="yes" field-id="2e5ae630c0a81e8a5a403945f880d1a6" identifier="displaySectionIntro" label="Display Section Intro?" type="radiobutton">
           <radio-item label="Yes" show-fields="primaryContent/widget/gridBlockWidget/sectionHeaderGroup, primaryContent/widget/gridBlockWidget/textAlignment" value="yes" />
           <radio-item label="No" value="no " />
         </text>
-        <shared-field field-id="1a2f269ac0a81e8a006059d083b4537c" identifier="sectionHeaderGroup" path="Section Header" />
+        <text default="left-aligned" field-id="" identifier="textAlignment" label="Text Alignment" type="radiobutton" help-text="Text Alignment for Intro Section and CTA Buttons">
+          <radio-item label="Left Aligned" value="left-aligned" />
+          <radio-item label="Centered" value="centered" />
+        </text>
+        <text default="no" field-id="" identifier="displayCTAButtons" label="Display Bottom?" type="radiobutton">
+          <radio-item label="Yes" show-fields="primaryContent/widget/gridBlockWidget/link, primaryContent/widget/gridBlockWidget/textAlignment" value="yes" />
+          <radio-item label="No" value="no" />
+        </text>
+        <shared-field field-id="2e8489d8c0a81e8a5a40394576fa28af" identifier="sectionHeaderGroup" path="Section Header" />
         <group collapsed="true" identifier="gridOptions" label="Grid Blocks Options">
-          <text default="white" field-id="1a2f269cc0a81e8a006059d0250bd536" identifier="textBackgroundColor" label="Text Background Color" required="true" type="radiobutton">
+          <text default="white" field-id="2e57487cc0a81e8a5a4039452473014f" identifier="textBackgroundColor" label="Text Background Color" required="true" type="radiobutton">
             <radio-item label="White" value="white" />
             <radio-item label="Sand" value="sand" />
             <radio-item label="Panther Black" value="black" />
             <radio-item label="Chapman Red" value="red" />
           </text>
-          <text field-id="1a2f269ac0a81e8a006059d0d985d37c" identifier="title" required="true" type="radiobutton">
+          <text field-id="2994320ac0a81e8a5a403945751bbb26" identifier="title" required="true" type="radiobutton">
             <radio-item show-fields="primaryContent/widget/gridBlockWidget/gridOptions/textAlign, primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/gridBlockTitle, primaryContent/widget/gridBlockWidget/gridOptions/circle, primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/titleLink" value="Yes" />
             <radio-item value="No" />
           </text>
-          <text field-id="1a2f269bc0a81e8a006059d084d0f692" identifier="bodyText" label="Body Text" required="true" type="radiobutton">
+          <text field-id="2994320ac0a81e8a5a403945b6122351" identifier="bodyText" label="Body Text" required="true" type="radiobutton">
             <radio-item show-fields="primaryContent/widget/gridBlockWidget/gridOptions/textAlign, primaryContent/widget/gridBlockWidget/gridOptions/circle, primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/gridBlockText" value="Yes" />
             <radio-item value="No" />
           </text>
@@ -361,56 +369,63 @@
             <radio-item label="Center" value="center" />
             <radio-item label="Right" value="right" />
           </text>
-          <text field-id="1a2f269bc0a81e8a006059d0a983a902" help-text="Choose to display Image or Video or None" identifier="imageOrVideo" label="Images or Videos? " required="true" type="radiobutton">
-            <radio-item label="Images" show-fields="primaryContent/widget/gridBlockWidget/gridOptions/imageOrientation, primaryContent/widget/gridBlockWidget/gridOptions/gridColumnsImages, primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/gridBlockImage, primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/altText, primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/imagePosition, primaryContent/widget/gridBlockWidget/gridOptions/titleOverlay" value="images" />
+          <text field-id="2994320ac0a81e8a5a403945eea51dc4" help-text="Choose to display Image or Video or None" identifier="imageOrVideo" label="Images or Videos? " required="true" type="radiobutton">
+            <radio-item label="Images" show-fields="primaryContent/widget/gridBlockWidget/gridOptions/imageOrientation, primaryContent/widget/gridBlockWidget/gridOptions/gridColumnsImages, primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/gridBlockImage, primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/imageAltOrDecorative, primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/imagePosition, primaryContent/widget/gridBlockWidget/gridOptions/titleOverlay" value="images" />
             <radio-item label="Videos" show-fields="primaryContent/widget/gridBlockWidget/gridOptions/gridColumnsVideos, primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/iFrame" value="videos" />
             <radio-item label="None" value="noImagesVideos" />
           </text>
-          <text field-id="1a2f269bc0a81e8a006059d03664bf0b" identifier="imageOrientation" label="Image Orientation" required="true" type="dropdown">
+          <text field-id="29a6571ec0a81e8a5a403945bee85bf0" identifier="imageOrientation" label="Image Orientation" required="true" type="dropdown">
             <dropdown-item label="Portrait" value="portrait" />
             <dropdown-item label="Landscape" value="landscape" />
             <dropdown-item label="Square" value="square" />
             <dropdown-item label="Circle" value="circle" />
           </text>
-          <text default="No" field-id="1a2f269cc0a81e8a006059d018e3338f" help-text="This option is only available if both title and image are selected and can not be used on circle images." identifier="titleOverlay" label="Overlay title on image?" required="true" type="radiobutton">
+          <text default="No" field-id="2de838bdc0a81e8a5a403945b76a71e3" help-text="This option is only available if both title and image are selected and can not be used on circle images." identifier="titleOverlay" label="Overlay title on image?" required="true" type="radiobutton">
             <radio-item value="Yes" />
             <radio-item show-fields="primaryContent/widget/gridBlockWidget/gridOptions/circle" value="No" />
           </text>
-          <text default="gridColumnsThreeVideos" field-id="1a2f269dc0a81e8a006059d0502e1f9b" identifier="gridColumnsVideos" label="Video Grid Columns" required="true" type="radiobutton">
+          <text default="gridColumnsThreeVideos" field-id="299a1db4c0a81e8a5a403945d07421eb" identifier="gridColumnsVideos" label="Video Grid Columns" required="true" type="radiobutton">
             <radio-item label="2" value="gridColumnsTwoVideos" />
             <radio-item label="3" value="gridColumnsThreeVideos" />
           </text>
-          <text default="3-col" field-id="1a2f269dc0a81e8a006059d0e28b476d" identifier="gridColumnsImages" label="Image Grid Columns" required="true" type="radiobutton">
+          <text default="3-col" field-id="299a1db5c0a81e8a5a4039454f88a5c3" identifier="gridColumnsImages" label="Image Grid Columns" required="true" type="radiobutton">
             <radio-item label="2" value="2-col" />
             <radio-item label="3" value="3-col" />
             <radio-item label="4" value="4-col" />
             <radio-item label="5" value="5-col" />
             <radio-item label="6" value="6-col" />
           </text>
-          <text default="showAll" field-id="1a2f269ec0a81e8a006059d0a5933583" help-text="How do you want your grid to be loaded?" identifier="gridDisplay" label="Grid Display" required="true" type="radiobutton">
+          <text default="showAll" field-id="243872cdc0a81e8a5a4039455373b601" help-text="How do you want your grid to be loaded?" identifier="gridDisplay" label="Grid Display" required="true" type="radiobutton">
             <radio-item label="Pagination (displays six at a time if you have more than six)" value="pagination" />
             <radio-item label="Display All Grid Items" value="showAll" />
             <radio-item label="Rotator (will rotate up to four items at a time)" value="rotator" />
           </text>
           <group collapsed="true" identifier="gridBlock" label="Grid Block" multiple="true">
-            <text field-id="1a2f269ec0a81e8a006059d0ae9e5b31" identifier="gridBlockTitle" label="Title" required="true" />
-            <text field-id="1a2f269fc0a81e8a006059d0d20b6e1d" identifier="titleLink" label="Title Link?" required="true" type="radiobutton">
-              <radio-item label="Yes" show-fields="primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/linkType" value="yes" />
+            <text field-id="2462637fc0a81e8a5a4039452d57a512" identifier="gridBlockTitle" label="Title" required="true" />
+            <text field-id="3429c844c0a81e8a5a4039450d9bac85" identifier="titleLink" label="Title Link?" required="false" type="radiobutton" default="no">
+              <radio-item label="Yes" value="yes" show-fields="primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/linkType" />
               <radio-item label="No" value="no" />
             </text>
-            <text field-id="1a2f269fc0a81e8a006059d050b54199" identifier="linkType" required="true" type="radiobutton">
+            <text field-id="3429c844c0a81e8a5a40394579d1d114" identifier="linkType" required="true" type="radiobutton">
               <radio-item label="Internal Link" show-fields="primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/internalLink" value="internal" />
               <radio-item label="External Link" show-fields="primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/externalLink" value="external" />
             </text>
-            <asset field-id="1a2f269fc0a81e8a006059d0c0a17651" identifier="internalLink" label="Internal Link" required="true" type="page" />
-            <text field-id="1a2f26a0c0a81e8a006059d0e007cf06" identifier="externalLink" label="External Link" required="true" />
-            <asset field-id="1a2f26a0c0a81e8a006059d02534e3a2" identifier="gridBlockImage" label="Image" required="true" type="file" />
-            <text field-id="1a2f26a0c0a81e8a006059d069d1b6b6" identifier="altText" label="Image Alt Text" required="true" />
-            <text default="center center" field-id="1a2f26a1c0a81e8a006059d05da072c8" help-text="Example: 'bottom left' or 'top right' or 'center center'" identifier="imagePosition" label="Image Position" />
-            <text field-id="1a2f26a1c0a81e8a006059d03df4dff5" help-text="Youtube or Vimeo iframe" identifier="iFrame" label="iFrame" required="true" />
-            <text field-id="1a2f26a2c0a81e8a006059d0bd5a694d" identifier="gridBlockText" label="Grid Block Text" required="true" wysiwyg="true" />
+            <asset field-id="3429c844c0a81e8a5a403945850e2ff7" identifier="internalLink" label="Internal Link" required="true" type="page" />
+            <text field-id="3429c844c0a81e8a5a403945371c3e9f" identifier="externalLink" label="External Link" required="true" />
+            <asset field-id="24682989c0a81e8a5a4039456688d569" identifier="gridBlockImage" label="Image" required="true" type="file" />
+
+            <text default="Decorative Image" field-id="" help-text="Decorative images don’t add information to the content of a page. For example, the information provided by the image might already be given using adjacent text, or the image might be included to make the website more visually attractive." identifier="imageAltOrDecorative" label="Accessibility" type="radiobutton">
+            <radio-item show-fields="primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/altText" value="Alt Text" />
+            <radio-item value="Decorative Image" />
+            </text>
+
+            <text field-id="2819d3aec0a81e8a5a40394590beb62b" identifier="altText" label="Image Alt Text" required="true" />
+            <text field-id="2819d3aec0a81e8a5a4039450b676935" identifier="imagePosition" label="Image Position" default="center center" help-text="Changes image focal point. See https://developer.mozilla.org/en-US/docs/Web/CSS/object-position" />
+            <text help-text='Youtube or Vimeo iframe' identifier="iFrame" label="iFrame" required="true" />
+            <text field-id="24682989c0a81e8a5a40394504b245f8" identifier="gridBlockText" label="Grid Block Text" required="true" wysiwyg="true" />
           </group>
         </group>
+        <shared-field field-id="" identifier="link" path="cta__buttons-only" />
       </group>
       <group collapsed="true" identifier="photoCalloutWidget" label="Photo Callout">
         <shared-field field-id="a7a67c6bc0a81e4b407da5646ea52523" identifier="display" path="display" />
