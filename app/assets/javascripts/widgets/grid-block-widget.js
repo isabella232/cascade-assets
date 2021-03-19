@@ -113,20 +113,18 @@ function calculateDataHeight() {
     $(this)
       .parent(".grid-block-widget")
       .addClass("grid-block-widget--text-overflow");
-    // if ($(this).attr("data-scroll-height") >= 158) {
-    //   $(this).parent().find(".grid-block-widget__reveal--more").show();
-    // }
 
-    var parents = document.querySelectorAll(".grid-block-widget__text");
-    parents.forEach((parent) => {
-      if (isOverflown(parent)) {
-        $(parent).addClass('grid-block-widget__text--truncated")');
-        $(parent)
-          .parent(".grid-block-widget")
+    $(".grid-block-widget__text > p > span").each(function () {
+      if (isOverflown(this)) {
+        $(this).addClass("grid-block-widget__text--truncated");
+
+        $(this)
+          .parent()
+          .parent()
+          .parent()
           .find(".grid-block-widget__reveal--more")
           .show();
-
-        console.log($(parent).text());
+        console.log($(this).text());
       }
     });
   });

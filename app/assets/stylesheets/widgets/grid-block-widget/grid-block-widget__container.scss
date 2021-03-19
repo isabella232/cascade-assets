@@ -412,23 +412,25 @@
 
     &__text {
       font-family: $futura-regular;
-      min-height: 250px;
       p {
         font-size: 1.8rem;
         line-height: 2.2rem;
       }
       &--truncated {
-        max-height: 250px;
+        max-height: 150px;
+        span {
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 7;
+          overflow: hidden;
 
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 3; /* number of lines to show */
-        position: relative;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        padding: 0;
+          display: block;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          position: relative;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          padding: 0;
+        }
       }
 
       &--white {
