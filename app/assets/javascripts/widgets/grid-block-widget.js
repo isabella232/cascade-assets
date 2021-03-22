@@ -61,7 +61,7 @@ function removeEmptyPTagsinWYSIWYG() {
     var $this = $(this);
     $(this)
       .parent()
-      .attr("data-js", "removed empty <p> tags via grid-block-widget.js");
+      .attr("data-js", "removed empty p tags via grid-block-widget.js");
     if ($this.html().replace(/\s|&nbsp;/g, "").length == 0) $this.remove();
   });
 }
