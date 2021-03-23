@@ -170,11 +170,6 @@
     <group identifier="widget" label="Widgets" multiple="true">
       <text field-id="ff6bcc3bc0a81e5f43ef9b372ea525f7" help-text="Choose the type of content you'd like to add to the page" identifier="widgetType" label="Type of Widget" type="dropdown">
         <dropdown-item value="(select one)" />
-        <dropdown-item show-fields="primaryContent/widget/textEditorWidget" value="New Text Editor" />
-        <dropdown-item show-fields="primaryContent/widget/wysiwyg-editor" value="Text Editor" />
-        <dropdown-item label="Text Editor with CTA" show-fields="primaryContent/widget/textWithCTA" value="Text with CTA" />
-        <dropdown-item show-fields="primaryContent/widget/bannerNotificationWidget" value="Banner Notification" />
-        <dropdown-item show-fields="primaryContent/widget/photoCalloutWidget" value="Photo Callout" />
         <dropdown-item show-fields="primaryContent/widget/gridBlockWidget" value="Grid Block" />
         <dropdown-item show-fields="primaryContent/widget/collapsibleRegions" value="Collapsible Regions" />
         <dropdown-item show-fields="primaryContent/widget/tabs" value="Tabs" />
@@ -186,7 +181,7 @@
         <dropdown-item show-fields="primaryContent/widget/FeaturedNewsEvents" value="Featured / News / Events" />
         <dropdown-item show-fields="primaryContent/widget/quickFactBlocksWidget" value="Quick Fact Blocks" />
         <dropdown-item show-fields="primaryContent/widget/logo-image-rotator" value="Logo Image Rotator" />
-        <dropdown-item show-fields="primaryContent/widget/rssFeedDisplay" value="RSS Feed Display" />
+        <dropdown-item show-fields="primaryContent/widget/rssFeedDisplay" value="RSS Feed Display" label="RSS Feed Display (limit 1)" />
         <dropdown-item label="Events.chapman.edu Feed" show-fields="primaryContent/widget/programEvents" value="Program Events" />
         <dropdown-item show-fields="primaryContent/widget/careerBlockWidget" value="Career Block" />
         <dropdown-item show-fields="primaryContent/widget/faculty" value="Faculty Info" />
@@ -202,14 +197,22 @@
         <dropdown-item label="A to Z Listing - DO NOT USE - RETIRING" show-fields="primaryContent/widget/AtoZListing" value="A to Z Listing" />
         <!-- END RETIRING WIDGETS -->
       </text>
-      <group collapsed="true" identifier="rssFeedDisplay" label="RSS Feed Display">
-        <shared-field field-id="ff6bcc3bc0a81e5f43ef9b370404edfd" identifier="display" path="display" />
-        <text field-id="ff6bcc3bc0a81e5f43ef9b37d3baf23b" identifier="feedTitle" label="Feed Title" required="true" />
-        <text default="Sand" field-id="ff6bcc3bc0a81e5f43ef9b37df775fb0" identifier="bgColor" label="Background Color" type="dropdown">
-          <dropdown-item label="Sand" value="sand" />
-          <dropdown-item label="Grey" value="grey" />
+      <group identifier="rssFeedDisplay" label="RSS Feed Display (limit 1)" collapsed="true">
+        <shared-field path="display" identifier="display" field-id="ff6bcc3bc0a81e5f43ef9b370404edfd" />
+        <text identifier="feedTitle" label="Feed Title" field-id="ff6bcc3bc0a81e5f43ef9b37d3baf23b" required="true" />
+        <text type="dropdown" identifier="bgColor" label="Background Color" field-id="ff6bcc3bc0a81e5f43ef9b37df775fb0" required="true" default="sand">
+          <dropdown-item value="sand" label="Sand" />
+          <dropdown-item value="grey" label="Grey" />
         </text>
-        <text field-id="ff6bcc3bc0a81e5f43ef9b37cbe996ee" identifier="feedUrl" label="Feed Url" required="true" />
+        <text default="Yes" identifier="showDateTime" label="Show Date/Time" required="true" type="radiobutton">
+          <radio-item value="Yes" />
+          <radio-item value="No" />
+        </text>
+        <text default="No" identifier="showImage" label="Show Image" required="true" type="radiobutton">
+          <radio-item value="Yes" />
+          <radio-item value="No" />
+        </text>
+        <text identifier="feedUrl" label="Feed Url" field-id="ff6bcc3bc0a81e5f43ef9b37cbe996ee" required="true" help-text="This widget can currently only display Wordpress RSS Feeds. Example: https://news.chapman.edu/category/alumni/feed/" />
       </group>
       <group collapsed="true" identifier="programEvents" label="Events.chapman.edu Feed">
         <shared-field field-id="ff6bcc3bc0a81e5f43ef9b37f4046c5f" identifier="display" path="display" />

@@ -1,11 +1,12 @@
 $(document).ready(function() {
   var $rssFeedContainer = document.querySelector('.rss-feed-display-widget')
-
   // NO RSS FEED WIDGET ON PAGE
   if (!$rssFeedContainer) return;
 
   var rssFeedItemColor = $rssFeedContainer.getAttribute('data-bg-color'),
-  rssFeedUrl           = $rssFeedContainer.getAttribute('data-rss-feed');
+  rssFeedUrl           = $rssFeedContainer.getAttribute('data-rss-feed'),
+  showDateTime         = $rssFeedContainer.getAttribute('data-show-datetime'),
+  showImage            = $rssFeedContainer.getAttribute('data-show-image');
 
   if (!rssFeedUrl.length) return;
 
@@ -87,7 +88,8 @@ $(document).ready(function() {
       $feedItemLink                 = document.createElement('a'),
       $feedItemDateContainer        = document.createElement('div'),
       $feedItemDate                 = document.createElement('p'),
-      $feedItemTime                 = document.createElement('p');
+      $feedItemTime                 = document.createElement('p'),
+      $feedItemImage                = document.createElement('img');
 
       // ADDED CSS CLASS TO FIRST FOUR RSS DIPSLAY ELEMENTS IN FEED 
       // HIDE THE REST ADD APPROPRIATE CLASSES TO EACH ELEMENT
@@ -98,22 +100,39 @@ $(document).ready(function() {
       $feedItemDateContainer.className        = 'rss-feed-item__date-container';
       $feedItemDate.className                 = 'rss-feed-item__date text__bold';
       $feedItemTime.className                 = 'rss-feed-item__time';
+      $feedItemImage.className                = 'rss-feed-item__image';
 
       // ADDED INNER TEXT, DATE, AND TIME TO APPOPRIATE RSS DISPLAY ELEMENTS
       $feedItemDescription.innerHTML  = feedItemDescription;
       $feedItemLink.innerHTML         = feedItem.title[0];
-      $feedItemDate.innerHTML         = feedItemDate.date;
-      $feedItemTime.innerHTML         = feedItemDate.time;
-
       $feedItemLink.setAttribute('href', feedItem.link[0]);
 
       // APPENDING APPROPRIATE RSS ITEMS TO ELEMENTS AND THEN CONTAINER
-      $feedItemDateContainer.appendChild($feedItemDate)
-      $feedItemDateContainer.appendChild($feedItemTime)
-      $feedItemDescriptionContainer.appendChild($feedItemLink)
-      $feedItemDescriptionContainer.appendChild($feedItemDescription)
-      $feedItemContainer.appendChild($feedItemDateContainer)
-      $feedItemContainer.appendChild($feedItemDescriptionContainer)
+      if (showDateTime == "Yes") {
+        $feedItemDate.innerHTML = feedItemDate.date;
+        $feedItemTime.innerHTML = feedItemDate.time;
+        $feedItemDateContainer.appendChild($feedItemDate);
+        $feedItemDateContainer.appendChild($feedItemTime);
+        $feedItemContainer.appendChild($feedItemDateContainer);
+      }
+
+      $feedItemDescriptionContainer.appendChild($feedItemLink);
+      $feedItemDescriptionContainer.appendChild($feedItemDescription);
+      $feedItemContainer.appendChild($feedItemDescriptionContainer);
+
+      // Construct and append image. Only works for Wordpress specific images
+      if (showImage == "Yes") {
+        if (feedItem.image !== undefined && feedItem.image.length) {
+          var itemImage = feedItem.image[0].img[0].$;
+          $feedItemImage.setAttribute('width',itemImage.width);
+          $feedItemImage.setAttribute('height',itemImage.height);
+          $feedItemImage.setAttribute('src',itemImage.src);
+          $feedItemImage.setAttribute('alt',itemImage.alt);
+          $feedItemImage.setAttribute('srcset',itemImage.srcset);
+        }
+        $feedItemContainer.appendChild($feedItemImage);
+      }
+
       $rssFeedContainer.appendChild($feedItemContainer);
 
     });
