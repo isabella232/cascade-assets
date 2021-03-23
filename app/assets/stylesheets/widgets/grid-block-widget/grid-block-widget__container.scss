@@ -418,19 +418,18 @@
       }
       &--truncated {
         max-height: 150px;
-        span {
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 7;
-          overflow: hidden;
 
-          display: block;
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          position: relative;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          padding: 0;
-        }
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 7;
+        overflow: hidden;
+
+        display: block;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        position: relative;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 0;
       }
 
       &--white {
