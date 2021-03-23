@@ -238,7 +238,7 @@
   #end
     
 
-  <div id="grid-block-widget__container--${_MathTool.add($foreach.index, 1)}" class="grid-block-widget__container grid-block-widget__container--$imageOrVideo grid-block-widget__container--${gridColumnsImages} ${overlayClass} grid-block-widget__container--${imageOrientation} ${pagination}" data-columns="${dataColumns}">
+  <div id="grid-block-widget__container--${_MathTool.add($foreach.index, 1)}" class="grid-block-widget__container grid-block-widget__container--$imageOrVideo grid-block-widget__container--${gridColumnsImages} ${overlayClass} grid-block-widget__container--${imageOrientation} ${pagination} ${oneColPaddingClass}" data-columns="${dataColumns}">
   
 
   #foreach ($block in $blocks)
@@ -297,8 +297,10 @@
   #set ($titleBgColor = $gridOptions.getChild('textBackgroundColor').value)
   #if ($bgColor != $textBackgroundColor)
         #set ($oneColTextPadding = "padding-left: 24px; padding-right: 24px;")
+        #set ($oneColPaddingClass = "grid-block-widget__container--padding")
   #else 
-        #set ($oneColTextPadding = "padding-left: 0; padding-right: 0;")
+        #set ($oneColPaddingClass = "grid-block-widget__container--no-padding")
+        #set ($oneColTextPadding = "padding-left: 0 !important; padding-right: 0 !important;")
   #end  
     
     

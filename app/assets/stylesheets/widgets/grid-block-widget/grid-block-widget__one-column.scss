@@ -435,13 +435,17 @@ html body .one-column {
   .block-widget__reveal--white,
   .block-widget__reveal--sand,
   .block-widget__reveal--black {
-    color: $cu-red !important;
+    color: $cu-red;
     [class*="--white"] {
-      color: $cu-red !important;
+      color: $cu-red;
     }
   }
   .grid-block-widget.grid-block-widget--white
     .grid-block-widget__reveal--white {
     color: $cu-red;
+  }
+
+  .grid-block-widget__wrapper--white .grid-block-widget__title {
+    color: $white;
   }
 }

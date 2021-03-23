@@ -212,6 +212,8 @@ function adjustCarouselButtonPosition() {
     var imgHeight = $(this).find(".grid-block-widget__image").height();
     var buttonHeight = imgHeight / 2;
     $(this).find("button.slick-arrow").css("top", buttonHeight);
+    $(this).find("button.slick-prev").css("transform", "translateX(-20px)");
+    $(this).find("button.slick-next").css("transform", "translateX(20px)");
   });
 }
 
