@@ -316,7 +316,7 @@
 
     #if ($gridBodyText != '')
       <div class="grid-block-widget__text grid-block-widget__text--${textBackgroundColor} grid-block-widget__text--${textAlignment} text-align--${textAlignment} ">
-        <p>
+        <p class="grid-block-widget__text-wrapper">
           $_SerializerTool.serialize($block.getChild('gridBlockText'), true)
         </p>
       </div>
