@@ -1,7 +1,8 @@
 $(function () {
   if ($(".grid-block-widget").length) {
-    gridBlockWidget();
     removeEmptyPTagsinWYSIWYG();
+    gridBlockWidget();
+    calculateDataHeight();
     if (isIE()) {
       $(".grid-block-widget img").each(function () {
         var t = jQuery(this),
@@ -61,7 +62,7 @@ function removeEmptyPTagsinWYSIWYG() {
     var $this = $(this);
     $(this)
       .parent()
-      .attr("data-js", "removed empty <p> tags via grid-block-widget.js");
+      .attr("data-js", "removed empty p tags via grid-block-widget.js");
     if ($this.html().replace(/\s|&nbsp;/g, "").length == 0) $this.remove();
   });
 }
@@ -95,7 +96,6 @@ function calculateDataHeight() {
 }
 
 function gridBlockWidget() {
-  calculateDataHeight();
   var buttonClickCounter = 0;
   $(".grid-block-widget__container").each(function () {
     // IDs are assigned via velocity format
