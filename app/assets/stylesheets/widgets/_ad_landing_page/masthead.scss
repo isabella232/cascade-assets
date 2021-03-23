@@ -1,6 +1,6 @@
 .ad-landing-masthead {
   position: relative;
-  background-color: #eaeaea;
+  background-color: $white;
 
   .title,
   .subtitle,
@@ -76,7 +76,7 @@
   .background-video-wrapper {
     padding: 0;
     pointer-events: none;
-    background-color: #eaeaea;
+    background-color: $white;
 
     @include media($medium-screen) {
       overflow: hidden;

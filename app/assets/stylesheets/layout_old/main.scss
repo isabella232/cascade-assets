@@ -12,14 +12,15 @@
 }
 
 /* center column CSS */
-.main, 
-.primary-content.one-column, 
+.main,
+.primary-content.one-column,
 .primary-content.landing {
   body.personnel & {
     margin-left: 0;
   }
   a {
-      border-bottom: 1px dotted #a50034;
+    $border-color: currentColor;
+    border-bottom: 1px dotted $border-color;
   }
   .ie7 & {
     h2 {
@@ -51,7 +52,7 @@
       }
     }
     @include bp(l) {
-      background-image: image-url('tab_shadow.png');
+      background-image: image-url("tab_shadow.png");
       background-position: left 3px;
       height: auto;
       height: 35px;

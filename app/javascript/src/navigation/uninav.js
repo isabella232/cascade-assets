@@ -31,7 +31,7 @@ const uninav = function () {
 
   function toggleAriaExpandVal() {
     $("#uninav .uninav__dropdown--parent").on("click keypress", function (e) {
-      if (a11yClick(event) === true) {
+      if (a11yClick(e) === true) {
         var menuItem = $(e.currentTarget).find(".uninav__dropdown--child");
 
         if (menuItem.attr("aria-expanded") === "true") {
@@ -47,9 +47,11 @@ const uninav = function () {
     });
 
     $("#uninav .uninav__dropdown--parent").bind("mouseenter", function (e) {
+      $(this).attr("aria-expanded", "true");
       $(this).find(".uninav__dropdown--child").attr("aria-expanded", "true");
     });
     $("#uninav li").bind("mouseleave", function (e) {
+      $(this).attr("aria-expanded", "false");
       $(this).find(".uninav__dropdown--child").attr("aria-expanded", "false");
     });
   }

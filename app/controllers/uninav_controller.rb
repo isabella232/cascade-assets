@@ -24,6 +24,11 @@ class UninavController < ApplicationController
   def diversity; end
 
   def one_column; end
+
+  def one_column_grid_block
+  
+  end
+
   def about; end
 
   def undergrad; end

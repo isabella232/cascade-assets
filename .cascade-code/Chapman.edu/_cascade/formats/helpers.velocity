@@ -261,7 +261,7 @@ USAGE: #bgColorChooser('next-steps-widget'). $bgColor will result in a class suc
 3 CTA BUTTONS
 Outputs shared field 'CTA' (https://dev-cascade.chapman.edu/entity/open.act?id=6ccc49b1c0a81e4b7fe96604d9f0dee2&type=sharedfield).
 EXAMPLE: #cta($element, 'next-steps-widget/link') ... see https://dev-cascade.chapman.edu/entity/open.act?id=866641d7c0a81e4b7fe96604393cd7cb&type=format
-EXAMPLE 2: Collection (slides) within a collection (slider): #wtf($slide 'link') ... see https://dev-cascade.chapman.edu/entity/open.act?id=11e3bb1ac0a81e4b7fe96604d894fc25&type=format
+EXAMPLE 2: Collection (slides) within a collection (slider): #cta($slide 'link') ... see https://dev-cascade.chapman.edu/entity/open.act?id=11e3bb1ac0a81e4b7fe96604d894fc25&type=format
 --------------------------------------------------------------------------------
 *#
 #macro(cta $elem $linkXPath $wxp)
