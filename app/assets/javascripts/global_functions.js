@@ -1,7 +1,7 @@
 $(function () {
   if (window.location.href.indexOf("dev-www.chapman.edu") > -1) {
-    refreshCSS();
-    refreshJS();
+    // refreshCSS();
+    // refreshJS();
   }
 });
 

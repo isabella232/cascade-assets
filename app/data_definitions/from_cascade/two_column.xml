@@ -402,7 +402,6 @@
       </group>
       <group collapsed="true" identifier="gridBlockWidget" label="Grid Block Widget">
         <shared-field identifier="display" path="display" />
-        <!-- <shared-field field-id="2ec23c65c0a81e8a5a403945714f24c6" identifier="bgColor" path="background-color-radio-buttons" default="White" /> -->
         <text default="yes" field-id="2e5ae630c0a81e8a5a403945f880d1a6" identifier="displaySectionIntro" label="Display Section Intro?" type="radiobutton">
           <radio-item label="Yes" show-fields="primaryContent/widget/gridBlockWidget/sectionHeaderGroup, primaryContent/widget/gridBlockWidget/textAlignment" value="yes" />
           <radio-item label="No" value="no " />
@@ -469,7 +468,7 @@
           </text>
           <group collapsed="true" identifier="gridBlock" label="Grid Block" multiple="true">
             <text field-id="2462637fc0a81e8a5a4039452d57a512" identifier="gridBlockTitle" label="Title" required="true" />
-            <text field-id="3429c844c0a81e8a5a4039450d9bac85" identifier="titleLink" label="Title Link?" required="true" type="radiobutton">
+            <text field-id="3429c844c0a81e8a5a4039450d9bac85" identifier="titleLink" label="Title Link?" required="false" type="radiobutton" default="no">
               <radio-item label="Yes" value="yes" show-fields="primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/linkType" />
               <radio-item label="No" value="no" />
             </text>
@@ -481,7 +480,7 @@
             <text field-id="3429c844c0a81e8a5a403945371c3e9f" identifier="externalLink" label="External Link" required="true" />
             <asset field-id="24682989c0a81e8a5a4039456688d569" identifier="gridBlockImage" label="Image" required="true" type="file" />
 
-            <text default="Decorative Image" field-id="" help-text="Decorative images don’t add information to the content of a page. For example, the information provided by the image might already be given using adjacent text, or the image might be included to make the website more visually attractive." identifier="imageAltOrDecorative" label="Accessibility" type="radiobutton">
+            <text default="Decorative Image" field-id="" help-text="Decorative images don’t add information to the content of a page. For example, the information provided by the image might already be given using adjacent text, or the image might be included to make the website more visually attractive." identifier="imageAltOrDecorative" label="Image Accessibility" type="radiobutton">
             <radio-item show-fields="primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/altText" value="Alt Text" />
             <radio-item value="Decorative Image" />
             </text>
