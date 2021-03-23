@@ -203,16 +203,15 @@ function gridBlockCarousel() {
           // instead of a settings object
         ],
       });
+    adjustCarouselButtonPosition();
   }
 }
 
-function adjustCarouselButtonHeight() {
+function adjustCarouselButtonPosition() {
   $(".one-column .grid-block-widget__container--rotate").each(function () {
     var imgHeight = $(this).find(".grid-block-widget__image").height();
     var buttonHeight = imgHeight / 2;
-    var slickButton = $(this)
-      .find("button.slick-arrow")
-      .css("top", buttonHeight);
+    $(this).find("button.slick-arrow").css("top", buttonHeight);
   });
 }
 
@@ -238,7 +237,6 @@ function ieObjectFitFallback() {
   });
 }
 $(window).load(function () {
-  adjustCarouselButtonHeight();
   $("button.slick-arrow").on("click keydown", function (e) {
     if (accessibleClick(event)) {
       if ($(this).find($(".grid-block-widget__reveal--less").is(":visible"))) {
