@@ -29,19 +29,6 @@
 				<text help-text="full url (including https) to page outside of Cascade" identifier="externalLink" label="External Link"/>
 				<asset identifier="internalLink" label="Internal Link" type="page"/>
 				<asset identifier="fileLink" label="File Link" type="file"/>
-				<group collapsed="true" identifier="submenuItem" label="Sub-menu Item" multiple="true">
-					<text help-text="label for dropdown item in menu" identifier="label" label="Label"/>
-					<text default="Internal Link" identifier="linkType" label="Link Type" type="radiobutton">
-						<radio-item show-fields="uninav/audienceNav/menuItem/submenuItem/internalLink" value="Internal Link"/>
-						<radio-item show-fields="uninav/audienceNav/menuItem/submenuItem/externalLink" value="External Link"/>
-						<radio-item show-fields="uninav/audienceNav/menuItem/submenuItem/fileLink" value="File Link"/>
-					</text>
-					<text help-text="full url (including https) to page outside of Cascade" identifier="externalLink" label="External Link"/>
-					<asset identifier="internalLink" label="Internal Link" type="page"/>
-					<asset identifier="fileLink" label="File Link" type="file"/>
-					<text help-text="The CSS class name for the icon" identifier="iconClass" label="Icon Class"/>
-					<text help-text="(optional) Alternative label for accessibility to distinguish duplicate labels within uninav i.e. if two Events links in different submenus, give one an Aria Label e.g. of Events for Alumni" identifier="ariaLabel" label="Aria Label"/>
-				</group>
 			</group>
 		</group>
 		<group collapsed="true" identifier="login" label="Login Menu">
