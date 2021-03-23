@@ -1,0 +1,7 @@
+<system-data-structure>
+  <group collapsed="true" identifier="sectionHeaderGroup" label="Intro Section Header">
+    <text field-id="2e7e4d67c0a81e8a5a403945a2b3eda0" help-text="Smaller text that sits above the header" identifier="sectionPreheader" label="Intro Section Pre-header" />
+    <text field-id="2e7e4d67c0a81e8a5a403945858f943f" identifier="sectionHeader" label="Intro Section Header" />
+    <text field-id="2e7e4d67c0a81e8a5a40394567752eaf" identifier="sectionHeaderParagraph" label="Intro Section Paragraph" wysiwyg="true" />
+  </group>
+</system-data-structure>

@@ -31,6 +31,9 @@ Rails.application.routes.draw do
   get 'uninav/tuition', to: 'uninav#tuition'
   get 'uninav/home_cascade', to: 'uninav#home_cascade'
   get 'uninav/one_column', to: 'uninav#one_column'
+  get 'uninav/grid_block_one_col', to: 'uninav#grid_block_one_col'
+  get 'uninav/grid_block_two_col', to: 'uninav#grid_block_two_col'
+
 
   # Mock routes
   get '/home_page/_hero_stories/listing_order.json.txt',

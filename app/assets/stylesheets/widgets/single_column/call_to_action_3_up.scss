@@ -1,6 +1,6 @@
 .call-to-action-3-up-widget {
   padding: $one-column-widget-spacing 0;
-  background-color: #eaeaea;
+  background-color: $white;
 
   .outer-container {
     @include outer-container();

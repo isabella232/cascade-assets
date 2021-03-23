@@ -1,6 +1,6 @@
 .contact-footer-widget {
 	@include pad($base-spacing*2 0);
-	background-color: #eaeaea;
+	background-color: $white;
 
 	.outer-container {
 		@include outer-container();

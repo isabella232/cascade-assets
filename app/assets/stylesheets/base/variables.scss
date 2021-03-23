@@ -6,18 +6,11 @@ $utility-button-width: 60px;
 Typically, if a color is used more than once or twice,
 it should be added here as a variable. Changing the value
 of these variables will affect the colors sitewide. */
-$futura-regular: "futura-pt",
-Arial,
-sans-serif;
+$futura-regular: "futura-pt", Arial, sans-serif;
 $futura: $futura-regular;
-$futura-condensed: "futura-pt-condensed",
-Arial,
-sans-serif;
-$arial: Arial,
-sans-serif;
-$minion: "minion-pro",
-Arial,
-serif;
+$futura-condensed: "futura-pt-condensed", Arial, sans-serif;
+$arial: Arial, sans-serif;
+$minion: "minion-pro", Arial, serif;
 $font-stack-body: $arial;
 $font-stack-heading: $futura-regular;
 $font-stack-heading-emphasis: $futura-condensed;
@@ -44,7 +37,7 @@ $red-button-active: #88002b;
 $white: #ffffff;
 $white-hover: darken($white, 8%);
 $brown: #896d49;
-$teal: #009CA6;
+$teal: #009ca6;
 $pacific: $teal;
 $teal-hover: #24d4bf;
 $teal2: #02bac2;
@@ -127,7 +120,7 @@ $medium-spacing: 20px;
 
 /* Widget specific colors */
 $cardinal: #a50034;
-$cardinal-alpha: rgba(165, 0, 52, .5);
+$cardinal-alpha: rgba(165, 0, 52, 0.5);
 $pillar: #686259;
 $panther-black: #231f20;
 $white: rgba(255, 255, 255, 255);
@@ -172,7 +165,8 @@ $slate: #666;
 /* Borders */
 $solid-light-grey-border: 1px solid $cu-light-grey;
 
-$colors: (cu-red: $cu-red,
+$colors: (
+  cu-red: $cu-red,
   cu-red-rgb-transparent: $cu-red-rgb-transparent,
   cu-dark-red: $cu-dark-red,
   cu-off-white: $cu-off-white,
@@ -210,14 +204,14 @@ $colors: (cu-red: $cu-red,
   sand: $sand,
   sand-alpha: rgba($sand, 0.8),
   slate: $slate,
-  /* These are colors of common elements or states. */
-  cu-font-color: $cu-font-color,
+  /* These are colors of common elements or states. */ cu-font-color:
+    $cu-font-color,
   cu-link-hover: $cu-link-hover,
   cu-link-down: $cu-dark-red,
   cu-form-shadow: $cu-form-shadow,
   cu-border: $cu-border,
   /* These colors are specifically for the class "newbutton". */
-  new-button-primary: $teal2-hover,
+    new-button-primary: $teal2-hover,
   new-button-secondary: $teal2,
   new-button-hover-primary: $teal2-light,
   new-button-hover-secondary: $teal2,
@@ -227,12 +221,15 @@ $colors: (cu-red: $cu-red,
     all in one place. Variables prefixed with "theme" are
     colors found in multiple themes. The others are specific
     to a theme. */
-  theme-light-grey: $theme-light-grey, // Light grey found in multiple themes
+    theme-light-grey: $theme-light-grey,
+  // Light grey found in multiple themes
   grey-light: $grey-light,
   light-grey: $grey-light,
   uninav-light-grey: $uninav-light-grey,
-  theme-yellow: $theme-yellow, // Yellow found in multiple themes
-  theme-blue: $theme-blue, // Blue found in multiple themes
+  theme-yellow: $theme-yellow,
+  // Yellow found in multiple themes
+  theme-blue: $theme-blue,
+  // Blue found in multiple themes
   asbe-primary: $red,
   asbe-secondary: $red-secondary,
   asbe-tertiary: $red-tertiary,
@@ -273,11 +270,16 @@ $colors: (cu-red: $cu-red,
   law-secondary: $cardinal-hover,
 );
 
-$font: (size: (html: 62.5%,
+$font: (
+  size: (
+    html: 62.5%,
     body: 1.6rem,
   ),
-  leading: (body: 2.4rem),
-  family: (futura-regular: $futura-regular,
+  leading: (
+    body: 2.4rem,
+  ),
+  family: (
+    futura-regular: $futura-regular,
     futura: $futura-regular,
     futura-condensed: $futura-condensed,
     arial: $arial,
@@ -288,7 +290,8 @@ $font: (size: (html: 62.5%,
   ),
 );
 
-$spaces: (uninav-div-height: $uninav-div-height,
+$spaces: (
+  uninav-div-height: $uninav-div-height,
   utility-button-width: $utility-button-width,
   base-spacing: $base-spacing,
   widget-margin-top: $widget-margin-top,
@@ -303,19 +306,25 @@ $spaces: (uninav-div-height: $uninav-div-height,
   zIndexTopmost: $zIndexTopmost,
   smallImgSize: $smallImgSize,
   standardPadding: $standardPadding,
-  mastheadVideoHeight: $mastheadVideoHeight);
+  mastheadVideoHeight: $mastheadVideoHeight,
+);
 
-$borders: (red-dots: $red-dots,
+$borders: (
+  red-dots: $red-dots,
   solid-grey: $solid-light-grey-border,
   medium-solid-panther-black: 3px solid $panther-black,
-  cu-red: $cu-red);
+  cu-red: $cu-red,
+);
 
-$var-maps: (color: $colors,
+$var-maps: (
+  color: $colors,
   font: $font,
   space: $spaces,
-  border: $borders);
+  border: $borders,
+);
 
-$props: (background: color,
+$props: (
+  background: color,
   background-color: color,
   color: color,
   outline-color: color,
@@ -335,38 +344,60 @@ $props: (background: color,
   padding-left: space,
   height: space,
   width: space,
-  font-family: (font, family),
-  font-size: (font, size),
-  font-weight: (font, weight),
-  line-height: (font, leading),
-  z-index: space);
+  font-family: (
+    font,
+    family,
+  ),
+  font-size: (
+    font,
+    size,
+  ),
+  font-weight: (
+    font,
+    weight,
+  ),
+  line-height: (
+    font,
+    leading,
+  ),
+  z-index: space,
+);
 
 // css vars
 :root {
-
   // for each variable map
-  @each $var-map-name,
-  $var-map in $var-maps {
-
+  @each $var-map-name, $var-map in $var-maps {
     // for each variable in the variable map
-    @each $var,
-    $val in $var-map {
-
+    @each $var, $val in $var-map {
       // if it is a map, go another level deep
-      @if type-of($val)==map {
-
+      @if type-of($val) ==map {
         // each in the map
-        @each $var-n,
-        $val-n in $val {
+        @each $var-n, $val-n in $val {
           // do the definition
           #{--$var-map-name}-#{$var}-#{$var-n}: $val-n;
         }
-      }
-
-      @else {
+      } @else {
         // do the definition
         #{--$var-map-name}-#{$var}: $val;
       }
     }
   }
+}
+
+.text {
+  &--red {
+    color: $red;
+    background-color: unset;
+  }
+  &--white {
+    color: $white;
+    background-color: unset;
+  }
+  &--black {
+    color: $panther-black;
+    background-color: unset;
+  }
+}
+.no-bg {
+  background-color: transparent !important;
 }
