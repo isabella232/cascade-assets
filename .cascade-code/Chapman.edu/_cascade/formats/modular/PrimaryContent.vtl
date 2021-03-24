@@ -43,14 +43,17 @@
     <span class="bullet">»</span>
     ${_EscapeTool.xml($primaryContent.getChild('pageTitle').value)}
 </h1>
-
-
 ##
 ## Widgets
 #foreach ($widget in $widgets)
 ##
     #set ($widgetType = $widget.getChild('widgetType').value )
 <!-- in forEach loop for $widgetType widget -->
+
+#set ( $pagePath = $currentPage.path )
+ #if ($pagePath.contains('hide-from-search'))
+  #outputHideFromSearch($widget)
+ #end
 
 ##
     #if ($widgetType == 'Text with CTA')
@@ -189,6 +192,14 @@
         #end
     #end
 ##    
+##
+    #if ($widgetType == 'New Text Editor')
+      #set ($displayWidget = $widget.getChild('textEditorWidget').getChild('display').value)
+      #if ($displayWidget == 'Yes')
+          #outputTextEditorWidget($widget)
+      #end
+    #end
+##
         #if ($widgetType == 'Next Steps')
             #set ($displayNextSteps = $widget.getChild('next-steps-widget').getChild('display').value)
         #if ($displayNextSteps == 'Yes')
