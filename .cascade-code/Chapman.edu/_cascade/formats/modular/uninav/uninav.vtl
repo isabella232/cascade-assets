@@ -320,13 +320,13 @@ logolinkpath $logoLinkPath
                                 #set ($ariaLabel = '')
                                 #set ($ariaLabel = $menuItem.getChild('ariaLabel').textValue)
                                  
-                                ## #if ($linkType == 'Internal Link')
-                                ##     #set ($link = $menuItem.getChild('internalLink').asset.link)
-                                ## #elseif ($linkType == 'External Link')
-                                ##     #set ($link = $menuItem.getChild('externalLink').textValue)
-                                ## #elseif ($linkType == 'File Link')
-                                ##     #set ($link = $menuItem.getChild('fileLink').asset.link)
-                                ## #end
+                               #if ($linkType == 'Internal Link')
+                                    #set ($link = $menuItem.getChild('internalLink').asset.link)
+                                #elseif ($linkType == 'External Link')
+                                    #set ($link = ${_EscapeTool.xml($menuItem.getChild('externalLink').textValue)})
+                                #elseif ($linkType == 'File Link')
+                                    #set ($link = $menuItem.getChild('fileLink').asset.link)
+                                #end
                                 
                                 <li class="uninav__global--dropdown-child global-menu-item__child">
                                     <a class="icon ${_EscapeTool.xml($icon)}" aria-label="${_EscapeTool.xml($ariaLabel)}" href="$link">
