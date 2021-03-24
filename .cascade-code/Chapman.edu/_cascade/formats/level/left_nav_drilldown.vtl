@@ -4,7 +4,7 @@
     #set ( $currentPathRoot = $currentPage.path.replaceAll('/(.*)', "") )
     #set ( $currentPageParentFolder = $currentPage.parentFolder )
     #set ( $visibleSiblingCount = 0 )
-    #if ( $currentPathRoot != "index" && $currentPathRoot != "")
+    #if ( $currentPathRoot != "index" && $currentPathRoot != "" && $currentPageParentFolder.path != "/")
         #set ( $leftNavAssets = $_.locateFolder($currentPageParentFolder.path) )
         #set ( $singleSiblingParentFolder = $_StringTool.substringBefore($currentPage.path, "/${currentPage.parentFolder.name}"))
         #set ( $leftParentNavAssets = $_.locateFolder($singleSiblingParentFolder) )

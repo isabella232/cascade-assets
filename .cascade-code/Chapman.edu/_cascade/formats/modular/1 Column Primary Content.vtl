@@ -3,6 +3,7 @@
 #import( "/_cascade/formats/modular/widgets/1 Column/video_with_text" )
 #import( "/_cascade/formats/modular/widgets/1 Column/image_with_text" )
 #import( "/_cascade/formats/modular/widgets/1 Column/circle_image_with_text" )
+#import( "/_cascade/formats/modular/widgets/Text Editor Widget" )
 #import( "/_cascade/formats/modular/widgets/1 Column/text_only" )
 #import( "/_cascade/formats/modular/widgets/Text with CTA" )
 #import( "/_cascade/formats/modular/widgets/Grid Block Widget" )
@@ -42,6 +43,12 @@
         #outputVideoWithText($widget)
     #end
     
+    #if ($widgetType == 'New Text Editor')
+      #set ($displayWidget = $widget.getChild('textEditorWidget').getChild('display').value)
+      #if ($displayWidget == 'Yes')
+          #outputTextEditorWidget($widget)
+      #end
+    #end
 
     #if ($widgetType == 'Text with CTA')
       #set ($displayWidget = $widget.getChild('textWithCTA').getChild('display').value)

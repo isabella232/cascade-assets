@@ -19,6 +19,7 @@
 #import( "/_cascade/formats/modular/widgets/Tabs" )
 #import( "/_cascade/formats/modular/widgets/Testimonial" )
 #import( "/_cascade/formats/modular/widgets/Text Editor" )
+#import( "/_cascade/formats/modular/widgets/Text Editor Widget" )
 #import( "/_cascade/formats/modular/widgets/Three Photo Callout" )
 #import( "/_cascade/formats/modular/widgets/Photo Callout" )
 #import( "/_cascade/formats/modular/widgets/Twitter Feed" )
@@ -192,6 +193,14 @@
         #end
     #end
 ##    
+##
+    #if ($widgetType == 'New Text Editor')
+      #set ($displayWidget = $widget.getChild('textEditorWidget').getChild('display').value)
+      #if ($displayWidget == 'Yes')
+          #outputTextEditorWidget($widget)
+      #end
+    #end
+##
         #if ($widgetType == 'Next Steps')
             #set ($displayNextSteps = $widget.getChild('next-steps-widget').getChild('display').value)
         #if ($displayNextSteps == 'Yes')
