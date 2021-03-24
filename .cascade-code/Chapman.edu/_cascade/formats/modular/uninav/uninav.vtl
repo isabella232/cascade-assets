@@ -1,6 +1,7 @@
+## README: https://chapman.atlassian.net/wiki/spaces/SMC/pages/727449601/Navigation+-+Contextual+Custom+Menu
+
 #set ($customNavConfig = '_cascade/blocks/html/Uninav') ## DEFAULT TO "DEFAULT" UNINAV
 #macro(findCustomNavPath $folderRef $depth)##
-## folder: $folderRef.path
 
     #if ($depth > 15 ) 
     ## depth greater than 15
@@ -32,6 +33,8 @@
     #end
 #end
 
+## #set( $folder    = $_.locateFolder('test-section/nick-test/contextual-uninav/students/health-and-safety/health-services', 'Chapman.edu') )
+## current page parent folder: $currentPage.parentFolder.path
 #set ($currentPageID = $currentPage.identifier.id)
 
 #set( $folder    = $_.locateFolder("$currentPage.parentFolder.path", 'Chapman.edu') )
@@ -106,7 +109,7 @@ logolinkpath $logoLinkPath
                 #end
                  
                 <li class="uninav__menu-item-cta">
-                    <a class="icon ${_EscapeTool.xml($icon)} ${_EscapeTool.xml($icon)}" aria-label="${_EscapeTool.xml($ariaLabel)}" href="$link">
+                    <a class="icon ${_EscapeTool.xml($icon)} ${_EscapeTool.xml($icon)}" aria-label="${_EscapeTool.xml($ariaLabel)}" href="${_EscapeTool.xml($link)}">
                         ${_EscapeTool.xml($label)}
                     </a>
                 </li>
@@ -317,13 +320,13 @@ logolinkpath $logoLinkPath
                                 #set ($ariaLabel = '')
                                 #set ($ariaLabel = $menuItem.getChild('ariaLabel').textValue)
                                  
-                                ## #if ($linkType == 'Internal Link')
-                                ##     #set ($link = $menuItem.getChild('internalLink').asset.link)
-                                ## #elseif ($linkType == 'External Link')
-                                ##     #set ($link = $menuItem.getChild('externalLink').textValue)
-                                ## #elseif ($linkType == 'File Link')
-                                ##     #set ($link = $menuItem.getChild('fileLink').asset.link)
-                                ## #end
+                               #if ($linkType == 'Internal Link')
+                                    #set ($link = $menuItem.getChild('internalLink').asset.link)
+                                #elseif ($linkType == 'External Link')
+                                    #set ($link = ${_EscapeTool.xml($menuItem.getChild('externalLink').textValue)})
+                                #elseif ($linkType == 'File Link')
+                                    #set ($link = $menuItem.getChild('fileLink').asset.link)
+                                #end
                                 
                                 <li class="uninav__global--dropdown-child global-menu-item__child">
                                     <a class="icon ${_EscapeTool.xml($icon)}" aria-label="${_EscapeTool.xml($ariaLabel)}" href="$link">
