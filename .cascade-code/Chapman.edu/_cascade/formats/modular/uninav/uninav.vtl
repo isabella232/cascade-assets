@@ -54,19 +54,12 @@
     #set ($logoLinkPath = $customNavObj.getStructuredDataNode('uninav/logo/fileLink').asset.link)
 #end
 
-<div style="display:none">
-logoLinkType $logoLinkType
-logolinkpath $logoLinkPath
-</div>
 #set ($audienceMenuItems = $customNavObj.getStructuredDataNodes('uninav/audienceNav/menuItem'))
 
   #foreach ($menuItem in $audienceMenuItems)
 ##  AUDIENCE MENU ITEM:
   #set ($label = $menuItem.getChild('label').textValue)
 #end
-
-
-## #end
 
 <nav id="uninav" class="$brandClass contextual-navigation $currentPage.parentFolder.name" data-navigation-block="${_EscapeTool.xml($customNavConfig)}">
     <div class="uninav__logo">
@@ -106,7 +99,7 @@ logolinkpath $logoLinkPath
                 #end
                  
                 <li class="uninav__menu-item-cta">
-                    <a class="icon ${_EscapeTool.xml($icon)} ${_EscapeTool.xml($icon)}" aria-label="${_EscapeTool.xml($ariaLabel)}" href="$link">
+                    <a class="icon ${_EscapeTool.xml($icon)} ${_EscapeTool.xml($icon)}" aria-label="${_EscapeTool.xml($ariaLabel)}" href="${_EscapeTool.xml($link)}">
                         ${_EscapeTool.xml($label)}
                     </a>
                 </li>
@@ -342,6 +335,3 @@ logolinkpath $logoLinkPath
       </ul>
     </div>
 </nav>
-
-
-
