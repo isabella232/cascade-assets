@@ -1,6 +1,7 @@
+## README: https://chapman.atlassian.net/wiki/spaces/SMC/pages/727449601/Navigation+-+Contextual+Custom+Menu
+
 #set ($customNavConfig = '_cascade/blocks/html/Uninav') ## DEFAULT TO "DEFAULT" UNINAV
 #macro(findCustomNavPath $folderRef $depth)##
-## folder: $folderRef.path
 
     #if ($depth > 15 ) 
     ## depth greater than 15
@@ -32,6 +33,8 @@
     #end
 #end
 
+## #set( $folder    = $_.locateFolder('test-section/nick-test/contextual-uninav/students/health-and-safety/health-services', 'Chapman.edu') )
+## current page parent folder: $currentPage.parentFolder.path
 #set ($currentPageID = $currentPage.identifier.id)
 
 #set( $folder    = $_.locateFolder("$currentPage.parentFolder.path", 'Chapman.edu') )
@@ -54,12 +57,19 @@
     #set ($logoLinkPath = $customNavObj.getStructuredDataNode('uninav/logo/fileLink').asset.link)
 #end
 
+<div style="display:none">
+logoLinkType $logoLinkType
+logolinkpath $logoLinkPath
+</div>
 #set ($audienceMenuItems = $customNavObj.getStructuredDataNodes('uninav/audienceNav/menuItem'))
 
   #foreach ($menuItem in $audienceMenuItems)
 ##  AUDIENCE MENU ITEM:
   #set ($label = $menuItem.getChild('label').textValue)
 #end
+
+
+## #end
 
 <nav id="uninav" class="$brandClass contextual-navigation $currentPage.parentFolder.name" data-navigation-block="${_EscapeTool.xml($customNavConfig)}">
     <div class="uninav__logo">
@@ -335,3 +345,6 @@
       </ul>
     </div>
 </nav>
+
+
+
