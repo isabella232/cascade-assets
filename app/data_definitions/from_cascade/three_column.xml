@@ -186,7 +186,7 @@
 				<dropdown-item show-fields="primaryContent/widget/FeaturedNewsEvents" value="Featured / News / Events"/>
 				<dropdown-item show-fields="primaryContent/widget/quickFactBlocksWidget" value="Quick Fact Blocks"/>
 				<dropdown-item show-fields="primaryContent/widget/logo-image-rotator" value="Logo Image Rotator"/>
-				<dropdown-item show-fields="primaryContent/widget/rssFeedDisplay" value="RSS Feed Display (limit 1)"/>
+				<dropdown-item show-fields="primaryContent/widget/rssFeedDisplay" value="RSS Feed Display" label="RSS Feed Display (limit 1)"/>
 				<dropdown-item label="Events.chapman.edu Feed" show-fields="primaryContent/widget/programEvents" value="Program Events"/>
 				<dropdown-item show-fields="primaryContent/widget/careerBlockWidget" value="Career Block"/>
 				<dropdown-item show-fields="primaryContent/widget/faculty" value="Faculty Info"/>
