@@ -3,6 +3,10 @@ body {
     margin-top: 50px;
     font-family: $futura-regular;
 
+    a.button + a.button {
+      margin-left: 12px;
+    }
+
     &__preheader {
       color: $red;
       text-transform: uppercase;
@@ -119,8 +123,5 @@ body {
         text-align: left;
       }
     }
-  }
-  a.button + a.button {
-    margin-left: 12px;
   }
 }
