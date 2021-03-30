@@ -34,10 +34,9 @@
 #set ( $extension = '.aspx' )
 #set ( $description = ${_EscapeTool.xml($currentPage.getChild('description').text)} )
 ##
-#if ( $url.toLowerCase().endsWith("index") )
-    <!-- canonical name for analytics so considers folder/ same as folder/index.aspx -->
-    <link rel="canonical" href="https://www.chapman.edu$url$extension"/>
-#end
+
+<link rel="canonical" href="https://www.chapman.edu$url$extension"/>
+
 ## some templates (data definitions) don't have a Sharing node at all so don't do rest of code:
 #if ($sharing)
     #set ( $og_title = $sharing.getChild('og_title').text )    
