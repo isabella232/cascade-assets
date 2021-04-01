@@ -21,7 +21,7 @@
                 #set ($link = $block.getChild('link').getChild('link').value)
                 #set ($bgColor = "white")
                                         
-                <a href="${_EscapeTool.xml($link)}" class="featured-callouts-widget featured-callouts-widget--$bgColor">
+                <a href="${_EscapeTool.xml($link)}" class="featured-callouts-widget-block featured-callouts-widget--$bgColor">
                     #imageInCollection($block)  
                     <div class="featured-callouts-widget__text $textAlignment featured-callouts-widget__text--$bgColor">
                         <p>${_EscapeTool.xml($title)} | ${_EscapeTool.xml($link)}</p>
