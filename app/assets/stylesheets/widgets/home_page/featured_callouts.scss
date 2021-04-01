@@ -3,23 +3,33 @@
 ***************************************************/
 
 .homepage {
-    #featured-callouts {
-        .featured-callouts-widget-block {
-            display: inline-block;
-            width: 30%;
+  #featured-callouts {
+    // @include respond(phone) {
+    //   display
+    // }
 
-            img {
-                height: 270px;
-                object-fit: cover;
-            }
-        }
-        .featured-callouts-widget__text {
-            height: 50px;
-        }
+    background: var(--color-pacific);
+    display: flex;
 
-        p {
-            margin: 0;
-        }
+    .maxWidth {
+      display: flex;
+      justify-content: space-around;
+    }
+    .featured-callouts-widget-block {
+      display: inline-block;
+      width: 30%;
+
+      img {
+        height: 270px;
+        object-fit: cover;
+      }
+    }
+    .featured-callouts-widget__text {
+      height: 50px;
+    }
+
+    p {
+      margin: 0;
     }
   }
-  
+}
