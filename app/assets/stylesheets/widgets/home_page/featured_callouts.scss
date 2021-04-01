@@ -1,0 +1,25 @@
+/***************************************************
+* Featured Callouts
+***************************************************/
+
+.homepage {
+    #featured-callouts {
+        .featured-callouts-widget-block {
+            display: inline-block;
+            width: 30%;
+
+            img {
+                height: 270px;
+                object-fit: cover;
+            }
+        }
+        .featured-callouts-widget__text {
+            height: 50px;
+        }
+
+        p {
+            margin: 0;
+        }
+    }
+  }
+  

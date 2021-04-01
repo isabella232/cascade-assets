@@ -17,106 +17,29 @@
 		</text>
 		<text identifier="copy" label="Copy" wysiwyg="true"/>
 	</group>
-	<group identifier="heroPanel" label="Hero Panel">
-		<asset identifier="internalLink" label="Hero Story To Feature" type="page"/>
+	<group collapsed="true" identifier="heroPanel" label="Hero Panel">
+		<text help-text="Leftmost image" identifier="image-1" label="Image 1 Alt Text"/>
+		<text help-text="Row 1, Column 2" identifier="image-2" label="Image 2 Alt Text"/>
+		<text help-text="Row 1, Column 3" identifier="image-3" label="Image 3 Alt Text"/>
+		<text help-text="Row 2, Column 2" identifier="image-4" label="Image 4 Alt Text"/>
+		<text help-text="Row 2, Column 3" identifier="image-5" label="Image 5 Alt Text"/>
 	</group>
-	<group collapsed="true" identifier="BlogStories" label="Blog Stories">
-		<group collapsed="true" identifier="topStory" label="Top Story">
-			<text identifier="header" label="Header" required="true"/>
-			<text identifier="link" label="Link to Blog Story" required="true"/>
-			<group identifier="topCategory" label="#Top Category">
-				<text help-text="text (without #) for blog link" identifier="text" label="#Text"/>
-				<text identifier="link" label="External Link"/>
-			</group>
-			<text help-text="blog name/icon that displays below story" identifier="blogName" label="Blog Name" type="dropdown">
-				<dropdown-item value=""/>
-				<dropdown-item value="academics"/>
-				<dropdown-item value="alumni"/>
-				<dropdown-item value="business"/>
-				<dropdown-item value="chapman-forward"/>
-				<dropdown-item value="collections"/>
-				<dropdown-item value="communication"/>
-				<dropdown-item value="copa"/>
-				<dropdown-item value="crean"/>
-				<dropdown-item value="dodge"/>
-				<dropdown-item value="education"/>
-				<dropdown-item value="holocaust-education"/>
-				<dropdown-item value="huell-howser-archives"/>
-				<dropdown-item value="law"/>
-				<dropdown-item value="magazine"/>
-				<dropdown-item value="newsroom"/>
-				<dropdown-item value="pharmacy"/>
-				<dropdown-item value="press-room"/>
-				<dropdown-item value="scst"/>
-				<dropdown-item value="smc"/>
-				<dropdown-item value="students"/>
-				<dropdown-item value="sustainability"/>
-				<dropdown-item value="wilkinson"/>
-			</text>
-			<text help-text="short excerpt of blog story" identifier="excerpt" label="Excerpt" wysiwyg="true"/>
-			<group identifier="extraLink" label="Additional Link">
-				<text help-text="text of optional link below excerpt" identifier="text" label="Link Text"/>
-				<text identifier="link" label="External Link"/>
-				<asset identifier="internalLink" label="Or Internal Link" type="page"/>
-			</group>
-			<group identifier="images" label="Slideshow Images (725x374)" minimum-number="1" multiple="true">
-				<text help-text="full url to image on blog server" identifier="link" label="External Image"/>
-				<asset help-text="link to image to be used for story" identifier="internalLink" label="Or Internal Image" type="file"/>
-				<text default="story photo" identifier="altText" label="Image Alt Text" required="true"/>
-			</group>
+	<group collapsed="true" identifier="featured-callouts" label="Featured Callouts">
+		<text default="yes" identifier="show" label="Show" required="true" type="radiobutton">
+			<radio-item label="Yes" value="yes"/>
+			<radio-item label="No" value="no"/>
+		</text>
+		<group identifier="block" label="Block" maximum-number="3" minimum-number="3" multiple="true">
+			<text identifier="title" label="Title" required="true"/>
+			<asset identifier="link" label="Link" required="true" type="page,file,symlink"/>
+			<shared-field identifier="image" path="image__rectangle-only--required" required="true"/>
 		</group>
-		<group identifier="trendingStories" label="Trending Stories">
-			<group collapsed="true" identifier="story" label="Story" maximum-number="3" minimum-number="3" multiple="true">
-				<text identifier="header" label="Header (80 chars max, spaces count...but only 2 lines)" maxlength="80" required="true"/>
-				<text identifier="link" label="Link to Blog Story" required="true"/>
-				<group identifier="topCategory" label="#Top Category">
-					<text help-text="text (without #) for blog link" identifier="text" label="#Text"/>
-					<text identifier="link" label="External Link"/>
-				</group>
-				<text help-text="blog name/icon that displays below story" identifier="blogName" label="Blog Name" type="dropdown">
-					<dropdown-item value=""/>
-					<dropdown-item value="academics"/>
-					<dropdown-item value="alumni"/>
-					<dropdown-item value="business"/>
-					<dropdown-item value="chapman-forward"/>
-					<dropdown-item value="collections"/>
-					<dropdown-item value="communication"/>
-					<dropdown-item value="copa"/>
-					<dropdown-item value="crean"/>
-					<dropdown-item value="dodge"/>
-					<dropdown-item value="education"/>
-					<dropdown-item value="holocaust-education"/>
-					<dropdown-item value="huell-howser-archives"/>
-					<dropdown-item value="law"/>
-					<dropdown-item value="magazine"/>
-					<dropdown-item value="newsroom"/>
-					<dropdown-item value="pharmacy"/>
-					<dropdown-item value="press-room"/>
-					<dropdown-item value="scst"/>
-					<dropdown-item value="smc"/>
-					<dropdown-item value="students"/>
-					<dropdown-item value="sustainability"/>
-					<dropdown-item value="wilkinson"/>
-				</text>
-				<group identifier="image" label="Image">
-					<text help-text="full url to image on blog server" identifier="link" label="External Image"/>
-					<asset help-text="link to image to be used for story" identifier="internalLink" label="Or Internal Image" type="file"/>
-					<text default="story photo" identifier="altText" label="Image Alt Text" required="true"/>
-				</group>
-			</group>
-		</group>
-		<group collapsed="true" identifier="primaryButton" label="Primary Button">
-			<text identifier="text" label="Button Text"/>
-			<text help-text="ID code to pass to tracking software" identifier="trackingID" label="Tracking ID" required="true"/>
-			<text identifier="link" label="External Link"/>
-			<asset identifier="internalLink" label="Or Internal Link" type="page"/>
-		</group>
-		<group collapsed="true" identifier="secondaryButton" label="Secondary Button">
-			<text identifier="text" label="Button Text"/>
-			<text help-text="ID code to pass to tracking software" identifier="trackingID" label="Tracking ID" required="true"/>
-			<text identifier="link" label="External Link"/>
-			<asset identifier="internalLink" label="Or Internal Link" type="page"/>
-		</group>
+	</group>
+	<group identifier="newsStories" label="News Stories">
+		<text default="Alert" identifier="displayNews" label="Display" required="true" type="radiobutton">
+			<radio-item value="Yes"/>
+			<radio-item value="No"/>
+		</text>
 	</group>
 	<group collapsed="true" identifier="UGadmission" label="UG Admission">
 		<group identifier="header" label="Header" maximum-number="3" minimum-number="1" multiple="true">
@@ -162,7 +85,7 @@
 		</group>
 	</group>
 	<group collapsed="true" identifier="GradAdmission" label="Grad Admission">
-		<text help-text="main header for section" identifier="header" label="Header" required="true" wysiwyg="true" wysiwyg-toolbar-remove="insert table,insert image,font assignment"/>
+		<text help-text="main header for section" identifier="header" label="Header" required="true" wysiwyg="true" wysiwyg-toolbar-remove="font assignment,insert image,insert table,"/>
 		<text identifier="subHeader" label="subHeader"/>
 		<group identifier="primaryButton" label="Primary Button">
 			<text identifier="Text" label="Label" required="true"/>

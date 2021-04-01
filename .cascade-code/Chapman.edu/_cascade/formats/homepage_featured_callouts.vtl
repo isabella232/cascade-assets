@@ -1,0 +1,39 @@
+#*
+ * Chapman.edu/_cascade/formats/homepage_featured_callouts.vtl
+ * Homepage Featured Callouts
+ *#
+
+#import( "/_cascade/formats/helpers.velocity" )
+
+## Global Vars
+#set ( $currentPage = $_XPathTool.selectSingleNode($contentRoot, "//system-page[@current]") )
+#set ( $featuredCallouts = $currentPage.getChild('system-data-structure').getChild('featured-callouts') )
+
+#macro ( buildFeaturedCallouts )
+    <!-- Featured Callouts Section -->
+    <section id="featured-callouts" class="section" aria-label="Featured Callouts">
+        <div class="maxWidth">
+
+            #set ( $blocks = $featuredCallouts.getChildren('block') ) 
+            #foreach ($block in $blocks)
+                    
+                #set ($title = $block.getChild('title').value)
+                #set ($link = $block.getChild('link').getChild('link').value)
+                #set ($bgColor = "white")
+                                        
+                <a href="${_EscapeTool.xml($link)}" class="featured-callouts-widget featured-callouts-widget--$bgColor">
+                    #imageInCollection($block)  
+                    <div class="featured-callouts-widget__text $textAlignment featured-callouts-widget__text--$bgColor">
+                        <p>${_EscapeTool.xml($title)} | ${_EscapeTool.xml($link)}</p>
+                    </div>
+                </a>
+            #end
+
+        </div>
+  </section>
+#end
+
+## Main Format Block
+#if ($featuredCallouts.getChild('show').value == 'yes')
+  #buildFeaturedCallouts()
+#end
