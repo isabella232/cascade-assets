@@ -9,7 +9,7 @@
 //= require global_functions
 //= require cascade/carousel
 //= require cascade/unibuddy
-//= require cascade/covid-19-button 
+//= require cascade/covid-19-button
 //= require cascade/back-to-top
 //= require cascade/collapsed-nav
 //= require cascade/console-log
@@ -22,7 +22,6 @@
 //= require cascade/rotator
 //= require cascade/search
 //= require cascade/video-overlay
-//= require cascade/weather
 
 // If they're not required, can we delete them and remove these lines?
 // don't require cascade/home
