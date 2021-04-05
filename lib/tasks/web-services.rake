@@ -19,6 +19,11 @@ task edit_cascade_assets: :environment do
   FileUtils.mkdir('dist/_config') unless File.directory?('dist/_config')
   current_branch = `git rev-parse --abbrev-ref HEAD`.strip
   cascade_assets_block_name = 'cascade-assets-' + current_branch
+  
+
+  if current_branch = 'development'
+    cascade_assets_block_name = 'cascade-assets' ## this is the block which all pages use by default
+  end
 
   if(File.exist?('dist/_config/branch_settings.yml'))
     branch_settings = YAML.load_file('dist/_config/branch_settings.yml')
@@ -280,6 +285,17 @@ task edit_helpers_velocity: :environment do
   edit_format(
     'Chapman.edu/_cascade/formats/helpers.velocity',
     '.cascade-code/Chapman.edu/_cascade/formats/helpers.velocity'
+  )
+end
+
+# ---------------------------------------------------------------------------- #
+# edit format `Chapman.edu/_cascade/formats/modular/widgets/Grid Block Widget`   #
+# ---------------------------------------------------------------------------- #
+desc 'Updates `Chapman.edu/_cascade/formats/homepage_featured_callouts.vtl` with `.cascade-code/Chapman.edu/_cascade/formats/homepage_featured_callouts.vtl`'
+task edit_featured_callouts_widget: :environment do
+  edit_format(
+    '89d54e9dc0a81e8a3b0002935980b1cf',
+    '.cascade-code/Chapman.edu/_cascade/formats/homepage_featured_callouts.vtl'
   )
 end
 
