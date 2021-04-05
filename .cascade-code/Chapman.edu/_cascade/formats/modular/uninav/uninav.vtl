@@ -1,6 +1,12 @@
 ## README: https://chapman.atlassian.net/wiki/spaces/SMC/pages/727449601/Navigation+-+Contextual+Custom+Menu
+## 4/5/2021: Stakeholders needed contextual/custom navigation on a folder-basis. 
+## The following macro and subsequent HTML use rewrote the initial Velocity using Cascade's API Ojects.
+## This was not ideal, but it was the only way to get things working the way we needed according to Hannon Hill. 
 
-## #set ($customNavConfig = '_cascade/blocks/html/Uninav') ## DEFAULT TO "DEFAULT" UNINAV
+## Essentially, this checks for a custom field (set in "Manage Site > Metadata Sets > Website Folder").
+## If this 'Custom Navigation' field contains a path to a respective html block, this Velocity format will output that block. 
+## Otherwise, it falls back to the old, non-API object method code. 
+
 #macro(findCustomNavPath $folderRef $depth)##
 
     #if ($depth > 15 ) 
@@ -33,21 +39,14 @@
     #end
 #end
 
-## #set( $folder    = $_.locateFolder('test-section/nick-test/contextual-uninav/students/health-and-safety/health-services', 'Chapman.edu') )
-## current page parent folder: $currentPage.parentFolder.path
 #set ($currentPageID = $currentPage.identifier.id)
-
 #set( $folder    = $_.locateFolder("$currentPage.parentFolder.path", 'Chapman.edu') )
-## folder path: $folder.path
-
 
 #findCustomNavPath($folder, 1)
-
 #set ($customNavObj = $_.locateBlock("${customNavConfig}", "Chapman.edu") )
 #set ($logoContainer = $customNavObj.getStructuredDataNode('uninav/logo').textValue)
 #set ($logo = $customNavObj.getStructuredDataNode('uninav/logo/icon_svg').textValue)
 #set ($logoLinkType = $customNavObj.getStructuredDataNode('uninav/logo/linkType').textValue)
-## logoLinkType $logoLinkType
 
 #if ($logoLinkType == 'Internal Link')
     #set ($logoLinkPath = $customNavObj.getStructuredDataNode('uninav/logo/internalLink').asset.link)
@@ -57,17 +56,15 @@
     #set ($logoLinkPath = $customNavObj.getStructuredDataNode('uninav/logo/fileLink').asset.link)
 #end
 
-
+## AUDIENCE MENU ITEMS
 #set ($audienceMenuItems = $customNavObj.getStructuredDataNodes('uninav/audienceNav/menuItem'))
-
   #foreach ($menuItem in $audienceMenuItems)
-##  AUDIENCE MENU ITEM:
+  ##  AUDIENCE MENU ITEM:
   #set ($label = $menuItem.getChild('label').textValue)
 #end
 
 
-## #end
-#if ($customNavConfig != '_cascade/blocks/html/Uninav') ## if not contextual nav
+#if ($customNavConfig != '_cascade/blocks/html/Uninav') ## IF NOT CONTEXTUAL NAV
 <nav id="uninav" class="$brandClass contextual-navigation $currentPage.parentFolder.name" data-navigation-block="${_EscapeTool.xml($customNavConfig)}">
     <div class="uninav__logo">
         <div class="uninav__logo--primary" id="uninav__logo--primary">
@@ -220,7 +217,21 @@
                     visibility: hidden;
                     position: absolute;
                     z-index: -999;
-                }
+                    }
+                    
+                    form.gsc-search-box.gsc-search-box-tools {
+                      border: 1px solid var(--color-cu-light-grey);
+                    }
+                    
+                    form.gsc-search-box.gsc-search-box-tools {
+                      margin-bottom: 0;
+                      padding-top: 1px;
+                    }
+                    
+                    #uninav .gsc-control-cse.gsc-control-cse-en {
+                        padding: unset;
+                        padding-top: 0;
+                    }
                     </style>
                     <li class="uninav__search-button--mobile" id="uninav__search-button--mobile" tabindex="0"></li>
                     <div class="uninav__search-input uninav__search-input--desktop">
@@ -342,8 +353,9 @@
       </ul>
     </div>
 </nav>
-## #end ## end if not contextual nav
+## #end ## END IF NOT CONTEXTUAL NAV
 
+## NON-API OBJECT METHODS - THIS IS THE "DEFAULT" NAVIGATION, WRITTEN IN 2020
 ## IF NOT CUSTOM, USE OLD NON-API OBJECT NAVIGATION (WITH "UMBRELLA NAV")
 #else ## if default navigation
     <style>
@@ -695,5 +707,3 @@
     
 
 #end ## end if default navigation
-
-
