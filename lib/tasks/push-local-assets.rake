@@ -115,7 +115,5 @@ p url_post
         "success": true
       }.to_json
      )
-
      publish_asset('file', '8f2a567bc0a81e8a3b00029341d8c97f')
-  
 end

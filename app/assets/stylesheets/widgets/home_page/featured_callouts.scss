@@ -1,36 +1,40 @@
 /***************************************************
 * Featured Callouts
+* https://trello.com/c/Kn5W7fTc/791-update-homepage-ad-widget-design-pt-2
 ***************************************************/
 
 .homepage {
   #featured-callouts {
+    $marginOffset: 30px;
     $bgColor: $pacific;
+
     // @include respond(phone) {
     //   display
     // }
     padding-top: 0;
     background: $bgColor;
-    display: flex;
     overflow: visible;
+    margin-top: $marginOffset;
+    -ms-flex-pack: distribute;
+    margin-top: -30px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 20px;
 
     h2 {
-      display: -ms-grid;
-      display: grid;
-      -webkit-box-pack: start;
-      -ms-flex-pack: start;
-      justify-content: start;
-      -ms-grid-columns: 80% 20%;
-      grid-template-columns: 80% 20%;
-      -ms-flex-line-pack: end;
-      align-content: end;
-      height: 100%;
-      -ms-grid-column-align: center;
-      justify-self: center;
+      display: inline-block;
+
+      &:after {
+        content: "\f138";
+        font-family: "Font Awesome 5 Pro";
+        margin-left: 12px;
+        font-size: 1.8rem;
+      }
     }
     .maxWidth {
       display: flex;
       justify-content: space-around;
-      margin-top: -30px;
+      margin-top: -$marginOffset;
     }
 
     .featured-callouts-widget-block {
@@ -61,6 +65,7 @@
     }
     .fa-chevron-circle-right {
       max-height: 20px;
+      place-self: end;
     }
   }
 }

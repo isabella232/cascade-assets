@@ -117,5 +117,7 @@ p url_post
      )
 
      publish_asset('file', '8f2a567bc0a81e8a3b00029341d8c97f')
+    #  system("open ~/workspace/cascade-assets/dist/_config/index.html")
+
   
 end
