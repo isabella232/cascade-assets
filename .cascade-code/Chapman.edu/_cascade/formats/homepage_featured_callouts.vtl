@@ -1,7 +1,7 @@
 #*
- * Chapman.edu/_cascade/formats/homepage_featured_callouts.vtl
- * Homepage Featured Callouts
- *#
+* Chapman.edu/_cascade/formats/homepage_featured_callouts.vtl
+* Homepage Featured Callouts
+*#
 
 #import( "/_cascade/formats/helpers.velocity" )
 
@@ -10,30 +10,44 @@
 #set ( $featuredCallouts = $currentPage.getChild('system-data-structure').getChild('featured-callouts') )
 
 #macro ( buildFeaturedCallouts )
-    <!-- Featured Callouts Section -->
-    <section id="featured-callouts" class="section" aria-label="Featured Callouts">
-        <div class="maxWidth">
+<!-- Featured Callouts Section -->
+<section id="featured-callouts" class="section featured-callouts" aria-label="Featured Callouts">
+  <div class="maxWidth featured-callouts__images-wrapper">
 
-            #set ( $blocks = $featuredCallouts.getChildren('block') ) 
-            #foreach ($block in $blocks)
-                    
-                #set ($title = $block.getChild('title').value)
-                #set ($link = $block.getChild('link').getChild('link').value)
-                #set ($bgColor = "white")
-                                        
-                <a href="${_EscapeTool.xml($link)}" class="featured-callouts-widget-block featured-callouts-widget--$bgColor">
-                    #imageInCollection($block)  
-                    <div class="featured-callouts-widget__text $textAlignment featured-callouts-widget__text--$bgColor">
-                        <p>${_EscapeTool.xml($title)} | ${_EscapeTool.xml($link)}</p>
-                    </div>
-                </a>
-            #end
 
-        </div>
-  </section>
+    #set ( $blocks = $featuredCallouts.getChildren('block') )
+    #foreach ($block in $blocks)
+
+    #set ($title = $block.getChild('title').value)
+    #set ($link = $block.getChild('link').getChild('link').value)
+    #set ($bgColor = "white")
+
+    <a href="${_EscapeTool.xml($link)}" class="featured-callouts-widget-block">
+      #imageInCollection($block)
+      <div class="featured-callouts-widget__text $textAlignment featured-callouts-widget__text--$bgColor">
+        <h2>${_EscapeTool.xml($title)}
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+            class="svg-inline--fa fa-chevron-circle-right fa-w-16" data-icon="chevron-circle-right" data-prefix="fas"
+            focusable="false" role="img" viewBox="0 0 512 512">
+            <path
+              d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zm113.9 231L234.4 103.5c-9.4-9.4-24.6-9.4-33.9 0l-17 17c-9.4 9.4-9.4 24.6 0 33.9L285.1 256 183.5 357.6c-9.4 9.4-9.4 24.6 0 33.9l17 17c9.4 9.4 24.6 9.4 33.9 0L369.9 273c9.4-9.4 9.4-24.6 0-34z"
+              fill="currentColor">
+            </path>
+          </svg>
+
+        </h2>
+
+        <p>${_EscapeTool.xml($description)}</p>
+      </div>
+    </a>
+    #end
+  </div>
+
+
+</section>
 #end
 
 ## Main Format Block
 #if ($featuredCallouts.getChild('show').value == 'yes')
-  #buildFeaturedCallouts()
+#buildFeaturedCallouts()
 #end

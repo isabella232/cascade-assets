@@ -4,20 +4,40 @@
 
 .homepage {
   #featured-callouts {
+    $bgColor: $pacific;
     // @include respond(phone) {
     //   display
     // }
-
-    background: var(--color-pacific);
+    padding-top: 0;
+    background: $bgColor;
     display: flex;
+    overflow: visible;
 
+    h2 {
+      display: -ms-grid;
+      display: grid;
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+      justify-content: start;
+      -ms-grid-columns: 80% 20%;
+      grid-template-columns: 80% 20%;
+      -ms-flex-line-pack: end;
+      align-content: end;
+      height: 100%;
+      -ms-grid-column-align: center;
+      justify-self: center;
+    }
     .maxWidth {
       display: flex;
       justify-content: space-around;
+      margin-top: -30px;
     }
+
     .featured-callouts-widget-block {
       display: inline-block;
       width: 30%;
+      border: 2px solid $white;
+      min-height: 500px;
 
       img {
         height: 270px;
@@ -25,11 +45,22 @@
       }
     }
     .featured-callouts-widget__text {
+      background-color: $bgColor;
+      padding-left: 20px;
+      padding-right: 20px;
+      &--white {
+        background-color: $bgColor;
+        color: white;
+      }
+
       height: 50px;
     }
 
     p {
       margin: 0;
+    }
+    .fa-chevron-circle-right {
+      max-height: 20px;
     }
   }
 }
