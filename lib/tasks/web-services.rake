@@ -173,6 +173,18 @@ task edit_widget_funnels_2_up: :environment do
   )
 end
 
+
+# ---------------------------------------------------------------------------- #
+#                           edit home page data def                            #
+# ---------------------------------------------------------------------------- #
+desc 'Updates the "Home Page V3" Data Def'
+task edit_home_page_data_def: :environment do
+  edit_data_def(
+    'ff732cf8c04d744c1323a609c1526561',
+    'app/data_definitions/from_cascade/Home_Page_v3.xml'
+  )
+end
+
 # ---------------------------------------------------------------------------- #
 #                           edit one-column data def                           #
 # ---------------------------------------------------------------------------- #
