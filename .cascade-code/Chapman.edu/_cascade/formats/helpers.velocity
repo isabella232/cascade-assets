@@ -38,7 +38,8 @@ Master Version: Chapman.edu/_cascade/formats/helpers.velocity
     $element.getChild('image').getChild('imageUrlInt').getChild('path').value )
     #set ($imageUrlExt =
     $element.getChild('image').getChild('imageUrlExt').value )
-
+    #set ($imgSize = '')
+    
     #set ($altText =
     $element.getChild('image').getChild('altText').value)
 
@@ -56,6 +57,10 @@ Master Version: Chapman.edu/_cascade/formats/helpers.velocity
     $element.getChild($widgetXPath).getChild('image').getChild('imageShape').value.toLowerCase())
 
     ## IMAGE POSITION (OBJECT-FIT)
+    #set ($objectPositionX = '')
+    #set ($objectPositionY = '')
+    #set ($objectFit = '')
+
     #set ($objectPositionX = $element.getChild($widgetXPath).getChild('image').getChild('advanced').getChild('objectPositionX').value.toLowerCase())
     #set ($objectPositionY = $element.getChild($widgetXPath).getChild('image').getChild('advanced').getChild('objectPositionY').value.toLowerCase())
     #set ($objectFit = $element.getChild($widgetXPath).getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
