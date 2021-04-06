@@ -4,15 +4,29 @@
 ***************************************************/
 
 .homepage {
-  section#featured-callouts {
+  section.section#featured-callouts {
     $marginOffset: 30px;
-    $bgColor: $pacific;
+    padding: 50px 0;
+    &.bg-- {
+      &pillar {
+        --bgColor: var(--color-pillar);
+      }
+      &red {
+        --bgColor: var(--color-red);
+      }
+      &pacific {
+        --bgColor: var(--color-pacific);
+      }
+      &sand {
+        --bgColor: var(--color-sand);
+      }
+    }
 
     // @include respond(phone) {
     //   display
     // }
     padding-top: 0;
-    background: $bgColor;
+    background: var(--bgColor);
     overflow: visible;
     margin-top: $marginOffset;
     -ms-flex-pack: distribute;
@@ -45,6 +59,13 @@
       width: 30%;
       min-height: 500px;
 
+      @include respond(phone) {
+        width: auto;
+        height: auto;
+        min-height: unset;
+        border: 1px solid $cu-light-grey;
+        border-radius: 4px;
+      }
       img {
         height: 270px;
         object-fit: cover;
@@ -53,11 +74,12 @@
     }
     .featured-callouts-widget__text {
       $padding: 20px;
-      background-color: $bgColor;
+      background-color: var(--bgColor);
+      color: $white;
       padding-left: $padding;
       padding-right: $padding;
       padding-bottom: $padding;
-      border: 2px solid $cu-light-grey;
+      border: 1px solid $cu-light-grey;
       border-radius: 4px;
       border-top-right-radius: 0;
       border-top-left-radius: unset !important;
@@ -65,12 +87,21 @@
       display: block;
       height: 100%;
 
-      &--white {
-        background-color: $bgColor;
-        color: white;
+      p {
+        color: $white;
+      }
+
+      @include respond(phone) {
+        height: auto;
+        border: none;
       }
     }
-
+    .featured-callouts__wrapper {
+      @include respond(phone) {
+        display: grid;
+        grid-gap: 20px;
+      }
+    }
     p {
       margin: 0;
       &.white {
@@ -86,6 +117,19 @@
     .fa-chevron-circle-right {
       max-height: 20px;
       place-self: end;
+    }
+    a.featured-callouts-widget-block:hover h2:after {
+      transform: rotate(-90deg);
+      transition: 0.3s linear;
+      position: absolute;
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+
+    a.featured-callouts-widget-block:not(:hover) h2:after {
+      transform: rotate(0deg);
+      transition: 0.3s linear;
+      position: absolute;
     }
   }
 }
