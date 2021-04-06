@@ -13,9 +13,10 @@
 #set ($imageShape = 'rectangular')
 #set ($bgColor = $featuredCallouts.getChild('bgColor').value.toLowerCase() )
 
+#set ($altText = '')
+
 #macro ( buildFeaturedCallouts )
 <!-- Featured Callouts Section -->
-bgColor $bgColor
 <div class="featured-callouts__wrapper">
   <style>
     .featured-callouts__wrapper {
@@ -30,6 +31,22 @@ bgColor $bgColor
       #set ($title = $block.getChild('title').value)
       #set ($link = $block.getChild('link').getChild('link').value)
       #set ($description = $block.getChild('description').value)
+      ## IMAGE
+      #set ($objectFit =
+      $block.getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
+      #set ($objectPositionX =
+      $block.getChild('image').getChild('advanced').getChild('objectPositionX').value.toLowerCase())
+      #set ($objectPositionY =
+      $block.getChild('image').getChild('advanced').getChild('objectPositionY').value.toLowerCase())
+
+      #set ( $imageRoleVal = ( $block.getChild('image').getChild('imageAltOrDecorative').value ) )
+
+      #if ( $imageRoleVal == "Decorative Image" )
+      #set ( $imageRole = "role='presentation'" )
+      #set ( $altText = " " )
+      #else
+      #set ( $imageRole = "" )
+      #end
 
       <a href="${_EscapeTool.xml($link)}" class="featured-callouts-widget-block">
         #imageInCollection($block)
