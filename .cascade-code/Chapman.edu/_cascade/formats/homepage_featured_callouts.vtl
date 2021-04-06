@@ -9,26 +9,27 @@
 #set ( $currentPage = $_XPathTool.selectSingleNode($contentRoot, "//system-page[@current]") )
 #set ( $featuredCallouts = $currentPage.getChild('system-data-structure').getChild('featured-callouts') )
 
+#set ($widgetXPath = 'featured-callouts')
+#set ($imageShape = 'rectangular')
+
 #macro ( buildFeaturedCallouts )
 <!-- Featured Callouts Section -->
 <div class="featured-callouts__wrapper">
   <section id="featured-callouts" class="section featured-callouts" aria-label="Featured Callouts">
-    <div class="maxWidth featured-callouts__images-wrapper">
-
-
+    <div class="maxWidth featured-callouts__wrapper">
       #set ( $blocks = $featuredCallouts.getChildren('block') )
       #foreach ($block in $blocks)
 
       #set ($title = $block.getChild('title').value)
       #set ($link = $block.getChild('link').getChild('link').value)
-      #set ($bgColor = "white")
+      #set ($description = $block.getChild('description').value)
+      #set ($textColor = "white")
 
       <a href="${_EscapeTool.xml($link)}" class="featured-callouts-widget-block">
         #imageInCollection($block)
-        <div class="featured-callouts-widget__text $textAlignment featured-callouts-widget__text--$bgColor">
+        <div class="featured-callouts-widget__text $textAlignment featured-callouts-widget__text--$textColor">
           <h2>${_EscapeTool.xml($title)}</h2>
-
-          <p>${_EscapeTool.xml($description)}</p>
+          <p class="${textColor}">${_EscapeTool.xml($description)}</p>
         </div>
       </a>
       #end
