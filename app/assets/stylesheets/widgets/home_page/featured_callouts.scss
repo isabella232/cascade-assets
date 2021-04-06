@@ -89,3 +89,18 @@
     }
   }
 }
+
+.featured-callouts__img {
+  min-height: 270px;
+  overflow: hidden;
+}
+
+.featured-callouts-widget-block:hover img {
+  transform: scale(1.1);
+  overflow: hidden;
+}
+
+.featured-callouts__img {
+  min-height: 270px;
+  overflow: hidden;
+}
