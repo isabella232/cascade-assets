@@ -11,11 +11,14 @@
 
 #set ($widgetXPath = 'featured-callouts')
 #set ($imageShape = 'rectangular')
+#set ($bgColor = $featuredCallouts.getChild('bgColor').value)
 
 #macro ( buildFeaturedCallouts )
 <!-- Featured Callouts Section -->
+bgColor $bgColor
 <div class="featured-callouts__wrapper">
-  <section id="featured-callouts" class="section featured-callouts" aria-label="Featured Callouts">
+  <section id="featured-callouts" class="section featured-callouts featured-callouts--${bgColor}"
+    aria-label="Featured Callouts">
     <div class="maxWidth featured-callouts__wrapper">
       #set ( $blocks = $featuredCallouts.getChildren('block') )
       #foreach ($block in $blocks)
