@@ -47,6 +47,10 @@
     }
 
     .featured-callouts-widget-block {
+      &:focus,
+      &:focus-within {
+        outline-color: $white;
+      }
       &:first-child {
         margin-left: 5px;
       }
@@ -125,7 +129,8 @@
   }
 }
 
-.featured-callouts-widget-block:hover img {
+.featured-callouts-widget-block:hover img,
+.featured-callouts-widget-block:focus img {
   transform: scale(1.1);
   overflow: hidden;
 }
