@@ -11,7 +11,6 @@
 
 #set ($widgetXPath = 'featured-callouts')
 #set ($imageShape = 'rectangular')
-#set ($bgColor = $featuredCallouts.getChild('bgColor').value.toLowerCase() )
 
 #set ($altText = '')
 
@@ -23,7 +22,7 @@
       --bgColor: $bgColor;
     }
   </style>
-  <section id="featured-callouts" class="section featured-callouts bg--${bgColor}" aria-label="Featured Callouts">
+  <section id="featured-callouts" class="section featured-callouts " aria-label="Featured Callouts">
     <div class="maxWidth featured-callouts__wrapper">
       #set ( $blocks = $featuredCallouts.getChildren('block') )
       #foreach ($block in $blocks)
@@ -50,7 +49,7 @@
 
       <a href="${_EscapeTool.xml($link)}" class="featured-callouts-widget-block">
         #imageInCollection($block)
-        <div class="featured-callouts-widget__text bg--${bgColor} color--white">
+        <div class="featured-callouts-widget__text  color--white">
           <h2>${_EscapeTool.xml($title)}</h2>
         </div>
       </a>

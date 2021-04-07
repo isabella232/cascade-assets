@@ -2,37 +2,26 @@
 * Featured Callouts
 * https://trello.com/c/Kn5W7fTc/791-update-homepage-ad-widget-design-pt-2
 ***************************************************/
-
+:root {
+  --darkRed: rgba(129, 25, 34, 0.9);
+}
 .homepage {
   section.section#featured-callouts {
-    $marginOffset: 30px;
+    $marginOffset: 40px;
     padding: 50px 0;
     $borderRadius: 4px;
+
+    background: linear-gradient(-45deg, var(--darkRed), var(--darkRed)) fixed,
+      url("https://ca-times.brightspotcdn.com/dims4/default/71c9cb3/2147483647/strip/true/crop/2048x1213+0+0/resize/840x498!/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Ff9%2F6c%2Fb5d220ad32812ed53a5d769d87db%2Fla-ss-collegetour-basics-dto-001")
+        fixed;
+    background-size: cover;
+
     @include respond(phone) {
       margin-top: 50px;
     }
-    &.bg-- {
-      &pillar {
-        --bgColor: var(--color-pillar);
-      }
-      &red {
-        --bgColor: var(--color-red);
-      }
-      &pacific {
-        --bgColor: var(--color-pacific);
-      }
-      &sand {
-        --bgColor: var(--color-sand);
-      }
-    }
 
-    // @include respond(phone) {
-    //   display
-    // }
     padding-top: 0;
-    background: var(--bgColor);
     overflow: visible;
-    margin-top: $marginOffset;
     -ms-flex-pack: distribute;
     margin-top: $marginOffset;
     display: grid;
@@ -53,11 +42,14 @@
     }
     .maxWidth {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       margin-top: -$marginOffset;
     }
 
     .featured-callouts-widget-block {
+      &:first-child {
+        margin-left: 5px;
+      }
       display: flex;
       flex-direction: column;
       width: 30%;

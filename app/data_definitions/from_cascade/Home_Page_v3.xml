@@ -29,11 +29,6 @@
 			<radio-item label="Yes" value="yes"/>
 			<radio-item label="No" value="no"/>
 		</text>
-    <text field-id="" help-text="Background Color" identifier="bgColor" label="Background Color" type="dropdown" default="Pillar">
-				<dropdown-item value="Red" label="Chapman Red"/>
-        <dropdown-item value="Pacific" label="Pacific"/>
-        <dropdown-item value="Pillar" label="Pillar"/>
-    </text>
 		<group identifier="block" label="Block" maximum-number="3" minimum-number="3" multiple="true">
 			<text field-id="849b5f3ac0a81e5f3ae1b560fe96fd4a" identifier="title" label="Title" required="true"/>
       <!-- <text  multi-line="true" field-id="" identifier="description" label="Description" required="false"/> -->
