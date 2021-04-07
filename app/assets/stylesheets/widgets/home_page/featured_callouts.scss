@@ -61,7 +61,7 @@
       display: flex;
       flex-direction: column;
       width: 30%;
-      min-height: 500px;
+      min-height: auto;
 
       @include respond(phone) {
         width: auto;
@@ -71,7 +71,7 @@
         border-radius: $borderRadius;
       }
       img {
-        height: 270px;
+        height: 170px;
         object-fit: cover;
         display: flex;
         border-radius: $borderRadius;
@@ -124,16 +124,12 @@
       place-self: end;
     }
     a.featured-callouts-widget-block:hover h2:after {
-      transform: rotate(-90deg);
-      transition: 0.3s linear;
       position: absolute;
       margin-bottom: 0 !important;
       padding-bottom: 0 !important;
     }
 
     a.featured-callouts-widget-block:not(:hover) h2:after {
-      transform: rotate(0deg);
-      transition: 0.3s linear;
       position: absolute;
     }
   }
@@ -145,7 +141,7 @@
 }
 
 .featured-callouts__img {
-  min-height: 270px;
+  min-height: 170px;
   overflow: hidden;
   -webkit-transition: 0.4s ease;
   transition: 0.4s ease;

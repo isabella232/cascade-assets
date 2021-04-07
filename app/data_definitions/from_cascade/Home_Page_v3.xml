@@ -36,7 +36,7 @@
     </text>
 		<group identifier="block" label="Block" maximum-number="3" minimum-number="3" multiple="true">
 			<text field-id="849b5f3ac0a81e5f3ae1b560fe96fd4a" identifier="title" label="Title" required="true"/>
-      <text  multi-line="true" field-id="" identifier="description" label="Description" required="false"/>
+      <!-- <text  multi-line="true" field-id="" identifier="description" label="Description" required="false"/> -->
 			<asset field-id="849b5f3ac0a81e5f3ae1b5603e67db98" identifier="link" label="Link" required="true" type="page,file,symlink"/>
 			<shared-field field-id="849ede8bc0a81e5f3ae1b56001c98591" identifier="image" path="image__rectangle-only--required" required="true"/>
 		</group>
