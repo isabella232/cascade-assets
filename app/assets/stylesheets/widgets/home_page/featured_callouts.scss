@@ -62,13 +62,13 @@
       flex-direction: column;
       width: 30%;
       min-height: auto;
+      border: 2px solid $cu-light-grey;
+      border-radius: $borderRadius;
 
       @include respond(phone) {
         width: auto;
         height: auto;
         min-height: unset;
-        border: 1px solid $cu-light-grey;
-        border-radius: $borderRadius;
       }
       img {
         height: 170px;
@@ -84,8 +84,6 @@
       padding-left: $padding;
       padding-right: $padding;
       padding-bottom: $padding;
-      border: 1px solid $cu-light-grey;
-      border-radius: $borderRadius;
       border-top-right-radius: 0;
       border-top-left-radius: unset !important;
       margin-top: -3px;
