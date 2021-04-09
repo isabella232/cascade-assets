@@ -1,6 +1,5 @@
 /***************************************************
 * Featured Callouts
-* https://trello.com/c/Kn5W7fTc/791-update-homepage-ad-widget-design-pt-2
 ***************************************************/
 :root {
   --darkRed: rgba(106, 19, 27, 0.9);
@@ -10,10 +9,7 @@
     $marginOffset: 40px;
     padding: 50px 0;
     $borderRadius: 4px;
-
     background-image: url("https://www.chapman.edu/_assets/homepage/undergrad-admissions.webp");
-
-    /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: top;
     background-repeat: no-repeat;
