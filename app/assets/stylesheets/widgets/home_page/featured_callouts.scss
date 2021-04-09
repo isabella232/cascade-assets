@@ -1,0 +1,141 @@
+/***************************************************
+* Featured Callouts
+***************************************************/
+:root {
+  --darkRed: rgba(106, 19, 27, 0.9);
+}
+.homepage {
+  section.section#featured-callouts {
+    $marginOffset: 40px;
+    padding: 50px 0;
+    $borderRadius: 4px;
+    background-image: url("https://www.chapman.edu/_assets/homepage/undergrad-admissions.webp");
+    background-attachment: fixed;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    @include respond(phone) {
+      margin-top: 50px;
+    }
+
+    padding-top: 0;
+    overflow: visible;
+    -ms-flex-pack: distribute;
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 20px;
+
+    h2 {
+      display: inline-block;
+      font-family: var(--font-family-futura-condensed);
+      font-size: 2.8rem;
+
+      &:after {
+        content: "\f138";
+        font-family: "Font Awesome 5 Pro";
+        margin-left: 12px;
+        font-size: 2.2rem;
+      }
+    }
+    .maxWidth {
+      display: flex;
+      justify-content: space-between;
+      margin-top: -$marginOffset;
+    }
+
+    .featured-callouts-widget-block {
+      &:focus,
+      &:focus-within {
+        outline-color: $white;
+      }
+      &:first-child {
+        margin-left: 5px;
+      }
+      display: flex;
+      flex-direction: column;
+      width: 30%;
+      min-height: auto;
+      border-radius: $borderRadius;
+
+      @include respond(phone) {
+        width: auto;
+        height: auto;
+        min-height: unset;
+      }
+      img {
+        height: 170px;
+        object-fit: cover;
+        display: flex;
+        border-radius: $borderRadius;
+      }
+    }
+    .featured-callouts-widget__text {
+      $padding: 20px;
+      background-color: $cu-red;
+      color: $white;
+      padding-left: $padding;
+      padding-right: $padding;
+      padding-bottom: $padding;
+      border-top-right-radius: 0;
+      border-top-left-radius: unset !important;
+      margin-top: -3px;
+      display: block;
+      height: 100%;
+
+      p {
+        color: $white;
+      }
+
+      @include respond(phone) {
+        height: auto;
+        border: none;
+      }
+    }
+    .featured-callouts__wrapper {
+      @include respond(phone) {
+        display: grid;
+        grid-gap: 20px;
+      }
+    }
+    p {
+      margin: 0;
+      &.white {
+        color: $white !important;
+      }
+      &.black {
+        color: $panther-black !important;
+      }
+      &.red {
+        color: $cu-red !important;
+      }
+    }
+    .fa-chevron-circle-right {
+      max-height: 20px;
+      place-self: end;
+    }
+    a.featured-callouts-widget-block:hover h2:after {
+      position: absolute;
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+
+    a.featured-callouts-widget-block:not(:hover) h2:after {
+      position: absolute;
+    }
+  }
+}
+
+.featured-callouts-widget-block:hover img,
+.featured-callouts-widget-block:focus img {
+  transform: scale(1.1);
+  overflow: hidden;
+}
+
+.featured-callouts__img {
+  min-height: 170px;
+  overflow: hidden;
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+}

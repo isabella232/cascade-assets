@@ -1,0 +1,67 @@
+#*
+* Chapman.edu/_cascade/formats/homepage_featured_callouts.vtl
+* Homepage Featured Callouts
+*#
+
+#import( "/_cascade/formats/helpers.velocity" )
+
+## Global Vars
+#set ( $currentPage = $_XPathTool.selectSingleNode($contentRoot, "//system-page[@current]") )
+#set ( $featuredCallouts = $currentPage.getChild('system-data-structure').getChild('featured-callouts') )
+
+#set ($widgetXPath = 'featured-callouts')
+#set ($imageShape = 'rectangular')
+
+#set ($altText = '')
+
+#macro ( buildFeaturedCallouts )
+<!-- Featured Callouts Section -->
+<div class="featured-callouts__wrapper">
+  <style>
+    .featured-callouts__wrapper {
+      --bgColor: $bgColor;
+    }
+  </style>
+  <section id="featured-callouts" class="section featured-callouts " aria-label="Featured Callouts">
+    <div class="maxWidth featured-callouts__wrapper">
+      #set ( $blocks = $featuredCallouts.getChildren('block') )
+      #foreach ($block in $blocks)
+
+      #set ($title = $block.getChild('title').value)
+      #set ($link = $block.getChild('link').getChild('link').value)
+      #set ($description = $block.getChild('description').value)
+      ## IMAGE
+      #set ($objectFit =
+      $block.getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
+      #set ($objectPositionX =
+      $block.getChild('image').getChild('advanced').getChild('objectPositionX').value.toLowerCase())
+      #set ($objectPositionY =
+      $block.getChild('image').getChild('advanced').getChild('objectPositionY').value.toLowerCase())
+
+      #set ( $imageRoleVal = ( $block.getChild('image').getChild('imageAltOrDecorative').value ) )
+
+      #if ( $imageRoleVal == "Decorative Image" )
+      #set ( $imageRole = "role='presentation'" )
+      #set ( $altText = " " )
+      #else
+      #set ( $imageRole = "" )
+      #end
+
+      <a href="${_EscapeTool.xml($link)}" class="featured-callouts-widget-block">
+        #imageInCollection($block)
+        <div class="featured-callouts-widget__text  color--white">
+          <h2>${_EscapeTool.xml($title)}</h2>
+        </div>
+      </a>
+      #end
+    </div>
+
+
+  </section>
+</div>
+#end
+
+## Main Format Block
+#if ($featuredCallouts.getChild('show').value == 'yes')
+#buildFeaturedCallouts()
+#end
