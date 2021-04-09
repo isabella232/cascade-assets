@@ -7,6 +7,7 @@ const uninav = function () {
     toggleAriaExpandVal();
     handleEscapeKeypress();
     gs__setSearchResultsZIndex();
+    // loginMenu();
   });
 
   function closePrevDropdownWhenFocusChanges() {
@@ -218,5 +219,11 @@ const uninav = function () {
     $(".uninav__utility-nav--wrapper").css("margin-right", scrollbarWidth);
   }
 };
+
+function loginMenu() {
+  $(".uninav__login").click(function () {
+    // $(this).find(".uninav__login--wrapper").toggle();
+  });
+}
 
 export default uninav;

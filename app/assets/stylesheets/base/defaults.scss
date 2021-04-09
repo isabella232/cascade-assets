@@ -987,6 +987,29 @@ body {
     }
   }
 }
+.bg-- {
+  &pillar {
+    --bgColor: var(--color-pillar);
+  }
+  &red {
+    --bgColor: var(--color-red);
+  }
+  &pacific {
+    --bgColor: var(--color-pacific);
+  }
+  &sand {
+    --bgColor: var(--color-sand);
+  }
+}
+
+.color-- {
+  white {
+    color: $white;
+  }
+  black {
+    color: $panther-black;
+  }
+}
 
 @keyframes fadein {
   from {

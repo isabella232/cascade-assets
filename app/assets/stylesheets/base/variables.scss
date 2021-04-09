@@ -389,9 +389,18 @@ $props: (
     color: $red;
     background-color: unset;
   }
+  .red {
+    color: $red;
+  }
+  .white {
+    color: $white;
+  }
   &--white {
     color: $white;
     background-color: unset;
+  }
+  .black {
+    color: $panther-black;
   }
   &--black {
     color: $panther-black;
