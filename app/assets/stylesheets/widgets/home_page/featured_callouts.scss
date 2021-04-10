@@ -52,6 +52,9 @@
       }
       &:first-child {
         margin-left: 5px;
+        @include respond(phone) {
+          margin-left: unset;
+        }
       }
       display: flex;
       flex-direction: column;
