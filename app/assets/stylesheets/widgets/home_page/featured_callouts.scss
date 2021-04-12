@@ -72,6 +72,9 @@
         object-fit: cover;
         display: flex;
         border-radius: $borderRadius;
+        @include respond(phone) {
+          width: 100%;
+        }
       }
     }
     .featured-callouts-widget__text {
