@@ -238,14 +238,13 @@
     #set ($gridBlockTitle = $block.getChild('gridBlockTitle').value)
     #set ($gridBlockLinkType = $block.getChild('linkType').value)
 
-    #if ($gridBlockLinkType == 'Internal Link')
-        #set ($gridBlockLinkURL = $block.getChild('internalLink').value)
-      #elseif ($gridBlockLinkType == 'External Link')
+    #if ($gridBlockLinkType == 'internal')
+        #set ($gridBlockLinkURL = $block.getChild('internalLink').getChild('path').value)
+      #elseif ($gridBlockLinkType == 'external')
         #set ($gridBlockLinkURL = $block.getChild('externalLink').value )
       #else 
         #set ($gridBlockLinkURL = $block.getChild('fileLink').getChild('path').value )
     #end
-    #set ($gridBlockLinkURL = $block.getChild('externalLink').value )
     #set ($gridBlockContent = $block.getChild('content').value)
     #set ($gridBodyText = $block.getChild('gridBlockText').value)
 
