@@ -4,6 +4,7 @@
 :root {
   --darkRed: rgba(106, 19, 27, 0.9);
 }
+
 .homepage {
   section.section#featured-callouts {
     $marginOffset: 40px;
@@ -144,4 +145,17 @@
   overflow: hidden;
   -webkit-transition: 0.4s ease;
   transition: 0.4s ease;
+}
+
+.no-webp {
+  section.section#featured-callouts {
+    background-image: url(https://www.chapman.edu/_assets/_homepage-featured-callouts/undergrad-admissions.jpg) !important;
+  }
+}
+
+// iPad
+@supports (-webkit-touch-callout: inherit) {
+  section.section#featured-callouts {
+    background-attachment: scroll;
+  }
 }
