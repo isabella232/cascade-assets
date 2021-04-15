@@ -70,25 +70,25 @@ function calculateDataHeight() {
   $(
     ".two-column-template .grid-block-widget__text, .three-column-template .grid-block-widget__text"
   ).each(function () {
-    $(this).addClass("grid-block-widget__text--truncated");
     var scrollHeight = $(this)[0].scrollHeight;
     $(this).attr("data-scroll-height", scrollHeight);
     $(this)
       .parent(".grid-block-widget")
       .addClass("grid-block-widget--text-overflow");
     if ($(this).attr("data-scroll-height") >= 219) {
+      $(this).addClass("grid-block-widget__text--truncated");
       $(this).parent().find(".grid-block-widget__reveal--more").show();
     }
   });
   // ONE COLUMN
   $(".one-column .grid-block-widget__text").each(function () {
-    $(this).addClass("grid-block-widget__text--truncated");
     var scrollHeight = $(this)[0].scrollHeight;
     $(this).attr("data-scroll-height", scrollHeight);
     $(this)
       .parent(".grid-block-widget")
       .addClass("grid-block-widget--text-overflow");
     if ($(this).attr("data-scroll-height") >= 219) {
+      $(this).addClass("grid-block-widget__text--truncated");
       $(this).parent().find(".grid-block-widget__reveal--more").show();
     }
   });
