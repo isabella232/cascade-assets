@@ -78,6 +78,9 @@ function calculateDataHeight() {
       .addClass("grid-block-widget--text-overflow");
     if ($(this).attr("data-scroll-height") >= 158) {
       $(this).parent().find(".grid-block-widget__reveal--more").show();
+    } else {
+      $(this).parent().find(".grid-block-widget__reveal--more").hide();
+      $(this).removeClass("grid-block-widget__text--truncated");
     }
   });
   // ONE COLUMN
@@ -90,6 +93,9 @@ function calculateDataHeight() {
       .addClass("grid-block-widget--text-overflow");
     if ($(this).attr("data-scroll-height") >= 158) {
       $(this).parent().find(".grid-block-widget__reveal--more").show();
+    } else {
+      $(this).parent().find(".grid-block-widget__reveal--more").hide();
+      $(this).removeClass("grid-block-widget__text--truncated");
     }
   });
 }
