@@ -286,6 +286,18 @@ end
 # ---------------------------------------------------------------------------- #
 # edit format `Chapman.edu/_cascade/formats/modular/widgets/Grid Block Widget`   #
 # ---------------------------------------------------------------------------- #
+desc 'Updates `Chapman.edu/_cascade/formats/modular/widgets/Personnel Widget` with `.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/personnel-widget`'
+task edit_personnel_widget: :environment do
+  edit_format(
+    'dd2e126fc0a81e8a3b000293dd6e3ed7',
+    '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Personnel-Widget.vtl'
+  )
+end
+
+
+# ---------------------------------------------------------------------------- #
+# edit format `Chapman.edu/_cascade/formats/modular/widgets/Grid Block Widget`   #
+# ---------------------------------------------------------------------------- #
 desc 'Updates `Chapman.edu/_cascade/formats/modular/widgets/Collapsibles` with `.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Collapsibles`'
 task edit_grid_block_widget: :environment do
   edit_format(
