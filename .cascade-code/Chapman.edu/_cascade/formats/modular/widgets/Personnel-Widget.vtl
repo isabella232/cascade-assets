@@ -1,0 +1,105 @@
+#macro(outputPersonnelWidget $element) 
+
+    #set ($currentPage = $_XPathTool.selectSingleNode($contentRoot, "//system-page[@current]") )
+    #set ($templateType = $currentPage.contentType.path )
+    #set ($widgetXPath = 'personnelWidget')
+    #set ($display = $element.getChild($widgetXPath).getChild('display').value)
+    
+    ## Intro Section
+    #set ($displaySectionIntro = $element.getChild($widgetXPath).getChild('displaySectionIntro').value)
+    #set ($sectionPreheader = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionPreheader').value)
+    #set ($sectionHeader = $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionHeader').value)
+    ## End Intro Section
+
+    ## Personnel Widget Section
+    #set ($personnelGroup = $element.getChild($widgetXPath).getChild('personnel'))
+    #set ( $layoutStyle = $personnelGroup.getChild('style').value )
+    #set ($listingType = $personnelGroup.getChild('individualListingType').value )
+    #set ($listingType1 = $personnelGroup.getChild('listingType1').value )
+    ## End Personnel Widget Section
+
+    ## Faculty Listing Section
+    #if ($listingType1 == 'facultyListing')
+      #set ($facultyListingGroup = $personnelGroup.getChild('facultyListing'))
+      #set ( $schoolAffiliation = $facultyListingGroup.getChild('schoolAffiliation').value)
+      #set ( $filterBy = $facultyListingGroup.getChild('filterBy').value )
+      #set ( $facultyUnit = $facultyListingGroup.getChild('facultyUnit').value)
+      #set ($photo = $facultyListingGroup.getChild('photo').value)
+      #set ($name = $facultyListingGroup.getChild('name').value)
+      #set ($title = $facultyListingGroup.getChild('title').value)
+      #set ($phone = $facultyListingGroup.getChild('phone').value)
+      #set ($email = $facultyListingGroup.getChild('email').value)
+      #set ($officeInfo = $facultyListingGroup.getChild('officeInfo').value)
+      #set ($shortBio = $facultyListingGroup.getChild('shortBio').value)
+      #set ($linkFullBio = $facultyListingGroup.getChild('linkFullBio').value)
+    #end
+    ## End Faculty Listing Section
+
+    ## Staff/Custom Listing Section
+    #if ($listingType1 == 'staffCustomListing')
+        #set ($customPersonGroup = $personnelGroup.getChild('custom').getChild('person'))
+        #set ($name = $customPersonGroup.getChild('name').value)
+        #set ($title = $customPersonGroup.getChild('title').value)
+        #set ($department = $customPersonGroup.getChild('department').value)
+        #set ($phone = $customPersonGroup.getChild('phone').value)
+        #set ($email = $customPersonGroup.getChild('email').value)
+        #set ($shortBio = $customPersonGroup.getChild('shortBio').value)
+        #set ($linkToFullBio = $customPersonGroup.getChild('linkToFullBio').value)
+    #end
+    ## End Staff/Custom Listing Section
+
+    
+
+    <h2>Personnel Widget</h2>
+    <ul id="personnel-object">
+    <li>layoutStyle: $layoutStyle </li>
+    <li>templateType: $templateType</li>
+    <li>displaySectionIntro: $displaySectionIntro</li>
+    <li>sectionPreheader: $sectionPreheader </li>
+    <li>sectionHeader: $sectionHeader </li>
+    <li>listingType: $listingType </li>
+    <li>listingType1: $listingType1 </li>
+    <li>schoolAffiliation: $schoolAffiliation </li>
+    <li>filterBy: $filterBy </li>
+    <li>facultyUnit: $facultyUnit </li>
+    <li>photo: $photo </li>
+    <li>name: $name </li>
+    <li>title: $title </li>
+    <li>phone: $phone </li>
+    <li>email: $email </li>
+    <li>officeInfo: $officeInfo </li>
+    <li>shortBio: $shortBio </li>
+    <li>linkFullBio: $linkFullBio </li>
+    </ul>
+
+
+<div class="personnel-widget__container personnel-widget__container--2-col">
+  <div class="personnel-widget">
+    <div class="personnel-widget__front">
+      <div class="banner personnel-widget__banner"></div>
+      <div class="image personnel-widget__image-wrapper">
+        <img class="personnel-widget__image--circle personnel-widget__image" src="http://placekitten.com/200/300"
+          alt="${altText}" />
+      </div>
+      <div class="name personnel-widget__name">${_EscapeTool.xml($name)}</div>
+      <div class="title personnel-widget__title">${_EscapeTool.xml($title)}</div>
+      <div class="phone personnel-widget__phone">Phone</div>
+      <div class="phone-number personnel-widget__phone-number"><a href="tel:+${phone}">$phone</a></div>
+      <div class="email personnel-widget__email">Email</div>
+      <div class="email-address personnel-widget__email-address">
+        <a href="mailto:${email}">$email</a>
+      </div>
+      <div class="optional office-info personnel-widget__office-info">Office Info</div>
+      <div class="optional office-info personnel-widget__office-detail">One University Drive</div>
+      <hr/>
+      <div class="link-bottom personnel-widget__link-bottom"></div>
+      <span class="dog-ear"></span>
+      <span class="half-moon"></span>
+    </div>
+    <div class="personnel-widget__back">
+      ${_EscapeTool.xml($shortBio)}
+    </div>
+  </div>
+</div>
+
+#end

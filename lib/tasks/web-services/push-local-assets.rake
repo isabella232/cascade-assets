@@ -5,12 +5,12 @@ task push_noncompiled_assets: :environment do
     # html = Nokogiri.HTML(URI.open(local_file, read_timeout: 300))
     # p master_css = html.at('link[rel="stylesheet"]')['href']
 
-    # edit_file('96ab024cc0a81e8a57740fffa611a0af', '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Grid-Block-Widget.vtl' )
+    # edit_file('96ab024cc0a81e8a57740fffa611a0af', '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/personnel-widget-Widget.vtl' )
 
 
-  #   File.delete('.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Grid-Block-Widget.vtl.rb') if File.exist?('.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Grid-Block-Widget.vtl.rb')
+  #   File.delete('.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/personnel-widget-Widget.vtl.rb') if File.exist?('.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/personnel-widget-Widget.vtl.rb')
 
-  #   FileUtils.cp('.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Grid-Block-Widget.vtl', '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Grid-Block-Widget.vtl.rb')
+  #   FileUtils.cp('.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/personnel-widget-Widget.vtl', '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/personnel-widget-Widget.vtl.rb')
   `rake assets:precompile`
   localhost_css_contents = Net::HTTP.get(URI.parse('http://localhost:3000/_assets/master.css'))
 
@@ -19,7 +19,7 @@ task push_noncompiled_assets: :environment do
   # puts localhost_css_contents
 
     
-  # open('.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Grid-Block-Widget.vtl.rb', 'a') do |f|
+  # open('.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/personnel-widget-Widget.vtl.rb', 'a') do |f|
   #   f.puts "<![CDATA[#protect 
   #     <style> 
   #     #{localhost_css_contents.force_encoding('utf-8').gsub( /\/\*.+?\*\// , "")}  
@@ -35,7 +35,7 @@ task push_noncompiled_assets: :environment do
   
   base_url = 'https://dev-cascade.chapman.edu/api/v1/'.to_s
   url_post =
-  base_url + 'edit/' + 'file' + 'Chapman.edu/test-section/nick-test/grid-block.css' + cascade_username +
+  base_url + 'edit/' + 'file' + 'Chapman.edu/test-section/nick-test/personnel-widget.css' + cascade_username +
     cascade_password
 p url_post
 
@@ -70,12 +70,12 @@ p url_post
       "lastModifiedBy": "cscddev01500",
       "createdDate": "Nov 4, 2020 8:29:51 PM",
       "createdBy": "nnadel",
-      "path": "test-section/nick-test/grid-block.css",
+      "path": "test-section/nick-test/personnel-widget.css",
       "siteId": "6fef14a3c04d744c610b81dac0a8d082",
       "siteName": "Chapman.edu",
       "tags": [],
-      "name": "grid-block.css",
-      "id": "96ab024cc0a81e8a57740fffa611a0af"
+      "name": "personnel-widget.css",
+      "id": "eb4180eec0a81e8a3b000293d2e89273"
           }
         },
         "success": true
@@ -85,7 +85,7 @@ p url_post
      publish_asset('file', '96ab024cc0a81e8a57740fffa611a0af')
 
     #  JAVASCRIPT
-    base_url + 'edit/' + 'file' + 'Chapman.edu/test-section/nick-test/grid-block.js' + cascade_username +
+    base_url + 'edit/' + 'file' + 'Chapman.edu/test-section/nick-test/personnel-widget.js' + cascade_username +
     cascade_password
 p url_post
 
@@ -128,12 +128,12 @@ p url_post
       "lastModifiedBy": "nnadel",
       "createdDate": "Nov 10, 2020 11:00:31 AM",
       "createdBy": "nnadel",
-      "path": "test-section/nick-test/grid-block.js",
+      "path": "test-section/nick-test/personnel-widget.js",
       "siteId": "6fef14a3c04d744c610b81dac0a8d082",
       "siteName": "Chapman.edu",
       "tags": [],
-      "name": "grid-block.js",
-      "id": "b387eec9c0a81e8a57740fff3593b66c"
+      "name": "personnel-widget.js",
+      "id": "eb41c165c0a81e8a3b00029326df982e"
           }
         },
         "success": true
@@ -144,7 +144,7 @@ p url_post
      p url_post
   # edit_format(
   #   '567ec178c0a81e8a1e5ac2884450d7c2',
-  #   '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Grid-Block-Widget.vtl.rb'
+  #   '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/personnel-widget-Widget.vtl.rb'
   # )
 
   

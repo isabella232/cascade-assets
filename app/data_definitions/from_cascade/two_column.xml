@@ -700,6 +700,10 @@
       </group>
       <group collapsed="true" identifier="personnelWidget" label="Personnel Widget">
         <shared-field field-id="" identifier="display" path="display"/>
+        <text default="yes" field-id="" identifier="displaySectionIntro" label="Display Section Intro?" type="radiobutton">
+          <radio-item label="Yes" show-fields="primaryContent/widget/personnelWidget/sectionHeaderGroup, primaryContent/widget/personnelWidget/textAlignment" value="yes"/>
+          <radio-item label="No" value="no "/>
+        </text>
         <shared-field field-id="8babbf5fc0a81e8a57740fff772e6a8e" identifier="sectionHeaderGroup" path="Section Header"/>
         <group collapsed="true" identifier="personnel" label="Personnel">
           <text field-id="8babbf5fc0a81e8a57740fff5dba65b7" identifier="style" label="Layout Style:" required="true" type="radiobutton">
@@ -769,7 +773,7 @@
               <radio-item label="Show" value="show"/>
               <radio-item label="Hide" value="hide"/>
             </text>
-            <text default="show" field-id="9998c6ccc0a81e8a57740fff8428a3eb" identifier="shortbio" label="Short Bio:" type="radiobutton">
+            <text default="show" field-id="9998c6ccc0a81e8a57740fff8428a3eb" identifier="shortBio" label="Short Bio:" type="radiobutton">
               <radio-item label="Show" value="show"/>
               <radio-item label="Hide" value="hide"/>
             </text>
@@ -786,6 +790,7 @@
               <text field-id="407d72cfc0a81e8a6a12ed09c3c8d608" identifier="department" label="Department:"/>
               <text field-id="8bbc03b1c0a81e8a57740fffc9811b36" identifier="phone" label="Phone:"/>
               <text field-id="8bbc03b1c0a81e8a57740fffe3cfb2a2" identifier="email" label="Email:"/>
+              <text field-id="" identifier="officeInfo" label="Office Address/Info:"/>
               <text field-id="499edb3dc0a81e8a6a12ed09b5bdf3d3" help-text="Keep this short (80 words Max) because you can always link to their full bio or custom page." identifier="shortBio" label="Short Bio:" multi-line="true"/>
               <text field-id="8bbc03b1c0a81e8a57740fff993608fb" identifier="linkToFullBio" label="Link To Full Bio:" type="radiobutton">
                 <radio-item label="Yes" show-fields="primaryContent/widget/personnelWidget/personnel/customListing/person/internalExternal" value="yes"/>
