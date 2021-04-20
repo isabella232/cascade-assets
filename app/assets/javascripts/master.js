@@ -2,6 +2,8 @@
 //= require_tree ../../../lib/assets/javascripts
 
 //= require _helpers/chapDOM
+//= require cascade/plugins/slick
+//= require cascade/plugins/mousetrap
 //= require_tree ./widgets
 //= require_tree ./components
 //= require_tree ./regions
@@ -9,7 +11,7 @@
 //= require global_functions
 //= require cascade/carousel
 //= require cascade/unibuddy
-//= require cascade/covid-19-button 
+//= require cascade/covid-19-button
 //= require cascade/back-to-top
 //= require cascade/collapsed-nav
 //= require cascade/console-log
@@ -42,9 +44,8 @@
 //= require cascade/plugins/super-pager
 //= require cascade/plugins/touchwipe
 //= require cascade/plugins/lightslider
-//= require cascade/plugins/slick
+
 //= require cascade/plugins/isOnScreen
-//= require cascade/plugins/mousetrap
 //= require cascade/level/plugins/tipsy
 //= require cascade/level/accordion
 //= require cascade/level/three_photo_callout
