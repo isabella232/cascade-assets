@@ -80,7 +80,6 @@ ORDER: Base + typography > general layout + grid > page layout > components
 // https://stackoverflow.com/a/13550716/6763239
 @mixin bp($point, $val: 0) {
   @if $point==s {
-
     // Mobile
     @media (min-width: 420px) {
       @content;
@@ -88,7 +87,6 @@ ORDER: Base + typography > general layout + grid > page layout > components
   }
 
   @if $point==sx {
-
     // Mobile
     @media (max-width: 420px) {
       @content;
@@ -99,7 +97,6 @@ ORDER: Base + typography > general layout + grid > page layout > components
   // not sure what changing it would break.
   // Use this instead: bp(wildcard-min, 767px)
   @if $point==m {
-
     // Medium
     @media (min-width: 780px) {
       @content;
@@ -107,7 +104,6 @@ ORDER: Base + typography > general layout + grid > page layout > components
   }
 
   @if $point==mx {
-
     // Medium
     @media (max-width: 767px) {
       @content;
@@ -115,7 +111,6 @@ ORDER: Base + typography > general layout + grid > page layout > components
   }
 
   @if $point==l {
-
     // Large
     @media (min-width: 1024px) {
       @content;
@@ -123,7 +118,6 @@ ORDER: Base + typography > general layout + grid > page layout > components
   }
 
   @if $point==lx {
-
     // Large
     @media (max-width: 1024px) {
       @content;
@@ -131,7 +125,6 @@ ORDER: Base + typography > general layout + grid > page layout > components
   }
 
   @if $point==xl {
-
     // Extra-Large
     @media (min-width: 1200px) {
       @content;
@@ -139,7 +132,6 @@ ORDER: Base + typography > general layout + grid > page layout > components
   }
 
   @if $point==xlx {
-
     // Extra-Large
     @media (max-width: 1200px) {
       @content;
@@ -147,7 +139,6 @@ ORDER: Base + typography > general layout + grid > page layout > components
   }
 
   @if $point==wildcard-min {
-
     // Uses variable breakpoint.
     @media (min-width: #{$val}) {
       @content;
@@ -155,7 +146,6 @@ ORDER: Base + typography > general layout + grid > page layout > components
   }
 
   @if $point==wildcard-max {
-
     // Uses variable breakpoint.
     @media (max-width: #{$val}) {
       @content;
@@ -196,12 +186,26 @@ ORDER: Base + typography > general layout + grid > page layout > components
   min-height: #{$px / $default}em;
 }
 
-@mixin em_margin($top: 0, $right: 0, $bot: $top, $left: $right, $default: $fontsize) {
-  margin: #{$top / $default}em #{$right / $default}em #{$bot / $default}em #{$left / $default}em;
+@mixin em_margin(
+  $top: 0,
+  $right: 0,
+  $bot: $top,
+  $left: $right,
+  $default: $fontsize
+) {
+  margin: #{$top / $default}em #{$right / $default}em #{$bot / $default}em #{$left /
+    $default}em;
 }
 
-@mixin em_padding($top: 0, $right: 0, $bot: $top, $left: $right, $default: $fontsize) {
-  padding: #{$top / $default}em #{$right / $default}em #{$bot / $default}em #{$left / $default}em;
+@mixin em_padding(
+  $top: 0,
+  $right: 0,
+  $bot: $top,
+  $left: $right,
+  $default: $fontsize
+) {
+  padding: #{$top / $default}em #{$right / $default}em #{$bot / $default}em #{$left /
+    $default}em;
 }
 
 @mixin em_fontsize($px) {
@@ -212,13 +216,18 @@ ORDER: Base + typography > general layout + grid > page layout > components
   line-height: #{$px / $default}em;
 }
 
-@mixin box_shadow($hoffset: 0, $voffset: 0, $blur: 0, $spread: 0, $color: $black, $inset: false) {
+@mixin box_shadow(
+  $hoffset: 0,
+  $voffset: 0,
+  $blur: 0,
+  $spread: 0,
+  $color: $black,
+  $inset: false
+) {
   @if $inset==false {
     -webkit-box-shadow: $hoffset $voffset $blur $spread $color;
     box-shadow: $hoffset $voffset $blur $spread $color;
-  }
-
-  @else {
+  } @else {
     -webkit-box-shadow: inset $hoffset $voffset $blur $spread $color;
     box-shadow: inset $hoffset $voffset $blur $spread $color;
   }
@@ -234,7 +243,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
 
 @mixin opacity($i) {
   $forie: $i * 100;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+ $forie + ")";
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" + $forie + ")";
   filter: alpha(opacity=$forie);
   opacity: $i;
 }
@@ -255,11 +264,9 @@ ORDER: Base + typography > general layout + grid > page layout > components
   margin-top: 12px;
   margin-bottom: 24px;
 
-  @if type-of($weight)==string {
+  @if type-of($weight) ==string {
     font-weight: unquote($weight);
-  }
-
-  @else {
+  } @else {
     font-weight: $weight;
   }
 
@@ -278,11 +285,9 @@ ORDER: Base + typography > general layout + grid > page layout > components
   font-family: $font-stack-heading;
   font-size: 32px;
 
-  @if type-of($weight)==string {
+  @if type-of($weight) ==string {
     font-weight: unquote($weight);
-  }
-
-  @else {
+  } @else {
     font-weight: $weight;
   }
 
@@ -294,11 +299,9 @@ ORDER: Base + typography > general layout + grid > page layout > components
   font-size: 22px;
   line-height: 26px;
 
-  @if type-of($weight)==string {
+  @if type-of($weight) ==string {
     font-weight: unquote($weight);
-  }
-
-  @else {
+  } @else {
     font-weight: $weight;
   }
 
@@ -317,11 +320,9 @@ ORDER: Base + typography > general layout + grid > page layout > components
   font-family: $font-stack-heading;
   font-size: 18px;
 
-  @if type-of($weight)==string {
+  @if type-of($weight) ==string {
     font-weight: unquote($weight);
-  }
-
-  @else {
+  } @else {
     font-weight: $weight;
   }
 
@@ -332,11 +333,9 @@ ORDER: Base + typography > general layout + grid > page layout > components
   font-family: $font-stack-heading;
   font-size: 14px;
 
-  @if type-of($weight)==string {
+  @if type-of($weight) ==string {
     font-weight: unquote($weight);
-  }
-
-  @else {
+  } @else {
     font-weight: $weight;
   }
 
@@ -480,7 +479,12 @@ ORDER: Base + typography > general layout + grid > page layout > components
 
   @include media($large-screen) {
     .theme-bg-color-alpha {
-      background-color: rgba(red($primary), green($primary), blue($primary), 0.95);
+      background-color: rgba(
+        red($primary),
+        green($primary),
+        blue($primary),
+        0.95
+      );
     }
   }
 }
@@ -503,7 +507,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
   $var-output: null;
 
   // if a list, we need to go deeper
-  @if type-of($map-name)==list {
+  @if type-of($map-name) ==list {
     $nest-name: nth($map-name, 1);
     $nest-map-name: nth($map-name, 2);
   }
@@ -518,9 +522,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
     $var-fall: map-get($nest-map, $var);
     // our css4 variable output
     $var-output: var(--#{$nest-name}-#{$nest-map-name}-#{$var});
-  }
-
-  @else {
+  } @else {
     // get the map from map name
     $map: map-get($var-maps, $map-name);
     // fallback value, grab the variable's value from the map
@@ -543,8 +545,16 @@ ORDER: Base + typography > general layout + grid > page layout > components
   background-position: $position;
   background-repeat: repeat-x;
   background-size: $spacing 5px;
-  background-image: linear-gradient(to right, $color 10%, rgba(165, 0, 52, 1) 0%);
-  background-image: -webkit-linear-gradient(to right, $color 10%, rgba(165, 0, 52, 1) 0%);
+  background-image: linear-gradient(
+    to right,
+    $color 10%,
+    rgba(165, 0, 52, 1) 0%
+  );
+  background-image: -webkit-linear-gradient(
+    to right,
+    $color 10%,
+    rgba(165, 0, 52, 1) 0%
+  );
 }
 
 // button mixin
@@ -584,9 +594,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
 @function text($bg) {
   @if (lightness($bg) > 50) {
     @return $panther-black;
-  }
-
-  @else {
+  } @else {
     @return $white;
   }
 }
@@ -676,7 +684,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
         transition: all 0.175s ease-in-out;
         animation-delay: -0.75ms;
 
-        &+.toggle-drilldown {
+        & + .toggle-drilldown {
           @include v(color, cu-red);
 
           .fa-chevron-right {
@@ -708,7 +716,6 @@ ORDER: Base + typography > general layout + grid > page layout > components
           }
 
           @-moz-keyframes fadein {
-
             /* Firefox */
             from {
               opacity: 0;
@@ -720,7 +727,6 @@ ORDER: Base + typography > general layout + grid > page layout > components
           }
 
           @-webkit-keyframes fadein {
-
             /* Safari and Chrome */
             from {
               opacity: 0;
@@ -732,7 +738,6 @@ ORDER: Base + typography > general layout + grid > page layout > components
           }
 
           @-o-keyframes fadein {
-
             /* Opera */
             from {
               opacity: 0;
@@ -970,7 +975,8 @@ ORDER: Base + typography > general layout + grid > page layout > components
   transition: background 0.5s;
 
   &:hover {
-    background: $focus-color radial-gradient(circle, transparent 1%, $focus-color 1%) center/15000%;
+    background: $focus-color
+      radial-gradient(circle, transparent 1%, $focus-color 1%) center/15000%;
   }
 
   &:active {
@@ -999,7 +1005,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
 
 // squiggly underline animation: https://codepen.io/kjbrum/pen/qVQRQW
 $squiggle-max-width: 800px;
-$squiggle-ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1.000);
+$squiggle-ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
 $squiggle-cubic-transition: 0.55s $squiggle-ease-in-out-cubic;
 $squiggle-width: 18px;
 $squiggle-height: 4px;
@@ -1019,12 +1025,12 @@ $squiggle-height: 4px;
 
   &:after {
     display: block;
-    content: '';
+    content: "";
     margin-top: 2px;
     height: $squiggle-height;
 
     background: {
-      image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iNCIgdmlld0JveD0iMCAwIDE4IDQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPnNxdWlnZ2xlLWZsYXQ8L3RpdGxlPjxwYXRoIGQ9Ik0wIDRWMS44NzNjMS42MTEgMCAyLjU5NS0uMjMgNC4zMjMtLjg3M2wuMzctLjEzN0M2LjM1MS4yNDggNy40MDUgMCA4Ljk0IDBjMS41MDggMCAyLjU2NS4yNDMgNC4xODIuODM1bC40NDYuMTY0YzEuNzM5LjY0IDIuNzY0Ljg3NCA0LjQzLjg3NFY0Yy0xLjk0NCAwLTMuMTg0LS4yODQtNS4xMjYtLjk5OWwtLjQ0My0uMTYzYy0xLjQxNC0uNTE3LTIuMjYtLjcxLTMuNDg5LS43MS0xLjI1IDAtMi4wOTMuMTk3LTMuNTQ4LjczNUw1LjAyNiAzQzMuMDkzIDMuNzIgMS44OTQgNCAwIDR6IiBmaWxsLXJ1bGU9Im5vbnplcm8iIGZpbGw9IiNhNTAwMzQiLz48L3N2Zz4=');
+      image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iNCIgdmlld0JveD0iMCAwIDE4IDQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPnNxdWlnZ2xlLWZsYXQ8L3RpdGxlPjxwYXRoIGQ9Ik0wIDRWMS44NzNjMS42MTEgMCAyLjU5NS0uMjMgNC4zMjMtLjg3M2wuMzctLjEzN0M2LjM1MS4yNDggNy40MDUgMCA4Ljk0IDBjMS41MDggMCAyLjU2NS4yNDMgNC4xODIuODM1bC40NDYuMTY0YzEuNzM5LjY0IDIuNzY0Ljg3NCA0LjQzLjg3NFY0Yy0xLjk0NCAwLTMuMTg0LS4yODQtNS4xMjYtLjk5OWwtLjQ0My0uMTYzYy0xLjQxNC0uNTE3LTIuMjYtLjcxLTMuNDg5LS43MS0xLjI1IDAtMi4wOTMuMTk3LTMuNTQ4LjczNUw1LjAyNiAzQzMuMDkzIDMuNzIgMS44OTQgNCAwIDR6IiBmaWxsLXJ1bGU9Im5vbnplcm8iIGZpbGw9IiNhNTAwMzQiLz48L3N2Zz4=");
       repeat: repeat-x;
     }
 
