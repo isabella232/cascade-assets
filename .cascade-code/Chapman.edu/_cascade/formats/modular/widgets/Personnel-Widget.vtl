@@ -36,34 +36,44 @@
 
     ## Staff/Custom Listing Section
     #if ($listingType1 == 'staffCustomListing')
-        #set ($customPersonGroup = $personnelGroup.getChild('custom').getChild('person'))
-        #set ($photo = $customPersonGroup.getChild('photo').getChild('link').value)
-        #set ($name = $customPersonGroup.getChild('name').value)
-        #set ($title = $customPersonGroup.getChild('title').value)
-        #set ($department = $customPersonGroup.getChild('department').value)
-        #set ($phone = $customPersonGroup.getChild('phone').value)
+        #set ( $persons = $_XPathTool.selectNodes($element, 'personnelWidget/personnel/custom/person'))
+
+    <div class="personnel-widget__container personnel-widget__container--2-col">
+
+        #foreach ($person in $persons)
+        #set ($photo = $person.getChild('photo').getChild('link').value)
+        #set ($name = $person.getChild('name').value)
+        
+        #set ($title = $person.getChild('title').value)
+        #set ($department = $person.getChild('department').value)
+        #set ($phone = $person.getChild('phone').value)
         #set ($phone = ${_EscapeTool.xml($phone)})
-        #set ($email = $customPersonGroup.getChild('email').value)
+        #set ($email = $person.getChild('email').value)
         #set ($email = ${_EscapeTool.xml($email)})
-        #set ($officeInfo = $customPersonGroup.getChild('officeInfo').value)
+        #set ($officeInfo = $person.getChild('officeInfo').value)
         #set ($officeInfo = ${_EscapeTool.xml($officeInfo)})
-        #set ($shortBio = $customPersonGroup.getChild('shortBio').value)
+        #set ($shortBio = $person.getChild('shortBio').value)
 
         ## Link
-        #set ($linkToFullBio = $customPersonGroup.getChild('internalLink').getChild('path').value)
-        #set ($linkType = $customPersonGroup.getChild('internalExternal').value) 
-        #set ($linkLabel = $customPersonGroup.getChild('linkLabel').value) 
+        #set ($linkToFullBio = $person.getChild('internalLink').getChild('path').value)
+        #set ($linkType = $person.getChild('internalExternal').value) 
+        #set ($linkLabel = $person.getChild('linkLabel').value) 
 
         #if ($linkType == 'internal')
-            #set ($linkURL = $customPersonGroup.getChild('internalLink').getChild('path').value)
+            #set ($linkURL = $person.getChild('internalLink').getChild('path').value)
             #elseif ($linkType == 'external')
-                #set ($linkURL = $customPersonGroup.getChild('externalLink').value )
+                #set ($linkURL = $person.getChild('externalLink').value )
         #else 
-            #set ($linkURL = $customPersonGroup.getChild('fileLink').getChild('path').value )
+            #set ($linkURL = $person.getChild('fileLink').getChild('path').value )
         #end
-        
-    #end
-    ## End Staff/Custom Listing Section
+
+
+
+      #outputWidget()
+
+      #end ## End #foreach ($person in $persons)
+      </div> ## End <div class="personnel-widget__container
+    #end ## End Staff/Custom Listing Section
 
     
 
@@ -92,8 +102,8 @@
     <li>linkURL: $linkURL </li>
     </ul>
 
-<div class="personnel-widget__container personnel-widget__container--2-col">
-<div class="personnel-widget">
+#macro(outputWidget)
+  <div class="personnel-widget">
     <div class="personnel-widget__front">
       <div class="banner personnel-widget__banner"></div>
       <div class="image personnel-widget__image-wrapper">
@@ -112,15 +122,16 @@
       <hr/>
       <div class="link-bottom personnel-widget__link-bottom"></div>
 
-      <span tabindex="0" class="curl" title="click to see back of card"></span>
+      <span tabindex="0" class="curl" title="Click to reveal back of card"></span>
       <span class="half-moon"></span>
     </div>
-    <div class="personnel-widget__back" title="click to see front of card" tabindex="0">
+    <div class="personnel-widget__back" title="Click to reveal front of card" tabindex="0">
       <p>
         ${_EscapeTool.xml($shortBio)}
       </p>
       <a href="${linkURL}">${_EscapeTool.xml($linkLabel)}</a>
     </div>
   </div>
-</div>
+#end
+
 #end
