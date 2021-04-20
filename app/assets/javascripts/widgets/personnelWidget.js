@@ -1,6 +1,6 @@
 $(function () {
   if ($(".personnel-widget").length) {
-    alert("personnel widget");
+    // alert("personnel widget");
     console.log("detected personnel widget");
     personnelCarousel();
     $(".personnel-widget").each(function () {
@@ -9,7 +9,38 @@ $(function () {
         $(this).find("hr").hide();
       }
     });
+
+    $(".personnel-widget").mouseleave(function () {
+      // $(this)
+      //   .parent()
+      //   .parent()
+      //   .find(".personnel-widget--flipped")
+      //   .removeClass("personnel-widget--flipped");
+      // setTimeout(function () {
+      //   $(".personnel-widget").removeClass("personnel-widget--flipped");
+      //   console.log("removing flip");
+      // }, 2000);
+    });
   }
+
+  $(".personnel-widget").each(function () {
+    var parent = $(this);
+    $(this)
+      .find(".curl")
+      .click(function () {
+        $(this).parent().parent().addClass("personnel-widget--flipped");
+      });
+
+    $(".personnel-widget__back").click(function (e) {
+      if ($(e.target).is("p")) return; // do not flip to front if click p
+      if ($(e.target).is("a")) return; // do not flip to front if click href
+      $(this).parent().removeClass("personnel-widget--flipped");
+    });
+
+    $(".personnel-widget--flipped").mouseleave(function () {
+      $(this).removeClass("personnel-widget--flipped");
+    });
+  });
 });
 
 function personnelCarousel() {
