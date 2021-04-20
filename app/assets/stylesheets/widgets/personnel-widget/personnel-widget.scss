@@ -22,6 +22,11 @@
 @include grid(5);
 @include grid(6);
 
+@mixin personnelOutline {
+  outline: 2px dotted $cu-red;
+  outline-offset: 4px;
+}
+
 .personnel-widget {
   font-family: $futura-regular;
   display: block;
@@ -250,6 +255,10 @@
   );
   // box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
+
+  &:focus {
+    @include personnelOutline;
+  }
 }
 .curl:before,
 .curl:after {
@@ -274,6 +283,9 @@
 }
 
 .personnel-widget {
+  &:focus {
+    @include personnelOutline;
+  }
   &:hover,
   &:focus {
     .curl {
@@ -310,6 +322,10 @@
   .personnel-widget__back {
     width: 100%;
     height: 100%;
+
+    &:focus {
+      @include personnelOutline;
+    }
   }
 
   .personnel-widget__back {
