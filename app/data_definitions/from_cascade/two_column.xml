@@ -793,13 +793,14 @@
               <text field-id="" identifier="officeInfo" label="Office Address/Info:"/>
               <text field-id="499edb3dc0a81e8a6a12ed09b5bdf3d3" help-text="Keep this short (80 words Max) because you can always link to their full bio or custom page." identifier="shortBio" label="Short Bio:" multi-line="true"/>
               <text field-id="8bbc03b1c0a81e8a57740fff993608fb" identifier="linkToFullBio" label="Link To Full Bio:" type="radiobutton">
-                <radio-item label="Yes" show-fields="primaryContent/widget/personnelWidget/personnel/customListing/person/internalExternal" value="yes"/>
+                <radio-item label="Yes" show-fields="primaryContent/widget/personnelWidget/personnel/custom/person/internalExternal, primaryContent/widget/personnelWidget/personnel/custom/person/linkLabel" value="yes"/>
                 <radio-item label="No" value="no"/>
               </text>
               <text field-id="8bbc03b1c0a81e8a57740fff9fa56220" help-text="internal (Cascade), external (outside link)" identifier="internalExternal" label="Link Type:" type="radiobutton">
-                <radio-item label="Internal" show-fields="primaryContent/widget/personnelWidget/personnel/customListing/person/internalLink" value="internal"/>
-                <radio-item label="External" show-fields="primaryContent/widget/personnelWidget/personnel/customListing/person/externalLink" value="external"/>
+                <radio-item label="Internal" show-fields="primaryContent/widget/personnelWidget/personnel/custom/person/internalLink" value="internal"/>
+                <radio-item label="External" show-fields="primaryContent/widget/personnelWidget/personnel/custom/person/externalLink" value="external"/>
               </text>
+              <text identifier="linkLabel" label="Link Label"/>
               <asset field-id="8bbc03b1c0a81e8a57740fff5ea9dc03" identifier="internalLink" label="Internal Link:" type="page"/>
               <text field-id="8bbc03b1c0a81e8a57740fffb6ee5bef" identifier="externalLink" label="External Link:"/>
             </group>

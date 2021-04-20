@@ -82,7 +82,7 @@ p url_post
       }.to_json
      )
 
-     publish_asset('file', '96ab024cc0a81e8a57740fffa611a0af')
+     publish_asset('file', 'eb4180eec0a81e8a3b000293d2e89273')
 
     #  JAVASCRIPT
     base_url + 'edit/' + 'file' + 'Chapman.edu/test-section/nick-test/personnel-widget.js' + cascade_username +
@@ -140,7 +140,7 @@ p url_post
       }.to_json
      )
 
-     publish_asset('file', 'b387eec9c0a81e8a57740fff3593b66c')
+     publish_asset('file', 'eb41c165c0a81e8a3b00029326df982e')
      p url_post
   # edit_format(
   #   '567ec178c0a81e8a1e5ac2884450d7c2',

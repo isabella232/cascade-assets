@@ -1,3 +1,4 @@
+#import( "/_cascade/formats/helpers.velocity" )
 #macro(outputPersonnelWidget $element) 
 
     #set ($currentPage = $_XPathTool.selectSingleNode($contentRoot, "//system-page[@current]") )
@@ -24,12 +25,10 @@
       #set ( $schoolAffiliation = $facultyListingGroup.getChild('schoolAffiliation').value)
       #set ( $filterBy = $facultyListingGroup.getChild('filterBy').value )
       #set ( $facultyUnit = $facultyListingGroup.getChild('facultyUnit').value)
-      #set ($photo = $facultyListingGroup.getChild('photo').value)
       #set ($name = $facultyListingGroup.getChild('name').value)
       #set ($title = $facultyListingGroup.getChild('title').value)
       #set ($phone = $facultyListingGroup.getChild('phone').value)
       #set ($email = $facultyListingGroup.getChild('email').value)
-      #set ($officeInfo = $facultyListingGroup.getChild('officeInfo').value)
       #set ($shortBio = $facultyListingGroup.getChild('shortBio').value)
       #set ($linkFullBio = $facultyListingGroup.getChild('linkFullBio').value)
     #end
@@ -38,13 +37,31 @@
     ## Staff/Custom Listing Section
     #if ($listingType1 == 'staffCustomListing')
         #set ($customPersonGroup = $personnelGroup.getChild('custom').getChild('person'))
+        #set ($photo = $customPersonGroup.getChild('photo').getChild('link').value)
         #set ($name = $customPersonGroup.getChild('name').value)
         #set ($title = $customPersonGroup.getChild('title').value)
         #set ($department = $customPersonGroup.getChild('department').value)
         #set ($phone = $customPersonGroup.getChild('phone').value)
+        #set ($phone = ${_EscapeTool.xml($phone)})
         #set ($email = $customPersonGroup.getChild('email').value)
+        #set ($email = ${_EscapeTool.xml($email)})
+        #set ($officeInfo = $customPersonGroup.getChild('officeInfo').value)
+        #set ($officeInfo = ${_EscapeTool.xml($officeInfo)})
         #set ($shortBio = $customPersonGroup.getChild('shortBio').value)
-        #set ($linkToFullBio = $customPersonGroup.getChild('linkToFullBio').value)
+
+        ## Link
+        #set ($linkToFullBio = $customPersonGroup.getChild('internalLink').getChild('path').value)
+        #set ($linkType = $customPersonGroup.getChild('internalExternal').value) 
+        #set ($linkLabel = $customPersonGroup.getChild('linkLabel').value) 
+
+        #if ($linkType == 'internal')
+            #set ($linkURL = $customPersonGroup.getChild('internalLink').getChild('path').value)
+            #elseif ($linkType == 'external')
+                #set ($linkURL = $customPersonGroup.getChild('externalLink').value )
+        #else 
+            #set ($linkURL = $customPersonGroup.getChild('fileLink').getChild('path').value )
+        #end
+        
     #end
     ## End Staff/Custom Listing Section
 
@@ -70,16 +87,17 @@
     <li>officeInfo: $officeInfo </li>
     <li>shortBio: $shortBio </li>
     <li>linkFullBio: $linkFullBio </li>
+    <li>linkToFullBio: $linkToFullBio </li>
+    <li>linkType: $linkType </li>
+    <li>linkURL: $linkURL </li>
     </ul>
 
-
 <div class="personnel-widget__container personnel-widget__container--2-col">
-  <div class="personnel-widget">
+<div class="personnel-widget">
     <div class="personnel-widget__front">
       <div class="banner personnel-widget__banner"></div>
       <div class="image personnel-widget__image-wrapper">
-        <img class="personnel-widget__image--circle personnel-widget__image" src="http://placekitten.com/200/300"
-          alt="${altText}" />
+        <img class="personnel-widget__image--circle personnel-widget__image" src="${photo}" />
       </div>
       <div class="name personnel-widget__name">${_EscapeTool.xml($name)}</div>
       <div class="title personnel-widget__title">${_EscapeTool.xml($title)}</div>
@@ -93,13 +111,16 @@
       <div class="optional office-info personnel-widget__office-detail">One University Drive</div>
       <hr/>
       <div class="link-bottom personnel-widget__link-bottom"></div>
-      <span class="dog-ear"></span>
+
+      <span tabindex="0" class="curl" title="click to see back of card"></span>
       <span class="half-moon"></span>
     </div>
-    <div class="personnel-widget__back">
-      ${_EscapeTool.xml($shortBio)}
+    <div class="personnel-widget__back" title="click to see front of card" tabindex="0">
+      <p>
+        ${_EscapeTool.xml($shortBio)}
+      </p>
+      <a href="${linkURL}">${_EscapeTool.xml($linkLabel)}</a>
     </div>
   </div>
 </div>
-
 #end
