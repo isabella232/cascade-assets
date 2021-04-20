@@ -331,14 +331,25 @@
 
   .personnel-widget__back {
     opacity: 1;
-    display: flex;
-    flex-direction: column;
     height: 100%;
     // transition-delay: 1s;
     transform: rotateY(180deg);
-    text-align: center;
-    align-items: center;
-    justify-content: center;
+
+    display: block;
+    align-self: center;
+    padding-top: 50%;
+
+    p,
+    a {
+      text-align: left;
+      margin-left: 12px;
+      margin-right: 12px;
+    }
+    a {
+      border-bottom: none;
+      display: block;
+      text-decoration: 2px dotted $red underline;
+    }
   }
 
   .personnel-widget__front {
