@@ -27,14 +27,21 @@ $(function () {
     var parent = $(this);
     $(this)
       .find(".curl")
-      .click(function () {
-        $(this).parent().parent().addClass("personnel-widget--flipped");
+      .on("click keydown", function (e) {
+        if (accessibleClick(event)) {
+          $(this).parent().parent().addClass("personnel-widget--flipped");
+        }
       });
 
-    $(".personnel-widget__back").click(function (e) {
+    // $(currentButton).on("click keydown", function (e) {
+    //         if (accessibleClick(event)) {
+
+    $(".personnel-widget__back").on("click keydown", function (e) {
       if ($(e.target).is("p")) return; // do not flip to front if click p
       if ($(e.target).is("a")) return; // do not flip to front if click href
-      $(this).parent().removeClass("personnel-widget--flipped");
+      if (accessibleClick(event)) {
+        $(this).parent().removeClass("personnel-widget--flipped");
+      }
     });
 
     $(".personnel-widget--flipped").mouseleave(function () {
@@ -85,3 +92,19 @@ function personnelCarousel() {
     });
   }
 }
+
+var accessibleClick = function (event) {
+  var code = event.charCode || event.keyCode,
+    type = event.type;
+
+  if (type === "click") {
+    return true;
+  } else if (type === "keydown") {
+    if (code === 32 || code === 13) {
+      event.preventDefault();
+      return true;
+    }
+  } else {
+    return false;
+  }
+};

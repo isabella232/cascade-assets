@@ -156,7 +156,8 @@
     }
   }
 
-  &:not(:hover) {
+  &:not(:hover),
+  &:not(:focus) {
     transition: 300ms ease;
   }
 }
@@ -279,7 +280,8 @@
       width: 70px;
       height: 70px;
 
-      &:hover {
+      &:hover,
+      &:focus {
         transition: 0.3s ease;
         width: 80px;
         height: 80px;
