@@ -54,18 +54,33 @@
         #set ($officeInfo = ${_EscapeTool.xml($officeInfo)})
         #set ($shortBio = $person.getChild('shortBio').value)
 
-        ## Link
+        ## Frontside Link 
+        #set ($frontsideLink = $person.getChild('frontsideInternalLink').getChild('path').value)
+        #set ($frontsideLinkType = $person.getChild('frontsideInternalExternal').value) 
+        #set ($frontsideLinkLabel = $person.getChild('frontsideLinkLabel').value) 
+
+        #if ($frontsideLinkType == 'frontsideInternal')
+            #set ($frontsideLinkURL = $person.getChild('frontsideInternalLink').getChild('path').value)
+        #elseif ($frontsideLinkType == 'frontsideExternal')
+            #set ($frontsideLinkURL = $person.getChild('frontsideExternalLink').value )
+        #else 
+            #set ($frontsideLinkURL = $person.getChild('fileLink').getChild('path').value )
+        #end
+        ## End Frontside Link
+
+        ## Backside Link
         #set ($linkToFullBio = $person.getChild('internalLink').getChild('path').value)
         #set ($linkType = $person.getChild('internalExternal').value) 
         #set ($linkLabel = $person.getChild('linkLabel').value) 
 
         #if ($linkType == 'internal')
             #set ($linkURL = $person.getChild('internalLink').getChild('path').value)
-            #elseif ($linkType == 'external')
-                #set ($linkURL = $person.getChild('externalLink').value )
+        #elseif ($linkType == 'external')
+            #set ($linkURL = $person.getChild('externalLink').value )
         #else 
             #set ($linkURL = $person.getChild('fileLink').getChild('path').value )
         #end
+        ## End Backside Link
 
 
 
@@ -100,6 +115,8 @@
     <li>linkToFullBio: $linkToFullBio </li>
     <li>linkType: $linkType </li>
     <li>linkURL: $linkURL </li>
+    <li>frontsideLinkType : $frontsideLinkType </li>
+    <li>frontsideLinkURL: $frontsideLinkURL </li>
     </ul>
 
 #macro(outputWidget)
@@ -118,9 +135,11 @@
         <a href="mailto:${email}">$email</a>
       </div>
       <div class="optional office-info personnel-widget__office-info">Office Info</div>
-      <div class="optional office-info personnel-widget__office-detail">One University Drive</div>
+      <div class="optional office-info personnel-widget__office-detail">${_EscapeTool.xml($officeInfo)}</div>
       <hr/>
-      <div class="link-bottom personnel-widget__link-bottom"></div>
+      <div class="link-bottom personnel-widget__link-bottom">
+      <a href="$frontsideLinkURL">${_EscapeTool.xml($frontsideLinkLabel)}</a>
+      </div>
 
       <span tabindex="0" class="curl" title="Click to reveal back of card"></span>
       <span class="half-moon"></span>
