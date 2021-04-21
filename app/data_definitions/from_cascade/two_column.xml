@@ -782,6 +782,7 @@
               <radio-item label="Hide" value="hide"/>
             </text>
           </group>
+          <!-- Custom person -->
           <group identifier="custom" label="Custom ">
             <group collapsed="true" identifier="person" label="Person" multiple="true">
               <asset field-id="49fd1c0dc0a81e8a6a12ed09a293dde1" help-text="Max 600x600px" identifier="photo" label="Photo" type="file"/>
@@ -791,8 +792,22 @@
               <text field-id="8bbc03b1c0a81e8a57740fffc9811b36" identifier="phone" label="Phone:"/>
               <text field-id="8bbc03b1c0a81e8a57740fffe3cfb2a2" identifier="email" label="Email:"/>
               <text field-id="" identifier="officeInfo" label="Office Address/Info:"/>
+              <!-- Frontside (bottommost) link -->
+              <text field-id="" identifier="frontsideLink" label="Frontside Bottom Link:" type="radiobutton">
+                <radio-item label="Yes" show-fields="primaryContent/widget/personnelWidget/personnel/custom/person/frontsideInternalExternal, primaryContent/widget/personnelWidget/personnel/custom/person/frontsideLinkLabel" value="yes"/>
+                <radio-item label="No" value="no"/>
+              </text>
+              <text field-id="" help-text="internal (Cascade), external (outside link)" identifier="frontsideInternalExternal" label="Link Type:" type="radiobutton">
+                <radio-item label="Internal" show-fields="primaryContent/widget/personnelWidget/personnel/custom/person/frontsideInternalLink" value="frontsideInternal"/>
+                <radio-item label="External" show-fields="primaryContent/widget/personnelWidget/personnel/custom/person/frontsideExternalLink" value="frontsideExternal"/>
+              </text>
+              <text identifier="frontsideLinkLabel" label="Link Label"/>
+              <asset field-id="" identifier="frontsideInternalLink" label="Internal Link:" type="page"/>
+              <text field-id="" identifier="frontsideExternalLink" label="External Link:"/>
+
+              <!-- End frontside (bottommost) link -->
               <text field-id="499edb3dc0a81e8a6a12ed09b5bdf3d3" help-text="Keep this short (80 words Max) because you can always link to their full bio or custom page." identifier="shortBio" label="Short Bio:" multi-line="true"/>
-              <text field-id="8bbc03b1c0a81e8a57740fff993608fb" identifier="linkToFullBio" label="Link To Full Bio:" type="radiobutton">
+              <text field-id="8bbc03b1c0a81e8a57740fff993608fb" identifier="linkToFullBio" label="Backside Bottom Link:" type="radiobutton">
                 <radio-item label="Yes" show-fields="primaryContent/widget/personnelWidget/personnel/custom/person/internalExternal, primaryContent/widget/personnelWidget/personnel/custom/person/linkLabel" value="yes"/>
                 <radio-item label="No" value="no"/>
               </text>
@@ -805,6 +820,7 @@
               <text field-id="8bbc03b1c0a81e8a57740fffb6ee5bef" identifier="externalLink" label="External Link:"/>
             </group>
           </group>
+          <!-- End custom -->
           <group identifier="individualFacultyListing" label="Individual Faculty Listing:">
             <group identifier="individualFaculty" label="Individual Faculty" multiple="true">
               <asset field-id="8bbc03b1c0a81e8a57740fff674e86e0" help-text="Choose from Our Faculty Folder" identifier="facultyMember" label="Faculty Member:" required="true" restrict-to-folder="our-faculty" type="block"/>
