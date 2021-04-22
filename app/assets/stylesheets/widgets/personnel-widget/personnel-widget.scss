@@ -214,6 +214,11 @@
       position: absolute;
       border-radius: 50%;
       z-index: 2;
+
+      &:focus {
+        outline: 2px dotted $cu-red;
+        outline-offset: 10px;
+      }
       &.slick-next {
         margin-right: 10px !important;
         &:before {
