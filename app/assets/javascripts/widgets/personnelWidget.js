@@ -88,7 +88,7 @@ function revealMoreButton() {
         buttonClickCounter += 1;
 
         if (buttonClickCounter <= 1) {
-          $(currentCards).slice(1).show();
+          $(currentCards).slice(4, 8).show();
         }
         if (buttonClickCounter > 1) {
           $(currentCards).show();
