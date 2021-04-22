@@ -15,6 +15,7 @@ function personnelCarousel() {
         arrows: true,
         dots: false,
         infinite: true,
+        cssEase: "ease-out",
         // accessibility: true,
         responsive: [
           {

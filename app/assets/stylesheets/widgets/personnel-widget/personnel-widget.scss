@@ -189,6 +189,11 @@
   transition: 300ms ease;
 
   &__carousel {
+    .personnel-widget--flipped .personnel-widget__back p,
+    .personnel-widget--flipped .personnel-widget__back a {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
     .slick-slide > div {
       padding: 0 1rem;
     }
