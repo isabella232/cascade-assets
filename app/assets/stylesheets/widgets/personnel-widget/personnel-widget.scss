@@ -49,7 +49,7 @@
 
   &__container {
     --circularImageSize: 100px;
-    grid-gap: 12px;
+    grid-gap: 48px;
     position: relative;
     display: grid;
     min-height: 100%;
@@ -202,7 +202,7 @@
       }
     }
     .slick-slide > div {
-      padding: 0 1rem;
+      padding: 0 36px;
       padding-left: 0;
     }
     button.slick-arrow {
@@ -215,7 +215,7 @@
       border-radius: 50%;
       z-index: 2;
       &.slick-next {
-        margin-right: -25px !important;
+        margin-right: 10px !important;
         &:before {
           content: "\f061" !important;
           font-family: "Font Awesome 5 Pro";
@@ -416,7 +416,7 @@
   align-items: center;
   background-color: white;
   border: 2px solid $cu-light-grey;
-  margin-top: 20px;
+  margin-top: 48px;
   margin-bottom: 10px;
   min-height: 80px;
   border-radius: 8px;
