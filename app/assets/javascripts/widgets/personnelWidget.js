@@ -69,7 +69,7 @@ function personnelCarousel() {
             breakpoint: 900,
             settings: {
               slidesToShow: 2,
-              slidesToScroll: 2,
+              slidestoscroll: 1,
             },
           },
           {
