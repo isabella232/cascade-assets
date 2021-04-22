@@ -21,8 +21,8 @@ function personnelCarousel() {
           {
             breakpoint: 1200,
             settings: {
-              slidesToShow: 3,
-              slidesToScroll: 3,
+              slidesToShow: 2,
+              slidesToScroll: 1,
               infinite: true,
               dots: true,
             },
@@ -31,7 +31,7 @@ function personnelCarousel() {
             breakpoint: 900,
             settings: {
               slidesToShow: 2,
-              slidesToScroll: 2,
+              slidesToScroll: 1,
             },
           },
           {
