@@ -1,55 +1,10 @@
 $(function () {
   if ($(".personnel-widget").length) {
-    // alert("personnel widget");
-    console.log("detected personnel widget");
+    flipCard();
     personnelCarousel();
-    $(".personnel-widget").each(function () {
-      // IF NO 'LEARN MORE' LINK, REMOVE <hr>
-      if ($(this).find(".personnel-widget__link-bottom a").length <= 0) {
-        $(this).find("hr").hide();
-      }
-    });
-
-    $(".personnel-widget").mouseleave(function () {
-      // $(this)
-      //   .parent()
-      //   .parent()
-      //   .find(".personnel-widget--flipped")
-      //   .removeClass("personnel-widget--flipped");
-      // setTimeout(function () {
-      //   $(".personnel-widget").removeClass("personnel-widget--flipped");
-      //   console.log("removing flip");
-      // }, 2000);
-    });
+    revealMoreButton();
   }
-
-  $(".personnel-widget").each(function () {
-    var parent = $(this);
-    $(this)
-      .find(".curl")
-      .on("click keydown", function (e) {
-        if (accessibleClick(event)) {
-          $(this).parent().parent().addClass("personnel-widget--flipped");
-        }
-      });
-
-    // $(currentButton).on("click keydown", function (e) {
-    //         if (accessibleClick(event)) {
-
-    $(".personnel-widget__back").on("click keydown", function (e) {
-      if ($(e.target).is("p")) return; // do not flip to front if click p
-      if ($(e.target).is("a")) return; // do not flip to front if click href
-      if (accessibleClick(event)) {
-        $(this).parent().removeClass("personnel-widget--flipped");
-      }
-    });
-
-    $(".personnel-widget--flipped").mouseleave(function () {
-      $(this).removeClass("personnel-widget--flipped");
-    });
-  });
 });
-
 function personnelCarousel() {
   if ($(".personnel-widget__carousel").length) {
     console.log("detected personnel carousel");
@@ -92,11 +47,59 @@ function personnelCarousel() {
     });
   }
 }
-
+function flipCard() {
+  $(".personnel-widget").each(function () {
+    var parent = $(this);
+    $(this)
+      .find(".curl")
+      .on("click keydown", function (e) {
+        if (accessibleClick(event)) {
+          $(this).parent().parent().addClass("personnel-widget--flipped");
+        }
+      });
+    $(".personnel-widget__back").on("click keydown", function (e) {
+      if ($(e.target).is("a")) return; // do not flip to front if click href
+      if (accessibleClick(event)) {
+        $(this).parent().removeClass("personnel-widget--flipped");
+      }
+    });
+    $(".personnel-widget--flipped").mouseleave(function () {
+      $(this).removeClass("personnel-widget--flipped");
+    });
+  });
+}
+function revealMoreButton() {
+  // Handle multiple Personnel Widgets edge case
+  $.each($(".personnel-widget__wrapper"), function (ind) {
+    var buttonClickCounter = 0;
+    $(this).attr("id", "personnel-widget__wrapper__" + parseInt(ind + 1));
+    var currentWrapper = "#" + $(this).attr("id");
+    var currentShowMoreButton = $(currentWrapper).find(
+      ".personnel-widget__show-more"
+    );
+    var currentCards = $(currentWrapper).find(".personnel-widget"); // current instance of wrapper's cards
+    $(currentShowMoreButton).attr(
+      "id",
+      "personnel-widget__show-more__" + parseInt(ind + 1)
+    );
+    $(currentShowMoreButton).on("click keydown", function (e) {
+      if (accessibleClick(event)) {
+        buttonClickCounter += 1;
+        $(currentShowMoreButton).attr("data-counter", buttonClickCounter);
+        if (buttonClickCounter <= 1) {
+          $(currentCards).slice(3, 7).show();
+        }
+        if (buttonClickCounter > 1) {
+          $(currentCards).show();
+          $(currentShowMoreButton).hide();
+        }
+      }
+    });
+  });
+}
 var accessibleClick = function (event) {
   var code = event.charCode || event.keyCode,
     type = event.type;
-
   if (type === "click") {
     return true;
   } else if (type === "keydown") {

@@ -39,6 +39,10 @@
   transform-style: preserve-3d;
   transition: 150ms linear;
 
+  &:nth-child(1n + 3) {
+    display: none;
+  }
+
   &__front {
     z-index: 2;
   }
@@ -61,8 +65,7 @@
     border-top-left-radius: 6px;
   }
   &__image-wrapper {
-    display: flex;
-    justify-content: center;
+    display: block;
     width: 100%;
   }
   &__image {
@@ -82,11 +85,6 @@
     margin-top: 10px;
   }
   &__title {
-    -webkit-box-flex: 1;
-    -moz-box-flex: 1;
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
     font-style: italic;
     padding-left: 12%;
     padding-right: 12%;
@@ -187,7 +185,7 @@
 .personnel-widget {
   position: relative;
   height: 100%;
-  min-height: 400px;
+  min-height: 418px;
   transition: 300ms ease;
 }
 
@@ -196,6 +194,10 @@
   position: absolute;
   width: 100%;
   height: 100%;
+
+  & > div {
+    min-height: 20.99px;
+  }
 }
 
 // @keyframes flipFront {
@@ -237,8 +239,8 @@
 
 .curl {
   cursor: pointer;
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   position: absolute;
   bottom: 0;
   right: 0;
@@ -289,14 +291,14 @@
   &:hover,
   &:focus {
     .curl {
-      width: 70px;
-      height: 70px;
+      width: 50px;
+      height: 50px;
 
       &:hover,
       &:focus {
         transition: 0.3s ease;
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
 
         @keyframes flipFront {
           from {
@@ -357,4 +359,20 @@
     position: absolute;
     z-index: -2;
   }
+}
+
+.personnel-widget__show-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border: 2px solid $cu-light-grey;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  min-height: 80px;
+  border-radius: 8px;
+  width: 100%;
+  color: $cu-red;
+  text-decoration: underline;
+  font-family: $futura-regular;
 }
