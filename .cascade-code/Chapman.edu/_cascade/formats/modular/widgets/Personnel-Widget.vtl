@@ -72,6 +72,7 @@ $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('section
                 ## End Frontside Link
 
                 ## Backside Link
+                #set ($displayBacksideLink = $person.getChild('linkToFullBio').value)
                 #set ($linkToFullBio = $person.getChild('internalLink').getChild('path').value)
                 #set ($linkType = $person.getChild('internalExternal').value) 
                 #set ($linkLabel = $person.getChild('linkLabel').value) 
@@ -164,6 +165,7 @@ $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('section
             </li>
             <li>displayFrontsideLink: $displayFrontsideLink
             </li>
+            <li>displayBacksideLink: $displayBacksideLink</li>
         </ul>
     </details>
 
@@ -187,7 +189,8 @@ $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('section
         #if ($displayFrontsideLink != 'no')
             <hr/>
             <div class="link-bottom personnel-widget__link-bottom">
-                <a href="$frontsideLinkURL">${_EscapeTool.xml($frontsideLinkLabel)}</a>
+                <a href="$frontsideLinkURL">${_EscapeTool.xml($frontsideLinkLabel)}
+                </a>
             </div>
         #end
 
@@ -198,7 +201,10 @@ $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('section
         <p>
             ${_EscapeTool.xml($shortBio)}
         </p>
-        <a href="${linkURL}">${_EscapeTool.xml($linkLabel)}</a>
+
+        #if ($displayBacksideLink != 'no')
+            <a href="${linkURL}">${_EscapeTool.xml($linkLabel)}</a>
+        #end
     </div>
 </div>
 #end ## End #macro(outputWidget)
