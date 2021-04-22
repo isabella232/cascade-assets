@@ -172,7 +172,10 @@ $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('section
     <div class="personnel-widget__front">
         <div class="banner personnel-widget__banner"></div>
         <div class="image personnel-widget__image-wrapper">
-            <img class="personnel-widget__image--circle personnel-widget__image" src="${photo}"/>
+            <img
+                class="personnel-widget__image--circle personnel-widget__image"
+                src="${photo}"
+                role="decorative"/>
         </div>
         <div class="name personnel-widget__name">${_EscapeTool.xml($name)}</div>
         <div class="title personnel-widget__title">${_EscapeTool.xml($title)}</div>
