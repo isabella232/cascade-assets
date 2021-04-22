@@ -82,15 +82,29 @@ function revealMoreButton() {
       "id",
       "personnel-widget__show-more__" + parseInt(ind + 1)
     );
+
     $(currentShowMoreButton).on("click keydown", function (e) {
       if (accessibleClick(event)) {
+        var currentHidden = $(currentWrapper).find(".personnel-widget:hidden")
+          .length;
+        console.log("current hidden: " + currentHidden);
+        var currentVisible = $(currentWrapper).find(".personnel-widget:visible")
+          .length;
+        console.log("current visible: " + currentVisible);
+
         buttonClickCounter += 1;
         $(currentShowMoreButton).attr("data-counter", buttonClickCounter);
+        $(currentShowMoreButton).attr("data-hidden", currentHidden);
+
         if (buttonClickCounter <= 1) {
-          $(currentCards).slice(3, 7).show();
+          $(currentCards).slice(1).show();
         }
         if (buttonClickCounter > 1) {
           $(currentCards).show();
+          $(currentShowMoreButton).hide();
+        }
+        if (currentHidden == 0) {
+          console.log("checking currentHidden");
           $(currentShowMoreButton).hide();
         }
       }
