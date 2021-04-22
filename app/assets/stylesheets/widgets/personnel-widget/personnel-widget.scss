@@ -189,15 +189,21 @@
   transition: 300ms ease;
 
   &__carousel {
-    .personnel-widget--flipped .personnel-widget__back p,
-    .personnel-widget--flipped .personnel-widget__back a {
-      padding-left: 24px;
-      padding-right: 24px;
+    & ~ button.show-more {
+      display: none !important;
+      background-color: pink !important;
+    }
+    .personnel-widget--flipped .personnel-widget__back {
+      position: absolute;
+      p,
+      a {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
     }
     .slick-slide > div {
       padding: 0 1rem;
     }
-
     button.slick-arrow {
       background-color: white;
       border: 2px solid $cu-light-grey;
@@ -208,7 +214,7 @@
       border-radius: 50%;
       z-index: 2;
       &.slick-next {
-        margin-right: -1rem;
+        margin-right: -1.5rem;
       }
       &.slick-prev {
         margin-left: 1rem;
