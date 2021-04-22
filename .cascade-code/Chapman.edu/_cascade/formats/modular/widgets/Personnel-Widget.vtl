@@ -203,7 +203,7 @@ $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('section
         </p>
 
         #if ($displayBacksideLink != 'no')
-            <a href="${linkURL}">${_EscapeTool.xml($linkLabel)}</a>
+            <a title="${_EscapeTool.xml($linkLabel)}" href="${linkURL}">${_EscapeTool.xml($linkLabel)}</a>
         #end
     </div>
 </div>
