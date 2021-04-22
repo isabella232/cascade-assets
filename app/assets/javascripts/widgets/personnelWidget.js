@@ -85,16 +85,7 @@ function revealMoreButton() {
 
     $(currentShowMoreButton).on("click keydown", function (e) {
       if (accessibleClick(event)) {
-        var currentHidden = $(currentWrapper).find(".personnel-widget:hidden")
-          .length;
-        console.log("current hidden: " + currentHidden);
-        var currentVisible = $(currentWrapper).find(".personnel-widget:visible")
-          .length;
-        console.log("current visible: " + currentVisible);
-
         buttonClickCounter += 1;
-        $(currentShowMoreButton).attr("data-counter", buttonClickCounter);
-        $(currentShowMoreButton).attr("data-hidden", currentHidden);
 
         if (buttonClickCounter <= 1) {
           $(currentCards).slice(1).show();
@@ -103,7 +94,24 @@ function revealMoreButton() {
           $(currentCards).show();
           $(currentShowMoreButton).hide();
         }
+
+        var currentHidden = $(currentWrapper).find(".personnel-widget:hidden")
+          .length;
+        var currentVisible = $(currentWrapper).find(".personnel-widget:visible")
+          .length;
+
+        console.log("current hidden: " + currentHidden);
+        console.log("current visible: " + currentVisible);
+
+        $(currentShowMoreButton).attr("hidden-cards", currentHidden);
+        $(currentShowMoreButton).attr("data-counter", buttonClickCounter);
+
         if (currentHidden == 0) {
+          console.log("checking currentHidden");
+          $(currentShowMoreButton).hide();
+        }
+
+        if ($(currentHidden) == 0) {
           console.log("checking currentHidden");
           $(currentShowMoreButton).hide();
         }
