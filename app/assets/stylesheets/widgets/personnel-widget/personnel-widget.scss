@@ -208,8 +208,8 @@
     button.slick-arrow {
       background-color: white;
       border: 1px solid $cu-red;
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       right: 0;
       position: absolute;
       border-radius: 50%;
@@ -219,6 +219,7 @@
         &:before {
           content: "\f061" !important;
           font-family: "Font Awesome 5 Pro";
+          font-size: 1.6rem;
         }
       }
       &.slick-prev {
@@ -226,6 +227,7 @@
         &:before {
           content: "\f060";
           font-family: "Font Awesome 5 Pro";
+          font-size: 1.6rem;
         }
       }
       &:before {
@@ -423,3 +425,38 @@
   text-decoration: underline;
   font-family: $futura-regular;
 }
+
+// CUSTOM SCROLLBARS
+.personnel-widget p {
+  max-height: 200px;
+  overflow: scroll;
+}
+
+.personnel-widget p::-webkit-scrollbar {
+  background-color: white;
+  width: 16px;
+}
+
+/* background of the scrollbar except button or resizer */
+.personnel-widget p::-webkit-scrollbar-track {
+  background-color: white;
+}
+.personnel-widget p::-webkit-scrollbar-track:hover {
+  background-color: #f4f4f4;
+}
+
+/* scrollbar itself */
+.personnel-widget p::-webkit-scrollbar-thumb {
+  background-color: #babac0;
+  border-radius: 16px;
+  border: 5px solid white;
+}
+.personnel-widget p::-webkit-scrollbar-thumb:hover {
+  background-color: #a0a0a5;
+  border: 4px solid #f4f4f4;
+}
+/* set button(top and bottom of the scrollbar) */
+.personnel-widget p::-webkit-scrollbar-button {
+  display: none;
+}
+// END CUSTOM SCROLLBAR
