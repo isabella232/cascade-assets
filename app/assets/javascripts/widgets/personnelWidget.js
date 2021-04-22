@@ -7,10 +7,9 @@ $(function () {
 });
 function personnelCarousel() {
   if ($(".personnel-widget__carousel").length) {
-    console.log("detected personnel carousel");
     $(".personnel-widget__carousel").slick({
       infinite: true,
-      slidesToShow: 4,
+      slidesToShow: 3,
       slidesToScroll: 1,
       arrows: true,
       dots: false,

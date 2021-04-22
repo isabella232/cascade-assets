@@ -12,6 +12,8 @@
 $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionPreheader').value)
 #set ($sectionHeader =
 $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionHeader').value)
+#set ($sectionText =
+$element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionHeaderParagraph').value)
 ## End Intro Section
 
 ## Personnel Widget Section
@@ -19,6 +21,7 @@ $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('section
 #set ( $layoutStyle = $personnelGroup.getChild('style').value )
 #set ($listingType = $personnelGroup.getChild('individualListingType').value )
 #set ($listingType1 = $personnelGroup.getChild('listingType1').value )
+#set ($layoutStyle = $personnelGroup.getChild('style').value )
 ## End Personnel Widget Section
 
 ## Faculty Listing Section
@@ -40,7 +43,17 @@ $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('section
 #if ($listingType1 == 'staffCustomListing')
     #set ( $persons = $_XPathTool.selectNodes($element, 'personnelWidget/personnel/custom/person'))
     <div class="personnel-widget__wrapper">
-        <div class="personnel-widget__container personnel-widget__container--2-col">
+        #if ($displaySectionIntro != 'no')
+            <div class="intro-section">
+                <div class="intro-section__header">${_EscapeTool.xml($sectionHeader)}</div>
+                <div class="intro-section__preheader">${_EscapeTool.xml($sectionPreheader)}</div>
+                <div class="intro-section__text">
+                    ${_EscapeTool.xml($sectionText)}
+                </div>
+            </div>
+        #end ## end displaySectionIntro
+        <div
+            class="personnel-widget__container personnel-widget__container--2-col personnel-widget__${layoutStyle}">
 
             #foreach ($person in $persons)
                 #set ($photo = $person.getChild('photo').getChild('link').value)
@@ -166,6 +179,7 @@ $element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('section
             <li>displayFrontsideLink: $displayFrontsideLink
             </li>
             <li>displayBacksideLink: $displayBacksideLink</li>
+            <li>layoutStyle: $layoutStyle</li>
         </ul>
     </details>
 
