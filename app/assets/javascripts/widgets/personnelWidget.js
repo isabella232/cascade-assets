@@ -112,12 +112,20 @@ function revealMoreButton() {
   // Handle multiple Personnel Widgets edge case
   $.each($(".personnel-widget__wrapper"), function (ind) {
     var buttonClickCounter = 0;
+
     $(this).attr("id", "personnel-widget__wrapper__" + parseInt(ind + 1));
     var currentWrapper = "#" + $(this).attr("id");
     var currentShowMoreButton = $(currentWrapper).find(
       ".personnel-widget__show-more"
     );
     var currentCards = $(currentWrapper).find(".personnel-widget"); // current instance of wrapper's cards
+
+    // Hide 'show more' button if fewer than 4 Personnel
+    if ($(currentWrapper).find(".personnel-widget").length <= 4) {
+      $(currentShowMoreButton).hide();
+    }
+
+    // Add custom ID to each show more button
     $(currentShowMoreButton).attr(
       "id",
       "personnel-widget__show-more__" + parseInt(ind + 1)
