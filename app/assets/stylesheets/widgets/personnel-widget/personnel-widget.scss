@@ -79,6 +79,11 @@
       margin-top: -25px;
     }
   } // end __image
+  &__label {
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: bold;
+  }
   &__name {
     font-weight: bold;
     color: $black;
