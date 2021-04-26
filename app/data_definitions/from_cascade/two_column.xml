@@ -704,15 +704,19 @@
           <radio-item label="Yes" show-fields="primaryContent/widget/personnelWidget/sectionHeaderGroup, primaryContent/widget/personnelWidget/textAlignment" value="yes"/>
           <radio-item label="No" value="no "/>
         </text>
+        <text default="left-aligned" field-id="" help-text="Text Alignment for Intro Section" identifier="textAlignment" label="Text Alignment" type="radiobutton">
+          <radio-item label="Left Aligned" value="left-aligned"/>
+          <radio-item label="Centered" value="centered"/>
+        </text>
         <shared-field field-id="8babbf5fc0a81e8a57740fff772e6a8e" identifier="sectionHeaderGroup" path="Section Header"/>
         <group collapsed="true" identifier="personnel" label="Personnel">
           <text field-id="8babbf5fc0a81e8a57740fff5dba65b7" identifier="style" label="Layout Style:" required="true" type="radiobutton">
             <radio-item label="Card Grid" show-fields="primaryContent/widget/personnelWidget/personnel/listingType1" value="cardGrid"/>
             <radio-item label="Carousel" show-fields="primaryContent/widget/personnelWidget/personnel/listingType1" value="carousel"/>
-            <radio-item label="Individual Profile" show-fields="primaryContent/widget/personnelWidget/personnel/individualListingType" value="individualProfile"/>
+            <radio-item label="Individual Profile" show-fields="primaryContent/widget/personnelWidget/personnel/individualListingType" value="individual-profile"/>
           </text>
           <text field-id="4a1531c5c0a81e8a6a12ed09eda3f85f" identifier="individualListingType" label="Individual Listing Type:" type="radiobutton">
-            <radio-item label="Individual Faculty Listing" show-fields="primaryContent/widget/personnelWidget/personnel/individualFacultyListing" value="individual"/>
+            <radio-item label="Individual Faculty Listing" show-fields="primaryContent/widget/personnelWidget/personnel/individualFacultyListing" value="individualFaculty"/>
             <radio-item label="Individual Staff/Custom Listing" show-fields="primaryContent/widget/personnelWidget/personnel/custom" value="staffCustom"/>
           </text>
           <text field-id="8babbf60c0a81e8a57740fff5af44941" identifier="listingType1" label="Listing Type:" required="true" type="radiobutton">
@@ -793,13 +797,13 @@
               <text field-id="8bbc03b1c0a81e8a57740fffe3cfb2a2" identifier="email" label="Email:"/>
               <text field-id="" identifier="officeInfo" label="Office Address/Info:"/>
               <!-- Frontside (bottommost) link -->
-              <text field-id="" identifier="frontsideLink" label="Frontside Bottom Link:" type="radiobutton">
+              <text field-id="" identifier="frontsideLink" label="Frontside Bottom Link:" type="radiobutton" default="no">
                 <radio-item label="Yes" show-fields="primaryContent/widget/personnelWidget/personnel/custom/person/frontsideInternalExternal, primaryContent/widget/personnelWidget/personnel/custom/person/frontsideLinkLabel" value="yes"/>
                 <radio-item label="No" value="no"/>
               </text>
               <text field-id="" help-text="internal (Cascade), external (outside link)" identifier="frontsideInternalExternal" label="Link Type:" type="radiobutton">
-                <radio-item label="Internal" show-fields="primaryContent/widget/personnelWidget/personnel/custom/person/frontsideInternalLink" value="internal"/>
-                <radio-item label="External" show-fields="primaryContent/widget/personnelWidget/personnel/custom/person/frontsideExternalLink" value="external"/>
+                <radio-item label="Internal" show-fields="primaryContent/widget/personnelWidget/personnel/custom/person/frontsideInternalLink" value="frontsideInternal"/>
+                <radio-item label="External" show-fields="primaryContent/widget/personnelWidget/personnel/custom/person/frontsideExternalLink" value="frontsideExternal"/>
               </text>
               <text identifier="frontsideLinkLabel" label="Link Label"/>
               <asset field-id="" identifier="frontsideInternalLink" label="Internal Link:" type="page"/>
@@ -851,7 +855,7 @@
               <text default="show" field-id="9998c6ccc0a81e8a57740fffe5672b7c" identifier="bio" label="Short Bio:" type="radiobutton">
                 <radio-item label="Show:" value="show"/>
                 <radio-item label="Hide" value="hide"/>
-                <radio-item label="Custom Bio" show-fields="primaryContent/widget/personnelWidget/personnel/individualListing/customBio" value="customBio"/>
+                <radio-item label="Custom Bio" show-fields="primaryContent/widget/personnelWidget/personnel/individualFaculty/customBio" value="customBio"/>
               </text>
               <text field-id="49dd745cc0a81e8a6a12ed096203d9c5" help-text="Keep this short (80 words Max) because you can always link to their full bio or custom page." identifier="customBio" label="Custom Bio:" multi-line="true"/>
               <text default="show" field-id="4a276f94c0a81e8a6a12ed094ea1dc00" identifier="researchInterests" label="Research Interests:" type="radiobutton">
@@ -873,11 +877,11 @@
               <text default="show" field-id="407e8542c0a81e8a6a12ed09859e0b9d" identifier="linkToFullBio" label="Link to Full Bio:" type="radiobutton">
                 <radio-item label="Show" value="show"/>
                 <radio-item label="Hide" value="hide"/>
-                <radio-item label="Custom Link" show-fields="primaryContent/widget/personnelWidget/personnel/individualListing/customURLinternalExternal" value="customLink"/>
+                <radio-item label="Custom Link" show-fields="primaryContent/widget/personnelWidget/personnel/individualFaculty/customURLinternalExternal" value="customLink"/>
               </text>
               <text field-id="49b77059c0a81e8a6a12ed09b803dd24" help-text="internal (Cascade), external (outside link)" identifier="customURLinternalExternal" label="Internal/External Link" type="radiobutton">
-                <radio-item label="Internal" show-fields="primaryContent/widget/personnelWidget/personnel/individualListing/internalLink" value="internal"/>
-                <radio-item label="External" show-fields="primaryContent/widget/personnelWidget/personnel/individualListing/externalLink" value="external"/>
+                <radio-item label="Internal" show-fields="primaryContent/widget/personnelWidget/personnel/individualFaculty/internalLink" value="internal"/>
+                <radio-item label="External" show-fields="primaryContent/widget/personnelWidget/personnel/individualFaculty/externalLink" value="external"/>
               </text>
               <asset field-id="49dd745cc0a81e8a6a12ed090e41e17b" identifier="internalLink" label="Internal Link:" type="page"/>
               <text field-id="49b5d6b0c0a81e8a6a12ed09164fa906" identifier="externalLink" label="External Link:"/>
