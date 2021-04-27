@@ -51,146 +51,151 @@ $element.getChild($widgetXPath).getChild('textAlignment').value)
 #end
 
 #if ($listingType == 'individualFaculty')
-    INDIVIDUAL FACULTY!
-    <br/>
-
-    #set ( $persons = $_XPathTool.selectNodes($element,
-    'personnelWidget/personnel/indiviaulFacultyListing')) #set ($individualFacultyGroup =
-    $personnelGroup.getChild('individualFacultyListing')) #set ($name =
+    #set ( $faculty = $_XPathTool.selectNodes($element,
+    'personnelWidget/personnel/individualFacultyListing')) 
+    #set ($individualFacultyGroup =
+    $personnelGroup.getChild('individualFacultyListing')) 
+    #set ($name =
     $individualFacultyGroup.getChild('individualFaculty').getChild('facultyMember').getChild('name').value)
     #set ($name =
     $individualFacultyGroup.getChild('individualFaculty').getChild('facultyMember').getChild('name').value)
+    #end 
+    #set ( $persons = $_XPathTool.selectNodes($element, 'personnelWidget/personnel/individualFacultyListing/individualFaculty'))
 
-    <ul>
-        <li>name: $name</li>
-    </ul>
+    #foreach ($member in $persons)
+      #set ( $name = $member.getChild('facultyMember').getChild('name').value)
+      #set ( $path = $member.getChild('facultyMember').getChild('path').value)
+      #set ( $customBio = $member.getChild('customBio').value)
+      <ul>
+      <li>Faculty NAME: $name</li>
+      <li>Faculty path: $path</li>
+      <li>customBio: $customBio</li>
+      </ul>
+    #end
 
-#end 
-#set ( $persons = $_XPathTool.selectNodes($element,
-'personnelWidget/personnel/custom/person'))
-<div class="personnel-widget__wrapper">
-    #if ($displaySectionIntro != "no")
-        <div class="section-intro text-align--${introAndOutroTextAlignment}">
-            <div class="section-intro__preheader text-align--${introAndOutroTextAlignment}">
-                ${_EscapeTool.xml($sectionPreheader)}
+    <div class="personnel-widget__wrapper">
+        #if ($displaySectionIntro != "no")
+            <div class="section-intro text-align--${introAndOutroTextAlignment}">
+                <div class="section-intro__preheader text-align--${introAndOutroTextAlignment}">
+                    ${_EscapeTool.xml($sectionPreheader)}
+                </div>
+                <h2 class="section-intro__header text-align--${introAndOutroTextAlignment}">
+                    ${_EscapeTool.xml($sectionHeader)}
+                </h2>
+                <div class="section-intro__title text-align--${introAndOutroTextAlignment}">
+                    $_SerializerTool.serialize($element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionHeaderParagraph'),
+                    true)
+                </div>
             </div>
-            <h2 class="section-intro__header text-align--${introAndOutroTextAlignment}">
-                ${_EscapeTool.xml($sectionHeader)}
-            </h2>
-            <div class="section-intro__title text-align--${introAndOutroTextAlignment}">
-                $_SerializerTool.serialize($element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionHeaderParagraph'),
-                true)
-            </div>
+
+        #end ## Close #if ($displaySectionIntro != "no")
+        <div
+            class="personnel-widget__container personnel-widget__container--${numberOfColumns}-col personnel-widget__${layoutStyle} personnel-widget__${layoutStyle}">
+
+            #foreach ($person in $persons)
+                #set ($photo = $person.getChild('photo').getChild('link').value)
+                #set ($name = $person.getChild('name').value)
+
+                #set ($title = $person.getChild('title').value)
+                #set ($department = $person.getChild('department').value)
+                #set ($phone = $person.getChild('phone').value)
+                #set ($phone = ${_EscapeTool.xml($phone)})
+                #set ($email = $person.getChild('email').value)
+                #set ($email = ${_EscapeTool.xml($email)})
+                #set ($officeInfo = $person.getChild('officeInfo').value)
+                #set ($officeInfo = ${_EscapeTool.xml($officeInfo)})
+                #set ($shortBio = $person.getChild('shortBio').value)
+
+                ## Frontside Link
+                #set ($displayFrontsideLink = $person.getChild('frontsideLink').value)
+                #set ($frontsideLink = $person.getChild('frontsideInternalLink').getChild('path').value)
+                #set ($frontsideLinkType = $person.getChild('frontsideInternalExternal').value)
+                #set ($frontsideLinkLabel = $person.getChild('frontsideLinkLabel').value)
+
+                #if ($frontsideLinkType == 'frontsideInternal')
+                    #set ($frontsideLinkURL = $person.getChild('frontsideInternalLink').getChild('path').value)
+                    #elseif ($frontsideLinkType == 'frontsideExternal')
+                    #set ($frontsideLinkURL = $person.getChild('frontsideExternalLink').value )
+                #else
+                    #set ($frontsideLinkURL = $person.getChild('fileLink').getChild('path').value )
+                #end
+                ## Close Frontside Link
+
+                ## Backside Link
+                #set ($displayBacksideLink = $person.getChild('linkToFullBio').value)
+                #set ($linkToFullBio = $person.getChild('internalLink').getChild('path').value)
+                #set ($linkType = $person.getChild('internalExternal').value)
+                #set ($linkLabel = $person.getChild('linkLabel').value)
+
+                #if ($linkType == 'internal')
+                    #set ($linkURL = $person.getChild('internalLink').getChild('path').value)
+                    #elseif ($linkType == 'external')
+                    #set ($linkURL = $person.getChild('externalLink').value )
+                #else
+                    #set ($linkURL = $person.getChild('fileLink').getChild('path').value )
+                #end
+                ## Close Backside Link
+
+                #if ($layoutStyle != 'individual-profile' || 'facultyListing')
+                    #outputCardGridAndCarousel() ## Local Macro - outputs actual HTML
+                #end
+
+                #if ($layoutStyle == 'individual-profile')
+                    <h2>Individual Profile</h2>
+                    #outputIndividualListing()
+                #end
+
+            #end ## Close #foreach ($person in $persons)
         </div>
-
-    #end ## Close #if ($displaySectionIntro != "no")
-    <div
-        class="personnel-widget__container personnel-widget__container--${numberOfColumns}-col personnel-widget__${layoutStyle} personnel-widget__${layoutStyle}">
-
-        #foreach ($person in $persons)
-            #set ($photo = $person.getChild('photo').getChild('link').value)
-            #set ($name = $person.getChild('name').value)
-
-            #set ($title = $person.getChild('title').value)
-            #set ($department = $person.getChild('department').value)
-            #set ($phone = $person.getChild('phone').value)
-            #set ($phone = ${_EscapeTool.xml($phone)})
-            #set ($email = $person.getChild('email').value)
-            #set ($email = ${_EscapeTool.xml($email)})
-            #set ($officeInfo = $person.getChild('officeInfo').value)
-            #set ($officeInfo = ${_EscapeTool.xml($officeInfo)})
-            #set ($shortBio = $person.getChild('shortBio').value)
-
-            ## Frontside Link
-            #set ($displayFrontsideLink = $person.getChild('frontsideLink').value)
-            #set ($frontsideLink = $person.getChild('frontsideInternalLink').getChild('path').value)
-            #set ($frontsideLinkType = $person.getChild('frontsideInternalExternal').value)
-            #set ($frontsideLinkLabel = $person.getChild('frontsideLinkLabel').value)
-
-            #if ($frontsideLinkType == 'frontsideInternal')
-                #set ($frontsideLinkURL = $person.getChild('frontsideInternalLink').getChild('path').value)
-                #elseif ($frontsideLinkType == 'frontsideExternal')
-                #set ($frontsideLinkURL = $person.getChild('frontsideExternalLink').value )
-            #else
-                #set ($frontsideLinkURL = $person.getChild('fileLink').getChild('path').value )
-            #end
-            ## Close Frontside Link
-
-            ## Backside Link
-            #set ($displayBacksideLink = $person.getChild('linkToFullBio').value)
-            #set ($linkToFullBio = $person.getChild('internalLink').getChild('path').value)
-            #set ($linkType = $person.getChild('internalExternal').value)
-            #set ($linkLabel = $person.getChild('linkLabel').value)
-
-            #if ($linkType == 'internal')
-                #set ($linkURL = $person.getChild('internalLink').getChild('path').value)
-                #elseif ($linkType == 'external')
-                #set ($linkURL = $person.getChild('externalLink').value )
-            #else
-                #set ($linkURL = $person.getChild('fileLink').getChild('path').value )
-            #end
-            ## Close Backside Link
-
-            #if ($layoutStyle != 'individual-profile' || 'facultyListing')
-                #outputCardGridAndCarousel() ## Local Macro - outputs actual HTML
-            #end
-
-            #if ($layoutStyle == 'individual-profile')
-                <h2>Individual Profile</h2>
-                #outputIndividualListing()
-            #end
-
-        #end ## Close #foreach ($person in $persons)
+        ## Close <div class="personnel-widget__container
+        <button class=" show-more personnel-widget__show-more underline">Show More</button>
     </div>
-    ## Close <div class="personnel-widget__container
-    <button class=" show-more personnel-widget__show-more underline">Show More</button>
-</div>
 #end ## Close Staff/Custom Listing Section
 
 #macro(outputCardGridAndCarousel)
 <div class="personnel-widget">
-#debugDetails()
+    #debugDetails()
 
-<div class="personnel-widget__front">
-    <div class="banner personnel-widget__banner"></div>
-    <div class="image personnel-widget__image-wrapper">
-        <img
-            class="personnel-widget__image--circle personnel-widget__image"
-            src="${photo}"
-            role="decorative"/>
-    </div>
-    <div class="name personnel-widget__name">${_EscapeTool.xml($name)}</div>
-    <div class="title personnel-widget__title">${_EscapeTool.xml($title)}</div>
-    <div class="phone personnel-widget__phone">Phone</div>
-    <div class="phone-number personnel-widget__phone-number">
-        <a href="tel:+${phone}">$phone</a>
-    </div>
-    <div class="email personnel-widget__email">Email</div>
-    <div class="email-address personnel-widget__email-address">
-        <a href="mailto:${email}">$email</a>
-    </div>
-    <div class="optional office-info personnel-widget__office-info">Office Info</div>
-    <div class="optional office-info personnel-widget__office-detail">${_EscapeTool.xml($officeInfo)}</div>
-    #if ($displayFrontsideLink != 'no')
-        <hr/>
-        <div class="link-bottom personnel-widget__link-bottom">
-            <a href="$frontsideLinkURL">${_EscapeTool.xml($frontsideLinkLabel)}
-            </a>
+    <div class="personnel-widget__front">
+        <div class="banner personnel-widget__banner"></div>
+        <div class="image personnel-widget__image-wrapper">
+            <img
+                class="personnel-widget__image--circle personnel-widget__image"
+                src="${photo}"
+                role="decorative"/>
         </div>
-    #end
+        <div class="name personnel-widget__name">${_EscapeTool.xml($name)}</div>
+        <div class="title personnel-widget__title">${_EscapeTool.xml($title)}</div>
+        <div class="phone personnel-widget__phone">Phone</div>
+        <div class="phone-number personnel-widget__phone-number">
+            <a href="tel:+${phone}">$phone</a>
+        </div>
+        <div class="email personnel-widget__email">Email</div>
+        <div class="email-address personnel-widget__email-address">
+            <a href="mailto:${email}">$email</a>
+        </div>
+        <div class="optional office-info personnel-widget__office-info">Office Info</div>
+        <div class="optional office-info personnel-widget__office-detail">${_EscapeTool.xml($officeInfo)}</div>
+        #if ($displayFrontsideLink != 'no')
+            <hr/>
+            <div class="link-bottom personnel-widget__link-bottom">
+                <a href="$frontsideLinkURL">${_EscapeTool.xml($frontsideLinkLabel)}
+                </a>
+            </div>
+        #end
 
-    <span tabindex="0" class="curl" title="Click to reveal back of card"></span>
-    <span class="half-moon"></span>
-</div>
-<div class="personnel-widget__back" title="Click to reveal front of card" tabindex="0">
-    <p tabindex="0">
-        ${_EscapeTool.xml($shortBio)}
-    </p>
+        <span tabindex="0" class="curl" title="Click to reveal back of card"></span>
+        <span class="half-moon"></span>
+    </div>
+    <div class="personnel-widget__back" title="Click to reveal front of card" tabindex="0">
+        <p tabindex="0">
+            ${_EscapeTool.xml($shortBio)}
+        </p>
 
-    #if ($displayBacksideLink != 'no')
-        <a title="${_EscapeTool.xml($linkLabel)}" href="${linkURL}">${_EscapeTool.xml($linkLabel)}</a>
-    #end
-</div>
+        #if ($displayBacksideLink != 'no')
+            <a title="${_EscapeTool.xml($linkLabel)}" href="${linkURL}">${_EscapeTool.xml($linkLabel)}</a>
+        #end
+    </div>
 </div>
 ## #end ## Close #if ($layoutStyle == 'cardGrid')
 
@@ -202,88 +207,88 @@ $element.getChild($widgetXPath).getChild('textAlignment').value)
 #debugDetails()
 <div class="banner personnel-widget__banner"></div>
 <div class="personnel-widget__inner">
-<div class="personnel-widget__col--left">
-    <div class="image personnel-widget__image-wrapper">
-        <img
-            class="personnel-widget__image--circle personnel-widget__image"
-            src="${photo}"
-            role="decorative"/>
-    </div>
-</div>
-<div class="personnel-widget__col--right">
-    <div class="name personnel-widget__name">${_EscapeTool.xml($name)}</div>
-    <div class="title personnel-widget__title">${_EscapeTool.xml($title)}</div>
-    <div class="phone personnel-widget__phone">Phone</div>
-    <div class="phone-number personnel-widget__phone-number">
-        <a href="tel:+${phone}">$phone</a>
-    </div>
-    <div class="email personnel-widget__email">Email</div>
-    <div class="email-address personnel-widget__email-address">
-        <a href="mailto:${email}">$email</a>
-    </div>
-    <div class="optional office-info personnel-widget__office-info">Office Info</div>
-    <div class="optional office-info personnel-widget__office-detail">${_EscapeTool.xml($officeInfo)}</div>
-
-    <div class="biography personnel-widget__biography">
-        <div class="personnel-widget__label personnel-widget__biography-label">Biography:</div>
-        <p tabindex="0">
-            ${_EscapeTool.xml($shortBio)}
-        </p>
-    </div>
-
-    <div class="research-interest personnel-widget__research-interest">
-        <div class="personnel-widget__label">Research Interest:</div>
-        <div class="personnel-widget__research-interest--details">
-            <ul>
-                <li>
-                    + Molecular mechanisms underlying “field cancerization” in human tissues affected by adenocarcinomas
-                </li>
-
-                <li>+Molecular mechanisms of prostate cancer progression to castration resistance</li>
-
-                <li>+Natural product based experimental therapeutics with a focus on reactive oxygen species and
-                    target protein degradation</li>
-            </ul>
+    <div class="personnel-widget__col--left">
+        <div class="image personnel-widget__image-wrapper">
+            <img
+                class="personnel-widget__image--circle personnel-widget__image"
+                src="${photo}"
+                role="decorative"/>
         </div>
     </div>
-
-    <div class="teaching personnel-widget__teaching">
-        <div class="personnel-widget__label">Teaching:
+    <div class="personnel-widget__col--right">
+        <div class="name personnel-widget__name">${_EscapeTool.xml($name)}</div>
+        <div class="title personnel-widget__title">${_EscapeTool.xml($title)}</div>
+        <div class="phone personnel-widget__phone">Phone</div>
+        <div class="phone-number personnel-widget__phone-number">
+            <a href="tel:+${phone}">$phone</a>
         </div>
-        <div class="personnel-widget__research-interest--details">
-            <ul>
-                <li>
-                    + Molecular mechanisms underlying “field cancerization” in human tissues affected by adenocarcinomas
-                </li>
+        <div class="email personnel-widget__email">Email</div>
+        <div class="email-address personnel-widget__email-address">
+            <a href="mailto:${email}">$email</a>
+        </div>
+        <div class="optional office-info personnel-widget__office-info">Office Info</div>
+        <div class="optional office-info personnel-widget__office-detail">${_EscapeTool.xml($officeInfo)}</div>
 
-                <li>+Molecular mechanisms of prostate cancer progression to castration resistance</li>
+        <div class="biography personnel-widget__biography">
+            <div class="personnel-widget__label personnel-widget__biography-label">Biography:</div>
+            <p tabindex="0">
+                ${_EscapeTool.xml($shortBio)}
+            </p>
+        </div>
 
-                <li>+Natural product based experimental therapeutics with a focus on reactive oxygen species and
-                    target protein degradation</li>
-            </ul>
+        <div class="research-interest personnel-widget__research-interest">
+            <div class="personnel-widget__label">Research Interest:</div>
+            <div class="personnel-widget__research-interest--details">
+                <ul>
+                    <li>
+                        + Molecular mechanisms underlying “field cancerization” in human tissues affected by adenocarcinomas
+                    </li>
+
+                    <li>+Molecular mechanisms of prostate cancer progression to castration resistance</li>
+
+                    <li>+Natural product based experimental therapeutics with a focus on reactive oxygen species and
+                        target protein degradation</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="teaching personnel-widget__teaching">
+            <div class="personnel-widget__label">Teaching:
+            </div>
+            <div class="personnel-widget__research-interest--details">
+                <ul>
+                    <li>
+                        + Molecular mechanisms underlying “field cancerization” in human tissues affected by adenocarcinomas
+                    </li>
+
+                    <li>+Molecular mechanisms of prostate cancer progression to castration resistance</li>
+
+                    <li>+Natural product based experimental therapeutics with a focus on reactive oxygen species and
+                        target protein degradation</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="school-affiliation personnel-widget__school-affiliation">
+            <div class="personnel-widget__label">School Affiliation:</div>
+            <div class="personnel-widget__research-interest--details">
+                <ul>
+                    <li>
+                        + Molecular mechanisms underlying “field cancerization” in human tissues affected by adenocarcinomas
+                    </li>
+
+                    <li>+Molecular mechanisms of prostate cancer progression to castration resistance</li>
+
+                    <li>+Natural product based experimental therapeutics with a focus on reactive oxygen species and
+                        target protein degradation</li>
+                </ul>
+            </div>
+        </div>
+        <div class="link-bottom personnel-widget__link-bottom personnel-widget__learn-more">
+            <a href="$frontsideLinkURL">${_EscapeTool.xml($frontsideLinkLabel)}
+            </a>
         </div>
     </div>
-
-    <div class="school-affiliation personnel-widget__school-affiliation">
-        <div class="personnel-widget__label">School Affiliation:</div>
-        <div class="personnel-widget__research-interest--details">
-            <ul>
-                <li>
-                    + Molecular mechanisms underlying “field cancerization” in human tissues affected by adenocarcinomas
-                </li>
-
-                <li>+Molecular mechanisms of prostate cancer progression to castration resistance</li>
-
-                <li>+Natural product based experimental therapeutics with a focus on reactive oxygen species and
-                    target protein degradation</li>
-            </ul>
-        </div>
-    </div>
-    <div class="link-bottom personnel-widget__link-bottom personnel-widget__learn-more">
-        <a href="$frontsideLinkURL">${_EscapeTool.xml($frontsideLinkLabel)}
-        </a>
-    </div>
-</div>
 </div>
 
 </div>
