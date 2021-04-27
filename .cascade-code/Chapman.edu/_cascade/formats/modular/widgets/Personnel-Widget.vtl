@@ -74,7 +74,6 @@ $element.getChild($widgetXPath).getChild('textAlignment').value)
         #foreach ($person in $persons)
             #set ($photo = $person.getChild('photo').getChild('link').value)
             #set ($name = $person.getChild('name').value)
-
             #set ($title = $person.getChild('title').value)
             #set ($department = $person.getChild('department').value)
             #set ($phone = $person.getChild('phone').value)
@@ -131,13 +130,26 @@ $element.getChild($widgetXPath).getChild('textAlignment').value)
         #foreach ($member in $persons)
           #set ( $name = $member.getChild('facultyMember').getChild('name').value)
           #set ( $path = $member.getChild('facultyMember').getChild('path').value)
+          #set ($bio = $member.getChild('bio').getChild('p').value)
           #set ( $customBio = $member.getChild('customBio').value)
+          #set ( $customBio = ${_EscapeTool.xml($customBio)})
+          #set ($title = $member.getChild('title').value)
+          #set ($department = $member.getChild('department').value)
+          #set ($phone = $member.getChild('phone').value)
+          #set ($phone = ${_EscapeTool.xml($phone)})
+          #set ($email = $member.getChild('email').value)
+          #set ($email = ${_EscapeTool.xml($email)})
+          #set ($officeInfo = $member.getChild('officeInfo').value)
+          #set ($officeInfo = ${_EscapeTool.xml($officeInfo)})
+          #set ($shortBio = $member.getChild('shortBio').value)
+
         #end ## Close #foreach ($member in $persons)
         #outputIndividualListing()
           <ul>
             <li>Faculty NAME: $name</li>
             <li>Faculty path: $path</li>
             <li>customBio: $customBio</li>
+            <li>bio: $bio</li>
           </ul>
       #end ## Close #elseif ($listingType == 'individualFaculty')
         
