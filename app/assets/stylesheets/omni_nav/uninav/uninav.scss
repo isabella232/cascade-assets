@@ -1452,31 +1452,8 @@ form.gsc-search-box.gsc-search-box-tools {
   border: 2px dotted var(--color-cu-red) !important;
 }
 
-.uninav__dropdown--parent:hover .fas.fa-paw::before,
-.uninav__dropdown--parent:focus .fas.fa-paw::before,
-.uninav__dropdown--parent:focus-within .fas.fa-paw::before {
-  // content: "chapman systems login" !important;
-  font-family: $futura-regular;
-  font-size: 1.4rem;
-  word-break: break-word;
-  animation: changeLetter 150ms linear 1 forwards;
-
-  @keyframes changeLetter {
-    0% {
-      opacity: 0;
-    }
-
-    50% {
-      opacity: 0.5;
-    }
-
-    100% {
-      opacity: 1;
-      content: "Login";
-      white-space: nowrap;
-      padding: 2%;
-    }
-  }
+svg.svg-inline--fa.fa-paw.fa-w-16 {
+  max-height: 20px;
 }
 
 #js-off-canvas-nav-container * {
@@ -1517,11 +1494,40 @@ form.gsc-search-box.gsc-search-box-tools {
 }
 
 .no-js {
-  .uninav__dropdown--parent:hover .uninav__dropdown--child {
-    z-index: 99999999;
-    display: flex;
+  #uninav {
+    .uninav__dropdown--parent:hover .uninav__dropdown--child {
+      z-index: 99999999;
+      display: flex;
+    }
+    .uninav__utility-nav--wrapper {
+      margin-right: 17px !important;
+    }
+    .uninav__dropdown--parent .uninav__dropdown-wrapper > a::after,
+    .uninav__utility-nav--audiences-container p::after {
+      content: "\▼" !important;
+      font-size: 8px;
+    }
+    .uninav__dropdown--parent:hover .uninav__dropdown-wrapper > a::after {
+      content: "\▼" !important;
+    }
+    li#uninav__search-button--mobile {
+      display: none !important;
+    }
   }
-  .uninav__utility-nav--wrapper {
-    margin-right: 17px !important;
+}
+
+#uninav {
+  svg.svg-inline--fa.fa-caret-down.fa-w-10 {
+    max-width: 8px;
+    margin-left: 1rem;
+    position: absolute;
+    place-self: center;
+    bottom: 5px;
+  }
+
+  li.uninav__dropdown--parent:hover svg.svg-inline--fa.fa-caret-down.fa-w-10 {
+    content: "\f0d7";
+    transform: rotate(180deg) translateX(-1rem);
+    transition: all linear 0.25s;
   }
 }
