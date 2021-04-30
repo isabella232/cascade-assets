@@ -711,8 +711,10 @@
         <shared-field field-id="8babbf5fc0a81e8a57740fff772e6a8e" identifier="sectionHeaderGroup" path="Section Header"/>
         <group collapsed="true" identifier="personnel" label="Personnel">
           <text field-id="8babbf5fc0a81e8a57740fff5dba65b7" identifier="style" label="Layout Style:" required="true" type="radiobutton">
-            <radio-item label="Card Grid" show-fields="primaryContent/widget/personnelWidget/personnel/custom" value="cardGrid"/>
-            <radio-item label="Carousel" show-fields="primaryContent/widget/personnelWidget/personnel/custom" value="carousel"/>
+            <radio-item label="Card Grid" show-fields="primaryContent/widget/personnelWidget/personnel/custom,
+            primaryContent/widget/personnelWidget/personnel/custom/person/linkToFullBio" value="cardGrid"/>
+            <radio-item label="Carousel" show-fields="primaryContent/widget/personnelWidget/personnel/custom,
+            primaryContent/widget/personnelWidget/personnel/custom/person/linkToFullBio" value="carousel"/>
             <radio-item label="Individual Profile" show-fields="primaryContent/widget/personnelWidget/personnel/custom, 
             primaryContent/widget/personnelWidget/personnel/custom/person/displaySchoolAffiliations,
             primaryContent/widget/personnelWidget/personnel/custom/person/displayResearchInterests,

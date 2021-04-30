@@ -84,6 +84,10 @@ $element.getChild($widgetXPath).getChild('textAlignment').value)
             #set ($officeInfo = ${_EscapeTool.xml($officeInfo)})
             #set ($shortBio = $person.getChild('shortBio').value)
             #set ($item = '')
+            #set ($displayResearchInterests = $person.getChild('displayResearchInterests').value)
+            #set ($displaySchoolAffiliations = $person.getChild('displaySchoolAffiliations').value)
+            #set ($displayCoursesTaught = $person.getChild('displayCoursesTaught').value)
+
 
 
             #macro(outputResearchInterests)
@@ -287,28 +291,34 @@ $element.getChild($widgetXPath).getChild('textAlignment').value)
         </p>
     </div>
 
-    
-    <div class="research-interest personnel-widget__research-interest">
-        <div class="personnel-widget__label">Research Interest:</div>
-          #outputResearchInterests()
-        <div class="personnel-widget__research-interest--details">
-        </div>
-    </div>
+    #if ($displayResearchInterests != 'no')
+      <div class="research-interest personnel-widget__research-interest">
+          <div class="personnel-widget__label">Research Interest:</div>
+            #outputResearchInterests()
+          <div class="personnel-widget__research-interest--details">
+          </div>
+      </div>
+    #end
 
-    <div class="teaching personnel-widget__teaching">
-        <div class="personnel-widget__label">Teaching:
-        </div>
-        <div class="personnel-widget__research-interest--details">
-            #outputCoursesTaught()
-        </div>
-    </div>
 
-    <div class="school-affiliation personnel-widget__school-affiliation">
-        <div class="personnel-widget__label">School Affiliation:</div>
-        <div class="personnel-widget__research-interest--details">
-            #outputSchoolAffiliations()
-        </div>
-    </div>
+    #if ($displayCoursesTaught != 'no')
+      <div class="teaching personnel-widget__teaching">
+          <div class="personnel-widget__label">Teaching:
+          </div>
+          <div class="personnel-widget__research-interest--details">
+              #outputCoursesTaught()
+          </div>
+      </div>
+    #end
+
+    #if ($displaySchoolAffiliations != 'no')
+      <div class="school-affiliation personnel-widget__school-affiliation">
+          <div class="personnel-widget__label">School Affiliation:</div>
+          <div class="personnel-widget__research-interest--details">
+              #outputSchoolAffiliations()
+          </div>
+      </div>
+    #end
     <div class="link-bottom personnel-widget__link-bottom personnel-widget__learn-more">
         <a href="$frontsideLinkURL">${_EscapeTool.xml($frontsideLinkLabel)}
         </a>
