@@ -234,15 +234,6 @@ html {
         margin-left: auto;
       }
 
-      // @include respond(tab-land) {
-      //   width: auto;
-      //   max-width: 50%;
-      // }
-
-      // @include respond(phone) {
-      //   max-width: none;
-      // }
-
       .uninav {
         &__menu-item--audiences {
           a {
@@ -626,12 +617,7 @@ html {
                 animation-delay: $i * 12ms;
               }
             }
-            // @for $i from 5 to 10 {
-            //   &:nth-child(#{$i}) {
-            //     animation-delay: $i * 100ms;
-            //   }
-            // }
-
+ 
             a {
               width: 100%;
               height: 100%;
@@ -703,14 +689,6 @@ html {
       align-items: center;
     }
   }
-}
-
-#uninav > nav {
-  // grid-area: nav;
-}
-
-#uninav > global {
-  // grid-area: global;
 }
 
 #uninav > div.uninav__logo--primary {
@@ -1218,18 +1196,7 @@ html {
 }
 
 @media only screen and (max-width: 400px) {
-  #uninav {
-    // grid-template-areas: "logo hamburger utility";
-    // grid-template-rows: 60px;
-    // grid-template-columns: 1fr 2fr 2fr;
 
-    &.utility-only {
-      // grid-template-areas: "utility";
-
-      // .uninav__utility-nav--wrapper {
-      //   width: 100vw;
-      // }
-    }
 
     .uninav {
       &__global-nav {
@@ -1434,12 +1401,6 @@ svg.svg-inline--fa.fa-paw.fa-w-16 {
 
 #uninav {
   svg.svg-inline--fa.fa-caret-down.fa-w-10 {
-    // max-width: 8px;
-    // margin-left: 1rem;
-    // position: absolute;
-    // place-self: center;
-    // bottom: 5px;
-
     display: block;
     width: 8px;
     min-width: 8px;
