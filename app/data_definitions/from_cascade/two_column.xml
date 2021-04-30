@@ -711,9 +711,12 @@
         <shared-field field-id="8babbf5fc0a81e8a57740fff772e6a8e" identifier="sectionHeaderGroup" path="Section Header"/>
         <group collapsed="true" identifier="personnel" label="Personnel">
           <text field-id="8babbf5fc0a81e8a57740fff5dba65b7" identifier="style" label="Layout Style:" required="true" type="radiobutton">
-            <radio-item label="Card Grid" show-fields="primaryContent/widget/personnelWidget/personnel/listingType1" value="cardGrid"/>
-            <radio-item label="Carousel" show-fields="primaryContent/widget/personnelWidget/personnel/listingType1" value="carousel"/>
-            <radio-item label="Individual Profile" show-fields="primaryContent/widget/personnelWidget/personnel/individualListingType" value="individual-profile"/>
+            <radio-item label="Card Grid" show-fields="primaryContent/widget/personnelWidget/personnel/custom" value="cardGrid"/>
+            <radio-item label="Carousel" show-fields="primaryContent/widget/personnelWidget/personnel/custom" value="carousel"/>
+            <radio-item label="Individual Profile" show-fields="primaryContent/widget/personnelWidget/personnel/custom, 
+            primaryContent/widget/personnelWidget/personnel/custom/person/displaySchoolAffiliations,
+            primaryContent/widget/personnelWidget/personnel/custom/person/displayResearchInterests,
+            primaryContent/widget/personnelWidget/personnel/custom/person/displayCoursesTaught" value="individual-profile"/>
           </text>
           <!-- Custom person -->
           <group identifier="custom" label="Custom ">
@@ -751,16 +754,28 @@
               <asset field-id="8bbc03b1c0a81e8a57740fff5ea9dc03" identifier="internalLink" label="Internal Link:" type="page"/>
               <text field-id="8bbc03b1c0a81e8a57740fffb6ee5bef" identifier="externalLink" label="External Link:"/>
               <!-- Research List Items -->
+              <text field-id="" identifier="displayResearchInterests" label="Display Research Interests:" type="radiobutton" default="no">
+                <radio-item label="Yes" show-fields="primaryContent/widget/personnelWidget/personnel/custom/person/researchInterests" value="yes"/>
+                <radio-item label="No" value="no"/>
+              </text>
               <group collapsed="true" identifier="researchInterests" label="Research Interest List" multiple="true">
                 <text label="Research Interest Item" identifier="researchInterestItem" multiple="true"/>
               </group>
               <!-- End Research List Items -->
               <!-- Teaching List Items -->
+              <text field-id="" identifier="displaycoursesTaught" label="Display Courses Taught:" type="radiobutton" default="no">
+                <radio-item label="Yes" show-fields="primaryContent/widget/personnelWidget/personnel/custom/person/coursesTaught" value="yes"/>
+                <radio-item label="No" value="no"/>
+              </text>
               <group collapsed="true" identifier="coursesTaught" label="Courses Taught" multiple="true">
                 <text label="Research Interest Item" identifier="course" multiple="true"/>
               </group>
               <!-- End Teaching List Items -->
               <!-- School Affiliations List Items -->
+              <text field-id="" identifier="displaySchoolAffiliations" label="Display School Affiliations:" type="radiobutton" default="no">
+                <radio-item label="Yes" show-fields="primaryContent/widget/personnelWidget/personnel/custom/person/schoolAffiliations" value="yes"/>
+                <radio-item label="No" value="no"/>
+              </text>
               <group collapsed="true" identifier="schoolAffiliations" label="School Affiliations" multiple="true">
                 <text label="Research Interest Item" identifier="schoolAffiliationsItem" multiple="true"/>
               </group>
