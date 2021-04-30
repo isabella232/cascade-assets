@@ -216,6 +216,18 @@ task edit_widget_text_with_cta: :environment do
 end
 
 # ---------------------------------------------------------------------------- #
+#                    edit one column primary content                           #
+# ---------------------------------------------------------------------------- #
+
+desc 'Updates _cascade/formats/modular/1 Column Primary Content with .cascade-code/Chapman.edu/_cascade/formats/modular/1 Column Primary Content.vtl'
+task edit_primary_content_1_col: :environment do
+  edit_format(
+    '9cc46959c0a81e4173d44587230027a2',
+    '.cascade-code/Chapman.edu/_cascade/formats/modular/1 Column Primary Content.vtl'
+  )
+end
+
+# ---------------------------------------------------------------------------- #
 #                    edit two & three column primary content                   #
 # ---------------------------------------------------------------------------- #
 
