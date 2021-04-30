@@ -50,7 +50,12 @@ $element.getChild($widgetXPath).getChild('textAlignment').value)
     #set ($numberOfColumns = '1')
 #end
 
-<div class="personnel-widget__wrapper">
+#if ($templateType == 'Modular/1 Column' && $layoutStyle != 'individual-profile')
+  #set ($numberOfColumns = '4')
+#end
+
+<div class="personnel-widget__one-col-wrapper">
+  <div class="personnel-widget__wrapper">
     #if ($displaySectionIntro != "no")
         <div class="section-intro text-align--${introAndOutroTextAlignment}">
             <div class="section-intro__preheader text-align--${introAndOutroTextAlignment}">
@@ -204,6 +209,7 @@ $element.getChild($widgetXPath).getChild('textAlignment').value)
     </div>
     ## Close <div class="personnel-widget__container
     <button class=" show-more personnel-widget__show-more underline">Show More</button>
+  </div>
 </div>
 #end ## Close Staff/Custom Listing Section
 
