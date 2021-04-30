@@ -83,6 +83,48 @@ $element.getChild($widgetXPath).getChild('textAlignment').value)
             #set ($officeInfo = $person.getChild('officeInfo').value)
             #set ($officeInfo = ${_EscapeTool.xml($officeInfo)})
             #set ($shortBio = $person.getChild('shortBio').value)
+            #set ($item = '')
+
+
+            #macro(outputResearchInterests)
+              #set ( $researchInterests = $_XPathTool.selectNodes($person, 'researchInterests/researchInterestItem'))
+              #foreach ( $item in $researchInterests)
+                #if ($item.value != '')
+                #set ($listTitle = 'Research Interests:')
+                  <ul>
+                    <li>
+                      ${_EscapeTool.xml($item.value)}
+                    </li>
+                  </ul>
+                #end
+              #end
+            #end
+
+            #macro(outputCoursesTaught)
+              #set ( $coursesTaught = $_XPathTool.selectNodes($person, 'coursesTaught/course'))
+              #foreach ( $item in $coursesTaught)
+                #if ($item.value != '')
+                <ul>
+                  <li>
+                    ${_EscapeTool.xml($item.value)}
+                  </li>
+                </ul>
+                #end
+              #end
+            #end
+
+            #macro(outputSchoolAffiliations)
+              #set ( $schoolAffiliations = $_XPathTool.selectNodes($person, 'schoolAffiliations/schoolAffiliationsItem'))
+              #foreach ( $item in $schoolAffiliations)
+                #if ($item.value != '')
+                <ul>
+                  <li>
+                    ${_EscapeTool.xml($item.value)}
+                  </li>
+                </ul>
+                #end
+              #end
+            #end
 
             ## Frontside Link
             #set ($displayFrontsideLink = $person.getChild('frontsideLink').value)
@@ -119,7 +161,6 @@ $element.getChild($widgetXPath).getChild('textAlignment').value)
             #end
 
             #if ($layoutStyle == 'individual-profile')
-                <h2>Individual Profile</h2>
                 #outputIndividualListing()
             #end
         #end ## Close #foreach ($person in $persons)
@@ -142,6 +183,8 @@ $element.getChild($widgetXPath).getChild('textAlignment').value)
           #set ($officeInfo = $member.getChild('officeInfo').value)
           #set ($officeInfo = ${_EscapeTool.xml($officeInfo)})
           #set ($shortBio = $member.getChild('shortBio').value)
+
+          
 
         #end ## Close #foreach ($member in $persons)
         #outputIndividualListing()
@@ -176,7 +219,7 @@ $element.getChild($widgetXPath).getChild('textAlignment').value)
     <div class="title personnel-widget__title">${_EscapeTool.xml($title)}</div>
     <div class="phone personnel-widget__phone">Phone</div>
     <div class="phone-number personnel-widget__phone-number">
-        <a href="tel:+${phone}">$phone</a>
+        <a href="tel:${phone}">$phone</a>
     </div>
     <div class="email personnel-widget__email">Email</div>
     <div class="email-address personnel-widget__email-address">
@@ -228,7 +271,7 @@ $element.getChild($widgetXPath).getChild('textAlignment').value)
     <div class="title personnel-widget__title">${_EscapeTool.xml($title)}</div>
     <div class="phone personnel-widget__phone">Phone</div>
     <div class="phone-number personnel-widget__phone-number">
-        <a href="tel:+${phone}">$phone</a>
+        <a href="tel:${phone}">$phone</a>
     </div>
     <div class="email personnel-widget__email">Email</div>
     <div class="email-address personnel-widget__email-address">
@@ -244,19 +287,11 @@ $element.getChild($widgetXPath).getChild('textAlignment').value)
         </p>
     </div>
 
+    
     <div class="research-interest personnel-widget__research-interest">
         <div class="personnel-widget__label">Research Interest:</div>
+          #outputResearchInterests()
         <div class="personnel-widget__research-interest--details">
-            <ul>
-                <li>
-                    + Molecular mechanisms underlying “field cancerization” in human tissues affected by adenocarcinomas
-                </li>
-
-                <li>+Molecular mechanisms of prostate cancer progression to castration resistance</li>
-
-                <li>+Natural product based experimental therapeutics with a focus on reactive oxygen species and
-                    target protein degradation</li>
-            </ul>
         </div>
     </div>
 
@@ -264,32 +299,14 @@ $element.getChild($widgetXPath).getChild('textAlignment').value)
         <div class="personnel-widget__label">Teaching:
         </div>
         <div class="personnel-widget__research-interest--details">
-            <ul>
-                <li>
-                    + Molecular mechanisms underlying “field cancerization” in human tissues affected by adenocarcinomas
-                </li>
-
-                <li>+Molecular mechanisms of prostate cancer progression to castration resistance</li>
-
-                <li>+Natural product based experimental therapeutics with a focus on reactive oxygen species and
-                    target protein degradation</li>
-            </ul>
+            #outputCoursesTaught()
         </div>
     </div>
 
     <div class="school-affiliation personnel-widget__school-affiliation">
         <div class="personnel-widget__label">School Affiliation:</div>
         <div class="personnel-widget__research-interest--details">
-            <ul>
-                <li>
-                    + Molecular mechanisms underlying “field cancerization” in human tissues affected by adenocarcinomas
-                </li>
-
-                <li>+Molecular mechanisms of prostate cancer progression to castration resistance</li>
-
-                <li>+Natural product based experimental therapeutics with a focus on reactive oxygen species and
-                    target protein degradation</li>
-            </ul>
+            #outputSchoolAffiliations()
         </div>
     </div>
     <div class="link-bottom personnel-widget__link-bottom personnel-widget__learn-more">
@@ -304,6 +321,9 @@ $element.getChild($widgetXPath).getChild('textAlignment').value)
 
 #macro(debugDetails)
   <style>
+  #uninav {
+    display: none !important;
+  }
   details ul {
   padding-left: 20px;
   }
@@ -314,6 +334,7 @@ $element.getChild($widgetXPath).getChild('textAlignment').value)
   color: yellowgreen;
   background-color: black;
   text-align: left;
+  display: none;
   }
 
   details[open] {

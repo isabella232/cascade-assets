@@ -29,5 +29,8 @@
       list-style: none;
       text-align: left;
     }
+    li:before {
+      content: "+";
+    }
   } // end .personnel-widget
 } // end .personnel-widget__container--individual-listing
