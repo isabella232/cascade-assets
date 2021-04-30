@@ -194,6 +194,9 @@
   transition: 300ms ease;
 
   &__carousel {
+    .slick-slider {
+      border: 2px solid transparent;
+    }
     & ~ button.show-more {
       display: none !important;
       background-color: pink !important;
