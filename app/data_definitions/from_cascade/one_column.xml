@@ -1,11 +1,15 @@
 <system-data-structure>
   <group collapsed="true" identifier="masthead" label="Masthead">
     <text default="Side Panel Hero" field-id="ff6bcbe1c0a81e5f43ef9b37f7b68865" identifier="mastheadType" label="Style:" type="radiobutton">
+      <radio-item show-fields="masthead/wavyMasthead" value="Wavy Masthead"/>
       <radio-item show-fields="masthead/sidePanelHero" value="Side Panel Hero"/>
       <radio-item show-fields="masthead/brochureMasthead" value="Brochure"/>
       <radio-item show-fields="masthead/subbrandMastheadTypes" value="Sub-Brand"/>
       <radio-item value="None"/>
     </text>
+    <group collapsed="true" identifier="wavyMasthead" label="Wavy Masthead">
+
+    </group>
     <text default="Sub-Brand Page Masthead" field-id="ff6bcbe1c0a81e5f43ef9b37e01f65cc" identifier="subbrandMastheadTypes" label="Sub-Brand Masthead Type" type="dropdown">
       <dropdown-item show-fields="masthead/subbrandMasthead" value="Sub-Brand Page Masthead"/>
       <dropdown-item show-fields="masthead/subPageMasthead" value="1 Col Child Page (Left Aligned)"/>

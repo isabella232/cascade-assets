@@ -1,39 +1,50 @@
 .wavy-masthead {
-  z-index: 2;
-  display: block;
-  position: absolute;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.9);
-  position: relative;
-  mask-image: image-url("masthead-wave");
-  -webkit-mask-image: image-url("masthead-wave");
-  -webkit-mask-size: 100% 100%;
-  will-change: filter;
-  max-height: $mastheadVideoHeight;
-  position: absolute;
-  background: -moz-linear-gradient(
-    0deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(1, 0, 17, 1) 10%,
-    rgba(0, 0, 0, 0) 300px
-  );
-  background: -webkit-linear-gradient(
-    0deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(1, 0, 17, 1) 10%,
-    rgba(0, 0, 0, 0) 300px
-  );
-  background: linear-gradient(
-    0deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(1, 0, 17, 1) 10%,
-    rgba(0, 0, 0, 0) 300px
-  );
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endColorstr="#000000", GradientType=1);
+  @mixin dropShadow {
+    box-shadow: 0 37.125px 70px -12.125px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.5s ease;
 
+    &:hover,
+    &:focus,
+    &:focus-within {
+      box-shadow: 0 37.125px 70px -12.125px rgba(0, 0, 0, 0.3);
+    }
+  }
+  &__wave-mask {
+    z-index: 2;
+    display: block;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.9);
+    position: relative;
+    mask-image: image-url("masthead-wave");
+    -webkit-mask-image: image-url("masthead-wave");
+    -webkit-mask-size: 100% 100%;
+    will-change: filter;
+    max-height: $mastheadVideoHeight;
+    position: absolute;
+    background: -moz-linear-gradient(
+      0deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(1, 0, 17, 1) 10%,
+      rgba(0, 0, 0, 0) 300px
+    );
+    background: -webkit-linear-gradient(
+      0deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(1, 0, 17, 1) 10%,
+      rgba(0, 0, 0, 0) 300px
+    );
+    background: linear-gradient(
+      0deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(1, 0, 17, 1) 10%,
+      rgba(0, 0, 0, 0) 300px
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endColorstr="#000000", GradientType=1);
+  }
   &__text {
     position: absolute;
     z-index: 999999;
@@ -59,24 +70,73 @@
       -webkit-user-select: text;
     }
     .button {
+      &--dropdown,
+      &--dropdown:hover,
+      &--dropdown:focus {
+        background-color: transparent;
+        // border: 2px solid var(--color-cu-red);
+        -webkit-box-shadow: inset 0px 0px 0px 2px $cu-red;
+        -moz-box-shadow: inset 0px 0px 0px 2px $cu-red;
+        box-shadow: inset 0px 0px 0px 2px $cu-red;
+      }
+
       &--dropdown__wrapper {
         display: inline-block;
+        max-width: max-content;
+        position: relative;
+        .dropdown-menu {
+          display: none;
+
+          li {
+            list-style: none;
+            border-bottom: 1px solid $cu-light-grey;
+            transition: 150ms linear;
+            padding: 0;
+            margin-bottom: 0;
+
+            &:hover {
+              background-color: $cu-light-grey;
+            }
+          }
+          a {
+            padding: 12px;
+          }
+          a + a {
+            margin-top: 12px;
+          }
+        }
 
         &:hover,
-        &:focus {
-          .dropdown-meu {
+        &:focus,
+        &:focus-within {
+          .dropdown-menu {
             display: block;
             background-color: $white;
             position: absolute;
             background-color: $white;
+            width: 100%;
+            animation: fadein 300ms forwards;
+            -moz-animation: fadein 300ms forwards;
+            -webkit-animation: fadein 300ms forwards;
+            -o-animation: fadein 300ms forwards;
+            animation-direction: forwards;
+            -webkit-animation: fadein 300ms forwards;
+            animation-fill-mode: forwards !important;
+            @include dropShadow;
+
+            a {
+              display: block;
+            }
+            .label {
+              border-bottom: 1px dotted $cu-red;
+            }
           }
         }
 
-        .dropdown-menu:not(:hover) {
-          display: none;
-          a {
-            display: block;
-          }
+        .fa-caret-down {
+          width: min-content;
+          max-height: 12px;
+          max-width: 12px;
         }
       }
     }

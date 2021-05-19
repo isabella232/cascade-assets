@@ -61,7 +61,7 @@ html {
 
     &__logo {
       &--secondary {
-        @include qbal-slideRight-exit;
+        @include qbal-fade-enter;
       }
     }
 
