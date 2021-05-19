@@ -1,0 +1,84 @@
+.wavy-masthead {
+  z-index: 2;
+  display: block;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.9);
+  position: relative;
+  mask-image: image-url("masthead-wave");
+  -webkit-mask-image: image-url("masthead-wave");
+  -webkit-mask-size: 100% 100%;
+  will-change: filter;
+  max-height: $mastheadVideoHeight;
+  position: absolute;
+  background: -moz-linear-gradient(
+    0deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(1, 0, 17, 1) 10%,
+    rgba(0, 0, 0, 0) 300px
+  );
+  background: -webkit-linear-gradient(
+    0deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(1, 0, 17, 1) 10%,
+    rgba(0, 0, 0, 0) 300px
+  );
+  background: linear-gradient(
+    0deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(1, 0, 17, 1) 10%,
+    rgba(0, 0, 0, 0) 300px
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endColorstr="#000000", GradientType=1);
+
+  &__text {
+    position: absolute;
+    z-index: 999999;
+    color: $white;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    min-height: 200px;
+    bottom: 15%;
+
+    h2 {
+      font-size: 6rem;
+      text-shadow: $mastheadTextShadow;
+      display: -ms-grid;
+      display: grid;
+      justify-content: center;
+      text-transform: uppercase;
+      line-height: 0.8em;
+      @include v(font-family, futura-condensed);
+      font-weight: 700;
+      -webkit-user-select: text;
+    }
+    .button {
+      &--dropdown__wrapper {
+        display: inline-block;
+
+        &:hover,
+        &:focus {
+          .dropdown-meu {
+            display: block;
+            background-color: $white;
+            position: absolute;
+            background-color: $white;
+          }
+        }
+
+        .dropdown-menu:not(:hover) {
+          display: none;
+          a {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
