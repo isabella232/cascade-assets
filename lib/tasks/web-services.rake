@@ -115,7 +115,7 @@ task edit_cascade_assets: :environment do
     p
     p "     Done! Want to also automatically publish an associated page?"
     p
-    p  "    ⚡️ If so enter the the asset path below WITHOUT https:// or .com"
+    p "    ⚡️ If so enter the the asset path below WITHOUT https:// or .com"
     p "     eg Chapman.edu/test-section/nick-test/two-col"
     p "     🎹 Enter the asset path (or press enter to ignore): "
     
@@ -297,6 +297,15 @@ task edit_helpers_velocity: :environment do
   edit_format(
     'Chapman.edu/_cascade/formats/helpers.velocity',
     '.cascade-code/Chapman.edu/_cascade/formats/helpers.velocity'
+  )
+end
+
+# replace format `Chapman.edu/_cascade/formats/modular/widgets/Wavy Masthead`
+# with `.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Wavy-Masthead.vtl`
+task edit_wavy_masthead: :environment do
+  edit_format(
+    '86baa6a4c0a81e8a65cef5df9f5234d7',
+    '.cascade-code/Chapman.edu/_cascade/formats/homepage_featured_callouts.vtl'
   )
 end
 
