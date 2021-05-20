@@ -21,7 +21,7 @@ task edit_cascade_assets: :environment do
   cascade_assets_block_name = 'cascade-assets-' + current_branch
   
 
-  if current_branch = 'development'
+  if current_branch == 'development'
     cascade_assets_block_name = 'cascade-assets' ## this is the block which all pages use by default
   end
 
