@@ -9,6 +9,14 @@
       box-shadow: 0 37.125px 70px -12.125px rgba(0, 0, 0, 0.3);
     }
   }
+  &__container {
+    position: relative;
+    min-height: 600px;
+    top: 0;
+    margin-top: 0;
+    padding-top: 0;
+    background-color: $white;
+  }
   &__wave-mask {
     z-index: 2;
     display: block;
@@ -21,6 +29,15 @@
     position: relative;
     mask-image: image-url("masthead-wave");
     -webkit-mask-image: image-url("masthead-wave");
+
+    mask-image: image-url(
+      "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png"
+    ); // mainly for quick dev testing -- the above should be used when compiled and bundled)
+
+    -webkit-mask-image: image-url(
+      "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png"
+        // mainly for quick dev testing -- the above should be used when compiled and bundled)
+    );
     -webkit-mask-size: 100% 100%;
     will-change: filter;
     max-height: $mastheadVideoHeight;
