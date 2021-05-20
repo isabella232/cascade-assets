@@ -11,7 +11,7 @@ task push_noncompiled_assets: :environment do
   
   base_url = 'https://dev-cascade.chapman.edu/api/v1/'.to_s
   url_post =
-  base_url + 'edit/' + 'file' + 'Chapman.edu/test-section/nick-test/homepage-featured-callouts.css' + cascade_username +
+  base_url + 'edit/' + 'file' + 'Chapman.edu/test-section/nick-test/wavy-masthead.css' + cascade_username +
     cascade_password
 p url_post
 
@@ -46,22 +46,22 @@ p url_post
       "lastModifiedBy": "cscddev01500",
       "createdDate": "Nov 4, 2020 8:29:51 PM",
       "createdBy": "nnadel",
-      "path": "test-section/nick-test/homepage-featured-callouts.css",
+      "path": "test-section/nick-test/wavy-masthead.css",
       "siteId": "6fef14a3c04d744c610b81dac0a8d082",
       "siteName": "Chapman.edu",
       "tags": [],
-      "name": "homepage-featured-callouts.css",
-      "id": "8f2a123ac0a81e8a3b0002936f3a7f52"
+      "name": "wavy-masthead.css",
+      "id": "8b498875c0a81e8a65cef5df37acd4f1"
           }
         },
         "success": true
       }.to_json
      )
 
-     publish_asset('file', '8f2a123ac0a81e8a3b0002936f3a7f52')
+     publish_asset('file', '8b498875c0a81e8a65cef5df37acd4f1')
 
     #  JAVASCRIPT
-    base_url + 'edit/' + 'file' + 'Chapman.edu/test-section/nick-test/homepage-featured-callouts.js' + cascade_username +
+    base_url + 'edit/' + 'file' + 'Chapman.edu/test-section/nick-test/wavy-masthead.js' + cascade_username +
     cascade_password
 p url_post
 
@@ -104,19 +104,19 @@ p url_post
       "lastModifiedBy": "nnadel",
       "createdDate": "Nov 10, 2020 11:00:31 AM",
       "createdBy": "nnadel",
-      "path": "test-section/nick-test/homepage-featured-callouts.js",
+      "path": "test-section/nick-test/wavy-masthead.js",
       "siteId": "6fef14a3c04d744c610b81dac0a8d082",
       "siteName": "Chapman.edu",
       "tags": [],
-      "name": "homepage-featured-callouts.js",
-      "id": "8f2a567bc0a81e8a3b00029341d8c97f"
+      "name": "wavy-masthead.js",
+      "id": "8b49e58bc0a81e8a65cef5dfa21a9270"
           }
         },
         "success": true
       }.to_json
      )
 
-     publish_asset('file', '8f2a567bc0a81e8a3b00029341d8c97f')
+     publish_asset('file', '8b49e58bc0a81e8a65cef5dfa21a9270')
     #  system("open ~/workspace/cascade-assets/dist/_config/index.html")
 
   
