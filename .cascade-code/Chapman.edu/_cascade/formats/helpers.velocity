@@ -713,7 +713,9 @@ LOG VELOCITY VARIABLES IN THE BROWSER CONSOLE ON DEV
 #end
 
 
-/*
+
+#*
+--------------------------------------------------------------------------------
 Outputs VariableName: VariableValue
 
 Example: 
@@ -723,7 +725,8 @@ Output:
 <li>
   nick: nicholas     
 </li>
-*/
+--------------------------------------------------------------------------------
+*#
 
 #macro(output $var)
   #set ($varEval = "$" + "${var}")
