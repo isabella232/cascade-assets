@@ -30,14 +30,14 @@
     mask-image: image-url("masthead-wave");
     -webkit-mask-image: image-url("masthead-wave");
 
-    // mask-image: image-url(
-    //   "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png"
-    // ); // mainly for quick dev testing -- the above should be used when compiled and bundled)
+    mask-image: image-url(
+      "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png"
+    ); // mainly for quick dev testing -- the above should be used when compiled and bundled)
 
-    // -webkit-mask-image: image-url(
-    //   "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png"
-    //     // mainly for quick dev testing -- the above should be used when compiled and bundled)
-    // );
+    -webkit-mask-image: image-url(
+      "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png"
+        // mainly for quick dev testing -- the above should be used when compiled and bundled)
+    );
     -webkit-mask-size: 100% 100%;
     will-change: filter;
     max-height: $mastheadVideoHeight;
@@ -148,13 +148,14 @@
             position: absolute;
             background-color: $white;
             width: 100%;
-            animation: fadein 300ms forwards;
-            -moz-animation: fadein 300ms forwards;
-            -webkit-animation: fadein 300ms forwards;
-            -o-animation: fadein 300ms forwards;
-            animation-direction: forwards;
-            -webkit-animation: fadein 300ms forwards;
-            animation-fill-mode: forwards !important;
+            // animation: fadein 300ms forwards;
+            // -moz-animation: fadein 300ms forwards;
+            // -webkit-animation: fadein 300ms forwards;
+            // -o-animation: fadein 300ms forwards;
+            // animation-direction: forwards;
+            // -webkit-animation: fadein 300ms forwards;
+            // animation-fill-mode: forwards !important;
+            @include qbal-dropdown-enter;
             @include dropShadow;
 
             a {
