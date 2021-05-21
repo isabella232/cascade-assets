@@ -15,7 +15,10 @@
 #set ( $showBoxes = $masthead.getChild('boxes').getChild('show').value )
 
 #if ( $mastheadType == 'Wavy Masthead' )
+#outputMasthead()
 
+#macro(outputMasthead $element) 
+#set ($wxp = 'wavyMasthead')
     #set ($wavyMastheadType = $masthead.getChild('wavyMasthead').getChild('mastheadType').value)
 
     ## HEADER GROUP
@@ -76,9 +79,19 @@
       #end
     </div>
     <div class="wavy-masthead__buttons">
-        <a href="" class="button button--red no-border">one thing</a>
-        <a href="" class="button button--red no-border">second thing</a>
-         #cta($element, 'wavyMasthead/link')
+        ## <a href="" class="button button--red no-border">one thing</a>
+        ## <a href="" class="button button--red no-border">second thing</a>
+
+      
+      #set ( $buttons       = $_XPathTool.selectNodes($contentRoot, 'masthead/wavyMasthead/singleImage_background_group/callToActionButtons/link') )
+
+
+#cta($currentPage, '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/singleImage_background_group/callToActionButtons/link')
+
+#set ($buttonClasses = ['button--red', 'no-border'])
+
+#set ( $menuItems = $_XPathTool.selectNodes($contentRoot, "/system-data-structure/wavyMasthead/singleImage_background_group/callToActionButtons/link") )
+
 
         <div class="button--dropdown__wrapper">
             <a href="" class="button button--red no-border button--dropdown">
@@ -118,7 +131,7 @@
     </div>
 </div>
 </div>
-## #end
+#end
 
 #end
 
@@ -236,3 +249,59 @@
 
 
 
+
+
+#macro(cta $elem $linkXPath $wxp)
+    #set ($buttonClasses = 'button--red no-border')
+    ## this will create 'next-steps-widget__button' down below
+    #set ($bemButtonClass = $wxp + '__button')
+    #set ($bemButtonClass = $bemButtonClass.value)
+    
+    #set ( $linkItems = $_XPathTool.selectNodes($elem, $linkXPath) )
+    #foreach ($link in $linkItems)
+        #set ($linkStyle = $link.getChild('linkStyle').value) 
+        #set ($linkType =  $link.getChild('linkType').value)
+        #set ($linkLabel = $link.getChild('label').value)
+        
+        ## ACCESSIBILITY
+        #set ($ariaLabel = $link.getChild('accessibility').getChild('ariaLabel').value)
+        #set ($title = $link.getChild('accessibility').getChild('title').value)
+
+        ## ANALYTICS
+        #set ($customID = $link.getChild('tracking').getChild('customID').value)
+        #set ($dataAttr = $link.getChild('tracking').getChild('dataAttr').value)
+
+        #if ($customID != '')
+            #set ($customID = $link.getChild('customID').value)
+        #else
+            #set ( $customID = $linkLabel.replaceAll(" ", "-").replaceAll("[^a-zA-Z-]", "").replaceAll("--", "-").toLowerCase() )
+        #end
+        
+        #if ($dataAttr != '')
+            #set ($dataAttr = $link.getChild('dataAttr').value)
+            #set ($dataAttr = $dataAttr)
+        #else
+            #set ($dataAttr = '')
+        #end
+            
+        #if ($linkType == 'Internal Link')
+            #set ($linkURL = $link.getChild('internalLink').getChild('path').value )
+            #elseif ($linkType == 'External Link')
+                #set ($linkURL = $link.getChild('externalLink').value )
+        #else 
+            #set ($linkURL = $link.getChild('fileLink').getChild('path').value )
+        #end
+    
+        
+   
+        #if ($linkLabel != '')
+            #if ($linkStyle == 'Text Link')
+                <a tabindex="1" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="text--link">#escape($linkLabel)</a>
+            #elseif (($linkStyle == 'Button Link') && ($bemButtonClass != '$bemButtonClass'))
+                <a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button $bemButtonClass ${buttonClasses}">#escape($linkLabel)</a>
+            #else 
+                <a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button ${buttonClasses}">#escape($linkLabel)</a>
+            #end    
+        #end
+    #end
+#end
