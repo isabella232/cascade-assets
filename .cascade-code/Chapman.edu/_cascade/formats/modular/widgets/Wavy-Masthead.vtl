@@ -1,4 +1,11 @@
-<!-- Chapman.edu/_cascade/formats/modular/widgets/Wavy Masthead -->	
+#macro(output $var)
+  #set ($varEval = "$" + "${var}")
+  <li>
+    $var: #evaluate("${varEval}")
+  </li>
+#end
+
+<!-- Chapman.edu/_cascade/formats/modular/widgets/Wavy Masthead -->
 #import( "/_cascade/formats/helpers.velocity" )
 #import( "/_cascade/formats/helpers/debug.velocity" )
 
@@ -9,43 +16,223 @@
 
 #if ( $mastheadType == 'Wavy Masthead' )
 
-## #macro(outputWavyMasthead $element)
+    #set ($wavyMastheadType = $masthead.getChild('wavyMasthead').getChild('mastheadType').value)
+
+    ## HEADER GROUP
+    #set ($backgroundSelector =
+    $masthead.getChild('singleImage_background_group').getChild('backgroundSelector').value)
+
+    ## #macro(outputWavyMasthead $element)
+    #set ($wavyMasthead = $masthead.getChild('wavyMasthead'))
+
+    ## SINGLE IMAGE GROUP ##
+    
+    ## singleImage_background_group ##
+    #set ($singleImage_background_group = $wavyMasthead.getChild('singleImage_background_group'))
+    #set ($backgroundSelector = $masthead.getChild('wavyMasthead').getChild('singleImage_background_group').getChild('backgroundSelector').value)
+    #set ($showHeader = $masthead.getChild('wavyMasthead').getChild('singleImage_background_group').getChild('headerTitle').getChild('showHeader').value)
+    #set ($preheaderMasthead = $masthead.getChild('wavyMasthead').getChild('singleImage_background_group').getChild('headerTitle').getChild('preheaderMasthead').value)
+    #set ($headerMasthead = $masthead.getChild('wavyMasthead').getChild('singleImage_background_group').getChild('headerTitle').getChild('headerMasthead').value)
+    ## singleImage_background_group ##
+    
+    ## image group ## 
+    #set ($singleImage_background_group = $masthead.getChild('wavyMasthead').getChild('singleImage_background_group'))
+
+    #set ($imageType = $masthead.getChild('wavyMasthead').getChild('singleImage_background_group').getChild('image').getChild('imageType').value)
+    #set ($imageUrlExt = $masthead.getChild('wavyMasthead').getChild('singleImage_background_group').getChild('image').getChild('imageUrlExt').value)
+    #set ($imageUrlInt = $masthead.getChild('wavyMasthead').getChild('singleImage_background_group').getChild('image').getChild('imageUrlInt').getChild('path').value)
+    #set ($imageAltOrDecorative = $masthead.getChild('wavyMasthead').getChild('singleImage_background_group').getChild('image').getChild('imageAltOrDecorative').value)
+    ## image group ##
+    
+    ## SINGLE IMAGE GROUP ##
+
+#set ($widgetXPath = $masthead)
+
+
+<ul class="debug">
+#output("wavyMastheadType")
+#output("backgroundSelector")
+#output("showHeader")
+#output("preheaderMasthead")
+#output("headerMasthead")
+#output("imageType")
+#output("imageUrlInt")
+#output("imageUrlExt")
+</ul>
+
+
+
 
 <div class="wavy-masthead__container">
-    <div class="wavy-masthead__wave-mask">
-      <img
-        src="https://www.chapman.edu/campus-services/information-systems/working-and-teaching-remotely/_files/piazza-beckman-chapman-university.jpg"
-        alt="" />
-      <video src=""></video>
+<div class="wavy-masthead__wave-mask">
+    #mastheadImage()
+    <video src=""></video>
+</div>
+<div class="wavy-masthead__text">
+    <div class="wavy-masthead__header">
+      #if ($showHeader != 'no')
+        <h2>${_EscapeTool.xml($headerMasthead)}
+        </h2>
+      #end
     </div>
-    <div class="wavy-masthead__text">
-      <div class="wavy-masthead__header">
-        <h2>DALE E. FOWLER SCHOOL OF LAW </h2>
-      </div>
-      <div class="wavy-masthead__buttons">
+    <div class="wavy-masthead__buttons">
         <a href="" class="button button--red no-border">one thing</a>
         <a href="" class="button button--red no-border">second thing</a>
-        <div class="button--dropdown__wrapper">
-          <a href="" class="button button--red no-border button--dropdown">
-            <span class="label">
-              another thing for school
-              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas"
-                data-icon="caret-down" class="svg-inline--fa fa-caret-down fa-w-10" role="img" viewBox="0 0 320 512">
-                <path fill="currentColor"
-                  d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z" />
-              </svg>
-            </span>
-          </a>
+         #cta($element, 'wavyMasthead/link')
 
-          <ul class="dropdown-menu">
-            <li><a href=""><span class="label">child item</span></a></li>
-            <li><a href=""><span class="label">child item</span></a></li>
-            <li><a href=""><span class="label">child item</span></a></li>
-          </ul>
+        <div class="button--dropdown__wrapper">
+            <a href="" class="button button--red no-border button--dropdown">
+                <span class="label">
+                    another thing for school
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                        focusable="false"
+                        data-prefix="fas"
+                        data-icon="caret-down"
+                        class="svg-inline--fa fa-caret-down fa-w-10"
+                        role="img"
+                        viewbox="0 0 320 512">
+                        <path
+                            fill="currentColor"
+                            d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"/>
+                    </svg>
+                </span>
+            </a>
+
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="">
+                        <span class="label">child item</span></a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="label">child item</span></a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="label">child item</span></a>
+                </li>
+            </ul>
         </div>
-      </div>
     </div>
-  </div>
+</div>
+</div>
 ## #end
 
 #end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#macro(mastheadImage)
+    #set ($widgetXPath = 'masthead-2021')
+    ## $widgetXPath is just a verbose alias for $wxp 
+    #set ($imageUrlInt =
+    $singleImage_background_group.getChild('image').getChild('imageUrlInt').getChild('path').value )
+    #set ($imageUrlExt =
+    $singleImage_background_group.getChild('image').getChild('imageUrlExt').value )
+
+    ## IMAGE SHAPE
+    #set ($imageType =
+    $singleImage_background_group.getChild('image').getChild('imageType').value.toLowerCase())
+    #set ($imageShape =
+    $singleImage_background_group.getChild('image').getChild('imageShape').value.toLowerCase())
+
+    ## IMAGE POSITION (OBJECT-FIT)
+    #set ($objectPositionX = $singleImage_background_group.getChild('image').getChild('advanced').getChild('objectPositionX').value.toLowerCase())
+    #set ($objectPositionY = $singleImage_background_group.getChild('image').getChild('advanced').getChild('objectPositionY').value.toLowerCase())
+    #set ($objectFit = $singleImage_background_group.getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
+
+
+    ## OBJECT-FIT
+    #if ($objectFit != '')
+      #set ($objectFit = $singleImage_background_group.getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
+    #else 
+      #set ($objectFit = 'cover')
+    #end
+
+    ## IMAGE DIMENSIONS
+    #if ($imageWidth != '')
+      #set ($imageWidth = $singleImage_background_group.getChild('image').getChild('advanced').getChild('imageWidth').value.toLowerCase())
+    #else 
+      #set ($imageWidth = '100%')
+    #end
+
+    #if ($imageHeight != '')
+      #set ($imageHeight = $singleImage_background_group.getChild('image').getChild('advanced').getChild('imageHeight').value.toLowerCase())
+    #else 
+      #set ($imageHeight = 'auto')
+    #end
+
+
+    ## ENSURE CIRCULAR IMAGES HAVE EQUAL HEIGHT AND WIDTH 
+    #if ($imageShape == 'circle')
+      ## These CSS vars can be overridden in the 'code' section below
+      #set ($imageWidth = '<style> --imgSize: 180px;  var(--smallIMgSize) </style>')
+      #set ($imageHeight = '<style> --imgSize: 180px; var(--smallIMgSize) </style>')
+    #elseif ($imageShape == 'square')
+      #set ($imageWidth = '100%')
+      #set ($imageHeight = 'auto')
+    #end
+    
+
+
+    ## ACCESSIBILITY
+    #set ( $imageRoleVal =  ( $singleImage_background_group.getChild('image').getChild('imageAltOrDecorative').value ) )
+    #if ( $imageRoleVal == "Decorative Image" )
+        #set ( $imageRole = "role='presentation'" )
+        #set ( $altText = '' )
+    #else 
+        #set ( $imageRole = "" )
+    #end
+
+    ## Custom Code Option
+    #set ($code = $singleImage_background_group.getChild('image').getChild('advanced').getChild('code').value.toLowerCase())
+
+    #if ($imageType == 'internal cascade image')
+      #set ($imageUrlExt = '')
+        <div
+            class="wavy-masthead__img--${_EscapeTool.xml($imageShape)} wavy-masthead__img"
+            style="width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)};">
+                <img $imageRole class="wavy-masthead__img img--${_EscapeTool.xml($imageShape)} "
+                    src="[system-asset]${_EscapeTool.xml($imageUrlInt)}[/system-asset]"
+                    alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-fit: '${_EscapeTool.xml($objectFit)}'; object-position:'${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}'; width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)}; "/>
+                    
+                    <![CDATA[#protect
+                      $code
+                     #protect]]>
+        </div>
+
+      #end
+      #if (!$imageType.contains("none") && $imageType == 'external image url')
+        #set ($imageUrlInt = '')
+     <div
+            class="wavy-masthead__img--${_EscapeTool.xml($imageShape)} wavy-masthead__img"
+            style="width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)};">
+                <img $imageRole class="wavy-masthead__img img--${_EscapeTool.xml($imageShape)} "
+                    src="${_EscapeTool.xml($imageUrlExt)}"
+                    alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-fit: '${_EscapeTool.xml($objectFit)}'; object-position:'${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}'; width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)}; "/>
+                    
+                    <![CDATA[#protect
+                      $code
+                     #protect]]>
+        </div>
+    #end
+#end
+
+
+
