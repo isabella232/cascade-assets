@@ -30,14 +30,14 @@
     mask-image: image-url("masthead-wave");
     -webkit-mask-image: image-url("masthead-wave");
 
-    mask-image: image-url(
-      "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png"
-    ); // mainly for quick dev testing -- the above should be used when compiled and bundled)
+    // mask-image: image-url(
+    //   "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png"
+    // ); // mainly for quick dev testing -- the above should be used when compiled and bundled)
 
-    -webkit-mask-image: image-url(
-      "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png"
-        // mainly for quick dev testing -- the above should be used when compiled and bundled)
-    );
+    // -webkit-mask-image: image-url(
+    //   "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png"
+    //     // mainly for quick dev testing -- the above should be used when compiled and bundled)
+    // );
     -webkit-mask-size: 100% 100%;
     will-change: filter;
     max-height: $mastheadVideoHeight;
@@ -61,6 +61,12 @@
       rgba(0, 0, 0, 0) 300px
     );
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endColorstr="#000000", GradientType=1);
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
   }
   &__text {
     position: absolute;
@@ -73,6 +79,11 @@
     justify-content: space-evenly;
     min-height: 200px;
     bottom: 15%;
+
+    @include respond(phone) {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
 
     h2 {
       font-size: 6rem;
@@ -101,6 +112,11 @@
         display: inline-block;
         max-width: max-content;
         position: relative;
+
+        @include respond(phone) {
+          max-width: 100%;
+          width: 100%;
+        }
         .dropdown-menu {
           display: none;
 
