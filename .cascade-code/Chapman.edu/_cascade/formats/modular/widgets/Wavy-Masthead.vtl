@@ -46,6 +46,8 @@
     #set ($imageUrlInt = $masthead.getChild('wavyMasthead').getChild('singleImage_background_group').getChild('image').getChild('imageUrlInt').getChild('path').value)
     #set ($imageAltOrDecorative = $masthead.getChild('wavyMasthead').getChild('singleImage_background_group').getChild('image').getChild('imageAltOrDecorative').value)
     #set ($dropdownLabel = $masthead.getChild('wavyMasthead').getChild('singleImage_background_group').getChild('callToActionButtons').getChild('dropDownButton').getChild('dropdownLabel').value)
+    #set ($videoURL = $masthead.getChild('wavyMasthead').getChild('singleImage_background_group').getChild('videoBackground').getChild('videoChooser').getChild('path').value)
+    
     ## image group ##
     
     ## SINGLE IMAGE GROUP ##
@@ -79,8 +81,14 @@ DROPDOWN:
 
 <div class="wavy-masthead wavy-masthead__container">
 <div class="wavy-masthead__wave-mask">
+  #if ($backgroundSelector == 'image')
     #mastheadImage()
-    <video src=""></video>
+
+  #elseif ($backgroundSelector == 'video')
+    <video playsinline="true" muted="true" loop="true" autoplay="true"
+		controls="false" src="${videoURL}"></video>
+
+  #end
 </div>
 <div class="wavy-masthead__text">
     <div class="wavy-masthead__header">
@@ -216,6 +224,7 @@ DROPDOWN:
         <div
             class="wavy-masthead__img--${_EscapeTool.xml($imageShape)} wavy-masthead__img"
             style="width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)};">
+
                 <img $imageRole class="wavy-masthead__img img--${_EscapeTool.xml($imageShape)} "
                     src="[system-asset]${_EscapeTool.xml($imageUrlInt)}[/system-asset]"
                     alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-fit: '${_EscapeTool.xml($objectFit)}'; object-position:'${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}'; width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)}; "/>
