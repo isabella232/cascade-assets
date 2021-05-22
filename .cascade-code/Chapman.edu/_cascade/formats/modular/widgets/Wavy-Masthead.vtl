@@ -343,9 +343,9 @@ DROPDOWN:
                 <a tabindex="1" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="${linkType}">#escape($linkLabel)</a>
             </li>
             #elseif (($linkStyle == 'Button Link') && ($bemButtonClass != '$bemButtonClass'))
-                <li><a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button $bemButtonClass  ">#escape($linkLabel)</a></li>
+                <li><a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button $bemButtonClass  no-border">#escape($linkLabel)</a></li>
             #else 
-                <li><a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="">#escape($linkLabel)</a></li>
+                <li><a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="no-border">#escape($linkLabel)</a></li>
             #end    
         #end
     #end
