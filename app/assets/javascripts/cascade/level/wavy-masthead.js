@@ -8,12 +8,10 @@ $(function () {
     }
 
     $(".toggle-video").on("click keydown", function (event) {
-      if (wm__accessibleClick(event)) {
+      if (accessibleClick(event)) {
         togglePlay();
       }
     });
-
-    accessibleClickHandler();
   }
 });
 function fetchCuratorImages() {
@@ -101,7 +99,7 @@ function ieObjectFitFallback() {
   }
 }
 // KEYS 🎹
-function wm__accessibleClick(event) {
+function accessibleClick(event) {
   if (event.type === "click") {
     togglePlay();
     return true;
