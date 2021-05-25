@@ -17,6 +17,41 @@
     margin-top: 0;
     padding-top: 0;
     background-color: $white;
+
+    .toggle-video {
+      z-index: 3;
+      max-width: 20px;
+      position: absolute;
+      bottom: 50px;
+      right: 2%;
+      color: white;
+      cursor: pointer;
+
+      :focus {
+        outline: 2px dotted $white;
+        outline-offset: 5px;
+      }
+    }
+    .wavy-masthead__toggle--play {
+      display: none !important;
+    }
+
+    &[data-video-state="paused"] {
+      .wavy-masthead__toggle--play {
+        display: block !important;
+      }
+      .wavy-masthead__toggle--pause {
+        display: none !important;
+      }
+    }
+    &[data-video-state="playing"] {
+      .wavy-masthead__toggle--play {
+        display: none !important;
+      }
+      .wavy-masthead__toggle--pause {
+        display: block !important;
+      }
+    }
   }
   &__wave-mask {
     z-index: 2;
@@ -29,17 +64,17 @@
     background: rgba(0, 0, 0, 0.9);
     position: relative;
 
-    mask-image: image-url(
-      "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png"
-    ); // mainly for quick dev testing -- the above should be used when compiled and bundled)
+    // mask-image: image-url(
+    //   "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png"
+    // ); // mainly for quick dev testing -- the above should be used when compiled and bundled)
 
-    -webkit-mask-image: image-url(
-      "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png"
-        // mainly for quick dev testing -- the above should be used when compiled and bundled)
-    );
+    // -webkit-mask-image: image-url(
+    //   "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png"
+    //     // mainly for quick dev testing -- the above should be used when compiled and bundled)
+    // );
 
-    // mask-image: image-url("masthead-wave");
-    // -webkit-mask-image: image-url("masthead-wave");
+    mask-image: image-url("masthead-wave");
+    -webkit-mask-image: image-url("masthead-wave");
 
     -webkit-mask-size: 100% 100%;
     will-change: filter;
@@ -180,7 +215,7 @@
   }
 
   .corner-wave {
-    // background-image: image-url("masthead_corner_wave");
+    background-image: url("https://www.chapman.edu/_assets/mastheads/masthead_corner_wave.png");
     width: 100%;
     position: absolute;
     z-index: 3;
@@ -189,6 +224,11 @@
     color: $white;
     display: flex;
     background-size: calc(max(100%, 500px));
+    display: none;
+
+    @include respond(tab-port) {
+      display: block;
+    }
 
     img {
       position: absolute;
@@ -221,5 +261,6 @@
   }
   video {
     width: 100vw;
+    pointer-events: none;
   }
 }
