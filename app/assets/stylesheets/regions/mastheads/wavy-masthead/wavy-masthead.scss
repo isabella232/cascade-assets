@@ -1,4 +1,14 @@
 .wavy-masthead {
+  &.dev {
+    mask-image: image-url(
+      "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png"
+    ); // mainly for quick dev testing -- the above should be used when compiled and bundled)
+
+    -webkit-mask-image: image-url(
+      "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png"
+        // mainly for quick dev testing -- the above should be used when compiled and bundled)
+    );
+  }
   --zindex: 999999;
   @mixin dropShadow {
     box-shadow: 0 37.125px 70px -12.125px rgba(0, 0, 0, 0.1);
@@ -18,7 +28,9 @@
     padding-top: 0;
     background-color: $white;
 
-    .toggle-video {
+    .toggle-video,
+    #wavy-masthead__toggle--pause,
+    #wavy-masthead__toggle--play {
       z-index: 3;
       max-width: 20px;
       position: absolute;
@@ -27,7 +39,7 @@
       color: white;
       cursor: pointer;
 
-      :focus {
+      &:focus {
         outline: 2px dotted $white;
         outline-offset: 5px;
       }
@@ -63,16 +75,6 @@
     right: 0;
     background: rgba(0, 0, 0, 0.9);
     position: relative;
-
-    // mask-image: image-url(
-    //   "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png"
-    // ); // mainly for quick dev testing -- the above should be used when compiled and bundled)
-
-    // -webkit-mask-image: image-url(
-    //   "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png"
-    //     // mainly for quick dev testing -- the above should be used when compiled and bundled)
-    // );
-
     mask-image: image-url("masthead-wave");
     -webkit-mask-image: image-url("masthead-wave");
 
@@ -260,7 +262,7 @@
     }
   }
   video {
-    width: 100vw;
-    pointer-events: none;
+    width: 100%;
+    // pointer-events: none;
   }
 }

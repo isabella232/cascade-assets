@@ -56,6 +56,14 @@
 
 
 <ul class="debug">
+<style>
+.wavy-masthead__wave-mask {
+    mask-image: image-url("https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png") !important; 
+
+    -webkit-mask-image: image-url(
+      "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png") !important;
+}
+</style>
 #output("wavyMastheadType")
 #output("backgroundSelector")
 #output("showHeader")
@@ -79,7 +87,7 @@ DROPDOWN:
 
 
 
-<div class="wavy-masthead wavy-masthead__container">
+<div class="wavy-masthead wavy-masthead__container dev">
   #videoToggleButtons()
   #wavyCorner()
 <div class="wavy-masthead__wave-mask">

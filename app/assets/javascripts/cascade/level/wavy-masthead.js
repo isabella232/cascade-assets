@@ -12,6 +12,8 @@ $(function () {
         togglePlay();
       }
     });
+
+    wavyMastheadSlider();
   }
 });
 function fetchCuratorImages() {
@@ -111,5 +113,21 @@ function accessibleClick(event) {
     }
   } else {
     return false;
+  }
+}
+
+function wavyMastheadSlider() {
+  // const masthead = $(".wavy-masthead[data-slider='true']");
+  if ($(".wavy-masthead__slider").length) {
+    $(".wavy-masthead__slider").not(".slick-initialized").slick({
+      infinite: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: true,
+      dots: false,
+      infinite: true,
+      adaptiveHeight: true,
+      accessibility: true,
+    });
   }
 }
