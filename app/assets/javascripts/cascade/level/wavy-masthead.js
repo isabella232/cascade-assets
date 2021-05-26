@@ -119,6 +119,7 @@ function accessibleClick(event) {
 function wavyMastheadSlider() {
   // const masthead = $(".wavy-masthead[data-slider='true']");
   if ($(".wavy-masthead__slider").length) {
+    console.log("slider");
     $(".wavy-masthead__slider").not(".slick-initialized").slick({
       infinite: true,
       slidesToShow: 1,
