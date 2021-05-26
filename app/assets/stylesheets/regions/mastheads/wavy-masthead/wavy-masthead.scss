@@ -28,6 +28,26 @@
     padding-top: 0;
     background-color: $white;
 
+    &:before {
+      :before {
+        content: "";
+        position: absolute;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
+        -webkit-mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
+        -webkit-mask-size: 100% 100%;
+        will-change: filter;
+        max-height: 600px;
+        z-index: 999999;
+      }
+    }
+
     .toggle-video,
     #wavy-masthead__toggle--pause,
     #wavy-masthead__toggle--play {
@@ -216,6 +236,42 @@
     }
   }
 
+  &__gradient-overlay {
+    z-index: 5;
+    display: block;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.9);
+    position: relative;
+    mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a66….png);
+    -webkit-mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a66….png);
+    -webkit-mask-size: 100% 100%;
+    will-change: filter;
+    max-height: 600px;
+    position: absolute;
+    background: -webkit-linear-gradient(
+      0deg,
+      #020024 0%,
+      #010011 10%,
+      rgba(0, 0, 0, 0) 300px
+    );
+    background: -webkit-linear-gradient(
+      bottom,
+      #020024 0%,
+      #010011 10%,
+      rgba(0, 0, 0, 0) 300px
+    );
+    background: linear-gradient(
+      0deg,
+      #020024 0%,
+      #010011 10%,
+      rgba(0, 0, 0, 0) 300px
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endColorstr="#000000", GradientType=1);
+  }
   .corner-wave {
     background-image: url("https://www.chapman.edu/_assets/mastheads/masthead_corner_wave.png");
     width: 100%;
@@ -238,7 +294,6 @@
       width: auto;
       z-index: 1;
     }
-
     .faux-h2 {
       z-index: 9;
     }
