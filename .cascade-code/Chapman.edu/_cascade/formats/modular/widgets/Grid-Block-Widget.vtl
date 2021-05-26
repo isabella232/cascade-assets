@@ -177,22 +177,32 @@
 
 #set ($textBackgroundColor = $gridOptions.getChild('textBackgroundColor').value)
 
+## IMAGES 
+#set ($gridColumnsImages = $gridOptions.getChild('gridColumnsImages').value)
+
+
+#if ($gridColumnsImages != '')
+#set ($dataColumns = $gridColumnsImages.split("-")[0])
+
+#elseif ($gridColumnsVideos != '')
+  #set ($dataColumns = $gridColumnsVideos)
+  #set ($gridColumnsImages = $gridColumnsVideos)
+#else 
+  #set ($dataColumns = '')
+#end
+
 ## VIDEOS
 #set ($gridColumnsVideos = $gridOptions.getChild('gridColumnsVideos').value)
-
-
-  ## IMAGES 
-  #set ($gridColumnsImages = $gridOptions.getChild('gridColumnsImages').value)
-
-
-  #if ($gridColumnsImages != '')
-    #set ($dataColumns = $gridColumnsImages.split("-")[0])
-    
-  #elseif ($gridColumnsVideos != '')
-      #set ($dataColumns = $gridColumnsVideos)
-  #else 
-      #set ($dataColumns = '')
-  #end
+    #if ($gridColumnsVideos == 'gridColumnsTwoVideos')
+        #set ($gridColumnsVideos = 'grid-block-widget__container--2-col')
+        #set ($gridColumnsImages = $gridColumnsVideos)
+    #elseif ($gridColumnsVideos == 'gridColumnsThreeVideos')
+        #set ($gridColumnsVideos = 'grid-block-widget__container--3-col')
+        #set ($gridColumnsImages = $gridColumnsVideos)
+    #else 
+        #set ($gridColumnsVideos = '')
+    #end
+<div class="hidden">gridColumnsVideos $gridColumnsVideos</div>
 
 
 
@@ -216,21 +226,29 @@
 <div class="inner-container">
 #if ($displaySectionIntro == "yes")
     <div class="section-intro text-align--${introAndOutroTextAlignment}">
+    #if ($sectionPreheader != "")
       <div class="section-intro__preheader text-align--${introAndOutroTextAlignment}">
         ${_EscapeTool.xml($sectionPreheader)}
       </div>
+    #end
+    
+    #if ($sectionHeader != "")
       <h2 class="section-intro__header text-align--${introAndOutroTextAlignment}">  
         ${_EscapeTool.xml($sectionHeader)}
       </h2>
+    #end
+    
+    #if ($_SerializerTool.serialize($element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionHeaderParagraph'), true) != "")
       <div class="section-intro__title text-align--${introAndOutroTextAlignment}">     
         $_SerializerTool.serialize($element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionHeaderParagraph'), true)
       </div>
+    #end
     </div>
     
   #end
     
 
-  <div id="grid-block-widget__container--${_MathTool.add($foreach.index, 1)}" class="grid-block-widget__container grid-block-widget__container--$imageOrVideo grid-block-widget__container--${gridColumnsImages} ${overlayClass} grid-block-widget__container--${imageOrientation} ${pagination}" data-columns="${dataColumns}">
+  <div id="grid-block-widget__container--${_MathTool.add($foreach.index, 1)}" class="grid-block-widget__container grid-block-widget__container--$imageOrVideo grid-block-widget__container--${gridColumnsImages} ${gridColumnsVideos} ${overlayClass} grid-block-widget__container--${imageOrientation} ${pagination}" data-columns="${dataColumns}">
   
 
   #foreach ($block in $blocks)
@@ -286,6 +304,7 @@
     #elseif ($imageOrVideo == 'videos' && $imageOrientation != 'none')
          ## <video src="${_EscapeTool.xml($gridBlockVideo)}"></video>
           $gridBlockiFrame 
+          
     #end
     
     #if ($hasGridTitle == 'Yes' && $linkURL != '' && $gridBlockLinkType != '' )
