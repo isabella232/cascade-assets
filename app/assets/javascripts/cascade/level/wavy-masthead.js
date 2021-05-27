@@ -120,15 +120,18 @@ function wavyMastheadSlider() {
   // const masthead = $(".wavy-masthead[data-slider='true']");
   if ($(".wavy-masthead__slider").length) {
     console.log("slider");
-    $(".wavy-masthead__slider").not(".slick-initialized").slick({
-      infinite: true,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      arrows: true,
-      dots: false,
-      infinite: true,
-      adaptiveHeight: true,
-      accessibility: true,
-    });
+    $(".wavy-masthead__slider")
+      .not(".slick-initialized")
+      .slick({
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: true,
+        dots: true,
+        infinite: true,
+        adaptiveHeight: true,
+        accessibility: true,
+        appendDots: $(".wavy-masthead__text"),
+      });
   }
 }
