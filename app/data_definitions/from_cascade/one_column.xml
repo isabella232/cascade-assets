@@ -69,7 +69,19 @@
             <text field-id="8909d1ebc0a81e8a3b000293520a861a" identifier="sliderHeader" label="Slider Header" required="true"/>
             <text configuration="Text and Links" field-id="8909d1ebc0a81e8a3b00029303128b45" help-text="Max: 200 characters/30 words" identifier="textArea" label="Text" required="true" wysiwyg="true"/>
           </group>
-          <shared-field field-id="8909d1ebc0a81e8a3b000293157aea08" identifier="image" label="Image Background" maximum-number="1" minimum-number="1" path="image__rectangle-only--required"/>
+          <text field-id="" identifier="backgroundSelector" label="Background:" required="true" type="radiobutton">
+            <radio-item label="Image" show-fields="masthead/wavyMasthead/mulitipleImageSlider/imageSlider/image" value="image"/>
+            <radio-item label="Video" show-fields="masthead/wavyMasthead/mulitipleImageSlider/imageSlider/videoBackground" value="video"/>
+          </text>
+          <shared-field field-id="" identifier="image" label="Image Background" maximum-number="1" minimum-number="1" path="image__rectangle-only--required"/>
+          <group identifier="videoBackground" label="Video Background">
+            <asset field-id="" help-text=".mp4 or .mov" identifier="videoChooser" label="Video File:" type="file"/>
+            <text default="middle" field-id="" identifier="videoPositionChooser" label="Video Position:" type="radiobutton">
+              <radio-item label="Top" value="top"/>
+              <radio-item label="Middle" value="middle"/>
+              <radio-item label="Bottom" value="bottom"/>
+            </text>
+          </group>
         </group>
       </group>
     </group>
