@@ -21,7 +21,25 @@
     &:before {
       content: "";
       position: absolute;
-      background: rgba(0, 0, 0, 0.5);
+      background: -webkit-linear-gradient(
+        0deg,
+        #020024 0%,
+        #010011 10%,
+        rgba(0, 0, 0, 0) 300px
+      );
+      background: -webkit-linear-gradient(
+        bottom,
+        #020024 0%,
+        #010011 10%,
+        rgba(0, 0, 0, 0) 300px
+      );
+      background: linear-gradient(
+        0deg,
+        #020024 0%,
+        #010011 10%,
+        rgba(0, 0, 0, 0) 300px
+      );
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endColorstr="#000000", GradientType=1);
       border-radius: 5px;
       top: 0;
       right: 0;
@@ -32,7 +50,7 @@
       -webkit-mask-size: 100% 100%;
       will-change: filter;
       max-height: 600px;
-      z-index: 3;
+      z-index: 999999;
     }
 
     .toggle-video,
