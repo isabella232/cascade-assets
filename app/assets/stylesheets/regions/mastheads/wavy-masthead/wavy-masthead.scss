@@ -1,14 +1,4 @@
 .wavy-masthead {
-  &.dev {
-    mask-image: image-url(
-      "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png"
-    ); // mainly for quick dev testing -- the above should be used when compiled and bundled)
-
-    -webkit-mask-image: image-url(
-      "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png"
-        // mainly for quick dev testing -- the above should be used when compiled and bundled)
-    );
-  }
   --zindex: 999999;
   @mixin dropShadow {
     box-shadow: 0 37.125px 70px -12.125px rgba(0, 0, 0, 0.1);
@@ -29,23 +19,20 @@
     background-color: $white;
 
     &:before {
-      :before {
-        content: "";
-        position: absolute;
-        background: rgba(0, 0, 0, 0.5);
-        border-radius: 5px;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-
-        mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
-        -webkit-mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
-        -webkit-mask-size: 100% 100%;
-        will-change: filter;
-        max-height: 600px;
-        z-index: 999999;
-      }
+      content: "";
+      position: absolute;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 5px;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
+      -webkit-mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
+      -webkit-mask-size: 100% 100%;
+      will-change: filter;
+      max-height: 600px;
+      z-index: 3;
     }
 
     .toggle-video,
@@ -85,6 +72,7 @@
       }
     }
   }
+
   &__wave-mask {
     z-index: 2;
     display: block;
@@ -128,6 +116,7 @@
       height: 100%;
     }
   }
+
   &__text {
     position: absolute;
     z-index: var(--zindex);
@@ -319,5 +308,18 @@
   video {
     width: 100%;
     // pointer-events: none;
+  }
+}
+
+// dev only
+html body .dev {
+  .wavy-masthead__wave-mask {
+    mask-image: image-url(
+      "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png"
+    ) !important;
+
+    -webkit-mask-image: image-url(
+      "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png"
+    ) !important;
   }
 }
