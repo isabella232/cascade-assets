@@ -1,9 +1,13 @@
 .wavy-masthead__slider {
   .wavy-masthead {
     &__text {
+      user-select: text;
       h2 {
         font-size: 2.2rem;
         display: inline-block;
+        text-shadow: none;
+        text-transform: none;
+        font-family: $futura-regular;
         &:after {
           content: "\f105";
           font-family: "Font Awesome 5 Pro";
@@ -13,22 +17,35 @@
       }
       align-items: start;
       margin-left: 200px;
-      max-width: 800px;
+      max-width: 520px;
+      &--inner {
+        // this is for the WYSIWYG and excludes the slick.js dots
+        padding-left: 50px;
+        padding-right: 50px;
+      }
+      .bg--red {
+        background-color: $cu-red;
+      }
     }
   }
   .slick-dots li button:before {
-    font-size: 20px;
-    line-height: 20px;
-    color: $white !important;
+    color: $white;
+    font-size: 50px !important;
+    opacity: 1;
   }
-  .slick-dots {
-    background-color: transparent;
-    display: flex;
+}
+// outside of .wavy-masthead
+ul.slick-dots.wavy-masthead__slider-dots {
+  bottom: 50px;
+  display: flex;
+  left: 0;
+  margin-left: 200px;
+  button:before {
+    opacity: 1;
+    font-size: 50px !important;
+    color: $white;
   }
-  .slick-dots li.slick-active button:before {
+  li.slick-active button:before {
     color: $cu-red !important;
-  }
-  .slick-dots li:not(.slick-active) button:before {
-    color: $white !important;
   }
 }

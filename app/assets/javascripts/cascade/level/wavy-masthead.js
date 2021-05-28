@@ -131,7 +131,19 @@ function wavyMastheadSlider() {
         infinite: true,
         adaptiveHeight: true,
         accessibility: true,
-        appendDots: $(".wavy-masthead__text"),
+        cssEase: "linear",
+        appendDots: $(".wavy-masthead__slider-container"),
+        dotsClass: "slick-dots wavy-masthead__slider-dots",
       });
+  }
+}
+
+function initSlider(selector, options) {
+  if ($.fn.slick) {
+    $(selector).slick(options);
+  } else {
+    setTimeout(function () {
+      initSlider(selector, options);
+    }, 500);
   }
 }
