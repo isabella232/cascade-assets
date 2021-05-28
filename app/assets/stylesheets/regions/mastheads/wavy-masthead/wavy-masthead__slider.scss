@@ -1,4 +1,7 @@
 .wavy-masthead__slider {
+  &-container {
+    position: relative;
+  }
   .wavy-masthead {
     &__text {
       user-select: text;
