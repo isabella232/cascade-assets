@@ -132,6 +132,7 @@ function wavyMastheadSlider() {
         adaptiveHeight: true,
         accessibility: true,
         cssEase: "linear",
+        speed: 300,
         appendDots: $(".wavy-masthead__slider-container"),
         dotsClass: "slick-dots wavy-masthead__slider-dots",
       });

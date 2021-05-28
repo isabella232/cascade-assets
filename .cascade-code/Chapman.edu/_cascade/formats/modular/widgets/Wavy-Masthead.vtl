@@ -3,7 +3,7 @@
   
 <li>
     $var: #evaluate("${varEval}")
-  </li>
+</li>
 #end
 
 
@@ -18,7 +18,10 @@
 #set ($wxp = 'wavyMasthead')
 #set ($widgetXPath = $masthead)
 #set ($wavyMastheadType = $masthead.getChild('wavyMasthead').getChild('mastheadType').value)
+#set ($wavyMasthead = $masthead.getChild('wavyMasthead'))
 
+## blank declaration 
+#set ($slideWrapper = '')
 
 #if ( $mastheadType == 'Wavy Masthead' )
 #outputMasthead()
@@ -26,25 +29,24 @@
 #macro(outputMasthead $element) 
     ## Masthead Type - there are 3 options
     #singleImageOrVideo()
+    #sliderMasthead()
     ## End Masthead Type
 
     #debug()
 
 
-
+$sliderWrapper
 <div class="wavy-masthead wavy-masthead__container dev">
   #videoToggleButtons()
   #wavyCorner()
 
 	<div class="wavy-masthead__wave-mask">
-  #if ($backgroundSelector == 'image')
+  #if ($backgroundSelector == 'image') 
     #mastheadImage()
 
   #elseif ($backgroundSelector == 'video')
-    
 		<video playsinline="true" muted="true" loop="true" autoplay="true"
 		controls="false" src="${videoURL}"></video>
-
   #end
 
 	</div>
@@ -52,17 +54,18 @@
 		<div class="wavy-masthead__header">
       #if ($showHeader != 'no')
         
-			<h2>${_EscapeTool.xml($headerMasthead)}
-        </h2>
+			<h2 data-display-single-image-or-video="true">
+      $headerMasthead
+      </h2>
       #end
     
 		</div>
 		<div class="wavy-masthead__buttons">
     
 
-      #set ( $buttons       = $_XPathTool.selectNodes($contentRoot, 'masthead/wavyMasthead/currentMastheadGroup/callToActionButtons/link') )
+      #set ( $buttons       = $_XPathTool.selectNodes($contentRoot, 'masthead/wavyMasthead/singleImage_background_group/callToActionButtons/link') )
 
-      #cta($currentPage, '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/currentMastheadGroup/callToActionButtons/link')
+      #cta($currentPage, '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/singleImage_background_group/callToActionButtons/link')
       #set ($buttonClasses = ['button--red', 'no-border'])
 
         
@@ -93,6 +96,7 @@
 		</div>
 	</div>
 </div>
+$sliderWrapperClose
 #end
 
 #end
@@ -117,38 +121,38 @@
     #set ($widgetXPath = 'masthead-2021')
     ## $widgetXPath is just a verbose alias for $wxp 
     #set ($imageUrlInt =
-    $currentMastheadGroup.getChild('image').getChild('imageUrlInt').getChild('path').value )
+    $currentMastheadType.getChild('image').getChild('imageUrlInt').getChild('path').value )
     #set ($imageUrlExt =
-    $currentMastheadGroup.getChild('image').getChild('imageUrlExt').value )
+    $currentMastheadType.getChild('image').getChild('imageUrlExt').value )
 
     ## IMAGE SHAPE
     #set ($imageType =
-    $currentMastheadGroup.getChild('image').getChild('imageType').value.toLowerCase())
+    $currentMastheadType.getChild('image').getChild('imageType').value.toLowerCase())
     #set ($imageShape =
-    $currentMastheadGroup.getChild('image').getChild('imageShape').value.toLowerCase())
+    $currentMastheadType.getChild('image').getChild('imageShape').value.toLowerCase())
 
     ## IMAGE POSITION (OBJECT-FIT)
-    #set ($objectPositionX = $currentMastheadGroup.getChild('image').getChild('advanced').getChild('objectPositionX').value.toLowerCase())
-    #set ($objectPositionY = $currentMastheadGroup.getChild('image').getChild('advanced').getChild('objectPositionY').value.toLowerCase())
-    #set ($objectFit = $currentMastheadGroup.getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
+    #set ($objectPositionX = $currentMastheadType.getChild('image').getChild('advanced').getChild('objectPositionX').value.toLowerCase())
+    #set ($objectPositionY = $currentMastheadType.getChild('image').getChild('advanced').getChild('objectPositionY').value.toLowerCase())
+    #set ($objectFit = $currentMastheadType.getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
 
 
     ## OBJECT-FIT
     #if ($objectFit != '')
-      #set ($objectFit = $currentMastheadGroup.getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
+      #set ($objectFit = $currentMastheadType.getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
     #else 
       #set ($objectFit = 'cover')
     #end
 
     ## IMAGE DIMENSIONS
     #if ($imageWidth != '')
-      #set ($imageWidth = $currentMastheadGroup.getChild('image').getChild('advanced').getChild('imageWidth').value.toLowerCase())
+      #set ($imageWidth = $currentMastheadType.getChild('image').getChild('advanced').getChild('imageWidth').value.toLowerCase())
     #else 
       #set ($imageWidth = '100%')
     #end
 
     #if ($imageHeight != '')
-      #set ($imageHeight = $currentMastheadGroup.getChild('image').getChild('advanced').getChild('imageHeight').value.toLowerCase())
+      #set ($imageHeight = $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeight').value.toLowerCase())
     #else 
       #set ($imageHeight = 'auto')
     #end
@@ -169,7 +173,7 @@
 
 
     ## ACCESSIBILITY
-    #set ( $imageRoleVal =  ( $currentMastheadGroup.getChild('image').getChild('imageAltOrDecorative').value ) )
+    #set ( $imageRoleVal =  ( $currentMastheadType.getChild('image').getChild('imageAltOrDecorative').value ) )
     #if ( $imageRoleVal == "Decorative Image" )
         #set ( $imageRole = "role='presentation'" )
         #set ( $altText = '' )
@@ -178,7 +182,7 @@
     #end
 
     ## Custom Code Option
-    #set ($code = $currentMastheadGroup.getChild('image').getChild('advanced').getChild('code').value.toLowerCase())
+    #set ($code = $currentMastheadType.getChild('image').getChild('advanced').getChild('code').value.toLowerCase())
 
     #if ($imageType == 'internal cascade image')
       #set ($imageUrlExt = '')
@@ -273,7 +277,7 @@
 
 
 #macro(dropdownItems)
-#set ($dropdownItems = $_XPathTool.selectNodes($currentPage, '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/currentMastheadGroup/callToActionButtons/dropDownButton/link'))
+#set ($dropdownItems = $_XPathTool.selectNodes($currentPage, '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/singleImage_background_group/callToActionButtons/dropDownButton/link'))
 #foreach ($link in $dropdownItems)
         #set ($linkStyle = 'text-link') 
         #set ($linkType =  $link.getChild('linkType').value)
@@ -369,21 +373,23 @@
     #if ( $wavyMastheadType == 'imageVideo_background' )
     ## HEADER GROUP
     #set ($backgroundSelector =
-    $masthead.getChild('currentMastheadGroup').getChild('backgroundSelector').value)
+    $currentMastheadType.getChild('backgroundSelector').value)
 
     ## SINGLE IMAGE GROUP ##
-    #set ($currentMastheadGroup = $wavyMasthead.getChild('currentMastheadGroup'))
-    #set ($backgroundSelector = $currentMastheadGroup.getChild('backgroundSelector').value)
-    #set ($showHeader = $currentMastheadGroup.getChild('headerTitle').getChild('showHeader').value)
-    #set ($preheaderMasthead = $currentMastheadGroup.getChild('headerTitle').getChild('preheaderMasthead').value)
-    #set ($headerMasthead = $currentMastheadGroup.getChild('headerTitle').getChild('headerMasthead').value)
+    #set ($currentMastheadType = $wavyMasthead.getChild('singleImage_background_group'))
+    #set ($backgroundSelector = $currentMastheadType.getChild('backgroundSelector').value)
+    #set ($showHeader = $currentMastheadType.getChild('headerTitle').getChild('showHeader').value)
+    #set ($preheaderMasthead = $currentMastheadType.getChild('headerTitle').getChild('preheaderMasthead').value)
+    #set ($headerMasthead = $currentMastheadType.getChild('headerTitle').getChild('headerMasthead').value)
+    #set ($headerMasthead = ${_EscapeTool.xml($headerMasthead)})
+    #set ($currentMastheadType = $currentMastheadType)
 
-    #set ($imageType = $currentMastheadGroup.getChild('image').getChild('imageType').value)
-    #set ($imageUrlExt = $currentMastheadGroup.getChild('image').getChild('imageUrlExt').value)
-    #set ($imageUrlInt = $currentMastheadGroup.getChild('image').getChild('imageUrlInt').getChild('path').value)
-    #set ($imageAltOrDecorative = $currentMastheadGroup.getChild('image').getChild('imageAltOrDecorative').value)
-    #set ($dropdownLabel = $currentMastheadGroup.getChild('callToActionButtons').getChild('dropDownButton').getChild('dropdownLabel').value)
-    #set ($videoURL = $currentMastheadGroup.getChild('videoBackground').getChild('videoChooser').getChild('path').value)
+    #set ($imageType = $currentMastheadType.getChild('image').getChild('imageType').value)
+    #set ($imageUrlExt = $currentMastheadType.getChild('image').getChild('imageUrlExt').value)
+    #set ($imageUrlInt = $currentMastheadType.getChild('image').getChild('imageUrlInt').getChild('path').value)
+    #set ($imageAltOrDecorative = $currentMastheadType.getChild('image').getChild('imageAltOrDecorative').value)
+    #set ($dropdownLabel = $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').getChild('dropdownLabel').value)
+    #set ($videoURL = $currentMastheadType.getChild('videoBackground').getChild('videoChooser').getChild('path').value)
     ## image group ##
     ## SINGLE IMAGE GROUP ##
     #end
@@ -402,16 +408,21 @@
 }
 </style>
 #output("wavyMastheadType")
-#output("backgroundSelector")
-#output("showHeader")
-#output("preheaderMasthead")
-#output("headerMasthead")
-#output("imageType")
-#output("imageUrlInt")
-#output("imageUrlExt")
+#if ( $wavyMastheadType == 'imageVideo_background' )
+  #output("backgroundSelector")
+  #output("showHeader")
+  #output("preheaderMasthead")
+  #output("headerMasthead")
+  #output("imageType")
+  #output("imageUrlInt")
+  #output("imageUrlExt")
+#end
 
+#if ( $wavyMastheadType == 'sliderBackground' )
 
-#set ($dropdownItems = $_XPathTool.selectNodes($currentPage, '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/currentMastheadGroup/callToActionButtons/dropDownButton/link'))
+#end
+
+#set ($dropdownItems = $_XPathTool.selectNodes($currentPage, '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/singleImage_background_group/callToActionButtons/dropDownButton/link'))
 
 DROPDOWN: 
 #foreach ($dropdown in $dropdownItems)
@@ -428,38 +439,38 @@ DROPDOWN:
     #set ($widgetXPath = 'masthead-2021')
     ## $widgetXPath is just a verbose alias for $wxp 
     #set ($imageUrlInt =
-    $currentMastheadGroup.getChild('image').getChild('imageUrlInt').getChild('path').value )
+    $currentMastheadType.getChild('image').getChild('imageUrlInt').getChild('path').value )
     #set ($imageUrlExt =
-    $currentMastheadGroup.getChild('image').getChild('imageUrlExt').value )
+    $currentMastheadType.getChild('image').getChild('imageUrlExt').value )
 
     ## IMAGE SHAPE
     #set ($imageType =
-    $currentMastheadGroup.getChild('image').getChild('imageType').value.toLowerCase())
+    $currentMastheadType.getChild('image').getChild('imageType').value.toLowerCase())
     #set ($imageShape =
-    $currentMastheadGroup.getChild('image').getChild('imageShape').value.toLowerCase())
+    $currentMastheadType.getChild('image').getChild('imageShape').value.toLowerCase())
 
     ## IMAGE POSITION (OBJECT-FIT)
-    #set ($objectPositionX = $currentMastheadGroup.getChild('image').getChild('advanced').getChild('objectPositionX').value.toLowerCase())
-    #set ($objectPositionY = $currentMastheadGroup.getChild('image').getChild('advanced').getChild('objectPositionY').value.toLowerCase())
-    #set ($objectFit = $currentMastheadGroup.getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
+    #set ($objectPositionX = $currentMastheadType.getChild('image').getChild('advanced').getChild('objectPositionX').value.toLowerCase())
+    #set ($objectPositionY = $currentMastheadType.getChild('image').getChild('advanced').getChild('objectPositionY').value.toLowerCase())
+    #set ($objectFit = $currentMastheadType.getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
 
 
     ## OBJECT-FIT
     #if ($objectFit != '')
-      #set ($objectFit = $currentMastheadGroup.getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
+      #set ($objectFit = $currentMastheadType.getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
     #else 
       #set ($objectFit = 'cover')
     #end
 
     ## IMAGE DIMENSIONS
     #if ($imageWidth != '')
-      #set ($imageWidth = $currentMastheadGroup.getChild('image').getChild('advanced').getChild('imageWidth').value.toLowerCase())
+      #set ($imageWidth = $currentMastheadType.getChild('image').getChild('advanced').getChild('imageWidth').value.toLowerCase())
     #else 
       #set ($imageWidth = '100%')
     #end
 
     #if ($imageHeight != '')
-      #set ($imageHeight = $currentMastheadGroup.getChild('image').getChild('advanced').getChild('imageHeight').value.toLowerCase())
+      #set ($imageHeight = $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeight').value.toLowerCase())
     #else 
       #set ($imageHeight = 'auto')
     #end
@@ -480,7 +491,7 @@ DROPDOWN:
 
 
     ## ACCESSIBILITY
-    #set ( $imageRoleVal =  ( $currentMastheadGroup.getChild('image').getChild('imageAltOrDecorative').value ) )
+    #set ( $imageRoleVal =  ( $currentMastheadType.getChild('image').getChild('imageAltOrDecorative').value ) )
     #if ( $imageRoleVal == "Decorative Image" )
         #set ( $imageRole = "role='presentation'" )
         #set ( $altText = '' )
@@ -489,7 +500,7 @@ DROPDOWN:
     #end
 
     ## Custom Code Option
-    #set ($code = $currentMastheadGroup.getChild('image').getChild('advanced').getChild('code').value.toLowerCase())
+    #set ($code = $currentMastheadType.getChild('image').getChild('advanced').getChild('code').value.toLowerCase())
 
     #if ($imageType == 'internal cascade image')
       #set ($imageUrlExt = '')
@@ -521,10 +532,6 @@ DROPDOWN:
 </div>
     #end
 #end
-
-
-
-
 
 #macro(cta $elem $linkXPath $wxp)
     #set ($buttonClasses = 'button--red no-border')
@@ -584,7 +591,7 @@ DROPDOWN:
 
 
 #macro(dropdownItems)
-#set ($dropdownItems = $_XPathTool.selectNodes($currentPage, '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/currentMastheadGroup/callToActionButtons/dropDownButton/link'))
+#set ($dropdownItems = $_XPathTool.selectNodes($currentPage, '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/singleImage_background_group/callToActionButtons/dropDownButton/link'))
 #foreach ($link in $dropdownItems)
         #set ($linkStyle = 'text-link') 
         #set ($linkType =  $link.getChild('linkType').value)
@@ -678,32 +685,57 @@ DROPDOWN:
 
 #macro(sliderMasthead)
     #if ( $wavyMastheadType == 'sliderBackground' )
-    #set ($currentMastheadGroup = $wavyMasthead.getChild('mulitipleImageSlider'))
+    
+    #set ( $sliderWrapper = '<div class="wavy-masthead__slider-container"> <div class="wavy-masthead__slider">') 
+    #set ( $sliderWrapperClose = '</div></div>') 
 
+    #set ($headerMasthead = '')
+    #set ($currentMastheadType = $wavyMasthead.getChild('mulitipleImageSlider'))
+  
     ## HEADER GROUP
-    #set ($currentMastheadGroup =
-    $sliderGroup.getChild('sliderTextBackground').value)
+    #set ($sliderTextBackground = $currentMastheadType.getChild('sliderTextBackground').value)
+    
+    #set ($slides = $_XPathTool.selectNodes($currentPage, '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/mulitipleImageSlider/imageSlider'))
 
-    ## INDIVIDUAL SLIDE ##
-    #set ($backgroundSelector = $currentMastheadGroup.getChild('backgroundSelector').value)
-    #set ($showHeader = $currentMastheadGroup.getChild('headerTitle').getChild('showHeader').value)
-    #set ($preheaderMasthead = $currentMastheadGroup.getChild('headerTitle').getChild('preheaderMasthead').value)
-    #set ($headerMasthead = $currentMastheadGroup.getChild('headerTitle').getChild('headerMasthead').value)
-    #set ($currentMastheadGroup = $currentMastheadGroup)
+  
+    #foreach ($slide in $slides)
+      ## SLIDER TEXT
+        #set ($sliderHeader = $slide.getChild('sliderText').getChild('sliderHeader').value)
+        #set ($textArea = $slide.getChild('sliderText').getChild('textArea').value)
+      ## END SLIDER TEXT
+      ## SLIDER IMAGE
+        #set ($imageType = $slide.getChild('imageType').value)
+        #set ($currentMastheadType = $slide) ## this is hacky, but we need the macro to think the slide is the current masthead. 
+        #set ($backgroundSelector = $slide.getChild('backgroundSelector').value)
+        
+        slide - header: $sliderHeader
+      ## END SLIDER IMAGE
+    #end
 
-    #set ($imageType = $currentMastheadGroup.getChild('image').getChild('imageType').value)
-    #set ($imageUrlExt = $currentMastheadGroup.getChild('image').getChild('imageUrlExt').value)
-    #set ($imageUrlInt = $currentMastheadGroup.getChild('image').getChild('imageUrlInt').getChild('path').value)
-    #set ($imageAltOrDecorative = $currentMastheadGroup.getChild('image').getChild('imageAltOrDecorative').value)
-    #set ($dropdownLabel = $currentMastheadGroup.getChild('callToActionButtons').getChild('dropDownButton').getChild('dropdownLabel').value)
-    #set ($videoURL = $currentMastheadGroup.getChild('videoBackground').getChild('videoChooser').getChild('path').value)
-    ## INDIVIDUAL SLIDE ##
+## /masthead/wavyMasthead/mulitipleImageSlider/sliderTextBackground
+
+    #set ($wavyMasthead = $masthead.getChild('wavyMasthead'))
+    
+
+    ## SINGLE IMAGE GROUP ##
+    #set ($backgroundSelector = $currentMastheadType.getChild('backgroundSelector').value)
+    #set ($showHeader = $currentMastheadType.getChild('headerTitle').getChild('showHeader').value)
+    #set ($preheaderMasthead = $currentMastheadType.getChild('headerTitle').getChild('preheaderMasthead').value)
+    #set ($headerMasthead = $currentMastheadType.getChild('headerTitle').getChild('headerMasthead').value)
+    #set ($currentMastheadType = $currentMastheadType)
+
+    #set ($imageType = $currentMastheadType.getChild('image').getChild('imageType').value)
+    #set ($imageUrlExt = $currentMastheadType.getChild('image').getChild('imageUrlExt').value)
+    #set ($imageUrlInt = $currentMastheadType.getChild('image').getChild('imageUrlInt').getChild('path').value)
+    #set ($imageAltOrDecorative = $currentMastheadType.getChild('image').getChild('imageAltOrDecorative').value)
+    #set ($dropdownLabel = $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').getChild('dropdownLabel').value)
+    #set ($videoURL = $currentMastheadType.getChild('videoBackground').getChild('videoChooser').getChild('path').value)
+    ## image group ##
+    ## SINGLE IMAGE GROUP ##
     #end
 #end
 
 #macro(debug)
-
-
 <ul class="debug">
 	<style>
 .wavy-masthead__wave-mask {
@@ -714,7 +746,8 @@ DROPDOWN:
 }
 </style>
   #output("wavyMastheadType")
-#if ( $wavyMastheadType == 'currentMastheadGroup' )
+  #output("backgroundSelector")
+#if ( $wavyMastheadType == 'imageVideo_background' )
   #output("backgroundSelector")
   #output("showHeader")
   #output("preheaderMasthead")
@@ -722,15 +755,23 @@ DROPDOWN:
   #output("imageType")
   #output("imageUrlInt")
   #output("imageUrlExt")
+  #output("imageType")
 #end
 
 
 #if ( $wavyMastheadType == 'sliderBackground' )
   #output("sliderTextBackground")
+  #output("sliderHeader")
+  #output('textArea')
+  #output("imageType")
+  #output("imageUrlInt")
+  #output("imageUrlExt")
+  #output("imageType")
+  
 #end
 
 
-#set ($dropdownItems = $_XPathTool.selectNodes($currentPage, '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/currentMastheadGroup/callToActionButtons/dropDownButton/link'))
+#set ($dropdownItems = $_XPathTool.selectNodes($currentPage, '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/singleImage_background_group/callToActionButtons/dropDownButton/link'))
 
 DROPDOWN: 
 #foreach ($dropdown in $dropdownItems)
