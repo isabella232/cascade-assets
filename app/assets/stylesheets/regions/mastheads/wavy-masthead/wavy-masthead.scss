@@ -50,7 +50,7 @@
       -webkit-mask-size: 100% 100%;
       will-change: filter;
       max-height: 600px;
-      z-index: 999999;
+      z-index: 3;
     }
 
     .toggle-video,
@@ -67,6 +67,10 @@
       &:focus {
         outline: 2px dotted $white;
         outline-offset: 5px;
+      }
+
+      &[data-bg-type="image"] {
+        display: none;
       }
     }
     .wavy-masthead__toggle--play {
