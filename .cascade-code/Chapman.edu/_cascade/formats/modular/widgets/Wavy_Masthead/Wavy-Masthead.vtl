@@ -24,9 +24,9 @@
 #set ($slideWrapper = '')
 
 #if ( $mastheadType == 'Wavy Masthead' )
-#outputMasthead()
 
-#macro(outputMasthead $element) 
+
+
     ## Masthead Type - there are 3 options
     #singleImageOrVideo()
     #sliderMasthead()
@@ -35,69 +35,7 @@
     #debug()
 
 
-$sliderWrapper
-<div class="wavy-masthead wavy-masthead__container dev">
-  #videoToggleButtons()
-  #wavyCorner()
 
-	<div class="wavy-masthead__wave-mask">
-  #if ($backgroundSelector == 'image') 
-    #mastheadImage()
-
-  #elseif ($backgroundSelector == 'video')
-		<video playsinline="true" muted="true" loop="true" autoplay="true"
-		controls="false" src="${videoURL}"></video>
-  #end
-
-	</div>
-	<div class="wavy-masthead__text">
-		<div class="wavy-masthead__header">
-      #if ($showHeader != 'no')
-        
-			<h2 data-display-single-image-or-video="true">
-      $headerMasthead
-      </h2>
-      #end
-    
-		</div>
-		<div class="wavy-masthead__buttons">
-    
-
-      #set ( $buttons       = $_XPathTool.selectNodes($contentRoot, 'masthead/wavyMasthead/singleImage_background_group/callToActionButtons/link') )
-
-      #cta($currentPage, '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/singleImage_background_group/callToActionButtons/link')
-      #set ($buttonClasses = ['button--red', 'no-border'])
-
-        
-			<div class="button--dropdown__wrapper">
-				<a href="" class="button button--red no-border button--dropdown">
-					<span class="label">
-                    ${_EscapeTool.xml($dropdownLabel)}
-                    
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true"
-                        focusable="true"
-                        data-prefix="fas"
-                        data-icon="caret-down"
-                        class="svg-inline--fa fa-caret-down fa-w-10"
-                        role="img"
-                        viewbox="0 0 320 512">
-							<path
-                            fill="currentColor"
-                            d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"/>
-						</svg>
-					</span>
-				</a>
-				<ul class="dropdown-menu">
-                #dropdownItems()
-            </ul>
-			</div>
-		</div>
-	</div>
-</div>
-$sliderWrapperClose
-#end
 
 #end
 
@@ -370,6 +308,7 @@ $sliderWrapperClose
 #end
 
 #macro(singleImageOrVideo)
+
     #if ( $wavyMastheadType == 'imageVideo_background' )
     ## HEADER GROUP
     #set ($backgroundSelector =
@@ -392,8 +331,70 @@ $sliderWrapperClose
     #set ($videoURL = $currentMastheadType.getChild('videoBackground').getChild('videoChooser').getChild('path').value)
     ## image group ##
     ## SINGLE IMAGE GROUP ##
+    
+
+    <div class="wavy-masthead wavy-masthead__container dev">
+        #videoToggleButtons()
+        #wavyCorner()
+
+      <div class="wavy-masthead__wave-mask">
+      #if ($backgroundSelector == 'image') 
+        #mastheadImage()
+
+      #elseif ($backgroundSelector == 'video')
+        <video playsinline="true" muted="true" loop="true" autoplay="true"
+        controls="false" src="${videoURL}"></video>
+      #end
+
+      </div>
+      <div class="wavy-masthead__text">
+        <div class="wavy-masthead__header">
+          #if ($showHeader != 'no')
+            
+          <h2 data-display-single-image-or-video="true">
+          $headerMasthead
+          </h2>
+          #end
+        
+        </div>
+        <div class="wavy-masthead__buttons">
+        
+
+          #set ( $buttons       = $_XPathTool.selectNodes($contentRoot, 'masthead/wavyMasthead/singleImage_background_group/callToActionButtons/link') )
+
+          #cta($currentPage, '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/singleImage_background_group/callToActionButtons/link')
+          #set ($buttonClasses = ['button--red', 'no-border'])
+
+            
+          <div class="button--dropdown__wrapper">
+            <a href="" class="button button--red no-border button--dropdown">
+              <span class="label">
+                        ${_EscapeTool.xml($dropdownLabel)}
+                        
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                            focusable="true"
+                            data-prefix="fas"
+                            data-icon="caret-down"
+                            class="svg-inline--fa fa-caret-down fa-w-10"
+                            role="img"
+                            viewbox="0 0 320 512">
+                  <path
+                                fill="currentColor"
+                                d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"/>
+                </svg>
+              </span>
+            </a>
+            <ul class="dropdown-menu">
+                    #dropdownItems()
+                </ul>
+          </div>
+        </div>
+      </div>
+    </div>
     #end
-#end
+  #end
 
 #macro(debug)
 
@@ -698,6 +699,8 @@ DROPDOWN:
     #set ($slides = $_XPathTool.selectNodes($currentPage, '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/mulitipleImageSlider/imageSlider'))
 
   
+  <div class="wavy-masthead__slider-container"> 
+    <div class="wavy-masthead__slider">
     #foreach ($slide in $slides)
       ## SLIDER TEXT
         #set ($sliderHeader = $slide.getChild('sliderText').getChild('sliderHeader').value)
@@ -710,8 +713,72 @@ DROPDOWN:
         
         slide - header: $sliderHeader
       ## END SLIDER IMAGE
-    #end
 
+      <div class="wavy-masthead wavy-masthead__container dev">
+        #videoToggleButtons()
+        #wavyCorner()
+
+        <div class="wavy-masthead__wave-mask">
+        #if ($backgroundSelector == 'image') 
+          #mastheadImage()
+
+        #elseif ($backgroundSelector == 'video')
+          <video playsinline="true" muted="true" loop="true" autoplay="true"
+          controls="false" src="${videoURL}"></video>
+        #end
+
+        </div>
+        <div class="wavy-masthead__text">
+          <div class="wavy-masthead__header">
+            #if ($showHeader != 'no')
+              
+            <h2 data-display-single-image-or-video="true">
+            $headerMasthead
+            </h2>
+            #end
+          
+          </div>
+          <div class="wavy-masthead__buttons">
+          
+
+            #set ( $buttons       = $_XPathTool.selectNodes($contentRoot, 'masthead/wavyMasthead/singleImage_background_group/callToActionButtons/link') )
+
+            #cta($currentPage, '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/singleImage_background_group/callToActionButtons/link')
+            #set ($buttonClasses = ['button--red', 'no-border'])
+
+              
+            <div class="button--dropdown__wrapper">
+              <a href="" class="button button--red no-border button--dropdown">
+                <span class="label">
+                          ${_EscapeTool.xml($dropdownLabel)}
+                          
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                              aria-hidden="true"
+                              focusable="true"
+                              data-prefix="fas"
+                              data-icon="caret-down"
+                              class="svg-inline--fa fa-caret-down fa-w-10"
+                              role="img"
+                              viewbox="0 0 320 512">
+                    <path
+                                  fill="currentColor"
+                                  d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"/>
+                  </svg>
+                </span>
+              </a>
+              <ul class="dropdown-menu">
+                      #dropdownItems()
+                  </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    #end
+    </div>
+  </div>
 ## /masthead/wavyMasthead/mulitipleImageSlider/sliderTextBackground
 
     #set ($wavyMasthead = $masthead.getChild('wavyMasthead'))
@@ -767,7 +834,6 @@ DROPDOWN:
   #output("imageUrlInt")
   #output("imageUrlExt")
   #output("imageType")
-  
 #end
 
 
