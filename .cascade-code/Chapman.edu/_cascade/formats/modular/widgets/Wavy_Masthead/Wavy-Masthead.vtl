@@ -687,6 +687,7 @@ DROPDOWN:
 #macro(sliderMasthead)
     #if ( $wavyMastheadType == 'sliderBackground' )
     
+    
     #set ( $sliderWrapper = '<div class="wavy-masthead__slider-container"> <div class="wavy-masthead__slider">') 
     #set ( $sliderWrapperClose = '</div></div>') 
 
@@ -702,6 +703,7 @@ DROPDOWN:
   <div class="wavy-masthead__slider-container"> 
     <div class="wavy-masthead__slider">
     #foreach ($slide in $slides)
+    
       ## SLIDER TEXT
         #set ($sliderHeader = $slide.getChild('sliderText').getChild('sliderHeader').value)
         #set ($textArea = $slide.getChild('sliderText').getChild('textArea').value)
@@ -710,7 +712,7 @@ DROPDOWN:
         #set ($imageType = $slide.getChild('imageType').value)
         #set ($currentMastheadType = $slide) ## this is hacky, but we need the macro to think the slide is the current masthead. 
         #set ($backgroundSelector = $slide.getChild('backgroundSelector').value)
-        
+        #set ($videoURL = $slide.getChild('videoBackground').getChild('videoChooser').getChild('path').value)
         slide - header: $sliderHeader
       ## END SLIDER IMAGE
 
