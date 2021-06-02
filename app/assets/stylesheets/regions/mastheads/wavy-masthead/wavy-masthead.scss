@@ -331,6 +331,36 @@
     width: 100%;
     // pointer-events: none;
   }
+  .bottom-waves {
+    height: 100%;
+    background-image: url(https://www.chapman.edu/_assets/mastheads/masthead-wavylines.png);
+    position: absolute;
+    width: 100%;
+    z-index: 999999999999999999999999999999999999999999999999999999999999999999999999999999999999;
+    height: 100%mast;
+    bottom: 0;
+    content: "";
+    position: absolute;
+    background: -webkit-linear-gradient(
+      0deg,
+      #020024 0%,
+      #010011 10%,
+      rgba(0, 0, 0, 0) 300px
+    );
+    /* background: -webkit-linear-gradient(bottom, #020024 0%, #010011 10%, rgba(0, 0, 0, 0) 300px); */
+    /* background: linear-gradient( 
+0deg
+ , #020024 0%, #010011 10%, rgba(0, 0, 0, 0) 300px); */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endColorstr="#000000", GradientType=1);
+    /* bottom: 0; */
+    mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
+    -webkit-mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
+    -webkit-mask-size: 100% 100%;
+    will-change: filter;
+    max-height: 600px;
+    z-index: 4 !important;
+    background-image: url(https://www.chapman.edu/_assets/mastheads/masthead-wavylines.png);
+  }
 }
 
 // dev only
