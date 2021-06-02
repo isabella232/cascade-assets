@@ -1,18 +1,11 @@
 $(function () {
   if ($(".wavy-masthead").length) {
     console.log("wavy masthead");
+
     var vid = $(".wavy-masthead video");
+    var container = $(".wavy-masthead__container");
 
-    if (!$(vid).get(0).paused) {
-      vid.attr("data-video-state", "playing");
-    }
-
-    $(".toggle-video").on("click keydown", function (event) {
-      if (accessibleClick(event)) {
-        togglePlay();
-      }
-    });
-
+    toggleVideoPlay();
     wavyMastheadSlider();
   }
 });
@@ -52,26 +45,6 @@ function manipulateCuratorImages(data) {
   });
 }
 
-function togglePlay() {
-  var vid = $(".wavy-masthead video");
-
-  var container = $(".wavy-masthead__container");
-
-  // IF VIDEO IS NOT PAUSED PAUSED
-  if ($(vid).get(0).paused) {
-    $(container).attr("data-video-state", "playing");
-    $("#wavy-masthead__toggle--play").addClass("hidden");
-    // $("#wavy-masthead__toggle--play").hide();
-    // $("#wavy-masthead__toggle-pause-button").show();
-    $(vid).trigger("play");
-  } else {
-    // IF VIDEO IS PAUSED PAUSED
-    $(container).attr("data-video-state", "paused");
-    // $("#wavy-masthead__toggle-pause-button").hide();
-    // $("#wavy-masthead__toggle--play").show();
-    $(vid).trigger("pause");
-  }
-}
 function ieObjectFitFallback() {
   var ua = window.navigator.userAgent;
   var msie = ua.indexOf("MSIE ");
@@ -103,12 +76,10 @@ function ieObjectFitFallback() {
 // KEYS 🎹
 function accessibleClick(event) {
   if (event.type === "click") {
-    togglePlay();
     return true;
   } else if (event.type === "keypress") {
     var code = event.charCode || event.keyCode;
     if (code === 32 || code === 13) {
-      togglePlay();
       return true;
     }
   } else {
@@ -154,21 +125,16 @@ function wavyMastheadSlider() {
     );
     // }
 
-    $("#autoplay-enable-wrapper").on("click keydown", function (event) {
-      if (accessibleClick(event)) {
-        console.log("disabling autoplay");
-        $(".wavy-masthead__slider").slick("slickPause");
-        $("#autoplay-enable-wrapper").hide();
-        $("#autoplay-disable-wrapper").show();
-      }
-    });
-    $("#autoplay-disable-wrapper").on("click keydown", function (event) {
-      if (accessibleClick(event)) {
-        console.log("disabling autoplay");
-        $(".wavy-masthead__slider").slick("slickPlay");
-        $("#autoplay-disable-wrapper").hide();
-        $("#autoplay-enable-wrapper").show();
-      }
+    $(
+      "ul:first-of-type.wavy-masthead__slider-dots li:not(.autoplay-toggle"
+    ).click(function () {
+      // don't need each (click does this internally)
+      $(this)
+        .addClass("slick-active") //add cell-selected class to a
+        .parent() //go back to li
+        .siblings() //look at siblings
+        .find(".slick-active") //find cell-selected elements
+        .removeClass("slick-active"); //remove the class
     });
   }
 }
@@ -181,4 +147,25 @@ function initSlider(selector, options) {
       initSlider(selector, options);
     }, 500);
   }
+}
+
+function toggleVideoPlay() {
+  var vid = $(".wavy-masthead video");
+  var container = $(".wavy-masthead__container");
+
+  $(".wavy-masthead__toggle--pause").on("click keydown", function (event) {
+    if (accessibleClick(event)) {
+      $(container).attr("data-video-state", "paused");
+      $(vid).trigger("pause");
+      console.log("pausing video");
+    }
+  });
+
+  $(".wavy-masthead__toggle--play").on("click keydown", function (event) {
+    if (accessibleClick(event)) {
+      $(container).attr("data-video-state", "playing");
+      $(vid).trigger("play");
+      console.log("playing video");
+    }
+  });
 }

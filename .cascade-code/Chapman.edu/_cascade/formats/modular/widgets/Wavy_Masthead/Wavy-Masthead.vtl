@@ -321,7 +321,7 @@
 
       #elseif ($backgroundSelector == 'video')
         <video playsinline="true" muted="true" loop="true" autoplay="true"
-        controls="false" src="${videoURL}"></video>
+        controls="false" src="${videoURL}" data-video-state="playing"></video>
       #end
 
       </div>
@@ -653,7 +653,7 @@ DROPDOWN:
 <svg data-bg-type="${backgroundSelector}"
 	xmlns="http://www.w3.org/2000/svg" aria-hidden="true" aria-label="Play masthead video"
       class="toggle-video svg-inline--fa fa-play-circle fa-w-16 wavy-masthead__toggle--play toggle-video" data-icon="play-circle"
-      data-prefix="fas" focusable="true" id="wavy-masthead__toggle--play " role="img" title="Play video"
+      data-prefix="fas" focusable="true" id="wavy-masthead__toggle--play" role="img" title="Play video"
       viewBox="0 0 512 512" tabindex="0">
 	<path
         d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"
@@ -706,7 +706,7 @@ DROPDOWN:
 
         #elseif ($backgroundSelector == 'video')
           <video playsinline="true" muted="true" loop="true" autoplay="true"
-          controls="false" src="${videoURL}"></video>
+          controls="false" src="${videoURL}" data-video-state="playing"></video>
         #end
 
         </div>
