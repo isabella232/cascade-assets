@@ -136,6 +136,23 @@ function wavyMastheadSlider() {
         .find(".slick-active") //find cell-selected elements
         .removeClass("slick-active"); //remove the class
     });
+
+    $("#autoplay-enable-wrapper").on("click keydown", function (event) {
+      if (accessibleClick(event)) {
+        console.log("disabling autoplay");
+        $(".wavy-masthead__slider").slick("slickPause");
+        $("#autoplay-enable-wrapper").hide();
+        $("#autoplay-disable-wrapper").show();
+      }
+    });
+    $("#autoplay-disable-wrapper").on("click keydown", function (event) {
+      if (accessibleClick(event)) {
+        console.log("disabling autoplay");
+        $(".wavy-masthead__slider").slick("slickPlay");
+        $("#autoplay-disable-wrapper").hide();
+        $("#autoplay-enable-wrapper").show();
+      }
+    });
   }
 }
 
