@@ -106,24 +106,9 @@ function wavyMastheadSlider() {
         autoplaySpeed: 10000,
         appendDots: $(".wavy-masthead__slider-container"),
         dotsClass: "slick-dots wavy-masthead__slider-dots",
+        pauseOnHover: true,
       });
     slider;
-
-    // $(".autoplay-wrapper").on("click keydown", function (event) {
-    //   if (accessibleClick(event)) {
-    //     console.log("disabling autoplay");
-    //     $(".wavy-masthead__slider").slick("slickPause");
-    //   }
-    // });
-
-    // prepend Slider-level pause button (stops autoplay on the slide-level; different from individual slide pause)
-
-    // if ($("#autoplay-toggle").length <= 0) {
-    console.log("adding autoplay toggle to dots");
-    $("ul:first-of-type.wavy-masthead__slider-dots").prepend(
-      '<li id="autoplay-enable-wrapper" class="autoplay-toggle" aria-role="button" aria-label="Disable slideshow" title="Disable Slideshow"><svg id="autoplay-enable" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="pause-circle" class="svg-inline--fa fa-pause-circle fa-w-16" role="img" viewBox="0 0 512 512"><path fill="currentColor" d="M218 160h-20c-3.3 0-6 2.7-6 6v180c0 3.3 2.7 6 6 6h20c3.3 0 6-2.7 6-6V166c0-3.3-2.7-6-6-6zm96 0h-20c-3.3 0-6 2.7-6 6v180c0 3.3 2.7 6 6 6h20c3.3 0 6-2.7 6-6V166c0-3.3-2.7-6-6-6zM256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 464c-118.7 0-216-96.1-216-216 0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216z"/></svg><li class="autoplay-toggle" id="autoplay-disable-wrapper" style="display:none;" aria-label="Enable slideshow" title="Enable Slideshow"><svg id="autoplay-disable"  xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="play-circle" class="svg-inline--fa fa-play-circle fa-w-16" role="img" viewBox="0 0 512 512"><path fill="currentColor" d="M256 504c137 0 248-111 248-248S393 8 256 8 8 119 8 256s111 248 248 248zM40 256c0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216-118.7 0-216-96.1-216-216zm331.7-18l-176-107c-15.8-8.8-35.7 2.5-35.7 21v208c0 18.4 19.8 29.8 35.7 21l176-101c16.4-9.1 16.4-32.8 0-42zM192 335.8V176.9c0-4.7 5.1-7.6 9.1-5.1l134.5 81.7c3.9 2.4 3.8 8.1-.1 10.3L201 341c-4 2.3-9-.6-9-5.2z"/></svg></li>'
-    );
-    // }
 
     $(
       "ul:first-of-type.wavy-masthead__slider-dots li:not(.autoplay-toggle"
@@ -137,20 +122,10 @@ function wavyMastheadSlider() {
         .removeClass("slick-active"); //remove the class
     });
 
-    $("#autoplay-enable-wrapper").on("click keydown", function (event) {
+    $(".wavy-masthead__slider-dots li").on("click keydown", function (event) {
       if (accessibleClick(event)) {
         console.log("disabling autoplay");
         $(".wavy-masthead__slider").slick("slickPause");
-        $("#autoplay-enable-wrapper").hide();
-        $("#autoplay-disable-wrapper").show();
-      }
-    });
-    $("#autoplay-disable-wrapper").on("click keydown", function (event) {
-      if (accessibleClick(event)) {
-        console.log("disabling autoplay");
-        $(".wavy-masthead__slider").slick("slickPlay");
-        $("#autoplay-disable-wrapper").hide();
-        $("#autoplay-enable-wrapper").show();
       }
     });
   }
