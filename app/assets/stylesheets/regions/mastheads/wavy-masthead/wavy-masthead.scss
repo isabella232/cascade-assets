@@ -60,7 +60,7 @@
     .toggle-video,
     #wavy-masthead__toggle--pause,
     #wavy-masthead__toggle--play {
-      z-index: 3;
+      z-index: 5;
       max-width: 20px;
       position: absolute;
       bottom: 50px;
@@ -365,11 +365,7 @@
   //   background-position: bottom;
   // }
   img.waves-bottom {
-    z-index: 9;
-    position: absolute;
-    bottom: -45px;
-
-    z-index: 9;
+    z-index: 4;
     position: absolute;
     bottom: -45px;
     width: 100%;
