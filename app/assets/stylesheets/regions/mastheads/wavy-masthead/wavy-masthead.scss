@@ -18,26 +18,9 @@
     padding-top: 0;
     background-color: $white;
 
-    // the bottommost waves
-    &:before {
-      content: "";
-      position: absolute;
-      border-radius: 5px;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
+    mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
+    -webkit-mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
 
-      max-height: 600px;
-      z-index: 4;
-
-      mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
-      -webkit-mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
-      -webkit-mask-size: 100% 100%;
-      top: 20px;
-      background-size: 110% 20%;
-      background-repeat: no-repeat;
-      background-position: bottom;
     }
 
     // the bottommost gradient
@@ -372,6 +355,27 @@
     // background-size: 110%;
     // background-repeat: no-repeat;
     // background-position: bottom;
+  }
+  // .bottom-waves__wrapper {
+  //   height: 600px;
+  //   mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
+  //   -webkit-mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
+  //   -webkit-mask-size: 100% 100%;
+  //   top: 20px;
+  //   background-size: 110% 20%;
+  //   background-repeat: no-repeat;
+  //   background-position: bottom;
+  // }
+  img.waves-bottom {
+    z-index: 9;
+    position: absolute;
+    bottom: -45px;
+
+    z-index: 9;
+    position: absolute;
+    bottom: -45px;
+    width: 100%;
+    min-width: 105vw;
   }
 }
 

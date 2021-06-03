@@ -1,8 +1,8 @@
 #macro(output $var)
-  #set ($varEval = "$" + "${var}")
-  
+#set ($varEval = "$" + "${var}")
+
 <li>
-    $var: #evaluate("${varEval}")
+  $var: #evaluate("${varEval}")
 </li>
 #end
 
@@ -20,19 +20,19 @@
 #set ($wavyMastheadType = $masthead.getChild('wavyMasthead').getChild('mastheadType').value)
 #set ($wavyMasthead = $masthead.getChild('wavyMasthead'))
 
-## blank declaration 
+## blank declaration
 #set ($slideWrapper = '')
 
 #if ( $mastheadType == 'Wavy Masthead' )
 
 
 
-    ## Masthead Type - there are 3 options
-    #singleImageOrVideo()
-    #sliderMasthead()
-    ## End Masthead Type
+## Masthead Type - there are 3 options
+#singleImageOrVideo()
+#sliderMasthead()
+## End Masthead Type
 
-    #debug()
+#debug()
 
 
 
@@ -56,101 +56,112 @@
 
 
 #macro(mastheadImage)
-    #set ($widgetXPath = 'masthead-2021')
-    ## $widgetXPath is just a verbose alias for $wxp 
-    #set ($imageUrlInt =
-    $currentMastheadType.getChild('image').getChild('imageUrlInt').getChild('path').value )
-    #set ($imageUrlExt =
-    $currentMastheadType.getChild('image').getChild('imageUrlExt').value )
+#set ($widgetXPath = 'masthead-2021')
+## $widgetXPath is just a verbose alias for $wxp
+#set ($imageUrlInt =
+$currentMastheadType.getChild('image').getChild('imageUrlInt').getChild('path').value )
+#set ($imageUrlExt =
+$currentMastheadType.getChild('image').getChild('imageUrlExt').value )
 
-    ## IMAGE SHAPE
-    #set ($imageType =
-    $currentMastheadType.getChild('image').getChild('imageType').value.toLowerCase())
-    #set ($imageShape =
-    $currentMastheadType.getChild('image').getChild('imageShape').value.toLowerCase())
+## IMAGE SHAPE
+#set ($imageType =
+$currentMastheadType.getChild('image').getChild('imageType').value.toLowerCase())
+#set ($imageShape =
+$currentMastheadType.getChild('image').getChild('imageShape').value.toLowerCase())
 
-    ## IMAGE POSITION (OBJECT-FIT)
-    #set ($objectPositionX = $currentMastheadType.getChild('image').getChild('advanced').getChild('objectPositionX').value.toLowerCase())
-    #set ($objectPositionY = $currentMastheadType.getChild('image').getChild('advanced').getChild('objectPositionY').value.toLowerCase())
-    #set ($objectFit = $currentMastheadType.getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
-
-
-    ## OBJECT-FIT
-    #if ($objectFit != '')
-      #set ($objectFit = $currentMastheadType.getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
-    #else 
-      #set ($objectFit = 'cover')
-    #end
-
-    ## IMAGE DIMENSIONS
-    #if ($imageWidth != '')
-      #set ($imageWidth = $currentMastheadType.getChild('image').getChild('advanced').getChild('imageWidth').value.toLowerCase())
-    #else 
-      #set ($imageWidth = '100%')
-    #end
-
-    #if ($imageHeight != '')
-      #set ($imageHeight = $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeight').value.toLowerCase())
-    #else 
-      #set ($imageHeight = 'auto')
-    #end
+## IMAGE POSITION (OBJECT-FIT)
+#set ($objectPositionX =
+$currentMastheadType.getChild('image').getChild('advanced').getChild('objectPositionX').value.toLowerCase())
+#set ($objectPositionY =
+$currentMastheadType.getChild('image').getChild('advanced').getChild('objectPositionY').value.toLowerCase())
+#set ($objectFit =
+$currentMastheadType.getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
 
 
-    ## ENSURE CIRCULAR IMAGES HAVE EQUAL HEIGHT AND WIDTH 
-    #if ($imageShape == 'circle')
-      ## These CSS vars can be overridden in the 'code' section below
-      #set ($imageWidth = '
-<style> --imgSize: 180px;  var(--smallIMgSize) </style>')
-      #set ($imageHeight = '
-<style> --imgSize: 180px; var(--smallIMgSize) </style>')
-    #elseif ($imageShape == 'square')
-      #set ($imageWidth = '100%')
-      #set ($imageHeight = 'auto')
-    #end
-    
+## OBJECT-FIT
+#if ($objectFit != '')
+#set ($objectFit =
+$currentMastheadType.getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
+#else
+#set ($objectFit = 'cover')
+#end
+
+## IMAGE DIMENSIONS
+#if ($imageWidth != '')
+#set ($imageWidth =
+$currentMastheadType.getChild('image').getChild('advanced').getChild('imageWidth').value.toLowerCase())
+#else
+#set ($imageWidth = '100%')
+#end
+
+#if ($imageHeight != '')
+#set ($imageHeight =
+$currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeight').value.toLowerCase())
+#else
+#set ($imageHeight = 'auto')
+#end
 
 
-    ## ACCESSIBILITY
-    #set ( $imageRoleVal =  ( $currentMastheadType.getChild('image').getChild('imageAltOrDecorative').value ) )
-    #if ( $imageRoleVal == "Decorative Image" )
-        #set ( $imageRole = "role='presentation'" )
-        #set ( $altText = '' )
-    #else 
-        #set ( $imageRole = "" )
-    #end
+## ENSURE CIRCULAR IMAGES HAVE EQUAL HEIGHT AND WIDTH
+#if ($imageShape == 'circle')
+## These CSS vars can be overridden in the 'code' section below
+#set ($imageWidth = '
+<style>
+  --imgSize: 180px;
+  var(--smallIMgSize)
+</style>')
+#set ($imageHeight = '
+<style>
+  --imgSize: 180px;
+  var(--smallIMgSize)
+</style>')
+#elseif ($imageShape == 'square')
+#set ($imageWidth = '100%')
+#set ($imageHeight = 'auto')
+#end
 
-    ## Custom Code Option
-    #set ($code = $currentMastheadType.getChild('image').getChild('advanced').getChild('code').value.toLowerCase())
 
-    #if ($imageType == 'internal cascade image')
-      #set ($imageUrlExt = '')
-        
-<div
-            class="wavy-masthead__img--${_EscapeTool.xml($imageShape)} wavy-masthead__img"
-            style="width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)};">
-	<img $imageRole class="wavy-masthead__img img--${_EscapeTool.xml($imageShape)} "
-                    src="[system-asset]${_EscapeTool.xml($imageUrlInt)}[/system-asset]"
-                    alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-fit: '${_EscapeTool.xml($objectFit)}'; object-position:'${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}'; width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)}; "/>
-	<![CDATA[#protect
+
+## ACCESSIBILITY
+#set ( $imageRoleVal = ( $currentMastheadType.getChild('image').getChild('imageAltOrDecorative').value ) )
+#if ( $imageRoleVal == "Decorative Image" )
+#set ( $imageRole = "role='presentation'" )
+#set ( $altText = '' )
+#else
+#set ( $imageRole = "" )
+#end
+
+## Custom Code Option
+#set ($code = $currentMastheadType.getChild('image').getChild('advanced').getChild('code').value.toLowerCase())
+
+#if ($imageType == 'internal cascade image')
+#set ($imageUrlExt = '')
+
+<div class="wavy-masthead__img--${_EscapeTool.xml($imageShape)} wavy-masthead__img"
+  style="width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)};">
+  <img $imageRole class="wavy-masthead__img img--${_EscapeTool.xml($imageShape)} "
+    src="[system-asset]${_EscapeTool.xml($imageUrlInt)}[/system-asset]" alt="${_EscapeTool.xml($altText)}"
+    title="${_EscapeTool.xml($altText)}"
+    style="object-fit: '${_EscapeTool.xml($objectFit)}'; object-position:'${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}'; width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)}; " />
+  <![CDATA[#protect
                       $code
                      #protect]]>
 </div>
 
-      #end
-      #if (!$imageType.contains("none") && $imageType == 'external image url')
-        #set ($imageUrlInt = '')
-     
-<div
-            class="wavy-masthead__img--${_EscapeTool.xml($imageShape)} wavy-masthead__img"
-            style="width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)};">
-	<img $imageRole class="wavy-masthead__img img--${_EscapeTool.xml($imageShape)} "
-                    src="${_EscapeTool.xml($imageUrlExt)}"
-                    alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-fit: '${_EscapeTool.xml($objectFit)}'; object-position:'${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}'; width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)}; "/>
-	<![CDATA[#protect
+#end
+#if (!$imageType.contains("none") && $imageType == 'external image url')
+#set ($imageUrlInt = '')
+
+<div class="wavy-masthead__img--${_EscapeTool.xml($imageShape)} wavy-masthead__img"
+  style="width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)};">
+  <img $imageRole class="wavy-masthead__img img--${_EscapeTool.xml($imageShape)} "
+    src="${_EscapeTool.xml($imageUrlExt)}" alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}"
+    style="object-fit: '${_EscapeTool.xml($objectFit)}'; object-position:'${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}'; width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)}; " />
+  <![CDATA[#protect
                       $code
                      #protect]]>
 </div>
-    #end
+#end
 #end
 
 
@@ -158,118 +169,125 @@
 
 
 #macro(cta $elem $linkXPath $wxp)
-    #set ($buttonClasses = 'button--red no-border')
-    ## this will create 'next-steps-widget__button' down below
-    #set ($bemButtonClass = $wxp + '__button')
-    #set ($bemButtonClass = $bemButtonClass.value)
-    
-    #set ( $linkItems = $_XPathTool.selectNodes($elem, $linkXPath) )
-    #foreach ($link in $linkItems)
-        #set ($linkStyle = $link.getChild('linkStyle').value) 
-        #set ($linkType =  $link.getChild('linkType').value)
-        #set ($linkLabel = $link.getChild('label').value)
-        
-        ## ACCESSIBILITY
-        #set ($ariaLabel = $link.getChild('accessibility').getChild('ariaLabel').value)
-        #set ($title = $link.getChild('accessibility').getChild('title').value)
+#set ($buttonClasses = 'button--red no-border')
+## this will create 'next-steps-widget__button' down below
+#set ($bemButtonClass = $wxp + '__button')
+#set ($bemButtonClass = $bemButtonClass.value)
 
-        ## ANALYTICS
-        #set ($customID = $link.getChild('tracking').getChild('customID').value)
-        #set ($dataAttr = $link.getChild('tracking').getChild('dataAttr').value)
+#set ( $linkItems = $_XPathTool.selectNodes($elem, $linkXPath) )
+#foreach ($link in $linkItems)
+#set ($linkStyle = $link.getChild('linkStyle').value)
+#set ($linkType = $link.getChild('linkType').value)
+#set ($linkLabel = $link.getChild('label').value)
 
-        #if ($customID != '')
-            #set ($customID = $link.getChild('customID').value)
-        #else
-            #set ( $customID = $linkLabel.replaceAll(" ", "-").replaceAll("[^a-zA-Z-]", "").replaceAll("--", "-").toLowerCase() )
-        #end
-        
-        #if ($dataAttr != '')
-            #set ($dataAttr = $link.getChild('dataAttr').value)
-            #set ($dataAttr = $dataAttr)
-        #else
-            #set ($dataAttr = '')
-        #end
-            
-        #if ($linkType == 'Internal Link')
-            #set ($linkURL = $link.getChild('internalLink').getChild('path').value )
-            #elseif ($linkType == 'External Link')
-                #set ($linkURL = $link.getChild('externalLink').value )
-        #else 
-            #set ($linkURL = $link.getChild('fileLink').getChild('path').value )
-        #end
-   
-        #if ($linkLabel != '')
-            #if ($linkStyle == 'Text Link')
-                
-<a tabindex="1" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="text--link">#escape($linkLabel)</a>
-            #elseif (($linkStyle == 'Button Link') && ($bemButtonClass != '$bemButtonClass'))
-                
-<a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button $bemButtonClass ${buttonClasses}">#escape($linkLabel)</a>
-            #else 
-                
-<a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button ${buttonClasses}">#escape($linkLabel)</a>
-            #end    
-        #end
-    #end
+## ACCESSIBILITY
+#set ($ariaLabel = $link.getChild('accessibility').getChild('ariaLabel').value)
+#set ($title = $link.getChild('accessibility').getChild('title').value)
+
+## ANALYTICS
+#set ($customID = $link.getChild('tracking').getChild('customID').value)
+#set ($dataAttr = $link.getChild('tracking').getChild('dataAttr').value)
+
+#if ($customID != '')
+#set ($customID = $link.getChild('customID').value)
+#else
+#set ( $customID = $linkLabel.replaceAll(" ", "-").replaceAll("[^a-zA-Z-]", "").replaceAll("--", "-").toLowerCase() )
+#end
+
+#if ($dataAttr != '')
+#set ($dataAttr = $link.getChild('dataAttr').value)
+#set ($dataAttr = $dataAttr)
+#else
+#set ($dataAttr = '')
+#end
+
+#if ($linkType == 'Internal Link')
+#set ($linkURL = $link.getChild('internalLink').getChild('path').value )
+#elseif ($linkType == 'External Link')
+#set ($linkURL = $link.getChild('externalLink').value )
+#else
+#set ($linkURL = $link.getChild('fileLink').getChild('path').value )
+#end
+
+#if ($linkLabel != '')
+#if ($linkStyle == 'Text Link')
+
+<a tabindex="1" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title"
+  class="text--link">#escape($linkLabel)</a>
+#elseif (($linkStyle == 'Button Link') && ($bemButtonClass != '$bemButtonClass'))
+
+<a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title"
+  class="button $bemButtonClass ${buttonClasses}">#escape($linkLabel)</a>
+#else
+
+<a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title"
+  class="button ${buttonClasses}">#escape($linkLabel)</a>
+#end
+#end
+#end
 #end
 
 
 #macro(dropdownItems)
-#set ($dropdownItems = $_XPathTool.selectNodes($currentPage, '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/singleImage_background_group/callToActionButtons/dropDownButton/link'))
+#set ($dropdownItems = $_XPathTool.selectNodes($currentPage,
+'/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/singleImage_background_group/callToActionButtons/dropDownButton/link'))
 #foreach ($link in $dropdownItems)
-        #set ($linkStyle = 'text-link') 
-        #set ($linkType =  $link.getChild('linkType').value)
-        #set ($linkLabel = $link.getChild('linkLabel').value)
-        
-        ## ACCESSIBILITY
-        #set ($ariaLabel = $link.getChild('accessibility').getChild('ariaLabel').value)
-        #set ($title = $link.getChild('accessibility').getChild('title').value)
+#set ($linkStyle = 'text-link')
+#set ($linkType = $link.getChild('linkType').value)
+#set ($linkLabel = $link.getChild('linkLabel').value)
 
-        ## ANALYTICS
-        #set ($customID = $link.getChild('tracking').getChild('customID').value)
-        #set ($dataAttr = $link.getChild('tracking').getChild('dataAttr').value)
+## ACCESSIBILITY
+#set ($ariaLabel = $link.getChild('accessibility').getChild('ariaLabel').value)
+#set ($title = $link.getChild('accessibility').getChild('title').value)
 
-        #if ($customID != '')
-            #set ($customID = $link.getChild('customID').value)
-        #else
-            #set ( $customID = $linkLabel.replaceAll(" ", "-").replaceAll("[^a-zA-Z-]", "").replaceAll("--", "-").toLowerCase() )
-        #end
-        
-        #if ($dataAttr != '')
-            #set ($dataAttr = $link.getChild('dataAttr').value)
-            #set ($dataAttr = $dataAttr)
-        #else
-            #set ($dataAttr = '')
-        #end
-            
-        #if ($linkType == 'internalLink')
-            #set ($linkURL = $link.getChild('internalLinkPage').getChild('path').value )
+## ANALYTICS
+#set ($customID = $link.getChild('tracking').getChild('customID').value)
+#set ($dataAttr = $link.getChild('tracking').getChild('dataAttr').value)
 
-        #elseif ($linkType == 'externalLink')
-            #set ($linkURL = $link.getChild('externalLink').value )
-        #else 
-            #set ($linkURL = $link.getChild('fileLink').getChild('path').value )
-        #end
-    
-        #if ($linkLabel != '')
-            #if ($linkStyle == 'Text Link')
-            
+#if ($customID != '')
+#set ($customID = $link.getChild('customID').value)
+#else
+#set ( $customID = $linkLabel.replaceAll(" ", "-").replaceAll("[^a-zA-Z-]", "").replaceAll("--", "-").toLowerCase() )
+#end
+
+#if ($dataAttr != '')
+#set ($dataAttr = $link.getChild('dataAttr').value)
+#set ($dataAttr = $dataAttr)
+#else
+#set ($dataAttr = '')
+#end
+
+#if ($linkType == 'internalLink')
+#set ($linkURL = $link.getChild('internalLinkPage').getChild('path').value )
+
+#elseif ($linkType == 'externalLink')
+#set ($linkURL = $link.getChild('externalLink').value )
+#else
+#set ($linkURL = $link.getChild('fileLink').getChild('path').value )
+#end
+
+#if ($linkLabel != '')
+#if ($linkStyle == 'Text Link')
+
 <li>
-	<a tabindex="1" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="${linkType}">#escape($linkLabel)</a>
+  <a tabindex="1" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title"
+    class="${linkType}">#escape($linkLabel)</a>
 </li>
-            #elseif (($linkStyle == 'Button Link') && ($bemButtonClass != '$bemButtonClass'))
-                
+#elseif (($linkStyle == 'Button Link') && ($bemButtonClass != '$bemButtonClass'))
+
 <li>
-	<a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button $bemButtonClass  no-border">#escape($linkLabel)</a>
+  <a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title"
+    class="button $bemButtonClass  no-border">#escape($linkLabel)</a>
 </li>
-            #else 
-                
+#else
+
 <li>
-	<a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="no-border">#escape($linkLabel)</a>
+  <a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title"
+    class="no-border">#escape($linkLabel)</a>
 </li>
-            #end    
-        #end
-    #end
+#end
+#end
+#end
 
 #end
 
@@ -277,117 +295,111 @@
 #macro(wavyCorner)
 
 <div class="corner-wave__wrapper">
-	<span class="corner-wave">
-		<span class="faux-h2">DALE E. AND SARAH ANN FOWLER SCHOOL OF ENGINEERING </span>
-		<!-- <%= image_tag("masthead_corner_wave.png") %> -->
-	</span>
+  <span class="corner-wave">
+    <span class="faux-h2">DALE E. AND SARAH ANN FOWLER SCHOOL OF ENGINEERING </span>
+    <!-- <%= image_tag("masthead_corner_wave.png") %> -->
+  </span>
 </div>
 #end
 
 
 #macro(singleImageOrVideo)
 
-    #if ( $wavyMastheadType == 'imageVideo_background' )
-    ## HEADER GROUP
-    #set ($backgroundSelector =
-    $currentMastheadType.getChild('backgroundSelector').value)
+#if ( $wavyMastheadType == 'imageVideo_background' )
+## HEADER GROUP
+#set ($backgroundSelector =
+$currentMastheadType.getChild('backgroundSelector').value)
 
-    ## SINGLE IMAGE GROUP ##
-    #set ($currentMastheadType = $wavyMasthead.getChild('singleImage_background_group'))
-    #set ($backgroundSelector = $currentMastheadType.getChild('backgroundSelector').value)
-    #set ($showHeader = $currentMastheadType.getChild('headerTitle').getChild('showHeader').value)
-    #set ($preheaderMasthead = $currentMastheadType.getChild('headerTitle').getChild('preheaderMasthead').value)
-    #set ($headerMasthead = $currentMastheadType.getChild('headerTitle').getChild('headerMasthead').value)
-    #set ($headerMasthead = ${_EscapeTool.xml($headerMasthead)})
-    #set ($currentMastheadType = $currentMastheadType)
+## SINGLE IMAGE GROUP ##
+#set ($currentMastheadType = $wavyMasthead.getChild('singleImage_background_group'))
+#set ($backgroundSelector = $currentMastheadType.getChild('backgroundSelector').value)
+#set ($showHeader = $currentMastheadType.getChild('headerTitle').getChild('showHeader').value)
+#set ($preheaderMasthead = $currentMastheadType.getChild('headerTitle').getChild('preheaderMasthead').value)
+#set ($headerMasthead = $currentMastheadType.getChild('headerTitle').getChild('headerMasthead').value)
+#set ($headerMasthead = ${_EscapeTool.xml($headerMasthead)})
+#set ($currentMastheadType = $currentMastheadType)
 
-    #set ($imageType = $currentMastheadType.getChild('image').getChild('imageType').value)
-    #set ($imageUrlExt = $currentMastheadType.getChild('image').getChild('imageUrlExt').value)
-    #set ($imageUrlInt = $currentMastheadType.getChild('image').getChild('imageUrlInt').getChild('path').value)
-    #set ($imageAltOrDecorative = $currentMastheadType.getChild('image').getChild('imageAltOrDecorative').value)
-    #set ($dropdownLabel = $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').getChild('dropdownLabel').value)
-    #set ($videoURL = $currentMastheadType.getChild('videoBackground').getChild('videoChooser').getChild('path').value)
-    ## image group ##
-    ## SINGLE IMAGE GROUP ##
-    
+#set ($imageType = $currentMastheadType.getChild('image').getChild('imageType').value)
+#set ($imageUrlExt = $currentMastheadType.getChild('image').getChild('imageUrlExt').value)
+#set ($imageUrlInt = $currentMastheadType.getChild('image').getChild('imageUrlInt').getChild('path').value)
+#set ($imageAltOrDecorative = $currentMastheadType.getChild('image').getChild('imageAltOrDecorative').value)
+#set ($dropdownLabel =
+$currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').getChild('dropdownLabel').value)
+#set ($videoURL = $currentMastheadType.getChild('videoBackground').getChild('videoChooser').getChild('path').value)
+## image group ##
+## SINGLE IMAGE GROUP ##
 
-    <div class="wavy-masthead wavy-masthead__container dev">
-        #videoToggleButtons()
-        #wavyCorner()
 
-      <div class="wavy-masthead__wave-mask">
-      #if ($backgroundSelector == 'image') 
-        #mastheadImage()
+<div class="wavy-masthead wavy-masthead__container dev">
+  #videoToggleButtons()
+  #wavyCorner()
 
-      #elseif ($backgroundSelector == 'video')
-        <video playsinline="true" muted="true" loop="true" autoplay="true"
-        controls="false" src="${videoURL}" data-video-state="playing"></video>
+  <div class="wavy-masthead__wave-mask">
+    #if ($backgroundSelector == 'image')
+    #mastheadImage()
+
+    #elseif ($backgroundSelector == 'video')
+    <video playsinline="true" muted="true" loop="true" autoplay="true" controls="false" src="${videoURL}"
+      data-video-state="playing"></video>
+    #end
+
+  </div>
+  <div class="wavy-masthead__text">
+    <div class="wavy-masthead__header">
+      #if ($showHeader != 'no')
+
+      <h2 data-display-single-image-or-video="true">
+        $headerMasthead
+      </h2>
       #end
 
-      </div>
-      <div class="wavy-masthead__text">
-        <div class="wavy-masthead__header">
-          #if ($showHeader != 'no')
-            
-          <h2 data-display-single-image-or-video="true">
-          $headerMasthead
-          </h2>
-          #end
-        
-        </div>
-        <div class="wavy-masthead__buttons">
-        
+    </div>
+    <div class="wavy-masthead__buttons">
 
-          #set ( $buttons       = $_XPathTool.selectNodes($contentRoot, 'masthead/wavyMasthead/singleImage_background_group/callToActionButtons/link') )
 
-          #cta($currentPage, '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/singleImage_background_group/callToActionButtons/link')
-          #set ($buttonClasses = ['button--red', 'no-border'])
+      #set ( $buttons = $_XPathTool.selectNodes($contentRoot,
+      'masthead/wavyMasthead/singleImage_background_group/callToActionButtons/link') )
 
-            
-          <div class="button--dropdown__wrapper">
-            <a href="" class="button button--red no-border button--dropdown">
-              <span class="label">
-                        ${_EscapeTool.xml($dropdownLabel)}
-                        
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                            aria-hidden="true"
-                            focusable="true"
-                            data-prefix="fas"
-                            data-icon="caret-down"
-                            class="svg-inline--fa fa-caret-down fa-w-10"
-                            role="img"
-                            viewbox="0 0 320 512">
-                  <path
-                                fill="currentColor"
-                                d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"/>
-                </svg>
-              </span>
-            </a>
-            <ul class="dropdown-menu">
-                    #dropdownItems()
-                </ul>
-          </div>
-        </div>
+      #cta($currentPage,
+      '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/singleImage_background_group/callToActionButtons/link')
+      #set ($buttonClasses = ['button--red', 'no-border'])
+
+
+      <div class="button--dropdown__wrapper">
+        <a href="" class="button button--red no-border button--dropdown">
+          <span class="label">
+            ${_EscapeTool.xml($dropdownLabel)}
+
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="true" data-prefix="fas"
+              data-icon="caret-down" class="svg-inline--fa fa-caret-down fa-w-10" role="img" viewbox="0 0 320 512">
+              <path fill="currentColor"
+                d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z" />
+            </svg>
+          </span>
+        </a>
+        <ul class="dropdown-menu">
+          #dropdownItems()
+        </ul>
       </div>
     </div>
-    #end
-  #end
+  </div>
+</div>
+#end
+#end
 
 #macro(debug)
 
 
 <ul class="debug">
-	<style>
-.wavy-masthead__wave-mask {
-    mask-image: image-url("https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png") !important; 
+  <style>
+    .wavy-masthead__wave-mask {
+      mask-image: image-url("https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png") !important;
 
-    -webkit-mask-image: image-url(
-      "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png") !important;
-}
-</style>
-#output("wavyMastheadType")
-#if ( $wavyMastheadType == 'imageVideo_background' )
+      -webkit-mask-image: image-url("https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png") !important;
+    }
+  </style>
+  #output("wavyMastheadType")
+  #if ( $wavyMastheadType == 'imageVideo_background' )
   #output("backgroundSelector")
   #output("showHeader")
   #output("preheaderMasthead")
@@ -395,18 +407,19 @@
   #output("imageType")
   #output("imageUrlInt")
   #output("imageUrlExt")
-#end
+  #end
 
-#if ( $wavyMastheadType == 'sliderBackground' )
+  #if ( $wavyMastheadType == 'sliderBackground' )
 
-#end
+  #end
 
-#set ($dropdownItems = $_XPathTool.selectNodes($currentPage, '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/singleImage_background_group/callToActionButtons/dropDownButton/link'))
+  #set ($dropdownItems = $_XPathTool.selectNodes($currentPage,
+  '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/singleImage_background_group/callToActionButtons/dropDownButton/link'))
 
-DROPDOWN: 
-#foreach ($dropdown in $dropdownItems)
+  DROPDOWN:
+  #foreach ($dropdown in $dropdownItems)
   $dropdown.getChild('linkLabel').value
-#end
+  #end
 
 
 </ul>
@@ -415,216 +428,234 @@ DROPDOWN:
 
 
 #macro(mastheadImage)
-    #set ($widgetXPath = 'masthead-2021')
-    ## $widgetXPath is just a verbose alias for $wxp 
-    #set ($imageUrlInt =
-    $currentMastheadType.getChild('image').getChild('imageUrlInt').getChild('path').value )
-    #set ($imageUrlExt =
-    $currentMastheadType.getChild('image').getChild('imageUrlExt').value )
+#set ($widgetXPath = 'masthead-2021')
+## $widgetXPath is just a verbose alias for $wxp
+#set ($imageUrlInt =
+$currentMastheadType.getChild('image').getChild('imageUrlInt').getChild('path').value )
+#set ($imageUrlExt =
+$currentMastheadType.getChild('image').getChild('imageUrlExt').value )
 
-    ## IMAGE SHAPE
-    #set ($imageType =
-    $currentMastheadType.getChild('image').getChild('imageType').value.toLowerCase())
-    #set ($imageShape =
-    $currentMastheadType.getChild('image').getChild('imageShape').value.toLowerCase())
+## IMAGE SHAPE
+#set ($imageType =
+$currentMastheadType.getChild('image').getChild('imageType').value.toLowerCase())
+#set ($imageShape =
+$currentMastheadType.getChild('image').getChild('imageShape').value.toLowerCase())
 
-    ## IMAGE POSITION (OBJECT-FIT)
-    #set ($objectPositionX = $currentMastheadType.getChild('image').getChild('advanced').getChild('objectPositionX').value.toLowerCase())
-    #set ($objectPositionY = $currentMastheadType.getChild('image').getChild('advanced').getChild('objectPositionY').value.toLowerCase())
-    #set ($objectFit = $currentMastheadType.getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
-
-
-    ## OBJECT-FIT
-    #if ($objectFit != '')
-      #set ($objectFit = $currentMastheadType.getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
-    #else 
-      #set ($objectFit = 'cover')
-    #end
-
-    ## IMAGE DIMENSIONS
-    #if ($imageWidth != '')
-      #set ($imageWidth = $currentMastheadType.getChild('image').getChild('advanced').getChild('imageWidth').value.toLowerCase())
-    #else 
-      #set ($imageWidth = '100%')
-    #end
-
-    #if ($imageHeight != '')
-      #set ($imageHeight = $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeight').value.toLowerCase())
-    #else 
-      #set ($imageHeight = 'auto')
-    #end
+## IMAGE POSITION (OBJECT-FIT)
+#set ($objectPositionX =
+$currentMastheadType.getChild('image').getChild('advanced').getChild('objectPositionX').value.toLowerCase())
+#set ($objectPositionY =
+$currentMastheadType.getChild('image').getChild('advanced').getChild('objectPositionY').value.toLowerCase())
+#set ($objectFit =
+$currentMastheadType.getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
 
 
-    ## ENSURE CIRCULAR IMAGES HAVE EQUAL HEIGHT AND WIDTH 
-    #if ($imageShape == 'circle')
-      ## These CSS vars can be overridden in the 'code' section below
-      #set ($imageWidth = '
-<style> --imgSize: 180px;  var(--smallIMgSize) </style>')
-      #set ($imageHeight = '
-<style> --imgSize: 180px; var(--smallIMgSize) </style>')
-    #elseif ($imageShape == 'square')
-      #set ($imageWidth = '100%')
-      #set ($imageHeight = 'auto')
-    #end
-    
+## OBJECT-FIT
+#if ($objectFit != '')
+#set ($objectFit =
+$currentMastheadType.getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
+#else
+#set ($objectFit = 'cover')
+#end
+
+## IMAGE DIMENSIONS
+#if ($imageWidth != '')
+#set ($imageWidth =
+$currentMastheadType.getChild('image').getChild('advanced').getChild('imageWidth').value.toLowerCase())
+#else
+#set ($imageWidth = '100%')
+#end
+
+#if ($imageHeight != '')
+#set ($imageHeight =
+$currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeight').value.toLowerCase())
+#else
+#set ($imageHeight = 'auto')
+#end
 
 
-    ## ACCESSIBILITY
-    #set ( $imageRoleVal =  ( $currentMastheadType.getChild('image').getChild('imageAltOrDecorative').value ) )
-    #if ( $imageRoleVal == "Decorative Image" )
-        #set ( $imageRole = "role='presentation'" )
-        #set ( $altText = '' )
-    #else 
-        #set ( $imageRole = "" )
-    #end
+## ENSURE CIRCULAR IMAGES HAVE EQUAL HEIGHT AND WIDTH
+#if ($imageShape == 'circle')
+## These CSS vars can be overridden in the 'code' section below
+#set ($imageWidth = '
+<style>
+  --imgSize: 180px;
+  var(--smallIMgSize)
+</style>')
+#set ($imageHeight = '
+<style>
+  --imgSize: 180px;
+  var(--smallIMgSize)
+</style>')
+#elseif ($imageShape == 'square')
+#set ($imageWidth = '100%')
+#set ($imageHeight = 'auto')
+#end
 
-    ## Custom Code Option
-    #set ($code = $currentMastheadType.getChild('image').getChild('advanced').getChild('code').value.toLowerCase())
 
-    #if ($imageType == 'internal cascade image')
-      #set ($imageUrlExt = '')
-        
-<div
-            class="wavy-masthead__img--${_EscapeTool.xml($imageShape)} wavy-masthead__img"
-            style="width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)};">
-	<img $imageRole class="wavy-masthead__img img--${_EscapeTool.xml($imageShape)} "
-                    src="[system-asset]${_EscapeTool.xml($imageUrlInt)}[/system-asset]"
-                    alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-fit: '${_EscapeTool.xml($objectFit)}'; object-position:'${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}'; width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)}; "/>
-	<![CDATA[#protect
+
+## ACCESSIBILITY
+#set ( $imageRoleVal = ( $currentMastheadType.getChild('image').getChild('imageAltOrDecorative').value ) )
+#if ( $imageRoleVal == "Decorative Image" )
+#set ( $imageRole = "role='presentation'" )
+#set ( $altText = '' )
+#else
+#set ( $imageRole = "" )
+#end
+
+## Custom Code Option
+#set ($code = $currentMastheadType.getChild('image').getChild('advanced').getChild('code').value.toLowerCase())
+
+#if ($imageType == 'internal cascade image')
+#set ($imageUrlExt = '')
+
+<div class="wavy-masthead__img--${_EscapeTool.xml($imageShape)} wavy-masthead__img"
+  style="width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)};">
+  <img $imageRole class="wavy-masthead__img img--${_EscapeTool.xml($imageShape)} "
+    src="[system-asset]${_EscapeTool.xml($imageUrlInt)}[/system-asset]" alt="${_EscapeTool.xml($altText)}"
+    title="${_EscapeTool.xml($altText)}"
+    style="object-fit: '${_EscapeTool.xml($objectFit)}'; object-position:'${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}'; width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)}; " />
+  <![CDATA[#protect
                       $code
                      #protect]]>
 </div>
 
-      #end
-      #if (!$imageType.contains("none") && $imageType == 'external image url')
-        #set ($imageUrlInt = '')
-     
-<div
-            class="wavy-masthead__img--${_EscapeTool.xml($imageShape)} wavy-masthead__img"
-            style="width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)};">
-	<img $imageRole class="wavy-masthead__img img--${_EscapeTool.xml($imageShape)} "
-                    src="${_EscapeTool.xml($imageUrlExt)}"
-                    alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-fit: '${_EscapeTool.xml($objectFit)}'; object-position:'${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}'; width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)}; "/>
-	<![CDATA[#protect
+#end
+#if (!$imageType.contains("none") && $imageType == 'external image url')
+#set ($imageUrlInt = '')
+
+<div class="wavy-masthead__img--${_EscapeTool.xml($imageShape)} wavy-masthead__img"
+  style="width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)};">
+  <img $imageRole class="wavy-masthead__img img--${_EscapeTool.xml($imageShape)} "
+    src="${_EscapeTool.xml($imageUrlExt)}" alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}"
+    style="object-fit: '${_EscapeTool.xml($objectFit)}'; object-position:'${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}'; width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)}; " />
+  <![CDATA[#protect
                       $code
                      #protect]]>
 </div>
-    #end
+#end
 #end
 
 #macro(cta $elem $linkXPath $wxp)
-    #set ($buttonClasses = 'button--red no-border')
-    ## this will create 'next-steps-widget__button' down below
-    #set ($bemButtonClass = $wxp + '__button')
-    #set ($bemButtonClass = $bemButtonClass.value)
-    
-    #set ( $linkItems = $_XPathTool.selectNodes($elem, $linkXPath) )
-    #foreach ($link in $linkItems)
-        #set ($linkStyle = $link.getChild('linkStyle').value) 
-        #set ($linkType =  $link.getChild('linkType').value)
-        #set ($linkLabel = $link.getChild('label').value)
-        
-        ## ACCESSIBILITY
-        #set ($ariaLabel = $link.getChild('accessibility').getChild('ariaLabel').value)
-        #set ($title = $link.getChild('accessibility').getChild('title').value)
+#set ($buttonClasses = 'button--red no-border')
+## this will create 'next-steps-widget__button' down below
+#set ($bemButtonClass = $wxp + '__button')
+#set ($bemButtonClass = $bemButtonClass.value)
 
-        ## ANALYTICS
-        #set ($customID = $link.getChild('tracking').getChild('customID').value)
-        #set ($dataAttr = $link.getChild('tracking').getChild('dataAttr').value)
+#set ( $linkItems = $_XPathTool.selectNodes($elem, $linkXPath) )
+#foreach ($link in $linkItems)
+#set ($linkStyle = $link.getChild('linkStyle').value)
+#set ($linkType = $link.getChild('linkType').value)
+#set ($linkLabel = $link.getChild('label').value)
 
-        #if ($customID != '')
-            #set ($customID = $link.getChild('customID').value)
-        #else
-            #set ( $customID = $linkLabel.replaceAll(" ", "-").replaceAll("[^a-zA-Z-]", "").replaceAll("--", "-").toLowerCase() )
-        #end
-        
-        #if ($dataAttr != '')
-            #set ($dataAttr = $link.getChild('dataAttr').value)
-            #set ($dataAttr = $dataAttr)
-        #else
-            #set ($dataAttr = '')
-        #end
-            
-        #if ($linkType == 'Internal Link')
-            #set ($linkURL = $link.getChild('internalLink').getChild('path').value )
-            #elseif ($linkType == 'External Link')
-                #set ($linkURL = $link.getChild('externalLink').value )
-        #else 
-            #set ($linkURL = $link.getChild('fileLink').getChild('path').value )
-        #end
-   
-        #if ($linkLabel != '')
-            #if ($linkStyle == 'Text Link')
-                
-<a tabindex="1" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="text--link">#escape($linkLabel)</a>
-            #elseif (($linkStyle == 'Button Link') && ($bemButtonClass != '$bemButtonClass'))
-                
-<a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button $bemButtonClass ${buttonClasses}">#escape($linkLabel)</a>
-            #else 
-                
-<a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button ${buttonClasses}">#escape($linkLabel)</a>
-            #end    
-        #end
-    #end
+## ACCESSIBILITY
+#set ($ariaLabel = $link.getChild('accessibility').getChild('ariaLabel').value)
+#set ($title = $link.getChild('accessibility').getChild('title').value)
+
+## ANALYTICS
+#set ($customID = $link.getChild('tracking').getChild('customID').value)
+#set ($dataAttr = $link.getChild('tracking').getChild('dataAttr').value)
+
+#if ($customID != '')
+#set ($customID = $link.getChild('customID').value)
+#else
+#set ( $customID = $linkLabel.replaceAll(" ", "-").replaceAll("[^a-zA-Z-]", "").replaceAll("--", "-").toLowerCase() )
+#end
+
+#if ($dataAttr != '')
+#set ($dataAttr = $link.getChild('dataAttr').value)
+#set ($dataAttr = $dataAttr)
+#else
+#set ($dataAttr = '')
+#end
+
+#if ($linkType == 'Internal Link')
+#set ($linkURL = $link.getChild('internalLink').getChild('path').value )
+#elseif ($linkType == 'External Link')
+#set ($linkURL = $link.getChild('externalLink').value )
+#else
+#set ($linkURL = $link.getChild('fileLink').getChild('path').value )
+#end
+
+#if ($linkLabel != '')
+#if ($linkStyle == 'Text Link')
+
+<a tabindex="1" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title"
+  class="text--link">#escape($linkLabel)</a>
+#elseif (($linkStyle == 'Button Link') && ($bemButtonClass != '$bemButtonClass'))
+
+<a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title"
+  class="button $bemButtonClass ${buttonClasses}">#escape($linkLabel)</a>
+#else
+
+<a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title"
+  class="button ${buttonClasses}">#escape($linkLabel)</a>
+#end
+#end
+#end
 #end
 
 
 #macro(dropdownItems)
-#set ($dropdownItems = $_XPathTool.selectNodes($currentPage, '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/singleImage_background_group/callToActionButtons/dropDownButton/link'))
+#set ($dropdownItems = $_XPathTool.selectNodes($currentPage,
+'/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/singleImage_background_group/callToActionButtons/dropDownButton/link'))
 #foreach ($link in $dropdownItems)
-        #set ($linkStyle = 'text-link') 
-        #set ($linkType =  $link.getChild('linkType').value)
-        #set ($linkLabel = $link.getChild('linkLabel').value)
-        
-        ## ACCESSIBILITY
-        #set ($ariaLabel = $link.getChild('accessibility').getChild('ariaLabel').value)
-        #set ($title = $link.getChild('accessibility').getChild('title').value)
+#set ($linkStyle = 'text-link')
+#set ($linkType = $link.getChild('linkType').value)
+#set ($linkLabel = $link.getChild('linkLabel').value)
 
-        ## ANALYTICS
-        #set ($customID = $link.getChild('tracking').getChild('customID').value)
-        #set ($dataAttr = $link.getChild('tracking').getChild('dataAttr').value)
+## ACCESSIBILITY
+#set ($ariaLabel = $link.getChild('accessibility').getChild('ariaLabel').value)
+#set ($title = $link.getChild('accessibility').getChild('title').value)
 
-        #if ($customID != '')
-            #set ($customID = $link.getChild('customID').value)
-        #else
-            #set ( $customID = $linkLabel.replaceAll(" ", "-").replaceAll("[^a-zA-Z-]", "").replaceAll("--", "-").toLowerCase() )
-        #end
-        
-        #if ($dataAttr != '')
-            #set ($dataAttr = $link.getChild('dataAttr').value)
-            #set ($dataAttr = $dataAttr)
-        #else
-            #set ($dataAttr = '')
-        #end
-            
-        #if ($linkType == 'internalLink')
-            #set ($linkURL = $link.getChild('internalLinkPage').getChild('path').value )
+## ANALYTICS
+#set ($customID = $link.getChild('tracking').getChild('customID').value)
+#set ($dataAttr = $link.getChild('tracking').getChild('dataAttr').value)
 
-        #elseif ($linkType == 'externalLink')
-            #set ($linkURL = $link.getChild('externalLink').value )
-        #else 
-            #set ($linkURL = $link.getChild('fileLink').getChild('path').value )
-        #end
-    
-        #if ($linkLabel != '')
-            #if ($linkStyle == 'Text Link')
-            
+#if ($customID != '')
+#set ($customID = $link.getChild('customID').value)
+#else
+#set ( $customID = $linkLabel.replaceAll(" ", "-").replaceAll("[^a-zA-Z-]", "").replaceAll("--", "-").toLowerCase() )
+#end
+
+#if ($dataAttr != '')
+#set ($dataAttr = $link.getChild('dataAttr').value)
+#set ($dataAttr = $dataAttr)
+#else
+#set ($dataAttr = '')
+#end
+
+#if ($linkType == 'internalLink')
+#set ($linkURL = $link.getChild('internalLinkPage').getChild('path').value )
+
+#elseif ($linkType == 'externalLink')
+#set ($linkURL = $link.getChild('externalLink').value )
+#else
+#set ($linkURL = $link.getChild('fileLink').getChild('path').value )
+#end
+
+#if ($linkLabel != '')
+#if ($linkStyle == 'Text Link')
+
 <li>
-	<a tabindex="1" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="${linkType}">#escape($linkLabel)</a>
+  <a tabindex="1" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title"
+    class="${linkType}">#escape($linkLabel)</a>
 </li>
-            #elseif (($linkStyle == 'Button Link') && ($bemButtonClass != '$bemButtonClass'))
-                
+#elseif (($linkStyle == 'Button Link') && ($bemButtonClass != '$bemButtonClass'))
+
 <li>
-	<a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="button $bemButtonClass  no-border">#escape($linkLabel)</a>
+  <a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title"
+    class="button $bemButtonClass  no-border">#escape($linkLabel)</a>
 </li>
-            #else 
-                
+#else
+
 <li>
-	<a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title" class="no-border">#escape($linkLabel)</a>
+  <a tabindex="0" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title"
+    class="no-border">#escape($linkLabel)</a>
 </li>
-            #end    
-        #end
-    #end
+#end
+#end
+#end
 
 #end
 
@@ -632,10 +663,10 @@ DROPDOWN:
 #macro(wavyCorner)
 
 <div class="corner-wave__wrapper">
-	<span class="corner-wave">
-		<span class="faux-h2">DALE E. AND SARAH ANN FOWLER SCHOOL OF ENGINEERING </span>
-		<!-- <%= image_tag("masthead_corner_wave.png") %> -->
-	</span>
+  <span class="corner-wave">
+    <span class="faux-h2">DALE E. AND SARAH ANN FOWLER SCHOOL OF ENGINEERING </span>
+    <!-- <%= image_tag("masthead_corner_wave.png") %> -->
+  </span>
 </div>
 #end
 
@@ -643,74 +674,79 @@ DROPDOWN:
 #macro(videoToggleButtons)
 
 <!-- VIDEO TOGGLE BUTTONS -->
-<svg data-bg-type="${backgroundSelector}" id="wavy-masthead__toggle--pause" aria-hidden="true" aria-label="Pause masthead video" focusable="true"
-      data-prefix="fal" data-icon="pause-circle"
-      class="toggle-video wavy-masthead__toggle--pause toggle-video svg-inline--fa fa-pause-circle fa-w-16" role="img"
-	xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" tabindex="0">
-	<path fill="currentColor"
-        d="M218 160h-20c-3.3 0-6 2.7-6 6v180c0 3.3 2.7 6 6 6h20c3.3 0 6-2.7 6-6V166c0-3.3-2.7-6-6-6zm96 0h-20c-3.3 0-6 2.7-6 6v180c0 3.3 2.7 6 6 6h20c3.3 0 6-2.7 6-6V166c0-3.3-2.7-6-6-6zM256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 464c-118.7 0-216-96.1-216-216 0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216z"></path>
+<svg data-bg-type="${backgroundSelector}" id="wavy-masthead__toggle--pause" aria-hidden="true"
+  aria-label="Pause masthead video" focusable="true" data-prefix="fal" data-icon="pause-circle"
+  class="toggle-video wavy-masthead__toggle--pause toggle-video svg-inline--fa fa-pause-circle fa-w-16" role="img"
+  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" tabindex="0">
+  <path fill="currentColor"
+    d="M218 160h-20c-3.3 0-6 2.7-6 6v180c0 3.3 2.7 6 6 6h20c3.3 0 6-2.7 6-6V166c0-3.3-2.7-6-6-6zm96 0h-20c-3.3 0-6 2.7-6 6v180c0 3.3 2.7 6 6 6h20c3.3 0 6-2.7 6-6V166c0-3.3-2.7-6-6-6zM256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 464c-118.7 0-216-96.1-216-216 0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216z">
+  </path>
 </svg>
-<svg data-bg-type="${backgroundSelector}"
-	xmlns="http://www.w3.org/2000/svg" aria-hidden="true" aria-label="Play masthead video"
-      class="toggle-video svg-inline--fa fa-play-circle fa-w-16 wavy-masthead__toggle--play toggle-video" data-icon="play-circle"
-      data-prefix="fas" focusable="true" id="wavy-masthead__toggle--play" role="img" title="Play video"
-      viewBox="0 0 512 512" tabindex="0">
-	<path
-        d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"
-        fill="currentColor"></path>
+<svg data-bg-type="${backgroundSelector}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+  aria-label="Play masthead video"
+  class="toggle-video svg-inline--fa fa-play-circle fa-w-16 wavy-masthead__toggle--play toggle-video"
+  data-icon="play-circle" data-prefix="fas" focusable="true" id="wavy-masthead__toggle--play" role="img"
+  title="Play video" viewBox="0 0 512 512" tabindex="0">
+  <path
+    d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"
+    fill="currentColor"></path>
 </svg>
 <!-- END VIDEO TOGGLE BUTTONS -->
 #end
 
 #macro(sliderMasthead)
-    #if ( $wavyMastheadType == 'sliderBackground' )
-    
-    
-    #set ( $sliderWrapper = '<div class="wavy-masthead__slider-container"> <div class="wavy-masthead__slider">') 
-    #set ( $sliderWrapperClose = '</div></div>') 
+#if ( $wavyMastheadType == 'sliderBackground' )
 
-    #set ($headerMasthead = '')
-    #set ($currentMastheadType = $wavyMasthead.getChild('mulitipleImageSlider'))
-  
-    ## HEADER GROUP
-    #set ($sliderTextBackground = $currentMastheadType.getChild('sliderTextBackground').value)
-    
-    #set ($slides = $_XPathTool.selectNodes($currentPage, '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/mulitipleImageSlider/imageSlider'))
 
-  
-  <div class="wavy-masthead__slider-container"> 
-    <div class="wavy-masthead__slider" data-bg-type="${backgroundSelector}">
-    
+#set ( $sliderWrapper = '<div class="wavy-masthead__slider-container">
+  <div class="wavy-masthead__slider">')
+    #set ( $sliderWrapperClose = '</div>
+</div>')
+
+#set ($headerMasthead = '')
+#set ($currentMastheadType = $wavyMasthead.getChild('mulitipleImageSlider'))
+
+## HEADER GROUP
+#set ($sliderTextBackground = $currentMastheadType.getChild('sliderTextBackground').value)
+
+#set ($slides = $_XPathTool.selectNodes($currentPage,
+'/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/mulitipleImageSlider/imageSlider'))
+
+
+<div class="wavy-masthead__slider-container">
+  <div class="wavy-masthead__slider" data-bg-type="${backgroundSelector}">
+
     #foreach ($slide in $slides)
-    
-      ## SLIDER TEXT
-        #set ($sliderHeader = $slide.getChild('sliderText').getChild('sliderHeader').value)
-        #set ($textArea = $slide.getChild('sliderText').getChild('textArea').value)
-        #set ($sliderTextBackground = $slide.getChild('sliderTextBackground').value)
-      ## END SLIDER TEXT
-      ## SLIDER IMAGE
-        #set ($imageType = $slide.getChild('imageType').value)
-        #set ($currentMastheadType = $slide) ## this is hacky, but we need the macro to think the slide is the current masthead. 
-        #set ($backgroundSelector = $slide.getChild('backgroundSelector').value)
-        #set ($videoURL = $slide.getChild('videoBackground').getChild('videoChooser').getChild('path').value)
-        slide - header: $sliderHeader
-      ## END SLIDER IMAGE
 
-      <div class="wavy-masthead wavy-masthead__container dev">
-        #videoToggleButtons()
-        #wavyCorner()
+    ## SLIDER TEXT
+    #set ($sliderHeader = $slide.getChild('sliderText').getChild('sliderHeader').value)
+    #set ($textArea = $slide.getChild('sliderText').getChild('textArea').value)
+    #set ($sliderTextBackground = $slide.getChild('sliderTextBackground').value)
+    ## END SLIDER TEXT
+    ## SLIDER IMAGE
+    #set ($imageType = $slide.getChild('imageType').value)
+    #set ($currentMastheadType = $slide) ## this is hacky, but we need the macro to think the slide is the current
+    masthead.
+    #set ($backgroundSelector = $slide.getChild('backgroundSelector').value)
+    #set ($videoURL = $slide.getChild('videoBackground').getChild('videoChooser').getChild('path').value)
+    slide - header: $sliderHeader
+    ## END SLIDER IMAGE
 
-        <div class="wavy-masthead__wave-mask">
-        #if ($backgroundSelector == 'image') 
-          #mastheadImage()
+    <div class="wavy-masthead wavy-masthead__container dev">
+      #videoToggleButtons()
+      #wavyCorner()
+
+      <div class="wavy-masthead__wave-mask">
+        #if ($backgroundSelector == 'image')
+        #mastheadImage()
 
         #elseif ($backgroundSelector == 'video')
-          <video playsinline="true" muted="true" loop="true" autoplay="true"
-          controls="false" src="${videoURL}" data-video-state="playing"></video>
+        <video playsinline="true" muted="true" loop="true" autoplay="true" controls="false" src="${videoURL}"
+          data-video-state="playing"></video>
         #end
 
-        </div>
-        <div class="wavy-masthead__text wavy-masthead__text-bg--${sliderTextBackground}">
+      </div>
+      <div class="wavy-masthead__text wavy-masthead__text-bg--${sliderTextBackground}">
         <div class="wavy-masthead__text--inner" data-bg-color="${sliderTextBackground}">
           <div class="wavy-masthead__header">
             #if ($showHeader != 'no')
@@ -723,49 +759,52 @@ DROPDOWN:
             #end
           </div>
         </div>
-        </div>
       </div>
+    </div>
 
 
     #end
-    </div>
   </div>
+  <div class="bottom-waves__wrapper">
+    <img class="waves-bottom" src="https://www.chapman.edu/_assets/mastheads/masthead-wavylines.png" alt="" />
+  </div>
+</div>
 ## /masthead/wavyMasthead/mulitipleImageSlider/sliderTextBackground
 
-    #set ($wavyMasthead = $masthead.getChild('wavyMasthead'))
-    
+#set ($wavyMasthead = $masthead.getChild('wavyMasthead'))
 
-    ## SINGLE IMAGE GROUP ##
-    #set ($backgroundSelector = $currentMastheadType.getChild('backgroundSelector').value)
-    #set ($showHeader = $currentMastheadType.getChild('headerTitle').getChild('showHeader').value)
-    #set ($preheaderMasthead = $currentMastheadType.getChild('headerTitle').getChild('preheaderMasthead').value)
-    #set ($headerMasthead = $currentMastheadType.getChild('headerTitle').getChild('headerMasthead').value)
-    #set ($currentMastheadType = $currentMastheadType)
 
-    #set ($imageType = $currentMastheadType.getChild('image').getChild('imageType').value)
-    #set ($imageUrlExt = $currentMastheadType.getChild('image').getChild('imageUrlExt').value)
-    #set ($imageUrlInt = $currentMastheadType.getChild('image').getChild('imageUrlInt').getChild('path').value)
-    #set ($imageAltOrDecorative = $currentMastheadType.getChild('image').getChild('imageAltOrDecorative').value)
-    #set ($dropdownLabel = $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').getChild('dropdownLabel').value)
-    #set ($videoURL = $currentMastheadType.getChild('videoBackground').getChild('videoChooser').getChild('path').value)
-    ## image group ##
-    ## SINGLE IMAGE GROUP ##
-    #end
+## SINGLE IMAGE GROUP ##
+#set ($backgroundSelector = $currentMastheadType.getChild('backgroundSelector').value)
+#set ($showHeader = $currentMastheadType.getChild('headerTitle').getChild('showHeader').value)
+#set ($preheaderMasthead = $currentMastheadType.getChild('headerTitle').getChild('preheaderMasthead').value)
+#set ($headerMasthead = $currentMastheadType.getChild('headerTitle').getChild('headerMasthead').value)
+#set ($currentMastheadType = $currentMastheadType)
+
+#set ($imageType = $currentMastheadType.getChild('image').getChild('imageType').value)
+#set ($imageUrlExt = $currentMastheadType.getChild('image').getChild('imageUrlExt').value)
+#set ($imageUrlInt = $currentMastheadType.getChild('image').getChild('imageUrlInt').getChild('path').value)
+#set ($imageAltOrDecorative = $currentMastheadType.getChild('image').getChild('imageAltOrDecorative').value)
+#set ($dropdownLabel =
+$currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').getChild('dropdownLabel').value)
+#set ($videoURL = $currentMastheadType.getChild('videoBackground').getChild('videoChooser').getChild('path').value)
+## image group ##
+## SINGLE IMAGE GROUP ##
+#end
 #end
 
 #macro(debug)
 <ul class="debug">
-	<style>
-.wavy-masthead__wave-mask {
-    mask-image: image-url("https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png") !important; 
+  <style>
+    .wavy-masthead__wave-mask {
+      mask-image: image-url("https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png") !important;
 
-    -webkit-mask-image: image-url(
-      "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png") !important;
-}
-</style>
+      -webkit-mask-image: image-url("https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png") !important;
+    }
+  </style>
   #output("wavyMastheadType")
   #output("backgroundSelector")
-#if ( $wavyMastheadType == 'imageVideo_background' )
+  #if ( $wavyMastheadType == 'imageVideo_background' )
   #output("backgroundSelector")
   #output("showHeader")
   #output("preheaderMasthead")
@@ -774,10 +813,10 @@ DROPDOWN:
   #output("imageUrlInt")
   #output("imageUrlExt")
   #output("imageType")
-#end
+  #end
 
 
-#if ( $wavyMastheadType == 'sliderBackground' )
+  #if ( $wavyMastheadType == 'sliderBackground' )
   #output("sliderTextBackground")
   #output("sliderHeader")
   #output('textArea')
@@ -785,15 +824,16 @@ DROPDOWN:
   #output("imageUrlInt")
   #output("imageUrlExt")
   #output("imageType")
-#end
+  #end
 
 
-#set ($dropdownItems = $_XPathTool.selectNodes($currentPage, '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/singleImage_background_group/callToActionButtons/dropDownButton/link'))
+  #set ($dropdownItems = $_XPathTool.selectNodes($currentPage,
+  '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/singleImage_background_group/callToActionButtons/dropDownButton/link'))
 
-DROPDOWN: 
-#foreach ($dropdown in $dropdownItems)
+  DROPDOWN:
+  #foreach ($dropdown in $dropdownItems)
   $dropdown.getChild('linkLabel').value
-#end
+  #end
 
 
 </ul>
