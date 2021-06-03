@@ -62,7 +62,6 @@
         padding-left: 10px;
       }
     }
-
   }
 
   &.threeColumns {
@@ -77,7 +76,7 @@
     }
   }
 
-  >.main .story {
+  > .main .story {
     @include bp(l) {
       width: 182px;
     }
@@ -179,7 +178,7 @@
 }
 
 .primary-content.one-column {
-  background-color: $bg-platinum-gray;
+  background-color: $white;
 
   .messaging-widget a,
   .chapman-events-feed-widget a {
