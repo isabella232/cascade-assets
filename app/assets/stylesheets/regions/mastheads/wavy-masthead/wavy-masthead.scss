@@ -300,18 +300,18 @@
     display: flex;
     background-size: calc(max(100%, 500px));
     justify-content: center;
-
     min-width: 500px;
-    max-width: 50%;
-    min-width: 500px !important;
-    height: 100% !important;
+    height: 100%;
     max-width: 800px;
 
     @include respond(tab-port) {
       max-width: 100%;
     }
     @include respond(phone) {
-      // background-image: none;
+      background-size: cover;
+      background-position: center center;
+      max-height: 200px;
+      min-width: 100%;
     }
 
     img {
@@ -323,7 +323,6 @@
     .faux-h2 {
       z-index: 9;
       max-width: 400px;
-
       margin-left: 24px;
       margin-right: 24px;
       min-height: 120px !important;
@@ -331,14 +330,16 @@
       top: 0;
       display: flex;
       align-items: center;
+
+      @include respond(phone) {
+        max-width: 100vw;
+        max-height: 100%;
+      }
     }
     @include respond(tab-land) {
       width: 100%;
       height: 100%;
       left: 0;
-    }
-
-    @include respond(phone) {
     }
 
     .faux-h2 {

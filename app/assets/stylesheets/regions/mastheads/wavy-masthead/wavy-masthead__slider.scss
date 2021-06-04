@@ -2,6 +2,15 @@
   &-container {
     position: relative;
     width: 100%;
+    background-color: $white;
+    @include respond(phone) {
+      background-color: $cu-red;
+    }
+  }
+  .wavy-masthead__container {
+    @include respond(phone) {
+      // background-color: $cu-red;
+    }
   }
   .wavy-masthead {
     &__text {
@@ -38,12 +47,31 @@
       .bg--red {
         background-color: $cu-red;
       }
+      @include respond(phone) {
+        display: none;
+      }
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
   .slick-dots li button:before {
     color: $white;
     font-size: 50px !important;
     opacity: 1;
+  }
+  .slick-slide .mobile {
+    span.mobile__text {
+      background-color: $cu-red;
+      display: none !important;
+
+      @include respond(phone) {
+        display: block !important;
+      }
+    }
   }
 }
 // outside of .wavy-masthead
