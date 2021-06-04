@@ -21,6 +21,8 @@
     mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
     -webkit-mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
 
+    -webkit-mask-size: 100% 100%;
+
     // the bottommost gradient
     &:after {
       content: "";
@@ -292,15 +294,24 @@
     width: 100%;
     position: absolute;
     z-index: 3;
-    height: 110px;
+    height: 100%;
     background-repeat: no-repeat;
     color: $white;
     display: flex;
     background-size: calc(max(100%, 500px));
-    display: none;
+    justify-content: center;
+
+    min-width: 500px;
+    max-width: 50%;
+    min-width: 500px !important;
+    height: 100% !important;
+    max-width: 800px;
 
     @include respond(tab-port) {
-      display: block;
+      max-width: 100%;
+    }
+    @include respond(phone) {
+      // background-image: none;
     }
 
     img {
@@ -311,6 +322,15 @@
     }
     .faux-h2 {
       z-index: 9;
+      max-width: 400px;
+
+      margin-left: 24px;
+      margin-right: 24px;
+      min-height: 120px !important;
+      position: absolute;
+      top: 0;
+      display: flex;
+      align-items: center;
     }
     @include respond(tab-land) {
       width: 100%;
