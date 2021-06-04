@@ -735,36 +735,52 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
     slide - header: $sliderHeader
     ## END SLIDER IMAGE
 
-    <div class="wavy-masthead wavy-masthead__container dev">
-      #videoToggleButtons()
-      #wavyCorner()
+    <span class="mobile">
+      <div class="wavy-masthead wavy-masthead__container dev">
+        #videoToggleButtons()
+        #wavyCorner()
 
-      <div class="wavy-masthead__wave-mask">
-        #if ($backgroundSelector == 'image')
-        #mastheadImage()
+        <div class="wavy-masthead__wave-mask">
+          #if ($backgroundSelector == 'image')
+          #mastheadImage()
 
-        #elseif ($backgroundSelector == 'video')
-        <video playsinline="true" muted="true" loop="true" autoplay="true" controls="false" src="${videoURL}"
-          data-video-state="playing"></video>
-        #end
+          #elseif ($backgroundSelector == 'video')
+          <video playsinline="true" muted="true" loop="true" autoplay="true" controls="false" src="${videoURL}"
+            data-video-state="playing"></video>
+          #end
 
-      </div>
-      <div class="wavy-masthead__text wavy-masthead__text-bg--${sliderTextBackground}">
-        <div class="wavy-masthead__text--inner" data-bg-color="${sliderTextBackground}">
-          <div class="wavy-masthead__header">
-            #if ($showHeader != 'no')
-            <h2 data-display-single-image-or-video="true">
-              ${_EscapeTool.xml($sliderHeader)}
-            </h2>
-            <p>
-              ${_EscapeTool.xml($textArea)}
-            </p>
-            #end
+        </div>
+        <div class="wavy-masthead__text wavy-masthead__text-bg--${sliderTextBackground}">
+          <div class="wavy-masthead__text--inner" data-bg-color="${sliderTextBackground}">
+            <div class="wavy-masthead__header">
+              #if ($showHeader != 'no')
+              <h2 data-display-single-image-or-video="true">
+                ${_EscapeTool.xml($sliderHeader)}
+              </h2>
+              <p>
+                ${_EscapeTool.xml($textArea)}
+              </p>
+              #end
+            </div>
           </div>
         </div>
+        <img class="waves-bottom" src="https://www.chapman.edu/_assets/mastheads/masthead-wavylines.png" alt="" />
       </div>
-      <img class="waves-bottom" src="https://www.chapman.edu/_assets/mastheads/masthead-wavylines.png" alt="" />
-    </div>
+      <span class="mobile__text bg--red">
+        <div class="wavy-masthead__text--inner" data-bg-color="red">
+          <div class="wavy-masthead__header">
+            <h2 data-display-single-image-or-video="true">
+              The Slider Header
+            </h2>
+            <p>
+              Some slide text about a very good school and all of the reasons you should join. Deciding to apply is
+              the
+              best decision you could have ever made.
+            </p>
+          </div>
+        </div>
+      </span>
+    </span>
 
     #end
   </div>
