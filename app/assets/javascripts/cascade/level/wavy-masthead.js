@@ -125,12 +125,15 @@ function wavyMastheadSlider() {
         .removeClass("slick-active wavy-masthead__active-bullet"); //remove the class
     });
 
-    $(".wavy-masthead__slider-dots li").on("click keydown", function (event) {
-      if (accessibleClick(event)) {
-        console.log("disabling autoplay");
-        $(".wavy-masthead__slider").slick("slickPause");
+    $(".wavy-masthead__slider-dots li, .toggle-video").on(
+      "click keydown",
+      function (event) {
+        if (accessibleClick(event)) {
+          console.log("disabling autoplay");
+          $(".wavy-masthead__slider").slick("slickPause");
+        }
       }
-    });
+    );
   }
 }
 
