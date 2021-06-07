@@ -108,5 +108,10 @@ ul.slick-dots.wavy-masthead__slider-dots {
   @include respond(phone) {
     position: relative;
     padding-top: 24px;
+    margin-left: 50px;
+
+    li.slick-active button:before {
+      color: $panther-black !important;
+    }
   }
 }

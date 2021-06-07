@@ -100,7 +100,7 @@ function wavyMastheadSlider() {
         arrows: true,
         dots: true,
         infinite: true,
-        adaptiveHeight: true,
+        adaptiveHeight: false,
         accessibility: true,
         autoplay: true,
         autoplaySpeed: 10000,
@@ -115,11 +115,11 @@ function wavyMastheadSlider() {
     ).click(function () {
       // don't need each (click does this internally)
       $(this)
-        .addClass("slick-active") //add cell-selected class to a
+        .addClass("slick-active wavy-masthead__active-bullet") //add cell-selected class to a
         .parent() //go back to li
         .siblings() //look at siblings
         .find(".slick-active") //find cell-selected elements
-        .removeClass("slick-active"); //remove the class
+        .removeClass("slick-active wavy-masthead__active-bullet"); //remove the class
     });
 
     $(".wavy-masthead__slider-dots li").on("click keydown", function (event) {
