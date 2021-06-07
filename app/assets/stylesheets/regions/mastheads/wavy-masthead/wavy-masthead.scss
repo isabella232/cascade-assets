@@ -391,6 +391,10 @@
     bottom: -45px;
     width: 100%;
     min-width: 105vw;
+
+    @include respond(phone) {
+      bottom: 0;
+    }
   }
 }
 

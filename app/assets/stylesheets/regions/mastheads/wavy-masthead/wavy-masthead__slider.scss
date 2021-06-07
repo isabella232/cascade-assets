@@ -1,6 +1,11 @@
 .wavy-masthead__slider {
   @include respond(phone) {
-    background-color: $cu-red;
+    &[data-bg-color="black"] {
+      background-color: $panther-black;
+    }
+    &[data-bg-color="red"] {
+      background-color: $cu-red;
+    }
   }
   &-container {
     position: relative;
@@ -10,7 +15,7 @@
   }
   .wavy-masthead__container {
     @include respond(phone) {
-      // background-color: $cu-red;
+      // // background-color: $cu-red;
     }
   }
   .wavy-masthead {
@@ -20,7 +25,7 @@
           background-color: none;
         }
         &--red {
-          background-color: $cu-red;
+          // background-color: $cu-red;
         }
       }
       user-select: text;
@@ -49,7 +54,7 @@
         padding-right: 50px;
       }
       .bg--red {
-        background-color: $cu-red;
+        // background-color: $cu-red;
       }
       @include respond(phone) {
         display: none;
@@ -69,7 +74,7 @@
   }
   .slick-slide .mobile {
     span.mobile__text {
-      background-color: $cu-red;
+      // background-color: $cu-red;
       display: none !important;
 
       @include respond(phone) {
@@ -103,19 +108,33 @@ ul.slick-dots.wavy-masthead__slider-dots {
     font-size: 50px !important;
     color: $white;
   }
-  li.slick-active button:before {
-    color: $cu-red !important;
-  }
+
   @include respond(phone) {
     position: relative;
     padding-top: 24px;
     margin-left: 0;
     padding-left: 50px;
-    background-color: $cu-red;
+    // background-color: $cu-red;
+    background-color: var(--wavySliderBackgroundColor);
     padding-bottom: 24px;
+  }
+}
+
+ul.slick-dots.wavy-masthead__slider-dots li.slick-active button:before {
+  color: $cu-red;
+}
+@include respond(phone) {
+  ul.slick-dots.wavy-masthead__slider-dots[data-bg-color="black"] {
+    background-color: $panther-black;
+    li.slick-active button:before {
+      color: $cu-red;
+    }
+  }
+  ul.slick-dots.wavy-masthead__slider-dots[data-bg-color="red"] {
+    background-color: $cu-red;
 
     li.slick-active button:before {
-      color: $panther-black !important;
+      color: $panther-black;
     }
   }
 }

@@ -91,6 +91,7 @@ function wavyMastheadSlider() {
   // const masthead = $(".wavy-masthead[data-slider='true']");
   if ($(".wavy-masthead__slider").length) {
     console.log("slider");
+
     var slider = $(".wavy-masthead__slider")
       .not(".slick-initialized")
       .slick({
@@ -110,6 +111,8 @@ function wavyMastheadSlider() {
       });
     slider;
 
+    var bgColor = $(".wavy-masthead__slider").attr("data-bg-color");
+    $(".slick-dots").attr("data-bg-color", bgColor);
     $(
       "ul:first-of-type.wavy-masthead__slider-dots li:not(.autoplay-toggle"
     ).click(function () {

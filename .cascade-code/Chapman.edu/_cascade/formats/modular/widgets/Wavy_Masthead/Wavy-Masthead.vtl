@@ -701,9 +701,10 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
 #if ( $wavyMastheadType == 'sliderBackground' )
 
 
-#set ( $sliderWrapper = '<div class="wavy-masthead__slider-container">
-  <div class="wavy-masthead__slider">')
-    #set ( $sliderWrapperClose = '</div>
+#set ( $sliderWrapper = '<div
+  class="wavy-masthead__slider-container wavy-masthead__slider-container--${sliderTextBackground}"">
+  <div class=" wavy-masthead__slider>')
+  #set ( $sliderWrapperClose = '</div>
 </div>')
 
 #set ($headerMasthead = '')
@@ -712,12 +713,21 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
 ## HEADER GROUP
 #set ($sliderTextBackground = $currentMastheadType.getChild('sliderTextBackground').value)
 
+#if ($sliderTextBackground == 'black')
+#set ($sliderTextBackgroundCSSVar = 'var(--color-panther-black)')
+#end
+
 #set ($slides = $_XPathTool.selectNodes($currentPage,
 '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/mulitipleImageSlider/imageSlider'))
 
 
 <div class="wavy-masthead__slider-container">
-  <div class="wavy-masthead__slider" data-bg-type="${backgroundSelector}">
+  <style>
+    :root {
+      --wavySliderBackgroundColor: $sliderTextBackgroundCSSVar;
+    }
+  </style>
+  <div class="wavy-masthead__slider" data-bg-color="${sliderTextBackground}" data-bg-type="${backgroundSelector}">
 
     #foreach ($slide in $slides)
 
@@ -766,8 +776,8 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
         </div>
         <img class="waves-bottom" src="https://www.chapman.edu/_assets/mastheads/masthead-wavylines.png" alt="" />
       </div>
-      <span class="mobile__text bg--red">
-        <div class="wavy-masthead__text--inner" data-bg-color="red">
+      <span class="mobile__text bg--${sliderTextBackground}">
+        <div class="wavy-masthead__text--inner wavy-masthead__text--inner--${sliderTextBackground}">
           <div class="wavy-masthead__header">
             #if ($showHeader != 'no')
             <h2 data-display-single-image-or-video="true">
