@@ -1,11 +1,12 @@
 .wavy-masthead__slider {
+  @include respond(phone) {
+    background-color: $cu-red;
+  }
   &-container {
     position: relative;
     width: 100%;
+
     background-color: $white;
-    @include respond(phone) {
-      background-color: $cu-red;
-    }
   }
   .wavy-masthead__container {
     @include respond(phone) {
@@ -108,7 +109,10 @@ ul.slick-dots.wavy-masthead__slider-dots {
   @include respond(phone) {
     position: relative;
     padding-top: 24px;
-    margin-left: 50px;
+    margin-left: 0;
+    padding-left: 50px;
+    background-color: $cu-red;
+    padding-bottom: 24px;
 
     li.slick-active button:before {
       color: $panther-black !important;
