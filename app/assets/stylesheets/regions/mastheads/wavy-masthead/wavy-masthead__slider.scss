@@ -38,6 +38,9 @@
       }
       align-items: start;
       margin-left: 200px;
+      @include respond(tab-port) {
+        margin-left: 24px;
+      }
       max-width: 520px;
       &--inner {
         // this is for the WYSIWYG and excludes the slick.js dots
@@ -90,6 +93,9 @@ ul.slick-dots.wavy-masthead__slider-dots {
   display: flex;
   left: 0;
   margin-left: 200px;
+  @include respond(tab-port) {
+    margin-left: 24px;
+  }
 
   button:before {
     opacity: 1;
@@ -98,5 +104,9 @@ ul.slick-dots.wavy-masthead__slider-dots {
   }
   li.slick-active button:before {
     color: $cu-red !important;
+  }
+  @include respond(phone) {
+    position: relative;
+    padding-top: 24px;
   }
 }

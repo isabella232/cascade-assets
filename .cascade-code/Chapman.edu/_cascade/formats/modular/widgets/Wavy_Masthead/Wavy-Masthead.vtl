@@ -769,14 +769,14 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
       <span class="mobile__text bg--red">
         <div class="wavy-masthead__text--inner" data-bg-color="red">
           <div class="wavy-masthead__header">
+            #if ($showHeader != 'no')
             <h2 data-display-single-image-or-video="true">
-              The Slider Header
+              ${_EscapeTool.xml($sliderHeader)}
             </h2>
             <p>
-              Some slide text about a very good school and all of the reasons you should join. Deciding to apply is
-              the
-              best decision you could have ever made.
+              ${_EscapeTool.xml($textArea)}
             </p>
+            #end
           </div>
         </div>
       </span>
