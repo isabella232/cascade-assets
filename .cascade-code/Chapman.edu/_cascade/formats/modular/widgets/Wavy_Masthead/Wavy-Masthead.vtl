@@ -315,6 +315,10 @@ $currentMastheadType.getChild('backgroundSelector').value)
 ## SINGLE IMAGE GROUP ##
 #set ($currentMastheadType = $wavyMasthead.getChild('singleImage_background_group'))
 #set ($backgroundSelector = $currentMastheadType.getChild('backgroundSelector').value)
+
+#set ($showTopLeftText = $currentMastheadType.getChild('topLeftWave').getChild('showTopLeftText').value)
+#set ($topLeftText = $currentMastheadType.getChild('topLeftWave').getChild('topLeftText').value)
+
 #set ($showHeader = $currentMastheadType.getChild('headerTitle').getChild('showHeader').value)
 #set ($preheaderMasthead = $currentMastheadType.getChild('headerTitle').getChild('preheaderMasthead').value)
 #set ($headerMasthead = $currentMastheadType.getChild('headerTitle').getChild('headerMasthead').value)
@@ -334,7 +338,10 @@ $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').
 
 <div class="wavy-masthead wavy-masthead__container dev">
   #videoToggleButtons()
-  #wavyCorner()
+
+  #if ($showTopLeftText != 'no')
+    #wavyCorner()
+  #end
 
   <div class="wavy-masthead__wave-mask">
     #if ($backgroundSelector == 'image')
@@ -412,6 +419,8 @@ $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').
   #output("imageType")
   #output("imageUrlInt")
   #output("imageUrlExt")
+  #output("topLeftText")
+  #output("showTopLeftText")
   #end
 
   #if ( $wavyMastheadType == 'sliderBackground' )
@@ -715,11 +724,12 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
 #set ($currentMastheadType = $wavyMasthead.getChild('mulitipleImageSlider'))
 
 ## HEADER GROUP
-#set ($topLeftText = $currentMastheadType.getChild('headerTitle').getChild('headerMasthead').value)
 #set ($sliderTextBackground = $currentMastheadType.getChild('sliderTextBackground').value)
+#set ($showTopLeftText = $currentMastheadType.getChild('topLeftWave').getChild('showTopLeftText').value)
+#set ($topLeftText = $currentMastheadType.getChild('topLeftWave').getChild('topLeftText').value)
 
 #if ($sliderTextBackground == 'black')
-#set ($sliderTextBackgroundCSSVar = 'var(--color-panther-black)')
+  #set ($sliderTextBackgroundCSSVar = 'var(--color-panther-black)')
 #end
 
 #set ($slides = $_XPathTool.selectNodes($currentPage,
