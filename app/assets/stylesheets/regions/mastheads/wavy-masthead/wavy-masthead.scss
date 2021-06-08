@@ -18,35 +18,18 @@
     padding-top: 0;
     background-color: $white;
 
-    mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
-    -webkit-mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
-
-    -webkit-mask-size: 100% 100%;
-
     // the bottommost gradient
     &:after {
       content: "";
       position: absolute;
-      background: -webkit-linear-gradient(
-        0deg,
-        #020024 0%,
-        #010011 10%,
-        rgba(0, 0, 0, 0) 300px
-      );
-      background: -webkit-linear-gradient(
-        bottom,
-        #020024 0%,
-        #010011 10%,
-        rgba(0, 0, 0, 0) 300px
-      );
-      background: linear-gradient(
-        0deg,
-        #020024 0%,
-        #010011 10%,
-        rgba(0, 0, 0, 0) 300px
-      );
+      background-image: url("https://dev-www.chapman.edu/test-section/nick-test/wavy-masthead/images/masthead-wave-gradient-bottom.png"),
+        linear-gradient(
+          0deg,
+          rgba(2, 0, 36, 1) 0%,
+          rgba(1, 0, 17, 0.3) 10%,
+          rgba(0, 0, 0, 0) 300px
+        );
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endColorstr="#000000", GradientType=1);
-      border-radius: 5px;
       top: 0;
       right: 0;
       bottom: 0;
@@ -111,9 +94,10 @@
     right: 0;
     background: rgba(0, 0, 0, 0.9);
     position: relative;
-    mask-image: image-url("masthead-wave");
-    -webkit-mask-image: image-url("masthead-wave");
+    mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
+    -webkit-mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
 
+    -webkit-mask-size: 100% 100%;
     -webkit-mask-size: 100% 100%;
     will-change: filter;
     max-height: $mastheadVideoHeight;
