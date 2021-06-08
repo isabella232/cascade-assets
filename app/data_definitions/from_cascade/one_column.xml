@@ -59,6 +59,13 @@
         </group>
       </group>
       <group collapsed="true" identifier="mulitipleImageSlider" label="Multiple Image Slider">
+        <group identifier="headerTitle" label="Top Left Text">
+          <text field-id="" identifier="showHeader" label="Show Top Left Text?" type="radiobutton" default="No">
+            <radio-item label="Yes" show-fields="masthead/wavyMasthead/mulitipleImageSlider/headerTitle/preheaderMasthead, mastHead/mulitipleImageSlider/headerTitle/headerMasthead" value="yes"/>
+            <radio-item label="No" value="no"/>
+          </text>
+          <text field-id="" identifier="headerMasthead" label="Top Left Text"/>
+        </group>
         <text default="none" field-id="89377ae3c0a81e8a3b00029393138031" help-text="For better visibility you may want to put your text in a box." identifier="sliderTextBackground" label="Slider Text Background?" type="radiobutton">
           <radio-item label="Red" value="red"/>
           <radio-item label="Black" value="black"/>

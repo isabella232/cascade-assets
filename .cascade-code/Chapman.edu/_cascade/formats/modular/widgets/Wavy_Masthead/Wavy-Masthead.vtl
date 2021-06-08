@@ -296,7 +296,9 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
 
 <div class="corner-wave__wrapper">
   <span class="corner-wave">
-    <span class="faux-h2">DALE E. AND SARAH ANN FOWLER SCHOOL OF ENGINEERING </span>
+    <span class="faux-h2">
+      ${_EscapeTool.xml($topLeftText)}
+    </span>
     <!-- <%= image_tag("masthead_corner_wave.png") %> -->
   </span>
 </div>
@@ -667,7 +669,9 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
 
 <div class="corner-wave__wrapper">
   <span class="corner-wave">
-    <span class="faux-h2">DALE E. AND SARAH ANN FOWLER SCHOOL OF ENGINEERING </span>
+    <span class="faux-h2">
+      ${_EscapeTool.xml($topLeftText)}
+    </span>
     <!-- <%= image_tag("masthead_corner_wave.png") %> -->
   </span>
 </div>
@@ -711,6 +715,7 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
 #set ($currentMastheadType = $wavyMasthead.getChild('mulitipleImageSlider'))
 
 ## HEADER GROUP
+#set ($topLeftText = $currentMastheadType.getChild('headerTitle').getChild('headerMasthead').value)
 #set ($sliderTextBackground = $currentMastheadType.getChild('sliderTextBackground').value)
 
 #if ($sliderTextBackground == 'black')
