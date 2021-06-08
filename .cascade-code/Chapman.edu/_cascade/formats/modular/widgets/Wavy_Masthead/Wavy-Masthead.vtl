@@ -294,10 +294,12 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
 
 #macro(wavyCorner)
 
-<div class="corner-wave__wrapper">
-  <span class="corner-wave">
+<div class="top-left-wave__wrapper">
+  <span class="top-left-wave">
+  <span class="invisible-box">
     <span class="faux-h2">
       ${_EscapeTool.xml($topLeftText)}
+    </span>
     </span>
     <!-- <%= image_tag("masthead_corner_wave.png") %> -->
   </span>
@@ -676,12 +678,14 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
 
 #macro(wavyCorner)
 
-<div class="corner-wave__wrapper">
-  <span class="corner-wave">
-    <span class="faux-h2">
-      ${_EscapeTool.xml($topLeftText)}
+<div class="top-left-wave__wrapper">
+  <span class="top-left-wave">
+    <span class="invisible-box">
+      <span class="faux-h2">
+        ${_EscapeTool.xml($topLeftText)}
+      </span>
+      <!-- <%= image_tag("masthead_corner_wave.png") %> -->
     </span>
-    <!-- <%= image_tag("masthead_corner_wave.png") %> -->
   </span>
 </div>
 #end
