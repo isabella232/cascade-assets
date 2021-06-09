@@ -141,6 +141,12 @@
     justify-content: space-evenly;
     min-height: 200px;
     bottom: 15%;
+
+    @include respond(phone) {
+      &:not(.mobile__text) {
+        display: none;
+      }
+    }
   }
 
   @include respond(phone) {
@@ -401,6 +407,26 @@
     }
     @include respond(phone) {
       bottom: 0;
+    }
+  }
+
+  .mobile__text {
+    display: none;
+
+    @include respond(phone) {
+      display: block;
+
+      .wavy-masthead__text {
+        position: relative;
+      }
+    }
+    a {
+      text-align: center;
+    }
+    .button--dropdown__wrapper {
+      a.button--red {
+        color: $cu-red;
+      }
     }
   }
 }
