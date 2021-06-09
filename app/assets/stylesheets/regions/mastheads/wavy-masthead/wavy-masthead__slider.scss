@@ -15,7 +15,9 @@
   }
   .wavy-masthead__container {
     @include respond(phone) {
-      // // background-color: $cu-red;
+      .wavy-masthead__container {
+        background-color: $cu-red;
+      }
     }
   }
   .wavy-masthead {
