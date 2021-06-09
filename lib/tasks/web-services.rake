@@ -305,7 +305,7 @@ end
 task edit_wavy_masthead: :environment do
   edit_format(
     '86baa6a4c0a81e8a65cef5df9f5234d7',
-    '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Wavy-Masthead.vtl'
+    '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/wavy_masthead/Wavy-Masthead.vtl'
   )
 end
 
