@@ -357,7 +357,8 @@
 
   video {
     width: 100%;
-    // pointer-events: none;
+    height: 100%;
+    object-fit: cover;
   }
   .bottom-waves {
     // content: "";
