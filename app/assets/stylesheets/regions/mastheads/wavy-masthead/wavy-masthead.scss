@@ -64,10 +64,8 @@
       }
 
       @include respond(phone) {
-        .toggle-video {
-          margin-bottom: 3vh;
-          margin-right: 3vw;
-        }
+        margin-bottom: 3vh;
+        margin-right: 3vw;
       }
     }
     .wavy-masthead__toggle--play {
@@ -453,4 +451,8 @@ html body .dev {
       "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png"
     ) !important;
   }
+}
+
+.debug {
+  display: none !important;
 }
