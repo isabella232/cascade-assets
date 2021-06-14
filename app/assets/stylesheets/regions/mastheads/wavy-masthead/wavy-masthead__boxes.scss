@@ -14,30 +14,84 @@
     justify-content: center;
     z-index: 99999999;
     position: absolute;
+
     width: 100%;
     justify-self: center;
     margin-top: 110px;
+    @include respond(phone) {
+      position: relative;
+      flex-direction: column;
+      place-items: center;
+    }
   }
   .wavy-masthead-box {
     margin-right: 24px;
-    background-color: white;
+    @include respond(phone) {
+      margin-right: 0;
+    }
+    background-color: $white;
+    @include respond(phone) {
+      background-color: transparent;
+      max-width: 88vw;
+    }
     color: var(--color-cu-red);
 
     display: flex;
     flex-direction: column;
   }
 
-  .wavy-masthead-box img {
-    width: 280px;
-    height: 280px;
-    overflow: hidden;
-    object-fit: cover;
-  }
-
   .wavy-masthead-box__title {
     padding-top: 20px;
     padding-bottom: 20px;
-    text-align: center;
     border: 2px solid $cu-light-grey;
+    max-width: 265px;
+    padding-left: 24px;
+    padding-right: 24px;
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    height: 100%;
+    align-items: center;
+
+    @include respond(phone) {
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 24px;
+    }
+  }
+
+  .wavy-masthead__img {
+    max-height: 215px !important;
+    height: 215px !important;
+    img {
+      width: 265px !important;
+      min-height: 215px !important;
+      height: 100% !important;
+      overflow: hidden;
+      object-fit: cover;
+
+      @include respond(phone) {
+        width: 100% !important;
+      }
+    }
+  }
+
+  .wavy-masthead-box {
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    &:hover,
+    &:focus-within {
+      img {
+        transform: scale(1.1);
+        max-height: 215px !important;
+        overflow: hidden;
+      }
+      .wavy-masthead__img {
+        max-height: 215px !important;
+        -webkit-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+        overflow: hidden;
+      }
+    }
   }
 }

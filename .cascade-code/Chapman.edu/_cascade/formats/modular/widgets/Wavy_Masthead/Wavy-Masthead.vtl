@@ -30,6 +30,7 @@
 ## Masthead Type - there are 3 options
 #singleImageOrVideo()
 #sliderMasthead()
+#boxesMasthead()
 ## End Masthead Type
 
 #debug()
@@ -745,6 +746,50 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
     fill="currentColor"></path>
 </svg>
 <!-- END VIDEO TOGGLE BUTTONS -->
+#end
+
+
+#macro(boxesMasthead)
+
+#set ($currentMastheadType = $wavyMasthead.getChild('multipleBoxes'))
+#set ($wavyMastheadType = $masthead.getChild('wavyMasthead').getChild('mastheadType').value)
+
+#set ($boxes = $_XPathTool.selectNodes($currentPage,
+'/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/multipleBoxes/box'))
+
+
+#if ( $wavyMastheadType == 'boxes' )
+<div class="wavy-masthead__container wavy-masthead__boxes-container">
+  <div class="wavy-masthead__boxes-wrapper">
+
+    #foreach ($box in $boxes)
+
+    #set ($currentMastheadType = $box) ## this is hacky, but we need the ##macro to think the slide is the current
+    ##masthead.
+    #set ($boxTitle = $box.getChild('boxText').value)
+    #set ($linkType = $box.getChild('boxLink').value)
+
+
+    #if ($linkType == 'internalCascadeLink')
+    #set ($boxLink = $box.getChild('internalURL').getChild('path').value)
+    #else
+    #set ($boxLink = $box.getChild('externalURL').value)
+    #end
+
+
+    <a class="wavy-masthead-box no-border" href="${_EscapeTool.xml($boxLink)}">
+      #mastheadImage()
+      <div class="wavy-masthead-box__title faux-h2">${_EscapeTool.xml($boxTitle)}</div>
+    </a>
+    #end
+  </div>
+
+</div>
+
+
+
+
+#end
 #end
 
 #macro(sliderMasthead)
