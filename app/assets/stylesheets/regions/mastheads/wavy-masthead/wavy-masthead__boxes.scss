@@ -1,0 +1,43 @@
+.wavy-masthead__container {
+  &:after {
+    max-height: 220px;
+    background-color: $cu-red;
+    background-size: 100% 220px;
+  }
+  .faux-h2 {
+    margin-top: 0;
+    font-size: 2.2rem;
+  }
+  .wavy-masthead__boxes-wrapper {
+    display: flex;
+    justify-content: space-around;
+    justify-content: center;
+    z-index: 99999999;
+    position: absolute;
+    width: 100%;
+    justify-self: center;
+    margin-top: 110px;
+  }
+  .wavy-masthead-box {
+    margin-right: 24px;
+    background-color: white;
+    color: var(--color-cu-red);
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wavy-masthead-box img {
+    width: 280px;
+    height: 280px;
+    overflow: hidden;
+    object-fit: cover;
+  }
+
+  .wavy-masthead-box__title {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    border: 2px solid $cu-light-grey;
+  }
+}
