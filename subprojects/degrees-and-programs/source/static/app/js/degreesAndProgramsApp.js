@@ -775,7 +775,7 @@ var chapman = chapman || {};
 
 				}
 
-				resultsCountText = 'You are seeing ' + resultsSetCount + ' out of ' + undergraduateResults.length + ' Undergraduate Degrees and Programs'; // Set the results count text
+				resultsCountText = 'You are seeing 123abc ' + resultsSetCount + ' out of ' + undergraduateResults.length + ' Undergraduate Degrees and Programs'; // Set the results count text
 
 			} else if (activeSection === 'graduate') {
 
