@@ -54,6 +54,7 @@
         </group>
       </group>
       <group collapsed="true" identifier="multipleBoxes" label="Multiple Boxes">
+        <text field-id="" identifier="title" label="Department Title (Not Page Title)"/>
         <group identifier="box" label="Box" maximum-number="4" multiple="true">
           <text field-id="8909d1eac0a81e8a3b000293e895247b" identifier="boxText" label="Box Text" required="true"/>
           <text field-id="8909d1eac0a81e8a3b000293e4ade1a8" identifier="boxLink" label="Box Link" required="true" type="radiobutton">
