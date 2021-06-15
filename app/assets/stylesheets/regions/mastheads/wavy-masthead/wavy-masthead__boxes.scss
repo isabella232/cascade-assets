@@ -1,4 +1,6 @@
-.wavy-masthead__container {
+.wavy-masthead__boxes-container {
+  $imageSize: 350px;
+  margin-top: -20px;
   &:after {
     max-height: 220px;
     background-color: $cu-red;
@@ -6,6 +8,7 @@
     background-repeat: no-repeat;
   }
   @include respond(phone) {
+    // this creates the offset wave on mobile
     &:before {
       content: "";
       position: absolute;
@@ -30,6 +33,16 @@
     margin-top: 0;
     font-size: 2.2rem;
   }
+
+  .title {
+    color: $white;
+    z-index: 4;
+    position: relative;
+    text-align: center;
+    top: 80px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
   .wavy-masthead__boxes-wrapper {
     display: flex;
     justify-content: space-around;
@@ -40,7 +53,7 @@
     width: 100%;
     justify-self: center;
     margin-top: 110px;
-    @include respond(phone) {
+    @include respond(tab-land) {
       position: relative;
       flex-direction: column;
       place-items: center;
@@ -48,16 +61,18 @@
   }
   .wavy-masthead-box {
     margin-right: 24px;
-    @include respond(phone) {
+    @include respond(tab-land) {
+      max-width: 88vw;
       margin-right: 0;
     }
+
     background-color: $white;
-    @include respond(phone) {
+    @include respond(tab-land) {
       &:first-of-type {
-        margin-top: 200px;
+        // margin-top: 200px;
       }
       background-color: transparent;
-      max-width: 88vw;
+      width: 100%;
     }
     color: var(--color-cu-red);
 
@@ -78,8 +93,9 @@
     height: 100%;
     align-items: center;
     background-color: $white;
+    text-align: center;
 
-    @include respond(phone) {
+    @include respond(tab-land) {
       width: 100%;
       max-width: 100%;
       margin-bottom: 24px;
@@ -87,8 +103,12 @@
   }
 
   .wavy-masthead__img {
-    max-height: 215px !important;
-    height: 215px !important;
+    max-height: 215px;
+    height: 215px;
+    @include respond(tab-land) {
+      max-height: $imageSize !important;
+      height: $imageSize !important;
+    }
     img {
       width: 265px !important;
       min-height: 215px !important;
@@ -96,8 +116,10 @@
       overflow: hidden;
       object-fit: cover;
 
-      @include respond(phone) {
+      @include respond(tab-land) {
         width: 100% !important;
+        max-height: $imageSize !important;
+        min-height: $imageSize !important;
       }
     }
   }
@@ -119,5 +141,11 @@
         overflow: hidden;
       }
     }
+  }
+}
+
+.dev {
+  #uninav {
+    // display: none;
   }
 }

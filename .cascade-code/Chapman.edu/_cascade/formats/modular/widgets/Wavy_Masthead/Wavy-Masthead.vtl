@@ -9,9 +9,10 @@
 
 <!-- Chapman.edu/_cascade/formats/modular/widgets/Wavy Masthead -->
 #import( "/_cascade/formats/helpers.velocity" )
-#import( "/_cascade/formats/helpers/debug.velocity" )
+
 
 #set ( $currentPage = $_XPathTool.selectSingleNode($contentRoot, "//system-page[@current]") )
+
 #set ( $masthead = $currentPage.getChild('system-data-structure').getChild('masthead') )
 #set ( $mastheadType = $masthead.getChild('mastheadType').value )
 #set ( $showBoxes = $masthead.getChild('boxes').getChild('show').value )
@@ -753,15 +754,19 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
 
 #set ($currentMastheadType = $wavyMasthead.getChild('multipleBoxes'))
 #set ($wavyMastheadType = $masthead.getChild('wavyMasthead').getChild('mastheadType').value)
+#set ($title = $currentMastheadType.getChild('title').value)
 
 #set ($boxes = $_XPathTool.selectNodes($currentPage,
 '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/multipleBoxes/box'))
 
 
 #if ( $wavyMastheadType == 'boxes' )
-<div class="wavy-masthead__container wavy-masthead__boxes-container">
-  <div class="wavy-masthead__boxes-wrapper">
 
+<div class="wavy-masthead__container wavy-masthead__boxes-container">
+
+
+  <h2 class="title"> ${_EscapeTool.xml($title)}</h2>
+  <div class="wavy-masthead__boxes-wrapper">
     #foreach ($box in $boxes)
 
     #set ($currentMastheadType = $box) ## this is hacky, but we need the ##macro to think the slide is the current
