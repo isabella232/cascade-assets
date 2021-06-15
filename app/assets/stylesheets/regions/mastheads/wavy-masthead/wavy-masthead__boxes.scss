@@ -5,24 +5,26 @@
     background-size: 100% 220px;
     background-repeat: no-repeat;
   }
-  &:before {
-    content: "";
-    position: absolute;
-    background-image: url("https://dev-www.chapman.edu/test-section/nick-test/wavy-masthead/images/masthead-wave-gradient-bottom.png");
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endColorstr="#000000", GradientType=1);
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
-    -webkit-mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
-    -webkit-mask-size: 100% 100%;
-    background-size: 130% 100%;
-    will-change: filter;
-    max-height: 235px;
-    z-index: 3;
-    transform: rotate(0deg);
-    z-index: 99999999;
+  @include respond(phone) {
+    &:before {
+      content: "";
+      position: absolute;
+      background-image: url("https://dev-www.chapman.edu/test-section/nick-test/wavy-masthead/images/masthead-wave-gradient-bottom.png");
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endColorstr="#000000", GradientType=1);
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
+      -webkit-mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
+      -webkit-mask-size: 100% 100%;
+      background-size: 130% 100%;
+      will-change: filter;
+      max-height: 235px;
+      z-index: 3;
+      transform: rotate(0deg);
+      z-index: 99999999;
+    }
   }
   .faux-h2 {
     margin-top: 0;
