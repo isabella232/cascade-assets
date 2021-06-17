@@ -55,23 +55,40 @@
     <checkbox-item value="Fowler School of Law"/>
     <checkbox-item value="Schmid College of Science and Technology"/>
     <checkbox-item value="School of Communication"/>
-    <checkbox-item value="School of Pharmacy"/> 
+    <checkbox-item value="School of Pharmacy"/>
     <checkbox-item value="Wilkinson College of Arts, Humanities, and Social Sciences"/>
+  </text>
+  <text field-id="17815f36c0a81e8a02dba63db00fe5a1" identifier="startTerm" label="Start Term" required="true" type="checkbox">
+    <checkbox-item value="Spring"/>
+    <checkbox-item value="Summer"/>
+    <checkbox-item value="Fall"/>
+    <checkbox-item value="Winter"/>
   </text>
   <text identifier="campus" label="Campus" type="multi-selector">
     <selector-item value="Orange"/>
     <selector-item value="Rinker"/>
   </text>
-  <group identifier="link" label="Link">
-    <text default="Internal Link" identifier="linkType" label="Link Type" type="radiobutton">
+  <group identifier="link" label="Link" maximum-number="2" multiple="true">
+    <text default="Internal Link" field-id="ff6bc8dac0a81e5f43ef9b37efb705c1" identifier="linkType" label="Link Type" type="radiobutton">
       <radio-item show-fields="link/internalLink" value="Internal Link"/>
       <radio-item show-fields="link/externalLink" value="External Link"/>
       <radio-item show-fields="link/fileLink" value="File Link"/>
     </text>
-    <text identifier="externalLink" label="External Link"/>
-    <asset identifier="internalLink" label="Internal Link" type="page"/>
-    <asset identifier="fileLink" label="File Link" type="file"/>
-    <text identifier="label" label="Label"/>
+    <text field-id="ff6bc8dac0a81e5f43ef9b37a9a9ff4c" identifier="externalLink" label="External Link"/>
+    <asset field-id="ff6bc8dbc0a81e5f43ef9b37f476ed35" identifier="internalLink" label="Internal Link" type="page"/>
+    <asset field-id="ff6bc8dbc0a81e5f43ef9b3737edb327" identifier="fileLink" label="File Link" type="file"/>
+    <text field-id="ff6bc8dbc0a81e5f43ef9b373014c6aa" identifier="label" label="Label"/>
+  </group>
+  <group identifier="primaryLink" label="primaryLink" maximum-number="1" multiple="false">
+    <text default="Internal Link" field-id="1750dd92c0a81e8a02dba63d0f3bc704" identifier="linkType" label="Link Type" type="radiobutton">
+      <radio-item show-fields="link/internalLink" value="Internal Link"/>
+      <radio-item show-fields="link/externalLink" value="External Link"/>
+      <radio-item show-fields="link/fileLink" value="File Link"/>
+    </text>
+    <text field-id="1750dd92c0a81e8a02dba63dc63f786d" identifier="externalLink" label="External Link"/>
+    <asset field-id="1750dd92c0a81e8a02dba63d679aa01a" identifier="internalLink" label="Internal Link" type="page"/>
+    <asset field-id="1750dd92c0a81e8a02dba63d867106a2" identifier="fileLink" label="File Link" type="file"/>
+    <text field-id="1750dd92c0a81e8a02dba63dab8f5989" identifier="label" label="Label"/>
   </group>
   <text identifier="keywords" label="Additional Keywords"/>
   <asset identifier="image" label="Image (optional)" type="file"/>
