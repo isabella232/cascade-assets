@@ -232,6 +232,15 @@ task edit_widget_text_with_cta: :environment do
   )
 end
 
+
+desc 'Replaces `Chapman.edu: /_cascade/formats/Degrees-programs/PrimaryContent` with `subprojects/degrees-and-programs/source/cascade/formats/Degrees-programs/PrimaryContent.vm`'
+task edit_dandp_primaryContent: :environment do
+  edit_format(
+    '9cc451dbc0a81e4173d44587be4c4ac5',
+    'subprojects/degrees-and-programs/source/cascade/formats/Degrees-programs/PrimaryContent.vm'
+  )
+end
+
 # ---------------------------------------------------------------------------- #
 #                    edit two & three column primary content                   #
 # ---------------------------------------------------------------------------- #
@@ -510,10 +519,14 @@ def edit_format(asset_path, update_source)
            }
          }.to_json
        )
-
-  p "🎉        View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{
+  p
+  p
+  p "🥂🍾🎉    View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{
          asset_id
        }&type=#{asset_type}".chomp('/')
+  p
+  p
+  p
 end
 
 # ---------------------------------------------------------------------------- #
