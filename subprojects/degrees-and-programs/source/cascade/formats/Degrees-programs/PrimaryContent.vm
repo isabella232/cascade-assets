@@ -27,7 +27,7 @@
 
 ## Degrees & Programs
 #macro ( displayPrograms $programs )
-
+    <div class="nick-test hidden">displayPrograms macro</div>
     #if ( $programs.size() > 0 )
 
         #foreach ( $program in $programs )
@@ -36,7 +36,7 @@
         	#set ( $path = $program.getChild("path").value )
 			#set ( $site = $program.getChild("site").value )
 			#set ( $programObject = $_.locateBlock( $path, $site ) )
-
+      
 			## Title
     		#set ( $title = $programObject.getStructuredDataNode("title") )
 
@@ -58,6 +58,21 @@
 			#set ( $link = {} )
 			#set ( $link.linkType = $programObject.getStructuredDataNode("link/linkType") )
 
+            <div class="nick-test hidden">
+                linkType: $link.linkType.textValue
+                
+                
+
+                ## #set ($links = $_XPathTool.selectNodes($programObject, ' system-data-structure/link'))
+
+                #set ($links = $programObject.getStructuredDataNodes('link'))
+                
+
+                    links: $links
+                    #foreach ($link in $links)
+                      link: $link $link.linkType
+                    #end
+            </div>
 			## Internal Link
 			#if ( $link.linkType.textValue == "Internal Link" )
 				#if ( $_PropertyTool.isNull( $programObject.getStructuredDataNode("link/internalLink").asset ) == false )
@@ -217,6 +232,8 @@
         
     #end
 
+nick test 
+#displayPrograms( $programs )
     <noscript>
 
     	#displayPrograms( $programs )
@@ -252,7 +269,7 @@
     	#dapHeader( $header )
 
     	<div class="dap-body">
-
+program object: $programObject
     		<div class="dap-form">
 				<form id="js-dap-discover-form" class="dap-discover-form" action="">
 					<fieldset>
