@@ -78,6 +78,7 @@ var chapman = chapman || {};
 			this.bindUIEvents();
 			this.getUrlTypeQuery();
 			this.initLazyLoadingInterval();
+			this.toggleSection($('#js-dap-section-undergraduate'));
 		},
 
 		bindUIEvents: function () {
