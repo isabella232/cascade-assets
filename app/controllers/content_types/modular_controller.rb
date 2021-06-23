@@ -588,7 +588,7 @@ module ContentTypes
       format(
         '%s %s %s %s %s %s %s %s %s %s %s %s %s %s %s',
         render_static_partial(
-          'widgets/primary_content/featured_news_events_feed_1'
+          'widgets/primary_content/personnel_widget'
         ),
         render_static_partial('widgets/primary_content/testimonial_widget'),
         render_static_partial('widgets/primary_content/next_steps_widget'),
