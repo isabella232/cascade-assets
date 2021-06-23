@@ -98,11 +98,27 @@ var chapman = chapman || {};
 			});
 
 			// Click on any section's accordion trigger
-			$('.dap-section-accordion-trigger').on('click', function () {
+			// Commented because removing accordion section
+			// $('.dap-section-accordion-trigger').on('click', function () {
+			// 	if (!isTransitioning) {
+			// 		_this.toggleSection($(this));
+			// 	}
+			// });
+
+			// Click on any section's accordion trigger
+			$('.degree-finder-switch').on('click', function () {
+				console.log("clicked button;");
+				
 				if (!isTransitioning) {
-					_this.toggleSection($(this));
+					if (activeSection === 'undergraduate') {
+						_this.toggleSection($('#js-dap-section-graduate'));
+					}
+					else {
+						_this.toggleSection($('#js-dap-section-undergraduate'));
+					}
 				}
 			});
+
 
 			// Form change in any section
 			$('#js-dap-feature form').on('change', function (event) {
@@ -776,7 +792,7 @@ var chapman = chapman || {};
 
 				}
 
-				resultsCountText = 'You are seeing 123abc ' + resultsSetCount + ' out of ' + undergraduateResults.length + ' Undergraduate Degrees and Programs'; // Set the results count text
+				resultsCountText = 'You are seeing ' + resultsSetCount + ' out of ' + undergraduateResults.length + ' Undergraduate Degrees and Programs'; // Set the results count text
 
 			} else if (activeSection === 'graduate') {
 
