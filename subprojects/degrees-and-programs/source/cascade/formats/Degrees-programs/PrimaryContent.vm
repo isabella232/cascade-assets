@@ -32,13 +32,40 @@
 
         #foreach ( $program in $programs )
 
+
             ## Locate Block
         	#set ( $path = $program.getChild("path").value )
 			#set ( $site = $program.getChild("site").value )
 			#set ( $programObject = $_.locateBlock( $path, $site ) )
       
+
+      ## test 
+
+      #if ($_PropertyTool.isNull( $programObject.getStructuredDataNode("primaryLink") ) != "true")
+      <li>primaryLink! $programObject.getStructuredDataNode("primaryLink")</li>
+      <li>$programObject.getChild('primaryLink').textValue)</li>
+      <li>startterm: $programObject.getStructuredDataNode('startTerm').textValue</li>
+
+      #end
+      <li>programobject: $programObject </li>
+      <li>primary linktype: $programObject.getStructuredDataNodes('primaryLink/linkType')</li>
+      <li>primary  linktype: $programObject.getStructuredDataNode('primaryLink/linkType').textValue</li>
+      <li>$programObject.getStructuredDataNodes('primaryLink/label').textValue</li>
+      <li>proptool $programObject.getStructuredDataNode('link/label')</li>
+      
+
 			## Title
     		#set ( $title = $programObject.getStructuredDataNode("title") )
+
+<li>nicktitle: ${_EscapeTool.xml($title.textValue)}</li>
+<li>nicklinklabel:$programObject.getStructuredDataNode('link/label').textValue</li>
+<li>nickprimarylinklabel: $programObject.getStructuredDataNode('primaryLink/label').textValue</li>
+<li>($_PropertyTool.isNull( $programObject.getStructuredDataNode("startTerm/value") )</li>
+#if ($_PropertyTool.isNull( $programObject.getStructuredDataNode("startTerm/value") ) != "true")
+
+  <li>nickstartterm: $programObject.getStructuredDataNode('startTerm/value').textValue</li>
+
+#end
 
     		## Image
     		#set ( $img = {} )
@@ -54,6 +81,9 @@
 				#end
 			#end
 
+
+      
+
 			## Hyperlink Reference
 			#set ( $link = {} )
 			#set ( $link.linkType = $programObject.getStructuredDataNode("link/linkType") )
@@ -66,13 +96,43 @@
                 ## #set ($links = $_XPathTool.selectNodes($programObject, ' system-data-structure/link'))
 
                 #set ($links = $programObject.getStructuredDataNodes('link'))
+
+                #set ( $link.linkType = $programObject.getStructuredDataNode("link/linkType") )
                 
 
-                    links: $links
-                    #foreach ($link in $links)
-                      link: $link $link.linkType
-                    #end
+                #set ($linkLabel = $programObject.getStructuredDataNode('link/label').textValue)
+
+                #if ($linkType == 'Internal Link') 
+                  #set ($linkPath = $programObject.getStructuredDataNode('link/internalLink').asset.link)
+                #elseif ($linkType == 'External Link')
+                  #set ($linkPath = $programObject.getStructuredDataNode('link/externalLink').textValue)
+                #elseif ($linkType == 'File Link')
+                  #set ($linkPath = $programObject.getStructuredDataNode('link/fileLink').asset.link)
+                #end
             </div>
+
+      #set ( $primaryLink = $programObject.getStructuredDataNode("primaryLink") )
+      #set ($primaryLink.label = $programObject.getStructuredDataNode('primaryLink/label').textValue)
+      
+      <ul>
+      program: ${_EscapeTool.xml( $title.textValue )}: 
+      <li>$programObject.getStructuredDataNode("primaryLink")</li>
+      <li>$primaryLink</li>
+      <li>primaryLink: $primaryLink</li>
+      <li>$primaryLink.linkType.textValue</li>
+      <li>$primaryLink.label</li>
+      <li>$programObject.getStructuredDataNode('primaryLink/externalLink').textValue</li>
+      <li>external link: $programObject.getStructuredDataNode('primaryLink/externalLink').textValue)</li>
+      <li>$programObject.getStructuredDataNode("link/linkType")</li>
+      #foreach ($link in $links)
+                      #set ($linkType = $link.getChild('linkType').textValue)
+                      <li>link: $link</li> 
+                      <li>$linkType</li>
+                      <li>$linkPath</li>
+                      <li>$linkLabel</li>
+      #end
+      </ul>
+
 			## Internal Link
 			#if ( $link.linkType.textValue == "Internal Link" )
 				#if ( $_PropertyTool.isNull( $programObject.getStructuredDataNode("link/internalLink").asset ) == false )
@@ -121,12 +181,22 @@
 				#end
 					<div class="active-content">
 						<div class="active-content-inner">
-							<p class="desc">$_EscapeTool.xml( $description )</p>
+							<p class="desc nick-test">$_EscapeTool.xml( $description )</p>
 							#if ( $link.href )
 								<a href="${link.href}" title="View landing page for ${_EscapeTool.xml( $title.textValue )}">
 									Learn More #svg( "icon-double-chevron" )
 								</a>
 							#end
+
+#foreach ($link in $links)
+            link!!
+            #set ($linkType = $link.getChild('linkType').textValue)
+            <li>link: $link</li> 
+            <li>$linkType</li>
+            <li>linkpath: $linkPath</li>
+            <li>$linkLabel</li>
+          #end
+              
 						</div>
 						<span class="close">
 							#svg( "icon-close" )
@@ -169,13 +239,18 @@
 						#end
 					</ul>
 
-					<p class="desc">$_EscapeTool.xml( $description )</p>
+					<p class="desc nick-test">$_EscapeTool.xml( $description )</p>
 
 					#if ( $link.href )
 						<a href="${link.href}" title="View landing page for ${_EscapeTool.xml( $title.textValue )}" class="button">
 							Learn More #svg( "icon-double-chevron" )
 						</a>
+            #foreach ($link in $links)
+              link!!
+              <a href="${linkType}">${_EscapeTool.xml($linkLabel)}></a>
+            #end  
 					#end
+          
 
 				</div>
 
