@@ -239,6 +239,19 @@ task edit_dandp_primaryContent: :environment do
     '9cc451dbc0a81e4173d44587be4c4ac5',
     'subprojects/degrees-and-programs/source/cascade/formats/Degrees-programs/PrimaryContent.vm'
   )
+  # publish degrees and programs page
+  publish_asset('page', 'ce06cdd4c04d744c64d6b6765c849731')
+end
+
+
+desc 'Replaces `http://chapman.edu/_cascade/formats/Degrees-programs/data/degrees` with `subprojects/degrees-and-programs/source/cascade/formats/Degrees-programs/data/degrees.vm`'
+task edit_dandp_degrees: :environment do
+  edit_format(
+    '9cc451c5c0a81e4173d445871aecbf6c',
+    'subprojects/degrees-and-programs/source/cascade/formats/Degrees-programs/data/degrees.vm'
+  )
+  # publish degrees and programs page
+  publish_asset('page', 'ce06cdd4c04d744c64d6b6765c849731')
 end
 
 # ---------------------------------------------------------------------------- #
@@ -1046,3 +1059,4 @@ task edit_2_3_col_masthead: :environment do
     '.cascade-code/Chapman.edu/_cascade/formats/level/Masthead.vtl'
   )
 end
+
