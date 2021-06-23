@@ -99,12 +99,12 @@
   }
   &__email {
     font-size: 14px;
-    margin-top: 8px;
+    margin-top: 20px;
     font-weight: bold;
   }
   &__office-info {
     font-size: 14px;
-    margin-top: 8px;
+    margin-top: 20px;
     font-weight: bold;
   }
   &__office-detail {
@@ -188,7 +188,7 @@
 .personnel-widget {
   position: relative;
   height: 100%;
-  min-height: 418px;
+  min-height: 450px;
   transition: 300ms ease;
 
   &__carousel {
