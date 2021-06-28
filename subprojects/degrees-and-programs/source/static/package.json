@@ -4,29 +4,39 @@
   "dependencies": {
     "assemble": "^0.24.3",
     "compass": "^0.1.1",
-    "grunt-execute": "^0.2.2",
     "grunt-modernizr": "^3.0.2",
-    "grunt-usemin": "^3.1.1",
     "install": "^0.13.0",
     "jshint": "^2.13.0",
-    "load-grunt-configs": "^1.0.0",
     "matchdep": "^2.0.0",
     "nconf": "^0.11.2",
     "node-dir": "^0.1.17",
     "npm": "^7.16.0",
-    "time-grunt": "^2.0.0"
+    "time-grunt": "^2.0.0",
+    "uglify": "^0.1.5"
   },
   "devDependencies": {
+    "autoprefixer": "^10.2.6",
     "browser-sync": "^2.26.14",
+    "browserslist": "^0.4.0",
+    "concat": "^1.0.3",
+    "cssmin": "^0.4.3",
+    "global-prefix": "^3.0.0",
     "grunt-assemble": "^0.6.3",
+    "grunt-autoprefixer": "^3.0.4",
     "grunt-browser-sync": "^2.2.0",
     "grunt-concurrent": "^3.0.0",
     "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-compass": "^1.1.1",
+    "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-connect": "^3.0.0",
     "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^4.0.0",
+    "grunt-contrib-uglify": "^5.0.1",
     "grunt-contrib-watch": "^1.1.0",
-    "gulp": "^4.0.2"
+    "grunt-execute": "^0.2.2",
+    "grunt-usemin": "^3.1.1",
+    "gulp": "^4.0.2",
+    "load-grunt-configs": "^1.0.0"
   },
   "engines": {
     "node": ">=4.0.0"
