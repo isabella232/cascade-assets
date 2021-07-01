@@ -18,10 +18,10 @@
 
 
 #set ($display = $element.getChild($widgetXPath).getChild('display').value)
-#set ($bgColor =  $element.getChild($widgetXPath).getChild('bgColor').value.toLowerCase())
 
 #if ($templateType == ("Modular/1 Column"))
   <!-- IF ONE COLUMN TEMPLATE --> 
+    #set ($bgColor =  $element.getChild($widgetXPath).getChild('bgColor').value.toLowerCase())
     #set ( $oneColWrapperBackgroundColor = "grid-block-widget__wrapper--" + ${bgColor} ) 
     #set ($oneColNoBg = "no-bg")
     #set ($textBackgroundColor = $oneColNoBg )
@@ -39,6 +39,12 @@
         #set ( $oneColWrapperBackgroundColor = "")
         #set ($oneColNoBg = "")
         #set ($titleBgColor = $element.getChild($widgetXPath).getChild("gridOptions").getChild('textBackgroundColor').value)
+        
+         <style>
+            .grid-block-widget__container {
+                margin-bottom: 24px;
+            }
+        </style>
     #end
     <!-- END IF NOT ONE COL TEMPLATE --> 
 
@@ -161,11 +167,9 @@
 #set ($imageOrientation = $gridOptions.getChild('imageOrientation').value)
 
 
-#if ($imageOrientation != 'circle')
-      #set ($titleBgColor = $bgColor)
-    #else 
+#if ($imageOrientation == 'circle')
       #set ($titleBgColor = 'no-bg')
-    #end 
+#end 
 
 #set ($titleOverlay = $gridOptions.getChild('titleOverlay').value )
   #if ($titleOverlay != 'No') 
@@ -175,36 +179,32 @@
     #set ($overlayClass = '') 
   #end
 
-#set ($textBackgroundColor = $gridOptions.getChild('textBackgroundColor').value)
+
 
 ## IMAGES 
 #set ($gridColumnsImages = $gridOptions.getChild('gridColumnsImages').value)
 
-
-#if ($gridColumnsImages != '')
-#set ($dataColumns = $gridColumnsImages.split("-")[0])
-
-#elseif ($gridColumnsVideos != '')
-  #set ($dataColumns = $gridColumnsVideos)
-  #set ($gridColumnsImages = $gridColumnsVideos)
-#else 
-  #set ($dataColumns = '')
-#end
-
 ## VIDEOS
-#set ($gridColumnsVideos = $gridOptions.getChild('gridColumnsVideos').value)
-    #if ($gridColumnsVideos == 'gridColumnsTwoVideos')
-        #set ($gridColumnsVideos = 'grid-block-widget__container--2-col')
-        #set ($gridColumnsImages = $gridColumnsVideos)
-    #elseif ($gridColumnsVideos == 'gridColumnsThreeVideos')
-        #set ($gridColumnsVideos = 'grid-block-widget__container--3-col')
-        #set ($gridColumnsImages = $gridColumnsVideos)
+#if ($imageOrVideo == 'videos')
+    #if ($gridColumnsImages != '')
+    #set ($dataColumns = $gridColumnsImages.split("-")[0])
+    
+    #elseif ($gridColumnsVideos != '')
+      #set ($dataColumns = $gridColumnsVideos)
+      #set ($gridColumnsImages = $gridColumnsVideos)
     #else 
-        #set ($gridColumnsVideos = '')
+      #set ($dataColumns = '')
     #end
-<div class="hidden">gridColumnsVideos $gridColumnsVideos</div>
-
-
+    
+    #set ($gridColumnsVideos = $gridOptions.getChild('gridColumnsVideos').value)
+        #if ($gridColumnsVideos == 'gridColumnsTwoVideos')
+            #set ($gridColumnsVideos = 'grid-block-widget__container--2-col')
+            #set ($gridColumnsImages = $gridColumnsVideos)
+        #elseif ($gridColumnsVideos == 'gridColumnsThreeVideos')
+            #set ($gridColumnsVideos = 'grid-block-widget__container--3-col')
+            #set ($gridColumnsImages = $gridColumnsVideos)
+    #end
+#end
 
 #set ($gridDisplay = $gridOptions.getChild('gridDisplay').value)
 
