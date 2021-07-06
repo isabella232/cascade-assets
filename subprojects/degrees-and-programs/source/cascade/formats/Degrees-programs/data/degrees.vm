@@ -2,9 +2,11 @@
     Name:          Degrees (JSON)
     Author:        BarkleyREI
     Created:       02/13/2017
-    Modified By:   Sean T. Stacho
-    Last Modified: 05/19/2017
+    Last Modified: M. Thomas 05/19/2017 - change default campus from Main to Orange (same code in PrimaryContent format is not used)
+    Modified By:   Sean T. Stacho 05/19/2017
 *#
+
+
 
 ## Trim white space
 #set ( $trimSpacingRegExp = "([\t\r\n]|(\s{2,}))" )
@@ -13,11 +15,10 @@
 ${output.replaceAll( $trimSpacingRegExp, "" )}
 ## Generate results macro
 #macro ( generateResults )
-
     ## Array Macro
     #macro ( generateArray $arr, $items )
         #foreach ( $item in $items )
-        	#if ( $item != "" )
+            #if ( $item != "" )
 				#set ( $tmp = '"' + $_EscapeTool.xml( $item ).replace( "&amp;", "&" ) + '"' )
 				#set ( $dead = $arr.add( $tmp ) )
 			#end
@@ -26,9 +27,13 @@ ${output.replaceAll( $trimSpacingRegExp, "" )}
 
 	## Object Macro
 	#macro ( object $props )
-		{
-			"type": "${props.type}",
+		{ 
+      "type": "${props.type}",
 			"title": "${props.title}",
+      #if ( $props.startTerm.size() > 0 )"startTerms": $props.startTerm,#end
+      "links": [
+        #links()
+      ],
 			#if ( $props.img.src )
 			"img": {
 				"src": "${props.img.src}",
@@ -44,7 +49,7 @@ ${output.replaceAll( $trimSpacingRegExp, "" )}
 			#if ( $props.motivations.size() > 0 )"motivations": $props.motivations,#end
 			#if ( $props.interests.size() > 0 )"interests": $props.interests,#end
 			#if ( $props.schools.size() > 0 )"schools": $props.schools,#end
-            #if ( $props.campus.size() > 0 )"campus": $props.campus#end
+      #if ( $props.campus.size() > 0 )"campus": $props.campus#end
 		#if ( $foreach.last )}#else},#end
 	#end
 
@@ -61,21 +66,28 @@ ${output.replaceAll( $trimSpacingRegExp, "" )}
 			#if ( $blocks.size() > 0 )
 
 				#foreach ( $block in $blocks )
+				
 
 					## Locate Block
 					#set ( $path = $block.getChild("path").value )
 					#set ( $site = $block.getChild("site").value )
 					#set ( $blockObject = $_.locateBlock( $path, $site ) )
+					
 
 					## Object Properties
 					#set ( $props = {} )
 
 					## Type
 					#set ( $props.type = $blockObject.getStructuredDataNode("cat").textValue.toLowerCase() )
+          
+          
 
 					## Title
 					#set ( $props.title = $blockObject.getStructuredDataNode("title").textValue.replace( "${_EscapeTool.backslash}", "\\${_EscapeTool.backslash}" ).replace( "-", "&ndash;" ).replace( '"', '\"' ) )
-
+          
+                  
+                    
+                    
 					## Image
 					#set ( $props.img = {} )
 
@@ -119,7 +131,18 @@ ${output.replaceAll( $trimSpacingRegExp, "" )}
 
 					#set ( $degreeTypes = {} )
 					#set ( $degreeTypes.title = $blockObject.getStructuredDataNode("type").textValues )
+                    
+                    #set ( $test = "" )
+                    #set ( $test = $blockObject.getStructuredDataNode("test").textValue )
+
+          
+
 					#set ( $degreeTypes.type = $blockObject.getStructuredDataNode("level").textValues )
+        
+            
+
+          #set ( $degreeTypes.type = $blockObject.getStructuredDataNode("level").textValues )
+         
                     
 					## Degree Level
 					#generateArray( $props.degreeTypes.title, $degreeTypes.title )
@@ -128,6 +151,8 @@ ${output.replaceAll( $trimSpacingRegExp, "" )}
                     #foreach ( $type in $degreeTypes.type )
 						#set ( $degreeTypes.type[$foreach.index] = $type.toLowerCase() )
                     #end
+
+          
                     
 					#generateArray( $props.degreeTypes.type, $degreeTypes.type )
 
@@ -173,16 +198,61 @@ ${output.replaceAll( $trimSpacingRegExp, "" )}
 					#set ( $props.schools = [] )
 					#set ( $schools = $blockObject.getStructuredDataNode("school").textValues )
 
-					#generateArray( $props.schools, $schools )
+          
 
+          ## Semester 
+            #set ( $props.startTerm = [] )
+            #set ( $startTerm = $blockObject.getStructuredDataNode("startTerm").textValues )
+
+          #generateArray( $props.startTerm, $startTerm )
+
+          #set ( $props.links = [] )
+          #set ($links = $blockObject.getStructuredDataNodes('link'))
+      
+      #macro(links)
+        #foreach ($link in $links)
+                #set ( $index = $foreach.index )
+
+                #set ($linkType = $link.getChild('linkType').textValue)
+                #set ($linkLabel = $link.getChild('label').textValue)
+                #set ($comma = "")
+                #if ($links.size() > 0 && $index != 1) 
+                  #set ($comma = ",")
+                #end
+               
+                #if ($linkType == 'Internal Link') 
+                  #set ($linkPath = $link.getChild('internalLink').asset.link)
+                #elseif ($linkType == 'External Link')
+                  #set ($linkPath = $link.getChild('externalLink').textValue)
+                #elseif ($linkType == 'File Link')
+                  #set ($linkPath = $link.getStructuredDataNode('fileLink').asset.link)
+                #end
+                  
+                  {     "index": "${index}",
+                        "linkType": "${linkType}",
+                        "linkPath": "${linkPath}",
+                        "linkLabel": "${linkLabel}"
+                  }$comma
+        #end
+      #end
+
+     ## #generateArray( $props.links, $links, $props.linkType )
+      
+      
+
+            
+          ## End Semester
+          
 					## Campus
                     #set ( $props.campus = [] )
                     #set ( $campuses = $blockObject.getStructuredDataNode("campus").textValues )
 
+                    
+
                     #foreach ( $campus in $campuses )
 						#if ( $campus != "" )
 							#if ( $campus == "Orange" )
-                                #set ( $tmp = '"' + $_EscapeTool.xml( "Main Campus" ) + '"' )
+                                #set ( $tmp = '"' + $_EscapeTool.xml( "Orange Campus" ) + '"' )
                                 #set ( $dead = $props.campus.add( $tmp ) )
                             #elseif ( $campus == "Rinker" )
                                 #set ( $tmp = '"' + $_EscapeTool.xml( "Rinker Health Science Campus" ) + '"' )
