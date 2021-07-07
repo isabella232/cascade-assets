@@ -216,7 +216,8 @@ ${output.replaceAll( $trimSpacingRegExp, "" )}
                 #set ($linkType = $link.getChild('linkType').textValue)
                 #set ($linkLabel = $link.getChild('label').textValue)
                 #set ($comma = "")
-                #if ($links.size() > 0 && $index != 1) 
+                
+                #if ($links.size() > 0 && $index < $links.size() - 1) 
                   #set ($comma = ",")
                 #end
                
