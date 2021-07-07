@@ -920,7 +920,8 @@ var chapman = chapman || {};
         degreeTypesHTML = "",
         campusHTML = "",
         resultHTML,
-        startTermsHTML = "";
+        startTermsHTML = "",
+        linksHTML = "";
 
       if (result.img) {
         imgSrc = result.img.src || "";
@@ -928,6 +929,36 @@ var chapman = chapman || {};
       } else {
         imgSrc = "";
         imgAlt = "";
+      }
+
+      // Only show this field if it's defined
+      if (result.links) {
+        console.log(
+          "stringified link length: " +
+            JSON.stringify(result.title + " " + result.links.length)
+        );
+
+        if (result.links[0] !== undefined) {
+          console.log(JSON.stringify(result.links[0]));
+          console.log(
+            "link 0 label: " +
+              JSON.stringify(result.title + result.links[0].linkLabel)
+          );
+        }
+        if (result.links[1] !== undefined) {
+          console.log(
+            "link 1 label: " + JSON.stringify(result.links[1].linkLabel)
+          );
+        }
+        linksHTML += '<ul class="program-links">';
+        for (var i = 0; i < result.links.length; i++) {
+          var linkPath = result.links[i].linkPath;
+          var linkLabel = result.links[i].linkLabel;
+          console.log;
+          linksHTML += `<a href="` + linkPath + `">${linkLabel}</a>`;
+        }
+
+        linksHTML += "</ul>";
       }
 
       // Only show this field if it's defined
@@ -976,6 +1007,7 @@ var chapman = chapman || {};
         '<p class="desc">' +
         desc +
         "</p>" +
+        linksHTML +
         '<a href="' +
         href +
         '" title="View landing page for ' +
