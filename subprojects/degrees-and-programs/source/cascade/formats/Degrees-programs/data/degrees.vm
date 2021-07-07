@@ -3,7 +3,8 @@
     Author:        BarkleyREI
     Created:       02/13/2017
     Last Modified: M. Thomas 05/19/2017 - change default campus from Main to Orange (same code in PrimaryContent format is not used)
-    Modified By:   Sean T. Stacho 05/19/2017
+    Modified By:   Nick Nadel 7/7/2021
+    Description:   Returns a JSON object of the degrees of the user. 
 *#
 
 
@@ -222,7 +223,7 @@ ${output.replaceAll( $trimSpacingRegExp, "" )}
                 #end
                
                 #if ($linkType == 'Internal Link') 
-                  #set ($linkPath = $link.getChild('internalLink').asset.link)
+                  #set ($linkPath =  "/" + $link.getChild('internalLink').asset.path + ".aspx")
                 #elseif ($linkType == 'External Link')
                   #set ($linkPath = $link.getChild('externalLink').textValue)
                 #elseif ($linkType == 'File Link')
