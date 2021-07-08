@@ -996,7 +996,7 @@ var chapman = chapman || {};
       }
 
       resultHTML =
-        '<article class="result visible columns small-12 clearfix">' +
+        `<article class="result visible columns small-12 clearfix" data-program-title="${title}">` +
         '<div class="image" role="img" data-src="' +
         imgSrc +
         '" aria-label="' +
