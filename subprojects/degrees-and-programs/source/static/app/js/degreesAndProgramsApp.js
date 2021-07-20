@@ -1038,7 +1038,13 @@ var chapman = chapman || {};
         ' program" class="button">Learn More <svg class="icon icon-double-chevron"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-double-chevron"></use></svg></span></a>' +
         "</div>";
 
-      resultHTML = resultHTML + "</article>";
+      resultHTML =
+        resultHTML +
+        `<div class="relative-wrapper">
+      <div class="description">Academic world-class institution scholarly global impact challenge. Intelligence, ingenuity esquire respect community engagement. Laureate emiratus graduands chancellor citizen procession quadrangle. Network fellow teaching grand modernisation region distinguished emeritus nobel.
+      </div>
+    </div>` +
+        "</article>";
 
       resultsSetItems.push(resultHTML);
       resultsSetCount++;
