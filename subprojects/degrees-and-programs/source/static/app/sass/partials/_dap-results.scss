@@ -102,6 +102,7 @@ $dap-result-breakpoint: rem-calc(600);
 
   .results-row {
     transition: height $transition-time;
+    position: relative;
   }
 
   .relative-wrapper {
@@ -140,7 +141,8 @@ $dap-result-breakpoint: rem-calc(600);
 
       .relative-wrapper {
         display: block;
-        margin-top: 20px;
+        margin-top: 60px;
+        margin-bottom: 60px;
         min-height: 100px;
       }
 
@@ -149,6 +151,9 @@ $dap-result-breakpoint: rem-calc(600);
         max-width: 1100px;
         background-color: #f6f2e8;
         padding: 20px;
+        left: 0;
+        margin-left: 0;
+        line-height: 1.2rem;
       }
 
       .active-content-toggle {

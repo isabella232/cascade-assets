@@ -996,7 +996,7 @@ var chapman = chapman || {};
       }
 
       resultHTML =
-        `<article class="result visible columns small-12 clearfix" data-program-title="${title}">` +
+        `<article class="wtf result visible columns small-12 clearfix" data-program-title="${title}">` +
         '<div class="image" role="img" data-src="' +
         imgSrc +
         '" aria-label="' +
@@ -1041,7 +1041,11 @@ var chapman = chapman || {};
       resultHTML =
         resultHTML +
         `<div class="relative-wrapper">
-      <div class="description">Academic world-class institution scholarly global impact challenge. Intelligence, ingenuity esquire respect community engagement. Laureate emiratus graduands chancellor citizen procession quadrangle. Network fellow teaching grand modernisation region distinguished emeritus nobel.
+      <div class="description">
+      <div class="title-wrapper">
+        <span class="title">${title}</span> | <span class="program-type">${result.campus.length}</span>
+      </div>
+      ${desc} 
       </div>
     </div>` +
         "</article>";
@@ -1295,6 +1299,8 @@ var chapman = chapman || {};
 
 $(function () {
   "use strict";
+  var elem = document.querySelector("nav");
+  elem.style.display = "none";
 
   chapman.degreesAndProgramsApp.init();
 });
