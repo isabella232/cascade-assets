@@ -1028,24 +1028,17 @@ var chapman = chapman || {};
         startTermsHTML +
         campusHTML +
         degreeTypesHTML +
-        '<p class="desc">' +
-        desc +
-        "</p>" +
-        '<a href="' +
-        href +
-        '" title="View landing page for ' +
-        title +
-        ' program" class="button">Learn More <svg class="icon icon-double-chevron"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-double-chevron"></use></svg></span></a>' +
         "</div>";
 
       resultHTML =
         resultHTML +
         `<div class="relative-wrapper">
       <div class="description">
-      <div class="title-wrapper">
-        <span class="title">${title}</span> | <span class="program-type">${result.campus.length}</span>
-      </div>
-      ${desc} 
+        <div class="title-wrapper">
+          <span class="title">${title}</span> | <span class="program-type">${result.campus}</span>
+        </div>
+        ${desc} 
+        <span class="program-links">${result.links}</span>
       </div>
     </div>` +
         "</article>";
