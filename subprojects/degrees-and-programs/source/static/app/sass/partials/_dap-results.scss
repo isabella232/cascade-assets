@@ -109,6 +109,10 @@ $dap-result-breakpoint: rem-calc(600);
     display: none;
   }
 
+  .absolute-wrapper {
+    position: absolute;
+    width: 100%;
+  }
   .result {
     opacity: 0;
     overflow: hidden;
@@ -141,9 +145,11 @@ $dap-result-breakpoint: rem-calc(600);
 
       .relative-wrapper {
         display: block;
-        margin-top: 60px;
-        margin-bottom: 60px;
-        min-height: 100px;
+        padding-top: 30px;
+        padding-bottom: 60px;
+        min-height: 200px;
+        margin-top: 0;
+        margin-bottom: 120px;
       }
 
       .description {
