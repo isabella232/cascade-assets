@@ -157,6 +157,18 @@ task edit_dandp_js: :environment do
     'cd1b1a0ac04d744c64d6b67670864f0e',
     './subprojects/degrees-and-programs/source/static/dist/js/degreesAndPrograms.js'
   )
+  publish_asset('file', 'cd1b1a0ac04d744c64d6b67670864f0e')
+end
+
+# Edit Degrees and Programs CSS                          
+desc 'Updates `Chapman.edu/_files/degrees-programs/css/main.css` with `subprojects/degrees-and-programs/source/static/app/sass/templates/_degrees-and-programs.scss'
+task edit_dandp_css: :environment do
+  edit_file(
+    'cd19f664c04d744c64d6b676e62256db',
+    './subprojects/degrees-and-programs/source/static/dist/css/main.css'
+  )
+  
+  publish_asset('file', 'cd19f664c04d744c64d6b676e62256db')
 end
 
 

@@ -1,11 +1,17 @@
 // scss-lint:disable IdSelector
 .degrees-and-programs {
-  a.cu-button.cu-button--white {
+  a.cu-button {
     background-color: white;
     margin-right: 12px;
     padding: 12px;
     border-radius: 4px;
     border: 1px solid #ddd;
+
+    &:nth-child(3) {
+      background-color: $cu-red;
+      color: white;
+      font-weight: bold;
+    }
   }
 }
 // scss-lint:enable IdSelector

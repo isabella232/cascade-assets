@@ -5,10 +5,10 @@
   font-family: $futura-regular;
   font-size: 1.6rme;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
 
-  >ul {
+  > ul {
     width: 100%;
     float: left;
     text-align: left;
@@ -92,7 +92,6 @@
 }
 
 @include respond(tab-port) {
-
   // change order
   .breadcrumbs.clearfix {
     display: flex;
@@ -103,22 +102,20 @@
     justify-content: flex-end;
     display: flex;
   }
-
 }
 
 @include respond(phone) {
-
-  .breadcrumbs>ul:first-of-type li:not(:nth-last-child(2)),
-  .breadcrumbs>ul:first-of-type li:not(:nth-last-child(1)) svg {
+  .breadcrumbs > ul:first-of-type li:not(:nth-last-child(2)),
+  .breadcrumbs > ul:first-of-type li:not(:nth-last-child(1)) svg {
     display: none;
   }
 
-  .breadcrumbs>ul:first-of-type a:last-child,
-  .breadcrumbs>ul:first-of-type li:last-child {
+  .breadcrumbs > ul:first-of-type a:last-child,
+  .breadcrumbs > ul:first-of-type li:last-child {
     display: inline;
   }
 
-  .breadcrumbs ul:first-of-type>li:first-of-type {
+  .breadcrumbs ul:first-of-type > li:first-of-type {
     display: none;
   }
 
@@ -126,13 +123,12 @@
     display: inline;
   }
 
-  .breadcrumbs>ul {
+  .breadcrumbs > ul {
     width: auto;
   }
 }
 
 .ie {
-
   .bullet {
     height: 5px;
     display: inline;

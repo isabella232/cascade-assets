@@ -67,7 +67,7 @@
     <selector-item value="Orange"/>
     <selector-item value="Rinker"/>
   </text>
-  <group identifier="link" label="Link" maximum-number="2" multiple="true">
+  <group identifier="link" label="Links" maximum-number="3" multiple="true">
     <text default="Internal Link" field-id="ff6bc8dac0a81e5f43ef9b37efb705c1" identifier="linkType" label="Link Type" type="radiobutton">
       <radio-item show-fields="link/internalLink" value="Internal Link"/>
       <radio-item show-fields="link/externalLink" value="External Link"/>
@@ -78,7 +78,7 @@
     <asset field-id="ff6bc8dbc0a81e5f43ef9b3737edb327" identifier="fileLink" label="File Link" type="file"/>
     <text field-id="ff6bc8dbc0a81e5f43ef9b373014c6aa" identifier="label" label="Label"/>
   </group>
-  <group helper-text="Link with red background" identifier="primaryLink" label="Primary Link" maximum-number="1" multiple="false">
+  <!-- <group helper-text="Link with red background" identifier="primaryLink" label="Primary Link" maximum-number="1" multiple="false">
     <text default="Internal Link" field-id="1750dd92c0a81e8a02dba63d0f3bc704" identifier="linkType" label="Link Type" type="radiobutton">
       <radio-item show-fields="link/internalLink" value="Internal Link"/>
       <radio-item show-fields="link/externalLink" value="External Link"/>
@@ -88,7 +88,7 @@
     <asset field-id="1750dd92c0a81e8a02dba63d679aa01a" identifier="internalLink" label="Internal Link" type="page"/>
     <asset field-id="1750dd92c0a81e8a02dba63d867106a2" identifier="fileLink" label="File Link" type="file"/>
     <text field-id="1750dd92c0a81e8a02dba63dab8f5989" identifier="label" label="Label"/>
-  </group>
+  </group> -->
   <text field-id="ff6bc8dcc0a81e5f43ef9b3775aa22f1" identifier="keywords" label="Additional Keywords"/>
   <asset field-id="ff6bc8dcc0a81e5f43ef9b375cdb6154" identifier="image" label="Image (optional)" type="file"/>
   <text field-id="ff6bc8dcc0a81e5f43ef9b373db9058d" help-text="Alternate text to describe image (required)" identifier="altText" label="Image Alt-Text"/>

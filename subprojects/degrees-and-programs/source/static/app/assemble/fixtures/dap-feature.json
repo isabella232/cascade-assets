@@ -237,6 +237,12 @@
           "linkType": "External Link",
           "linkPath": "https://duck.com",
           "linkLabel": "Test Link 2"
+        },
+        {
+          "index": "2",
+          "linkType": "External Link",
+          "linkPath": "https://news.ycombinator.com",
+          "linkLabel": "Third Link is Always Red"
         }
       ],
       "img": {

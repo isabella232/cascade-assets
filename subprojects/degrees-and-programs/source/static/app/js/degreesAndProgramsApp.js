@@ -7,7 +7,6 @@ var chapman = chapman || {};
 
 (function ($, Modernizr, window, document) {
   "use strict";
-
   var activeSection = "", // Active section (discover, undergraduate, or graduate)
     activeFilters = [],
     allResults = [],
@@ -27,7 +26,7 @@ var chapman = chapman || {};
     $dapFeature = $("#js-dap-feature"),
     $resultsCount = $(".results-count"),
     activeClass = "active",
-    standardTransitionTime = 1000,
+    standardTransitionTime = 0,
     isFormChangeEvent = false,
     hashChangesActive = false,
     isMobile = Modernizr.mq("(max-width: 1023px)"),
@@ -266,7 +265,7 @@ var chapman = chapman || {};
     getProgramsData: function () {
       var _this = this,
         jsonUrl = $dapFeature.data("json-url");
-
+      console.log("json url: " + jsonUrl);
       $.ajax({
         type: "GET",
         url: jsonUrl,
@@ -518,9 +517,8 @@ var chapman = chapman || {};
             var scrollToSectionTime = 1000,
               scrollPoint;
 
-            headerOffset = parseInt(
-              $("html").css("padding-top").replace("px", "")
-            );
+            headerOffset = parseInt();
+            // $("html").css("padding-top").replace("px", "")
 
             // Scroll to new section
             if (scrollEl) {
@@ -955,7 +953,10 @@ var chapman = chapman || {};
           var linkPath = result.links[i].linkPath;
           var linkLabel = result.links[i].linkLabel;
           console.log;
-          linksHTML += `<a href="` + linkPath + `">${linkLabel}</a>`;
+          linksHTML +=
+            `<a class="cu-button cu-button--white" href="` +
+            linkPath +
+            `">${linkLabel}</a>`;
         }
 
         linksHTML += "</ul>";
@@ -1007,7 +1008,6 @@ var chapman = chapman || {};
         '<p class="desc">' +
         desc +
         "</p>" +
-        linksHTML +
         '<a href="' +
         href +
         '" title="View landing page for ' +
@@ -1032,13 +1032,20 @@ var chapman = chapman || {};
 
       resultHTML =
         resultHTML +
-        `<div class="relative-wrapper">
+        `<div class="relative-wrapper ">
       <div class="description">
+      
+      <span class="triangle">
+      </span>
         <div class="title-wrapper">
-          <span class="title">${title}</span> | <span class="program-type">${result.campus}</span>
-        </div>
+          <span class="title">${title}</span> | <span class="program-type">${result.degreeTypes.type}</span>
+          <span class="close-icon" aria-label="close"></span>
+      </div>
+        <div class="program-description">
         ${desc} 
-        <span class="program-links">${result.links}</span>
+        </div>
+        ${linksHTML}
+        
       </div>
     </div>` +
         "</article>";
@@ -1249,14 +1256,14 @@ var chapman = chapman || {};
 
         $("html, body").animate(
           {
-            scrollTop: $(target).offset().top - (headerOffset + 20),
+            // scrollTop: $(target).offset().top - (headerOffset + 20),
           },
           standardTransitionTime,
           "swing",
           function () {
             setTimeout(function () {
               isUserScroll = true;
-            }, 100);
+            }, 0);
           }
         );
       }, 250);
@@ -1282,7 +1289,7 @@ var chapman = chapman || {};
           function () {
             setTimeout(function () {
               isUserScroll = true;
-            }, 100);
+            }, 0);
           }
         );
       }
