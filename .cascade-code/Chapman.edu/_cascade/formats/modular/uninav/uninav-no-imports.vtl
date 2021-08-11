@@ -1,0 +1,1334 @@
+#*
+* OmniNav v3 format.
+* Chapman.edu/_cascade/formats/modular/uninav/uninav.vtl
+*
+* Note: the site://Chapman.edu/ seen in most href is not a hardcoded subdomain but a Cascade variable
+* that allows path to render correctly even when a page published to other webservers not www
+- the format is configured via its respective block at:
+Chapman.edu/_cascade/blocks/html/uninav
+(https://dev-cascade.chapman.edu/entity/open.act?id=a94c5727c0a81e4b22b523b8699a6359&type=block_STRUCTUREDDATA)
+
+On a page level, configure via:
+1) edit
+2) configure
+3) 'Omni-Nav'
+a) select block: Chapman.edu/_cascade/blocks/html/uninav
+b) select (this) format: Chapman.edu: Chapman.edu: /_cascade/formats/modular/uninav/uninav.vtl
+*#
+
+##
+## Imports
+##
+#import( "/_config/global_nav.vm" )
+#import( "/_config/global_nav_law.vm" )
+#import( "/_cascade/formats/helpers.velocity" )
+
+#macro ( offCanvasUmbrellaNavButton $displayName)
+    <div class="uninav__umbrella-nav-button-container">
+        <button aria-label="Toggle site menu" class="umbrella-nav-toggle-button" id="umbrella-nav-button-toggle" type="button" tabindex="0">
+          <div>
+            <p class="section-menu-text">Section</p>
+            <p class="section-menu-text">Menu</p>
+            <svg class="section-menu-hamburger-icon" height="32" viewBox="0 0 16 16" width="32">
+                <title>Toggle Section Menu</title>
+                <path d="M1 3h14v2h-14v-2z"></path>
+                <path d="M1 7h14v2h-14v-2z"></path>
+                <path d="M1 11h14v2h-14v-2z"></path>
+            </svg>
+          </div>
+          <span class="sr-only">Menu</span>
+        </button>
+    </div>
+#end
+
+## Log velocity variables in the browser console on dev
+
+##
+## Hardcoded Params
+##
+## umbrellaCategories
+## These are locations for which OmniNav should build the secondary off-canvas-nav menu.
+## umbrellaCategory is the term product owners use.
+## I would prefer that each inner array item within the array were only 2 items and
+## all other vars be derived from those:
+## [$umbrellaFolderId, $umbrellaLabel]
+## Current inner array values:
+## [ $umbrellaDirectory, $umbrellaLabel/$umbrellaBrandLabel ]
+#set ( $umbrellaCategories = [
+[ 'business', 'Argyros School' ],
+[ 'education', 'Attallah College' ],
+[ 'dodge', 'Dodge College' ],
+[ 'crean', 'Crean College' ],
+[ 'wilkinson', 'Wilkinson College' ],
+[ 'copa', 'College of Performing Arts' ],
+[ 'engineering', 'Fowler School of Engineering' ],
+[ 'pharmacy', 'School of Pharmacy' ],
+[ 'law', 'Fowler School of Law' ],
+[ 'library', 'Leatherby Libraries' ],
+[ 'scst', 'Schmid College' ],
+[ 'communication', 'School of Communication' ],
+[ 'about', 'About' ],
+[ 'academics', 'Academics' ],
+[ 'admission', 'Admission' ],
+[ 'alumni', 'Alumni' ],
+[ 'campus-services', 'Campus Services' ],
+[ 'campus-services/career-professional-development', 'Career' ],
+[ 'faculty-staff', 'Faculty and Staff' ],
+[ 'families', 'Families' ],
+[ 'health-and-wellness', 'Health &amp; Wellness'],
+[ 'research', 'Research' ],
+[ 'students', 'Students' ],
+[ 'support-chapman', 'Support Chapman' ]
+])
+
+##
+## Vars
+##
+## Cascade provides a $currentPage object to every format.
+#set ( $pagePath = $currentPage.path )
+
+## This will be set by data macros below.
+#set ( $pageUmbrellaCategory = [] )
+#set ( $isUmbrellaCategory = false )
+#set ( $umbrellaDirectory = '' )
+#set ( $umbrellaDirectoryPath = '' )
+#set ( $umbrellaLabel = '' )
+#set ( $umbrellaBrandLabel = '' )
+#set ( $umbrellaAssets = [] )
+#set ( $brandClass = '' )
+#set ( $globalNavLinks = [] )
+
+##
+## Var Macros
+##
+#macro ( setVars )
+#setPageUmbrellaCategory()
+
+#set ( $isUmbrellaCategory = $pageUmbrellaCategory.size() > 0 )
+
+#if ( $isUmbrellaCategory )
+#set ( $umbrellaDirectory = $pageUmbrellaCategory[0] )
+
+## These 2 were originally different values and could differ in the future.
+#set ( $umbrellaLabel = $pageUmbrellaCategory[1] )
+#set ( $umbrellaBrandLabel = $pageUmbrellaCategory[1] )
+
+#set ( $umbrellaDirectoryPath = "/${umbrellaDirectory}" )
+
+#set ( $brandClass = 'branded' )
+#else
+#set ( $brandClass = 'unbranded' )
+#end
+
+## Currently law is the only page with different global nav content
+#if( $umbrellaDirectory == 'law' )
+#set( $globalNavLinks = $GLOBAL_NAV_LAW_CONFIG )
+#else
+#set( $globalNavLinks = $GLOBAL_NAV_CONFIG )
+#end
+#end
+
+#macro ( setPageUmbrellaCategory )
+## Is current path under one of specified $umbrellaCategories?
+#foreach ( $umbrellaCategory in $umbrellaCategories )
+#set ( $dirName = $umbrellaCategory[0] )
+
+## Define substr range to compare umbrella dir with current page path.
+## pagePath does not include leading /.
+#set ( $startSubStr = 0 )
+#set ( $endSubStr = $dirName.length() )
+
+## Make sure endSubStr not long than pagePath else will throw exception
+#if ( $endSubStr > $pagePath.length() )
+#set ( $endSubStr = $pagePath.length() )
+#end
+
+#set ( $pagePathDir = $pagePath.substring($startSubStr, $endSubStr) )
+
+## Is current page directory $pagePathDir under this $navDirectory? If so,
+## we found our $navDirectory.
+#if ( $pagePath.contains($dirName) && $pagePathDir == $dirName )
+## A page can enter this loop more than once if it falls under multiple umbrella categories
+## e.g. a page under both Campus Services and Career umbrellas
+## First check if it hasn't been set yet
+#if ( $pageUmbrellaCategory.size() == 0 )
+#set ( $pageUmbrellaCategory = $umbrellaCategory )
+## If it has been set, pages should use the umbrella category that's more specific
+## This ensures the page uses the closest matching directory out of all the umbrella categories
+## e.g. a page under Career should use campus-services/career umbrella not campus-services
+#elseif ( $pagePathDir.length() > $pageUmbrellaCategory[0].length() )
+#set ( $pageUmbrellaCategory = $umbrellaCategory )
+#end
+#end
+#end
+#end
+
+##
+## Template Macros
+##
+## start uninav begin
+#macro ( buildOmniNav )
+<nav id="uninav" class="$brandClass">
+  <!-- pagePath: $pagePath -->
+  <!-- pageUmbrellaCategory: $pageUmbrellaCategory -->
+  <!-- umbrellaAssets count: $umbrellaAssets.size() -->
+
+  ## Uncomment to list pageUmbrella child assets.
+  ##debugUmbrellaAssets()
+
+  #uninavUmbrellaToggleButton()
+  #uninavMobileIcon()
+  #buildOffCanvasNav()
+  #uninavLogo()
+  #uninavCTA()
+  #uninavUtility()
+  #uninavSearch()
+  #uninavGlobal()
+
+  <!-- Page overlay for when search results are displayed -->
+  <div id="search-results-overlay"></div>
+</nav>
+#end
+
+#macro (uninavUmbrellaToggleButton)
+    #if ( $isUmbrellaCategory )
+        #offCanvasUmbrellaNavButton($umbrellaLabel)
+    #end
+#end
+
+#macro ( uninavMobileIcon)
+<div class="uninav__hamburger-menu">
+    <button class="hamburger-menu-button" type="button" aria-label="Toggle site menu">
+        <span class="fas fa-bars"></span>
+      <span class="sr-only">Menu</span>
+    </button>
+</div>
+#end
+
+#macro ( uninavLogo )
+## LOGO:
+#set ( $logoContainer = $_XPathTool.selectSingleNode($contentRoot, "/system-data-structure/uninav/logo") )
+
+
+#set ($linkTitle = $logoContainer.getChild('title').value )
+#set ( $menuID = $linkTitle.replaceAll(" ", "-").replaceAll("[^a-zA-Z-]", "").replaceAll("--", "-").toLowerCase() )
+#set ($linkType = $logoContainer.getChild('linkType').value )
+#if ($linkType == 'Internal Link')
+    #set ($linkURL = $logoContainer.getChild('internalLink').getChild('path').value )
+#elseif ($linkType == 'External Link')
+    #set ($linkURL = $logoContainer.getChild('externalLink').value )
+#else 
+    #set ($linkURL = $logoContainer.getChild('fileLink').getChild('path').value )
+#end
+#set ($iconType = $logoContainer.getChild('icon').value )
+
+#if ( $isUmbrellaCategory )
+  <div class="uninav__logo uninav__logo--contextual">
+#else 
+  <div class="uninav__logo">
+#end
+    <div class="uninav__logo--primary" id="uninav__logo--primary">
+          #if ($linkURL != '' && $linkURL != '/')
+              <a id="uninav-logo-${_EscapeTool.xml($menuID)}" href="site://Chapman.edu/${_EscapeTool.xml($linkURL)}" 
+                  title="${_EscapeTool.xml($linkTitle)}"
+                  #if ($iconType == "CSS Class" && $menuItem.getChild('icon_cssClass').value != "")
+                      class="icon icon-${_EscapeTool.xml($logoContainer.getChild('icon_cssClass').value)}"
+                  #end
+              >
+              #if ($iconType == "SVG" && $logoContainer.getChild('icon_svg').value != "")
+                  $logoContainer.getChild('icon_svg').value
+              #else
+                  ${_EscapeTool.xml($linkTitle)}
+              #end
+              </a>
+          #end
+      </div>
+      
+     <a id="uninav-logo--mobile" tabindex="-1" href="site://Chapman.edu/${_EscapeTool.xml($linkURL)}">
+      <div class="uninav__logo--mobile">
+          <svg enable-background="new 0 0 660 124.5" viewBox="0 0 660 124.5" class="chapman-logo" xmlns="http://www.w3.org/2000/svg"><g fill="#231f20"><path d="m204.1 16.3c-2.8-10.5-8.6-13.3-17.5-13.3-16.3 0-23.6 12.4-23.6 26.6 0 17.5 9 29.2 23.7 29.2 10.2 0 14.9-4.9 19.4-14.4l2.3.3c-1.2 3.9-3.2 11.2-4.6 14.6-2.5.6-10.7 2.5-17.1 2.5-23 0-32.6-15.6-32.6-30.1-.1-18.7 14.3-31.7 34.2-31.7 7.7 0 13.8 1.8 16.4 2.4.7 5 1.1 9 1.6 13.7z"/><path d="m271.5 27.4v-12.9c0-9.9-.7-10.5-8-11.1v-2h24v2.1c-7.6.5-8.4 1.2-8.4 11.1v32.7c0 9.9.7 10.5 8.2 11.1v2.1h-24.5v-2.1c8-.5 8.7-1.2 8.7-11.1v-16.2h-31.5v16.2c0 9.9.7 10.5 8.2 11.1v2.1h-24v-2.1c7.5-.5 8.2-1.2 8.2-11.1v-32.8c0-9.9-.7-10.5-8.5-11.1v-2h24v2.1c-7.2.5-7.9 1.1-7.9 11v12.9z"/><path d="m338.2 58.3 2.9-.4c3.4-.4 3.7-1.4 2.8-4.2-.6-2.2-3.3-9.3-5.8-15.8h-18.4c-.9 2.4-3.3 9.5-4.5 13.3-1.7 5.3-.9 6.5 3.2 6.8l2.7.3v2.1h-19.4v-2.1c5.9-.6 6.6-1.2 9.8-9.3l18.7-48.3 2.1-.8 6.5 17.3c4.3 11.5 8.3 23.1 11.8 32.4 2.9 7.6 4.1 8.3 9.7 8.7v2.1h-22v-2.1zm-17.4-23.8h16.1l-8-22.4h-.2z"/><path d="m390 47.3c0 9.9.7 10.5 9.5 11.1v2.1h-25.4v-2.1c7.4-.5 8.2-1.2 8.2-11.1v-32.8c0-9.9-.7-10.5-7.7-11.1v-2h23c6.1 0 11.3 1 15.1 3.8 3.5 2.5 5.8 6.7 5.8 12.5 0 11.2-9 17.2-17.7 18.3-1.5.2-3 .2-4.1.2l-6.7-1.7zm0-15.7c1.2.5 3.7 1.1 6.8 1.1 5.7 0 13.2-3 13.2-14.8 0-9.9-5.2-13.9-14.6-13.9-2.6 0-3.9.2-4.6.5-.5.2-.8.6-.8 2.5z"/><path d="m451.4 1.4 22 46.8 21.6-46.8h15v2.1c-7.9.6-8.5 1-8.2 11.1l.7 32.7c.3 10.2.5 10.5 8.5 11.1v2.1h-24v-2.1c7.6-.6 7.9-.9 7.8-11.1l-.4-36.6h-.4l-22.3 48.8h-2.3l-21-47.5h-.2l-.9 25.4c-.4 8.5-.4 13.5 0 16.4.5 3.4 2.6 4.3 8.5 4.7v2.1h-21.4v-2.1c5.1-.5 7-1.4 7.6-4.7.5-2.8 1.1-8.3 1.5-17.3l1-19.1c.6-12.2 0-13.2-8.5-13.8v-2.2z"/><path d="m561.4 58.3 2.9-.4c3.4-.4 3.7-1.4 2.8-4.2-.6-2.2-3.3-9.3-5.8-15.8h-18.4c-.9 2.4-3.3 9.5-4.5 13.3-1.7 5.3-.9 6.5 3.2 6.8l2.7.3v2.1h-19.4v-2.1c5.9-.6 6.6-1.2 9.8-9.3l18.7-48.3 2.1-.8 6.5 17.3c4.3 11.5 8.3 23.1 11.8 32.4 2.9 7.6 4.1 8.3 9.7 8.7v2.1h-22v-2.1zm-17.3-23.8h16.1l-8-22.4h-.2z"/><path d="m651.4 61.1h-2.4l-39.4-47.9h-.2v23.2c0 9.5.4 14.4.7 17.3.5 3.2 2.9 4.5 8.9 4.7v2.1h-21.8v-2.1c5-.2 7.4-1.5 7.8-4.7.4-2.8.7-7.7.7-17.3v-19.8c0-6.5-.1-8-1.7-10.1-1.7-2.2-4.2-2.8-8-3.1v-2h13.3l38.3 45.8h.2v-21.8c0-9.5-.4-14.4-.7-17.3-.5-3.2-2.9-4.5-8.9-4.7v-2h21.8v2.1c-5 .2-7.4 1.5-7.8 4.7-.4 2.8-.7 7.7-.7 17.3v35.6z"/><path d="m172.8 77.7v1.6c-5.6.4-6.2.9-6.2 8.6v14.7c0 6 .8 10.5 3 13.7 2.2 3.1 5.4 4.9 10.2 4.9 4.4 0 8.1-1.9 10.4-5.3 2.3-3.5 3.2-9.7 3.2-15.7v-3.8c0-7.4-.3-11.3-.6-13.5-.4-2.5-2.3-3.5-6.9-3.7v-1.6h16.9v1.6c-3.9.1-5.7 1.2-6.1 3.7-.3 2.2-.6 6.1-.6 13.5v4.7c0 8.2-1.3 14-5.4 18.3-3 3.2-8.1 5.1-13 5.1-3.9 0-8.3-.9-11.6-3.6-3.7-3-5.4-7.8-5.4-15.9v-17.1c0-7.7-.6-8.2-6.5-8.6v-1.6z"/><path d="m260 124h-1.8l-30.6-37.1h-.1v18c0 7.4.3 11.2.6 13.4.4 2.5 2.3 3.5 6.9 3.7v1.6h-17v-1.6c3.9-.1 5.7-1.2 6.1-3.7.3-2.2.6-6 .6-13.4v-15.4c0-5.1-.1-6.2-1.3-7.8-1.3-1.7-3.2-2.2-6.2-2.4v-1.6h10.3l29.7 35.5h.1v-16.9c0-7.4-.3-11.2-.6-13.4-.4-2.5-2.3-3.5-6.9-3.7v-1.6h16.9v1.6c-3.9.1-5.7 1.2-6.1 3.7-.3 2.2-.6 6-.6 13.4z"/><path d="m294.7 113.3c0 7.7.6 8.2 6.3 8.6v1.6h-18.6v-1.6c5.8-.4 6.3-.9 6.3-8.6v-25.4c0-7.7-.6-8.2-6.3-8.6v-1.6h18.6v1.6c-5.8.4-6.3.9-6.3 8.6z"/><path d="m337.7 123.9c-4.8-12.6-11.6-30-14.6-37.9-2.3-5.9-3.2-6.3-7.5-6.8v-1.6h17.1v1.6l-2.3.3c-2.6.4-3 1.1-2.3 3.2 1.8 5.2 7.3 19.1 12.4 32.3 3.7-9.7 9.7-25.7 11.3-30.3 1.3-4 .6-4.9-2.5-5.3l-2.1-.2v-1.6h15.4v1.6c-4.7.5-5.4 1-8 7.2-.9 2.2-9.7 23.1-14.9 37.4h-2z"/><path d="m383.6 87.9c0-7.7-.6-8.2-6.2-8.6v-1.6h30.9c.1 1.2.4 6.3.8 10.3l-1.8.2c-.7-3.5-1.5-5.4-2.5-6.5-1.1-1.2-3.5-1.7-7.8-1.7h-5.4c-2 0-2.1.1-2.1 2.2v16.1h7.1c6.1 0 6.3-.4 7-5.6h1.8v14h-1.8c-.4-2.6-.6-4-1.5-4.8s-2.5-.9-5.5-.9h-7.1v12.5c0 4 .4 6.1 1.8 7 1.3.8 3.9.8 7.2.8 4 0 7.3-.4 8.9-2 1.2-1.3 2.3-3.7 3.4-6.9l1.8.2c-.4 2-1.9 9.2-2.5 11.1h-33.3v-1.6c6.3-.4 6.9-.9 6.9-8.6v-25.6z"/><path d="m440.5 113.3c0 7.7.6 8.2 6.3 8.6v1.6h-18.8v-1.6c5.9-.4 6.5-.9 6.5-8.6v-25.4c0-7.7-.6-8.2-6.2-8.6v-1.6h17.9c4.5 0 8.5.6 11.1 2.4 2.8 1.8 4.7 4.9 4.7 9 0 5.9-3.6 10-9.3 12.3 1.3 2.1 4.2 7 6.3 10.1 2.5 3.7 4 5.6 5.9 7.8 1.5 1.8 2.8 2.9 5.3 3.5l-.1 1.3h-1c-8.1-.2-10.6-2.7-13.3-6.6-2.2-3.2-5.1-8.4-7.1-11.7-1.1-1.8-2.3-2.5-4.4-2.5h-3.8zm0-12h4.1c2.9 0 5.1-.4 7-1.9 3-2.4 4.1-5.9 4.1-9.3 0-7.4-5.4-10.4-10.6-10.4-2.4 0-3.4.1-3.9.4-.4.1-.6.5-.6 1.9v19.3z"/><path d="m486.2 111.1c1.1 3.3 4.7 11.1 12.2 11.1 5.4 0 8.7-3.6 8.7-9.1 0-6-4.6-8.5-9.1-10.6-2.3-1.1-11.8-4.4-11.8-12.9 0-7 5.3-13 14.5-13 2 0 4.4.4 5.9.9.9.3 1.9.6 2.7.8.3 2.5.7 5.3 1.3 9.5l-1.8.2c-1.2-4.2-3.2-9.1-9.6-9.1-5 0-7.6 3.7-7.6 7.8 0 5.2 3.7 7.5 9.1 9.9 4.6 2 12.1 4.9 12.1 13.7 0 8.2-6.7 14.2-15.7 14.2-2.5 0-4.9-.5-6.7-1.1s-3-1.1-3.9-1.5c-.6-1.8-1.3-6.8-2-10.6z"/><path d="m541.9 113.3c0 7.7.6 8.2 6.3 8.6v1.6h-18.6v-1.6c5.8-.4 6.3-.9 6.3-8.6v-25.4c0-7.7-.6-8.2-6.3-8.6v-1.6h18.6v1.6c-5.8.4-6.3.9-6.3 8.6z"/><path d="m587.2 113.3c0 7.7.6 8.2 7.5 8.6v1.6h-20.6v-1.6c6.6-.4 7.2-.9 7.2-8.6v-33.3h-3.3c-6.3 0-8.2.9-9.2 2.3-.8 1-1.6 3-2.5 6.1h-1.8c.3-4.3.7-8.8.8-12.4h1c1.1 1.6 1.8 1.8 3.7 1.8h28.9c1.8 0 2.2-.4 3.3-1.8h1c.1 3 .4 8.1.8 12.2l-1.8.2c-.7-3.4-1.5-5.4-2.5-6.5-1.2-1.3-3.4-1.8-7.8-1.8h-4.7z"/><path d="m641.4 113.3c0 7.7.6 8.2 7.3 8.6v1.6h-20.3v-1.6c6.5-.4 7-.9 7-8.6v-8c0-1.3-.2-1.9-1.6-4.2-3.2-5.5-5.9-10.6-9-15.8-3-5.2-3.3-5.4-7.4-5.9v-1.6h17v1.6l-3.2.4c-1.8.3-2.3.9-1.1 3.1 3.2 5.9 6.4 11.8 9.9 17.6 3-5.6 6.1-11.4 8.7-17.2 1.2-2.5.6-3.2-2-3.5l-2.8-.4v-1.6h15.5v1.6c-4.7.4-5.1 1.3-8 6-3.2 4.9-5.8 9.8-8.9 15.4-1.1 1.9-1.2 2.3-1.2 3.8v8.7z"/></g><path d="m56.8 64.2-56.8 56.7v-56.7z" fill="#a50034"/><path d="m0 60.6v-56.8l56.8 56.8z" fill="#a50034"/><path d="m119.7 1.2-56.7 56.8v-56.8z" fill="#a50034"/><path d="m59.3 58-56.7-56.8h56.7z" fill="#a50034"/><path d="m65.5 60.6 56.8-56.8v56.8z" fill="#a50034"/><path d="m122.3 64.2v56.7l-56.8-56.7z" fill="#a50034"/><path d="m59.3 66.8-56.7 56.7h56.7z" fill="#a50034"/><path d="m63 66.8v56.7h56.7z" fill="#a50034"/></svg>
+        </div>
+      </a>
+      #if ( $isUmbrellaCategory )
+      #set ( $umbrellaID = $umbrellaBrandLabel.replaceAll(" ", "-").replaceAll("[^a-zA-Z-]", "").replaceAll("--", "-").toLowerCase() )
+        <div class="uninav__logo--secondary">
+          <a id="uninav-logo-umbrella-${_EscapeTool.xml($umbrellaID)}" class="branded-logo" href="site://Chapman.edu/${umbrellaDirectoryPath}/index">${umbrellaBrandLabel}</a>
+        </div>
+      #end
+  </div>
+## LOGO (END)
+
+#end
+
+#macro ( uninavUtility )
+<div class="uninav__utility-nav--wrapper">
+  <div class="uninav__utility-nav">
+      <ul class="uninav__menu-item-flex uninav__menu-item-flex--utility">
+        <li class="uninav__utility-nav--audiences-container  uninav__dropdown--parent" aria-expanded="false">
+            <p tabindex="0">Info For</p>
+            <div class="uninav__dropdown--child">
+                
+
+<!-- _audiences.vtl -->
+## UTILITY NAV LINKS:
+#set ( $menuItems = $_XPathTool.selectNodes($contentRoot, "/system-data-structure/uninav/audienceNav/menuItem") )
+#if ($menuItems.size() >= 1)
+    <ul class="uninav__utility-nav--audiences-menu">
+        #foreach ($menuItem in $menuItems)
+            #set ($label = $menuItem.getChild('label').value )
+            #set ( $menuID = $label.replaceAll(" ", "-").replaceAll("[^a-zA-Z-]", "").replaceAll("--", "-").toLowerCase() )
+            #set ($linkType = $menuItem.getChild('linkType').value )
+            #if ($linkType == 'Internal Link')
+                #set ($linkURL = $menuItem.getChild('internalLink').getChild('path').value )
+            #elseif ($linkType == 'External Link')
+                #set ($linkURL = $menuItem.getChild('externalLink').value )
+            #else 
+                #set ($linkURL = $menuItem.getChild('fileLink').getChild('path').value )
+            #end
+            #set ($iconType = $menuItem.getChild('icon').value )
+            
+            #if ($linkURL != '' && $linkURL != '/' && $label != '')
+                ##before, do primary-link OR dropdown, find out if there are submenu items:
+                #set ($submenuItems = $_XPathTool.selectNodes($menuItems, "//menuItem[label='${label}']/submenuItem[label!='']") )
+                #if ($submenuItems.size() >= 1)
+                    <li class="uninav__menu-item--audiences uninav__audiences-menu-item--$menuID uninav__menu-item-audiences--${_MathTool.add($foreach.index, 1)} uninav__audiences-menu-item--dropdown-parent ">
+                        <a href="#"><span class="uninav__underline--center"> ${_EscapeTool.xml($label)} </span></a>
+                        <span class="uninav__dropdown-wrapper">
+                            <ul>
+                                #foreach ($submenuItem in $submenuItems)
+                                            #set ($linkType = $submenuItem.getChild('linkType').value )
+                                            #if ($linkType == 'Internal Link')
+                                                #set ($linkURL = $submenuItem.getChild('internalLink').getChild('path').value )
+                                            #elseif ($linkType == 'External Link')
+                                                #set ($linkURL = $submenuItem.getChild('externalLink').value )
+                                            #else 
+                                                #set ($linkURL = $submenuItem.getChild('fileLink').getChild('path').value )
+                                            #end
+                                            #set ($label = $submenuItem.getChild('label').value )
+                                            #set ($iconClass = $submenuItem.getChild('iconClass').value )
+                                            #if ($linkURL != '' && $linkURL != '/' && $label != '')
+                                                ## <li><a class="icon icon-$iconClass" href="${_EscapeTool.xml($linkURL)}">${_EscapeTool.xml($label)}</a></li>
+                                            #end
+                                        #end
+                            </ul>
+                        
+                        </span>
+                    </li>
+                #else
+                    <li class="uninav__menu-item--audiences ">
+                        <a id="uninav-audiences-$menuID" href="${_EscapeTool.xml($linkURL)}"
+                            #if ($iconType == "CSS Class" && $menuItem.getChild('icon_cssClass').value != "")
+                                ## class="icon icon-${_EscapeTool.xml($menuItem.getChild('icon_cssClass').value)}"
+                            #end
+                        >
+                        #if ($iconType == "SVG" && $menuItem.getChild('icon_svg').value != "")
+                            ## $menuItem.getChild('icon_svg').value
+                        #end
+                        <span class="uninav__underline--center">${_EscapeTool.xml($label)}</span>
+                        </a>
+                        
+                    </li>
+                #end
+            #end
+        #end
+    </ul>
+#end
+## UTILITY NAV LINKS (END)
+      
+      
+      
+
+
+            </div>
+        </li>
+        #set ( $pagePath = $currentPage.path )
+<span class="uninav__utility-nav--search-wrapper">
+    #if ($pagePath.contains('header_latest'))
+        <style>
+            .gsc-input {
+                opacity: 1 !important;
+                box-shadow: none !important;
+            }
+
+        </style>
+    #end
+    #if ($pagePath.contains('navsNoJs'))
+        <style>
+            .uninav__utility-nav--search-wrapper {
+                display: none;
+            }
+        </style>
+    #end 
+
+    <style>
+    input.gsc-input {
+      opacity: 1 !important;
+    }
+        .gssb_c,
+        .gssb_c[style] {
+            z-index: 99999999999999999999999;
+        }
+
+        #gsc-i-id1 {
+            font-family: "futura-pt", Arial, sans-serif;
+        }
+
+        .gssb_c[style] .gsc-completion-container {
+            font-size: 1.2em;
+            font-family: "futura-pt", Arial, sans-serif !important;
+            margin-bottom: 2rem !important;
+        }
+
+        input#gsc-i-id1 {
+            height: 30px !important;
+            box-shadow: none !important;
+        }
+
+        .gsc-overflow-hidden ul li div {
+            text-align: left;
+        }
+
+        .gssb_e {
+
+            box-shadow: none;
+
+        }
+
+        .gstl_50.gssb_c {
+            display: block !important;
+        }
+
+        .gssb_a table,
+        .gssb_a table tr,
+        .gssb_a table tr td {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+                    .uninav__search-input label {
+    visibility: hidden;
+    position: absolute;
+    z-index: -999;
+}
+    </style>
+    <li class="uninav__search-button--mobile" id="uninav__search-button--mobile" tabindex="0"></li>
+    <div class="uninav__search-input uninav__search-input--desktop">
+     <label for="gsc-i-id1"><span class="sr-only">Search</span></label>
+        <script async="true" src="https://cse.google.com/cse.js?cx=015856566681218627934:2ndbiubovo4"></script>
+        <div class="gcse-search"></div>
+    </div>
+</span>
+        ## LOGIN NAV:
+
+#set ( $menuItems = $_XPathTool.selectNodes($contentRoot, "/system-data-structure/uninav/login/submenuItem") )
+
+<li class="uninav__login uninav__dropdown--parent" tabindex="0" aria-expanded="false" aria-label="login dropdown menu">
+        <span class="uninav__menu-item-login">
+          <span class="fas fa-paw"></span>
+        </span>
+      <div class="uninav__login--wrapper uninav__dropdown--child uninav__login-button">
+    #if ($menuItems.size() >= 1)
+        <ul>
+            [system-view:internal]
+            <li class="uninav__internal--info">
+                <a href="[system-asset]/Chapman.edu/_cascade/blocks/html/Uninav[/system-asset]">
+                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" height="32" role="presentation" viewBox="0 0 28.1 28.1" width="32">
+                    <style type="text/css">
+                      .st0{fill:#ffffff;}
+                    </style>
+                    <polygon class="st0" points="13 14.5 0 27.5 0 14.5 "></polygon>
+                    <polygon class="st0" points="0 13.6 0 0.6 13 13.6 "></polygon>
+                    <polygon class="st0" points="27.5 0 14.5 13 14.5 0 "></polygon>
+                    <polygon class="st0" points="13.6 13 0.6 0 13.6 0 "></polygon>
+                    <polygon class="st0" points="15.1 13.6 28.1 0.6 28.1 13.6 "></polygon>
+                    <polygon class="st0" points="28.1 14.5 28.1 27.5 15.1 14.5 "></polygon>
+                    <polygon class="st0" points="13.6 15 0.6 28.1 13.6 28.1 "></polygon>
+                    <polygon class="st0" points="14.5 15 14.5 28.1 27.5 28.1 "></polygon>
+                  </svg>
+                    <span class="uninav__underline--center">
+                      Edit Uninav
+                    </span>
+                </a>
+            </li>
+            [/system-view:internal]
+        #foreach ($menuItem in $menuItems)
+            #set ($label = $menuItem.getChild('label').value )
+            #set ( $menuID = $label.replaceAll(" ", "-").replaceAll("[^a-zA-Z-]", "").replaceAll("--", "-").toLowerCase() )
+            #set ($linkType = $menuItem.getChild('linkType').value )
+            #if ($linkType == 'Internal Link')
+                #set ($linkURL = $menuItem.getChild('internalLink').getChild('path').value )
+            #elseif ($linkType == 'External Link')
+                #set ($linkURL = $menuItem.getChild('externalLink').value )
+            #else 
+                #set ($linkURL = $menuItem.getChild('fileLink').getChild('path').value )
+            #end
+            #set ($iconType = $menuItem.getChild('icon').value )
+            #if ($linkURL != '' && $linkURL != '/' && $label != '')
+                <li>
+                    <a id="uninav__login--$menuID" href="${_EscapeTool.xml($linkURL)}"
+                        #if ($iconType == "CSS Class" && $menuItem.getChild('icon_cssClass').value != "")
+                            class="icon icon-${_EscapeTool.xml($menuItem.getChild('icon_cssClass').value)}"
+                        #end
+                    >
+                    #if ($iconType == "SVG" && $menuItem.getChild('icon_svg').value != "")
+                        $menuItem.getChild('icon_svg').value
+                    #end
+                    <span class="uninav__underline--center white-underline">${_EscapeTool.xml($label)}</span>
+                    </a>
+                </li>
+            #end
+            
+        #end
+        </ul>
+    #end
+    </div>
+</li>
+## LOGIN NAV (END)
+
+      </ul>    
+  </div>
+</div>
+#end
+
+#macro ( uninavSearch )
+#set ( $pagePath = $currentPage.path )
+<span class="uninav__utility-nav--search-wrapper">
+    #if ($pagePath.contains('header_latest'))
+        <style>
+            .gsc-input {
+                opacity: 1 !important;
+                box-shadow: none !important;
+            }
+
+        </style>
+    #end
+    #if ($pagePath.contains('navsNoJs'))
+        <style>
+            .uninav__utility-nav--search-wrapper {
+                display: none;
+            }
+        </style>
+    #end 
+
+    <style>
+    input.gsc-input {
+      opacity: 1 !important;
+    }
+        .gssb_c,
+        .gssb_c[style] {
+            z-index: 99999999999999999999999;
+        }
+
+        #gsc-i-id1 {
+            font-family: "futura-pt", Arial, sans-serif;
+        }
+
+        .gssb_c[style] .gsc-completion-container {
+            font-size: 1.2em;
+            font-family: "futura-pt", Arial, sans-serif !important;
+            margin-bottom: 2rem !important;
+        }
+
+        input#gsc-i-id1 {
+            height: 30px !important;
+            box-shadow: none !important;
+        }
+
+        .gsc-overflow-hidden ul li div {
+            text-align: left;
+        }
+
+        .gssb_e {
+
+            box-shadow: none;
+
+        }
+
+        .gstl_50.gssb_c {
+            display: block !important;
+        }
+
+        .gssb_a table,
+        .gssb_a table tr,
+        .gssb_a table tr td {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+                    .uninav__search-input label {
+    visibility: hidden;
+    position: absolute;
+    z-index: -999;
+}
+    </style>
+    <li class="uninav__search-button--mobile" id="uninav__search-button--mobile" tabindex="0"></li>
+    <div class="uninav__search-input uninav__search-input--desktop">
+     <label for="gsc-i-id1"><span class="sr-only">Search</span></label>
+        <script async="true" src="https://cse.google.com/cse.js?cx=015856566681218627934:2ndbiubovo4"></script>
+        <div class="gcse-search"></div>
+    </div>
+</span>
+#end
+
+#macro ( uninavCTA )
+## UTILITY NAV LINKS:
+#set ( $menuItems = $_XPathTool.selectNodes($contentRoot, "/system-data-structure/uninav/cta/link") )
+<div id="uninav__cta" class="uninav__cta">
+<span class="uninav__cta--wrapper">
+<ul>
+#if ($menuItems.size() >= 1)
+    #foreach ($menuItem in $menuItems)
+        #set ($label = $menuItem.getChild('label').value )
+        #set ( $menuID = $label.replaceAll(" ", "-").replaceAll("[^a-zA-Z-]", "").replaceAll("--", "-").toLowerCase() )
+        #set ($linkType = $menuItem.getChild('linkType').value )
+        #if ($linkType == 'Internal Link')
+            #set ($linkURL = "site://Chapman.edu/${menuItem.getChild('internalLink').getChild('path').value}" )
+        #elseif ($linkType == 'External Link')
+            #set ($linkURL = $menuItem.getChild('externalLink').value )
+        #else 
+            #set ($linkURL = "site://Chapman.edu/${menuItem.getChild('fileLink').getChild('path').value}" )
+        #end
+        #set ($iconType = $menuItem.getChild('icon').value )
+        #if ($linkURL != '' && $linkURL != '/' && $label != '')
+            ##before do primary-link OR dropdown, find out if there are submenu items:
+            #set ($submenuItems = $_XPathTool.selectNodes($menuItems, "//menuItem[label='${label}']/submenuItem[label!='']") )
+
+            #if ($submenuItems.size() >= 1)
+            #else
+                
+                <li class="uninav__menu-item-cta">
+                    <a href="${_EscapeTool.xml($linkURL)}" id="uninav-cta-${_EscapeTool.xml($menuID)}"
+                        #if ($iconType == "CSS Class" && $menuItem.getChild('icon_cssClass').value != "")
+                            ## class="icon icon-${_EscapeTool.xml($menuItem.getChild('icon_cssClass').value)}"
+                        #end
+                    >
+                    #if ($iconType == "SVG" && $menuItem.getChild('icon_svg').value != "")
+                        ## $menuItem.getChild('icon_svg').value
+                    #end
+                    ${_EscapeTool.xml($label)}
+                    </a>
+                </li>
+            
+            #end
+        #end
+    #end
+</ul>
+</span>
+</div>
+#end
+
+#end
+
+#macro ( uninavGlobal )
+## GLOBAL NAV:
+#set ( $menuItems = $_XPathTool.selectNodes($contentRoot,
+"/system-data-structure/uninav/globalNav/menuItem/label") )
+#set ($pageTitle = $currentPage.metadata.title )
+#set ($pageTitle = $pageTitle.replaceAll(" ", "-").replaceAll("[^a-zA-Z-]", "").replaceAll("--",
+"-").toLowerCase() )
+
+<div class="uninav__global-nav">
+    <ul class="uninav__include-in-mobile-menu">
+        ## outer loop loops over just the menuItem labels eg About, Academics 
+        ## then inner loop goes against same array, getting submenu links for only those where the 
+        ## label for submenu matches the current value
+        #if ($menuItems.size() >= 1)
+            ## Outer Loop (main menu items)
+            #foreach ($menuItem in $menuItems)
+                #set ( $menuID = $menuItem.value.replaceAll(" ", "-").replaceAll("[^a-zA-Z-]", "").replaceAll("--",
+                "-").toLowerCase() )
+                ## main link for this menu item. If menu has dropdowns then it will be used as first "Overview" link in dropdown
+                ## but if main link has no dropdown then the main menu item becomes a link to that page eg Arts:
+                #set ($menuItemLink = $_XPathTool.selectSingleNode($menuItems,
+                "//menuItem[label='${menuItem.value}']/menuLink") )
+
+                ##before do primary-link OR dropdown, find out if there are submenu items:
+                #set ($submenuItems = $_XPathTool.selectNodes($menuItems,
+                "//menuItem[label='${menuItem.value}']/submenuItem[label!='']") )
+
+                #if ($submenuItems.size() == 0)
+                    ##main menu item with no dropdown eg Arts:
+                    <li
+                        class="uninav__global--menu-item--no-dropdown uninav__global--${_EscapeTool.xml($menuID)} uninav__global--menu-item--no-dropdown--${_MathTool.add($foreach.index, 1)}">
+                        <a
+                            id="uninav-global-${_EscapeTool.xml($menuID)}"
+                            href="site://Chapman.edu/${menuItemLink.getChild('path').value}">
+                            <span class="uninav__underline--center">${menuItem.value}</span></a>
+                    </li>
+                    <span class="uninav__pipe"></span>
+                #else
+                ## main menu item eg. About, Academics followed by dropdown of sub items:
+                    <li
+                        class="uninav__dropdown--parent ">
+                        <span class="uninav__dropdown-wrapper">
+                            <a id="uninav-global-${_EscapeTool.xml($menuID)}" tabindex="0">
+                                <span class="uninav__underline--center">${_EscapeTool.xml($menuItem.value)}</span></a>
+                        </span>
+                        <div class="uninav__dropdown--child">
+                            <ul>
+                                ## REMOVING UNTIL WE CAN ADD ICON TO ITEM
+                                ## first item in dropdown = OVERVIEW; links to main menu item's landing page:
+                                ## <li
+                                ##     class="uninav__global--dropdown-child--${_MathTool.add($foreach.index, 1)}-overview uninav__global--${_EscapeTool.xml($menuID)}-overview">
+                                ##     <a
+                                ##         id="uninav-global-${_EscapeTool.xml($menuID)}-overview"
+                                ##         href="${menuItemLink.getChild('path').value}">
+                                ##         <span class="uninav__underline--center">${menuItem.value} Overview</span></a>
+                                ## </li>
+                                ## Inner Loop (dropdown links for specific main menu item)
+
+                                #foreach ($submenuItem in $submenuItems)
+
+                                    #set ($linkType = $submenuItem.getChild('linkType').value )
+                                    #if ($linkType == 'Internal Link')
+                                        #set ($linkURL = "site://Chapman.edu/${submenuItem.getChild('internalLink').getChild('path').value}" )
+                                    #elseif ($linkType == 'External Link')
+                                        #set ($linkURL = $submenuItem.getChild('externalLink').value )
+                                    #else 
+                                        #set ($linkURL = "site://Chapman.edu/${submenuItem.getChild('fileLink').getChild('path').value}" )
+                                    #end
+                                    #set ($label = $submenuItem.getChild('label').value )
+                                    #set ( $menuID = $label.replaceAll(" ", "-").replaceAll("[^a-zA-Z-]", "").replaceAll("--",
+                                    "-").toLowerCase() )
+                                    ##   #set ( $menuID = $menuID.replaceAll("--", "-") )
+                                    #set ($iconClass = $submenuItem.getChild('iconClass').value )
+                                    #if ($linkURL != '' && $linkURL != '/' && $label != '')
+                                        <li
+                                            class="uninav__global--dropdown-child--${_MathTool.add($foreach.index, 1)} uninav__global--dropdown-child--$menuID">
+                                            <a
+                                               id="uninav-global-${_EscapeTool.xml($menuID)}"
+                                                class="icon icon-$iconClass"
+                                                href="${_EscapeTool.xml($linkURL)}">
+                                                <span class="uninav__underline--center">${_EscapeTool.xml($label)}</span>
+                                            </a>
+                                        </li>
+                                    #end
+                                #end
+                            </ul>
+                        </div>
+                    </li>
+                    <span class="uninav__pipe"></span>
+                #end
+            #end
+        #end
+    </ul>
+</div>
+## GLOBAL NAV (END)
+#end
+
+##
+## Utility Nav Macros
+##
+#macro ( buildUtilityNav )
+<div class="utility-nav">
+  <nav aria-label="utility navigation bar">
+    #buildUtilityNavLinks()
+    #buildSearchComponent()
+  </nav>
+</div>
+#end
+
+#macro ( buildUtilityNavLinks )
+<div class="utility-nav-container utility-links">
+  <ul class="utility-list">
+    ## FIND INFO FOR:
+#set ( $audiences = $_XPathTool.selectSingleNode($contentRoot, "/system-data-structure/uninav/audiences") )
+#set ( $mainMenuLabel = $audiences.getChild("label").value )
+#set ( $menuItems = $_XPathTool.selectNodes($contentRoot, "/system-data-structure/uninav/audiences/submenuItem") )
+
+#if ($menuItems.size() >= 1)
+    <li class="utility-cell utility-has-dropdown">
+        <a href="#">${mainMenuLabel}</a>
+        <div class="utility-dropdown dropdown">
+            <ul>
+            #foreach ($menuItem in $menuItems)
+                #set ($label = $menuItem.getChild('label').value )
+                #set ($linkType = $menuItem.getChild('linkType').value )
+                #if ($linkType == 'Internal Link')
+                    #set ($linkURL = $menuItem.getChild('internalLink').getChild('path').value )
+                #elseif ($linkType == 'External Link')
+                    #set ($linkURL = $menuItem.getChild('externalLink').value )
+                #else 
+                    #set ($linkURL = $menuItem.getChild('fileLink').getChild('path').value )
+                #end
+                #set ($iconType = $menuItem.getChild('icon').value )
+                #if ($linkURL != '' && $linkURL != '/' && $label != '')
+                    <li>
+                        <a href="site://Chapman.edu/${_EscapeTool.xml($linkURL)}"
+                            #if ($iconType == "CSS Class" && $menuItem.getChild('icon_cssClass').value != "")
+                                class="icon icon-${_EscapeTool.xml($menuItem.getChild('icon_cssClass').value)}"
+                            #end
+                        >
+                        #if ($iconType == "SVG" && $menuItem.getChild('icon_svg').value != "")
+                            $menuItem.getChild('icon_svg').value
+                        #end
+                        ${_EscapeTool.xml($label)}
+                        </a>
+                    </li>
+                #end
+            #end
+            </ul>
+        </div>
+    </li>
+#end
+## FIND INFO FOR (END)
+    ## UTILITY NAV LINKS:
+#set ( $menuItems = $_XPathTool.selectNodes($contentRoot, "/system-data-structure/uninav/utilityNav/menuItem") )
+
+#if ($menuItems.size() >= 1)
+    #foreach ($menuItem in $menuItems)
+        #set ($label = $menuItem.getChild('label').value )
+        #set ($linkType = $menuItem.getChild('linkType').value )
+        #if ($linkType == 'Internal Link')
+            #set ($linkURL = $menuItem.getChild('internalLink').getChild('path').value )
+        #elseif ($linkType == 'External Link')
+            #set ($linkURL = $menuItem.getChild('externalLink').value )
+        #else 
+            #set ($linkURL = $menuItem.getChild('fileLink').getChild('path').value )
+        #end
+        #set ($iconType = $menuItem.getChild('icon').value )
+        #if ($linkURL != '' && $linkURL != '/' && $label != '')
+            ##before do primary-link OR dropdown, find out if there are submenu items:
+            #set ($submenuItems = $_XPathTool.selectNodes($menuItems, "//menuItem[label='${label}']/submenuItem[label!='']") )
+            #if ($submenuItems.size() >= 1)
+                <li class="utility-cell utility-has-dropdown">
+                    <a href="#">${_EscapeTool.xml($label)}</a>
+                    <span class="uninav__dropdown-wrapper">
+                                
+                        <ul>
+                            #foreach ($submenuItem in $submenuItems)
+                                        #set ($linkType = $submenuItem.getChild('linkType').value )
+                                        #if ($linkType == 'Internal Link')
+                                            #set ($linkURL = $submenuItem.getChild('internalLink').getChild('path').value )
+                                        #elseif ($linkType == 'External Link')
+                                            #set ($linkURL = $submenuItem.getChild('externalLink').value )
+                                        #else 
+                                            #set ($linkURL = $submenuItem.getChild('fileLink').getChild('path').value )
+                                        #end
+                                        #set ($label = $submenuItem.getChild('label').value )
+                                        #set ($iconClass = $submenuItem.getChild('iconClass').value )
+                                        #if ($linkURL != '' && $linkURL != '/' && $label != '')
+                                            <li><a class="icon icon-$iconClass" href="site://Chapman.edu/${_EscapeTool.xml($linkURL)}">${_EscapeTool.xml($label)}</a></li>
+                                        #end
+                                    #end
+                        </ul>
+                    
+                    </span>
+                </li>
+            #else
+                <li class="utility-cell">
+                    <a href="site://Chapman.edu/${_EscapeTool.xml($linkURL)}"
+                        #if ($iconType == "CSS Class" && $menuItem.getChild('icon_cssClass').value != "")
+                            class="icon icon-${_EscapeTool.xml($menuItem.getChild('icon_cssClass').value)}"
+                        #end
+                    >
+                    #if ($iconType == "SVG" && $menuItem.getChild('icon_svg').value != "")
+                        $menuItem.getChild('icon_svg').value
+                    #end
+                    ${_EscapeTool.xml($label)}
+                    </a>
+                </li>
+            #end
+        #end
+    #end
+#end
+## UTILITY NAV LINKS (END)
+    ## SOCIAL LINKS:
+#set ( $social = $_XPathTool.selectSingleNode($contentRoot, "/system-data-structure/uninav/social") )
+#set ( $menuItems = $_XPathTool.selectNodes($social, "/system-data-structure/uninav/social/submenuItem") )
+
+#set ( $mainMenuLabel = $social.getChild("label").value )
+#set ( $mainMenuLinkType = $menuItem.getChild('linkType').value )
+#if ( $mainMenuLinkType == 'Internal Link')
+    #set ( $mainMenuLinkURL = $menuItem.getChild('internalLink').getChild('path').value )
+#elseif ( $mainMenuLinkType == 'External Link')
+    #set ( $mainMenuLinkURL = $menuItem.getChild('externalLink').value )
+#else 
+    #set ( $mainMenuLinkURL = $menuItem.getChild('fileLink').getChild('path').value )
+#end
+                
+#if ($menuItems.size() >= 1)
+    <li class="utility-cell utility-has-dropdown">
+        <a href="#" role="listbox" aria-label="Social listbox">Social</a>
+        <div class="utility-dropdown social-dropdown dropdown">
+            <ul>
+                <li>
+                    <ul class="social-list">
+                    #foreach ($menuItem in $menuItems)
+                        #set ($label = $menuItem.getChild('label').value )
+                        #set ($linkType = $menuItem.getChild('linkType').value )
+                        #if ($linkType == 'Internal Link')
+                            #set ($linkURL = $menuItem.getChild('internalLink').getChild('path').value )
+                        #elseif ($linkType == 'External Link')
+                            #set ($linkURL = $menuItem.getChild('externalLink').value )
+                        #else 
+                            #set ($linkURL = $menuItem.getChild('fileLink').getChild('path').value )
+                        #end
+                        #set ($iconType = $menuItem.getChild('icon').value )
+                        #if ($linkURL != '' && $linkURL != '/' && $label != '')
+                            <li class="social-media-menu-item">
+                                <a href="${_EscapeTool.xml($linkURL)}"
+                                    #if ($iconType == "CSS Class" && $menuItem.getChild('icon_cssClass').value != "")
+                                        class="icon icon-${_EscapeTool.xml($menuItem.getChild('icon_cssClass').value)}"
+                                    #end
+                                >
+                                #if ($iconType == "SVG" && $menuItem.getChild('icon_svg').value != "")
+                                    $menuItem.getChild('icon_svg').value
+                                #end
+                                ${_EscapeTool.xml($label)}
+                                </a>
+                            </li>
+                        #end
+                    #end
+                    </ul>
+                </li>
+                <li><a class="social-link" href="${_EscapeTool.xml(mainMenuLinkURL)}">${_EscapeTool.xml(mainMenuLabel)}</a></li>
+            </ul>
+        </div>
+    </li>
+#end
+## SOCIAL LINKS (END)
+  </ul>
+</div>
+#end
+
+#macro ( buildSearchComponent )
+#set ($searchFilters = ["All", "Blog Stories", "Faculty Directory", "Events", "Main Website"])
+
+<div class="utility-nav-container utility-search" id="utility-nav-search">
+  <ul class="utility-list">
+    <li class="utility-cell search-type utility-has-dropdown">
+      <a tabindex="0" class="selected-search-filter">Search From</a>
+      <div class="utility-dropdown dropdown">
+        <ul>
+          #foreach ($filter in $searchFilters)
+          <li class="search-filter-option"><a tabindex="0">$filter</a></li>
+          #end
+        </ul>
+      </div>
+    </li>
+    <li class="utility-cell">
+      #buildSearchBox()
+    </li>
+  </ul>
+</div>
+#end
+
+##
+## Off-Canvas Nav Macros
+##
+#macro ( buildOffCanvasNav )
+<div class="off-canvas-overlay" id="js-off-canvas-overlay"></div>
+<div class="off-canvas-nav-container" id="js-off-canvas-nav-container">
+  #buildOffCanvasNavHeader()
+  #buildOffCanvasNavMenus()
+</div>
+#end
+
+#macro ( buildOffCanvasNavHeader )
+<div class="cu-off-canvas-header">
+  <div class="cu-logo-wrapper">
+    <div id="main-logo" class="toggle-logo">
+      <a class="default off-logo" href="site://Chapman.edu/index" title="Chapman University Website Home Page">
+        <!-- logo set as background image by class -->
+        Chapman University Logo
+      </a>
+      #buildOffCanvasNavCloseIcon()
+    </div>
+  </div>
+</div>
+#end
+
+#macro ( buildOffCanvasNavMenus )
+## For umbrella cats, build secondary menu.
+<div class="off-canvas-nav clearfix" id="js-off-canvas-nav">
+  #buildOffCanvasDirectoryMenu()
+  #buildOffCanvasNavMainMenu()
+</div>
+#end
+
+#macro ( buildOffCanvasNavMainMenu )
+#set ( $currentPathRoot = $currentPage.path.replaceAll('/(.*)', "") )
+
+<div id="off-canvas-main" class="off-canvas-menu">
+  <div class="menu-header">
+    <span tabindex="0" class="menu-label">Chapman Menu</span>
+
+    #if ( $isUmbrellaCategory )
+    <span tabindex="0" class="toggle-menu-label">${umbrellaLabel} Menu</span>
+    #elseif ( $currentPathRoot != "index" && $currentPathRoot != "")
+    <span tabindex="0" class="toggle-menu-label">${currentPathRoot} Menu</span>
+    #end
+  </div>
+
+  ## used in omni_nav format and other partial formats to build toggle in off-canvas nav:
+#macro ( offCanvasDrillDownIcon $displayName )
+    <span class="toggle-drilldown"><span class="fas fa-chevron-right"></span></span>
+#end
+## used in omni_nav format and other partial formats to build toggle in off-canvas nav:
+#macro ( offCanvasMenuBackIcon $displayName )
+  <li tabindex="0" class="menu-back"><span class="fas fa-chevron-left"></span>Back</li>
+#end
+
+
+
+## OFF CANVAS NAV: Main Menu:
+#set ( $menuItems = $_XPathTool.selectNodes($contentRoot, "/system-data-structure/uninav/globalNav/menuItem/label") )
+## Cascade provides a $currentPage object to every format.
+#set ( $pagePath = $currentPage.path )
+#set ( $isCurrentPage = "drill-down-list-item")
+
+## outer loop loops over just the menuItem labels eg About, Academics 
+## then inner loop goes against same array, getting submenu links for only those where the 
+## label for submenu matches the current value
+#if ($menuItems.size() >= 1)
+    <div id="off-canvas-main-navigation">
+        <ul class="root-main-nav">    
+            ## Outer Loop (main menu items)
+            #foreach ($menuItem in $menuItems)
+                ## main link for this menu item. If menu has submenu items then there will be an expander to show items in menu
+                ## but if main link has no submenu items then no expander:
+                #set ($menuItemLink = $_XPathTool.selectSingleNode($menuItems, "//menuItem[label='${menuItem.value}']/menuLink") )
+
+                ##before do primary-link find out if there are submenu items:
+                #set ($submenuItems = $_XPathTool.selectNodes($menuItems, "//menuItem[label='${menuItem.value}']/submenuItem[label!='']") )
+                #if ( $pagePath == $menuItemLink.getChild('path').value ) 
+                    #set( $isCurrentPage = "drill-down-list-item current" )
+                #else
+                    #set( $isCurrentPage = "drill-down-list-item")
+                #end
+                <li class="${isCurrentPage}" role="group">
+                    #if ( $pagePath == $menuItemLink.getChild('path').value ) 
+                        #set( $isCurrentPage = "drill-down-list-item current" )
+                    #else
+                        #set( $isCurrentPage = "drill-down-list-item")
+                    #end
+                    
+                    #if ($submenuItems.size() != 0)
+                        #set ( $ariaLabel = $menuItem.value.replaceAll(" ", "-").toLowerCase())
+                        <span aria-label="${_EscapeTool.xml($ariaLabel)}" tabindex="0" class="drill-down-parent">${menuItem.value}</span>    
+                    #else
+                        <a href="site://Chapman.edu/${menuItemLink.getChild('path').value}">${menuItem.value}</a>
+                    #end
+                    
+                    #if ($submenuItems.size() != 0)
+        		        #offCanvasDrillDownIcon()
+        		        <ul class="drilldown-menu">
+        		            #offCanvasMenuBackIcon()
+                            #if( $menuItemLink.getChild('path').value != "/")
+            		            <li class="${isCurrentPage}"><a href="site://Chapman.edu/${menuItemLink.getChild('path').value}">${menuItem.value}</a></li>
+                            #end
+                            ## Inner Loop (dropdown links for specific main menu item)
+                            #foreach ($submenuItem in $submenuItems)
+
+                                #set ($linkType = $submenuItem.getChild('linkType').value )
+                                #if ($linkType == 'Internal Link')
+                                    #set ($linkURL = "site://Chapman.edu/${submenuItem.getChild('internalLink').getChild('path').value}" )
+                                #elseif ($linkType == 'External Link')
+                                    #set ($linkURL = $submenuItem.getChild('externalLink').value )
+                                #else 
+                                    #set ($linkURL = "site://Chapman.edu/${submenuItem.getChild('fileLink').getChild('path').value}" )
+                                #end
+                                #set ($label = $submenuItem.getChild('label').value )
+
+                                #if ( $pagePath == $linkURL ) 
+                                    #set( $isCurrentPage = "drill-down-list-item current" )
+                                #else
+                                    #set( $isCurrentPage = "drill-down-list-item")
+                                #end
+                                #if ($linkURL != '' && $linkURL != '/' && $label != '')
+                                    <li  class="${isCurrentPage}">
+                                        <a href="${_EscapeTool.xml($linkURL)}" 
+                                            #if ($submenuItem.getChild('ariaLabel').value != '' )
+                                                aria-label="${_EscapeTool.xml($submenuItem.getChild('ariaLabel').value)}"
+                                            #end
+                                        >${_EscapeTool.xml($label)}</a>
+                                    </li>
+                                #end
+                            #end
+                        </ul>
+        		    #end
+        		    
+                </li>
+            #end
+                <li id="off-canvas-utility-item">
+                    <div class="off-canvas-menu-container">
+                        #import ( "/_cascade/formats/modular/uninav/_OffCanvas_drilldown_icon_macro.vtl")
+#import ( "/_cascade/formats/modular/uninav/_OffCanvas_menu_back_icon_macro.vtl")
+
+
+<!-- _audiences.vtl -->
+## UTILITY NAV LINKS:
+#set ( $menuItems = $_XPathTool.selectNodes($contentRoot, "/system-data-structure/uninav/audienceNav/menuItem") )
+#set ( $validSubMenuItems = false )
+#set ( $pagePath = $currentPage.path )
+
+#if ($menuItems.size() >= 1)
+    <ul class="off-canvas-utility">
+        #foreach ($menuItem in $menuItems)
+            #set ($label = $menuItem.getChild('label').value )
+            #set ( $menuID = $label.replaceAll(" ", "-").replaceAll("[^a-zA-Z-]", "").replaceAll("--", "-").toLowerCase() )
+            #set ($linkType = $menuItem.getChild('linkType').value )
+            #if ($linkType == 'Internal Link')
+                #set ($linkURL = $menuItem.getChild('internalLink').getChild('path').value )
+            #elseif ($linkType == 'External Link')
+                #set ($linkURL = $menuItem.getChild('externalLink').value )
+            #else 
+                #set ($linkURL = $menuItem.getChild('fileLink').getChild('path').value )
+            #end
+            #set ($iconType = $menuItem.getChild('icon').value )
+            
+            #if ($linkURL != '' && $label != '')
+                ##before, do primary-link OR dropdown, find out if there are submenu items:
+                #set ($submenuItems = $_XPathTool.selectNodes($menuItems, "//menuItem[label='${label}']/submenuItem[label!='']") )
+                
+                ##before, do primary-link OR dropdown, find out if there are submenu items are valid:
+                #if ($submenuItems.size() >= 1)
+                    #foreach ($submenuItem in $submenuItems)
+                        #set ($subLinkType = $submenuItem.getChild('linkType').value )
+                        #if ($subLinkType == 'Internal Link')
+                            #set ($subLinkURL = $submenuItem.getChild('internalLink').getChild('path').value )
+                        #elseif ($subLinkType == 'External Link')
+                            #set ($subLinkURL = $submenuItem.getChild('externalLink').value )
+                        #else 
+                            #set ($subLinkURL = $submenuItem.getChild('fileLink').getChild('path').value )
+                        #end
+                        #set ($subLabel = $submenuItem.getChild('label').value )
+                        #if ($subLinkURL != '' && $subLabel != '')
+                            #set ( $validSubMenuItems = true )
+                        #end
+                    #end
+                #end
+                
+                #if ($submenuItems.size() >= 1 && $validSubMenuItems)
+                    #if ( $pagePath == $linkURL ) 
+                        #set( $isCurrentPage = "drill-down-list-item current" )
+                    #else
+                        #set( $isCurrentPage = "drill-down-list-item")
+                    #end
+                    <li class="${isCurrentPage} uninav__offCanvas-menu-item--audiences uninav__audiences-menu-item--${menuID} uninav__menu-item-audiences--${_MathTool.add($foreach.index, 1)} uninav__audiences-menu-item--dropdown-parent ">
+                        <span tabindex="0"
+                            #if ($iconType == "CSS Class" && $menuItem.getChild('icon_cssClass').value != "")
+                                class="drill-down-parent icon icon-${_EscapeTool.xml($menuItem.getChild('icon_cssClass').value)}"
+                            #else
+                                class="drill-down-parent"
+                            #end
+                        >
+                            #if ($iconType == "SVG" && $menuItem.getChild('icon_svg').value != "")
+                                $menuItem.getChild('icon_svg').value
+                            #end
+                            ${_EscapeTool.xml($label)}
+                        </span>
+                        #offCanvasDrillDownIcon()
+                        <ul class="drilldown-menu">
+                            #offCanvasMenuBackIcon(${_EscapeTool.xml($label)})
+                            <li class="${isCurrentPage} uninav__offCanvas-menu-item--audiences uninav__offCanvas-audiences-menu-item--${menuID} uninav__offCanvas-menu-item-audiences--${_MathTool.add($foreach.index, 1)} uninav__offCanvas-audiences-menu-item--dropdown-parent">
+                                <a id="uninav-OffCanvas-audiences-${menuID}" href="site://Chapman.edu/${_EscapeTool.xml($linkURL)}"
+                                    #if ($iconType == "CSS Class" && $menuItem.getChild('icon_cssClass').value != "")
+                                        class="icon icon-${_EscapeTool.xml($menuItem.getChild('icon_cssClass').value)}"
+                                    #end
+                                    >
+                                    #if ($iconType == "SVG" && $menuItem.getChild('icon_svg').value != "")
+                                        $menuItem.getChild('icon_svg').value
+                                    #end
+                                    ${_EscapeTool.xml($label)}
+                                </a>
+                            </li>
+                            #foreach ($submenuItem in $submenuItems)
+                                #set ($linkType = $submenuItem.getChild('linkType').value )
+                                #if ($linkType == 'Internal Link')
+                                    #set ($linkURL = $submenuItem.getChild('internalLink').getChild('path').value )
+                                #elseif ($linkType == 'External Link')
+                                    #set ($linkURL = $submenuItem.getChild('externalLink').value )
+                                #else 
+                                    #set ($linkURL = $submenuItem.getChild('fileLink').getChild('path').value )
+                                #end
+                                #set ($label = $submenuItem.getChild('label').value )
+                                #set ($iconClass = $submenuItem.getChild('iconClass').value )
+                                #if ( $pagePath == $linkURL ) 
+                                    #set( $isCurrentPage = "drill-down-list-item current" )
+                                #else
+                                    #set( $isCurrentPage = "drill-down-list-item")
+                                #end
+                                #if ($linkURL != '' && $label != '')
+                                    <li class="${isCurrentPage} uninav__offCanvas-menu-item--audiences uninav__offCanvas-audiences-menu-item--${menuID} uninav__offCanvas-menu-item-audiences--${_MathTool.add($foreach.index, 1)} uninav__offCanvas-audiences-menu-item--dropdown-parent">
+                                        <a class="icon icon-$iconClass" href="site://Chapman.edu/${_EscapeTool.xml($linkURL)}">
+                                            ${_EscapeTool.xml($label)}
+                                        </a>
+                                    </li>
+                                #end
+                            #end
+                        </ul>
+                    </li>
+                #else
+                    #if ( $pagePath == $linkURL ) 
+                        #set( $isCurrentPage = "drill-down-list-item current" )
+                    #else
+                        #set( $isCurrentPage = "drill-down-list-item")
+                    #end
+                    <li class="${isCurrentPage} uninav__offCanvas-menu-item--audiences uninav__offCanvas-audiences-menu-item--${menuID} uninav__offCanvas-menu-item-audiences--${_MathTool.add($foreach.index, 1)} uninav__offCanvas-audiences-menu-item--dropdown-parent">
+                        <a id="uninav-offCanvas-audiences-${menuID}" href="site://Chapman.edu/${_EscapeTool.xml($linkURL)}"
+                            #if ($iconType == "CSS Class" && $menuItem.getChild('icon_cssClass').value != "")
+                                ## class="icon icon-${_EscapeTool.xml($menuItem.getChild('icon_cssClass').value)}"
+                            #end
+                        >
+                            #if ($iconType == "SVG" && $menuItem.getChild('icon_svg').value != "")
+                                ## $menuItem.getChild('icon_svg').value
+                            #end
+                            ${_EscapeTool.xml($label)}
+                        </a>
+                        
+                    </li>
+                #end
+            #end
+        #end
+    </ul>
+#end
+## UTILITY NAV LINKS (END)
+
+                    </div>
+                </li>
+                <li id="off-canvas-cta-item">
+                    <div class="off-canvas-menu-container">
+                        ## UTILITY NAV LINKS:
+#set ( $menuItems = $_XPathTool.selectNodes($contentRoot, "/system-data-structure/uninav/cta/link") )
+#set ( $pagePath = $currentPage.path )
+
+<ul class="off-canvas-cta">
+    #if ($menuItems.size() >= 1)
+        #foreach ($menuItem in $menuItems)
+            #set ($label = $menuItem.getChild('label').value )
+            #set ( $menuID = $label.replaceAll(" ", "-").replaceAll("[^a-zA-Z-]", "").replaceAll("--", "-").toLowerCase() )
+            #set ($linkType = $menuItem.getChild('linkType').value )
+            #if ($linkType == 'Internal Link')
+                #set ($linkURL = "site://Chapman.edu/${menuItem.getChild('internalLink').getChild('path').value}" )
+            #elseif ($linkType == 'External Link')
+                #set ($linkURL = $menuItem.getChild('externalLink').value )
+            #else 
+                #set ($linkURL = "site://Chapman.edu/${menuItem.getChild('fileLink').getChild('path').value}" )
+            #end
+            #set ($iconType = $menuItem.getChild('icon').value )
+            #if ($linkURL != '' && $label != '')
+                #if ( $pagePath == $linkURL ) 
+                    #set( $isCurrentPage = "drill-down-list-item current" )
+                #else
+                    #set( $isCurrentPage = "drill-down-list-item")
+                #end
+                <li class="${isCurrentPage} uninav__menu-item-cta uninav__cta-menu-item--$menuID uninav__cta-menu-item--${_MathTool.add($foreach.index, 1)}">
+                    <a href="${_EscapeTool.xml($linkURL)}" id="uninav-cta-${_EscapeTool.xml($menuID)}"
+                        #if ($iconType == "CSS Class" && $menuItem.getChild('icon_cssClass').value != "")
+                            ## class="icon icon-${_EscapeTool.xml($menuItem.getChild('icon_cssClass').value)}"
+                        #end
+                    >
+                    #if ($iconType == "SVG" && $menuItem.getChild('icon_svg').value != "")
+                        ## $menuItem.getChild('icon_svg').value
+                    #end
+                    ${_EscapeTool.xml($label)}
+                    </a>
+                </li>
+            #end
+        #end
+    #else
+        #set ($linkType = $menuItem.getChild('linkType').value )
+        #if ($linkType == 'Internal Link')
+            #set ($linkURL = "site://Chapman.edu/${menuItem.getChild('internalLink').getChild('path').value}" )
+        #elseif ($linkType == 'External Link')
+            #set ($linkURL = $menuItem.getChild('externalLink').value )
+        #else 
+            #set ($linkURL = "site://Chapman.edu/${menuItem.getChild('fileLink').getChild('path').value}" )
+        #end
+        #if ( $pagePath == $linkURL ) 
+            #set( $isCurrentPage = "drill-down-list-item current" )
+        #else
+            #set( $isCurrentPage = "drill-down-list-item")
+        #end
+        <li class="${isCurrentPage} uninav__menu-item-cta uninav__cta-menu-item--$menuID uninav__cta-menu-item--${_MathTool.add($foreach.index, 1)}">
+            <a href="${_EscapeTool.xml($linkURL)}" id="uninav-cta-${_EscapeTool.xml($menuID)}"
+                #if ($iconType == "CSS Class" && $menuItem.getChild('icon_cssClass').value != "")
+                    ## class="icon icon-${_EscapeTool.xml($menuItem.getChild('icon_cssClass').value)}"
+                #end
+            >
+                #if ($iconType == "SVG" && $menuItem.getChild('icon_svg').value != "")
+                    ## $menuItem.getChild('icon_svg').value
+                #end
+                ${_EscapeTool.xml($label)}
+            </a>
+        </li>
+    #end
+</ul>
+
+
+    
+   
+                    </div>
+                </li>
+        </ul>
+    </div>
+#end
+
+## OFF CANVAS NAV: Main Menu (END)
+
+
+</div>
+#end
+
+#macro ( buildOffCanvasDirectoryMenu )
+#set ( $currentPathRoot = $currentPage.path.replaceAll('/(.*)', "") )
+
+#if ( $currentPathRoot != "index" && $currentPathRoot != "")
+#set ( $offCanvasNavAssets = $_.locateFolder($currentPathRoot) )
+#set ( $offCanvasLabel = $offCanvasNavAssets.label)
+
+<div id="off-canvas-umbrella" class="off-canvas-menu">
+  <div class="menu-header">
+    <span tabindex="0" class="menu-label">${_EscapeTool.xml($offCanvasLabel)}</span>
+    <span tabindex="0" class="toggle-menu-label">Chapman Menu</span>
+  </div>
+
+  <div id="off-canvas-umbrella-navigation" class="off-canvas-menu">
+    <ul class="root-umbrella-nav">
+      #foreach( $asset in $offCanvasNavAssets.children)
+      #buildDrillDownList($asset)
+      #end
+    </ul>
+  </div>
+</div>
+#end
+#end
+
+## used in omni_nav format and other partial formats to build toggle in off-canvas nav:
+#macro ( buildToggleIcon $displayName )
+  <span class="toggle">
+    <span class="fas fa-chevron-right"></span>
+  </span>
+#end
+
+#macro ( buildOffCanvasNavCloseIcon )
+<span tabindex="0" class="close js-close-off-canvas-nav">
+  <span class="fas fa-times-circle">
+    <span class="sr-only">Close Off-Canvas Menu</span>
+  </span>
+</span>
+#end
+
+
+##
+## Helper Macros
+##
+#macro( buildSearchBox )
+<div class="cu-search-box"></div>
+<div class="search-results-container">
+  <div class="cu-search-results"></div>
+</div>
+#end
+
+#macro( debugUmbrellaAssets )
+#foreach ( $asset in $umbrellaAssets )
+<!-- $asset.name : $asset.path ($asset.children.size()) -->
+#end
+#end
+
+
+##
+## Main OmniNav HTML Block
+##
+#setVars()
+#buildOmniNav()
