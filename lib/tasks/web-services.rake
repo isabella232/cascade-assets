@@ -405,13 +405,13 @@ task :publish do
   # set these in environment_variables.yml
   cascade_username = '?u=' + ENV['CASCADE_USERNAME']
   cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
+  cascade_api_key = '?apiKey=' + ENV['CASCADE_API_KEY']
 
   # the constructed url should look something like:
   # https://dev-cascade.chapman.edu/api/v1/read/folder/Chapman.edu/_cascade/formats/modular/widgets/foldername?u=username&p=password
 
   url =
-    base_url + rest_action + ENV['TYPE'] + ENV['PATH'] + cascade_username +
-      cascade_password
+    base_url + rest_action + ENV['TYPE'] + ENV['PATH'] + cascade_api_key
   p url
 
   # Inspect response for required details below 👇
@@ -449,14 +449,14 @@ def edit_format(asset_path, update_source)
   # set these in environment_variables.yml
   cascade_username = '?u=' + ENV['CASCADE_USERNAME']
   cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
+  cascade_api_key = '?apiKey=' + ENV['CASCADE_API_KEY']
   p cascade_username
   p cascade_password
   # the constructed url should look something like:
   # https://dev-cascade.chapman.edu/api/v1/read/folder/Chapman.edu/_cascade/formats/modular/widgets/foldername?u=username&p=password
 
   url =
-    base_url + rest_action + asset_type + asset_path + cascade_username +
-      cascade_password
+    base_url + rest_action + asset_type + asset_path + cascade_api_key
   #  p url
 
   # Inspect response for required details below 👇
@@ -485,8 +485,7 @@ def edit_format(asset_path, update_source)
 
   #  # Change URL for edit request
   url_post =
-    base_url + 'edit/' + asset_type + asset_path + cascade_username +
-      cascade_password
+    base_url + 'edit/' + asset_type + asset_path + cascade_api_key
   p url_post
   p "📝 Replacing #{response_path} with #{update_source}"
 
@@ -541,13 +540,13 @@ def edit_data_def(asset_path, update_source)
   # set these in environment_variables.yml
   cascade_username = '?u=' + ENV['CASCADE_USERNAME']
   cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
+  cascade_api_key = '?apiKey=' + ENV['CASCADE_API_KEY']
 
   # the constructed url should look something like:
   # https://dev-cascade.chapman.edu/api/v1/read/folder/Chapman.edu/_cascade/formats/modular/widgets/foldername?u=username&p=password
 
   url =
-    base_url + rest_action + asset_type + asset_path + cascade_username +
-      cascade_password
+    base_url + rest_action + asset_type + asset_path + cascade_api_key
   #  p url
 
   # Inspect response for required details below 👇
@@ -573,8 +572,7 @@ def edit_data_def(asset_path, update_source)
 
   #  # Change URL for edit request
   url_post =
-    base_url + 'edit/' + asset_type + asset_path + cascade_username +
-      cascade_password
+    base_url + 'edit/' + asset_type + asset_path + cascade_api_key
 
   #  # 👹Editing assets unfortunately requires PATH, SITENAME, ID. This can be obtained by reading the asset's response.body 👆
   p HTTParty.post(
@@ -621,10 +619,10 @@ def edit_block(asset_path, update_source)
   # set these in environment_variables.yml
   cascade_username = '?u=' + ENV['CASCADE_USERNAME']
   cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
+  cascade_api_key = '?apiKey=' + ENV['CASCADE_API_KEY']
 
   url =
-    base_url + rest_action + asset_type + asset_path + cascade_username +
-      cascade_password
+    base_url + rest_action + asset_type + asset_path + cascade_api_key
 
   p url
 
@@ -653,8 +651,7 @@ def edit_block(asset_path, update_source)
   response_body = data
 
   url_post =
-    base_url + 'edit/' + asset_type + asset_path + cascade_username +
-      cascade_password
+    base_url + 'edit/' + asset_type + asset_path + cascade_api_key
 
   # 👹Editing assets unfortunately requires PATH, SITENAME, ID. This can be obtained by reading the asset's response.body 👆
   # HTTParty.post(url_post, body: { asset: { xmlBlock: { xml: data, path: "_cascade/blocks/html/0-write-test", parentFolderId: parent_folder_id, siteName: "Chapman.edu", id: "365ae5dec0a81e8a20b1d746fd3e0778" } } }.to_json)
@@ -703,13 +700,13 @@ def edit_shared_field(asset_path, update_source)
   # set these in environment_variables.yml
   cascade_username = '?u=' + ENV['CASCADE_USERNAME']
   cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
+  cascade_api_key = '?apiKey=' + ENV['CASCADE_API_KEY']
 
   # the constructed url should look something like:
   # https://dev-cascade.chapman.edu/api/v1/read/folder/Chapman.edu/_cascade/formats/modular/widgets/foldername?u=username&p=password
 
   url =
-    base_url + rest_action + asset_type + asset_path + cascade_username +
-      cascade_password
+    base_url + rest_action + asset_type + asset_path + cascade_api_key
   #  p url
 
   # Inspect response for required details below 👇
@@ -740,8 +737,7 @@ def edit_shared_field(asset_path, update_source)
 
   #  # Change URL for edit request
   url_post =
-    base_url + 'edit/' + asset_type + asset_path + cascade_username +
-      cascade_password
+    base_url + 'edit/' + asset_type + asset_path + cascade_api_key
   p url_post
   p "📝 Replacing #{response_path} with #{update_source}"
 
@@ -800,6 +796,7 @@ def create_file(file_name, asset_path, update_source)
   # set these in environment_variables.yml
   cascade_username = '?u=' + ENV['CASCADE_USERNAME']
   cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
+  cascade_api_key = '?apiKey=' + ENV['CASCADE_API_KEY']
 
   update_source = "#{update_source}"
 
@@ -809,8 +806,7 @@ def create_file(file_name, asset_path, update_source)
   response_body = data
 
   url_post =
-    base_url + rest_action + asset_type + asset_path + cascade_username +
-      cascade_password
+    base_url + rest_action + asset_type + asset_path + cascade_api_key
 
   # 👹Editing assets unfortunately requires PATH, SITENAME, ID. This can be obtained by reading the asset's response.body 👆
   # HTTParty.post(url_post, body: { asset: { xmlBlock: { xml: data, path: "_cascade/blocks/html/0-write-test", parentFolderId: parent_folder_id, siteName: "Chapman.edu", id: "365ae5dec0a81e8a20b1d746fd3e0778" } } }.to_json)
@@ -886,6 +882,7 @@ def create_block(asset_name, parent_folder_path, update_source)
   # set these in environment_variables.yml
   cascade_username = '?u=' + ENV['CASCADE_USERNAME']
   cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
+  cascade_api_key = '?apiKey=' + ENV['CASCADE_API_KEY']
 
   update_source = "#{update_source}"
 
@@ -1009,13 +1006,13 @@ def publish_asset(asset_type, asset_path)
   # set these in environment_variables.yml
   cascade_username = '?u=' + ENV['CASCADE_USERNAME']
   cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
+  cascade_api_key = '?apiKey=' + ENV['CASCADE_API_KEY']
 
   # the constructed url should look something like:
   # https://dev-cascade.chapman.edu/api/v1/read/folder/Chapman.edu/_cascade/formats/modular/widgets/foldername?u=username&p=password
 
   url =
-    base_url + rest_action + asset_type + asset_path + cascade_username +
-      cascade_password
+    base_url + rest_action + asset_type + asset_path + cascade_api_key
   p url
 
   # Inspect response for required details below 👇
