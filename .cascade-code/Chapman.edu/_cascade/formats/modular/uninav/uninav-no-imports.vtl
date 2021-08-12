@@ -19,8 +19,7 @@ b) select (this) format: Chapman.edu: Chapman.edu: /_cascade/formats/modular/uni
 ##
 ## Imports
 ##
-#import( "/_config/global_nav.vm" )
-#import( "/_config/global_nav_law.vm" )
+
 #import( "/_cascade/formats/helpers.velocity" )
 
 #macro ( offCanvasUmbrellaNavButton $displayName)
@@ -182,7 +181,6 @@ b) select (this) format: Chapman.edu: Chapman.edu: /_cascade/formats/modular/uni
   #uninavLogo()
   #uninavCTA()
   #uninavUtility()
-  #uninavSearch()
   #uninavGlobal()
 
   <!-- Page overlay for when search results are displayed -->
@@ -267,7 +265,7 @@ b) select (this) format: Chapman.edu: Chapman.edu: /_cascade/formats/modular/uni
         <li class="uninav__utility-nav--audiences-container  uninav__dropdown--parent" aria-expanded="false">
             <p tabindex="0">Info For</p>
             <div class="uninav__dropdown--child">
-                
+                #import( "/_cascade/formats/helpers.velocity" )
 
 <!-- _audiences.vtl -->
 ## UTILITY NAV LINKS:
@@ -968,7 +966,7 @@ b) select (this) format: Chapman.edu: Chapman.edu: /_cascade/formats/modular/uni
   <li tabindex="0" class="menu-back"><span class="fas fa-chevron-left"></span>Back</li>
 #end
 
-
+#import( "/_cascade/formats/helpers.velocity" )
 
 ## OFF CANVAS NAV: Main Menu:
 #set ( $menuItems = $_XPathTool.selectNodes($contentRoot, "/system-data-structure/uninav/globalNav/menuItem/label") )
@@ -1053,7 +1051,7 @@ b) select (this) format: Chapman.edu: Chapman.edu: /_cascade/formats/modular/uni
                     <div class="off-canvas-menu-container">
                         #import ( "/_cascade/formats/modular/uninav/_OffCanvas_drilldown_icon_macro.vtl")
 #import ( "/_cascade/formats/modular/uninav/_OffCanvas_menu_back_icon_macro.vtl")
-
+#import( "/_cascade/formats/helpers.velocity" )
 
 <!-- _audiences.vtl -->
 ## UTILITY NAV LINKS:
