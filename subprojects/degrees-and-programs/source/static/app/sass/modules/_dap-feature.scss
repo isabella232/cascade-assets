@@ -278,19 +278,19 @@ $dap-feature-background-image-width: rem-calc(1396);
 
 	// scss-lint:disable VendorPrefix
 	::-webkit-input-placeholder {
-		color: $white;
+		color: $black;
 	}
 
 	:-moz-placeholder {
-		color: $white;
+		color: $black;
 	}
 
 	::-moz-placeholder {
-		color: $white;
+		color: $black;
 	}
 
 	:-ms-input-placeholder {
-		color: $white;
+		color: $black;
 	}
 
 	input::-webkit-calendar-picker-indicator {
