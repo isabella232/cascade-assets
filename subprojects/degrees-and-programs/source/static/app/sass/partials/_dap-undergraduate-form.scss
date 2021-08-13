@@ -71,7 +71,7 @@ $palettes: map-merge($palettes, (
 
 				.no-touch &,
 				.no-js & {
-					color: $paprika;
+					color: $red;
 					background-color: $white;
 				}
 
@@ -87,14 +87,14 @@ $palettes: map-merge($palettes, (
 				display: none;
 
 				&:checked ~ span {
-					color: $paprika;
+					color: $red;
 					background-color: $white;
 				}
 
 			}
 
 			span {
-				color: $white;
+				color: $black;
 				background-color: transparent;
 				transition: color $transition-time, background-color $transition-time;
 				display: inline-block;

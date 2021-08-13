@@ -6,8 +6,7 @@ $palettes: map-merge($palettes, (
 ));
 
 .dap-form {
-	color: $white;
-	background-color: $mine-shaft;
+	color: $black;
 	padding: rem-calc(0 10);
 
 	@include breakpoint(medium) {
@@ -38,6 +37,20 @@ $palettes: map-merge($palettes, (
 
 	form {
 
+      display: block;
+      position: absolute;
+      height: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: $sand;
+      position: relative;
+      mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);
+      -webkit-mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);
+      -webkit-mask-size: 100% 100%;
+      will-change: filter;
+      max-height: max-content;
+  
 		.subsection-heading {
 			font-size: rem-calc(18);
 			font-weight: 700;
@@ -59,7 +72,7 @@ $palettes: map-merge($palettes, (
 			display: none;
 
 			&:checked ~ .inner {
-				background-color: $paprika;
+				background-color: $red;
 				border: 1px solid transparent;
 
 				svg {
@@ -72,11 +85,20 @@ $palettes: map-merge($palettes, (
 		}
 
 		.inner {
-			background-color: transparent;
-			border: $transparent-white-border;
+			background-color: $white;
+			border: 1px solid $cu-light-grey-2;
+      
+      color: $black;
 			width: 100%;
 			height: 100%;
 			transition: background-color $transition-time, border-color $transition-time;
+
+      &:hover, &focus-within, &:active {
+        background-color: $red;
+        color: $white;
+        
+        span { color: $white; }
+      }
 		}
 
 		svg,
@@ -94,6 +116,12 @@ $palettes: map-merge($palettes, (
 
 		span {
 			line-height: inherit;
+      font-weight: normal;
+      font-family: $futura-regular;
+
+      &:active {
+        color: $white;
+      }
 		}
 
 	}
