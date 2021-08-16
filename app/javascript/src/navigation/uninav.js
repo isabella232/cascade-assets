@@ -232,7 +232,7 @@ function staticUninav() {
     console.log(
       "replacing static navigation with dynamic from sibling index.aspx"
     );
-    $("nav#uninav").hide();
+    $("nav#uninav").fadeOut();
     $("header").load(
       "./index.aspx nav#uninav",
       function (responseTxt, statusTxt, xhr) {
