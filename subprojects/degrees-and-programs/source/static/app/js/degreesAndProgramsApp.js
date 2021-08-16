@@ -1238,7 +1238,7 @@ var chapman = chapman || {};
       hashChangesActive = false;
 
       if (!noFilters && formType && formType !== undefined && formType.length) {
-        _this.resetFiltering(form);
+        // _this.resetFiltering(form);
       }
     },
 

@@ -45,6 +45,7 @@ $palettes: map-merge($palettes, (
 			border-bottom: $transparent-white-border;
 			padding: rem-calc(0 0 12);
 			margin: rem-calc(0 0 20);
+      position:relative;
 		}
 
 	}
@@ -172,4 +173,22 @@ $palettes: map-merge($palettes, (
 
 	}
 
+}
+
+
+// move to common.scss or similar
+.program-types {
+  .program-finder__heading {
+    display: flex;
+    justify-content: space-between;
+}
+
+  hr {
+    color: $grey;
+  }
+  button.program-toggle {
+    background-color: $red !important;
+    position: relative;
+    max-width: max-content;
+}
 }

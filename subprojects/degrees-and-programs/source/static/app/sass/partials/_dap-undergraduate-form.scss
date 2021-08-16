@@ -161,7 +161,14 @@ $palettes: map-merge($palettes, (
   position: relative;
 }
 
-#js-dap-undergraduate-interests {
+#js-dap-undergraduate-interests, #js-dap-graduate-interests {
   z-index: 2;
   position: relative;
+}
+
+.text{
+
+  &--red {
+    color: $red;
+  }
 }
