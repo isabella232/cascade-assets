@@ -16,7 +16,7 @@ var chapman = chapman || {};
     graduateProgramNames = [],
     resultsSetItems = [],
     resultsSetItemsLoaded = 0,
-    lazyLoadingPaused = true,
+    lazyLoadingPaused = false,
     lazyLoadingIntervalTime = 200,
     resultsSetCount = 0,
     isTransitioning = false, // Flag for transitioning between sections
@@ -424,7 +424,7 @@ var chapman = chapman || {};
 
       setTimeout(function () {
         result.addClass("faded-in");
-      }, 100);
+      }, 0);
     },
 
     toggleSection: function (el, scrollEl) {
@@ -530,8 +530,7 @@ var chapman = chapman || {};
             if (scrollPoint) {
               isUserScroll = false;
 
-              $("html, body").animate(
-                {
+              $("html, body").animate({
                   scrollTop: scrollPoint,
                 },
                 scrollToSectionTime,
@@ -560,8 +559,8 @@ var chapman = chapman || {};
         var motivation = el.data("motivation"),
           $motivationInterests = $(
             '#js-dap-discover-interests .interest[data-category="' +
-              motivation +
-              '"]'
+            motivation +
+            '"]'
           );
 
         dap.discover.$interests.find("input").prop("checked", false); // Reset interests
@@ -933,14 +932,14 @@ var chapman = chapman || {};
       if (result.links) {
         console.log(
           "stringified link length: " +
-            JSON.stringify(result.title + " " + result.links.length)
+          JSON.stringify(result.title + " " + result.links.length)
         );
 
         if (result.links[0] !== undefined) {
           console.log(JSON.stringify(result.links[0]));
           console.log(
             "link 0 label: " +
-              JSON.stringify(result.title + result.links[0].linkLabel)
+            JSON.stringify(result.title + result.links[0].linkLabel)
           );
         }
         if (result.links[1] !== undefined) {
@@ -1200,8 +1199,8 @@ var chapman = chapman || {};
         } else if (filter.indexOf("motivation") !== -1) {
           var $motivationEl = $(
             '#js-dap-discover-motivations .motivation[data-motivation="' +
-              filterValue +
-              '"]'
+            filterValue +
+            '"]'
           );
 
           _this.switchDiscoverMotivation($motivationEl);
@@ -1209,8 +1208,8 @@ var chapman = chapman || {};
           if (formType === "discover") {
             var $interestEl = $(
               '#js-dap-discover-interests .interest[data-interest="' +
-                filterValue +
-                '"]'
+              filterValue +
+              '"]'
             );
 
             _this.switchDiscoverInterest($interestEl);
@@ -1254,8 +1253,7 @@ var chapman = chapman || {};
       setTimeout(function () {
         isUserScroll = false;
 
-        $("html, body").animate(
-          {
+        $("html, body").animate({
             // scrollTop: $(target).offset().top - (headerOffset + 20),
           },
           standardTransitionTime,
@@ -1280,8 +1278,7 @@ var chapman = chapman || {};
 
       // If the top of the results container isn't completely in view, scroll to it
       if (bottomOfWindow - resultsContainerHeight <= topOfResultsContainer) {
-        $("html, body").animate(
-          {
+        $("html, body").animate({
             scrollTop: scrollPoint,
           },
           standardTransitionTime,
@@ -1304,3 +1301,21 @@ $(function () {
 
   chapman.degreesAndProgramsApp.init();
 });
+
+
+
+
+$(window).load(function () {
+  setWavyBgHeight();
+});
+
+function setWavyBgHeight() {
+  $('form').each(function () {
+    var contentHeight = $(this).outerHeight()
+    var wavyBGHeight = $(this).closest('.wavy-bg').height();
+    //     var wavyBGHeight = window.getComputedStyle(wavyBG, ':before').height; // Returns (string) "70px"
+
+    $(this).find('.wavy-bg').css('min-height', contentHeight)
+
+  })
+};

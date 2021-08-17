@@ -68,18 +68,3 @@ $(function () {
 
 
 });
-
-$(window).load(function () {
-  setWavyBgHeight();
-});
-
-function setWavyBgHeight() {
-  $('form').each(function () {
-    var contentHeight = $(this).outerHeight()
-    var wavyBGHeight = $(this).closest('.wavy-bg').height()
-    //     var wavyBGHeight = window.getComputedStyle(wavyBG, ':before').height; // Returns (string) "70px"
-
-    $(this).find('.wavy-bg').height(contentHeight)
-
-  })
-}

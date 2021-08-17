@@ -62,32 +62,25 @@
                 <span>Majors</span>
               </div>
             </label>
-          </div>
-        </div>
-        <div class="columns small-12 medium-6">
-          <div class="field-container">
-            <label tabindex="0" class="program-type button" for="dap-undergraduate-program-minor">
-              <input id="dap-undergraduate-program-minor" name="dap-undergraduate-program-minor" type="checkbox"
-                value="minor" />
+            <label tabindex="0" class="program-type button" for="dap-undergraduate-program-major">
+              <input id="dap-undergraduate-program-major" name="dap-undergraduate-program-major" type="checkbox"
+                value="major,integrated/4+1,accelerated 3+2" />
               <div class="inner">
                 {{svg "check"}}
-                <span>Minors</span>
+                <span>Majors</span>
+              </div>
+            </label>
+            <label tabindex="0" class="program-type button" for="dap-undergraduate-program-major">
+              <input id="dap-undergraduate-program-major" name="dap-undergraduate-program-major" type="checkbox"
+                value="major,integrated/4+1,accelerated 3+2" />
+              <div class="inner">
+                {{svg "check"}}
+                <span>Majors</span>
               </div>
             </label>
           </div>
         </div>
-        <div class="columns small-12 medium-6">
-          <div class="field-container">
-            <label tabindex="0" class="program-type button" for="dap-undergraduate-program-bridge">
-              <input id="dap-undergraduate-program-bridge" name="dap-undergraduate-program-bridge" type="checkbox"
-                value="bridge,integrated/4+1,accelerated 3+2" />
-              <div class="inner">
-                {{svg "check"}}
-                <span>Accelerated &amp; Bridge Programs</span>
-              </div>
-            </label>
-          </div>
-        </div>
+
 
       </div>
     </div>
@@ -179,7 +172,8 @@
       </div>
     </div>
 
-    <div id="js-dap-undergraduate-filter-types" class="filter-types">
+    {{!-- the search fields -- move these above results area --}}
+    {{!-- <div id="js-dap-undergraduate-filter-types" class="filter-types">
       <div class="row">
 
         <!-- Filter by Schools and Colleges -->
@@ -221,7 +215,7 @@
         </div>
 
       </div>
-    </div>
+    </div> --}}
 
   </fieldset>
 </form>
