@@ -474,7 +474,7 @@ var chapman = chapman || {};
           });
 
           activeSection = ""; // Clear the active section
-        }, 500);
+        }, 0);
       } else {
         // Otherwise close the old section and open the new one
 
