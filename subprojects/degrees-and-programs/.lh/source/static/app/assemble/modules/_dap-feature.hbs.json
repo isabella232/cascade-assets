@@ -1,0 +1,18 @@
+{
+    "sourceFile": "source/static/app/assemble/modules/_dap-feature.hbs",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1628886593542,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1628886593542,
+            "name": "Commit-0",
+            "content": "---\ntitle: \"Degrees And-programs-feature\"\nlayout: module.hbs\nmodule: true\n---\n\n<!-- module:dap-feature -->\n{{#parseFixture 'dap-feature.json'}}\n<div id=\"js-dap-feature\" class=\"dap-feature\" data-json-url=\"assemble/fixtures/dap-feature.json\" >\n\n\t{{> _svg }}\n\n\t<div class=\"dap-feature-inner\">\n\t\t\n\t\t<!-- START DISCOVER SECTION -->\n\t\t<section id=\"js-dap-section-discover\" class=\"dap-section\" data-id=\"discover\">\n\n\t\t\t{{#with sections.[0]}}\n\n\t\t\t\t{{> dap-header heading}}\n\n\t\t\t\t<div class=\"dap-body\">\n\t\t\t\t\t\n\t\t\t\t\t<div class=\"dap-form\">\n\t\t\t\t\t    {{> dap-discover-form }}\n\t\t\t\t\t</div>\n\n\t\t\t\t\t{{> dap-results this }}\n\n\t\t\t\t\t<div class=\"dap-form\">\n\t\t\t\t\t\t{{> dap-discover-keyword-form }}\n\t\t\t\t\t</div>\n\n\t\t\t\t</div>\n\n\t\t\t{{/with}}\n\n\t\t</section>\n\t\t<!-- END DISCOVER SECTION -->\n\n\t\t<!-- START UNDERGRADUATE SECTION -->\n\t\t<section id=\"js-dap-section-undergraduate\" class=\"dap-section\" data-id=\"undergraduate\">\n\t\t\t\n\t\t\t{{#with sections.[1]}}\n\n\t\t\t\t{{> dap-header heading}}\n\n\t\t\t\t<div class=\"dap-body\">\n\t\t\t\t\t\n\t\t\t\t\t<div class=\"dap-form\">\n\t\t\t\t\t\t{{> dap-undergraduate-form this }}\n\t\t\t\t\t</div>\n\n\t\t\t\t\t{{> dap-results this }}\n\n\t\t\t\t</div>\n\n\t\t\t{{/with}}\n\n\t\t</section>\n\t\t<!-- END UNDERGRADUATE SECTION -->\n\n\t\t<!-- START GRADUATE SECTION -->\n\t\t<section id=\"js-dap-section-graduate\" class=\"dap-section\" data-id=\"graduate\">\n\t\t\t\n\t\t\t{{#with sections.[2]}}\n\n\t\t\t\t{{> dap-header heading}}\n\n\t\t\t\t<div class=\"dap-body\">\n\n\t\t\t\t\t<div class=\"dap-form\">\n\t\t\t\t\t\t{{> dap-graduate-form }}\n\t\t\t\t\t</div>\n\n\t\t\t\t\t{{> dap-results this }}\n\n\t\t\t\t</div>\n\n\t\t\t{{/with}}\n\n\t\t</section>\n\t\t<!-- END GRADUATE SECTION -->\n\n\t</div>\n\n</div>\n{{/parseFixture}}\n<!-- end module:dap-feature -->\n"
+        }
+    ]
+}

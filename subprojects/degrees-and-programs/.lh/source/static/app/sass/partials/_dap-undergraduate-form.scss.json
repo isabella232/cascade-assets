@@ -1,0 +1,146 @@
+{
+    "sourceFile": "source/static/app/sass/partials/_dap-undergraduate-form.scss",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 32,
+            "patches": [
+                {
+                    "date": 1628814878857,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1628815432669,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,9 @@\n \t\t\t&:hover {\n \n \t\t\t\t.no-touch &,\n \t\t\t\t.no-js & {\n-\t\t\t\t\tcolor: $paprika;\n+\t\t\t\t\tcolor: $red;\n \t\t\t\t\tbackground-color: $white;\n \t\t\t\t}\n \n \t\t\t}\n@@ -86,9 +86,9 @@\n \t\t\tinput {\n \t\t\t\tdisplay: none;\n \n \t\t\t\t&:checked ~ span {\n-\t\t\t\t\tcolor: $paprika;\n+\t\t\t\t\tcolor: $red;\n \t\t\t\t\tbackground-color: $white;\n \t\t\t\t}\n \n \t\t\t}\n"
+                },
+                {
+                    "date": 1628897500440,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -136,4 +136,38 @@\n \n \t}\n \n }\n+\n+\n+/* Inline #13 | http://localhost:3001/degrees-and-programs.html#type=undergraduate&dap-undergraduate-keyword= */\n+\n+#js-dap-undergraduate-form::before {\n+  /* content: \"\"; */\n+  /* content: \" attr\"; */\n+  content: \" \";\n+  display: block;\n+  position: absolute;\n+  height: 100%;\n+  top: 0;\n+  left: 0;\n+  right: 0;\n+  background: pink;\n+  position: relative;\n+  mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n+  -webkit-mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n+  -webkit-mask-size: 100% 100%;\n+  will-change: filter;\n+  max-height: max-content;\n+  height: 600px;\n+  position: absolute;\n+}\n+\n+#js-dap-undergraduate-form {\n+  position: relative;\n+}\n+\n+#js-dap-undergraduate-form::before {\n+  /* background: pink; */\n+  background-color: $sand;\n+  z-index: 0;\n+}\n"
+                },
+                {
+                    "date": 1628897512388,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -138,13 +138,10 @@\n \n }\n \n \n-/* Inline #13 | http://localhost:3001/degrees-and-programs.html#type=undergraduate&dap-undergraduate-keyword= */\n \n #js-dap-undergraduate-form::before {\n-  /* content: \"\"; */\n-  /* content: \" attr\"; */\n   content: \" \";\n   display: block;\n   position: absolute;\n   height: 100%;\n@@ -166,8 +163,7 @@\n   position: relative;\n }\n \n #js-dap-undergraduate-form::before {\n-  /* background: pink; */\n   background-color: $sand;\n   z-index: 0;\n }\n"
+                },
+                {
+                    "date": 1628897538585,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -139,9 +139,9 @@\n }\n \n \n \n-#js-dap-undergraduate-form::before {\n+.wavy-background::before {\n   content: \" \";\n   display: block;\n   position: absolute;\n   height: 100%;\n"
+                },
+                {
+                    "date": 1628897557762,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -147,9 +147,9 @@\n   height: 100%;\n   top: 0;\n   left: 0;\n   right: 0;\n-  background: pink;\n+  background: $sand;\n   position: relative;\n   mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n   -webkit-mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n   -webkit-mask-size: 100% 100%;\n"
+                },
+                {
+                    "date": 1628897624107,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -137,10 +137,8 @@\n \t}\n \n }\n \n-\n-\n .wavy-background::before {\n   content: \" \";\n   display: block;\n   position: absolute;\n"
+                },
+                {
+                    "date": 1628897629871,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -161,7 +161,7 @@\n   position: relative;\n }\n \n #js-dap-undergraduate-form::before {\n-  background-color: $sand;\n+  // background-color: $sand;\n   z-index: 0;\n }\n"
+                },
+                {
+                    "date": 1628897738025,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -137,8 +137,10 @@\n \t}\n \n }\n \n+\n+\n .wavy-background::before {\n   content: \" \";\n   display: block;\n   position: absolute;\n@@ -161,7 +163,7 @@\n   position: relative;\n }\n \n #js-dap-undergraduate-form::before {\n-  // background-color: $sand;\n+  background-color: $sand;\n   z-index: 0;\n }\n"
+                },
+                {
+                    "date": 1628897748013,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -148,9 +148,8 @@\n   top: 0;\n   left: 0;\n   right: 0;\n   background: $sand;\n-  position: relative;\n   mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n   -webkit-mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n   -webkit-mask-size: 100% 100%;\n   will-change: filter;\n"
+                },
+                {
+                    "date": 1628897802642,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -139,9 +139,9 @@\n }\n \n \n \n-.wavy-background::before {\n+#js-dap-results-undergraduate {\n   content: \" \";\n   display: block;\n   position: absolute;\n   height: 100%;\n"
+                },
+                {
+                    "date": 1628897816357,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -139,9 +139,9 @@\n }\n \n \n \n-#js-dap-results-undergraduate {\n+#js-dap-results-undergraduate::before {\n   content: \" \";\n   display: block;\n   position: absolute;\n   height: 100%;\n"
+                },
+                {
+                    "date": 1628897834292,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -138,9 +138,11 @@\n \n }\n \n \n-\n+#js-dap-results-undergraduate {\n+  position: relative;\n+}\n #js-dap-results-undergraduate::before {\n   content: \" \";\n   display: block;\n   position: absolute;\n"
+                },
+                {
+                    "date": 1628897883957,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -141,9 +141,9 @@\n \n #js-dap-results-undergraduate {\n   position: relative;\n }\n-#js-dap-results-undergraduate::before {\n+.dap-form::before {\n   content: \" \";\n   display: block;\n   position: absolute;\n   height: 100%;\n"
+                },
+                {
+                    "date": 1628897889456,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -164,7 +164,7 @@\n   position: relative;\n }\n \n #js-dap-undergraduate-form::before {\n-  background-color: $sand;\n+  // background-color: $sand;\n   z-index: 0;\n }\n"
+                },
+                {
+                    "date": 1628897906647,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -142,29 +142,24 @@\n #js-dap-results-undergraduate {\n   position: relative;\n }\n .dap-form::before {\n-  content: \" \";\n-  display: block;\n-  position: absolute;\n-  height: 100%;\n-  top: 0;\n-  left: 0;\n-  right: 0;\n-  background: $sand;\n-  mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n-  -webkit-mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n-  -webkit-mask-size: 100% 100%;\n-  will-change: filter;\n-  max-height: max-content;\n-  height: 600px;\n-  position: absolute;\n+  // content: \" \";\n+  // display: block;\n+  // position: absolute;\n+  // height: 100%;\n+  // top: 0;\n+  // left: 0;\n+  // right: 0;\n+  // background: $sand;\n+  // mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n+  // -webkit-mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n+  // -webkit-mask-size: 100% 100%;\n+  // will-change: filter;\n+  // max-height: max-content;\n+  // height: 600px;\n+  // position: absolute;\n }\n \n #js-dap-undergraduate-form {\n   position: relative;\n }\n-\n-#js-dap-undergraduate-form::before {\n-  // background-color: $sand;\n-  z-index: 0;\n-}\n"
+                },
+                {
+                    "date": 1628897975202,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -138,28 +138,25 @@\n \n }\n \n \n-#js-dap-results-undergraduate {\n-  position: relative;\n+#js-dap-undergraduate-form {\n+  content: \" \";\n+  display: block;\n+  position: absolute;\n+  height: 100%;\n+  top: 0;\n+  left: 0;\n+  right: 0;\n+  background: pink;\n+  mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n+  -webkit-mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n+  -webkit-mask-size: 100% 100%;\n+  will-change: filter;\n+  max-height: max-content;\n+  height: 600px;\n+  position: absolute;\n }\n-.dap-form::before {\n-  // content: \" \";\n-  // display: block;\n-  // position: absolute;\n-  // height: 100%;\n-  // top: 0;\n-  // left: 0;\n-  // right: 0;\n-  // background: $sand;\n-  // mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n-  // -webkit-mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n-  // -webkit-mask-size: 100% 100%;\n-  // will-change: filter;\n-  // max-height: max-content;\n-  // height: 600px;\n-  // position: absolute;\n-}\n \n #js-dap-undergraduate-form {\n   position: relative;\n }\n"
+                },
+                {
+                    "date": 1628898255314,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -138,9 +138,9 @@\n \n }\n \n \n-#js-dap-undergraduate-form {\n+.wavy {\n   content: \" \";\n   display: block;\n   position: absolute;\n   height: 100%;\n"
+                },
+                {
+                    "date": 1628898325195,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -138,25 +138,25 @@\n \n }\n \n \n-.wavy {\n-  content: \" \";\n-  display: block;\n-  position: absolute;\n-  height: 100%;\n-  top: 0;\n-  left: 0;\n-  right: 0;\n-  background: pink;\n-  mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n-  -webkit-mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n-  -webkit-mask-size: 100% 100%;\n-  will-change: filter;\n-  max-height: max-content;\n-  height: 600px;\n-  position: absolute;\n-}\n+// .wavy {\n+//   content: \" \";\n+//   display: block;\n+//   position: absolute;\n+//   height: 100%;\n+//   top: 0;\n+//   left: 0;\n+//   right: 0;\n+//   background: pink;\n+//   mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n+//   -webkit-mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n+//   -webkit-mask-size: 100% 100%;\n+//   will-change: filter;\n+//   max-height: max-content;\n+//   height: 600px;\n+//   position: absolute;\n+// }\n \n-#js-dap-undergraduate-form {\n-  position: relative;\n-}\n+// #js-dap-undergraduate-form {\n+//   position: relative;\n+// }\n"
+                },
+                {
+                    "date": 1628898413181,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -138,25 +138,26 @@\n \n }\n \n \n-// .wavy {\n-//   content: \" \";\n-//   display: block;\n-//   position: absolute;\n-//   height: 100%;\n-//   top: 0;\n-//   left: 0;\n-//   right: 0;\n-//   background: pink;\n-//   mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n-//   -webkit-mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n-//   -webkit-mask-size: 100% 100%;\n-//   will-change: filter;\n-//   max-height: max-content;\n-//   height: 600px;\n-//   position: absolute;\n-// }\n+#js-dap-undergraduate-form {\n+  content: \" \";\n+  display: block;\n+  position: absolute;\n+  height: 100%;\n+  top: 0;\n+  left: 0;\n+  right: 0;\n+  background: pink;\n+  mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n+  -webkit-mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n+  -webkit-mask-size: 100% 100%;\n+  will-change: filter;\n+  max-height: max-content;\n+  height: 600px;\n+  position: absolute;\n+}\n \n-// #js-dap-undergraduate-form {\n-//   position: relative;\n-// }\n+#js-dap-undergraduate-form {\n+  position: relative;\n+}\n+\n"
+                },
+                {
+                    "date": 1628898509637,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -138,9 +138,9 @@\n \n }\n \n \n-#js-dap-undergraduate-form {\n+.wavy {\n   content: \" \";\n   display: block;\n   position: absolute;\n   height: 100%;\n"
+                },
+                {
+                    "date": 1628898650316,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -138,9 +138,9 @@\n \n }\n \n \n-.wavy {\n+.dap-form::before {\n   content: \" \";\n   display: block;\n   position: absolute;\n   height: 100%;\n"
+                },
+                {
+                    "date": 1628898660109,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -152,10 +152,10 @@\n   -webkit-mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n   -webkit-mask-size: 100% 100%;\n   will-change: filter;\n   max-height: max-content;\n-  height: 600px;\n-  position: absolute;\n+  height: 100%;\n+  position: relative;\n }\n \n #js-dap-undergraduate-form {\n   position: relative;\n"
+                },
+                {
+                    "date": 1628898709642,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -138,9 +138,9 @@\n \n }\n \n \n-.dap-form::before {\n+.wavy-background::before {\n   content: \" \";\n   display: block;\n   position: absolute;\n   height: 100%;\n"
+                },
+                {
+                    "date": 1628898733266,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -138,9 +138,9 @@\n \n }\n \n \n-.wavy-background::before {\n+#js-dap-undergraduate-form {\n   content: \" \";\n   display: block;\n   position: absolute;\n   height: 100%;\n@@ -152,10 +152,10 @@\n   -webkit-mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n   -webkit-mask-size: 100% 100%;\n   will-change: filter;\n   max-height: max-content;\n-  height: 100%;\n-  position: relative;\n+  height: 600px;\n+  position: absolute;\n }\n \n #js-dap-undergraduate-form {\n   position: relative;\n"
+                },
+                {
+                    "date": 1628899487776,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -138,17 +138,17 @@\n \n }\n \n \n-#js-dap-undergraduate-form {\n+.wavy-bg::before {\n   content: \" \";\n   display: block;\n   position: absolute;\n   height: 100%;\n   top: 0;\n   left: 0;\n   right: 0;\n-  background: pink;\n+  background: $sand;\n   mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n   -webkit-mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);\n   -webkit-mask-size: 100% 100%;\n   will-change: filter;\n@@ -160,4 +160,8 @@\n #js-dap-undergraduate-form {\n   position: relative;\n }\n \n+#js-dap-undergraduate-interests {\n+  z-index: 2;\n+  position: relative;\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629141544411,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -157,9 +157,9 @@\n   position: absolute;\n }\n \n #js-dap-undergraduate-form {\n-  position: relative;\n+  position: relative !important;\n }\n \n #js-dap-undergraduate-interests {\n   z-index: 2;\n"
+                },
+                {
+                    "date": 1629141554959,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -156,9 +156,9 @@\n   height: 600px;\n   position: absolute;\n }\n \n-#js-dap-undergraduate-form {\n+#js-dap-undergraduate-form, #js-dap-graduate-form {\n   position: relative !important;\n }\n \n #js-dap-undergraduate-interests {\n"
+                },
+                {
+                    "date": 1629141941208,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -157,9 +157,9 @@\n   position: absolute;\n }\n \n #js-dap-undergraduate-form, #js-dap-graduate-form {\n-  position: relative !important;\n+  position: relative;\n }\n \n #js-dap-undergraduate-interests {\n   z-index: 2;\n"
+                },
+                {
+                    "date": 1629148212787,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -163,5 +163,12 @@\n \n #js-dap-undergraduate-interests {\n   z-index: 2;\n   position: relative;\n+}\n+\n+.text--&{\n+\n+  red {\n+    color: --red;\n+  }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629148219900,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -168,7 +168,7 @@\n \n .text--&{\n \n   red {\n-    color: --red;\n+    color: $red;\n   }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629148244388,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -165,10 +165,10 @@\n   z-index: 2;\n   position: relative;\n }\n \n-.text--&{\n+.text{\n \n-  red {\n+  &--red {\n     color: $red;\n   }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629155616694,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -160,9 +160,9 @@\n #js-dap-undergraduate-form, #js-dap-graduate-form {\n   position: relative;\n }\n \n-#js-dap-undergraduate-interests {\n+#js-dap-undergraduate-interests, #js-dap-graduate-interests {\n   z-index: 2;\n   position: relative;\n }\n \n"
+                }
+            ],
+            "date": 1628814878857,
+            "name": "Commit-0",
+            "content": "$palettes: map-merge($palettes, (\n    'dap-undergraduate-form': (\n        'core': $black,\n        'background': $white\n    )\n));\n\n.dap-undergraduate-form {\n\tpadding: rem-calc(75 0 55);\n\n\t.dap-undergraduate-interests-list,\n\t.link-list {\n\t\tmargin: rem-calc(0 0 20);\n\n\t\t@include breakpoint(medium) {\n\t\t\tcolumn-count: 4;\n\t\t\tcolumn-gap: rem-calc(20);\n\t\t}\n\n\t\t&.show-all {\n\n\t\t\tli {\n\t\t\t\tdisplay: block;\n\n\t\t\t\t&.show-more {\n\t\t\t\t\tdisplay: none;\n\t\t\t\t}\n\n\t\t\t}\n\n\t\t}\n\n\t\tli {\n\t\t\tmargin: rem-calc(0 0 12);\n\t\t\tdisplay: none;\n\n\t\t\t@include breakpoint(medium) {\n\t\t\t\tdisplay: block;\n\t\t\t}\n\t\t\t\n\t\t\t&:nth-child(1),\n\t\t\t&:nth-child(2),\n\t\t\t&:nth-child(3),\n\t\t\t&:nth-child(4),\n\t\t\t&:nth-child(5),\n\t\t\t&:nth-child(6),\n\t\t\t&:nth-child(7),\n\t\t\t&:nth-child(8) {\n\t\t\t\tdisplay: block;\n\t\t\t}\n\n\t\t\t&.show-more {\n\t\t\t\tdisplay: block;\n\n\t\t\t\t@include breakpoint(medium) {\n\t\t\t\t\tdisplay: none;\n\t\t\t\t}\n\n\t\t\t}\n\n\t\t}\n\n\t\ta {\n\t\t\tcolor: $white;\n\t\t\tbackground-color: transparent;\n\t\t\ttransition: color $transition-time, background-color $transition-time;\n\t\t\tdisplay: inline-block;\n\t\t\tpadding: rem-calc(2);\n\n\t\t\t&:hover {\n\n\t\t\t\t.no-touch &,\n\t\t\t\t.no-js & {\n\t\t\t\t\tcolor: $paprika;\n\t\t\t\t\tbackground-color: $white;\n\t\t\t\t}\n\n\t\t\t}\n\n\t\t}\n\n\t\tlabel {\n\t\t\tfont-weight: normal;\n\t\t\tmargin: 0;\n\n\t\t\tinput {\n\t\t\t\tdisplay: none;\n\n\t\t\t\t&:checked ~ span {\n\t\t\t\t\tcolor: $paprika;\n\t\t\t\t\tbackground-color: $white;\n\t\t\t\t}\n\n\t\t\t}\n\n\t\t\tspan {\n\t\t\t\tcolor: $black;\n\t\t\t\tbackground-color: transparent;\n\t\t\t\ttransition: color $transition-time, background-color $transition-time;\n\t\t\t\tdisplay: inline-block;\n\t\t\t\tpadding: rem-calc(2);\n\t\t\t}\n\n\t\t}\n\n\t\t.show-more a {\n\t\t\tfont-weight: 700;\n\t\t\ttext-transform: uppercase;\n\t\t}\n\n\t}\n\n\t.reset {\n\t\tcolor: $white;\n\t\tline-height: rem-calc(22);\n\t\tfont-weight: 700;\n\t\ttext-transform: uppercase;\n\t\tfloat: right;\n\n\t\t&:hover {\n\n\t\t\t.no-touch &,\n\t\t\t.no-js & {\n\t\t\t\tcolor: $silver;\n\t\t\t}\n\n\t\t}\n\n\t\t.icon {\n\t\t\tvertical-align: top;\n\t\t\twidth: rem-calc(20);\n\t\t\theight: rem-calc(20);\n\t\t\tdisplay: inline-block;\n\t\t\tmargin-right: 0.25em;\n\t\t}\n\n\t}\n\n}\n"
+        }
+    ]
+}

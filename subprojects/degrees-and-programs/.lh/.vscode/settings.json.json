@@ -1,0 +1,18 @@
+{
+    "sourceFile": ".vscode/settings.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1629138941411,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1629138941411,
+            "name": "Commit-0",
+            "content": "{\n  \"workbench.colorCustomizations\": {\n    \"activityBar.background\": \"#0D3506\",\n    \"titleBar.activeBackground\": \"#134B08\",\n    \"titleBar.activeForeground\": \"#F0FDEE\"\n  }\n}"
+        }
+    ]
+}
