@@ -139,7 +139,7 @@ $palettes: map-merge($palettes, (
 }
 
 
-.wavy-bg::before {
+.wavy-bg {
   content: " ";
   display: block;
   position: absolute;

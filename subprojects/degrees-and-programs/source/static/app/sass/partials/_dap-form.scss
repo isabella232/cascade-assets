@@ -1,177 +1,178 @@
-$palettes: map-merge($palettes, (
-	'dap-form': (
-		'core': $black,
-		'background': $white
-	)
-));
+$palettes: map-merge($palettes, ('dap-form': ('core': $black,
+      'background': $white)));
 
 .dap-form {
-	color: $black;
-	padding: rem-calc(0 10);
+  color: $black;
+  padding: rem-calc(0 10);
 
-	@include breakpoint(medium) {
-		padding: rem-calc(0 4);
-	}
+  @include breakpoint(medium) {
+    padding: rem-calc(0 4);
+  }
 
-	@include breakpoint(xlarge) {
-		padding: 0;
-	}
+  @include breakpoint(xlarge) {
+    padding: 0;
+  }
 
-	.no-js & {
-		display: none;
-	}
+  .no-js & {
+    display: none;
+  }
 
-	fieldset > .row {
-		margin-bottom: rem-calc(20);
+  fieldset>.row {
+    margin-bottom: rem-calc(20);
 
-		&:last-child {
-			margin-bottom: 0;
-		}
+    &:last-child {
+      margin-bottom: 0;
+    }
 
-	}
+  }
 
-	.field-container {
-		position: relative;
-		margin: rem-calc(0 0 20);
-	}
+  .field-container {
+    position: relative;
+    margin: rem-calc(0 0 20);
+  }
 
-	form {
+  form {
 
-      
-  
-		.subsection-heading {
-			font-size: rem-calc(18);
-			font-weight: 700;
-			border-bottom: $transparent-white-border;
-			padding: rem-calc(0 0 12);
-			margin: rem-calc(0 0 20);
-      position:relative;
-		}
+    .subsection-heading {
+      font-size: rem-calc(18);
+      font-weight: 700;
+      padding: rem-calc(0 0 12);
+      position: relative;
+      font-family: $futura-regular;
 
-	}
+      &.pb-0 {
+        padding-bottom: 0;
+      }
+    }
 
-	.program-type {
-		background-color: transparent;
-		padding: 0;
-		text-align: center;
-		display: block;
-		position: relative;
+  }
 
-		input {
-			display: none;
+  .program-type {
+    background-color: transparent;
+    padding: 0;
+    text-align: center;
+    display: block;
+    position: relative;
 
-			&:checked ~ .inner {
-				background-color: $red;
-				border: 1px solid transparent;
+    input {
+      display: none;
 
-				svg {
-					opacity: 1;
-					width: rem-calc(30);
-				}
+      &:checked~.inner {
+        background-color: $red;
+        border: 1px solid transparent;
 
-			}
+        svg {
+          opacity: 1;
+          width: rem-calc(30);
+        }
 
-		}
+      }
 
-		.inner {
-			background-color: $white;
-			border: 1px solid $cu-light-grey-2;
-      
+    }
+
+    .inner {
+      background-color: $white;
+      border: 1px solid $cu-light-grey-2;
+
       color: $black;
-			width: 100%;
-			height: 100%;
-			transition: background-color $transition-time, border-color $transition-time;
+      width: 100%;
+      height: 100%;
+      transition: background-color $transition-time, border-color $transition-time;
 
-      &:hover, &focus-within, &:active {
+      &:hover,
+      &focus-within,
+      &:active {
         background-color: $red;
         color: $white;
-        
-        span { color: $white; }
+
+        span {
+          color: $white;
+        }
       }
-		}
+    }
 
-		svg,
-		span {
-			vertical-align: middle;
-			display: inline-block;
-		}
+    svg,
+    span {
+      vertical-align: middle;
+      display: inline-block;
+    }
 
-		svg {
-			overflow: hidden;
-			opacity: 0;
-			width: 0;
-			transition: width $transition-time, opacity $transition-time;
-		}
+    svg {
+      overflow: hidden;
+      opacity: 0;
+      width: 0;
+      transition: width $transition-time, opacity $transition-time;
+    }
 
-		span {
-			line-height: inherit;
+    span {
+      line-height: inherit;
       font-weight: normal;
       font-family: $futura-regular;
 
       &:active {
         color: $white;
       }
-		}
+    }
 
-	}
+  }
 
-	.or-separator {
-		position: relative;
-		margin: rem-calc(0 0 20);
+  .or-separator {
+    position: relative;
+    margin: rem-calc(0 0 20);
 
-		span {
-			text-transform: uppercase;
-			line-height: $input-height/2;
-			font-weight: 700;
-			font-size: rem-calc(21);
-			text-align: center;
-			letter-spacing: 1px;
-			display: block;
+    span {
+      text-transform: uppercase;
+      line-height: $input-height/2;
+      font-weight: 700;
+      font-size: rem-calc(21);
+      text-align: center;
+      letter-spacing: 1px;
+      display: block;
 
-			@include breakpoint(large) {
-				line-height: $input-height;
-			}
+      @include breakpoint(large) {
+        line-height: $input-height;
+      }
 
-		}
+    }
 
-	}
+  }
 
 }
 
 .dap-undergraduate-form,
 .dap-graduate-form {
 
-	.filter-types {
+  .filter-types {
 
-		.large-5 {
+    .large-5 {
 
-			&:first-child {
+      &:first-child {
 
-				@include breakpoint(large) {
-					width: 44%;
-				}
+        @include breakpoint(large) {
+          width: 44%;
+        }
 
-			}
+      }
 
-			&:last-child {
+      &:last-child {
 
-				@include breakpoint(large) {
-					width: 44%;
-				}
+        @include breakpoint(large) {
+          width: 44%;
+        }
 
-			}
+      }
 
-		}
+    }
 
-		.large-2 {
+    .large-2 {
 
-			@include breakpoint(large) {
-				width: 12%;
-			}
+      @include breakpoint(large) {
+        width: 12%;
+      }
 
-		}
+    }
 
-	}
+  }
 
 }
 
@@ -181,14 +182,77 @@ $palettes: map-merge($palettes, (
   .program-finder__heading {
     display: flex;
     justify-content: space-between;
-}
+  }
 
   hr {
     color: $grey;
   }
+
   button.program-toggle {
     background-color: $red !important;
     position: relative;
     max-width: max-content;
+  }
 }
+
+.field-container {
+  display: flex;
+  grid-gap: 12px;
+  flex-wrap: wrap;
+
+
+  .inner {
+    width: max-content !important;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .program-type.button {
+    width: max-content;
+
+    &:focus {
+      outline: 2px dotted $red;
+    }
+  }
+}
+
+#js-dap-feature {
+  .border-bottom--grey {
+    border-bottom: 1px solid $cu-light-grey;
+  }
+
+  .program-toggle {
+    &__blurb {
+      display: flex;
+      background-color: $white;
+    }
+
+    &__text {
+      padding: 30px;
+    }
+
+    &__image {
+      img {
+        max-width: 100px;
+      }
+    }
+  }
+
+  .line {
+    width: 100%;
+    background-color: pink;
+    position: relative;
+    margin-top: 20px;
+    height: 1px;
+    margin-bottom: 20px;
+  }
+
+  .pb-0 {
+    padding-bottom: 0;
+  }
+
+  .faux-h2 {
+    font-size: 30px;
+    font-family: $futura-regular;
+  }
 }
