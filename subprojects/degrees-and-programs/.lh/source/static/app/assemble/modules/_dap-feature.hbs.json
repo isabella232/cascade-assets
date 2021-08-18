@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1628886593542,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1629243510661,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,36 +11,11 @@\n   {{> _svg }}\n \n   <div class=\"dap-feature-inner\">\n \n-    <!-- START DISCOVER SECTION -->\n-    <section id=\"js-dap-section-discover\" class=\"dap-section\" data-id=\"discover\">\n \n-      {{#with sections.[0]}}\n-\n-      {{> dap-header heading}}\n-\n-      <div class=\"dap-body\">\n-\n-        <div class=\"dap-form\">\n-          {{> dap-discover-form }}\n-        </div>\n-\n-        {{> dap-results this }}\n-\n-        <div class=\"dap-form\">\n-          {{> dap-discover-keyword-form }}\n-        </div>\n-\n-      </div>\n-\n-      {{/with}}\n-\n-    </section>\n-    <!-- END DISCOVER SECTION -->\n-\n     <!-- START UNDERGRADUATE SECTION -->\n-    <section id=\"js-dap-section-undergraduate\" class=\"active dap-section\" data-id=\"undergraduate\">\n+    <section id=\"js-dap-section-undergraduate\" class=\"dap-section\" data-id=\"undergraduate\">\n \n       {{#with sections.[1]}}\n \n       {{> dap-header heading}}\n"
                 }
             ],
             "date": 1628886593542,
