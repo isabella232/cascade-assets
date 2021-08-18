@@ -1305,3 +1305,8 @@ function setWavyBgHeight() {
 
   })
 };
+
+
+// $( ".active-content-toggle" ).on( "click", function() {
+//   $('article.active').not(this).removeClass('active')
+// });

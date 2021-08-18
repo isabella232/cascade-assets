@@ -226,7 +226,6 @@ $dap-result-breakpoint: rem-calc(600);
 
     .active-content {
       opacity: 0;
-      background-color: rgba($mexican-red, 0.9);
       width: 100%;
       height: 100%;
       top: 0;
@@ -234,7 +233,6 @@ $dap-result-breakpoint: rem-calc(600);
       right: 0;
       bottom: 0;
       padding: rem-calc(20);
-      transition: opacity $transition-time;
 
       .active-content-inner {
         overflow: hidden;
