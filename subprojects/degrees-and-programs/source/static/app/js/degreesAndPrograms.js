@@ -28,6 +28,8 @@ var chapman = chapman || {};
       $('.dap-results').on('click', '.active-content-toggle', function (event) {
         event.preventDefault();
         $(this).closest('.result').toggleClass('active');
+        // debugger
+        $(this).closest('article').siblings().removeClass('active');
       });
 
       $('#js-dap-undergraduate-interests .show-more a').on('click', function () {

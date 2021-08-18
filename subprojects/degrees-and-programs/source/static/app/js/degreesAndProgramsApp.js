@@ -1286,6 +1286,7 @@ $(function () {
   elem.style.display = "none";
 
   chapman.degreesAndProgramsApp.init();
+  toggleActive();
 });
 
 
@@ -1306,7 +1307,9 @@ function setWavyBgHeight() {
   })
 };
 
-
-// $( ".active-content-toggle" ).on( "click", function() {
-//   $('article.active').not(this).removeClass('active')
+function toggleActive(){
+  console.log('clickhandler for toggle active');
+// $( "article.active .active-content-toggle" ).on( "click", function() {
+//   $('article.active').find('.active-content-toggle').trigger( "click" )
 // });
+}
