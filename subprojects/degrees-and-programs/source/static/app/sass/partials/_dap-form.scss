@@ -261,3 +261,17 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
     }
   }
 }
+.active-content:after {
+  content: "";
+  display: block; /* reduce the damage in FF3.0 */
+  position: absolute;
+/*   bottom: -190px; */
+  bottom: -104px;
+  left: 92px;
+  width: 0;
+  border-width: 45px 45px 0;
+  border-style: solid;
+  border-color: $sand transparent;
+  z-index: 9999;
+  transform:rotate(180deg);
+}
