@@ -261,11 +261,13 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
     }
   }
 }
+
 .active-content:after {
   content: "";
-  display: block; /* reduce the damage in FF3.0 */
+  display: block;
+  /* reduce the damage in FF3.0 */
   position: absolute;
-/*   bottom: -190px; */
+  /*   bottom: -190px; */
   bottom: -104px;
   left: 92px;
   width: 0;
@@ -273,5 +275,17 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
   border-style: solid;
   border-color: $sand transparent;
   z-index: 9999;
-  transform:rotate(180deg);
+  transform: rotate(180deg);
+}
+
+svg.program-info__close {
+  max-width: 20px;
+  color: $red;
+  right: 20px;
+  position: absolute;
+  top: 20px;
+  cursor: pointer;
+  &:focus {
+    outline: 2px dotted $red;
+ }
 }

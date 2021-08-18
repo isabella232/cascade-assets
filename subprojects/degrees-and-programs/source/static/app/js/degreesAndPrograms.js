@@ -16,7 +16,6 @@ var chapman = chapman || {};
 
       this.bindUIEvents();
 
-
     },
 
     bindUIEvents: function () {
@@ -28,15 +27,25 @@ var chapman = chapman || {};
       $('.dap-results').on('click', '.active-content-toggle', function (event) {
         event.preventDefault();
         $(this).closest('.result').toggleClass('active');
-        // debugger
         $(this).closest('article').siblings().removeClass('active');
       });
+
+       $('svg.program-info__close').on('click', function (event) {
+         alert('click')
+        $(this).closest('article.active').removeClass('active');
+      });
+
+
 
       $('#js-dap-undergraduate-interests .show-more a').on('click', function () {
         $('#js-dap-undergraduate-interests-list').addClass('show-all');
       });
 
+
+
+
     },
+
 
     switchResultsView: function (el) {
       var viewButton = el,
@@ -60,6 +69,18 @@ var chapman = chapman || {};
 
   };
 
+
+// USAGE:
+// $('#fake-button').on('click keypress', function(event){
+//   if(a11yClick(event) === true){
+//     // do stuff
+//   }
+// });
+
+
+
+
+
 })(window.jQuery, window.Modernizr, window, window.document);
 
 $(function () {
@@ -69,4 +90,7 @@ $(function () {
   chapman.degreesAndPrograms.init();
 
 
+  
+
 });
+
