@@ -1003,16 +1003,6 @@ var chapman = chapman || {};
         imgAlt +
         '">' +
         '<div class="active-content">' +
-        '<div class="active-content-inner">' +
-        '<p class="desc">' +
-        desc +
-        "</p>" +
-        '<a href="' +
-        href +
-        '" title="View landing page for ' +
-        title +
-        ' program">Learn More <svg class="icon icon-double-chevron"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-double-chevron"></use></svg></a>' +
-        "</div>" +
         "</div>" +
         '<a href="#" class="active-content-toggle"><svg class="icon icon-close" title="Toggle result content"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use></svg></a>' +
         "</div>" +
@@ -1024,8 +1014,6 @@ var chapman = chapman || {};
         ' program">' +
         title +
         "</a></h3>" +
-        startTermsHTML +
-        campusHTML +
         degreeTypesHTML +
         "</div>";
 
@@ -1033,9 +1021,7 @@ var chapman = chapman || {};
         resultHTML +
         `<div class="relative-wrapper ">
       <div class="description">
-      
-      <span class="triangle">
-      </span>
+    
         <div class="title-wrapper">
           <span class="title">${title}</span> | <span class="program-type">${result.degreeTypes.type}</span>
           <span class="close-icon" aria-label="close"></span>
