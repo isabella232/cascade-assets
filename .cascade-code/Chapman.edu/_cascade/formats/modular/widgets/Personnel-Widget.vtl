@@ -215,7 +215,7 @@ $element.getChild($widgetXPath).getChild('textAlignment').value)
 
 #macro(outputCardGridAndCarousel)
 <div class="personnel-widget">
-#debugDetails()
+
 
 <div class="personnel-widget__front">
     <div class="banner personnel-widget__banner"></div>
@@ -265,7 +265,6 @@ $element.getChild($widgetXPath).getChild('textAlignment').value)
 #macro(outputIndividualListing)
 
 <div class="personnel-widget">
-#debugDetails()
 <div class="banner personnel-widget__banner"></div>
 <div class="personnel-widget__inner">
 <div class="personnel-widget__col--left">
@@ -335,82 +334,3 @@ $element.getChild($widgetXPath).getChild('textAlignment').value)
 </div>
 #end ## Close #macro(outputIndividualListing)
 
-#macro(debugDetails)
-  <style>
-  #uninav {
-    display: none !important;
-  }
-  details ul {
-  padding-left: 20px;
-  }
-
-  details {
-  position: absolute;
-  z-index: 3;
-  color: yellowgreen;
-  background-color: black;
-  text-align: left;
-  display: none;
-  }
-
-  details[open] {
-  position: relative;
-
-  }
-  </style>
-  <details>
-  <summary>Details</summary>
-  <ul id="personnel-object">
-  <li>layoutStyle: $layoutStyle
-  </li>
-  <li>templateType: $templateType</li>
-  <li>displaySectionIntro: $displaySectionIntro</li>
-  <li>sectionPreheader: $sectionPreheader
-  </li>
-  <li>sectionHeader: $sectionHeader
-  </li>
-  <li>listingType: $listingType
-  </li>
-  <li>listingType1: $listingType1
-  </li>
-  <li>schoolAffiliation: $schoolAffiliation
-  </li>
-  <li>filterBy: $filterBy
-  </li>
-  <li>facultyUnit: $facultyUnit
-  </li>
-  <li>photo: $photo
-  </li>
-  <li>name: $name
-  </li>
-  <li>title: $title
-  </li>
-  <li>phone: $phone
-  </li>
-  <li>email: $email
-  </li>
-  <li>officeInfo: $officeInfo
-  </li>
-  <li>shortBio: $shortBio
-  </li>
-  <li>linkFullBio: $linkFullBio
-  </li>
-  <li>linkToFullBio: $linkToFullBio
-  </li>
-  <li>linkType: $linkType
-  </li>
-  <li>linkURL: $linkURL
-  </li>
-  <li>frontsideLinkType : $frontsideLinkType
-  </li>
-  <li>frontsideLinkURL: $frontsideLinkURL
-  </li>
-  <li>displayFrontsideLink: $displayFrontsideLink
-  </li>
-  <li>displayBacksideLink: $displayBacksideLink</li>
-  <li>layoutStyle: $layoutStyle</li>
-  $personnelGroup.getChild('individualListingType').value
-  </ul>
-  </details>
-
-#end
