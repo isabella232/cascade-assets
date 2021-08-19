@@ -206,13 +206,13 @@ const uninav = function () {
       "rgba(255, 255, 255, 0.98)"
     );
   }
-
-  function offsetScrollbar() {
-    var html = document.querySelector("html");
-    var scrollbarWidth = window.innerWidth - html.offsetWidth;
-    $(".uninav__utility-nav--wrapper").css("margin-right", scrollbarWidth);
-  }
 };
+
+function offsetScrollbar() {
+  var html = document.querySelector("html");
+  var scrollbarWidth = window.innerWidth - html.offsetWidth;
+  $(".uninav__utility-nav--wrapper").css("margin-right", scrollbarWidth);
+}
 
 function loginMenu() {
   $(".uninav__login").click(function () {
@@ -227,7 +227,8 @@ function staticUninav() {
       function (responseTxt, statusTxt, xhr) {
         if (statusTxt == "success")
           $("nav#uninav.static").fadeOut('slow');
-        reinit_drilldown_handlers();
+          reinit_drilldown_handlers();
+          offsetScrollbar();
         if (statusTxt == "error")
           console.log("Error: " + xhr.status + ": " + xhr.statusText);
         $("nav#uninav.static").show();
@@ -2177,7 +2178,6 @@ function staticUninav() {
       $(
         '<script async="true" src="https://cse.google.com/cse.js?cx=015856566681218627934:2ndbiubovo4"></script>'
       ).insertBefore("header");
-      offsetScrollbar();
     }
   }
 }
