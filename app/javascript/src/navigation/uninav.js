@@ -232,12 +232,12 @@ function staticUninav() {
     console.log(
       "replacing static navigation with dynamic from sibling index.aspx"
     );
-    $("nav#uninav").fadeOut();
+    
     $("header").load(
       "./index.aspx nav#uninav",
       function (responseTxt, statusTxt, xhr) {
         if (statusTxt == "success")
-          // alert("External content loaded successfully!");
+          $("nav#uninav").fadeOut('slow');
           reinit_drilldown_handlers();
         if (statusTxt == "error")
           console.log("Error: " + xhr.status + ": " + xhr.statusText);
@@ -247,7 +247,6 @@ function staticUninav() {
 
     function reinit_drilldown_handlers() {
       // LITERALLY THE CONTENTS OF OFF-CANVAS-NAV.JS
-      // Restructures toggle DOM order for immediate tabindex after Uninav. Remains the same visually.
       $(".uninav__umbrella-nav-button-container")
         .detach()
         .appendTo("nav#uninav");
@@ -2509,6 +2508,7 @@ function staticUninav() {
       $(
         '<script async="true" src="https://cse.google.com/cse.js?cx=015856566681218627934:2ndbiubovo4"></script>'
       ).insertBefore("header");
+      offsetScrollbar();
     }
   }
 }
