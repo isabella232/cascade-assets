@@ -11,7 +11,7 @@ task push_noncompiled_assets: :environment do
   
   base_url = 'https://dev-cascade.chapman.edu/api/v1/'.to_s
   url_post =
-  base_url + 'edit/' + 'file' + 'Chapman.edu/test-section/nick-test/homepage-featured-callouts.css' + cascade_username +
+  base_url + 'edit/' + 'file' + 'Chapman.edu/test-section/nick-test/dev.css' + cascade_username +
     cascade_password
 p url_post
 
@@ -35,7 +35,7 @@ p url_post
       "lastPublishedDate": "Nov 5, 2020 9:16:49 AM",
       "lastPublishedBy": "cscddev01500",
       "expirationFolderRecycled": false,
-      "metadataSetId": "6fef14a3c04d744c610b81da9d165a27",
+      "metadataSetId": "36b1b9c0c0a81e8a77dc952cdfff39e8",
       "metadataSetPath": "Default",
       "metadata": {},
       "reviewOnSchedule": false,
@@ -46,22 +46,22 @@ p url_post
       "lastModifiedBy": "cscddev01500",
       "createdDate": "Nov 4, 2020 8:29:51 PM",
       "createdBy": "nnadel",
-      "path": "test-section/nick-test/homepage-featured-callouts.css",
+      "path": "test-section/nick-test/dev.css",
       "siteId": "6fef14a3c04d744c610b81dac0a8d082",
       "siteName": "Chapman.edu",
       "tags": [],
-      "name": "homepage-featured-callouts.css",
-      "id": "8f2a123ac0a81e8a3b0002936f3a7f52"
+      "name": "dev.css",
+      "id": "36b1e1e4c0a81e8a77dc952cbb5f8246"
           }
         },
         "success": true
       }.to_json
      )
 
-     publish_asset('file', '8f2a123ac0a81e8a3b0002936f3a7f52')
+     publish_asset('file', '36b1e1e4c0a81e8a77dc952cbb5f8246')
 
     #  JAVASCRIPT
-    base_url + 'edit/' + 'file' + 'Chapman.edu/test-section/nick-test/homepage-featured-callouts.js' + cascade_username +
+    base_url + 'edit/' + 'file' + 'Chapman.edu/test-section/nick-test/dev.js' + cascade_username +
     cascade_password
 p url_post
 
@@ -85,7 +85,7 @@ p url_post
       "lastPublishedDate": "Nov 10, 2020 11:00:54 AM",
       "lastPublishedBy": "nnadel",
       "expirationFolderRecycled": false,
-      "metadataSetId": "6fef14a3c04d744c610b81da9d165a27",
+      "metadataSetId": "36b1b9c0c0a81e8a77dc952cdfff39e8",
       "metadataSetPath": "Default",
       "metadata": {
         "displayName": "",
@@ -104,11 +104,11 @@ p url_post
       "lastModifiedBy": "nnadel",
       "createdDate": "Nov 10, 2020 11:00:31 AM",
       "createdBy": "nnadel",
-      "path": "test-section/nick-test/homepage-featured-callouts.js",
+      "path": "test-section/nick-test/dev.js",
       "siteId": "6fef14a3c04d744c610b81dac0a8d082",
       "siteName": "Chapman.edu",
       "tags": [],
-      "name": "homepage-featured-callouts.js",
+      "name": "dev.js",
       "id": "8f2a567bc0a81e8a3b00029341d8c97f"
           }
         },
