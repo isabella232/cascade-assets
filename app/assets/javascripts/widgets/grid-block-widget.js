@@ -78,6 +78,9 @@ function calculateDataHeight() {
       .addClass("grid-block-widget--text-overflow");
     if ($(this).attr("data-scroll-height") >= 158) {
       $(this).parent().find(".grid-block-widget__reveal--more").show();
+    } else {
+      $(this).parent().find(".grid-block-widget__reveal--more").hide();
+      $(this).removeClass("grid-block-widget__text--truncated");
     }
   });
   // ONE COLUMN
@@ -90,6 +93,9 @@ function calculateDataHeight() {
       .addClass("grid-block-widget--text-overflow");
     if ($(this).attr("data-scroll-height") >= 158) {
       $(this).parent().find(".grid-block-widget__reveal--more").show();
+    } else {
+      $(this).parent().find(".grid-block-widget__reveal--more").hide();
+      $(this).removeClass("grid-block-widget__text--truncated");
     }
   });
 }
@@ -242,9 +248,7 @@ $(window).load(function () {
 
   $("button.slick-arrow").on("click keydown", function (e) {
     if (accessibleClick(event)) {
-      if ($(this).find($(".grid-block-widget__reveal--less").is(":visible"))) {
-        $(".grid-block-widget__reveal--less").trigger("click");
-      }
+      $(".grid-block-widget__reveal--less").trigger("click");
     }
   });
   $("button.slick-prev").on("keydown", function (e) {
@@ -263,7 +267,6 @@ $(window).load(function () {
 });
 
 function normalizeHeights() {
-  // Normalizes height discrepancies on grid block
   $(".grid-block-widget__container").each(function () {
     // Get an array of all element heights
     var elementHeights = $(this)

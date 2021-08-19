@@ -186,8 +186,8 @@
         <dropdown-item show-fields="primaryContent/widget/gridBlockWidget" value="Grid Block"/>
         <dropdown-item restrict-to-groups="Administrators, Web-Coordinators" show-fields="primaryContent/widget/hideFromSearch" value="Hide From Search"/>
         <dropdown-item show-fields="primaryContent/widget/logo-image-rotator" value="Logo Image Rotator"/>
-        <dropdown-item show-fields="primaryContent/widget/personnelWidget" value="Personnel Widget"/>
         <dropdown-item show-fields="primaryContent/widget/personnel" value="Personnel Table"/>
+        <dropdown-item show-fields="primaryContent/widget/personnelWidget" value="Personnel Widget"/>
         <dropdown-item show-fields="primaryContent/widget/tabs" value="Tabs"/>
         <dropdown-item show-fields="primaryContent/widget/wysiwyg-editor" value="Text Editor"/>
         <dropdown-item show-fields="primaryContent/widget/html-block" value="Html Block"/>
@@ -574,7 +574,7 @@
           </text>
           <group collapsed="true" identifier="gridBlock" label="Grid Block" multiple="true">
             <text field-id="2462637fc0a81e8a5a4039452d57a512" identifier="gridBlockTitle" label="Title" required="true"/>
-            <text field-id="3429c844c0a81e8a5a4039450d9bac85" identifier="titleLink" label="Title Link?" required="true" type="radiobutton">
+            <text field-id="3429c844c0a81e8a5a4039450d9bac85" identifier="titleLink" label="Title Link?" required="true" type="radiobutton" default="no">
               <radio-item label="Yes" show-fields="primaryContent/widget/gridBlockWidget/gridOptions/gridBlock/linkType" value="yes"/>
               <radio-item label="No" value="no"/>
             </text>

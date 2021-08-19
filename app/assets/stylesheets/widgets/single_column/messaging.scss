@@ -28,7 +28,8 @@
     display: inline-block;
     vertical-align: middle;
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
   }
 
   .video-links-title {
@@ -220,7 +221,6 @@
 
   /* Text Right Variation */
   &.messaging-widget__text-right {
-
     /* Medium Screen */
     @include media($medium-screen) {
       .media-column {
@@ -253,7 +253,6 @@
   /* Text Left Variation */
   &.messaging-widget__text-left {
     @include direction-context(right-to-left) {
-
       /* Medium Screen */
       @include media($medium-screen) {
         .media-column {
@@ -383,7 +382,6 @@
       color: $cu-red;
     }
   }
-
 }
 
 /* Fact Card Media */
@@ -400,7 +398,6 @@
 
 /* Circle image with Text */
 .primary-content.one-column {
-
   .messaging-widget.messaging-widget__2-column.messaging-widget__text-right.circle,
   .messaging-widget.messaging-widget__2-column.messaging-widget__text-left.circle,
   .messaging-widget.messaging-widget__1-column.messaging-widget__text-right.circle,

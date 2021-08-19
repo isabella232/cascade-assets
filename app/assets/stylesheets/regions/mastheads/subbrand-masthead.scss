@@ -1,6 +1,9 @@
 .subbrand-masthead-wrapper {
   #background-video {
     width: 100vw;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
   }
   .brochure-masthead .background-content .gradient-overlay {
     background: linear-gradient(

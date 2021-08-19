@@ -38,6 +38,7 @@ Master Version: Chapman.edu/_cascade/formats/helpers.velocity
     $element.getChild('image').getChild('imageUrlInt').getChild('path').value )
     #set ($imageUrlExt =
     $element.getChild('image').getChild('imageUrlExt').value )
+    #set ($imgSize = '')
 
     #set ($altText =
     $element.getChild('image').getChild('altText').value)
@@ -56,6 +57,7 @@ Master Version: Chapman.edu/_cascade/formats/helpers.velocity
     $element.getChild($widgetXPath).getChild('image').getChild('imageShape').value.toLowerCase())
 
     ## IMAGE POSITION (OBJECT-FIT)
+  
     #set ($objectPositionX = $element.getChild($widgetXPath).getChild('image').getChild('advanced').getChild('objectPositionX').value.toLowerCase())
     #set ($objectPositionY = $element.getChild($widgetXPath).getChild('image').getChild('advanced').getChild('objectPositionY').value.toLowerCase())
     #set ($objectFit = $element.getChild($widgetXPath).getChild('image').getChild('advanced').getChild('objectFit').value.toLowerCase())
@@ -93,10 +95,11 @@ Master Version: Chapman.edu/_cascade/formats/helpers.velocity
     
 
          ## ACCESSIBILITY
+         
     #set ( $imageRoleVal =  ( $element.getChild($widgetXPath).getChild('image').getChild('imageAltOrDecorative').value ) )
     #if ( $imageRoleVal == "Decorative Image" )
         #set ( $imageRole = "role='presentation'" )
-        #set ( $altText = '' )
+        #set ( $altText = " " )
     #else 
         #set ( $imageRole = "" )
     #end
@@ -111,7 +114,7 @@ Master Version: Chapman.edu/_cascade/formats/helpers.velocity
             style="width: ${_EscapeTool.xml($imgSize)}; height: ${_EscapeTool.xml($imgSize)}; ">
                 <img $imageRole class="lazy internal-image ${_EscapeTool.xml($widgetXPath)}__img img--${_EscapeTool.xml($imageShape)} "
                     src="${_EscapeTool.xml($imageURL)}"
-                    alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-position:${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}"/>
+                    alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-fit: ${_EscapeTool.xml($objectFit)}; object-position:${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}"/>
         </div>
     #elseif (!$imageType.contains("none") && ($imageUrlExt != '')) 
          <div
@@ -119,7 +122,7 @@ Master Version: Chapman.edu/_cascade/formats/helpers.velocity
             style="width: ${_EscapeTool.xml($imgSize)}; height: ${_EscapeTool.xml($imgSize)}; ">
                 <img $imageRole class="lazy external-image ${_EscapeTool.xml($widgetXPath)}__img img--${_EscapeTool.xml($imageShape)} "
                     src="[system-asset]${_EscapeTool.xml($imageURLExt)}[/system-asset]"
-                    alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-position:${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}"/>
+                    alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}" style="object-fit: ${_EscapeTool.xml($objectFit)}; object-position:${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}"/>
         </div>
     #end
 #end
@@ -238,7 +241,7 @@ USAGE: #bgColorChooser('next-steps-widget'). $bgColor will result in a class suc
 #macro(bgColorChooser $wxp)
     #set ($bgColor = $element.getChild($wxp).getChild('bgColor').value.toLowerCase())
     #camelToSnake($wxp)
-    #set ($bgColor = $wxp + '--' + $bgColor.toLowerCase())
+    #set ($bgColor = $wxp + '--' + $bgColor)
 #end
 
 #*
@@ -261,7 +264,7 @@ USAGE: #bgColorChooser('next-steps-widget'). $bgColor will result in a class suc
 3 CTA BUTTONS
 Outputs shared field 'CTA' (https://dev-cascade.chapman.edu/entity/open.act?id=6ccc49b1c0a81e4b7fe96604d9f0dee2&type=sharedfield).
 EXAMPLE: #cta($element, 'next-steps-widget/link') ... see https://dev-cascade.chapman.edu/entity/open.act?id=866641d7c0a81e4b7fe96604393cd7cb&type=format
-EXAMPLE 2: Collection (slides) within a collection (slider): #cta($slide 'link') ... see https://dev-cascade.chapman.edu/entity/open.act?id=11e3bb1ac0a81e4b7fe96604d894fc25&type=format
+EXAMPLE 2: Collection (slides) within a collection (slider): #wtf($slide 'link') ... see https://dev-cascade.chapman.edu/entity/open.act?id=11e3bb1ac0a81e4b7fe96604d894fc25&type=format
 --------------------------------------------------------------------------------
 *#
 #macro(cta $elem $linkXPath $wxp)
@@ -374,7 +377,7 @@ LOG VELOCITY VARIABLES IN THE BROWSER CONSOLE ON DEV
   #end
 
   #if ($asset.assetType == "folder" && $isVisible)
-    #if ($asset.metadata.displayName != '_files')
+    #if ($asset.metadata.displayName != '_files' && (! $asset.path.contains('_cascade')) )
       #set ( $visibleChildren = false )
       #foreach( $childAsset in $asset.children )
         #if ($visibleChildren == false || $visibleChildrenCount < 2 || $visibleSiblingCount < 1)
@@ -474,7 +477,7 @@ LOG VELOCITY VARIABLES IN THE BROWSER CONSOLE ON DEV
         </li>
     #end
   #elseif ($asset.assetType == 'symlink')
-    <li class="${isCurrentDrillDownPage}"><a href="site://Chapman.edu/${asset.path}">${_EscapeTool.xml($asset.label)} <span class="fas fa-external-link-alt"></span></a></li>
+    <li class="${isCurrentDrillDownPage} ${asset.assetType}"><a href="site://Chapman.edu/${asset.path}">${_EscapeTool.xml($asset.label)} <span class="fas fa-external-link-alt"></span></a></li>
   #end
 #end
 
@@ -498,6 +501,10 @@ LOG VELOCITY VARIABLES IN THE BROWSER CONSOLE ON DEV
       #end
     #end
   #else
+    #set ( $visibleChildren = false )
+  #end
+  
+  #if ($asset.path.contains('_cascade') )
     #set ( $visibleChildren = false )
   #end
 #end
@@ -704,3 +711,27 @@ LOG VELOCITY VARIABLES IN THE BROWSER CONSOLE ON DEV
         ""
     #end
 #end
+
+
+
+#*
+--------------------------------------------------------------------------------
+Outputs VariableName: VariableValue
+
+Example: 
+Declaration: #set ($nick = "nicholas")
+Usage: #output ("nick")
+Output: 
+<li>
+  nick: nicholas     
+</li>
+--------------------------------------------------------------------------------
+*#
+
+#macro(output $var)
+  #set ($varEval = "$" + "${var}")
+  <li>
+    $var: #evaluate($varEval)
+  </li>
+#end
+

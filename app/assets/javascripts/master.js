@@ -24,7 +24,6 @@
 //= require cascade/rotator
 //= require cascade/search
 //= require cascade/video-overlay
-//= require cascade/weather
 
 // If they're not required, can we delete them and remove these lines?
 // don't require cascade/home
@@ -66,6 +65,7 @@
 //= require cascade/level/level
 //= require cascade/level/masthead
 //= require cascade/level/homepage-masthead
+//= require cascade/level/wavy-masthead
 //= require cascade/level/mosaic
 //= require cascade/level/name-bar
 //= require cascade/level/news-events

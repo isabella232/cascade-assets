@@ -28,7 +28,7 @@ $breakpoint arguement choices:
 ORDER: Base + typography > general layout + grid > page layout > components
 1em = 16px
 */
-@mixin respond($breakpoint) {
+@mixin respond($breakpoint, $val: 0) {
   @if $breakpoint==phone {
     @media only screen and (max-width: 37.5em) {
       @content;
@@ -67,6 +67,12 @@ ORDER: Base + typography > general layout + grid > page layout > components
     }
 
     //1800
+  }
+
+  @if $breakpoint=wildcard {
+    @media only screen and (max-width: #{$val}) {
+      @content;
+    }  
   }
 }
 

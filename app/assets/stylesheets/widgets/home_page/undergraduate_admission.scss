@@ -17,7 +17,7 @@
     li {
       max-width: 100%;
       padding: 10px;
-      background: url('../img/gray_50.png');
+      background: url("../img/gray_50.png");
       /*
        * This is required for IE since IE defaults to border-box, which will shrink
        * content to fit in width. For more info on this setting, see:
@@ -58,26 +58,25 @@
 
   @-webkit-keyframes fadeIn {
     from {
-      opacity: 0
+      opacity: 0;
     }
 
     to {
-      opacity: 1
+      opacity: 1;
     }
   }
 
   @keyframes fadeIn {
     from {
-      opacity: 0
+      opacity: 0;
     }
 
     to {
-      opacity: 1
+      opacity: 1;
     }
   }
 
   @keyframes fadeinout {
-
     0%,
     100% {
       opacity: 0;
@@ -88,12 +87,10 @@
     }
   }
 
-
   .undergraduate-card__text {
     padding-left: 20px;
     padding-right: 20px;
   }
-
 }
 
 @media only screen and (min-width: 680px) {
@@ -211,7 +208,6 @@
 * Undergraduate Admission Section
 ***************************************************/
 #undergraduateAdmission {
-
   @include respond(tab-port) {
     * {
       -webkit-animation: fadeIn 1s linear forwards;
@@ -219,17 +215,15 @@
     }
   }
 
-
   @keyframes fadeIn {
     from {
-      opacity: 0
+      opacity: 0;
     }
 
     to {
-      opacity: 1
+      opacity: 1;
     }
   }
-
 
   background-image: var(--bgImage);
   background-size: cover;
@@ -255,6 +249,11 @@
 .skrollr #undergraduateAdmission {
   background-attachment: fixed;
 }
+@supports (-webkit-touch-callout: inherit) {
+  .skrollr #undergraduateAdmission {
+    background-attachment: scroll;
+  }
+}
 
 .no-webp {
   #undergraduateAdmission {
@@ -267,7 +266,6 @@
   }
 }
 
-
 #undergraduateAdmission {
   --bgImage: url(https://www.chapman.edu/_assets/homepage/undergrad-admissions.webp);
   background-image: var(--bgImage);
@@ -276,10 +274,10 @@
   background-position: center;
   background-size: cover;
   color: #ffffff;
-
+  background-attachment: scroll;
 
   &.lazy {
-    --bgImage: '';
+    --bgImage: "";
   }
 
   h2 {
@@ -296,15 +294,15 @@
 }
 
 .homepage ul.statistics li.fact3 {
-  background-color: rgba(165, 0, 52, .9);
+  background-color: rgba(165, 0, 52, 0.9);
 }
 
 .homepage ul.statistics li.fact4 {
-  background-color: rgba(110, 98, 89, .9);
+  background-color: rgba(110, 98, 89, 0.9);
 }
 
 .homepage ul.statistics li.fact5 {
-  background-color: rgba(2, 2, 1, .8);
+  background-color: rgba(2, 2, 1, 0.8);
 }
 
 p span.bigstat,
@@ -317,5 +315,66 @@ p span.label {
     -webkit-animation: fadeIn 1s linear forwards;
     animation: fadeIn 1s linear forwards;
     animation-delay: 1s;
+  }
+}
+
+/* iPad 1, 2, Mini and Air */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+  .bigstat {
+    -webkit-animation: fadeIn 1s linear forwards;
+    animation: fadeIn 1s linear forwards;
+    animation-delay: 1s;
+  }
+  #undergraduateAdmission .heading {
+    opacity: 1 !important;
+  }
+  #undergraduateAdmission .heading {
+    opacity: 1 !important;
+    min-height: max-content;
+  }
+
+  #undergraduateAdmission .fade-elem {
+    opacity: 1 !important;
+  }
+  #undergraduateAdmission .skrollable {
+    top: 0 !important;
+  }
+  section#undergraduateAdmission {
+    background-image: url(https://www.chapman.edu/_assets/_homepage-featured-callouts/undergrad-admissions.jpg); // safari does not parse the CSS var
+    background-color: #111111;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: scroll;
+  }
+}
+
+/* iPad 3, 4 and Pro 9.7" */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+  .bigstat {
+    -webkit-animation: fadeIn 1s linear forwards;
+    animation: fadeIn 1s linear forwards;
+    animation-delay: 1s;
+  }
+  #undergraduateAdmission .heading {
+    opacity: 1 !important;
+  }
+  #undergraduateAdmission .heading {
+    opacity: 1 !important;
+    min-height: max-content;
+  }
+  #undergraduateAdmission .fade-elem {
+    opacity: 1 !important;
+  }
+  #undergraduateAdmission .skrollable {
+    top: 0 !important;
+  }
+  section#undergraduateAdmission {
+    --bgImage: url(https://www.chapman.edu/_assets/_homepage-featured-callouts/undergrad-admissions.jpg);
+    background-image: url(https://www.chapman.edu/_assets/_homepage-featured-callouts/undergrad-admissions.jpg); // safari does not parse the CSS var
+    background-color: #111111;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
   }
 }

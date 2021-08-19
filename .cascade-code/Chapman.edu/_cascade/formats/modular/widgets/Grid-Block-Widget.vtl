@@ -18,10 +18,10 @@
 
 
 #set ($display = $element.getChild($widgetXPath).getChild('display').value)
-#set ($bgColor =  $element.getChild($widgetXPath).getChild('bgColor').value.toLowerCase())
 
 #if ($templateType == ("Modular/1 Column"))
   <!-- IF ONE COLUMN TEMPLATE --> 
+    #set ($bgColor =  $element.getChild($widgetXPath).getChild('bgColor').value.toLowerCase())
     #set ( $oneColWrapperBackgroundColor = "grid-block-widget__wrapper--" + ${bgColor} ) 
     ## #set ($oneColNoBg = "no-bg")
     ## #set ($textBackgroundColor = $oneColNoBg )
@@ -39,6 +39,12 @@
         #set ( $oneColWrapperBackgroundColor = "")
         #set ($oneColNoBg = "")
         #set ($titleBgColor = $element.getChild($widgetXPath).getChild("gridOptions").getChild('textBackgroundColor').value)
+        
+         <style>
+            .grid-block-widget__container {
+                margin-bottom: 24px;
+            }
+        </style>
     #end
     <!-- END IF NOT ONE COL TEMPLATE --> 
 
@@ -162,11 +168,9 @@
 #set ($imageOrientation = $gridOptions.getChild('imageOrientation').value)
 
 
-#if ($imageOrientation != 'circle')
-      #set ($titleBgColor = $bgColor)
-    #else 
+#if ($imageOrientation == 'circle')
       #set ($titleBgColor = 'no-bg')
-    #end 
+#end 
 
 #set ($titleOverlay = $gridOptions.getChild('titleOverlay').value )
   #if ($titleOverlay != 'No') 
@@ -176,26 +180,32 @@
     #set ($overlayClass = '') 
   #end
 
-#set ($textBackgroundColor = $gridOptions.getChild('textBackgroundColor').value)
+
+
+## IMAGES 
+#set ($gridColumnsImages = $gridOptions.getChild('gridColumnsImages').value)
 
 ## VIDEOS
-#set ($gridColumnsVideos = $gridOptions.getChild('gridColumnsVideos').value)
-
-
-  ## IMAGES 
-  #set ($gridColumnsImages = $gridOptions.getChild('gridColumnsImages').value)
-
-
-  #if ($gridColumnsImages != '')
+#if ($imageOrVideo == 'videos')
+    #if ($gridColumnsImages != '')
     #set ($dataColumns = $gridColumnsImages.split("-")[0])
     
-  #elseif ($gridColumnsVideos != '')
+    #elseif ($gridColumnsVideos != '')
       #set ($dataColumns = $gridColumnsVideos)
-  #else 
+      #set ($gridColumnsImages = $gridColumnsVideos)
+    #else 
       #set ($dataColumns = '')
-  #end
-
-
+    #end
+    
+    #set ($gridColumnsVideos = $gridOptions.getChild('gridColumnsVideos').value)
+        #if ($gridColumnsVideos == 'gridColumnsTwoVideos')
+            #set ($gridColumnsVideos = 'grid-block-widget__container--2-col')
+            #set ($gridColumnsImages = $gridColumnsVideos)
+        #elseif ($gridColumnsVideos == 'gridColumnsThreeVideos')
+            #set ($gridColumnsVideos = 'grid-block-widget__container--3-col')
+            #set ($gridColumnsImages = $gridColumnsVideos)
+    #end
+#end
 
 #set ($gridDisplay = $gridOptions.getChild('gridDisplay').value)
 
@@ -217,21 +227,29 @@
 <div class="inner-container">
 #if ($displaySectionIntro == "yes")
     <div class="section-intro text-align--${introAndOutroTextAlignment}">
+    #if ($sectionPreheader != "")
       <div class="section-intro__preheader text-align--${introAndOutroTextAlignment}">
         ${_EscapeTool.xml($sectionPreheader)}
       </div>
+    #end
+    
+    #if ($sectionHeader != "")
       <h2 class="section-intro__header text-align--${introAndOutroTextAlignment}">  
         ${_EscapeTool.xml($sectionHeader)}
       </h2>
+    #end
+    
+    #if ($_SerializerTool.serialize($element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionHeaderParagraph'), true) != "")
       <div class="section-intro__title text-align--${introAndOutroTextAlignment}">     
         $_SerializerTool.serialize($element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionHeaderParagraph'), true)
       </div>
+    #end
     </div>
     
   #end
     
 
-  <div id="grid-block-widget__container--${_MathTool.add($foreach.index, 1)}" class="grid-block-widget__container grid-block-widget__container--$imageOrVideo grid-block-widget__container--${gridColumnsImages} ${overlayClass} grid-block-widget__container--${imageOrientation} ${pagination}" data-columns="${dataColumns}">
+  <div id="grid-block-widget__container--${_MathTool.add($foreach.index, 1)}" class="grid-block-widget__container grid-block-widget__container--$imageOrVideo grid-block-widget__container--${gridColumnsImages} ${gridColumnsVideos} ${overlayClass} grid-block-widget__container--${imageOrientation} ${pagination}" data-columns="${dataColumns}">
   
 
   #foreach ($block in $blocks)
@@ -239,14 +257,13 @@
     #set ($gridBlockTitle = $block.getChild('gridBlockTitle').value)
     #set ($gridBlockLinkType = $block.getChild('linkType').value)
 
-    #if ($gridBlockLinkType == 'Internal Link')
-        #set ($gridBlockLinkURL = $block.getChild('internalLink').value)
-      #elseif ($gridBlockLinkType == 'External Link')
+    #if ($gridBlockLinkType == 'internal')
+        #set ($gridBlockLinkURL = $block.getChild('internalLink').getChild('path').value)
+      #elseif ($gridBlockLinkType == 'external')
         #set ($gridBlockLinkURL = $block.getChild('externalLink').value )
       #else 
         #set ($gridBlockLinkURL = $block.getChild('fileLink').getChild('path').value )
     #end
-    #set ($gridBlockLinkURL = $block.getChild('externalLink').value )
     #set ($gridBlockContent = $block.getChild('content').value)
     #set ($gridBodyText = $block.getChild('gridBlockText').value)
 
@@ -257,7 +274,7 @@
     #set ($gridBlockImagePath = $block.getChild('gridBlockImage').getChild('path').value)
 
     #set ($objectFitPosition = $block.getChild('imagePosition').value)
-    #set ($objectFitPsoition = ${_EscapeTool.xml($objectFitPosition)})
+    #set ($objectFitPosition = ${_EscapeTool.xml($objectFitPosition)})
 
     #set ($gridBlockAltText = $block.getChild('altText').value)
     #set ($gridBlockAltText = ${_EscapeTool.xml($gridBlockAltText)})
@@ -294,6 +311,7 @@
     #elseif ($imageOrVideo == 'videos' && $imageOrientation != 'none')
          ## <video src="${_EscapeTool.xml($gridBlockVideo)}"></video>
           $gridBlockiFrame 
+          
     #end
     
     #if ($hasGridTitle == 'Yes' && $linkURL != '' && $gridBlockLinkType != '' )
