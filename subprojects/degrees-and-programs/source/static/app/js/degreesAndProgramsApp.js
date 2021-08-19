@@ -124,7 +124,7 @@ var chapman = chapman || {};
                 target.val(keywordVal);
 
                 window.location.hash = hash; // Update the hash so history is enabled
-                _this.resetFiltering(form);
+                // _this.resetFiltering(form);
               }
             } else {
               form.find('input[id*="keyword"]').val("");
@@ -1095,6 +1095,12 @@ var chapman = chapman || {};
           }
         }
       }
+      else {
+        // LOAD DEFAULT SECTION
+        _this.toggleSection($("#js-dap-section-undergraduate"));
+        $("#dap-undergraduate-program-all").prop("checked", true);
+      }
+
     },
 
     initAutocompletes: function () {
@@ -1302,7 +1308,7 @@ function setWavyBgHeight() {
     var wavyBGHeight = $(this).closest('.wavy-bg').height();
     //     var wavyBGHeight = window.getComputedStyle(wavyBG, ':before').height; // Returns (string) "70px"
 
-    $(this).find('.wavy-bg').css('min-height', contentHeight)
+    $(this).find('.wavy-bg').css('height', contentHeight)
 
   })
 };
