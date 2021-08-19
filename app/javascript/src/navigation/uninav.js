@@ -226,11 +226,11 @@ function staticUninav() {
       "./index.aspx nav#uninav",
       function (responseTxt, statusTxt, xhr) {
         if (statusTxt == "success")
-          $("nav#uninav").fadeOut('slow');
+          $("nav#uninav.static").fadeOut('slow');
         reinit_drilldown_handlers();
         if (statusTxt == "error")
           console.log("Error: " + xhr.status + ": " + xhr.statusText);
-        $("nav#uninav").show();
+        $("nav#uninav.static").show();
       }
     );
 
