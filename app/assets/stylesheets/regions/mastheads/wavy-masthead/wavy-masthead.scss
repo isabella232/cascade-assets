@@ -1,0 +1,323 @@
+.wavy-masthead {
+  &.dev {
+    mask-image: image-url(
+      "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png"
+    ); // mainly for quick dev testing -- the above should be used when compiled and bundled)
+
+    -webkit-mask-image: image-url(
+      "https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png"
+        // mainly for quick dev testing -- the above should be used when compiled and bundled)
+    );
+  }
+  --zindex: 999999;
+  @mixin dropShadow {
+    box-shadow: 0 37.125px 70px -12.125px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.5s ease;
+
+    &:hover,
+    &:focus,
+    &:focus-within {
+      box-shadow: 0 37.125px 70px -12.125px rgba(0, 0, 0, 0.3);
+    }
+  }
+  &__container {
+    position: relative;
+    min-height: 600px;
+    top: 0;
+    margin-top: 0;
+    padding-top: 0;
+    background-color: $white;
+
+    &:before {
+      :before {
+        content: "";
+        position: absolute;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
+        -webkit-mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
+        -webkit-mask-size: 100% 100%;
+        will-change: filter;
+        max-height: 600px;
+        z-index: 999999;
+      }
+    }
+
+    .toggle-video,
+    #wavy-masthead__toggle--pause,
+    #wavy-masthead__toggle--play {
+      z-index: 3;
+      max-width: 20px;
+      position: absolute;
+      bottom: 50px;
+      right: 2%;
+      color: white;
+      cursor: pointer;
+
+      &:focus {
+        outline: 2px dotted $white;
+        outline-offset: 5px;
+      }
+    }
+    .wavy-masthead__toggle--play {
+      display: none !important;
+    }
+
+    &[data-video-state="paused"] {
+      .wavy-masthead__toggle--play {
+        display: block !important;
+      }
+      .wavy-masthead__toggle--pause {
+        display: none !important;
+      }
+    }
+    &[data-video-state="playing"] {
+      .wavy-masthead__toggle--play {
+        display: none !important;
+      }
+      .wavy-masthead__toggle--pause {
+        display: block !important;
+      }
+    }
+  }
+  &__wave-mask {
+    z-index: 2;
+    display: block;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.9);
+    position: relative;
+    mask-image: image-url("masthead-wave");
+    -webkit-mask-image: image-url("masthead-wave");
+
+    -webkit-mask-size: 100% 100%;
+    will-change: filter;
+    max-height: $mastheadVideoHeight;
+    position: absolute;
+    background: -moz-linear-gradient(
+      0deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(1, 0, 17, 1) 10%,
+      rgba(0, 0, 0, 0) 300px
+    );
+    background: -webkit-linear-gradient(
+      0deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(1, 0, 17, 1) 10%,
+      rgba(0, 0, 0, 0) 300px
+    );
+    background: linear-gradient(
+      0deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(1, 0, 17, 1) 10%,
+      rgba(0, 0, 0, 0) 300px
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endColorstr="#000000", GradientType=1);
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &__text {
+    position: absolute;
+    z-index: var(--zindex);
+    color: $white;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    min-height: 200px;
+    bottom: 15%;
+  }
+
+  @include respond(phone) {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  h2 {
+    font-size: 6rem;
+    text-shadow: $mastheadTextShadow;
+    display: -ms-grid;
+    display: grid;
+    justify-content: center;
+    text-transform: uppercase;
+    line-height: 0.8em;
+    @include v(font-family, futura-condensed);
+    font-weight: 700;
+    -webkit-user-select: text;
+  }
+  .button {
+    &--dropdown,
+    &--dropdown:hover,
+    &--dropdown:focus {
+      background-color: transparent;
+      // border: 2px solid var(--color-cu-red);
+      -webkit-box-shadow: inset 0px 0px 0px 2px $cu-red;
+      -moz-box-shadow: inset 0px 0px 0px 2px $cu-red;
+      box-shadow: inset 0px 0px 0px 2px $cu-red;
+    }
+
+    &--dropdown__wrapper {
+      display: inline-block;
+      max-width: max-content;
+      position: relative;
+
+      @include respond(phone) {
+        max-width: 100%;
+        width: 100%;
+      }
+      .dropdown-menu {
+        display: none;
+
+        li {
+          list-style: none;
+          border-bottom: 1px solid $cu-light-grey;
+          transition: 150ms linear;
+          padding: 0;
+          margin-bottom: 0;
+
+          &:hover {
+            background-color: $cu-light-grey;
+          }
+        }
+        a {
+          padding: 12px;
+        }
+        a + a {
+          margin-top: 12px;
+        }
+      }
+
+      &:hover,
+      &:focus,
+      &:focus-within {
+        .dropdown-menu {
+          display: block;
+          background-color: $white;
+          position: absolute;
+          background-color: $white;
+          width: 100%;
+          // animation: fadein 300ms forwards;
+          // -moz-animation: fadein 300ms forwards;
+          // -webkit-animation: fadein 300ms forwards;
+          // -o-animation: fadein 300ms forwards;
+          // animation-direction: forwards;
+          // -webkit-animation: fadein 300ms forwards;
+          // animation-fill-mode: forwards !important;
+          @include qbal-dropdown-enter;
+          @include dropShadow;
+
+          a {
+            display: block;
+          }
+          .label {
+            border-bottom: 1px dotted $cu-red;
+          }
+        }
+      }
+
+      .fa-caret-down {
+        width: min-content;
+        max-height: 12px;
+        max-width: 12px;
+      }
+    }
+  }
+
+  &__gradient-overlay {
+    z-index: 5;
+    display: block;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.9);
+    position: relative;
+    mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a66….png);
+    -webkit-mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a66….png);
+    -webkit-mask-size: 100% 100%;
+    will-change: filter;
+    max-height: 600px;
+    position: absolute;
+    background: -webkit-linear-gradient(
+      0deg,
+      #020024 0%,
+      #010011 10%,
+      rgba(0, 0, 0, 0) 300px
+    );
+    background: -webkit-linear-gradient(
+      bottom,
+      #020024 0%,
+      #010011 10%,
+      rgba(0, 0, 0, 0) 300px
+    );
+    background: linear-gradient(
+      0deg,
+      #020024 0%,
+      #010011 10%,
+      rgba(0, 0, 0, 0) 300px
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endColorstr="#000000", GradientType=1);
+  }
+  .corner-wave {
+    background-image: url("https://www.chapman.edu/_assets/mastheads/masthead_corner_wave.png");
+    width: 100%;
+    position: absolute;
+    z-index: 3;
+    height: 110px;
+    background-repeat: no-repeat;
+    color: $white;
+    display: flex;
+    background-size: calc(max(100%, 500px));
+    display: none;
+
+    @include respond(tab-port) {
+      display: block;
+    }
+
+    img {
+      position: absolute;
+      left: 0;
+      width: auto;
+      z-index: 1;
+    }
+    .faux-h2 {
+      z-index: 9;
+    }
+    @include respond(tab-land) {
+      width: 100%;
+      height: 100%;
+      left: 0;
+    }
+
+    @include respond(phone) {
+    }
+
+    .faux-h2 {
+      margin-left: 24px;
+      margin-right: 24px;
+      height: min-content;
+    }
+
+    &__container {
+      // width: max-content;
+    }
+  }
+  video {
+    width: 100%;
+    // pointer-events: none;
+  }
+}

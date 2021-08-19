@@ -2,6 +2,8 @@
 //= require_tree ../../../lib/assets/javascripts
 
 //= require _helpers/chapDOM
+//= require cascade/plugins/slick
+//= require cascade/plugins/mousetrap
 //= require_tree ./widgets
 //= require_tree ./components
 //= require_tree ./regions
@@ -41,9 +43,8 @@
 //= require cascade/plugins/super-pager
 //= require cascade/plugins/touchwipe
 //= require cascade/plugins/lightslider
-//= require cascade/plugins/slick
+
 //= require cascade/plugins/isOnScreen
-//= require cascade/plugins/mousetrap
 //= require cascade/level/plugins/tipsy
 //= require cascade/level/accordion
 //= require cascade/level/three_photo_callout
@@ -64,6 +65,7 @@
 //= require cascade/level/level
 //= require cascade/level/masthead
 //= require cascade/level/homepage-masthead
+//= require cascade/level/wavy-masthead
 //= require cascade/level/mosaic
 //= require cascade/level/name-bar
 //= require cascade/level/news-events

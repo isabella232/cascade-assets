@@ -78,6 +78,7 @@ var chapman = chapman || {};
 			this.bindUIEvents();
 			this.getUrlTypeQuery();
 			this.initLazyLoadingInterval();
+			this.toggleSection($('#js-dap-section-undergraduate'));
 		},
 
 		bindUIEvents: function () {
@@ -97,11 +98,27 @@ var chapman = chapman || {};
 			});
 
 			// Click on any section's accordion trigger
-			$('.dap-section-accordion-trigger').on('click', function () {
+			// Commented because removing accordion section
+			// $('.dap-section-accordion-trigger').on('click', function () {
+			// 	if (!isTransitioning) {
+			// 		_this.toggleSection($(this));
+			// 	}
+			// });
+
+			// Click on any section's accordion trigger
+			$('.degree-finder-switch').on('click', function () {
+				console.log("clicked button;");
+				
 				if (!isTransitioning) {
-					_this.toggleSection($(this));
+					if (activeSection === 'undergraduate') {
+						_this.toggleSection($('#js-dap-section-graduate'));
+					}
+					else {
+						_this.toggleSection($('#js-dap-section-undergraduate'));
+					}
 				}
 			});
+
 
 			// Form change in any section
 			$('#js-dap-feature form').on('change', function (event) {

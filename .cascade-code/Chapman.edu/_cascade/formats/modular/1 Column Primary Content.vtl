@@ -20,6 +20,7 @@
 #import( "/_cascade/formats/modular/widgets/1 Column/image_slider_widget" )
 #import( "/_cascade/formats/modular/widgets/1 Column/campus_map_widget" )
 #import( "/_cascade/formats/modular/widgets/1 Column/google_map_widget" )
+#import( "/_cascade/formats/modular/widgets/Personnel Widget" )
 ## #import( "/_cascade/formats/modular/widgets/1 Column/google_map_widget_address" )
 
 #set ($currentPage = $_XPathTool.selectSingleNode($contentRoot, "//system-page[@current]") )
@@ -42,12 +43,20 @@
     #if ($widgetType == 'Video with Text')
         #outputVideoWithText($widget)
     #end
-    
+
+
+    #if ($widgetType == 'Personnel Widget')
+        #set ($displayPersonnelWidget = $widget.getChild('personnelWidget').getChild('display').value)
+        #if ($displayPersonnelWidget == 'Yes')
+            #outputPersonnelWidget($widget)
+        #end
+
     #if ($widgetType == 'New Text Editor')
       #set ($displayWidget = $widget.getChild('textEditorWidget').getChild('display').value)
       #if ($displayWidget == 'Yes')
           #outputTextEditorWidget($widget)
       #end
+      
     #end
 
     #if ($widgetType == 'Text with CTA')
