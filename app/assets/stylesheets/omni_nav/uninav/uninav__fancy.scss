@@ -122,6 +122,13 @@ span.uninav__underline--pillar:hover::after {
   animation-iteration-count: 1;
 }
 
+#uninav .uninav__login--wrapper li a:hover > .uninav__underline--center:after {
+  background-image: linear-gradient(90deg, $white 50%, transparent 50%),
+    linear-gradient(90deg, $white 50%, transparent 50%),
+    linear-gradient(0deg, $white 50%, transparent 50%),
+    linear-gradient(0deg, $white 50%, transparent 50%),
+    linear-gradient(0deg, $white 50%, transparent 50%);
+}
 @keyframes border-dance {
   0% {
     background-position: left top, right bottom, left bottom, right top;
