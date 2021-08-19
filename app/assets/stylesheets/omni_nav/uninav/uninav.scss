@@ -517,7 +517,6 @@ html {
           linear-gradient(0deg, #a50034 50%, transparent 50%),
           linear-gradient(0deg, #a50034 50%, transparent 50%);
         background-repeat: repeat-x;
-        /*     background-size: 15px 2px, 15px 2px, 2px 15px, 2px 15px; */
         background-size: 0px 0px, 5px 2px, 0px 0px, 0px 0px;
         background-position: left top, right bottom, left bottom, right top;
         animation: border-dance 700ms ease-out;
@@ -1265,27 +1264,6 @@ html {
   @include qbal-slideRight-exit;
 }
 
-// .uninav {
-//   &__slide-right {
-//     &--exit {
-//       @include qbal-slideRight-exit;
-//     }
-
-//     &--enter {
-//       @include qbal-slideRight-enter;
-//     }
-//   }
-
-//   &__slide-left {
-//     &--exit {
-//       @include qbal-slideLeft-exit;
-//     }
-
-//     &--enter {
-//       // @include qbal-slideLeft-enter;
-//     }
-//   }
-// }
 
 // END TABLET PORTRAIT
 // END MEDIA QUERIES
