@@ -100,7 +100,7 @@ span.uninav__underline--pillar:hover::after {
     linear-gradient(0deg, $white 50%, transparent 50%),
     linear-gradient(0deg, $white 50%, transparent 50%);
 }
-#uninav li a:hover > .uninav__underline--center:after {
+#uninav li:not(.uninav__dropdown--parent) a:hover > .uninav__underline--center:after {
   content: " ";
   position: absolute;
   left: 0;
@@ -118,7 +118,7 @@ span.uninav__underline--pillar:hover::after {
   /*     background-size: 15px 2px, 15px 2px, 2px 15px, 2px 15px; */
   background-size: 0px 0px, 5px 2px, 0px 0px, 0px 0px;
   background-position: left top, right bottom, left bottom, right top;
-  animation: border-dance 700ms ease-out;
+  animation: border-dance 500ms ease-out;
   animation-iteration-count: 1;
 }
 

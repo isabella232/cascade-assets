@@ -55,11 +55,6 @@ html {
       border-bottom: none;
     }
 
-    &__logo {
-      &--secondary {
-        @include qbal-fade-enter;
-      }
-    }
 
     &__utility-nav--wrapper {
       border-bottom: none;
@@ -250,6 +245,9 @@ html {
           position: relative;
           z-index: 9999999999999999999999999999;
         }
+      }
+      .uninav__search-input--desktop {
+        min-width: 233px;
       }
 
       &__search-input {
@@ -572,8 +570,6 @@ html {
           &:focus,
           &:focus-within {
             color: $cu-red;
-            margin-left: 2px;
-            transition: 150ms linear;
           }
         }
 
@@ -594,23 +590,13 @@ html {
           list-style-image: none;
           margin: 0;
           padding: 0;
-
-          @mixin uninav-slideLeft-enter {
-            animation: qbal-FadeEnter $qbal-duration-3 $qbal-ease-slow backwards,
-              qbal-LeftEnter $qbal-duration-4 $qbal-ease-entrance backwards,
-              showBorder 2s linear forwards;
-          }
+          @include qbal-dropdown-enter;
 
           li {
             width: 100%;
+            animation: showBorder 2s linear forwards;
             display: flex;
             padding-left: 2rem;
-            animation-duration: 200ms;
-            @include uninav-slideLeft-enter;
-
-            &:first-child {
-              // animation-duration: 200ms;
-            }
 
             @for $i from 1 to 10 {
               &:nth-child(#{$i}) {
@@ -743,7 +729,7 @@ html {
 // END UNINAV DROPDOWNS
 @include respond(big-desktop) {
   div.uninav__cta {
-    @include qbal-slideLeft-enter;
+    // // @include qbal-slideLeft-enter;
   }
 
   .uninav__logo {
@@ -781,7 +767,7 @@ html {
 
   .uninav__menu-item--audiences {
     // need a slicker preferably non-js fadeout solution since display: none is not animatable
-    @include qbal-slideLeft-exit;
+    // @include qbal-slideLeft-exit;
     display: none;
   }
 
@@ -789,7 +775,7 @@ html {
     background-color: $white;
 
     .uninav__global-nav {
-      @include qbal-growExaggerated-enter;
+      // @include qbal-growExaggerated-enter;
 
       ul li,
       & > a {
@@ -798,8 +784,7 @@ html {
     }
 
     #uninav__cta {
-      // @include uninav-border-bottom;
-      @include qbal-drop-enter;
+      // @include qbal-drop-enter;
     }
   }
 
@@ -826,7 +811,7 @@ html {
         display: none;
 
         &.slide-left {
-          @include qbal-slideLeft-enter;
+          // @include qbal-slideLeft-enter;
           margin-right: 15px;
         }
       }
@@ -934,7 +919,7 @@ html {
         display: none;
 
         &.slide-left {
-          @include qbal-slideLeft-enter;
+          // @include qbal-slideLeft-enter;
           margin-right: 15px;
         }
       }
@@ -1036,11 +1021,11 @@ html {
       }
 
       &__menu-item-login {
-        @include qbal-slideLeft-enter;
+        // @include qbal-slideLeft-enter;
       }
 
       &__menu-item-login {
-        @include qbal-slideLeft-enter;
+        // @include qbal-slideLeft-enter;
       }
     }
 
@@ -1238,7 +1223,7 @@ html {
   }
 }
 
-html.off-canvas__blur {
+
   #js-off-canvas-overlay {
     animation: increaseOpacity;
     animation-direction: normal;
@@ -1274,33 +1259,33 @@ html.off-canvas__blur {
       }
     }
   }
-}
+
 
 .uninav__animation--exit {
   @include qbal-slideRight-exit;
 }
 
-.uninav {
-  &__slide-right {
-    &--exit {
-      @include qbal-slideRight-exit;
-    }
+// .uninav {
+//   &__slide-right {
+//     &--exit {
+//       @include qbal-slideRight-exit;
+//     }
 
-    &--enter {
-      @include qbal-slideRight-enter;
-    }
-  }
+//     &--enter {
+//       @include qbal-slideRight-enter;
+//     }
+//   }
 
-  &__slide-left {
-    &--exit {
-      @include qbal-slideLeft-exit;
-    }
+//   &__slide-left {
+//     &--exit {
+//       @include qbal-slideLeft-exit;
+//     }
 
-    &--enter {
-      @include qbal-slideLeft-enter;
-    }
-  }
-}
+//     &--enter {
+//       // @include qbal-slideLeft-enter;
+//     }
+//   }
+// }
 
 // END TABLET PORTRAIT
 // END MEDIA QUERIES
@@ -1406,7 +1391,7 @@ svg.svg-inline--fa.fa-paw.fa-w-16 {
 
   li.uninav__dropdown--parent:hover svg.svg-inline--fa.fa-caret-down.fa-w-10 {
     transform: rotate(180deg) translateX(-1rem);
-    transition: all linear 0.25s;
+    transition: all linear 350ms;
     margin-left: 0;
   }
 
