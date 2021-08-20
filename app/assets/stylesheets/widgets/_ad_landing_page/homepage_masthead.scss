@@ -426,7 +426,6 @@ $mastheadVideoHeight: 750px;
     span {
       @include v(background-color, cu-red);
       will-change: filter, brightness;
-      @include qbal-slideUp-enter;
       max-height: 100%;
 
       &:focus,
