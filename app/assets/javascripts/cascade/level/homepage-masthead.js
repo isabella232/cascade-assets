@@ -1,5 +1,6 @@
 $(function () {
     if ($('video#homepage-masthead__video').length) {
+      console.log('homepage masthead');
         fetchCuratorImages();
         var vid = $("video#homepage-masthead__video");
         $('.homepage video').removeAttr('controls');
@@ -13,6 +14,7 @@ function fetchCuratorImages() {
     $.ajax({
         url: 'https://api.curator.io/v1/feeds/c91835ec-e439-42c2-bd46-e5fb3899afe2/posts?api_key=11a4445f-6005-4040-9ff2-fd90d3aaa8a6',
         type: 'GET',
+        dataType: 'jsonp',
         success: manipulateCuratorImages,
         error: function (data, status, error) {
             console.log('%c ERROR: level/homepage-masthead.js - could not load curator.io images' + data.responseText.error, 'background: #222; color: #bada55');
@@ -20,7 +22,21 @@ function fetchCuratorImages() {
         }
     });
 }
-
+function manipulateCuratorImages(data) {
+  $('.homepage-masthead__photos picture').each(function (index, value) {
+      $(this).find('img').attr('src', data.posts[index].image);
+      $(this).find('img').attr('data-post', data.posts[index].id);
+  })
+  $('.homepage-masthead__photos picture img').load(function () {
+      var imageObj = $(this);
+      if (!(imageObj.width() == 1 && imageObj.height() == 1)) {
+          $(this).closest('picture').addClass('fade-in');
+      }
+  });
+  $('img[alt=""]').each(function (index, value) {
+      $(this).attr('alt', data.posts[index].text);
+  })
+}
 $(document).on('.homepage-masthead__photos img src', function () {
     console.log('src changed')
 });
