@@ -115,9 +115,9 @@
   // A class to manage window resizer and scroller functions
   var cu_window_manager = {
     // Manual Configs
-    resizerLatency: 20, // in milliseconds. Higher = less CPU, lower = faster UI
+    resizerLatency: 10, // in milliseconds. Higher = less CPU, lower = faster UI
     // Automagic Configs (changed by the script)
-    useTransitions: true,
+    useTransitions: false,
     useParallax: true,
     cannotAutoplayVideo: false,
     // Vars to initialize
