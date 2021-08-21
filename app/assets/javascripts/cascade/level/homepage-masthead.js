@@ -18,9 +18,15 @@ $(function () {
   function success() {
     var data = JSON.parse(this.responseText);
     $('.homepage-masthead__photos picture').each(function (index, value) {
-      $(this).find('img').attr('src', data.posts[index].image).addClass('fade-in');
+      $(this).find('img').attr('src', data.posts[index].image);
       $(this).find('img').attr('data-post', data.posts[index].id);
     })
+    $('.homepage-masthead__photos picture img').load(function () {
+      var imageObj = $(this);
+      if (!(imageObj.width() == 1 && imageObj.height() == 1)) {
+        $(this).closest('picture').addClass('fade-in');
+      }
+    });
     $('img[alt=""]').each(function (index, value) {
       $(this).attr('alt', data.posts[index].text);
     })
@@ -30,6 +36,7 @@ $(function () {
     console.log('Curator.io request failed', err);
     $('.homepage-masthead__photos picture').addClass('fade-in');
   }
+  
   
   function togglePlay() {
     if ($('video#homepage-masthead__video').length) {
