@@ -65,7 +65,7 @@ $mastheadVideoHeight: 750px;
     padding-right: 2vw;
     padding-left: 2vw;
     cursor: pointer;
-    top: calc(600px - 12.5rem);
+    top: calc(750px - 12.5rem);
     fill-opacity: 0.9;
     bottom: 60px;
 
@@ -426,7 +426,6 @@ $mastheadVideoHeight: 750px;
     span {
       @include v(background-color, cu-red);
       will-change: filter, brightness;
-      @include qbal-slideUp-enter;
       max-height: 100%;
 
       &:focus,
