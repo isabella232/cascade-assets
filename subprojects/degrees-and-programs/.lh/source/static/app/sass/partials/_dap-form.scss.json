@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 38,
+            "activePatchIndex": 40,
             "patches": [
                 {
                     "date": 1628814477967,
@@ -160,6 +160,14 @@
                 {
                     "date": 1629755510743,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -289,46 +289,7 @@\n     outline: 2px dotted $red;\n  }\n }\n \n-.faux-button {\n-  background-color: $white;\n-  border: 1px solid $cu-light-grey-2;\n \n-  color: $black;\n-  width: 100%;\n-  height: 100%;\n-  transition: background-color $transition-time, border-color $transition-time;\n \n-  &:hover,\n-  &focus-within,\n-  &:active {\n-    background-color: $red;\n-    color: $white;\n \n-    span {\n-      color: $white;\n-    }\n-  }\n-}\n-\n-\n-.dap-feature li {\n-  background-color: $white;\n-  border: 1px solid $cu-light-grey-2;\n-\n-  color: $black;\n-  width: 100%;\n-  height: 100%;\n-  transition: background-color $transition-time, border-color $transition-time;\n-\n-  &:hover,\n-  &focus-within,\n-  &:active {\n-    background-color: $red;\n-    color: $white;\n-\n-    span {\n-      color: $white;\n-    }\n-  }\n-}\n"
+                },
+                {
+                    "date": 1629758496814,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -289,7 +289,10 @@\n     outline: 2px dotted $red;\n  }\n }\n \n+.title-wrapper {\n+  display: flex;\n+  justify-content: space-between;\n+}\n \n \n-\n"
+                },
+                {
+                    "date": 1629759768524,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -289,10 +289,5 @@\n     outline: 2px dotted $red;\n  }\n }\n \n-.title-wrapper {\n-  display: flex;\n-  justify-content: space-between;\n-}\n \n-\n"
                 }
             ],
             "date": 1628814477967,

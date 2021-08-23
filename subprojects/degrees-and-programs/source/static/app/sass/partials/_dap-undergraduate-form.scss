@@ -118,6 +118,48 @@ $palettes: map-merge($palettes, ('dap-undergraduate-form': ('core': $black,
 
     }
 
+    label {
+      font-weight: normal;
+      margin: 0;
+      background-color: white;
+      position: relative;
+      width: 100%;
+      min-height: 30px;
+      text-align: center;
+      font-family: "futura-pt";
+      font-size: 16px;
+      transition: background-color $transition-time, border-color $transition-time;
+
+      &:hover,
+      &focus-within,
+      &:active {
+        background-color: $red;
+        color: $white;
+
+        span {
+          color: $white;
+        }
+      }
+
+      input {
+        display: none;
+
+        &:checked~span {
+          color: $white;
+          background-color: $red;
+        }
+
+      }
+
+      span {
+        color: $black;
+        background-color: transparent;
+        transition: color $transition-time, background-color $transition-time;
+        display: inline-block;
+        padding: 12px;
+      }
+
+    }
     .show-more a {
       font-weight: 700;
       text-transform: uppercase;
@@ -150,6 +192,7 @@ $palettes: map-merge($palettes, ('dap-undergraduate-form': ('core': $black,
     }
 
   }
+
 
 
   .faux-button {
