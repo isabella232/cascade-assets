@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1628815441123,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1629750808571,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,10 @@\n \n .dap-results {\n   background-color: $white;\n   padding: rem-calc(30 0);\n+  margin-top: 100px;\n+  position: relative;\n \n   .column:last-child:not(:first-child),\n   .columns:last-child:not(:first-child) {\n     float: left;\n@@ -150,9 +152,9 @@\n         padding-top: 30px;\n         padding-bottom: 60px;\n         min-height: 200px;\n         margin-top: 0;\n-        margin-bottom: 120px;\n+        margin-bottom: 200px;\n       }\n \n       .description {\n         position: absolute;\n@@ -223,17 +225,15 @@\n     }\n \n     .active-content {\n       opacity: 0;\n-      background-color: rgba($mexican-red, 0.9);\n       width: 100%;\n       height: 100%;\n       top: 0;\n       left: 0;\n       right: 0;\n       bottom: 0;\n       padding: rem-calc(20);\n-      transition: opacity $transition-time;\n \n       .active-content-inner {\n         overflow: hidden;\n         position: relative;\n@@ -269,37 +269,27 @@\n       line-height: rem-calc(52);\n       cursor: pointer;\n       right: 0;\n       bottom: 0;\n-      width: rem-calc(52);\n-      height: rem-calc(52);\n+      width: 2rem;\n+      height: 2rem;\n       display: flex;\n       align-items: center;\n+      background-color: $red;\n+      border-radius: 50%;\n+      margin-right: 20px;\n+      margin-bottom: 10px;\n \n-      &:before {\n-        content: \"\";\n-        width: 0;\n-        height: 0;\n-        border-style: solid;\n-        border-width: 0 0 52px 52px;\n-        border-color: transparent transparent rgba($mexican-red, 0.7);\n-        display: block;\n-        position: absolute;\n-        right: 0;\n-        bottom: 0;\n-        transition: border-color $transition-time;\n-      }\n \n       .icon {\n         color: $white;\n         width: 100%;\n         height: rem-calc(18);\n         display: block;\n         transition: transform $transition-time;\n-        transform: rotate(45deg);\n         position: relative;\n-        top: rem-calc(10);\n-        left: rem-calc(10);\n+        top: 0;\n+        left: 0;\n       }\n     }\n \n     .result-content {\n@@ -403,4 +393,10 @@\n     background-color: $white;\n     padding: 0;\n   }\n }\n+\n+\n+// DEBUG - REMOVE\n+#omni-nav-v2, footer {\n+  // opacity: 0;\n+}\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1628815441123,

@@ -62,15 +62,6 @@
                 <span>Majors</span>
               </div>
             </label>
-            <label tabindex="0" class="program-type button" for="dap-undergraduate-program-major">
-              <input id="dap-undergraduate-program-major" name="dap-undergraduate-program-major" type="checkbox"
-                value="major,integrated/4+1,accelerated 3+2" />
-              <div class="inner">
-                {{svg "check"}}
-                <span>Majors</span>
-              </div>
-            </label>
-
           </div>
         </div>
 
@@ -83,37 +74,134 @@
       <div class="row">
         <!-- I'm Interested In Checkboxes -->
         <div class="columns small-12 medium-6 clearfix">
-          <h4 class="subsection-heading">Areas of Study:</h4>
-          <div class="field-container">
-            <label tabindex="0" class="program-type button" for="dap-undergraduate-program-all">
-              <input id="dap-undergraduate-program-all" name="dap-undergraduate-program-all" type="checkbox"
-                value="all" />
-              <div class="inner">
-                {{svg "check"}}
-
-                <span>All Undergraduate Programs</span>
-              </div>
-            </label>
-            <label tabindex="0" class="program-type button" for="dap-undergraduate-program-all">
-              <input id="dap-undergraduate-program-all" name="dap-undergraduate-program-all" type="checkbox"
-                value="all" />
-              <div class="inner">
-                {{svg "check"}}
-
-                <span>All Undergraduate Programs</span>
-              </div>
-            </label>
-            <label tabindex="0" class="program-type button" for="dap-undergraduate-program-all">
-              <input id="dap-undergraduate-program-all" name="dap-undergraduate-program-all" type="checkbox"
-                value="all" />
-              <div class="inner">
-                {{svg "check"}}
-
-                <span>Programs</span>
-              </div>
-            </label>
-
-          </div>
+          
+    												<h4 class="subsection-heading">Areas of Study:</h4>
+          <a id="js-reset-undergraduate-interests" class="reset" href="javascript:void(0)" title="Reset interests filters"><svg class="icon icon-reset"><use xlink:href="#icon-reset"></use></svg> Reset</a>
+          <ul id="js-dap-undergraduate-interests-list" class="dap-undergraduate-interests-list field-container">
+    															<li>
+    																<label for="dap-undergraduate-interest-innovating-interest-a">
+    																	<input id="dap-undergraduate-interest-innovating-interest-a" name="dap-undergraduate-interest-innovating-interest-a" type="checkbox" value="innovating-interest-a">
+    																	<span>Innovating Interest A</span>
+    																</label>
+    															</li>
+    															<li>
+    																<label for="dap-undergraduate-interest-innovating-interest-b">
+    																	<input id="dap-undergraduate-interest-innovating-interest-b" name="dap-undergraduate-interest-innovating-interest-b" type="checkbox" value="innovating-interest-b">
+    																	<span>Innovating Interest B</span>
+    																</label>
+    															</li>
+    															<li>
+    																<label for="dap-undergraduate-interest-innovating-interest-c">
+    																	<input id="dap-undergraduate-interest-innovating-interest-c" name="dap-undergraduate-interest-innovating-interest-c" type="checkbox" value="innovating-interest-c">
+    																	<span>Innovating Interest C</span>
+    																</label>
+    															</li>
+    															<li>
+    																<label for="dap-undergraduate-interest-innovating-interest-d">
+    																	<input id="dap-undergraduate-interest-innovating-interest-d" name="dap-undergraduate-interest-innovating-interest-d" type="checkbox" value="innovating-interest-d">
+    																	<span>Innovating Interest D</span>
+    																</label>
+    															</li>
+    															<li>
+    																<label for="dap-undergraduate-interest-movies-television">
+    																	<input id="dap-undergraduate-interest-movies-television" name="dap-undergraduate-interest-movies-television" type="checkbox" value="movies-television">
+    																	<span>Movies &amp; Television</span>
+    																</label>
+    															</li>
+    															<li>
+    																<label for="dap-undergraduate-interest-writing">
+    																	<input id="dap-undergraduate-interest-writing" name="dap-undergraduate-interest-writing" type="checkbox" value="writing">
+    																	<span>Writing</span>
+    																</label>
+    															</li>
+    															<li>
+    																<label for="dap-undergraduate-interest-performing-arts">
+    																	<input id="dap-undergraduate-interest-performing-arts" name="dap-undergraduate-interest-performing-arts" type="checkbox" value="performing-arts">
+    																	<span>Performing Arts</span>
+    																</label>
+    															</li>
+    															<li>
+    																<label for="dap-undergraduate-interest-visual-studio-arts">
+    																	<input id="dap-undergraduate-interest-visual-studio-arts" name="dap-undergraduate-interest-visual-studio-arts" type="checkbox" value="visual-studio-arts">
+    																	<span>Visual &amp; Studio Arts</span>
+    																</label>
+    															</li>
+    															<li>
+    																<label for="dap-undergraduate-interest-helping-interest-a">
+    																	<input id="dap-undergraduate-interest-helping-interest-a" name="dap-undergraduate-interest-helping-interest-a" type="checkbox" value="helping-interest-a">
+    																	<span>Helping Interest A</span>
+    																</label>
+    															</li>
+    															<li>
+    																<label for="dap-undergraduate-interest-helping-interest-b">
+    																	<input id="dap-undergraduate-interest-helping-interest-b" name="dap-undergraduate-interest-helping-interest-b" type="checkbox" value="helping-interest-b">
+    																	<span>Helping Interest B</span>
+    																</label>
+    															</li>
+    															<li>
+    																<label for="dap-undergraduate-interest-helping-interest-c">
+    																	<input id="dap-undergraduate-interest-helping-interest-c" name="dap-undergraduate-interest-helping-interest-c" type="checkbox" value="helping-interest-c">
+    																	<span>Helping Interest C</span>
+    																</label>
+    															</li>
+    															<li>
+    																<label for="dap-undergraduate-interest-helping-interest-d">
+    																	<input id="dap-undergraduate-interest-helping-interest-d" name="dap-undergraduate-interest-helping-interest-d" type="checkbox" value="helping-interest-d">
+    																	<span>Helping Interest D</span>
+    																</label>
+    															</li>
+    															<li>
+    																<label for="dap-undergraduate-interest-experiencing-interest-a">
+    																	<input id="dap-undergraduate-interest-experiencing-interest-a" name="dap-undergraduate-interest-experiencing-interest-a" type="checkbox" value="experiencing-interest-a">
+    																	<span>Experiencing Interest A</span>
+    																</label>
+    															</li>
+    															<li>
+    																<label for="dap-undergraduate-interest-experiencing-interest-b">
+    																	<input id="dap-undergraduate-interest-experiencing-interest-b" name="dap-undergraduate-interest-experiencing-interest-b" type="checkbox" value="experiencing-interest-b">
+    																	<span>Experiencing Interest B</span>
+    																</label>
+    															</li>
+    															<li>
+    																<label for="dap-undergraduate-interest-experiencing-interest-c">
+    																	<input id="dap-undergraduate-interest-experiencing-interest-c" name="dap-undergraduate-interest-experiencing-interest-c" type="checkbox" value="experiencing-interest-c">
+    																	<span>Experiencing Interest C</span>
+    																</label>
+    															</li>
+    															<li>
+    																<label for="dap-undergraduate-interest-experiencing-interest-d">
+    																	<input id="dap-undergraduate-interest-experiencing-interest-d" name="dap-undergraduate-interest-experiencing-interest-d" type="checkbox" value="experiencing-interest-d">
+    																	<span>Experiencing Interest D</span>
+    																</label>
+    															</li>
+    															<li>
+    																<label for="dap-undergraduate-interest-making-interest-a">
+    																	<input id="dap-undergraduate-interest-making-interest-a" name="dap-undergraduate-interest-making-interest-a" type="checkbox" value="making-interest-a">
+    																	<span>Making Interest A</span>
+    																</label>
+    															</li>
+    															<li>
+    																<label for="dap-undergraduate-interest-making-interest-b">
+    																	<input id="dap-undergraduate-interest-making-interest-b" name="dap-undergraduate-interest-making-interest-b" type="checkbox" value="making-interest-b">
+    																	<span>Making Interest B</span>
+    																</label>
+    															</li>
+    															<li>
+    																<label for="dap-undergraduate-interest-making-interest-c">
+    																	<input id="dap-undergraduate-interest-making-interest-c" name="dap-undergraduate-interest-making-interest-c" type="checkbox" value="making-interest-c">
+    																	<span>Making Interest C</span>
+    																</label>
+    															</li>
+    															<li>
+    																<label for="dap-undergraduate-interest-making-interest-d">
+    																	<input id="dap-undergraduate-interest-making-interest-d" name="dap-undergraduate-interest-making-interest-d" type="checkbox" value="making-interest-d">
+    																	<span>Making Interest D</span>
+    																</label>
+    															</li>
+    													<li class="show-more">
+    														<a href="javascript:void(0)">+ Show More</a>
+    													</li>
+    												</ul>
         </div>
         <div class="columns small-12 medium-6 clearfix">
           <h4 class="subsection-heading">Campus:</h4>
