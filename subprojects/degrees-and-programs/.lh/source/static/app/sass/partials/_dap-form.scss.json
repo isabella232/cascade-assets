@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 48,
+            "activePatchIndex": 89,
             "patches": [
                 {
                     "date": 1628814477967,
@@ -200,6 +200,170 @@
                 {
                     "date": 1629824581266,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,9 +72,8 @@\n     }\n \n     .inner {\n       background-color: $white;\n-      border: 1px solid $cu-light-grey-2;\n       border-radius: 4px;\n       color: $black;\n       width: 100%;\n       height: 100%;\n"
+                },
+                {
+                    "date": 1629829444133,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -295,4 +295,28 @@\n   .title-wrapper {\n     display: flex;\n     justify-content: space-between;\n   }\n+\n+\n+  .tooltip {\n+    position: relative;\n+    display: inline-block;\n+  }\n+  \n+  .tooltip .tooltiptext {\n+    visibility: hidden;\n+    width: 120px;\n+    background-color: black;\n+    color: #fff;\n+    text-align: center;\n+    border-radius: 6px;\n+    padding: 5px 0;\n+  \n+    /* Position the tooltip */\n+    position: absolute;\n+    z-index: 1;\n+  }\n+  \n+  .tooltip:hover .tooltiptext {\n+    visibility: visible;\n+  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629829467549,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -297,26 +297,5 @@\n     justify-content: space-between;\n   }\n \n \n-  .tooltip {\n-    position: relative;\n-    display: inline-block;\n-  }\n-  \n-  .tooltip .tooltiptext {\n-    visibility: hidden;\n-    width: 120px;\n-    background-color: black;\n-    color: #fff;\n-    text-align: center;\n-    border-radius: 6px;\n-    padding: 5px 0;\n-  \n-    /* Position the tooltip */\n-    position: absolute;\n-    z-index: 1;\n-  }\n-  \n-  .tooltip:hover .tooltiptext {\n-    visibility: visible;\n-  }\n\\ No newline at end of file\n+  \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629831137857,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -96,15 +96,8 @@\n       vertical-align: middle;\n       display: inline-block;\n     }\n \n-    svg {\n-      overflow: hidden;\n-      opacity: 0;\n-      width: 0;\n-      transition: width $transition-time, opacity $transition-time;\n-    }\n-\n     span {\n       line-height: inherit;\n       font-weight: normal;\n       font-family: $futura-regular;\n"
+                },
+                {
+                    "date": 1629831443247,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -290,5 +290,7 @@\n     justify-content: space-between;\n   }\n \n \n-  \n\\ No newline at end of file\n+  .icon.icon-check {\n+    display: none !important;\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629832776378,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -289,8 +289,12 @@\n     display: flex;\n     justify-content: space-between;\n   }\n \n-\n   .icon.icon-check {\n     display: none !important;\n+}\n+.svg-inline--fa.fa-question-circle.fa-w-16 {\n+  position: absolute;\n+  margin-left: 2px;\n+  color: #a50034;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629832809438,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -295,6 +295,6 @@\n }\n .svg-inline--fa.fa-question-circle.fa-w-16 {\n   position: absolute;\n   margin-left: 2px;\n-  color: #a50034;\n+  color: $red;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629832814826,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -296,5 +296,6 @@\n .svg-inline--fa.fa-question-circle.fa-w-16 {\n   position: absolute;\n   margin-left: 2px;\n   color: $red;\n+  top: -5px;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629833137329,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -297,5 +297,11 @@\n   position: absolute;\n   margin-left: 2px;\n   color: $red;\n   top: -5px;\n+}\n+\n+.dap-form .program-type .inner:hover {\n+  .svg-inline--fa.fa-question-circle.fa-w-16  {\n+    color: $black;\n+  }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629833152017,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -301,7 +301,7 @@\n }\n \n .dap-form .program-type .inner:hover {\n   .svg-inline--fa.fa-question-circle.fa-w-16  {\n-    color: $black;\n+    color: $white;\n   }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629833226281,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -302,6 +302,9 @@\n \n .dap-form .program-type .inner:hover {\n   .svg-inline--fa.fa-question-circle.fa-w-16  {\n     color: $white;\n+    background-color: $black;\n+    border-radius: 50%;\n+    outline: 2px solid $black;\n   }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629833251751,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -304,7 +304,7 @@\n   .svg-inline--fa.fa-question-circle.fa-w-16  {\n     color: $white;\n     background-color: $black;\n     border-radius: 50%;\n-    outline: 2px solid $black;\n+    outline: 1px solid $white;\n   }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629833264659,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -302,9 +302,6 @@\n \n .dap-form .program-type .inner:hover {\n   .svg-inline--fa.fa-question-circle.fa-w-16  {\n     color: $white;\n-    background-color: $black;\n-    border-radius: 50%;\n-    outline: 1px solid $white;\n   }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629833276725,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -302,6 +302,7 @@\n \n .dap-form .program-type .inner:hover {\n   .svg-inline--fa.fa-question-circle.fa-w-16  {\n     color: $white;\n+    background-color: $black;\n   }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629833294177,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -303,6 +303,8 @@\n .dap-form .program-type .inner:hover {\n   .svg-inline--fa.fa-question-circle.fa-w-16  {\n     color: $white;\n     background-color: $black;\n+    border-radius: 50%;\n+    outline: 1px solid $black;\n   }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629833306033,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -297,8 +297,9 @@\n   position: absolute;\n   margin-left: 2px;\n   color: $red;\n   top: -5px;\n+  background-color: $white;\n }\n \n .dap-form .program-type .inner:hover {\n   .svg-inline--fa.fa-question-circle.fa-w-16  {\n"
+                },
+                {
+                    "date": 1629833332688,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -306,6 +306,7 @@\n     color: $white;\n     background-color: $black;\n     border-radius: 50%;\n     outline: 1px solid $black;\n+    transition: $transition-time;\n   }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629833552192,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -308,5 +308,73 @@\n     border-radius: 50%;\n     outline: 1px solid $black;\n     transition: $transition-time;\n   }\n+}\n+\n+\n+/**\n+ * Tooltip Styles\n+ */\n+\n+/* Add this attribute to the element that needs a tooltip */\n+[data-tooltip] {\n+  position: relative;\n+  z-index: 2;\n+  cursor: pointer;\n+}\n+\n+/* Hide the tooltip content by default */\n+[data-tooltip]:before,\n+[data-tooltip]:after {\n+  visibility: hidden;\n+  -ms-filter: \"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)\";\n+  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);\n+  opacity: 0;\n+  pointer-events: none;\n+}\n+\n+/* Position tooltip above the element */\n+[data-tooltip]:before {\n+  position: absolute;\n+  bottom: 150%;\n+  left: 50%;\n+  margin-bottom: 5px;\n+  margin-left: -80px;\n+  padding: 7px;\n+  width: 160px;\n+  -webkit-border-radius: 3px;\n+  -moz-border-radius: 3px;\n+  border-radius: 3px;\n+  background-color: #000;\n+  background-color: hsla(0, 0%, 20%, 0.9);\n+  color: #fff;\n+  content: attr(data-tooltip);\n+  text-align: center;\n+  font-size: 14px;\n+  line-height: 1.2;\n+}\n+\n+/* Triangle hack to make tooltip look like a speech bubble */\n+[data-tooltip]:after {\n+  position: absolute;\n+  bottom: 150%;\n+  left: 50%;\n+  margin-left: -5px;\n+  width: 0;\n+  border-top: 5px solid #000;\n+  border-top: 5px solid hsla(0, 0%, 20%, 0.9);\n+  border-right: 5px solid transparent;\n+  border-left: 5px solid transparent;\n+  content: \" \";\n+  font-size: 0;\n+  line-height: 0;\n+}\n+\n+/* Show tooltip content on hover */\n+[data-tooltip]:hover:before,\n+[data-tooltip]:hover:after {\n+  visibility: visible;\n+  -ms-filter: \"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)\";\n+  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);\n+  opacity: 1;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629833576817,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -373,8 +373,5 @@\n /* Show tooltip content on hover */\n [data-tooltip]:hover:before,\n [data-tooltip]:hover:after {\n   visibility: visible;\n-  -ms-filter: \"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)\";\n-  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);\n-  opacity: 1;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629833595612,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -326,10 +326,8 @@\n /* Hide the tooltip content by default */\n [data-tooltip]:before,\n [data-tooltip]:after {\n   visibility: hidden;\n-  -ms-filter: \"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)\";\n-  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);\n   opacity: 0;\n   pointer-events: none;\n }\n \n"
+                },
+                {
+                    "date": 1629834519507,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -314,62 +314,32 @@\n \n /**\n  * Tooltip Styles\n  */\n-\n-/* Add this attribute to the element that needs a tooltip */\n-[data-tooltip] {\n+ [data-tool-tip]{\n   position: relative;\n-  z-index: 2;\n-  cursor: pointer;\n+  text-decoration: none;\n+  color: rgba(255,255,255,0.75);\n }\n \n-/* Hide the tooltip content by default */\n-[data-tooltip]:before,\n-[data-tooltip]:after {\n-  visibility: hidden;\n-  opacity: 0;\n-  pointer-events: none;\n-}\n-\n-/* Position tooltip above the element */\n-[data-tooltip]:before {\n+[data-tool-tip]::after{\n+  content: attr(data-tool-tip);\n+  display: block;\n   position: absolute;\n-  bottom: 150%;\n-  left: 50%;\n-  margin-bottom: 5px;\n-  margin-left: -80px;\n-  padding: 7px;\n-  width: 160px;\n-  -webkit-border-radius: 3px;\n-  -moz-border-radius: 3px;\n-  border-radius: 3px;\n-  background-color: #000;\n-  background-color: hsla(0, 0%, 20%, 0.9);\n-  color: #fff;\n-  content: attr(data-tooltip);\n-  text-align: center;\n-  font-size: 14px;\n-  line-height: 1.2;\n+  background-color: dimgrey;\n+  padding: 1em 3em;\n+  color: white;\n+  border-radius: 5px;\n+  font-size: .5em;\n+  bottom: 0;\n+  left: -180%;\n+  white-space: nowrap;\n+  transform: scale(0);\n+  transition: \n+  transform ease-out 150ms,\n+  bottom ease-out 150ms;\n }\n \n-/* Triangle hack to make tooltip look like a speech bubble */\n-[data-tooltip]:after {\n-  position: absolute;\n-  bottom: 150%;\n-  left: 50%;\n-  margin-left: -5px;\n-  width: 0;\n-  border-top: 5px solid #000;\n-  border-top: 5px solid hsla(0, 0%, 20%, 0.9);\n-  border-right: 5px solid transparent;\n-  border-left: 5px solid transparent;\n-  content: \" \";\n-  font-size: 0;\n-  line-height: 0;\n-}\n-\n-/* Show tooltip content on hover */\n-[data-tooltip]:hover:before,\n-[data-tooltip]:hover:after {\n-  visibility: visible;\n+[data-tool-tip]:hover::after{\n+  transform: scale(1);\n+  bottom: 200%;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629834758004,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -314,32 +314,62 @@\n \n /**\n  * Tooltip Styles\n  */\n- [data-tool-tip]{\n+\n+/* Add this attribute to the element that needs a tooltip */\n+[data-tooltip] {\n   position: relative;\n-  text-decoration: none;\n-  color: rgba(255,255,255,0.75);\n+  z-index: 2;\n+  cursor: pointer;\n }\n \n-[data-tool-tip]::after{\n-  content: attr(data-tool-tip);\n-  display: block;\n+/* Hide the tooltip content by default */\n+[data-tooltip]:before,\n+[data-tooltip]:after {\n+  visibility: hidden;\n+  opacity: 0;\n+  pointer-events: none;\n+}\n+\n+/* Position tooltip above the element */\n+[data-tooltip]:before {\n   position: absolute;\n-  background-color: dimgrey;\n-  padding: 1em 3em;\n-  color: white;\n-  border-radius: 5px;\n-  font-size: .5em;\n-  bottom: 0;\n-  left: -180%;\n-  white-space: nowrap;\n-  transform: scale(0);\n-  transition: \n-  transform ease-out 150ms,\n-  bottom ease-out 150ms;\n+  bottom: 150%;\n+  left: 50%;\n+  margin-bottom: 5px;\n+  margin-left: -80px;\n+  padding: 7px;\n+  width: 160px;\n+  -webkit-border-radius: 3px;\n+  -moz-border-radius: 3px;\n+  border-radius: 3px;\n+  background-color: #000;\n+  background-color: hsla(0, 0%, 20%, 0.9);\n+  color: #fff;\n+  content: attr(data-tooltip);\n+  text-align: center;\n+  font-size: 14px;\n+  line-height: 1.2;\n }\n \n-[data-tool-tip]:hover::after{\n-  transform: scale(1);\n-  bottom: 200%;\n+/* Triangle hack to make tooltip look like a speech bubble */\n+[data-tooltip]:after {\n+  position: absolute;\n+  bottom: 150%;\n+  left: 50%;\n+  margin-left: -5px;\n+  width: 0;\n+  border-top: 5px solid #000;\n+  border-top: 5px solid hsla(0, 0%, 20%, 0.9);\n+  border-right: 5px solid transparent;\n+  border-left: 5px solid transparent;\n+  content: \" \";\n+  font-size: 0;\n+  line-height: 0;\n+}\n+\n+/* Show tooltip content on hover */\n+[data-tooltip]:hover:before,\n+[data-tooltip]:hover:after {\n+  visibility: visible;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629834815304,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -315,61 +315,61 @@\n /**\n  * Tooltip Styles\n  */\n \n-/* Add this attribute to the element that needs a tooltip */\n-[data-tooltip] {\n-  position: relative;\n-  z-index: 2;\n-  cursor: pointer;\n-}\n+  /* Add this attribute to the element that needs a tooltip */\n+  [data-tooltip] {\n+    position: relative;\n+    z-index: 2;\n+    cursor: pointer;\n+  }\n \n-/* Hide the tooltip content by default */\n-[data-tooltip]:before,\n-[data-tooltip]:after {\n-  visibility: hidden;\n-  opacity: 0;\n-  pointer-events: none;\n-}\n+  /* Hide the tooltip content by default */\n+  [data-tooltip]:before,\n+  [data-tooltip]:after {\n+    visibility: hidden;\n+    opacity: 0;\n+    pointer-events: none;\n+  }\n \n-/* Position tooltip above the element */\n-[data-tooltip]:before {\n-  position: absolute;\n-  bottom: 150%;\n-  left: 50%;\n-  margin-bottom: 5px;\n-  margin-left: -80px;\n-  padding: 7px;\n-  width: 160px;\n-  -webkit-border-radius: 3px;\n-  -moz-border-radius: 3px;\n-  border-radius: 3px;\n-  background-color: #000;\n-  background-color: hsla(0, 0%, 20%, 0.9);\n-  color: #fff;\n-  content: attr(data-tooltip);\n-  text-align: center;\n-  font-size: 14px;\n-  line-height: 1.2;\n-}\n+  /* Position tooltip above the element */\n+  [data-tooltip]:before {\n+    position: absolute;\n+    bottom: 150%;\n+    left: 50%;\n+    margin-bottom: 5px;\n+    margin-left: -80px;\n+    padding: 7px;\n+    width: 160px;\n\\ No newline at end of file\n+    -webkit-border-radius: 3px;\n+    -moz-border-radius: 3px;\n+    border-radius: 3px;\n+    background-color: #000;\n+    background-color: hsla(0, 0%, 20%, 0.9);\n+    color: #fff;\n+    content: attr(data-tooltip);\n+    text-align: center;\n+    font-size: 14px;\n+    line-height: 1.2;\n+  }\n \n-/* Triangle hack to make tooltip look like a speech bubble */\n-[data-tooltip]:after {\n-  position: absolute;\n-  bottom: 150%;\n-  left: 50%;\n-  margin-left: -5px;\n-  width: 0;\n-  border-top: 5px solid #000;\n-  border-top: 5px solid hsla(0, 0%, 20%, 0.9);\n-  border-right: 5px solid transparent;\n-  border-left: 5px solid transparent;\n-  content: \" \";\n-  font-size: 0;\n-  line-height: 0;\n-}\n+  /* Triangle hack to make tooltip look like a speech bubble */\n+  [data-tooltip]:after {\n+    position: absolute;\n+    bottom: 150%;\n+    left: 50%;\n+    margin-left: -5px;\n+    width: 0;\n+    border-top: 5px solid #000;\n+    border-top: 5px solid hsla(0, 0%, 20%, 0.9);\n+    border-right: 5px solid transparent;\n+    border-left: 5px solid transparent;\n+    content: \" \";\n+    font-size: 0;\n+    line-height: 0;\n+  }\n \n-/* Show tooltip content on hover */\n-[data-tooltip]:hover:before,\n-[data-tooltip]:hover:after {\n-  visibility: visible;\n-}\n+  /* Show tooltip content on hover */\n+  [data-tooltip]:hover:before,\n+  [data-tooltip]:hover:after {\n+    visibility: visible;\n+  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629835039046,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -349,8 +349,9 @@\n     content: attr(data-tooltip);\n     text-align: center;\n     font-size: 14px;\n     line-height: 1.2;\n+    opacity: 1;\n   }\n \n   /* Triangle hack to make tooltip look like a speech bubble */\n   [data-tooltip]:after {\n"
+                },
+                {
+                    "date": 1629835205178,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -315,62 +315,62 @@\n /**\n  * Tooltip Styles\n  */\n \n-  /* Add this attribute to the element that needs a tooltip */\n-  [data-tooltip] {\n-    position: relative;\n-    z-index: 2;\n-    cursor: pointer;\n-  }\n+/* Add this attribute to the element that needs a tooltip */\n+[data-tooltip] {\n+  position: relative;\n+  z-index: 2;\n+  cursor: pointer;\n+}\n \n-  /* Hide the tooltip content by default */\n-  [data-tooltip]:before,\n-  [data-tooltip]:after {\n-    visibility: hidden;\n-    opacity: 0;\n-    pointer-events: none;\n-  }\n+/* Hide the tooltip content by default */\n+[data-tooltip]:before,\n+[data-tooltip]:after {\n+  visibility: hidden;\n+  opacity: 0;\n+  pointer-events: none;\n+}\n \n-  /* Position tooltip above the element */\n-  [data-tooltip]:before {\n-    position: absolute;\n-    bottom: 150%;\n-    left: 50%;\n-    margin-bottom: 5px;\n-    margin-left: -80px;\n-    padding: 7px;\n-    width: 160px;\n-    -webkit-border-radius: 3px;\n-    -moz-border-radius: 3px;\n-    border-radius: 3px;\n-    background-color: #000;\n-    background-color: hsla(0, 0%, 20%, 0.9);\n-    color: #fff;\n-    content: attr(data-tooltip);\n-    text-align: center;\n-    font-size: 14px;\n-    line-height: 1.2;\n-    opacity: 1;\n-  }\n+/* Position tooltip above the element */\n+[data-tooltip]:before {\n+  position: absolute;\n+  bottom: 150%;\n+  left: 50%;\n+  margin-bottom: 5px;\n+  margin-left: -80px;\n+  padding: 7px;\n+  width: 160px;\n\\ No newline at end of file\n+  -webkit-border-radius: 3px;\n+  -moz-border-radius: 3px;\n+  border-radius: 3px;\n+  background-color: #000;\n+  background-color: hsla(0, 0%, 20%, 0.9);\n+  color: #fff;\n+  content: attr(data-tooltip);\n+  text-align: center;\n+  font-size: 14px;\n+  line-height: 1.2;\n+  opacity: 1;\n+}\n \n-  /* Triangle hack to make tooltip look like a speech bubble */\n-  [data-tooltip]:after {\n-    position: absolute;\n-    bottom: 150%;\n-    left: 50%;\n-    margin-left: -5px;\n-    width: 0;\n-    border-top: 5px solid #000;\n-    border-top: 5px solid hsla(0, 0%, 20%, 0.9);\n-    border-right: 5px solid transparent;\n-    border-left: 5px solid transparent;\n-    content: \" \";\n-    font-size: 0;\n-    line-height: 0;\n-  }\n+/* Triangle hack to make tooltip look like a speech bubble */\n+[data-tooltip]:after {\n+  position: absolute;\n+  bottom: 150%;\n+  left: 50%;\n+  margin-left: -5px;\n+  width: 0;\n+  border-top: 5px solid #000;\n+  border-top: 5px solid hsla(0, 0%, 20%, 0.9);\n+  border-right: 5px solid transparent;\n+  border-left: 5px solid transparent;\n+  content: \" \";\n+  font-size: 0;\n+  line-height: 0;\n+}\n \n-  /* Show tooltip content on hover */\n-  [data-tooltip]:hover:before,\n-  [data-tooltip]:hover:after {\n-    visibility: visible;\n-  }\n+/* Show tooltip content on hover */\n+[data-tooltip]:hover:before,\n+[data-tooltip]:hover:after {\n+  visibility: visible;\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629835221277,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -372,5 +372,17 @@\n /* Show tooltip content on hover */\n [data-tooltip]:hover:before,\n [data-tooltip]:hover:after {\n   visibility: visible;\n+}\n+\n+.info {\n+  font-family: \"Font Awesome 5 Free\";\n+\n+font-weight: 900;\n+\n+content: \"\\f05a\";\n+\n+margin-left: 2px;\n+\n+font-size: 1.4rem;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629835261308,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -384,5 +384,6 @@\n \n margin-left: 2px;\n \n font-size: 1.4rem;\n+position: absolute;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629835312653,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -370,9 +370,11 @@\n }\n \n /* Show tooltip content on hover */\n [data-tooltip]:hover:before,\n-[data-tooltip]:hover:after {\n+[data-tooltip]:hover:after,\n+[data-tooltip]:focus:before,\n+[data-tooltip]:focus:after {\n   visibility: visible;\n }\n \n .info {\n"
+                },
+                {
+                    "date": 1629835359163,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -375,17 +375,4 @@\n [data-tooltip]:focus:before,\n [data-tooltip]:focus:after {\n   visibility: visible;\n }\n-\n-.info {\n-  font-family: \"Font Awesome 5 Free\";\n-\n-font-weight: 900;\n-\n-content: \"\\f05a\";\n-\n-margin-left: 2px;\n-\n-font-size: 1.4rem;\n-position: absolute;\n-}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629835403825,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -369,8 +369,10 @@\n   line-height: 0;\n }\n \n /* Show tooltip content on hover */\n+#dap-undergraduate-program-bridge:hover,\n+#dap-undergraduate-program-bridge:focus-within,\n [data-tooltip]:hover:before,\n [data-tooltip]:hover:after,\n [data-tooltip]:focus:before,\n [data-tooltip]:focus:after {\n"
+                },
+                {
+                    "date": 1629835438164,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -371,8 +371,10 @@\n \n /* Show tooltip content on hover */\n #dap-undergraduate-program-bridge:hover,\n #dap-undergraduate-program-bridge:focus-within,\n+.program-type:hover,\n+.program-type-focus-within,\n [data-tooltip]:hover:before,\n [data-tooltip]:hover:after,\n [data-tooltip]:focus:before,\n [data-tooltip]:focus:after {\n"
+                },
+                {
+                    "date": 1629835765233,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -355,19 +355,26 @@\n \n /* Triangle hack to make tooltip look like a speech bubble */\n [data-tooltip]:after {\n   position: absolute;\n-  bottom: 150%;\n-  left: 50%;\n-  margin-left: -5px;\n-  width: 0;\n-  border-top: 5px solid #000;\n-  border-top: 5px solid hsla(0, 0%, 20%, 0.9);\n-  border-right: 5px solid transparent;\n-  border-left: 5px solid transparent;\n-  content: \" \";\n-  font-size: 0;\n-  line-height: 0;\n+bottom: -20px;\n+left: 50%;\n+margin-bottom: 5px;\n+margin-left: 120px;\n+padding: 7px;\n+width: 400px;\n+-webkit-border-radius: 3px;\n+-moz-border-radius: 3px;\n+border-radius: 3px;\n+background-color: #000;\n+background-color: rgba(51, 51, 51, 0.9);\n+color: #fff;\n+content: attr(data-tooltip);\n+text-align: center;\n+font-size: 14px;\n+line-height: 1.2;\n+opacity: 1;\n+font-family: Arial, Helvetica, sans-serif;\n }\n \n /* Show tooltip content on hover */\n #dap-undergraduate-program-bridge:hover,\n"
+                },
+                {
+                    "date": 1629835782112,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -333,48 +333,42 @@\n \n /* Position tooltip above the element */\n [data-tooltip]:before {\n   position: absolute;\n-  bottom: 150%;\n+  bottom: -20px;\n   left: 50%;\n   margin-bottom: 5px;\n-  margin-left: -80px;\n+  margin-left: 120px;\n   padding: 7px;\n-  width: 160px;\n+  width: 400px;\n   -webkit-border-radius: 3px;\n   -moz-border-radius: 3px;\n   border-radius: 3px;\n   background-color: #000;\n-  background-color: hsla(0, 0%, 20%, 0.9);\n+  background-color: rgba(51, 51, 51, 0.9);\n   color: #fff;\n   content: attr(data-tooltip);\n   text-align: center;\n   font-size: 14px;\n   line-height: 1.2;\n   opacity: 1;\n+  font-family: Arial, Helvetica, sans-serif;\n }\n \n /* Triangle hack to make tooltip look like a speech bubble */\n [data-tooltip]:after {\n   position: absolute;\n-bottom: -20px;\n-left: 50%;\n-margin-bottom: 5px;\n-margin-left: 120px;\n-padding: 7px;\n-width: 400px;\n--webkit-border-radius: 3px;\n--moz-border-radius: 3px;\n-border-radius: 3px;\n-background-color: #000;\n-background-color: rgba(51, 51, 51, 0.9);\n-color: #fff;\n-content: attr(data-tooltip);\n-text-align: center;\n-font-size: 14px;\n-line-height: 1.2;\n-opacity: 1;\n-font-family: Arial, Helvetica, sans-serif;\n+  bottom: 150%;\n+  left: 50%;\n+  margin-left: -5px;\n+  width: 0;\n+  border-top: 5px solid #000;\n+  border-top: 5px solid hsla(0, 0%, 20%, 0.9);\n+  border-right: 5px solid transparent;\n+  border-left: 5px solid transparent;\n+  content: \" \";\n+  font-size: 0;\n+  line-height: 0;\n }\n \n /* Show tooltip content on hover */\n #dap-undergraduate-program-bridge:hover,\n"
+                },
+                {
+                    "date": 1629835860865,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -370,12 +370,8 @@\n   line-height: 0;\n }\n \n /* Show tooltip content on hover */\n-#dap-undergraduate-program-bridge:hover,\n-#dap-undergraduate-program-bridge:focus-within,\n-.program-type:hover,\n-.program-type-focus-within,\n [data-tooltip]:hover:before,\n [data-tooltip]:hover:after,\n [data-tooltip]:focus:before,\n [data-tooltip]:focus:after {\n"
+                },
+                {
+                    "date": 1629835913896,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -370,10 +370,12 @@\n   line-height: 0;\n }\n \n /* Show tooltip content on hover */\n+label.dap-undergraduate-program-bridge svg:hover {\n [data-tooltip]:hover:before,\n [data-tooltip]:hover:after,\n [data-tooltip]:focus:before,\n [data-tooltip]:focus:after {\n   visibility: visible;\n }\n+}\n"
+                },
+                {
+                    "date": 1629835965216,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -371,11 +371,11 @@\n }\n \n /* Show tooltip content on hover */\n label.dap-undergraduate-program-bridge svg:hover {\n-[data-tooltip]:hover:before,\n-[data-tooltip]:hover:after,\n-[data-tooltip]:focus:before,\n-[data-tooltip]:focus:after {\n+[data-tooltip]:before,\n+[data-tooltip]:after,\n+[data-tooltip]:before,\n+[data-tooltip]:after {\n   visibility: visible;\n }\n }\n"
+                },
+                {
+                    "date": 1629835978035,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -370,9 +370,9 @@\n   line-height: 0;\n }\n \n /* Show tooltip content on hover */\n-label.dap-undergraduate-program-bridge svg:hover {\n+.dap-undergraduate-program-bridge svg:hover {\n [data-tooltip]:before,\n [data-tooltip]:after,\n [data-tooltip]:before,\n [data-tooltip]:after {\n"
+                },
+                {
+                    "date": 1629836012668,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -371,11 +371,11 @@\n }\n \n /* Show tooltip content on hover */\n .dap-undergraduate-program-bridge svg:hover {\n-[data-tooltip]:before,\n-[data-tooltip]:after,\n-[data-tooltip]:before,\n-[data-tooltip]:after {\n+[data-tooltip]::before,\n+[data-tooltip]::after,\n+[data-tooltip]::before,\n+[data-tooltip]::after {\n   visibility: visible;\n }\n }\n"
+                },
+                {
+                    "date": 1629836043913,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -370,12 +370,12 @@\n   line-height: 0;\n }\n \n /* Show tooltip content on hover */\n-.dap-undergraduate-program-bridge svg:hover {\n-[data-tooltip]::before,\n-[data-tooltip]::after,\n-[data-tooltip]::before,\n-[data-tooltip]::after {\n+.dap-undergraduate-program-bridge .fa-question-circle:hover {\n+[data-tooltip]:before,\n+[data-tooltip]:after,\n+[data-tooltip]:before,\n+[data-tooltip]:after {\n   visibility: visible;\n }\n }\n"
+                },
+                {
+                    "date": 1629836090572,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -371,11 +371,11 @@\n }\n \n /* Show tooltip content on hover */\n .dap-undergraduate-program-bridge .fa-question-circle:hover {\n-[data-tooltip]:before,\n-[data-tooltip]:after,\n-[data-tooltip]:before,\n-[data-tooltip]:after {\n+&[data-tooltip]:before,\n+&[data-tooltip]:after,\n+&[data-tooltip]:before,\n+&[data-tooltip]:after {\n   visibility: visible;\n }\n }\n"
+                },
+                {
+                    "date": 1629836138470,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -370,12 +370,11 @@\n   line-height: 0;\n }\n \n /* Show tooltip content on hover */\n-.dap-undergraduate-program-bridge .fa-question-circle:hover {\n-&[data-tooltip]:before,\n-&[data-tooltip]:after,\n-&[data-tooltip]:before,\n-&[data-tooltip]:after {\n+.dap-undergraduate-program-bridge\n+[data-tooltip]:hover:before,\n+[data-tooltip]:hover:after,\n+[data-tooltip]:focus:before,\n+[data-tooltip]:focus:after {\n   visibility: visible;\n }\n-}\n"
+                },
+                {
+                    "date": 1629836145659,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -370,9 +370,8 @@\n   line-height: 0;\n }\n \n /* Show tooltip content on hover */\n-.dap-undergraduate-program-bridge\n [data-tooltip]:hover:before,\n [data-tooltip]:hover:after,\n [data-tooltip]:focus:before,\n [data-tooltip]:focus:after {\n"
                 }
             ],
             "date": 1628814477967,

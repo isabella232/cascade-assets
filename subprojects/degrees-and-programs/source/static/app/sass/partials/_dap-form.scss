@@ -97,13 +97,6 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
       display: inline-block;
     }
 
-    svg {
-      overflow: hidden;
-      opacity: 0;
-      width: 0;
-      transition: width $transition-time, opacity $transition-time;
-    }
-
     span {
       line-height: inherit;
       font-weight: normal;
@@ -296,3 +289,91 @@ svg.program-info__close {
     display: flex;
     justify-content: space-between;
   }
+
+  .icon.icon-check {
+    display: none !important;
+}
+.svg-inline--fa.fa-question-circle.fa-w-16 {
+  position: absolute;
+  margin-left: 2px;
+  color: $red;
+  top: -5px;
+  background-color: $white;
+}
+
+.dap-form .program-type .inner:hover {
+  .svg-inline--fa.fa-question-circle.fa-w-16  {
+    color: $white;
+    background-color: $black;
+    border-radius: 50%;
+    outline: 1px solid $black;
+    transition: $transition-time;
+  }
+}
+
+
+/**
+ * Tooltip Styles
+ */
+
+/* Add this attribute to the element that needs a tooltip */
+[data-tooltip] {
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+
+/* Hide the tooltip content by default */
+[data-tooltip]:before,
+[data-tooltip]:after {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Position tooltip above the element */
+[data-tooltip]:before {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  margin-bottom: 5px;
+  margin-left: 120px;
+  padding: 7px;
+  width: 400px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #000;
+  background-color: rgba(51, 51, 51, 0.9);
+  color: #fff;
+  content: attr(data-tooltip);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.2;
+  opacity: 1;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Triangle hack to make tooltip look like a speech bubble */
+[data-tooltip]:after {
+  position: absolute;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -5px;
+  width: 0;
+  border-top: 5px solid #000;
+  border-top: 5px solid hsla(0, 0%, 20%, 0.9);
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  content: " ";
+  font-size: 0;
+  line-height: 0;
+}
+
+/* Show tooltip content on hover */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after,
+[data-tooltip]:focus:before,
+[data-tooltip]:focus:after {
+  visibility: visible;
+}

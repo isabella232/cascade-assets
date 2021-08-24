@@ -14,16 +14,13 @@ $palettes: map-merge($palettes, ('dap-undergraduate-form': ('core': $black,
     }
 
     &.show-all {
-
       li {
         display: block;
 
         &.show-more {
           display: none;
         }
-
       }
-
     }
 
     li {
@@ -51,9 +48,7 @@ $palettes: map-merge($palettes, ('dap-undergraduate-form': ('core': $black,
         @include breakpoint(medium) {
           display: none;
         }
-
       }
-
     }
 
     a {
@@ -70,9 +65,7 @@ $palettes: map-merge($palettes, ('dap-undergraduate-form': ('core': $black,
           color: $red;
           background-color: $white;
         }
-
       }
-
     }
 
     label {
@@ -107,7 +100,6 @@ $palettes: map-merge($palettes, ('dap-undergraduate-form': ('core': $black,
           color: $red;
           background-color: $white;
         }
-
       }
 
       span {
@@ -117,7 +109,6 @@ $palettes: map-merge($palettes, ('dap-undergraduate-form': ('core': $black,
         display: inline-block;
         padding: 12px;
       }
-
     }
 
     label {
@@ -150,7 +141,6 @@ $palettes: map-merge($palettes, ('dap-undergraduate-form': ('core': $black,
           color: $white;
           background-color: $red;
         }
-
       }
 
       span {
@@ -160,13 +150,12 @@ $palettes: map-merge($palettes, ('dap-undergraduate-form': ('core': $black,
         display: inline-block;
         padding: 12px;
       }
-
     }
+
     .show-more a {
       font-weight: 700;
       text-transform: uppercase;
     }
-
   }
 
   .reset {
@@ -182,7 +171,6 @@ $palettes: map-merge($palettes, ('dap-undergraduate-form': ('core': $black,
       .no-js & {
         color: $silver;
       }
-
     }
 
     .icon {
@@ -192,15 +180,11 @@ $palettes: map-merge($palettes, ('dap-undergraduate-form': ('core': $black,
       display: inline-block;
       margin-right: 0.25em;
     }
-
   }
-
-
 
   .faux-button {
     background-color: $white;
     border: 1px solid $cu-light-grey-2;
-
     color: $black;
     width: 100%;
     height: 100%;
@@ -217,10 +201,7 @@ $palettes: map-merge($palettes, ('dap-undergraduate-form': ('core': $black,
       }
     }
   }
-
-
 }
-
 
 .wavy-bg {
   content: " ";
@@ -252,8 +233,17 @@ $palettes: map-merge($palettes, ('dap-undergraduate-form': ('core': $black,
 }
 
 .text {
-
   &--red {
     color: $red;
+  }
+}
+
+#dap-undergraduate-program-bridge {
+  &:after {
+    content: "\f05a";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-left: 2px;
+    font-size: 1.4rem;
   }
 }

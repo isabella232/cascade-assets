@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 49,
+            "activePatchIndex": 51,
             "patches": [
                 {
                     "date": 1628814878857,
@@ -204,6 +204,14 @@
                 {
                     "date": 1629824040068,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     margin: rem-calc(0 0 20);\n \n     @include breakpoint(medium) {\n       column-count: 4;\n-      column-gap: 10px;\n+      column-gap: $grid-gap;\n     }\n \n     &.show-all {\n \n"
+                },
+                {
+                    "date": 1629829748954,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -256,4 +256,19 @@\n   &--red {\n     color: $red;\n   }\n }\n+\n+\n+#dap-undergraduate-program-bridge {\n+  &:after {\n+    content: \"\\f05a\";\n+    font-family: \"Font Awesome 5 Free\";\n+\n+    font-weight: 900;\n+    \n+    \n+    margin-left: 2px;\n+    \n+    font-size: 1.4rem;\n+  }\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629829780692,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,18 +13,15 @@\n       column-gap: $grid-gap;\n     }\n \n     &.show-all {\n-\n       li {\n         display: block;\n \n         &.show-more {\n           display: none;\n         }\n-\n       }\n-\n     }\n \n     li {\n       margin: rem-calc(0 0 12);\n@@ -50,11 +47,9 @@\n \n         @include breakpoint(medium) {\n           display: none;\n         }\n-\n       }\n-\n     }\n \n     a {\n       color: $white;\n@@ -69,11 +64,9 @@\n         .no-js & {\n           color: $red;\n           background-color: $white;\n         }\n-\n       }\n-\n     }\n \n     label {\n       border-radius: 4px;\n@@ -106,9 +99,8 @@\n         &:checked~span {\n           color: $red;\n           background-color: $white;\n         }\n-\n       }\n \n       span {\n         color: $black;\n@@ -116,9 +108,8 @@\n         transition: color $transition-time, background-color $transition-time;\n         display: inline-block;\n         padding: 12px;\n       }\n-\n     }\n \n     label {\n       font-weight: normal;\n@@ -149,9 +140,8 @@\n         &:checked~span {\n           color: $white;\n           background-color: $red;\n         }\n-\n       }\n \n       span {\n         color: $black;\n@@ -159,15 +149,14 @@\n         transition: color $transition-time, background-color $transition-time;\n         display: inline-block;\n         padding: 12px;\n       }\n+    }\n \n-    }\n     .show-more a {\n       font-weight: 700;\n       text-transform: uppercase;\n     }\n-\n   }\n \n   .reset {\n     color: $white;\n@@ -181,9 +170,8 @@\n       .no-touch &,\n       .no-js & {\n         color: $silver;\n       }\n-\n     }\n \n     .icon {\n       vertical-align: top;\n@@ -191,17 +179,13 @@\n       height: rem-calc(20);\n       display: inline-block;\n       margin-right: 0.25em;\n     }\n-\n   }\n \n-\n-\n   .faux-button {\n     background-color: $white;\n     border: 1px solid $cu-light-grey-2;\n-\n     color: $black;\n     width: 100%;\n     height: 100%;\n     transition: background-color $transition-time, border-color $transition-time;\n@@ -216,13 +200,10 @@\n         color: $white;\n       }\n     }\n   }\n-\n-\n }\n \n-\n .wavy-bg {\n   content: \" \";\n   display: block;\n   position: absolute;\n@@ -251,24 +232,18 @@\n   position: relative;\n }\n \n .text {\n-\n   &--red {\n     color: $red;\n   }\n }\n \n-\n #dap-undergraduate-program-bridge {\n   &:after {\n     content: \"\\f05a\";\n     font-family: \"Font Awesome 5 Free\";\n-\n     font-weight: 900;\n-    \n-    \n     margin-left: 2px;\n-    \n     font-size: 1.4rem;\n   }\n }\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1628814878857,
