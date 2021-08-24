@@ -47,35 +47,23 @@ $palettes: map-merge($palettes, (
 
 .dap-section-accordion-trigger {
 	cursor: pointer;
-	border-radius: 100%;
-	background-color: $burgundy;
-	width: rem-calc(52);
-	height: rem-calc(52);
-	display: block;
-	margin: 0 auto;
-	padding: rem-calc(9);
-	transform: scale(1);
-	transition: 0s;
+background-color: #231f20;
+min-width: max-content;
+color: $white;
+position: relative;
+font-family: $futura-regular; 
+place-content: center;
+display: flex;
+align-items: center;
+padding-left: 24px;
+padding-right: 24px;
+border-radius: 4px;
+font-size: 16px;
 
 	&:hover {
 
-		.no-touch &,
-		.no-js & {
-			transform: scale(1.1675);
-
-			.icon {
-				transform: rotateX(0deg) scale(0.8565);
-			}
-
-		}
-
-		.no-touch .dap-section.active & {
-
-			.icon {
-				transform: rotateX(180deg) scale(0.8565);
-			}
-
-		}
+	background-color:lighten(#231f20, 4%);
+  transition: $transition-time;
 
 	}
 
@@ -87,16 +75,6 @@ $palettes: map-merge($palettes, (
 		transition: 0s;
 
 		// transform-style: preserve-3d;
-	}
-
-	.dap-section.active & {
-		background-color: $white;
-
-		.icon {
-			fill: $burgundy;
-			transform: rotateX(180deg);
-		}
-
 	}
 
 }

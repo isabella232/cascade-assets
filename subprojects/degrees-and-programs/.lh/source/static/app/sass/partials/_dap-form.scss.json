@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 40,
+            "activePatchIndex": 48,
             "patches": [
                 {
                     "date": 1628814477967,
@@ -168,6 +168,38 @@
                 {
                     "date": 1629759768524,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -289,10 +289,5 @@\n     outline: 2px dotted $red;\n  }\n }\n \n-.title-wrapper {\n-  display: flex;\n-  justify-content: space-between;\n-}\n \n-\n"
+                },
+                {
+                    "date": 1629763505478,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -290,4 +290,10 @@\n  }\n }\n \n \n+.dap-form {\n+  .title-wrapper {\n+    display: flex;\n+    justify-content: space-around;\n+  }\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629819573138,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -290,10 +290,9 @@\n  }\n }\n \n \n-.dap-form {\n-  .title-wrapper {\n+\n+  .title-wrapper.section-heading {\n     display: flex;\n-    justify-content: space-around;\n\\ No newline at end of file\n+    justify-content: space-between;\n   }\n-}\n"
+                },
+                {
+                    "date": 1629820272900,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -291,8 +291,8 @@\n }\n \n \n \n-  .title-wrapper.section-heading {\n+  .title-wrapper {\n     display: flex;\n     justify-content: space-between;\n   }\n"
+                },
+                {
+                    "date": 1629823270531,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,8 +55,9 @@\n     position: relative;\n \n     input {\n       display: none;\n+      border-radius: 4px;\n \n       &:checked~.inner {\n         background-color: $red;\n         border: 1px solid transparent;\n"
+                },
+                {
+                    "date": 1629823446240,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,12 +52,12 @@\n     padding: 0;\n     text-align: center;\n     display: block;\n     position: relative;\n+    border-radius: 4px;\n \n     input {\n       display: none;\n-      border-radius: 4px;\n \n       &:checked~.inner {\n         background-color: $red;\n         border: 1px solid transparent;\n"
+                },
+                {
+                    "date": 1629823923296,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -197,9 +197,9 @@\n }\n \n .field-container {\n   display: flex;\n-  grid-gap: 12px;\n+  grid-gap: $grid-gap;\n   flex-wrap: wrap;\n \n \n   .inner {\n"
+                },
+                {
+                    "date": 1629824553585,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -73,9 +73,9 @@\n \n     .inner {\n       background-color: $white;\n       border: 1px solid $cu-light-grey-2;\n-\n+      border-radius: 4px;\n       color: $black;\n       width: 100%;\n       height: 100%;\n       transition: background-color $transition-time, border-color $transition-time;\n"
+                },
+                {
+                    "date": 1629824581266,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,9 +72,8 @@\n     }\n \n     .inner {\n       background-color: $white;\n-      border: 1px solid $cu-light-grey-2;\n       border-radius: 4px;\n       color: $black;\n       width: 100%;\n       height: 100%;\n"
                 }
             ],
             "date": 1628814477967,

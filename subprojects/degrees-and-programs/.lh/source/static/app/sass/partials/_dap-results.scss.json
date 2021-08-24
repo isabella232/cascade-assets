@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 5,
             "patches": [
                 {
                     "date": 1628815441123,
@@ -20,6 +20,14 @@
                 {
                     "date": 1629759250545,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -395,14 +395,11 @@\n   }\n }\n \n \n-.dap-undergraduate-form .dap-undergraduate-interests-list label input:checked ~ span,\n-.dap-undergraduate-form .link-list label input:checked ~ span {\n-  color: $white;\n-  background-color: $red;\n-}\n \n+\n // DEBUG - REMOVE\n #omni-nav-v2, footer {\n   // opacity: 0;\n\\ No newline at end of file\n-}\n+}\n+\n"
+                },
+                {
+                    "date": 1629820249092,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -182,8 +182,10 @@\n         .title-wrapper {\n           font-family: $futura;\n           font-size: 18px !important;\n           padding-bottom: 24px;\n+          display: flex;\n+          justify-content: space-between;\n         }\n         .title {\n           color: $red;\n           font-weight: 800;\n@@ -395,10 +397,9 @@\n   }\n }\n \n \n-\n-\n // DEBUG - REMOVE\n #omni-nav-v2, footer {\n   // opacity: 0;\n }\n+\n"
+                },
+                {
+                    "date": 1629820266447,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -182,10 +182,8 @@\n         .title-wrapper {\n           font-family: $futura;\n           font-size: 18px !important;\n           padding-bottom: 24px;\n-          display: flex;\n-          justify-content: space-between;\n         }\n         .title {\n           color: $red;\n           font-weight: 800;\n"
                 }
             ],
             "date": 1628815441123,

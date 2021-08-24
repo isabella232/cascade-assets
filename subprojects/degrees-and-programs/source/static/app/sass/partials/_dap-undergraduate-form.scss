@@ -10,7 +10,7 @@ $palettes: map-merge($palettes, ('dap-undergraduate-form': ('core': $black,
 
     @include breakpoint(medium) {
       column-count: 4;
-      column-gap: rem-calc(20);
+      column-gap: $grid-gap;
     }
 
     &.show-all {
@@ -76,6 +76,7 @@ $palettes: map-merge($palettes, ('dap-undergraduate-form': ('core': $black,
     }
 
     label {
+      border-radius: 4px;
       font-weight: normal;
       margin: 0;
       background-color: white;
@@ -100,6 +101,7 @@ $palettes: map-merge($palettes, ('dap-undergraduate-form': ('core': $black,
 
       input {
         display: none;
+        border-radius: 4px;
 
         &:checked~span {
           color: $red;

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 44,
+            "activePatchIndex": 49,
             "patches": [
                 {
                     "date": 1628814878857,
@@ -184,6 +184,26 @@
                 {
                     "date": 1629762198947,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -117,8 +117,50 @@\n       }\n \n     }\n \n+    label {\n+      font-weight: normal;\n+      margin: 0;\n+      background-color: white;\n+      position: relative;\n+      width: 100%;\n+      min-height: 30px;\n+      text-align: center;\n+      font-family: \"futura-pt\";\n+      font-size: 16px;\n+      transition: background-color $transition-time, border-color $transition-time;\n+\n+      &:hover,\n+      &focus-within,\n+      &:active {\n+        background-color: $red;\n+        color: $white;\n+\n+        span {\n+          color: $white;\n+        }\n+      }\n+\n+      input {\n+        display: none;\n+\n+        &:checked~span {\n+          color: $white;\n+          background-color: $red;\n+        }\n+\n+      }\n+\n+      span {\n+        color: $black;\n+        background-color: transparent;\n+        transition: color $transition-time, background-color $transition-time;\n+        display: inline-block;\n+        padding: 12px;\n+      }\n+\n+    }\n     .show-more a {\n       font-weight: 700;\n       text-transform: uppercase;\n     }\n"
+                },
+                {
+                    "date": 1629823218213,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -99,8 +99,9 @@\n       }\n \n       input {\n         display: none;\n+        border-radius: 4px;\n \n         &:checked~span {\n           color: $red;\n           background-color: $white;\n"
+                },
+                {
+                    "date": 1629823384972,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -75,8 +75,9 @@\n \n     }\n \n     label {\n+      border-radius: 4px;\n       font-weight: normal;\n       margin: 0;\n       background-color: white;\n       position: relative;\n"
+                },
+                {
+                    "date": 1629823408427,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -75,9 +75,8 @@\n \n     }\n \n     label {\n-      border-radius: 4px;\n       font-weight: normal;\n       margin: 0;\n       background-color: white;\n       position: relative;\n"
+                },
+                {
+                    "date": 1629823876137,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     margin: rem-calc(0 0 20);\n \n     @include breakpoint(medium) {\n       column-count: 4;\n-      column-gap: rem-calc(20);\n+      column-gap: 10px;\n     }\n \n     &.show-all {\n \n@@ -75,8 +75,9 @@\n \n     }\n \n     label {\n+      border-radius: 4px;\n       font-weight: normal;\n       margin: 0;\n       background-color: white;\n       position: relative;\n"
+                },
+                {
+                    "date": 1629824040068,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     margin: rem-calc(0 0 20);\n \n     @include breakpoint(medium) {\n       column-count: 4;\n-      column-gap: 10px;\n+      column-gap: $grid-gap;\n     }\n \n     &.show-all {\n \n"
                 }
             ],
             "date": 1628814878857,

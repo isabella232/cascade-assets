@@ -53,6 +53,7 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
     text-align: center;
     display: block;
     position: relative;
+    border-radius: 4px;
 
     input {
       display: none;
@@ -72,8 +73,7 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
 
     .inner {
       background-color: $white;
-      border: 1px solid $cu-light-grey-2;
-
+      border-radius: 4px;
       color: $black;
       width: 100%;
       height: 100%;
@@ -197,7 +197,7 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
 
 .field-container {
   display: flex;
-  grid-gap: 12px;
+  grid-gap: $grid-gap;
   flex-wrap: wrap;
 
 
@@ -291,3 +291,8 @@ svg.program-info__close {
 }
 
 
+
+  .title-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
