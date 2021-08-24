@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 89,
+            "activePatchIndex": 101,
             "patches": [
                 {
                     "date": 1628814477967,
@@ -364,6 +364,54 @@
                 {
                     "date": 1629836145659,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -370,9 +370,8 @@\n   line-height: 0;\n }\n \n /* Show tooltip content on hover */\n-.dap-undergraduate-program-bridge\n [data-tooltip]:hover:before,\n [data-tooltip]:hover:after,\n [data-tooltip]:focus:before,\n [data-tooltip]:focus:after {\n"
+                },
+                {
+                    "date": 1629839447775,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -376,4 +376,12 @@\n [data-tooltip]:focus:before,\n [data-tooltip]:focus:after {\n   visibility: visible;\n }\n+\n+\n+.flex-wrapper {\n+  display: flex;\n+  width: 100%;\n+  border: 5px dotted;\n+  justify-content: space-between;\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629839452924,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -381,7 +381,6 @@\n \n .flex-wrapper {\n   display: flex;\n   width: 100%;\n-  border: 5px dotted;\n   justify-content: space-between;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629839647156,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -382,5 +382,12 @@\n .flex-wrapper {\n   display: flex;\n   width: 100%;\n   justify-content: space-between;\n+}\n+\n+.dap-results-header .field-container {\n+  display: flex;\n+  border: 5px dotted yellow;\n+  width: auto;\n+  flex-wrap: nowrap;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629839652718,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -386,8 +386,7 @@\n }\n \n .dap-results-header .field-container {\n   display: flex;\n-  border: 5px dotted yellow;\n   width: auto;\n   flex-wrap: nowrap;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629839719860,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -388,5 +388,12 @@\n .dap-results-header .field-container {\n   display: flex;\n   width: auto;\n   flex-wrap: nowrap;\n+}\n+\n+.dap-results-header button {\n+  position: relative !important;\n+  min-width: 50px;\n+  margin-left: 0 !important;\n+  padding-left: 0 !important;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629839814861,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -388,8 +388,9 @@\n .dap-results-header .field-container {\n   display: flex;\n   width: auto;\n   flex-wrap: nowrap;\n+  grid-gap: 0;\n }\n \n .dap-results-header button {\n   position: relative !important;\n"
+                },
+                {
+                    "date": 1629839820395,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -393,8 +393,7 @@\n }\n \n .dap-results-header button {\n   position: relative !important;\n-  min-width: 50px;\n   margin-left: 0 !important;\n   padding-left: 0 !important;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629839830468,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -393,7 +393,7 @@\n }\n \n .dap-results-header button {\n   position: relative !important;\n-  margin-left: 0 !important;\n-  padding-left: 0 !important;\n+  width: 3rem;\n+  height: 3rem;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629839919253,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -393,7 +393,8 @@\n }\n \n .dap-results-header button {\n   position: relative !important;\n-  width: 3rem;\n+  width: 5rem;\n   height: 3rem;\n+  outline: 1px solid $grey;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629839929773,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -393,8 +393,8 @@\n }\n \n .dap-results-header button {\n   position: relative !important;\n-  width: 5rem;\n+  width: 5rem !important;\n   height: 3rem;\n   outline: 1px solid $grey;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1629839951488,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -389,8 +389,9 @@\n   display: flex;\n   width: auto;\n   flex-wrap: nowrap;\n   grid-gap: 0;\n+  width: auto;\n }\n \n .dap-results-header button {\n   position: relative !important;\n"
+                },
+                {
+                    "date": 1629840345480,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -397,5 +397,9 @@\n   position: relative !important;\n   width: 5rem !important;\n   height: 3rem;\n   outline: 1px solid $grey;\n+}\n+\n+#dap-undergraduate-keyword {\n+  min-width: 20vw;\n }\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1628814477967,

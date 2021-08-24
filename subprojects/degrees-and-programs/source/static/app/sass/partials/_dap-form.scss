@@ -377,3 +377,29 @@ svg.program-info__close {
 [data-tooltip]:focus:after {
   visibility: visible;
 }
+
+
+.flex-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.dap-results-header .field-container {
+  display: flex;
+  width: auto;
+  flex-wrap: nowrap;
+  grid-gap: 0;
+  width: auto;
+}
+
+.dap-results-header button {
+  position: relative !important;
+  width: 5rem !important;
+  height: 3rem;
+  outline: 1px solid $grey;
+}
+
+#dap-undergraduate-keyword {
+  min-width: 20vw;
+}
