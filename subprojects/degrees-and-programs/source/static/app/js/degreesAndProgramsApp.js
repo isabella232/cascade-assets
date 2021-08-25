@@ -7,6 +7,7 @@ var chapman = chapman || {};
 
 (function ($, Modernizr, window, document) {
   "use strict";
+
   var activeSection = "", // Active section (discover, undergraduate, or graduate)
     activeFilters = [],
     allResults = [],
@@ -16,7 +17,7 @@ var chapman = chapman || {};
     graduateProgramNames = [],
     resultsSetItems = [],
     resultsSetItemsLoaded = 0,
-    lazyLoadingPaused = false,
+    lazyLoadingPaused = true,
     lazyLoadingIntervalTime = 200,
     resultsSetCount = 0,
     isTransitioning = false, // Flag for transitioning between sections
@@ -26,7 +27,7 @@ var chapman = chapman || {};
     $dapFeature = $("#js-dap-feature"),
     $resultsCount = $(".results-count"),
     activeClass = "active",
-    standardTransitionTime = 0,
+    standardTransitionTime = 1000,
     isFormChangeEvent = false,
     hashChangesActive = false,
     isMobile = Modernizr.mq("(max-width: 1023px)"),
@@ -95,7 +96,7 @@ var chapman = chapman || {};
       });
 
       // Form change in any section
-      $("#js-dap-feature form")
+      $("#js-dap-feature form, #dap-undergraduate-keyword")
         .on("change", function (event) {
           isFormChangeEvent = true;
 
@@ -124,7 +125,7 @@ var chapman = chapman || {};
                 target.val(keywordVal);
 
                 window.location.hash = hash; // Update the hash so history is enabled
-                // _this.resetFiltering(form);
+                _this.resetFiltering(form);
               }
             } else {
               form.find('input[id*="keyword"]').val("");
@@ -184,7 +185,8 @@ var chapman = chapman || {};
         }
       );
 
-      $("form").on("change", function (event) {
+      $("form, .input-with-button").on("change", function (event) {
+        alert('form change')
         var form = $(this),
           target = $(event.target);
 
@@ -239,7 +241,7 @@ var chapman = chapman || {};
       if (form !== undefined && form.length > 0) {
         var formSelects = form.find("select");
 
-        form[0].reset();
+        // form[0].reset();
 
         // Reset custom selects
         if (formSelects && formSelects.length) {
@@ -265,7 +267,7 @@ var chapman = chapman || {};
     getProgramsData: function () {
       var _this = this,
         jsonUrl = $dapFeature.data("json-url");
-      console.log("json url: " + jsonUrl);
+
       $.ajax({
         type: "GET",
         url: jsonUrl,
@@ -424,7 +426,7 @@ var chapman = chapman || {};
 
       setTimeout(function () {
         result.addClass("faded-in");
-      }, 0);
+      }, 100);
     },
 
     toggleSection: function (el, scrollEl) {
@@ -474,7 +476,7 @@ var chapman = chapman || {};
           });
 
           activeSection = ""; // Clear the active section
-        }, 0);
+        }, 500);
       } else {
         // Otherwise close the old section and open the new one
 
@@ -517,8 +519,9 @@ var chapman = chapman || {};
             var scrollToSectionTime = 1000,
               scrollPoint;
 
-            headerOffset = parseInt();
-            // $("html").css("padding-top").replace("px", "")
+            headerOffset = parseInt(
+              $("html").css("padding-top").replace("px", "")
+            );
 
             // Scroll to new section
             if (scrollEl) {
@@ -530,7 +533,8 @@ var chapman = chapman || {};
             if (scrollPoint) {
               isUserScroll = false;
 
-              $("html, body").animate({
+              $("html, body").animate(
+                {
                   scrollTop: scrollPoint,
                 },
                 scrollToSectionTime,
@@ -559,8 +563,8 @@ var chapman = chapman || {};
         var motivation = el.data("motivation"),
           $motivationInterests = $(
             '#js-dap-discover-interests .interest[data-category="' +
-            motivation +
-            '"]'
+              motivation +
+              '"]'
           );
 
         dap.discover.$interests.find("input").prop("checked", false); // Reset interests
@@ -932,14 +936,14 @@ var chapman = chapman || {};
       if (result.links) {
         console.log(
           "stringified link length: " +
-          JSON.stringify(result.title + " " + result.links.length)
+            JSON.stringify(result.title + " " + result.links.length)
         );
 
         if (result.links[0] !== undefined) {
           console.log(JSON.stringify(result.links[0]));
           console.log(
             "link 0 label: " +
-            JSON.stringify(result.title + result.links[0].linkLabel)
+              JSON.stringify(result.title + result.links[0].linkLabel)
           );
         }
         if (result.links[1] !== undefined) {
@@ -952,10 +956,7 @@ var chapman = chapman || {};
           var linkPath = result.links[i].linkPath;
           var linkLabel = result.links[i].linkLabel;
           console.log;
-          linksHTML +=
-            `<a class="cu-button cu-button--white" href="` +
-            linkPath +
-            `">${linkLabel}</a>`;
+          linksHTML += `<a href="` + linkPath + `">${linkLabel}</a>`;
         }
 
         linksHTML += "</ul>";
@@ -1003,6 +1004,17 @@ var chapman = chapman || {};
         imgAlt +
         '">' +
         '<div class="active-content">' +
+        '<div class="active-content-inner">' +
+        '<p class="desc">' +
+        desc +
+        "</p>" +
+        linksHTML +
+        '<a href="' +
+        href +
+        '" title="View landing page for ' +
+        title +
+        ' program">Learn More <svg class="icon icon-double-chevron"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-double-chevron"></use></svg></a>' +
+        "</div>" +
         "</div>" +
         '<a href="#" class="active-content-toggle"><svg class="icon icon-close" title="Toggle result content"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use></svg></a>' +
         "</div>" +
@@ -1014,23 +1026,20 @@ var chapman = chapman || {};
         ' program">' +
         title +
         "</a></h3>" +
+        startTermsHTML +
+        campusHTML +
         degreeTypesHTML +
         "</div>";
 
       resultHTML =
         resultHTML +
-        `<div class="relative-wrapper ">
+        `<div class="relative-wrapper">
       <div class="description">
-    
         <div class="title-wrapper">
-          <span class="title">${title}</span> | <span class="program-type">${result.degreeTypes.type}</span>
-          <svg aria-hidden="false" aria-label="close" focusable="true" data-prefix="fas" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16 program-info__close" tabindex="0" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path></svg>
-      </div>
-        <div class="program-description">
-        ${desc} 
+          <span class="title">${title}</span> | <span class="program-type">${result.campus}</span>
         </div>
-        ${linksHTML}
-        
+        ${desc} 
+        <span class="program-links">${result.links}</span>
       </div>
     </div>` +
         "</article>";
@@ -1095,12 +1104,6 @@ var chapman = chapman || {};
           }
         }
       }
-      else {
-        // LOAD DEFAULT SECTION
-        _this.toggleSection($("#js-dap-section-undergraduate"));
-        $("#dap-undergraduate-program-all").prop("checked", true);
-      }
-
     },
 
     initAutocompletes: function () {
@@ -1191,8 +1194,8 @@ var chapman = chapman || {};
         } else if (filter.indexOf("motivation") !== -1) {
           var $motivationEl = $(
             '#js-dap-discover-motivations .motivation[data-motivation="' +
-            filterValue +
-            '"]'
+              filterValue +
+              '"]'
           );
 
           _this.switchDiscoverMotivation($motivationEl);
@@ -1200,8 +1203,8 @@ var chapman = chapman || {};
           if (formType === "discover") {
             var $interestEl = $(
               '#js-dap-discover-interests .interest[data-interest="' +
-              filterValue +
-              '"]'
+                filterValue +
+                '"]'
             );
 
             _this.switchDiscoverInterest($interestEl);
@@ -1229,7 +1232,7 @@ var chapman = chapman || {};
       hashChangesActive = false;
 
       if (!noFilters && formType && formType !== undefined && formType.length) {
-        // _this.resetFiltering(form);
+        _this.resetFiltering(form);
       }
     },
 
@@ -1245,15 +1248,16 @@ var chapman = chapman || {};
       setTimeout(function () {
         isUserScroll = false;
 
-        $("html, body").animate({
-            // scrollTop: $(target).offset().top - (headerOffset + 20),
+        $("html, body").animate(
+          {
+            scrollTop: $(target).offset().top - (headerOffset + 20),
           },
           standardTransitionTime,
           "swing",
           function () {
             setTimeout(function () {
               isUserScroll = true;
-            }, 0);
+            }, 100);
           }
         );
       }, 250);
@@ -1270,7 +1274,8 @@ var chapman = chapman || {};
 
       // If the top of the results container isn't completely in view, scroll to it
       if (bottomOfWindow - resultsContainerHeight <= topOfResultsContainer) {
-        $("html, body").animate({
+        $("html, body").animate(
+          {
             scrollTop: scrollPoint,
           },
           standardTransitionTime,
@@ -1278,7 +1283,7 @@ var chapman = chapman || {};
           function () {
             setTimeout(function () {
               isUserScroll = true;
-            }, 0);
+            }, 100);
           }
         );
       }
@@ -1292,8 +1297,8 @@ $(function () {
   elem.style.display = "none";
 
   chapman.degreesAndProgramsApp.init();
-  toggleActive();
 });
+
 
 
 
@@ -1312,10 +1317,3 @@ function setWavyBgHeight() {
 
   })
 };
-
-function toggleActive(){
-  console.log('clickhandler for toggle active');
-$( "article.active .active-content-toggle" ).on( "click", function() {
-  var others = $('article.active').not(this);
-});
-}
