@@ -16,7 +16,7 @@ var chapman = chapman || {};
     undergraduateProgramNames = [],
     graduateProgramNames = [],
     resultsSetItems = [],
-    resultsSetItemsLoaded = 0,
+    resultsSetItemsLoaded = 9999,
     lazyLoadingPaused = true,
     lazyLoadingIntervalTime = 200,
     resultsSetCount = 0,
@@ -273,10 +273,10 @@ var chapman = chapman || {};
         url: jsonUrl,
         dataType: "text",
         success: function (json) {
-          console.log(JSON.stringify(json));
+
           var data = $.parseJSON(json);
 
-          // console.log("data " + JSON.stringify(data));
+          // 
 
           allResults = data.results;
 
@@ -336,7 +336,7 @@ var chapman = chapman || {};
           _this.applyHashFilters();
         },
         error: function (e) {
-          console.error("Error loading programs feed.");
+          
         },
       });
     },
@@ -345,14 +345,8 @@ var chapman = chapman || {};
       var _this = this;
 
       setInterval(function () {
-        if (
-          !lazyLoadingPaused &&
-          activeSection !== undefined &&
-          activeSection !== ""
-        ) {
-          _this.lazyLoadResults();
-        }
-      }, lazyLoadingIntervalTime);
+        _this.lazyLoadResults();
+      }, 0);
     },
 
     lazyLoadResults: function () {
@@ -363,17 +357,17 @@ var chapman = chapman || {};
       var bottomOfWindow = scrollPosition + windowHeight;
       var scrollThreshold = bottomOfWindow + windowHeight * 0.33;
       var result = $(resultsSetItems[resultsSetItemsLoaded]);
-
+     
       if (resultsSetItemsLoaded < resultsSetItems.length && result.length) {
         // If there are results left to load
 
+        _this.fadeInResult(result)
         $("#js-dap-results-" + activeSection + " .results-row").append(result); // Append the result
         var $result = $(result); // Store previously appended result as variable
         bottomOfResultsContainer =
           $resultsContainer.offset().top + $resultsContainer.outerHeight(true); // Recalculate container's height with new result
 
         if (
-          scrollThreshold >= bottomOfResultsContainer &&
           $resultsContainer.is(":visible")
         ) {
           // If the user is past the scroll threshold
@@ -381,10 +375,10 @@ var chapman = chapman || {};
           resultsSetItemsLoaded++; // Move to the next result
         } else {
           $result.remove(); // Otherwise remove it and wait until there's more room
-          lazyLoadingPaused = true;
+          lazyLoadingPaused = false;
         }
       } else {
-        lazyLoadingPaused = true;
+        lazyLoadingPaused = false;
 
         if (activeSection === "discover") {
           // Open the keyword form
@@ -934,28 +928,11 @@ var chapman = chapman || {};
 
       // Only show this field if it's defined
       if (result.links) {
-        console.log(
-          "stringified link length: " +
-            JSON.stringify(result.title + " " + result.links.length)
-        );
-
-        if (result.links[0] !== undefined) {
-          console.log(JSON.stringify(result.links[0]));
-          console.log(
-            "link 0 label: " +
-              JSON.stringify(result.title + result.links[0].linkLabel)
-          );
-        }
-        if (result.links[1] !== undefined) {
-          console.log(
-            "link 1 label: " + JSON.stringify(result.links[1].linkLabel)
-          );
-        }
+    
         linksHTML += '<ul class="program-links">';
         for (var i = 0; i < result.links.length; i++) {
           var linkPath = result.links[i].linkPath;
           var linkLabel = result.links[i].linkLabel;
-          console.log;
           linksHTML += `<a href="` + linkPath + `">${linkLabel}</a>`;
         }
 
@@ -965,7 +942,7 @@ var chapman = chapman || {};
       // Only show this field if it's defined
       if (result.startTerms) {
         startTermsHTML += '<ul class="start-terms">';
-        console.log(result.startTerms);
+        
         for (var i = 0; i < result.startTerms.length; i++) {
           startTermsHTML += "<li>" + result.startTerms[i] + "</li>";
         }
