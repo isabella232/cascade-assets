@@ -186,7 +186,6 @@ var chapman = chapman || {};
       );
 
       $("form, .input-with-button").on("change", function (event) {
-        alert('form change')
         var form = $(this),
           target = $(event.target);
 
@@ -1218,17 +1217,6 @@ var chapman = chapman || {};
       return matches ? matches[1] : null;
     },
 
-    setWayBgHeight: function() {
-      $('form').each(function () {
-        var contentHeight = $(this).outerHeight()
-        var wavyBGHeight = $(this).closest('.wavy-bg').height();
-        //     var wavyBGHeight = window.getComputedStyle(wavyBG, ':before').height; // Returns (string) "70px"
-    
-        $(this).find('.wavy-bg').css('height', contentHeight)
-    
-      })
-    },
-
     // Used to scroll to different points
     scrollToTarget: function (target) {
       headerOffset = parseInt($("html").css("padding-top").replace("px", ""));
@@ -1281,12 +1269,20 @@ var chapman = chapman || {};
 
 $(function () {
   "use strict";
-  var elem = document.querySelector("nav");
-  elem.style.display = "none";
 
   chapman.degreesAndProgramsApp.init();
 });
 
+$( window ).load(function() {
+  setWavyBgHeight();
+});
 
 
+function setWavyBgHeight() {
+  $('form').each(function () {
+    var contentHeight = $(this).outerHeight()
+    var wavyBGHeight = $(this).closest('.wavy-bg').height();
+    $(this).find('.wavy-bg').css('height', contentHeight)
 
+  })
+};
