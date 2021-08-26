@@ -29,7 +29,7 @@ var chapman = chapman || {};
     activeClass = "active",
     standardTransitionTime = 1000,
     isFormChangeEvent = false,
-    hashChangesActive = false,
+    hashChangesActive = true,
     isMobile = Modernizr.mq("(max-width: 1023px)"),
     scrollPosition = $(window).scrollTop(),
     headerOffset = parseInt($("html").css("padding-top").replace("px", "")),
@@ -452,6 +452,7 @@ var chapman = chapman || {};
       }
 
       if (section.hasClass("active")) {
+        debugger;
         // If the section is open, close it
         var activeResults = $(
           "#js-dap-results-" + activeSection + " .results-row .result"
@@ -509,7 +510,7 @@ var chapman = chapman || {};
             $(this).css("overflow", "visible");
 
             // Wait to do the following until new section is opened
-            var scrollToSectionTime = 1000,
+            var scrollToSectionTime = 0,
               scrollPoint;
 
             headerOffset = parseInt(
@@ -1150,6 +1151,12 @@ var chapman = chapman || {};
 
       var _this = this;
       var hashItems = window.location.hash.replace("#", "").split("&");
+
+      // If the hash is empty, default to undergrad
+      if (_this.getHashValue("type") !== "") { 
+        _this.toggleSection($("#js-dap-section-undergraduate"));
+      }
+      console.log('hash type ' + _this.getHashValue("type"));
       var formType = _this.getHashValue("type") || activeSection;
       var form = $("#js-dap-" + formType + "-form");
       var noFilters = false;
@@ -1283,10 +1290,14 @@ $(function () {
   "use strict";
 
   chapman.degreesAndProgramsApp.init();
+  
+
+  
 });
 
 $( window ).load(function() {
   setWavyBgHeight();
+  
 });
 
 
