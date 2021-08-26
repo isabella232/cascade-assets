@@ -927,12 +927,32 @@ var chapman = chapman || {};
 
       // Only show this field if it's defined
       if (result.links) {
-    
+        console.log(
+          "stringified link length: " +
+          JSON.stringify(result.title + " " + result.links.length)
+        );
+
+        if (result.links[0] !== undefined) {
+          console.log(JSON.stringify(result.links[0]));
+          console.log(
+            "link 0 label: " +
+            JSON.stringify(result.title + result.links[0].linkLabel)
+          );
+        }
+        if (result.links[1] !== undefined) {
+          console.log(
+            "link 1 label: " + JSON.stringify(result.links[1].linkLabel)
+          );
+        }
         linksHTML += '<ul class="program-links">';
         for (var i = 0; i < result.links.length; i++) {
           var linkPath = result.links[i].linkPath;
           var linkLabel = result.links[i].linkLabel;
-          linksHTML += `<a href="` + linkPath + `">${linkLabel}</a>`;
+          console.log;
+          linksHTML +=
+            `<a class="cu-button cu-button--white" href="` +
+            linkPath +
+            `">${linkLabel}</a>`;
         }
 
         linksHTML += "</ul>";
@@ -941,7 +961,7 @@ var chapman = chapman || {};
       // Only show this field if it's defined
       if (result.startTerms) {
         startTermsHTML += '<ul class="start-terms">';
-        
+        console.log(result.startTerms);
         for (var i = 0; i < result.startTerms.length; i++) {
           startTermsHTML += "<li>" + result.startTerms[i] + "</li>";
         }
@@ -980,17 +1000,6 @@ var chapman = chapman || {};
         imgAlt +
         '">' +
         '<div class="active-content">' +
-        '<div class="active-content-inner">' +
-        '<p class="desc">' +
-        desc +
-        "</p>" +
-        linksHTML +
-        '<a href="' +
-        href +
-        '" title="View landing page for ' +
-        title +
-        ' program">Learn More <svg class="icon icon-double-chevron"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-double-chevron"></use></svg></a>' +
-        "</div>" +
         "</div>" +
         '<a href="#" class="active-content-toggle"><svg class="icon icon-close" title="Toggle result content"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use></svg></a>' +
         "</div>" +
@@ -1002,20 +1011,23 @@ var chapman = chapman || {};
         ' program">' +
         title +
         "</a></h3>" +
-        startTermsHTML +
-        campusHTML +
         degreeTypesHTML +
         "</div>";
 
       resultHTML =
         resultHTML +
-        `<div class="relative-wrapper">
+        `<div class="relative-wrapper ">
       <div class="description">
+    
         <div class="title-wrapper">
-          <span class="title">${title}</span> | <span class="program-type">${result.campus}</span>
-        </div>
+          <span class="title">${title}</span> | <span class="program-type">${result.degreeTypes.type}</span>
+          <svg aria-hidden="false" aria-label="close" focusable="true" data-prefix="fas" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16 program-info__close" tabindex="0" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path></svg>
+      </div>
+        <div class="program-description">
         ${desc} 
-        <span class="program-links">${result.links}</span>
+        </div>
+        ${linksHTML}
+        
       </div>
     </div>` +
         "</article>";
