@@ -1155,7 +1155,11 @@ var chapman = chapman || {};
       // If the hash is empty, default to undergrad
       if (_this.getHashValue("type") !== "") { 
         _this.toggleSection($("#js-dap-section-undergraduate"));
+        // document.getElementById('dap-undergraduate-program-all').click();
+        // debugger;
       }
+      
+      console.log('dap-undergraduate-program-all ' + _this.getHashValue("dap-undergraduate-program-all"))
       console.log('hash type ' + _this.getHashValue("type"));
       var formType = _this.getHashValue("type") || activeSection;
       var form = $("#js-dap-" + formType + "-form");
