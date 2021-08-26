@@ -1218,6 +1218,17 @@ var chapman = chapman || {};
       return matches ? matches[1] : null;
     },
 
+    setWayBgHeight: function() {
+      $('form').each(function () {
+        var contentHeight = $(this).outerHeight()
+        var wavyBGHeight = $(this).closest('.wavy-bg').height();
+        //     var wavyBGHeight = window.getComputedStyle(wavyBG, ':before').height; // Returns (string) "70px"
+    
+        $(this).find('.wavy-bg').css('height', contentHeight)
+    
+      })
+    },
+
     // Used to scroll to different points
     scrollToTarget: function (target) {
       headerOffset = parseInt($("html").css("padding-top").replace("px", ""));
@@ -1279,18 +1290,3 @@ $(function () {
 
 
 
-
-$(window).load(function () {
-  setWavyBgHeight();
-});
-
-function setWavyBgHeight() {
-  $('form').each(function () {
-    var contentHeight = $(this).outerHeight()
-    var wavyBGHeight = $(this).closest('.wavy-bg').height();
-    //     var wavyBGHeight = window.getComputedStyle(wavyBG, ':before').height; // Returns (string) "70px"
-
-    $(this).find('.wavy-bg').css('height', contentHeight)
-
-  })
-};
