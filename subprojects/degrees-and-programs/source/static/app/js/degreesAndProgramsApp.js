@@ -72,6 +72,7 @@ var chapman = chapman || {};
       this.bindUIEvents();
       this.getUrlTypeQuery();
       this.initLazyLoadingInterval();
+  
     },
 
     bindUIEvents: function () {
@@ -91,7 +92,9 @@ var chapman = chapman || {};
       // Click on any section's accordion trigger
       $(".dap-section-accordion-trigger").on("click", function () {
         if (!isTransitioning) {
-          _this.toggleSection($(this));
+          // _this.toggleSection($(this));
+          // _this.toggleSection($('js-dap-section-graduate'));
+          _this.toggleSection($("#js-dap-section-graduate"));
         }
       });
 
@@ -263,6 +266,9 @@ var chapman = chapman || {};
       }
     },
 
+
+
+
     getProgramsData: function () {
       var _this = this,
         jsonUrl = $dapFeature.data("json-url");
@@ -275,7 +281,6 @@ var chapman = chapman || {};
 
           var data = $.parseJSON(json);
 
-          // 
 
           allResults = data.results;
 
@@ -452,7 +457,6 @@ var chapman = chapman || {};
       }
 
       if (section.hasClass("active")) {
-        debugger;
         // If the section is open, close it
         var activeResults = $(
           "#js-dap-results-" + activeSection + " .results-row .result"
@@ -550,6 +554,8 @@ var chapman = chapman || {};
           });
         }, newSectionTransitionDelay);
       }
+
+  
     },
 
     switchDiscoverMotivation: function (el) {
@@ -1288,28 +1294,18 @@ var chapman = chapman || {};
       }
     },
   };
+
+  var totalHeight = 0;
+
+  $("#js-dap-section-undergraduate").children().each(function(){
+      totalHeight = totalHeight + $(this).find('form').outerHeight(true);
+      $(this).find('.wavy-bg').css('height', totalHeight)
+  });
 })(window.jQuery, window.Modernizr, window, window.document);
 
 $(function () {
   "use strict";
 
   chapman.degreesAndProgramsApp.init();
-  
 
-  
 });
-
-$( window ).load(function() {
-  setWavyBgHeight();
-  
-});
-
-
-function setWavyBgHeight() {
-  $('form').each(function () {
-    var contentHeight = $(this).outerHeight()
-    var wavyBGHeight = $(this).closest('.wavy-bg').height();
-    $(this).find('.wavy-bg').css('height', contentHeight)
-
-  })
-};
