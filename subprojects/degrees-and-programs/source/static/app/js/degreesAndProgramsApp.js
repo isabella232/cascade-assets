@@ -22,12 +22,12 @@ var chapman = chapman || {};
     resultsSetCount = 0,
     isTransitioning = false, // Flag for transitioning between sections
     isUserScroll = true, // Flag for scrolling caused by user vs. animation
-    transitioningClass = "is-transitioning",
+    transitioningClass = "class-formerly-known-as-transitioning",
     urlTypeQuery = "",
     $dapFeature = $("#js-dap-feature"),
     $resultsCount = $(".results-count"),
     activeClass = "active",
-    standardTransitionTime = 1000,
+    standardTransitionTime = 0,
     isFormChangeEvent = false,
     hashChangesActive = true,
     isMobile = Modernizr.mq("(max-width: 1023px)"),
@@ -72,7 +72,7 @@ var chapman = chapman || {};
       this.bindUIEvents();
       this.getUrlTypeQuery();
       this.initLazyLoadingInterval();
-  
+
     },
 
     bindUIEvents: function () {
@@ -89,14 +89,25 @@ var chapman = chapman || {};
         scrollPosition = $(window).scrollTop();
       });
 
-      // Click on any section's accordion trigger
-      $(".dap-section-accordion-trigger").on("click", function () {
-        if (!isTransitioning) {
-          // _this.toggleSection($(this));
-          // _this.toggleSection($('js-dap-section-graduate'));
+      $(".program-toggle").on("click", function () {
+        alert(activeSection);
+        // _this.toggleSection($(this));
+        // _this.toggleSection($('js-dap-section-graduate'));
+        if (activeSection === "undergraduate") {
+          // _this.toggleSection($("#js-dap-section-undergraduate"));
           _this.toggleSection($("#js-dap-section-graduate"));
+
+          // $('#js-dap-section-undergraduate').addClass("hidden");
+          // $('#js-dap-section-graduate').removeClass("hidden");
+        } else if (activeSection === "graduate") {
+          _this.toggleSection($("#js-dap-section-undergraduate"));
+
+          // $('#js-dap-section-undergraduate').addClass("hidden");
+          // $('#js-dap-section-graduate').removeClass("hidden");
         }
       });
+
+
 
       // Form change in any section
       $("#js-dap-feature form, #dap-undergraduate-keyword")
@@ -340,7 +351,7 @@ var chapman = chapman || {};
           _this.applyHashFilters();
         },
         error: function (e) {
-          
+
         },
       });
     },
@@ -361,7 +372,7 @@ var chapman = chapman || {};
       var bottomOfWindow = scrollPosition + windowHeight;
       var scrollThreshold = bottomOfWindow + windowHeight * 0.33;
       var result = $(resultsSetItems[resultsSetItemsLoaded]);
-     
+
       if (resultsSetItemsLoaded < resultsSetItems.length && result.length) {
         // If there are results left to load
 
@@ -498,7 +509,7 @@ var chapman = chapman || {};
 
         if ($(".dap-section.active").length) {
           // Close old section
-          $(".dap-section.active .dap-body").slideUp(standardTransitionTime);
+          $(".dap-section.active .dap-body").hide();
           $(".dap-section.active").removeClass("active");
           $resultsCount.removeClass("faded-in");
         } else {
@@ -531,8 +542,7 @@ var chapman = chapman || {};
             if (scrollPoint) {
               isUserScroll = false;
 
-              $("html, body").animate(
-                {
+              $("html, body").animate({
                   scrollTop: scrollPoint,
                 },
                 scrollToSectionTime,
@@ -555,7 +565,7 @@ var chapman = chapman || {};
         }, newSectionTransitionDelay);
       }
 
-  
+
     },
 
     switchDiscoverMotivation: function (el) {
@@ -563,8 +573,8 @@ var chapman = chapman || {};
         var motivation = el.data("motivation"),
           $motivationInterests = $(
             '#js-dap-discover-interests .interest[data-category="' +
-              motivation +
-              '"]'
+            motivation +
+            '"]'
           );
 
         dap.discover.$interests.find("input").prop("checked", false); // Reset interests
@@ -1159,12 +1169,14 @@ var chapman = chapman || {};
       var hashItems = window.location.hash.replace("#", "").split("&");
 
       // If the hash is empty, default to undergrad
-      if (_this.getHashValue("type") !== "") { 
+      if (_this.getHashValue("type") == null) {
+
+        history.pushState("type=graduate", document.title, window.location.pathname);
         _this.toggleSection($("#js-dap-section-undergraduate"));
         // document.getElementById('dap-undergraduate-program-all').click();
         // debugger;
       }
-      
+
       console.log('dap-undergraduate-program-all ' + _this.getHashValue("dap-undergraduate-program-all"))
       console.log('hash type ' + _this.getHashValue("type"));
       var formType = _this.getHashValue("type") || activeSection;
@@ -1199,8 +1211,8 @@ var chapman = chapman || {};
         } else if (filter.indexOf("motivation") !== -1) {
           var $motivationEl = $(
             '#js-dap-discover-motivations .motivation[data-motivation="' +
-              filterValue +
-              '"]'
+            filterValue +
+            '"]'
           );
 
           _this.switchDiscoverMotivation($motivationEl);
@@ -1208,8 +1220,8 @@ var chapman = chapman || {};
           if (formType === "discover") {
             var $interestEl = $(
               '#js-dap-discover-interests .interest[data-interest="' +
-                filterValue +
-                '"]'
+              filterValue +
+              '"]'
             );
 
             _this.switchDiscoverInterest($interestEl);
@@ -1253,8 +1265,7 @@ var chapman = chapman || {};
       setTimeout(function () {
         isUserScroll = false;
 
-        $("html, body").animate(
-          {
+        $("html, body").animate({
             scrollTop: $(target).offset().top - (headerOffset + 20),
           },
           standardTransitionTime,
@@ -1279,8 +1290,7 @@ var chapman = chapman || {};
 
       // If the top of the results container isn't completely in view, scroll to it
       if (bottomOfWindow - resultsContainerHeight <= topOfResultsContainer) {
-        $("html, body").animate(
-          {
+        $("html, body").animate({
             scrollTop: scrollPoint,
           },
           standardTransitionTime,
@@ -1297,9 +1307,9 @@ var chapman = chapman || {};
 
   var totalHeight = 0;
 
-  $("#js-dap-section-undergraduate").children().each(function(){
-      totalHeight = totalHeight + $(this).find('form').outerHeight(true);
-      $(this).find('.wavy-bg').css('height', totalHeight)
+  $("#js-dap-section-undergraduate").children().each(function () {
+    totalHeight = totalHeight + $(this).find('form').outerHeight(true);
+    // $(this).find('.wavy-bg').css('height', totalHeight)
   });
 })(window.jQuery, window.Modernizr, window, window.document);
 
