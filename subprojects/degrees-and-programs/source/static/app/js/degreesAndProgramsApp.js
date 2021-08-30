@@ -72,6 +72,7 @@ var chapman = chapman || {};
       this.bindUIEvents();
       this.getUrlTypeQuery();
       this.initLazyLoadingInterval();
+      this.setWavyBgHeight();
 
     },
 
@@ -90,7 +91,7 @@ var chapman = chapman || {};
       });
 
       $(".program-toggle").on("click", function () {
-        alert(activeSection);
+        // alert(activeSection);
         // _this.toggleSection($(this));
         // _this.toggleSection($('js-dap-section-graduate'));
         if (activeSection === "undergraduate") {
@@ -249,6 +250,15 @@ var chapman = chapman || {};
         _this.getResultsSet();
       }
     },
+
+    // setWavyBgHeight: function () {
+    //   var totalHeight = 0;
+
+    //   $("section.dap-section").children().each(function () {
+    //     totalHeight = totalHeight + $(this).find('form').outerHeight(true);
+    //     $(this).find('.wavy-bg').css('height', totalHeight)
+    //   });
+    // },
 
     resetForm: function (form) {
       if (form !== undefined && form.length > 0) {
@@ -542,21 +552,7 @@ var chapman = chapman || {};
             if (scrollPoint) {
               isUserScroll = false;
 
-              $("html, body").animate({
-                  scrollTop: scrollPoint,
-                },
-                scrollToSectionTime,
-                "swing",
-                function () {
-                  isTransitioning = false;
 
-                  setTimeout(function () {
-                    isUserScroll = true;
-                  }, 100);
-
-                  $dapFeature.removeClass(transitioningClass);
-                }
-              );
             } else {
               isTransitioning = false;
               $dapFeature.removeClass(transitioningClass);
