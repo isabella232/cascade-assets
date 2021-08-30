@@ -1,14 +1,10 @@
 @import "helpers/_theme-variables";
 
-$palettes: map-merge(
-  $palettes,
-  (
-    "dap-results": (
-      "core": $black,
+$palettes: map-merge($palettes,
+  ("dap-results": ("core": $black,
       "background": $white,
     ),
-  )
-);
+  ));
 
 $dap-result-breakpoint: rem-calc(600);
 
@@ -116,6 +112,7 @@ $dap-result-breakpoint: rem-calc(600);
     position: absolute;
     width: 100%;
   }
+
   .result {
     opacity: 0;
     overflow: hidden;
@@ -183,6 +180,7 @@ $dap-result-breakpoint: rem-calc(600);
           font-size: 18px !important;
           padding-bottom: 24px;
         }
+
         .title {
           color: $red;
           font-weight: 800;
@@ -260,6 +258,7 @@ $dap-result-breakpoint: rem-calc(600);
         display: block !important; // Overwrites plugin inline style
         margin-top: rem-calc(12);
       }
+
       // scss-lint:enable ImportantRule
     }
 
@@ -277,6 +276,20 @@ $dap-result-breakpoint: rem-calc(600);
       border-radius: 50%;
       margin-right: 20px;
       margin-bottom: 10px;
+
+      &:hover,
+      &:focus {
+        background-color: $red-hover;
+      }
+
+      &:focus {
+        outline: 2px dotted $red;
+      }
+
+      // non-keyboard focus (aka targets mouse-only)
+      &:focus:not(:focus-visible) {
+        outline: none;
+      }
 
 
       .icon {
@@ -308,11 +321,13 @@ $dap-result-breakpoint: rem-calc(600);
         color: $burgundy;
 
         &:hover {
+
           // scss-lint:disable NestingDepth
           .no-touch &,
           .no-js & {
             color: $cardinal;
           }
+
           // scss-lint:enable NestingDepth
         }
 
@@ -388,7 +403,7 @@ $dap-result-breakpoint: rem-calc(600);
     display: block;
   }
 
-  + .dap-form {
+  +.dap-form {
     background-color: $white;
     padding: 0;
   }
@@ -396,7 +411,7 @@ $dap-result-breakpoint: rem-calc(600);
 
 
 // DEBUG - REMOVE
-#omni-nav-v2, footer {
+#omni-nav-v2,
+footer {
   // opacity: 0;
 }
-

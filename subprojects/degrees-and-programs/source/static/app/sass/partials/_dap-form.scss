@@ -278,21 +278,23 @@ svg.program-info__close {
   position: absolute;
   top: 20px;
   cursor: pointer;
+
   &:focus {
     outline: 2px dotted $red;
- }
-}
-
-
-
-  .title-wrapper {
-    display: flex;
-    justify-content: space-between;
   }
-
-  .icon.icon-check {
-    display: none !important;
 }
+
+
+
+.title-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon.icon-check {
+  display: none !important;
+}
+
 .svg-inline--fa.fa-question-circle.fa-w-16 {
   position: absolute;
   margin-left: 2px;
@@ -302,7 +304,7 @@ svg.program-info__close {
 }
 
 .dap-form .program-type .inner:hover {
-  .svg-inline--fa.fa-question-circle.fa-w-16  {
+  .svg-inline--fa.fa-question-circle.fa-w-16 {
     color: $white;
     background-color: $black;
     border-radius: 50%;
@@ -402,4 +404,160 @@ svg.program-info__close {
 
 #dap-undergraduate-keyword {
   min-width: 20vw;
+}
+
+form {
+  .link-list {
+    margin: rem-calc(0 0 20);
+
+    @include breakpoint(medium) {
+      column-count: 4;
+      column-gap: $grid-gap;
+    }
+
+    &.show-all {
+      li {
+        display: block;
+
+        &.show-more {
+          display: none;
+        }
+      }
+    }
+
+    li {
+      margin: rem-calc(0 0 12);
+      display: none;
+
+      @include breakpoint(medium) {
+        display: block;
+      }
+
+      &:nth-child(1),
+      &:nth-child(2),
+      &:nth-child(3),
+      &:nth-child(4),
+      &:nth-child(5),
+      &:nth-child(6),
+      &:nth-child(7),
+      &:nth-child(8) {
+        display: block;
+      }
+
+      &.show-more {
+        display: block;
+
+        @include breakpoint(medium) {
+          display: none;
+        }
+      }
+    }
+
+    a {
+      color: $white;
+      background-color: transparent;
+      transition: color $transition-time, background-color $transition-time;
+      display: inline-block;
+      padding: rem-calc(2);
+
+      &:hover {
+
+        .no-touch &,
+        .no-js & {
+          color: $red;
+          background-color: $white;
+        }
+      }
+    }
+
+    label {
+      border-radius: 4px;
+      font-weight: normal;
+      margin: 0;
+      background-color: white;
+      position: relative;
+      width: 100%;
+      min-height: 30px;
+      text-align: center;
+      font-family: "futura-pt";
+      font-size: 16px;
+      transition: background-color $transition-time, border-color $transition-time;
+
+      &:hover,
+      &focus-within,
+      &:active {
+        background-color: $red;
+        color: $white;
+
+        span {
+          color: $white;
+        }
+      }
+
+      input {
+        display: none;
+        border-radius: 4px;
+
+        &:checked~span {
+          color: $red;
+          background-color: $white;
+        }
+      }
+
+      span {
+        color: $black;
+        background-color: transparent;
+        transition: color $transition-time, background-color $transition-time;
+        display: inline-block;
+        padding: 12px;
+      }
+    }
+
+    label {
+      font-weight: normal;
+      margin: 0;
+      background-color: white;
+      position: relative;
+      width: 100%;
+      min-height: 30px;
+      text-align: center;
+      font-family: "futura-pt";
+      font-size: 16px;
+      transition: background-color $transition-time, border-color $transition-time;
+
+      &:hover,
+      &focus-within,
+      &:active {
+        background-color: $red;
+        color: $white;
+
+        span {
+          color: $white;
+        }
+      }
+
+      input {
+        display: none;
+
+        &:checked~span {
+          color: $white;
+          background-color: $red;
+        }
+      }
+
+      span {
+        color: $black;
+        background-color: transparent;
+        transition: color $transition-time, background-color $transition-time;
+        display: inline-block;
+        padding: 12px;
+      }
+    }
+
+    .show-more a {
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+  }
+
 }
