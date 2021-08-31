@@ -563,6 +563,23 @@ form {
 
 }
 
-.dap-section.active {
+#js-dap-section-graduate {
+  &.active {
+    @include qbal-slideRight-enter;
+    animation-duration: 500ms;
+  }
+
+  &:not(.active) {
+    @include qbal-slideRight-exit;
+    animation-duration: 500ms;
+
+  }
+}
+
+
+
+#js-dap-section-undergraduate.active {
+  animation-delay: 1s;
   @include qbal-slideLeft-enter;
+  animation-duration: 500ms;
 }
