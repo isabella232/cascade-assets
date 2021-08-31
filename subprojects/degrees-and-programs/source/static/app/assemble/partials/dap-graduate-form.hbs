@@ -70,12 +70,36 @@
         <div class="columns small-12 medium-6">
           <h4 class="subsection-heading">Start Term(s):</h4>
           <div class="field-container">
-            <label tabindex="0" class="program-type button" for="dap-graduate-program-major">
-              <input id="dap-graduate-program-major" name="dap-graduate-program-major" type="checkbox"
-                value="major,integrated/4+1,accelerated 3+2" />
+            <label tabindex="0" class="program-type start-term button" for="dap-graduate-program-type start-term-all">
+              <input id="dap-graduate-program-all" name="dap-graduate-program-all" type="checkbox" value="all" />
               <div class="inner">
                 {{svg "check"}}
-                <span>Majors</span>
+                <span>All</span>
+              </div>
+            </label>
+            <label tabindex="0" class="program-type start-term button"
+              for="dap-graduate-program-type start-term-spring">
+              <input id="dap-graduate-program-spring" name="dap-graduate-program-spring" type="checkbox"
+                value="spring" />
+              <div class="inner">
+                {{svg "check"}}
+                <span>Spring</span>
+              </div>
+            </label>
+            <label tabindex="0" class="program-type start-term button"
+              for="dap-graduate-program-type start-term-summer">
+              <input id="dap-graduate-program-summer" name="dap-graduate-program-summer" type="checkbox"
+                value="summer" />
+              <div class="inner">
+                {{svg "check"}}
+                <span>Summer</span>
+              </div>
+            </label>
+            <label tabindex="0" class="program-type start-term button" for="dap-graduate-program-type start-term-fall">
+              <input id="dap-graduate-program-fall" name="dap-graduate-program-fall" type="checkbox" value="fall" />
+              <div class="inner">
+                {{svg "check"}}
+                <span>Fall</span>
               </div>
             </label>
           </div>
@@ -90,13 +114,6 @@
       <div class="row">
         <!-- I'm Interested In Checkboxes -->
         <div class="clearfix columns small-12 medium-6">
-          <div class="title-wrapper">
-            <h4 class="subsection-heading">Areas of Study:</h4>
-            <a id="js-reset-graduate-interests" class="reset" href="javascript:void(0)"
-              title="Reset interests filters"><svg class="icon icon-reset">
-                <use xlink:href="#icon-reset"></use>
-              </svg> Reset</a>
-          </div>
           <ul id="js-dap-graduate-interests-list" class="dap-graduate-interests-list field-container">
             <li>
               <label for="dap-graduate-interest-innovating-interest-a">
@@ -274,7 +291,10 @@
           </div>
           <div class="program-toggle program-toggle__blurb">
             <div class="program-toggle__image">
-              <img src="http://placekitten.com/200/300" alt="" />
+              <picture>
+                <source media="(min-width: 768px)" srcset="../img/smiling-student.png">
+                <img src="../img/smiling-student.png" alt="">
+              </picture>
             </div>
             <div class="program-toggle__text">
               <h4 class="subsection-heading">Graduate Degree and Program Finder</h4>

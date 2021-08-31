@@ -227,7 +227,10 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
 
     &__image {
       img {
-        max-width: 100px;
+        width: 165px;
+        height: 174px;
+        object-fit: cover;
+        object-position: center center;
       }
     }
   }
@@ -313,7 +316,6 @@ svg.program-info__close {
     transition: $transition-time;
   }
 }
-
 
 /**
  * Tooltip Styles
@@ -574,39 +576,53 @@ form {
 #js-dap-section-graduate {
 
   // messing with Nick branding
-  .wavy-bg {
-    background-color: #231f20;
-  }
+  &.dark-mode {
+    .wavy-bg {
+      background-color: #231f20;
+    }
 
-  h4 {
-    color: $white;
-  }
+    h4,
+    p {
+      color: $white;
+    }
 
-  .dap-section-accordion-trigger {
-    background-color: white;
-    color: $panther-black;
-  }
+    .dap-section-accordion-trigger {
+      background-color: white;
+      color: $panther-black;
+    }
 
-  // end messing with Nick branding
-  &.active {
-    form {
-      .columns {
-        // @include qbal-slideRight-enter;
-        @include qbal-slideUp-enter;
-        animation-duration: 750ms;
+    .program-toggle h4 {
+      color: white !important;
+    }
 
-        h4.pb-0 {
-          @include qbal-fade-enter;
-          animation-duration: 2s;
+    .program-toggle__blurb {
+      background-color: $cu-red;
+    }
+
+    // end messing with Nick branding
+
+    &.active {
+      form {
+        .columns {
+          @include qbal-slideRight-enter;
+          animation-duration: 750ms;
+          // @include qbal-slideUp-enter;
+
+
+
+          h4.pb-0 {
+            @include qbal-fade-enter;
+            animation-duration: 2s;
+          }
         }
       }
     }
-  }
 
-  &:not(.active) {
-    @include qbal-slideRight-exit;
-    animation-duration: 750ms;
+    &:not(.active) {
+      @include qbal-slideRight-exit;
+      animation-duration: 750ms;
 
+    }
   }
 }
 

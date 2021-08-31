@@ -1,34 +1,38 @@
 <!-- partial:dap-results-header -->
 <header class="dap-results-header">
 
-	{{!-- <h2 class="results-count">You are seeing all {{title}} Degrees and Programs</h2> --}}
+  {{!-- <h2 class="results-count">You are seeing all {{title}} Degrees and Programs</h2> --}}
 
 
-							<div class="flex-wrapper">
-                 <div class="field-container">
-										<label class="show-for-sr" for="dap-undergraduate-keyword">Search for Degrees and Programs</label>
-										<input class="input-with-button" id="dap-undergraduate-keyword" name="dap-undergraduate-keyword" placeholder="Search Degrees &amp; Programs" type="text" autocomplete="off">
-										<button type="submit">
-											<span class="show-for-sr">Search for Degrees and Programs</span>
-											    <svg class="icon icon-search" viewBox="0 0 32 32">
-        
-     
-<title>search</title>
-<path d="M31.008 27.231l-7.58-6.447c-0.784-0.705-1.621-1.029-2.298-0.998 1.789-2.096 2.87-4.815 2.87-7.787 0-6.627-5.373-12-12-12s-12 5.373-12 12 5.373 12 12 12c2.972 0 5.691-1.081 7.787-2.87-0.031 0.677 0.293 1.515 0.998 2.298l6.447 7.58c1.104 1.226 2.907 1.33 4.007 0.23s0.997-2.903-0.23-4.007zM12 20c-4.418 0-8-3.582-8-8s3.582-8 8-8c4.418 0 8 3.582 8 8s-3.582 8-8 8z"></path> </svg>
-										</button>
-									</div>
-              
-	<ul class="results-views clearfix">
-		<li class="active" data-view="grid-view" aria-label="Click to enable grid view of the results">
-			<span class="show-for-sr">Show results in grid view</span>
-			{{svg "grid"}}
-		</li>
-		<li data-view="list-view" aria-label="Click to enable list view of the results">
-			<span class="show-for-sr">Show results in list view</span>
-			{{svg "list"}}
-		</li>
-	</ul>
-</div>	
+  <div class="flex-wrapper">
+    <div class="field-container">
+      <label class="show-for-sr" for="dap-undergraduate-keyword">Search for Degrees and Programs</label>
+      <input class="input-with-button" id="dap-undergraduate-keyword" name="dap-undergraduate-keyword"
+        placeholder="Search Programs" type="text" autocomplete="off">
+      <button type="submit">
+        <span class="show-for-sr">Search for Degrees and Programs</span>
+        <svg class="icon icon-search" viewBox="0 0 32 32">
+
+
+          <title>search</title>
+          <path
+            d="M31.008 27.231l-7.58-6.447c-0.784-0.705-1.621-1.029-2.298-0.998 1.789-2.096 2.87-4.815 2.87-7.787 0-6.627-5.373-12-12-12s-12 5.373-12 12 5.373 12 12 12c2.972 0 5.691-1.081 7.787-2.87-0.031 0.677 0.293 1.515 0.998 2.298l6.447 7.58c1.104 1.226 2.907 1.33 4.007 0.23s0.997-2.903-0.23-4.007zM12 20c-4.418 0-8-3.582-8-8s3.582-8 8-8c4.418 0 8 3.582 8 8s-3.582 8-8 8z">
+          </path>
+        </svg>
+      </button>
+    </div>
+
+    <ul class="results-views clearfix">
+      <li class="active" data-view="grid-view" aria-label="Click to enable grid view of the results">
+        <span class="show-for-sr">Show results in grid view</span>
+        {{svg "grid"}}
+      </li>
+      <li data-view="list-view" aria-label="Click to enable list view of the results">
+        <span class="show-for-sr">Show results in list view</span>
+        {{svg "list"}}
+      </li>
+    </ul>
+  </div>
 </header>
 
 
