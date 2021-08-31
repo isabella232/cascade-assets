@@ -576,7 +576,10 @@ form {
 #js-dap-section-graduate {
 
   // messing with Nick branding
+
   &.dark-mode {
+    transition: 350ms linear;
+
     .wavy-bg {
       background-color: #231f20;
     }
@@ -650,4 +653,23 @@ form {
   animation-duration: 1.3s;
   // animation-duration: 500ms;
 
+}
+
+.dap-results .result.active .description .title-wrapper {
+  display: block;
+  width: auto;
+}
+
+.dark-mode__toggle {
+  position: absolute;
+  right: 50px;
+  top: 50px;
+  z-index: 99999;
+  cursor: pointer;
+
+  .fa-sun {
+    color: white;
+    @include qbal-fade-enter;
+    animation-duration: 1s;
+  }
 }

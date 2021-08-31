@@ -5,6 +5,7 @@ var chapman = chapman || {};
 (function ($, Modernizr, window, document) {
   'use strict';
   chapman.degreesAndPrograms = {
+
     init: function () {
       $('.degrees-and-programs').addClass('ready');
       this.bindUIEvents();
@@ -63,4 +64,11 @@ var chapman = chapman || {};
 $(function () {
   'use strict';
   chapman.degreesAndPrograms.init();
+
+  // function that adds .dark-mode to form when clicked
+  $('.dark-mode__toggle').on('click', function () {
+    $(this).find('.fas').toggleClass('fa-moon fa-sun');
+    $('#js-dap-section-graduate').toggleClass('dark-mode');
+
+  });
 });

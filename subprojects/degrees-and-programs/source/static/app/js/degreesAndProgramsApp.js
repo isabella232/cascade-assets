@@ -120,7 +120,7 @@ var chapman = chapman || {};
               target = $(event.target),
               hash = form.serialize();
 
-            alert(hash);
+
             if (target.attr("id").indexOf("keyword") !== -1) {
               var keywordVal = target.val();
 
@@ -303,7 +303,6 @@ var chapman = chapman || {};
 
           var data = $.parseJSON(json);
 
-
           allResults = data.results;
 
           for (var i = 0; i < allResults.length; i++) {
@@ -311,15 +310,25 @@ var chapman = chapman || {};
               type = result.type || "",
               isUndergradAndGrad = false;
 
+            // if (result.startTerms !== undefined) {
+            //   console.log('start terms ' + result.startTerms)
+            //   // push all startTerms to the startTerms array
+            //   for (var j = 0; j < result.startTerms.length; j++) {
+            //     var term = result.startTerms[j];
+            //     startTerms.push(term);
+            //   }
+            // }
+
             // Fallback in case no degree type is specified
             if (result.degreeTypes !== undefined) {
               // Check if this result is an accelerated or bridge program
               for (var j = 0; j < result.degreeTypes.type.length; j++) {
                 var degreeType = result.degreeTypes.type[j];
 
+
                 if (degreeType) {
                   var degreeTypeFormatted = degreeType.toLowerCase();
-
+                  // var startTerms = degreeType.startTerms;
                   // Any of the following count as bridge/accelerated
                   if (
                     degreeTypeFormatted === "bridge" ||
@@ -706,6 +715,7 @@ var chapman = chapman || {};
             for (var j = 0; j < valuesArray.length; j++) {
               var programType = valuesArray[j];
 
+
               // Add each to the degree types array
               if (degreeTypesArray.indexOf(programType) === -1) {
                 degreeTypesArray.push(programType);
@@ -974,13 +984,13 @@ var chapman = chapman || {};
 
       // Only show this field if it's defined
       if (result.startTerms) {
-        startTermsHTML += '<ul class="start-terms">';
-        console.log(result.startTerms);
+        ;
+        console.log('start terms ' + result.startTerms);
         for (var i = 0; i < result.startTerms.length; i++) {
-          startTermsHTML += "<li>" + result.startTerms[i] + "</li>";
+          startTermsHTML += result.startTerms[i] + ",";
         }
-
-        startTermsHTML += "</ul>";
+        // split the startTerms into an array
+        startTermsHTML;
       }
 
       // Only show this field if it's defined
@@ -1007,7 +1017,7 @@ var chapman = chapman || {};
       }
 
       resultHTML =
-        `<article class="wtf result visible columns small-12 clearfix" data-program-title="${title}">` +
+        `<article class="wtf result visible columns small-12 clearfix" data-program-title="${title}" data-start-term=${startTermsHTML}>` +
         '<div class="image" role="img" data-src="' +
         imgSrc +
         '" aria-label="' +

@@ -6,84 +6,84 @@ module: true
 
 <!-- module:dap-feature -->
 {{#parseFixture 'dap-feature.json'}}
-<div id="js-dap-feature" class="dap-feature" data-json-url="assemble/fixtures/dap-feature.json" >
+<div id="js-dap-feature" class="dap-feature" data-json-url="assemble/fixtures/dap-feature.json">
 
-	{{> _svg }}
+  {{> _svg }}
 
-	<div class="dap-feature-inner">
-		
-		<!-- START DISCOVER SECTION -->
-		<section id="js-dap-section-discover" class="dap-section" data-id="discover">
+  <div class="dap-feature-inner">
 
-			{{#with sections.[0]}}
+    <!-- START DISCOVER SECTION -->
+    <section id="js-dap-section-discover" class="dap-section" data-id="discover">
 
-				{{> dap-header heading}}
+      {{#with sections.[0]}}
 
-				<div class="dap-body">
-					
-					<div class="dap-form">
-					    {{> dap-discover-form }}
-					</div>
+      {{> dap-header heading}}
 
-					{{> dap-results this }}
+      <div class="dap-body">
 
-					<div class="dap-form">
-						{{> dap-discover-keyword-form }}
-					</div>
+        <div class="dap-form">
+          {{> dap-discover-form }}
+        </div>
 
-				</div>
+        {{> dap-results this }}
 
-			{{/with}}
+        <div class="dap-form">
+          {{> dap-discover-keyword-form }}
+        </div>
 
-		</section>
-		<!-- END DISCOVER SECTION -->
+      </div>
 
-		<!-- START UNDERGRADUATE SECTION -->
-		<section id="js-dap-section-undergraduate" class="dap-section" data-id="undergraduate">
-			
-			{{#with sections.[1]}}
+      {{/with}}
 
-				{{> dap-header heading}}
+    </section>
+    <!-- END DISCOVER SECTION -->
 
-				<div class="dap-body">
-					
-					<div class="dap-form">
-						{{> dap-undergraduate-form this }}
-					</div>
+    <!-- START UNDERGRADUATE SECTION -->
+    <section id="js-dap-section-undergraduate" class="dap-section" data-id="undergraduate">
+
+      {{#with sections.[1]}}
+
+      {{> dap-header heading}}
+
+      <div class="dap-body">
+
+        <div class="dap-form">
+          {{> dap-undergraduate-form this }}
+        </div>
 
 
-					{{> dap-results this }}
+        {{> dap-results this }}
 
-				</div>
+      </div>
 
-			{{/with}}
+      {{/with}}
 
-		</section>
-		<!-- END UNDERGRADUATE SECTION -->
+    </section>
+    <!-- END UNDERGRADUATE SECTION -->
 
-		<!-- START GRADUATE SECTION -->
-		<section id="js-dap-section-graduate" class="dap-section" data-id="graduate">
-			
-			{{#with sections.[2]}}
+    <!-- START GRADUATE SECTION -->
+    <section id="js-dap-section-graduate" class="dap-section" data-id="graduate">
 
-				{{> dap-header heading}}
+      {{#with sections.[2]}}
 
-				<div class="dap-body">
+      {{> dap-header heading}}
 
-					<div class="dap-form">
-						{{> dap-graduate-form }}
-					</div>
+      <div class="dap-body">
 
-					{{> dap-results this }}
+        <div class="dap-form">
+          {{> dap-graduate-form }}
+        </div>
 
-				</div>
+        {{> dap-results this }}
 
-			{{/with}}
+      </div>
 
-		</section>
-		<!-- END GRADUATE SECTION -->
+      {{/with}}
 
-	</div>
+    </section>
+    <!-- END GRADUATE SECTION -->
+
+  </div>
 
 </div>
 {{/parseFixture}}
