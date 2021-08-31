@@ -562,3 +562,7 @@ form {
   }
 
 }
+
+.dap-section.active {
+  @include qbal-slideLeft-enter;
+}

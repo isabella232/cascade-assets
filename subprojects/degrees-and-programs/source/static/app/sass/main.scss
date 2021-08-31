@@ -2,6 +2,8 @@
 @import "compass";
 // scss-lint:enable ImportPath
 
+// Plugin for tasteful animations
+@import "plugins/qbal/qbal-mixins";
 // Foundation utilities
 @import "../bower_components/foundation-sites/scss/util/_util";
 
