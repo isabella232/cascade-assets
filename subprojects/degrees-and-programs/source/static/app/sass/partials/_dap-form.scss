@@ -563,23 +563,75 @@ form {
 
 }
 
+.dap-section {
+
+  .row>.columns {
+    // animation-delay: 500ms;
+    // @include qbal-slideUp-enter;
+  }
+}
+
 #js-dap-section-graduate {
+
+  // messing with Nick branding
+  .wavy-bg {
+    background-color: #231f20;
+  }
+
+  h4 {
+    color: $white;
+  }
+
+  .dap-section-accordion-trigger {
+    background-color: white;
+    color: $panther-black;
+  }
+
+  // end messing with Nick branding
   &.active {
-    @include qbal-slideRight-enter;
-    animation-duration: 500ms;
+    form {
+      .columns {
+        // @include qbal-slideRight-enter;
+        @include qbal-slideUp-enter;
+        animation-duration: 750ms;
+
+        h4.pb-0 {
+          @include qbal-fade-enter;
+          animation-duration: 2s;
+        }
+      }
+    }
   }
 
   &:not(.active) {
     @include qbal-slideRight-exit;
-    animation-duration: 500ms;
+    animation-duration: 750ms;
 
   }
 }
 
-
-
-#js-dap-section-undergraduate.active {
+#js-dap-section-undergraduate.active form {
   animation-delay: 1s;
   @include qbal-slideLeft-enter;
-  animation-duration: 500ms;
+  animation-duration: 750ms;
+
+  h4.pb-0 {
+    // @include qbal-slideLeft-enter;
+    // animation-duration: 750ms;
+  }
+}
+
+.wavy-bg {
+  // @include qbal-fade-enter;
+  @include qbal-slideDown-enter;
+  // animation-delay: 250ms;
+  animation-duration: 1.3s;
+}
+
+.dap-results {
+  // @include qbal-fade-enter;
+  @include qbal-slideUp-enter;
+  animation-duration: 1.3s;
+  // animation-duration: 500ms;
+
 }
