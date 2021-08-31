@@ -120,6 +120,7 @@ var chapman = chapman || {};
               target = $(event.target),
               hash = form.serialize();
 
+            alert(hash);
             if (target.attr("id").indexOf("keyword") !== -1) {
               var keywordVal = target.val();
 
