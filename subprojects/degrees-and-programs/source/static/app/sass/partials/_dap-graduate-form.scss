@@ -203,11 +203,16 @@ $palettes: map-merge($palettes, ('dap-graduate-form': ('core': $black,
   }
 }
 
+#js-dap-graduate-form {
+  .wavy-bg {
+    min-height: 800px;
+  }
+}
+
 .wavy-bg {
   content: " ";
   display: block;
   position: absolute;
-  height: 100%;
   top: 0;
   left: 0;
   right: 0;
@@ -217,7 +222,8 @@ $palettes: map-merge($palettes, ('dap-graduate-form': ('core': $black,
   -webkit-mask-size: 100% 100%;
   will-change: filter;
   max-height: max-content;
-  height: 700px;
+  min-height: 750px;
+  height: 100%;
   position: absolute;
 }
 
