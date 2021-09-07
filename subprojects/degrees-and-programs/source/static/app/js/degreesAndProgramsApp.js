@@ -72,8 +72,6 @@ var chapman = chapman || {};
       this.bindUIEvents();
       this.getUrlTypeQuery();
       this.initLazyLoadingInterval();
-      this.setWavyBgHeight();
-
     },
 
     bindUIEvents: function () {
@@ -309,15 +307,6 @@ var chapman = chapman || {};
             var result = allResults[i],
               type = result.type || "",
               isUndergradAndGrad = false;
-
-            // if (result.startTerms !== undefined) {
-            //   console.log('start terms ' + result.startTerms)
-            //   // push all startTerms to the startTerms array
-            //   for (var j = 0; j < result.startTerms.length; j++) {
-            //     var term = result.startTerms[j];
-            //     startTerms.push(term);
-            //   }
-            // }
 
             // Fallback in case no degree type is specified
             if (result.degreeTypes !== undefined) {
@@ -695,7 +684,8 @@ var chapman = chapman || {};
     getActiveFilters: function (form) {
       var formData = form.serializeArray(),
         degreeTypesArray = [], // Used for storing degree types
-        interestsArray = [];
+        interestsArray = [],
+        startTermsArray = [];
 
       for (var i = 0; i < formData.length; i++) {
         var filter = formData[i],
@@ -724,6 +714,10 @@ var chapman = chapman || {};
           } else if (formattedName.indexOf("interest") !== -1) {
             // Push to array if an interest
             interestsArray.push(value);
+          } else if (formattedName.indexOf("start-term") !== -1) {
+            // Push to array if an interest
+            startTermsArray.push(value);
+            console.log('starttermsarray ' + startTermsArray)
           } else if (formattedName.indexOf("school") !== -1) {
             // Make sure the school value is a valid school name
             if (value && value.length && value !== "all" && value !== "none") {
@@ -752,6 +746,7 @@ var chapman = chapman || {};
         motivations,
         degreeTypes,
         schools,
+        startTerms,
         resultsCountText;
 
       if (activeSection === "discover" || activeSection === "undergraduate") {
@@ -789,6 +784,9 @@ var chapman = chapman || {};
           title = result.title;
           degreeTypes = result.degreeTypes;
           schools = result.schools;
+          startTerms = result.startTerms;
+
+          // debugger;
 
           _this.filterResult(
             result,
@@ -796,7 +794,8 @@ var chapman = chapman || {};
             interests,
             motivations,
             degreeTypes,
-            schools
+            schools,
+            startTerms
           );
         }
 
@@ -829,7 +828,8 @@ var chapman = chapman || {};
       interests,
       motivations,
       degreeTypes,
-      schools
+      schools,
+      startTerms
     ) {
       var _this = this;
 
@@ -850,7 +850,8 @@ var chapman = chapman || {};
         var interestMatch = false,
           motivationMatch = false,
           degreeTypesMatch = false,
-          schoolsMatch = false;
+          schoolsMatch = false,
+          startTermsMatch = false;
 
         // Interests
         if (activeFilters.interests !== undefined) {
@@ -916,12 +917,31 @@ var chapman = chapman || {};
           schoolsMatch = true;
         }
 
+        // Start Terms
+        console.log('active filters.startTerms ' + activeFilters.startTerms)
+        if (activeFilters.startTerms !== undefined) {
+          // debugger;
+          if (startTerms !== undefined) {
+            for (var j = 0; j < startTerms.length; j++) {
+              var startTerm = startTerms[j];
+
+              if (activeFilters.startTerms.indexOf(startTerm) > -1) {
+                startTermsMatch = true;
+                break; // If it's a match already, no need to continue
+              }
+            }
+          }
+        } else {
+          startTermsMatch = true;
+        }
+
         // If it's a match, add the result HTML to the results set
         if (
           interestMatch &&
           motivationMatch &&
           degreeTypesMatch &&
-          schoolsMatch
+          schoolsMatch &&
+          startTermsMatch
         ) {
           _this.addResultHTML(result);
         }
@@ -951,28 +971,11 @@ var chapman = chapman || {};
 
       // Only show this field if it's defined
       if (result.links) {
-        console.log(
-          "stringified link length: " +
-          JSON.stringify(result.title + " " + result.links.length)
-        );
 
-        if (result.links[0] !== undefined) {
-          console.log(JSON.stringify(result.links[0]));
-          console.log(
-            "link 0 label: " +
-            JSON.stringify(result.title + result.links[0].linkLabel)
-          );
-        }
-        if (result.links[1] !== undefined) {
-          console.log(
-            "link 1 label: " + JSON.stringify(result.links[1].linkLabel)
-          );
-        }
         linksHTML += '<ul class="program-links">';
         for (var i = 0; i < result.links.length; i++) {
           var linkPath = result.links[i].linkPath;
           var linkLabel = result.links[i].linkLabel;
-          console.log;
           linksHTML +=
             `<a class="cu-button cu-button--white" href="` +
             linkPath +
@@ -984,10 +987,8 @@ var chapman = chapman || {};
 
       // Only show this field if it's defined
       if (result.startTerms) {
-        ;
-        console.log('start terms ' + result.startTerms);
         for (var i = 0; i < result.startTerms.length; i++) {
-          startTermsHTML += result.startTerms[i] + ",";
+          startTermsHTML += result.startTerms[i];
         }
         // split the startTerms into an array
         startTermsHTML;
@@ -1175,6 +1176,16 @@ var chapman = chapman || {};
       var _this = this;
       var hashItems = window.location.hash.replace("#", "").split("&");
 
+
+      if (_this.getHashValue("start-term-spring")) {
+        $('input[value="spring"]').prop("checked", true);
+      }
+      if (_this.getHashValue("start-term-summer")) {
+        $('input[value="summer"]').prop("checked", true);
+      }
+      if (_this.getHashValue("start-term-fall")) {
+        $('input[value="fall"]').prop("checked", true);
+      }
       // If the hash is empty, default to undergrad
       if (_this.getHashValue("type") == null) {
 
@@ -1184,8 +1195,6 @@ var chapman = chapman || {};
         // debugger;
       }
 
-      console.log('dap-undergraduate-program-all ' + _this.getHashValue("dap-undergraduate-program-all"))
-      console.log('hash type ' + _this.getHashValue("type"));
       var formType = _this.getHashValue("type") || activeSection;
       var form = $("#js-dap-" + formType + "-form");
       var noFilters = false;
@@ -1215,12 +1224,33 @@ var chapman = chapman || {};
           $('[name="' + filterName + '"]')
             .val(filterValue)
             .change(); // Set select value and trigger change
+        } else if (filter.indexOf("start-term") !== -1) {
+          // var $startTermEl = $(
+          //   'article[data-start-term="' +
+          //   filterValue +
+          //   '"]'
+          // )
+          // alert(filterValue)
+
+
+          var i = filterValue;
+
+          var noStartTerm = document.querySelectorAll(`article:not([data-start-term="${i}"])`);
+          let hasStartTerm = document.querySelector(`[data-start-term="${i}"]`);
+
+          for (let i = 0; i < noStartTerm.length; i++) {
+            let item = noStartTerm[i];
+            console.log(item)
+            item.classList.remove('faded-in')
+            item.classList.remove('visible')
+          }
         } else if (filter.indexOf("motivation") !== -1) {
           var $motivationEl = $(
             '#js-dap-discover-motivations .motivation[data-motivation="' +
             filterValue +
             '"]'
           );
+
 
           _this.switchDiscoverMotivation($motivationEl);
         } else if (filter.indexOf("interest") !== -1) {
