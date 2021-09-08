@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 11,
+            "activePatchIndex": 12,
             "patches": [
                 {
                     "date": 1629148034221,
@@ -52,6 +52,10 @@
                 {
                     "date": 1629156753085,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,6 @@\n <!-- partial:dap-graduate-form -->\n <form id=\"js-dap-graduate-form\" class=\"dap-graduate-form\" action=\"\">\n-  <div class=\"wavy-bg\"></div>\n   <legend class=\"show-for-sr\">Search for Graduate Degrees and Programs</legend>\n   <fieldset>\n \n     <input type=\"hidden\" name=\"type\" value=\"graduate\">\n@@ -111,6 +110,8 @@\n       </div>\n     </div>\n \n   </fieldset>\n+  <div class=\"wavy-bg\"></div>\n+\n </form>\n <!-- end partial:dap-graduate-form -->\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1631142639792,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -75,9 +75,9 @@\n \n         </div>\n         <div class=\"columns small-12 medium-6\">\n           <h4 class=\"subsection-heading\">Start Term(s):</h4>\n-          <div class=\"field-container\">\n+          <div id=\"js-dap-graduate-start-terms\" class=\"field-container\">\n             <label tabindex=\"0\" class=\"program-type start-term button\" for=\"start-term-all\">\n               <input id=\"start-term-all\" name=\"start-term-all\" type=\"checkbox\" value=\"all\" />\n               <div class=\"inner\">\n                 {{svg \"check\"}}\n@@ -112,12 +112,13 @@\n       </div>\n     </div>\n \n     <div id=\"js-dap-graduate-interests\" class=\"dap-graduate-interests\">\n-\n       <div class=\"row\">\n         <!-- I'm Interested In Checkboxes -->\n         <div class=\"clearfix columns small-12 medium-6\">\n+          <h4 class=\"subsection-heading\">Areas of Study:</h4>\n+\n           <ul id=\"js-dap-graduate-interests-list\" class=\"dap-graduate-interests-list field-container\">\n             <li>\n               <label for=\"dap-graduate-interest-innovating-interest-a\">\n                 <input id=\"dap-graduate-interest-innovating-interest-a\"\n"
                 }
             ],
             "date": 1629148034220,

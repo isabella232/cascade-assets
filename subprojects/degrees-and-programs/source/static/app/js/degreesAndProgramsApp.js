@@ -1188,6 +1188,9 @@ var chapman = chapman || {};
         $('input[value="fall"]').prop("checked", true);
       }
       // If the hash is empty, default to undergrad
+      _this.resetAllForms();
+      _this.resetDiscoverMotivation();
+      _this.resetDiscoverInterest();
       if (_this.getHashValue("type") == null) {
 
         history.pushState("type=graduate", document.title, window.location.pathname);
@@ -1220,6 +1223,7 @@ var chapman = chapman || {};
             continue;
           }
         } else if (filter.indexOf("keyword") !== -1) {
+          debugger;
           $('[name="' + filterName + '"]').val(filterValue); // Set text input value
         } else if (filter.indexOf("school") !== -1) {
           $('[name="' + filterName + '"]')
