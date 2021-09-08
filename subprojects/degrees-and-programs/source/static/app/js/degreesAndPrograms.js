@@ -69,6 +69,5 @@ $(function () {
   $('.dark-mode__toggle').on('click', function () {
     $(this).find('.fas').toggleClass('fa-moon fa-sun');
     $('#js-dap-section-graduate').toggleClass('dark-mode');
-
   });
 });
