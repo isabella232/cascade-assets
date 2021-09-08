@@ -237,7 +237,7 @@
       "linkLabel": "Third Link is Always Red"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/accounting-bs.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/accounting-bs.jpg",
       "alt": "Accounting BS at Chapman University"
     },
     "href": "/business/undergraduate/accounting.aspx",
@@ -259,7 +259,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/accounting-ms.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/accounting-ms.jpg",
       "alt": "Accounting Masters Degree at Chapman"
     },
     "href": "/business/graduate/prospective-students/programs/ms-in-accounting-4plus1.aspx",
@@ -273,7 +273,7 @@
   }, {
     "type": "graduate",
     "title": "Accounting (MS)",
-    "startTerms": ["Spring", "Summer", "Fall", "Winter"],
+    "startTerms": ["spring"],
     "links": [{
       "index": "0",
       "linkType": "Internal Link",
@@ -291,7 +291,7 @@
       "linkLabel": "hacker news"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/accounting-ms1.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/accounting-ms1.jpg",
       "alt": "Accounting Masters Degree at Chapman"
     },
     "href": "/business/graduate/prospective-students/programs/masters-in-accounting.aspx",
@@ -311,7 +311,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/advertising-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/advertising-minor.jpg",
       "alt": "Public Relations & Advertising Degree from Chapman"
     },
     "href": "/dodge/programs/undergraduate/minors.aspx",
@@ -333,7 +333,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/africana-studies-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/africana-studies-minor.jpg",
       "alt": "Africana Studies painting"
     },
     "href": "https://blogs.chapman.edu/wilkinson/2020/02/28/africana-studies-minor-is-coming-to-wilkinson/",
@@ -355,7 +355,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/data-analytics-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/data-analytics-minor.jpg",
       "alt": "Analytics Degrees at Chapman"
     },
     "href": "http://www.chapman.edu/catalog/oc/current/ug/content/8174.htm#o13386",
@@ -377,7 +377,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/digital-arts-bfa.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/digital-arts-bfa.jpg",
       "alt": "Digital Arts Degree Programs at Chapman"
     },
     "href": "/dodge/programs/undergraduate/bfa-animation-vfx.aspx",
@@ -399,7 +399,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/anthropology-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/anthropology-minor.jpg",
       "alt": " Minor at Chapman"
     },
     "href": "/wilkinson/sociology/minor-anthropology.aspx",
@@ -421,7 +421,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/kinesiology-bs.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/kinesiology-bs.jpg",
       "alt": "Applied Human Physiology at Chapman University"
     },
     "href": "/crean/academic-programs/undergraduate-programs/bs-applied-human-physiology1/index.aspx",
@@ -443,7 +443,7 @@
       "linkLabel": "View More Details"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/art-bfa1.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/art-bfa1.jpg",
       "alt": "student sculpting"
     },
     "href": "/wilkinson/art/bfa-art/index.aspx",
@@ -463,7 +463,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/art-bfa.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/art-bfa.jpg",
       "alt": "Art minor Degree at Chapman University"
     },
     "href": "/wilkinson/art/bfa-art/index.aspx",
@@ -485,7 +485,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/art-history-ba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/art-history-ba.jpg",
       "alt": "Art History Degree at Chapman University"
     },
     "href": "/wilkinson/art/art-history/index.aspx",
@@ -507,7 +507,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/art-history-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/art-history-minor.jpg",
       "alt": "art history student eating together"
     },
     "href": "/wilkinson/art/art-history/index.aspx",
@@ -529,7 +529,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/asian-studies-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/asian-studies-minor.jpg",
       "alt": "Asian Studies Students"
     },
     "href": "/wilkinson/interdisciplinary-minors/asian-studies.aspx",
@@ -551,7 +551,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/music-education-bm.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/music-education-bm.jpg",
       "alt": "Music in Music Education (pre&ndash;certification) Degrees at Chapman"
     },
     "href": "/copa/music/academic-programs/bachelor-of-music/education.aspx",
@@ -566,6 +566,7 @@
   }, {
     "type": "graduate",
     "title": "Behavioral and Computational Economics (Accelerated)",
+    "startTerms": ["spring", "summer", "fall"],
     "links": [{
       "index": "0",
       "linkType": "Internal Link",
@@ -573,7 +574,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/behavioral-economics-4plus1.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/behavioral-economics-4plus1.jpg",
       "alt": "Chemistry Degrees at Chapman University"
     },
     "href": "/research/institutes-and-centers/economic-science-institute/behavioral-and-computational-economics/index.aspx",
@@ -595,7 +596,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/behaviorial-comp-economics-msbce.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/behaviorial-comp-economics-msbce.jpg",
       "alt": "Behavioral and Computational Economics Degree at Chapman"
     },
     "href": "/research/institutes-and-centers/economic-science-institute/behavioral-and-computational-economics/index.aspx",
@@ -681,7 +682,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/broastcast-journalism-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/broastcast-journalism-minor.jpg",
       "alt": "Broadcast Journalism Minor at Chapman"
     },
     "href": "/dodge/programs/undergraduate/minors.aspx",
@@ -703,7 +704,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/news-documentary-bfa.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/news-documentary-bfa.jpg",
       "alt": "Broadcast Journalism and Documentary Degree at Chapman"
     },
     "href": "/dodge/programs/undergraduate/bfa-news-doc.aspx",
@@ -725,7 +726,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/business-administration-bs.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/business-administration-bs.jpg",
       "alt": "Business Administration Degree at Chapman University"
     },
     "href": "/business/undergraduate/business-administration.aspx",
@@ -747,7 +748,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/business-admin-4plus1.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/business-admin-4plus1.jpg",
       "alt": "Business Administration Degree at Chapman University"
     },
     "href": "/business/undergraduate/accelerated-mba.aspx",
@@ -769,7 +770,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/mba-full-time.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/mba-full-time.jpg",
       "alt": "Business Administration Degree at Chapman University"
     },
     "href": "/business/graduate/index.aspx",
@@ -789,7 +790,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/business-admin-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/business-admin-minor.jpg",
       "alt": "Business Administration Degree at Chapman University"
     },
     "href": "/business/undergraduate/business-administration.aspx",
@@ -811,7 +812,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/film-tv-producing-mfa-and-mba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/film-tv-producing-mfa-and-mba.jpg",
       "alt": "Business Administration/Film and Television Producing Degree at Chapman"
     },
     "href": "/dodge/programs/graduate/mba-mfa-film-tv-producing.aspx",
@@ -831,7 +832,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/food-science-ms-and-mba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/food-science-ms-and-mba.jpg",
       "alt": "Food Sciences / Business Administration Degree at Chapman"
     },
     "href": "/business/graduate/prospective-students/programs/ms-food-science-mba.aspx",
@@ -851,7 +852,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/llm-business-economics.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/llm-business-economics.jpg",
       "alt": "Law / Business Administration Degree at Chapman"
     },
     "href": "/law/academic-programs/joint-degree-programs/jd-mba/index.aspx",
@@ -871,7 +872,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/chemistry-bs.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/chemistry-bs.jpg",
       "alt": "Chemistry Degrees at Chapman University"
     },
     "href": "/scst/undergraduate/bs-chemistry.aspx",
@@ -893,7 +894,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/chemistry-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/chemistry-minor.jpg",
       "alt": "Chemistry Degrees at Chapman University"
     },
     "href": "https://www.chapman.edu/catalog/oc/current/ug/content/8174.htm#o10701",
@@ -937,7 +938,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/hcom-phd.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/hcom-phd.jpg",
       "alt": "PhD Communication Degree at Chapman"
     },
     "href": "/communication/academic-programs/phd-in-communication.aspx",
@@ -957,7 +958,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/comm-sciences-ms.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/comm-sciences-ms.jpg",
       "alt": "Communication Sciences and Disorders"
     },
     "href": "/crean/academic-programs/graduate-programs/ms-communication-sciences-and-disorders/index.aspx",
@@ -977,7 +978,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/CSD-Post-Bacc.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/CSD-Post-Bacc.jpg",
       "alt": "Communication Sciences & Disorders Post&ndash;Baccalaureate Certificate Program"
     },
     "href": "http://www.chapman.edu/crean/academic-programs/postbac-comm-science-disorders.aspx",
@@ -997,7 +998,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/comm-studies-ba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/comm-studies-ba.jpg",
       "alt": "Communication Studies Degree at Chapman University"
     },
     "href": "/communication/academic-programs/communication-studies.aspx",
@@ -1019,7 +1020,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/comp-sci-to-comp-sci-4plus1.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/comp-sci-to-comp-sci-4plus1.jpg",
       "alt": "Computer Science degrees at Chapman University"
     },
     "href": "http://www.chapman.edu/scst/graduate/ms-computational-science.aspx?openregion=3",
@@ -1041,7 +1042,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/computational-data-sciences-ms.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/computational-data-sciences-ms.jpg",
       "alt": "Computational and Data Sciences Degree Chapman"
     },
     "href": "/scst/graduate/ms-computational-science.aspx",
@@ -1061,7 +1062,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/computational-data-sciences-phd.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/computational-data-sciences-phd.jpg",
       "alt": "Computational and Data Sciences Degree Chapman"
     },
     "href": "/scst/graduate/phd-computational-science.aspx",
@@ -1081,7 +1082,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/computational-data-sciences-ms.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/computational-data-sciences-ms.jpg",
       "alt": "Computational and Data Sciences Degree Chapman"
     },
     "href": "/engineering/academic-programs/minors.aspx",
@@ -1103,7 +1104,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/computer-engineering-bs.png",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/computer-engineering-bs.png",
       "alt": "Computer engineering students in a classroom"
     },
     "href": "/engineering/academic-programs/bs-computer-engineering.aspx",
@@ -1125,7 +1126,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/computer-engineering-minor.png",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/computer-engineering-minor.png",
       "alt": "Computer Engineering (Minor)"
     },
     "href": "/engineering/academic-programs/minors.aspx",
@@ -1147,7 +1148,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/computer-science-bs.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/computer-science-bs.jpg",
       "alt": "Computer Science degrees at Chapman University"
     },
     "href": "/engineering/academic-programs/bs-computer-science.aspx",
@@ -1169,7 +1170,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/comp-sci-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/comp-sci-minor.jpg",
       "alt": "Computer Science degrees at Chapman University"
     },
     "href": "https://www.chapman.edu/catalog/oc/current/ug/content/8174.htm#o10675",
@@ -1213,7 +1214,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/creative-producing-bfa.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/creative-producing-bfa.jpg",
       "alt": "Creative Producing Degree at Chapman"
     },
     "href": "/dodge/programs/undergraduate/bfa-creative-producing.aspx",
@@ -1235,7 +1236,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/creative-writing-bfa.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/creative-writing-bfa.jpg",
       "alt": "Creative Writing at Chapman University"
     },
     "href": "/wilkinson/prospective-students/index.aspx",
@@ -1257,7 +1258,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/creative-writing-bfa.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/creative-writing-bfa.jpg",
       "alt": "Creative Writing at Chapman University"
     },
     "href": "/wilkinson/graduate-studies/creative-writing-mfa.aspx",
@@ -1277,7 +1278,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/maci.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/maci.jpg",
       "alt": "Teaching Credential Multiple Subject at Chapman"
     },
     "href": "/education/undergraduate/integrated-bachelors-plus-masters-in-curriculum-and-instruction.aspx",
@@ -1299,7 +1300,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/dance-ba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/dance-ba.jpg",
       "alt": "Dance Degrees at Chapman University"
     },
     "href": "/copa/dance/admission/ba-dance.aspx",
@@ -1321,7 +1322,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/dance-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/dance-minor.jpg",
       "alt": "Dance Degrees at Chapman University"
     },
     "href": "/copa/dance/index.aspx",
@@ -1343,7 +1344,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/dance-performance-ba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/dance-performance-ba.jpg",
       "alt": "Dance Performance Degrees at Chapman University"
     },
     "href": "/copa/dance/academic-programs/bfa-dance-performance.aspx",
@@ -1365,7 +1366,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/data-analytics-major.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/data-analytics-major.jpg",
       "alt": "Data Analytics Degrees at Chapman"
     },
     "href": "/engineering/academic-programs/bs-data-analytics.aspx",
@@ -1387,7 +1388,7 @@
       "linkLabel": "Learn more"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/disability-studies-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/disability-studies-minor.jpg",
       "alt": "three students presenting disability website"
     },
     "href": "/wilkinson/interdisciplinary-minors/disability-studies-minor.aspx",
@@ -1431,7 +1432,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/documentary-filmmaking-mfa.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/documentary-filmmaking-mfa.jpg",
       "alt": "Documentary Filmmaking Degree at Chapman"
     },
     "href": "/dodge/programs/graduate/mfa-documentary.aspx",
@@ -1451,7 +1452,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/economics-ba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/economics-ba.jpg",
       "alt": "Economics Degree at Chapman University"
     },
     "href": "/business/undergraduate/economics.aspx",
@@ -1473,7 +1474,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/economics-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/economics-minor.jpg",
       "alt": "Economics Degree at Chapman University"
     },
     "href": "/business/undergraduate/economics.aspx",
@@ -1495,7 +1496,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/education-phd.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/education-phd.jpg",
       "alt": "Education PHD Degree at Chapman University"
     },
     "href": "/education/graduate/phd-education/index.aspx",
@@ -1517,7 +1518,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/integrated-educational-studies-ba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/integrated-educational-studies-ba.jpg",
       "alt": "Integrated Educational Studies Degree at Chapman"
     },
     "href": "/education/undergraduate/integrated-education/index.aspx",
@@ -1539,7 +1540,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/sped-cred.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/sped-cred.jpg",
       "alt": "Special Education Degree at Chapman"
     },
     "href": "/education/graduate/teacher-education/special-ed/index.aspx",
@@ -1561,7 +1562,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/electrical-engineering-bs.png",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/electrical-engineering-bs.png",
       "alt": "Campus guests learning about electrical engineering"
     },
     "href": "/engineering/academic-programs/bs-electrical-engineering.aspx",
@@ -1583,7 +1584,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/english-ba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/english-ba.jpg",
       "alt": "English Degrees at Chapman"
     },
     "href": "/wilkinson/english/index.aspx",
@@ -1605,7 +1606,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/integrated-english.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/integrated-english.jpg",
       "alt": "English MA Degree at Chapman"
     },
     "href": "http://www.chapman.edu/wilkinson/graduate-studies/ma-mfa-english.aspx?openregion=3",
@@ -1625,7 +1626,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/english-ma.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/english-ma.jpg",
       "alt": "English MA Degree at Chapman"
     },
     "href": "/wilkinson/graduate-studies/ma-mfa-english.aspx",
@@ -1645,7 +1646,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/english-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/english-minor.jpg",
       "alt": "English Degrees at Chapman"
     },
     "href": "/wilkinson/english/index.aspx",
@@ -1667,7 +1668,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/english-creative-writing-mfa-ma.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/english-creative-writing-mfa-ma.jpg",
       "alt": "English Creative Writing Degree at Chapman"
     },
     "href": "/wilkinson/graduate-studies/ma-mfa-english.aspx",
@@ -1687,7 +1688,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/entrepreneurship-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/entrepreneurship-minor.jpg",
       "alt": "teacher in from of class in launch labs"
     },
     "href": "http://www.chapman.edu/business/undergraduate/index.aspx?openregion=3",
@@ -1731,7 +1732,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/environemental-science-policy-bs.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/environemental-science-policy-bs.jpg",
       "alt": "Environmental Science & Policy Degree at Chapman University"
     },
     "href": "/scst/undergraduate/bs-environmental-science-policy.aspx",
@@ -1753,7 +1754,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/environemental-science-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/environemental-science-minor.jpg",
       "alt": "student taking notes in field"
     },
     "href": "/wilkinson/interdisciplinary-minors/environmental-studies.aspx",
@@ -1775,7 +1776,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/film-television-producing-mfa1.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/film-television-producing-mfa1.jpg",
       "alt": "Film and Television Producing "
     },
     "href": "/dodge/programs/graduate/mfa-film-tv-producing.aspx",
@@ -1795,7 +1796,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/film-studies-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/film-studies-minor.jpg",
       "alt": "Film and Television Producing / Business Administration Degree at Chapman"
     },
     "href": "/dodge/programs/graduate/mba-mfa-film-tv-producing.aspx",
@@ -1815,7 +1816,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/Film-Law.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/Film-Law.jpg",
       "alt": "student in studio"
     },
     "href": "/dodge/programs/graduate/jd-mfa-film-tv-producing.aspx",
@@ -1879,7 +1880,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/film-production-mfa.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/film-production-mfa.jpg",
       "alt": "Film Production Degree at Chapman"
     },
     "href": "/dodge/programs/graduate/mfa-film-production.aspx",
@@ -1899,7 +1900,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/film-studies-ba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/film-studies-ba.jpg",
       "alt": "Film Studies Degree at Chapman University"
     },
     "href": "/dodge/programs/undergraduate/ba-film-studies.aspx",
@@ -1921,7 +1922,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/film-studies-4plus1-BA-MA.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/film-studies-4plus1-BA-MA.jpg",
       "alt": "Film Studies Degree at Chapman"
     },
     "href": "/dodge/programs/graduate/integrated-undergrad-ma-film-studies.aspx",
@@ -1941,7 +1942,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/film-studies.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/film-studies.jpg",
       "alt": "Film Studies Degree at Chapman"
     },
     "href": "/dodge/programs/graduate/ma-film-studies.aspx",
@@ -1961,7 +1962,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/film-studies-minor1.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/film-studies-minor1.jpg",
       "alt": "Film Studies Degree at Chapman University"
     },
     "href": "/dodge/programs/undergraduate/minors.aspx",
@@ -1983,7 +1984,7 @@
       "linkLabel": "MS Food Sci"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/bichemistry-food-science-4plus1.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/bichemistry-food-science-4plus1.jpg",
       "alt": "Biochemistry & Molecular Biology student in lab at Chapman"
     },
     "href": "https://www.chapman.edu/scst/graduate/ms-food-science/index.aspx?openregion=3",
@@ -2005,7 +2006,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/food-science-ms.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/food-science-ms.jpg",
       "alt": "Food Science Degree at Chapman"
     },
     "href": "/scst/graduate/ms-food-science/index.aspx",
@@ -2025,7 +2026,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/food-science-ms-and-mba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/food-science-ms-and-mba.jpg",
       "alt": "Food Sciences / Business Administration Degree at Chapman"
     },
     "href": "/business/graduate/prospective-students/programs/ms-food-science-mba.aspx",
@@ -2045,7 +2046,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/french-ba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/french-ba.jpg",
       "alt": "French Degrees at Chapman University"
     },
     "href": "/wilkinson/languages/french.aspx",
@@ -2067,7 +2068,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/french-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/french-minor.jpg",
       "alt": "French Degrees at Chapman University"
     },
     "href": "http://www.chapman.edu/catalog/oc/current/ug/content/4104.htm#o10761",
@@ -2089,7 +2090,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/game-development-programming-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/game-development-programming-minor.jpg",
       "alt": "Game Development Programming Minor at Chapman"
     },
     "href": "/engineering/academic-programs/minor-game-programming.aspx",
@@ -2111,7 +2112,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/german-studies-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/german-studies-minor.jpg",
       "alt": "Student together in Germany"
     },
     "href": "http://www.chapman.edu/catalog/oc/current/ug/content/4104.htm#o10762",
@@ -2133,7 +2134,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/global-comm.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/global-comm.jpg",
       "alt": "Two Chapman University students in Global Ci"
     },
     "href": "/communication/academic-programs/global-communication-and-world-languages.aspx",
@@ -2155,7 +2156,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/graphic-design-ba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/graphic-design-ba.jpg",
       "alt": "Graphic Design Degree at Chapman University"
     },
     "href": "/wilkinson/art/graphic-design/index.aspx",
@@ -2177,7 +2178,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/graphic-design-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/graphic-design-minor.jpg",
       "alt": "Graphic Design Degree at Chapman University"
     },
     "href": "/wilkinson/art/graphic-design/index.aspx",
@@ -2199,7 +2200,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/health-and-strategic-communications-ms.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/health-and-strategic-communications-ms.jpg",
       "alt": "Health and Strategic Communication Degree at Chapman"
     },
     "href": "/communication/academic-programs/health-strategic-communication.aspx",
@@ -2219,7 +2220,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/health-sciences-health-comm-4plus1.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/health-sciences-health-comm-4plus1.jpg",
       "alt": "Health Sciences Degree at Chapman University"
     },
     "href": "http://www.chapman.edu/communication/academic-programs/4-1-health-strategic-communication.aspx?openregion=2",
@@ -2239,7 +2240,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/health-services-bs.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/health-services-bs.jpg",
       "alt": "Health Sciences Degree at Chapman University"
     },
     "href": "/crean/academic-programs/undergraduate-programs/bs-health-sciences/index.aspx",
@@ -2261,7 +2262,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/health-sciences-kinesiology-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/health-sciences-kinesiology-minor.jpg",
       "alt": "Health Sciences and Kinesiology Minor at Chapman"
     },
     "href": "/crean/academic-programs/undergraduate-programs/minor-health-science-kinesiology.aspx",
@@ -2283,7 +2284,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/health-sciences-physical-therapy-4plus1.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/health-sciences-physical-therapy-4plus1.jpg",
       "alt": "Health Sciences Degree at Chapman University"
     },
     "href": "/crean/academic-programs/undergraduate-programs/bs-health-sciences/index.aspx",
@@ -2305,7 +2306,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/health-sciences-food-science-4plus1.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/health-sciences-food-science-4plus1.jpg",
       "alt": "Health Sciences Degree at Chapman University"
     },
     "href": "http://www.chapman.edu/crean/academic-programs/bridge-linkage-programs/bs-health-ms-food.aspx",
@@ -2327,7 +2328,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/health-sciences-health-comm-4plus1.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/health-sciences-health-comm-4plus1.jpg",
       "alt": "Health Sciences Degree at Chapman University"
     },
     "href": "http://www.chapman.edu/communication/academic-programs/4-1-health-strategic-communication.aspx?openregion=1",
@@ -2349,7 +2350,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/health-sciences-4plus1.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/health-sciences-4plus1.jpg",
       "alt": "Health Sciences Degree at Chapman University"
     },
     "href": "http://www.chapman.edu/crean/academic-programs/bridge-linkage-programs/bs-health-science-ms-physician-assistant.aspx",
@@ -2371,7 +2372,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/history-ba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/history-ba.jpg",
       "alt": "History Degree at Chapman University"
     },
     "href": "/wilkinson/history/degrees.aspx",
@@ -2393,7 +2394,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/history-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/history-minor.jpg",
       "alt": "History Degree at Chapman University"
     },
     "href": "/wilkinson/history/index.aspx",
@@ -2415,7 +2416,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/holocaust-education-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/holocaust-education-minor.jpg",
       "alt": "Holocaust History Minor at Chapman"
     },
     "href": "/wilkinson/history/index.aspx",
@@ -2503,7 +2504,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/integrated-educational-studies-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/integrated-educational-studies-minor.jpg",
       "alt": "Integrated Educational Studies Degree at Chapman"
     },
     "href": "/education/undergraduate/minors.aspx",
@@ -2525,7 +2526,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/international-studies-integrated.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/international-studies-integrated.jpg",
       "alt": "English MA Degree at Chapman"
     },
     "href": "/wilkinson/graduate-studies/ma-international-studies/index.aspx",
@@ -2545,7 +2546,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/international-studies-ma.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/international-studies-ma.jpg",
       "alt": "International Studies Degree at Chapman"
     },
     "href": "/wilkinson/graduate-studies/ma-international-studies/index.aspx",
@@ -2565,7 +2566,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/italian-minor.png",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/italian-minor.png",
       "alt": "students and professors together in front of mural"
     },
     "href": "http://www.chapman.edu/catalog/oc/current/ug/content/4104.htm#o10763",
@@ -2587,7 +2588,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/japanese-study-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/japanese-study-minor.jpg",
       "alt": "student in kimono at international "
     },
     "href": "http://www.chapman.edu/catalog/oc/current/ug/content/4104.htm#o10764",
@@ -2609,7 +2610,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/journalism-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/journalism-minor.jpg",
       "alt": "Gustavo teaching a journalism class"
     },
     "href": "http://www.chapman.edu/wilkinson/english/prospective-students.aspx?stratingtab=2",
@@ -2631,7 +2632,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/keyboard-collaborative-arts-mm.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/keyboard-collaborative-arts-mm.jpg",
       "alt": "Keyboard Collaborative Arts"
     },
     "href": "/copa/music/graduate-programs/index.aspx",
@@ -2651,7 +2652,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/language-literacy-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/language-literacy-minor.jpg",
       "alt": " Minor at Chapman"
     },
     "href": "/education/undergraduate/minors.aspx",
@@ -2673,7 +2674,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/latin-studies-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/latin-studies-minor.jpg",
       "alt": "Latin American Studies Minor at Chapman"
     },
     "href": "/wilkinson/interdisciplinary-minors/latinx-and-latin-american-studies.aspx",
@@ -2695,7 +2696,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/law-jd.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/law-jd.jpg",
       "alt": "mock trial proceedings"
     },
     "href": "/law/academic-programs/jd/index.aspx",
@@ -2715,7 +2716,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/law-justice-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/law-justice-minor.jpg",
       "alt": "students in law class"
     },
     "href": "/wilkinson/sociology/minor-law-justice-social-control.aspx",
@@ -2737,7 +2738,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/law-business-administration-jd-mba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/law-business-administration-jd-mba.jpg",
       "alt": "Law / Business Administration Degree at Chapman"
     },
     "href": "/law/academic-programs/joint-degree-programs/jd-mba/index.aspx",
@@ -2757,7 +2758,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/film-studies-law.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/film-studies-law.jpg",
       "alt": "student in studio"
     },
     "href": "/dodge/programs/graduate/jd-mfa-film-tv-producing.aspx",
@@ -2777,7 +2778,7 @@
       "linkLabel": "Leadership Development"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/leadership-development-integrated.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/leadership-development-integrated.jpg",
       "alt": "Leadership Development Degree at Chapman"
     },
     "href": "/education/graduate/leadership.aspx",
@@ -2799,7 +2800,7 @@
       "linkLabel": "Leadership Development"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/leadership-development-mld.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/leadership-development-mld.jpg",
       "alt": "Leadership Development Degree at Chapman"
     },
     "href": "/education/graduate/leadership.aspx",
@@ -2821,7 +2822,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/leadership-studies-minor2.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/leadership-studies-minor2.jpg",
       "alt": "Leadership Studies Minor at Chapman"
     },
     "href": "/education/undergraduate/leadership.aspx",
@@ -2843,7 +2844,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/lgbtq-studies.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/lgbtq-studies.jpg",
       "alt": "LGBTQ Minor at Chapman"
     },
     "href": "/wilkinson/interdisciplinary-minors/glbt-studies.aspx",
@@ -2865,7 +2866,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/llm-trial-advocacy.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/llm-trial-advocacy.jpg",
       "alt": "LLM&ndash; Business Law Degree at Chapman"
     },
     "href": "/law/academic-programs/llm/index.aspx",
@@ -2885,7 +2886,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/marriage-family-therapy-ma.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/marriage-family-therapy-ma.jpg",
       "alt": "Marriage & Family Therapy Masters Degree"
     },
     "href": "/crean/academic-programs/graduate-programs/ma-marriage-family/index.aspx",
@@ -2905,7 +2906,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/mathematics-bs.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/mathematics-bs.jpg",
       "alt": "Mathematics Degree from Chapman University"
     },
     "href": "/scst/undergraduate/bs-mathematics.aspx",
@@ -2927,7 +2928,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/mathematics-bs.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/mathematics-bs.jpg",
       "alt": "Mathematics Degree from Chapman University"
     },
     "href": "http://www.chapman.edu/catalog/oc/current/ug/content/8174.htm#o10677",
@@ -2949,7 +2950,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/mathematics-civil-engineering-ba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/mathematics-civil-engineering-ba.jpg",
       "alt": "Mathematics & Civil Engineering"
     },
     "href": "/scst/undergraduate/bs-mathematics-civil-engineering.aspx",
@@ -2971,7 +2972,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/music-ba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/music-ba.jpg",
       "alt": "Music Degree at Chapman University"
     },
     "href": "/copa/music/academic-programs/ba-music.aspx",
@@ -2993,7 +2994,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/music-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/music-minor.jpg",
       "alt": "Music Degree at Chapman University"
     },
     "href": "/copa/music/academic-programs/music-minor.aspx",
@@ -3015,7 +3016,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/musical-theatre-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/musical-theatre-minor.jpg",
       "alt": "A musical theater performance at Chapman University"
     },
     "href": "/copa/musical-theatre-minor.aspx",
@@ -3037,7 +3038,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/music-composition-bm.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/music-composition-bm.jpg",
       "alt": "Music in Composition"
     },
     "href": "/copa/music/academic-programs/bachelor-of-music/composition/index.aspx",
@@ -3059,7 +3060,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/music-performance-bm.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/music-performance-bm.jpg",
       "alt": "Music in Performance Degree at Chapman"
     },
     "href": "/copa/music/academic-programs/index.aspx",
@@ -3103,7 +3104,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/nutrition-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/nutrition-minor.jpg",
       "alt": "Nutrition Minor at Chapman"
     },
     "href": "http://www.chapman.edu/catalog/oc/current/ug/content/8174.htm#o10705",
@@ -3125,7 +3126,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/oranismal-biology-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/oranismal-biology-minor.jpg",
       "alt": "students in lab"
     },
     "href": "http://www.chapman.edu/catalog/oc/current/ug/content/8174.htm#o10703",
@@ -3147,7 +3148,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/patient-safety.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/patient-safety.jpg",
       "alt": "Chapman students in the School of Pharmacy"
     },
     "href": "/pharmacy/academic-programs/graduate-programs/master-of-science-in-patient-safety.aspx",
@@ -3169,7 +3170,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/peace-studies-ba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/peace-studies-ba.jpg",
       "alt": "Peace Studies Degree at Chapman University"
     },
     "href": "/wilkinson/peace-studies/index.aspx",
@@ -3191,7 +3192,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/peace-studies-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/peace-studies-minor.jpg",
       "alt": "Peace Studies Degree at Chapman University"
     },
     "href": "http://www.chapman.edu/catalog/oc/current/ug/content/4587.htm#o7667",
@@ -3213,7 +3214,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/Pharm.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/Pharm.jpg",
       "alt": "Pharmaceutical Sciences"
     },
     "href": "/pharmacy/academic-programs/undergraduate-programs/4-1-program.aspx",
@@ -3235,7 +3236,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/pharmacautical-sciences-ms.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/pharmacautical-sciences-ms.jpg",
       "alt": "Pharmaceutical Sciences"
     },
     "href": "/pharmacy/academic-programs/graduate-programs/msps-program.aspx",
@@ -3255,7 +3256,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/pharmaceutical-sciences-phd.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/pharmaceutical-sciences-phd.jpg",
       "alt": "Pharmaceutical Sciences"
     },
     "href": "/pharmacy/academic-programs/graduate-programs/phd-program.aspx",
@@ -3275,7 +3276,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/doctor-of-pharmacy.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/doctor-of-pharmacy.jpg",
       "alt": "Doctor of Pharmacy Degree at Chapman"
     },
     "href": "/pharmacy/academic-programs/pharmd/index.aspx",
@@ -3295,7 +3296,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/philosophy-ba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/philosophy-ba.jpg",
       "alt": "Philosophy Degree at Chapman University"
     },
     "href": "/wilkinson/philosophy/academic-programs/index.aspx",
@@ -3317,7 +3318,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/philosophy-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/philosophy-minor.jpg",
       "alt": "Philosophy Degree at Chapman University"
     },
     "href": "http://www.chapman.edu/catalog/oc/current/ug/content/4256.htm#o7612",
@@ -3339,7 +3340,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/physical-therapy-dpt.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/physical-therapy-dpt.jpg",
       "alt": "Physical Therapy Degree Chapman University"
     },
     "href": "/crean/academic-programs/graduate-programs/physical-therapy/index.aspx",
@@ -3359,7 +3360,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/transitional-physical-therapy-dpt.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/transitional-physical-therapy-dpt.jpg",
       "alt": "Transitional Physical Therapy"
     },
     "href": "/crean/academic-programs/graduate-programs/transitional-doctor-pt.aspx",
@@ -3379,7 +3380,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/phycician-assistant-mms.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/phycician-assistant-mms.jpg",
       "alt": "Physician Assistant Degree at Chapman"
     },
     "href": "/crean/academic-programs/graduate-programs/physician-assistant/index.aspx",
@@ -3399,7 +3400,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/physics-computational-sciences-bs.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/physics-computational-sciences-bs.jpg",
       "alt": "Physics and Computational Science Degree at Chapman"
     },
     "href": "http://www.chapman.edu/catalog/oc/current/ug/content/8174.htm#o10678",
@@ -3421,7 +3422,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/physics-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/physics-minor.jpg",
       "alt": "Physics and Computational Science Degree at Chapman"
     },
     "href": "http://www.chapman.edu/catalog/oc/current/ug/content/8174.htm#o10678",
@@ -3443,7 +3444,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/policiat-science-major.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/policiat-science-major.jpg",
       "alt": "Political Science Degree at Chapman"
     },
     "href": "/wilkinson/political-science/index.aspx",
@@ -3465,7 +3466,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/political-science-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/political-science-minor.jpg",
       "alt": "Political Science Degree at Chapman"
     },
     "href": "http://www.chapman.edu/catalog/oc/current/ug/content/4366.htm#o7613",
@@ -3487,7 +3488,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/random-science.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/random-science.jpg",
       "alt": "Pre&ndash;health Degree Programs"
     },
     "href": "/crean/academic-programs/post-bacc-program/index.aspx",
@@ -3509,7 +3510,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/pre-law-major.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/pre-law-major.jpg",
       "alt": "Pre&ndash;law Degree at Chapman University"
     },
     "href": "/wilkinson/political-science/pre-law.aspx",
@@ -3531,7 +3532,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/pre-med-pre-health.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/pre-med-pre-health.jpg",
       "alt": "Pre&ndash;Med and Pre&ndash;Health"
     },
     "href": "/students/academic-resources/advising-portal/specialized-advising/pre-health-program/index.aspx",
@@ -3553,7 +3554,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/pre-pharmacy-program-finder.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/pre-pharmacy-program-finder.jpg",
       "alt": "Pre&ndash;Pharmacy Degree at Chapman University"
     },
     "href": "/pharmacy/academic-programs/undergraduate-programs/pre-pharmacy.aspx",
@@ -3575,7 +3576,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/film-production-design-mfa.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/film-production-design-mfa.jpg",
       "alt": "Film Production Design"
     },
     "href": "/dodge/programs/graduate/mfa-production-design.aspx",
@@ -3617,7 +3618,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/psychology-ba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/psychology-ba.jpg",
       "alt": "Psychology Degree at Chapman University"
     },
     "href": "/crean/academic-programs/undergraduate-programs/ba-psychology/index.aspx",
@@ -3639,7 +3640,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/psychology-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/psychology-minor.jpg",
       "alt": "Psychology Degree at Chapman University"
     },
     "href": "/crean/academic-programs/undergraduate-programs/minor-psychology.aspx",
@@ -3661,7 +3662,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/public-relations-advertising-ba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/public-relations-advertising-ba.jpg",
       "alt": "Public Relations & Advertising Degree from Chapman"
     },
     "href": "/dodge/programs/undergraduate/minors.aspx",
@@ -3683,7 +3684,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/new-public-relations-advertising-finder.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/new-public-relations-advertising-finder.jpg",
       "alt": "Public Relations & Advertising Degree from Chapman"
     },
     "href": "/dodge/programs/undergraduate/public-relations-advertising.aspx",
@@ -3727,7 +3728,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/regulatory-affairs.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/regulatory-affairs.jpg",
       "alt": "Chapman students in the School of Pharmacy"
     },
     "href": "/pharmacy/academic-programs/graduate-programs/master-of-science-in-regulatory-affairs.aspx",
@@ -3749,7 +3750,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/religious-studies-ba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/religious-studies-ba.jpg",
       "alt": "Religious Studies Degree at Chapman University"
     },
     "href": "/wilkinson/religious-studies/index.aspx",
@@ -3771,7 +3772,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/religious-studies-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/religious-studies-minor.jpg",
       "alt": "Religious Studies Degree at Chapman University"
     },
     "href": "http://www.chapman.edu/catalog/oc/current/ug/content/4469.htm#o7616",
@@ -3793,7 +3794,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/school-counseling-ma.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/school-counseling-ma.jpg",
       "alt": "School Counseling Degree at Chapman"
     },
     "href": "/education/graduate/counseling.aspx",
@@ -3815,7 +3816,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/school-psychology-ma.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/school-psychology-ma.jpg",
       "alt": "School Psychology Degree at Chapman"
     },
     "href": "/education/graduate/school-psychology.aspx",
@@ -3837,7 +3838,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/screenacting-bfa.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/screenacting-bfa.jpg",
       "alt": "Screen Acting Degree at Chapman University"
     },
     "href": "/copa/theatre/academic-programs/bfa-screen-acting.aspx",
@@ -3859,7 +3860,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/screenwriting-ba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/screenwriting-ba.jpg",
       "alt": "Screenwriting Degree from Chapman University"
     },
     "href": "/dodge/programs/undergraduate/ba-screenwriting.aspx",
@@ -3881,7 +3882,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/film-screenwriting-mfa.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/film-screenwriting-mfa.jpg",
       "alt": "Film Screenwriting MFA degree at Chapman"
     },
     "href": "/dodge/programs/graduate/mfa-screenwriting.aspx",
@@ -3901,7 +3902,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/stem-education-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/stem-education-minor.jpg",
       "alt": "Students at laptops"
     },
     "href": "/education/undergraduate/minors.aspx",
@@ -3923,7 +3924,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/sociology-ba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/sociology-ba.jpg",
       "alt": "Sociology Degree at Chapman University"
     },
     "href": "/wilkinson/sociology/index.aspx",
@@ -3945,7 +3946,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/sociology-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/sociology-minor.jpg",
       "alt": "Sociology Degree at Chapman University"
     },
     "href": "http://www.chapman.edu/catalog/oc/current/ug/content/4509.htm#o10768",
@@ -3967,7 +3968,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/software-engineering-bs.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/software-engineering-bs.jpg",
       "alt": "Software Engineering Degree at Chapman University"
     },
     "href": "/engineering/academic-programs/bs-software-engineering.aspx",
@@ -3989,7 +3990,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/spanish-ba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/spanish-ba.jpg",
       "alt": "Spanish Degree at Chapman University"
     },
     "href": "/wilkinson/languages/spanish.aspx",
@@ -4011,7 +4012,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/spanish-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/spanish-minor.jpg",
       "alt": "Spanish Degree at Chapman University"
     },
     "href": "http://www.chapman.edu/catalog/oc/current/ug/content/4104.htm#o10765",
@@ -4033,7 +4034,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/special-education-ma.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/special-education-ma.jpg",
       "alt": "Special Education Degree at Chapman"
     },
     "href": "/education/graduate/teacher-education/special-ed/index.aspx",
@@ -4055,7 +4056,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/stem-education.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/stem-education.jpg",
       "alt": "STEM Education (Minor)"
     },
     "href": "/education/undergraduate/minors.aspx",
@@ -4077,7 +4078,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/strategic-corporate-communications-ba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/strategic-corporate-communications-ba.jpg",
       "alt": "Strategic & Corporate Communication Degree at Chapman University"
     },
     "href": "/communication/academic-programs/strategic-corporate-communication.aspx",
@@ -4099,7 +4100,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/teaching-elementary-ma.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/teaching-elementary-ma.jpg",
       "alt": "Teaching&ndash;Elementary Degree at Chapman"
     },
     "href": "/education/graduate/teacher-education/teaching-multiple.aspx",
@@ -4121,7 +4122,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/teaching1.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/teaching1.jpg",
       "alt": "Teaching Credential Multiple Subject at Chapman"
     },
     "href": "/education/graduate/teacher-education/teaching-multiple.aspx",
@@ -4143,7 +4144,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/teaching-music-education-ma.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/teaching-music-education-ma.jpg",
       "alt": "Teaching &ndash; Music Education Degree Chapman"
     },
     "href": "/education/graduate/teacher-education/mat-single/teaching-music.aspx",
@@ -4165,7 +4166,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/teaching-secondary-ma.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/teaching-secondary-ma.jpg",
       "alt": "Teaching &ndash; Secondary Degree at Chapman"
     },
     "href": "/education/graduate/teacher-education/mat-single/index.aspx",
@@ -4187,7 +4188,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/teaching.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/teaching.jpg",
       "alt": "Teaching Credential Single Subject at Chapman"
     },
     "href": "/education/graduate/teacher-education/mat-single/index.aspx",
@@ -4209,7 +4210,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/television-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/television-minor.jpg",
       "alt": "Television Minor at Chapman"
     },
     "href": "/dodge/programs/undergraduate/minors.aspx",
@@ -4231,7 +4232,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/television-writing-production-bfa.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/television-writing-production-bfa.jpg",
       "alt": "Television Writing and Production Degree at Chapman"
     },
     "href": "/dodge/programs/undergraduate/bfa-tv-writing-prod.aspx",
@@ -4253,7 +4254,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/television-writing-production-bfa.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/television-writing-production-bfa.jpg",
       "alt": "Television Writing andProducing "
     },
     "href": "/dodge/programs/graduate/mfa-tv-writing-producing.aspx",
@@ -4273,7 +4274,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/theater-ba.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/theater-ba.jpg",
       "alt": "Theatre Degree at Chapman University"
     },
     "href": "/copa/theatre/academic-programs/ba-theatre.aspx",
@@ -4295,7 +4296,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/theatre-performance.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/theatre-performance.jpg",
       "alt": "Theatre Performance Degree at Chapman University"
     },
     "href": "/copa/theatre/academic-programs/bfa-theatre-performance.aspx",
@@ -4317,7 +4318,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/undecided1.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/undecided1.jpg",
       "alt": "Undeclared Majors at Chapman"
     },
     "href": "/admission/undergraduate/resources/undecided-students.aspx",
@@ -4383,7 +4384,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/visual-journalism-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/visual-journalism-minor.jpg",
       "alt": " Minor at Chapman"
     },
     "href": "/wilkinson/interdisciplinary-minors/digital-imaging.aspx",
@@ -4405,7 +4406,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/english-ma.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/english-ma.jpg",
       "alt": "English MA Degree at Chapman"
     },
     "href": "/wilkinson/graduate-studies/ma-warsociety.aspx",
@@ -4425,7 +4426,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/war-and-society-ma.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/war-and-society-ma.jpg",
       "alt": "War and Society MA at Chapman"
     },
     "href": "/wilkinson/graduate-studies/ma-warsociety.aspx",
@@ -4445,7 +4446,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/women-studies-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/women-studies-minor.jpg",
       "alt": "Women's Studies Minor at Chapman"
     },
     "href": "/wilkinson/interdisciplinary-minors/womens-studies.aspx",
@@ -4467,7 +4468,7 @@
       "linkLabel": "Learn More"
     }],
     "img": {
-      "src": "/_shared-content/degrees/_files/writing-and-rhetoric-minor.jpg",
+      "src": "https://dev-www.chapman.edu/_shared-content/degrees/_files/writing-and-rhetoric-minor.jpg",
       "alt": "Writing & Rhetoric Minor at Chapman"
     },
     "href": "http://www.chapman.edu/catalog/oc/current/ug/content/3953.htm#o10757",
