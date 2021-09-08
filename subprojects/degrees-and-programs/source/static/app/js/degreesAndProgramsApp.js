@@ -109,7 +109,7 @@ var chapman = chapman || {};
 
 
       // Form change in any section
-      $("#js-dap-feature form, #dap-undergraduate-keyword")
+      $("#js-dap-feature form, #dap-undergraduate-keyword, #dap-graduate-keyword")
         .on("change", function (event) {
           isFormChangeEvent = true;
 
@@ -217,6 +217,7 @@ var chapman = chapman || {};
             $("#dap-undergraduate-keyword").val(keywordVal);
           } else {
             // Otherwise reset the rest of the form
+            debugger;
             _this.resetForm(form);
             target.val(keywordVal);
           }
