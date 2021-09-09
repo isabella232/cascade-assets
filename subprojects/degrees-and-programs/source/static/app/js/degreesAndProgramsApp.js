@@ -147,9 +147,9 @@ var chapman = chapman || {};
               _this.resetFiltering(form);
             }
 
-            setTimeout(function () {
-              _this.scrollToResults();
-            }, 100);
+            // setTimeout(function () {
+            //   _this.scrollToResults();
+            // }, 100);
           }
         })
         .on("submit", function (event) {
@@ -285,9 +285,6 @@ var chapman = chapman || {};
         }
       }
     },
-
-
-
 
     getProgramsData: function () {
       var _this = this,
@@ -534,7 +531,6 @@ var chapman = chapman || {};
           section.addClass("active");
           sectionBody.slideDown(standardTransitionTime, function () {
             $(this).css("overflow", "visible");
-
             // Wait to do the following until new section is opened
             var scrollToSectionTime = 0,
               scrollPoint;
@@ -684,7 +680,19 @@ var chapman = chapman || {};
       } else {
         $("#" + allProgramsID).prop("checked", false);
       }
+
+      var allStartTermsID = "start-term-all",
+        inputID = el.attr("id");
+
+      if (inputID === allStartTermsID) {
+        dap.graduate.$programTypes.find("input").not(el).prop("checked", false);
+      } else {
+        $("#" + allStartTermsID).prop("checked", false);
+      }
     },
+
+
+
 
     getActiveFilters: function (form) {
       var formData = form.serializeArray(),
@@ -1336,6 +1344,7 @@ var chapman = chapman || {};
     },
 
     scrollToResults: function () {
+      debugger;
       var $resultsContainer = $("#js-dap-results-" + activeSection);
       var resultsContainerHeight = $resultsContainer.outerHeight(true);
       var windowHeight = $(window).height();
