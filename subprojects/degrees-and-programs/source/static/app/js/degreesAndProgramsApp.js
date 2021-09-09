@@ -883,7 +883,9 @@ var chapman = chapman || {};
 
         // Start Terms
         if (activeFilters.startTerms !== undefined) {
-          if (startTerms !== undefined) {
+          if (activeFilters.startTerms.indexOf("all") > -1) {
+            startTermMatch = true; // If all, it's a match by default
+          } else if (startTerms !== undefined) {
             for (var i = 0; i < startTerms.length; i++) {
               var startTerm = startTerms[i];
 
