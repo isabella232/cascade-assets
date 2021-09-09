@@ -61,6 +61,7 @@ var chapman = chapman || {};
       graduate: {
         fieldNamePrefix: "dap-graduate-",
         $programTypes: $("#js-dap-graduate-program-types"),
+        $interests: $("#js-dap-graduate-interests"),
         $filterTypes: $("#js-dap-graduate-filter-types"),
         $results: $("#js-dap-results-graduate"),
       },
@@ -229,6 +230,13 @@ var chapman = chapman || {};
       dap.graduate.$programTypes.on(
         "change",
         ".program-type input",
+        function () {
+          _this.syncGraduateProgramTypes($(this));
+        }
+      );
+      $('#dap-graduate-campuses').on(
+        "change",
+        "input",
         function () {
           _this.syncGraduateProgramTypes($(this));
         }
@@ -681,6 +689,7 @@ var chapman = chapman || {};
         $("#" + allProgramsID).prop("checked", false);
       }
 
+      // Start Terms
       var allStartTermsID = "start-term-all",
         inputID = el.attr("id");
 
@@ -689,6 +698,18 @@ var chapman = chapman || {};
       } else {
         $("#" + allStartTermsID).prop("checked", false);
       }
+
+      // Campuses
+      var campusAllID = "dap-graduate-campus-all",
+        inputID = el.attr("id");
+
+      if (inputID === campusAllID) {
+        $('#dap-graduate-campuses').find("input").not(el).prop("checked", false);
+      } else {
+        $("#" + campusAllID).prop("checked", false);
+      }
+
+
     },
 
 
@@ -698,7 +719,8 @@ var chapman = chapman || {};
       var formData = form.serializeArray(),
         degreeTypesArray = [], // Used for storing degree types
         interestsArray = [],
-        startTermsArray = [];
+        startTermsArray = [],
+        campusesArray = [];
 
       for (var i = 0; i < formData.length; i++) {
         var filter = formData[i],
@@ -732,6 +754,11 @@ var chapman = chapman || {};
             // Push to array if an interest
             startTermsArray.push(value);
             console.log('starttermsarray ' + startTermsArray)
+          } else if (formattedName.indexOf("campus") !== -1) {
+
+            // Push to array if an interest
+            campusesArray.push(value);
+            console.log('campusesArray ' + campusesArray)
           } else if (formattedName.indexOf("school") !== -1) {
             // Make sure the school value is a valid school name
             if (value && value.length && value !== "all" && value !== "none") {
@@ -752,7 +779,12 @@ var chapman = chapman || {};
       }
 
       if (startTermsArray.length) {
-        activeFilters.startTerms = startTermsArray;;
+        activeFilters.startTerms = startTermsArray;
+      }
+
+      if (campusesArray.length) {
+        activeFilters.campuses = campusesArray;
+        alert(`activeFilters.campuses ${activeFilters.campuses}`)
       }
     },
 
@@ -765,6 +797,7 @@ var chapman = chapman || {};
         degreeTypes,
         schools,
         startTerms,
+        campuses,
         resultsCountText;
 
       if (activeSection === "discover" || activeSection === "undergraduate") {
@@ -803,6 +836,7 @@ var chapman = chapman || {};
           degreeTypes = result.degreeTypes;
           schools = result.schools;
           startTerms = result.startTerms;
+          campuses = result.campus;
           interests = result.interests;
           console.log(`start terms: ${startTerms}`)
 
@@ -815,7 +849,8 @@ var chapman = chapman || {};
             motivations,
             degreeTypes,
             schools,
-            startTerms
+            startTerms,
+            campuses
           );
         }
 
@@ -849,7 +884,8 @@ var chapman = chapman || {};
       motivations,
       degreeTypes,
       schools,
-      startTerms
+      startTerms,
+      campuses
     ) {
       var _this = this;
 
@@ -871,7 +907,8 @@ var chapman = chapman || {};
           motivationMatch = false,
           degreeTypesMatch = false,
           schoolsMatch = false,
-          startTermMatch = false;
+          startTermMatch = false,
+          campusMatch = false;
 
         // Interests
         if (activeFilters.interests !== undefined) {
@@ -905,6 +942,24 @@ var chapman = chapman || {};
           }
         } else {
           startTermMatch = true;
+        }
+
+        // Campus asdf
+        if (activeFilters.campuses !== undefined) {
+          if (activeFilters.campuses.indexOf("all") > -1) {
+            campusMatch = true; // If all, it's a match by default
+          } else if (campuses !== undefined) {
+            for (var i = 0; i < campuses.length; i++) {
+              var campus = campuses[i];
+
+              if (activeFilters.campuses.indexOf(campus) > -1) {
+                campusMatch = true;
+                break; // If it's a match already, no need to continue
+              }
+            }
+          }
+        } else {
+          campusMatch = true;
         }
 
         // Motivations
@@ -963,7 +1018,8 @@ var chapman = chapman || {};
           motivationMatch &&
           degreeTypesMatch &&
           schoolsMatch &&
-          startTermMatch
+          startTermMatch &&
+          campusMatch
         ) {
           _this.addResultHTML(result);
         }
@@ -1382,5 +1438,14 @@ $(function () {
   "use strict";
 
   chapman.degreesAndProgramsApp.init();
+
+  // document.querySelector("#dap-graduate-campus-all").onchange = function () {
+  //   if (this.checked) {
+  //     console.log("Checkbox is checked");
+  //     console.log(this.parentNode.children);
+  //   } else {
+  //     console.log("Checkbox is not checked");
+  //   }
+  // };
 
 });

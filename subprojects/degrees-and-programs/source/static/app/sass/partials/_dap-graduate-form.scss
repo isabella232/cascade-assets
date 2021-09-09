@@ -98,6 +98,7 @@ $palettes: map-merge($palettes, ('dap-graduate-form': ('core': $black,
 
         &:checked~span {
           color: $red;
+          color: $white;
           background-color: $white;
         }
       }

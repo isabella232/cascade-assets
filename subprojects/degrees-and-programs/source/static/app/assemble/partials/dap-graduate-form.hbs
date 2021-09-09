@@ -264,33 +264,35 @@
             </li>
           </ul>
         </div>
-        <div class="clearfix columns small-12 medium-6">
+        <div id="dap-graduate-campuses" class="clearfix columns small-12 medium-6">
           <h4 class="subsection-heading">Campus:</h4>
           <div class="field-container">
-            <label tabindex="0" class="program-type button" for="dap-graduate-program-all">
-              <input id="dap-graduate-program-all" name="dap-graduate-program-all" type="checkbox" value="all" />
+            <label tabindex="0" class="program-type button" for="dap-graduate-campus-all">
+              <input id="dap-graduate-campus-all" name="dap-graduate-campus-all" type="checkbox" value="all" />
+              <div class="inner">
+                {{svg "check"}}
+                <span>All</span>
+              </div>
+            </label>
+            <label tabindex="0" class="program-type button" for="dap-graduate-campus-orange">
+              <input id="dap-graduate-campus-orange" name="dap-graduate-campus-orange" type="checkbox"
+                value="Orange Campus" />
               <div class="inner">
                 {{svg "check"}}
 
-                <span>All graduate Programs</span>
+                <span>Orange</span>
               </div>
             </label>
-            <label tabindex="0" class="program-type button" for="dap-graduate-program-all">
-              <input id="dap-graduate-program-all" name="dap-graduate-program-all" type="checkbox" value="all" />
+            <label tabindex="0" class="program-type button" for="dap-graduate-campus-irvine">
+              <input id="dap-graduate-campus-irvine" name="dap-graduate-campus-irvine" type="checkbox"
+                value="Rinker Health Science Campus" />
               <div class="inner">
                 {{svg "check"}}
 
-                <span>All graduate Programs</span>
+                <span>Rinker (Irvine) Health Science Campus</span>
               </div>
             </label>
-            <label tabindex="0" class="program-type button" for="dap-graduate-program-all">
-              <input id="dap-graduate-program-all" name="dap-graduate-program-all" type="checkbox" value="all" />
-              <div class="inner">
-                {{svg "check"}}
 
-                <span>Programs</span>
-              </div>
-            </label>
 
           </div>
           <div class="program-toggle program-toggle__blurb">

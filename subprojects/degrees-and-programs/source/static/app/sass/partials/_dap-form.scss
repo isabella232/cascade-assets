@@ -60,6 +60,7 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
 
       &:checked~.inner {
         background-color: $red;
+        color: $white;
         border: 1px solid transparent;
 
         svg {
