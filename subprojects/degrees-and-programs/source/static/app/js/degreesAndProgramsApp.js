@@ -217,7 +217,6 @@ var chapman = chapman || {};
             $("#dap-undergraduate-keyword").val(keywordVal);
           } else {
             // Otherwise reset the rest of the form
-            debugger;
             _this.resetForm(form);
             target.val(keywordVal);
           }
@@ -304,6 +303,7 @@ var chapman = chapman || {};
 
           allResults = data.results;
 
+
           for (var i = 0; i < allResults.length; i++) {
             var result = allResults[i],
               type = result.type || "",
@@ -347,6 +347,7 @@ var chapman = chapman || {};
               if (/^graduate/.test(type)) {
                 graduateResults.push(result);
                 graduateProgramNames.push(result.title);
+
               }
             }
           }
@@ -607,6 +608,7 @@ var chapman = chapman || {};
     },
 
     resetDiscoverMotivation: function () {
+
       dap.discover.activeMotivation = "";
       dap.discover.$motivationsItems.removeClass(activeClass);
     },
@@ -619,6 +621,8 @@ var chapman = chapman || {};
         dap.discover.$interestsItems.removeClass("faded-in visible");
       }, standardTransitionTime);
     },
+
+    // interest example: https://www.chapman.edu/academics/degrees-and-programs.aspx#type=undergraduate&dap-undergraduate-interest-analytical-thinking=Analytical+Thinking&dap-undergraduate-school=&dap-undergraduate-keyword=
 
     switchDiscoverInterest: function (el) {
       if (!el.hasClass(activeClass)) {
@@ -716,6 +720,7 @@ var chapman = chapman || {};
             // Push to array if an interest
             interestsArray.push(value);
           } else if (formattedName.indexOf("start-term") !== -1) {
+
             // Push to array if an interest
             startTermsArray.push(value);
             console.log('starttermsarray ' + startTermsArray)
@@ -736,6 +741,10 @@ var chapman = chapman || {};
 
       if (interestsArray.length) {
         activeFilters.interests = interestsArray;
+      }
+
+      if (startTermsArray.length) {
+        activeFilters.startTerms = startTermsArray;;
       }
     },
 
@@ -786,9 +795,11 @@ var chapman = chapman || {};
           degreeTypes = result.degreeTypes;
           schools = result.schools;
           startTerms = result.startTerms;
+          interests = result.interests;
+          console.log(`start terms: ${startTerms}`)
 
-          // debugger;
 
+          // FILTER RESULTS || APPLY FILTERS
           _this.filterResult(
             result,
             title,
@@ -852,7 +863,7 @@ var chapman = chapman || {};
           motivationMatch = false,
           degreeTypesMatch = false,
           schoolsMatch = false,
-          startTermsMatch = false;
+          startTermMatch = false;
 
         // Interests
         if (activeFilters.interests !== undefined) {
@@ -868,6 +879,22 @@ var chapman = chapman || {};
           }
         } else {
           interestMatch = true;
+        }
+
+        // Start Terms
+        if (activeFilters.startTerms !== undefined) {
+          if (startTerms !== undefined) {
+            for (var i = 0; i < startTerms.length; i++) {
+              var startTerm = startTerms[i];
+
+              if (activeFilters.startTerms.indexOf(startTerm) > -1) {
+                startTermMatch = true;
+                break; // If it's a match already, no need to continue
+              }
+            }
+          }
+        } else {
+          startTermMatch = true;
         }
 
         // Motivations
@@ -918,23 +945,7 @@ var chapman = chapman || {};
           schoolsMatch = true;
         }
 
-        // Start Terms
-        console.log('active filters.startTerms ' + activeFilters.startTerms)
-        if (activeFilters.startTerms !== undefined) {
-          // debugger;
-          if (startTerms !== undefined) {
-            for (var j = 0; j < startTerms.length; j++) {
-              var startTerm = startTerms[j];
 
-              if (activeFilters.startTerms.indexOf(startTerm) > -1) {
-                startTermsMatch = true;
-                break; // If it's a match already, no need to continue
-              }
-            }
-          }
-        } else {
-          startTermsMatch = true;
-        }
 
         // If it's a match, add the result HTML to the results set
         if (
@@ -942,7 +953,7 @@ var chapman = chapman || {};
           motivationMatch &&
           degreeTypesMatch &&
           schoolsMatch &&
-          startTermsMatch
+          startTermMatch
         ) {
           _this.addResultHTML(result);
         }
@@ -1070,6 +1081,7 @@ var chapman = chapman || {};
       var _this = this,
         hash;
 
+      // Switches section based on URL query (Undergrad, Graduate, etc)
       if (window.location.href.indexOf("?") > -1) {
         var hashes = window.location.href
           .slice(window.location.href.indexOf("?") + 1)
@@ -1188,15 +1200,16 @@ var chapman = chapman || {};
         $('input[value="fall"]').prop("checked", true);
       }
       // If the hash is empty, default to undergrad
-      _this.resetAllForms();
-      _this.resetDiscoverMotivation();
-      _this.resetDiscoverInterest();
+      // Added this to attempt to resolve issue where Grad search was not returning results... - Nick
+      // _this.resetAllForms();
+      // _this.resetDiscoverMotivation();
+      // _this.resetDiscoverInterest();
       if (_this.getHashValue("type") == null) {
 
         history.pushState("type=graduate", document.title, window.location.pathname);
         _this.toggleSection($("#js-dap-section-undergraduate"));
         // document.getElementById('dap-undergraduate-program-all').click();
-        // debugger;
+
       }
 
       var formType = _this.getHashValue("type") || activeSection;
@@ -1211,6 +1224,7 @@ var chapman = chapman || {};
         var filter = decodeURIComponent(hashItems[i].replace(/\+/g, "%20")); // Remove any plus signs and code as spaces, then decode the filter
         var filterName = filter.substring(0, filter.indexOf("="));
         var filterValue = filter.substring(filter.indexOf("=") + 1);
+
         var filterEl = $(
           '[name="' + filterName + '"][value="' + filterValue + '"]'
         ); // Get the element using the name and value. Standard filter element except for special cases below.
@@ -1223,32 +1237,26 @@ var chapman = chapman || {};
             continue;
           }
         } else if (filter.indexOf("keyword") !== -1) {
-          debugger;
+
           $('[name="' + filterName + '"]').val(filterValue); // Set text input value
         } else if (filter.indexOf("school") !== -1) {
           $('[name="' + filterName + '"]')
             .val(filterValue)
             .change(); // Set select value and trigger change
         } else if (filter.indexOf("start-term") !== -1) {
-          // var $startTermEl = $(
-          //   'article[data-start-term="' +
-          //   filterValue +
-          //   '"]'
-          // )
-          // alert(filterValue)
 
 
-          var i = filterValue;
+          // var i = filterValue;
 
-          var noStartTerm = document.querySelectorAll(`article:not([data-start-term="${i}"])`);
-          let hasStartTerm = document.querySelector(`[data-start-term="${i}"]`);
+          // var noStartTerm = document.querySelectorAll(`article:not([data-start-term="${i}"])`);
+          // let hasStartTerm = document.querySelector(`[data-start-term="${i}"]`);
 
-          for (let i = 0; i < noStartTerm.length; i++) {
-            let item = noStartTerm[i];
-            console.log(item)
-            item.classList.remove('faded-in')
-            item.classList.remove('visible')
-          }
+          // for (let i = 0; i < noStartTerm.length; i++) {
+          //   let item = noStartTerm[i];
+          //   console.log(item)
+          //   item.classList.remove('faded-in')
+          //   item.classList.remove('visible')
+          // }
         } else if (filter.indexOf("motivation") !== -1) {
           var $motivationEl = $(
             '#js-dap-discover-motivations .motivation[data-motivation="' +
@@ -1269,7 +1277,10 @@ var chapman = chapman || {};
             _this.switchDiscoverInterest($interestEl);
           } else {
             filterEl.prop("checked", true); // Check the checkbox
+            ;
           }
+          //  "interest" does exist in URL path
+          ;
         } else {
           if (
             hashItems.length === 1 &&
@@ -1297,6 +1308,7 @@ var chapman = chapman || {};
 
     getHashValue: function (key) {
       var matches = location.hash.match(new RegExp(key + "=([^&]*)"));
+
       return matches ? matches[1] : null;
     },
 

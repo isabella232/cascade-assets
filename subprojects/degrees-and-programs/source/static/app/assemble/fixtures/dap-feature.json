@@ -268,6 +268,16 @@
     {
       "type": "graduate",
       "title": "Accounting (Accelerated)",
+      "startTerms": ["spring"],
+      "interests": [
+        "Analytical Thinking",
+        "Health & Human Services",
+        "Mind & Body",
+        "Science & Technology",
+        "Science in Action",
+        "Social Good",
+        "Liberal Arts"
+      ],
       "links": [
         {
           "index": "0",
@@ -292,6 +302,9 @@
     {
       "type": "graduate",
       "title": "Accounting (MS)",
+      "interests": [
+        "Liberal Arts"
+      ],
       "links": [
         {
           "index": "0",

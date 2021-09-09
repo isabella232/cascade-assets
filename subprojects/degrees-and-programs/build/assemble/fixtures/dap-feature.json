@@ -252,6 +252,15 @@
   }, {
     "type": "graduate",
     "title": "Accounting (Accelerated)",
+    "startTerms": ["spring"],
+    "interests": [
+      "Analytical Thinking",
+      "Health & Human Services",
+      "Mind & Body",
+      "Science & Technology",
+      "Science in Action",
+      "Social Good"
+    ],
     "links": [{
       "index": "0",
       "linkType": "Internal Link",
