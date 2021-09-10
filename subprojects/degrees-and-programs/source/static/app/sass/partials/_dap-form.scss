@@ -262,8 +262,19 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
 
 article.active {
   .active-content:after {
-    @include qbal-drop-enter;
-    animation-delay: 300ms;
+    opacity: 0;
+    // @include qbal-drop-enter;
+    animation: 700ms triangle-fade-in linear forwards;
+  }
+
+  @keyframes triangle-fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
   }
 }
 

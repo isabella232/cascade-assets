@@ -153,7 +153,7 @@ $dap-result-breakpoint: rem-calc(600);
       }
 
       .description {
-        @include qbal-drop-enter;
+        @include qbal-slideDownSubtle-enter;
         position: absolute;
         max-width: 1100px;
         background-color: $sand;
