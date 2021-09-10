@@ -784,7 +784,6 @@ var chapman = chapman || {};
 
       if (campusesArray.length) {
         activeFilters.campuses = campusesArray;
-        alert(`activeFilters.campuses ${activeFilters.campuses}`)
       }
     },
 

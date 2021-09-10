@@ -260,6 +260,13 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
   }
 }
 
+article.active {
+  .active-content:after {
+    @include qbal-drop-enter;
+    animation-delay: 300ms;
+  }
+}
+
 .active-content:after {
   content: "";
   display: block;
@@ -406,7 +413,8 @@ svg.program-info__close {
   outline: 1px solid $grey;
 }
 
-#dap-undergraduate-keyword {
+#dap-undergraduate-keyword,
+#dap-graduate-keyword {
   min-width: 20vw;
 }
 
@@ -630,6 +638,12 @@ form {
   }
 }
 
+#js-dap-section-graduate.active form {
+  animation-delay: 1s;
+  @include qbal-slideRight-enter;
+  animation-duration: 750ms;
+}
+
 #js-dap-section-undergraduate.active form {
   animation-delay: 1s;
   @include qbal-slideLeft-enter;
@@ -673,4 +687,12 @@ form {
     @include qbal-fade-enter;
     animation-duration: 1s;
   }
+}
+
+#js-dap-results-undergraduate .field-container.graduate-only {
+  display: none !important;
+}
+
+#js-dap-results-graduate .field-container.undergraduate-only {
+  display: none !important;
 }
