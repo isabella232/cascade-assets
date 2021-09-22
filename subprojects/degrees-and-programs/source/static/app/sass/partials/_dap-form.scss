@@ -172,7 +172,18 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
 
 
 // move to common.scss or similar
+  
+// overrides app/assets/stylesheets/base/defaults.scss REM to px 62.5% font size conversion
+  html {
+  font-size: 100% !important;
+  }
+
 .program-types {
+  .text--red {
+    background-color: transparent;
+    color: $red;
+}
+
   .program-finder__heading {
     display: flex;
     justify-content: space-between;
