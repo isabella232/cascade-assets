@@ -45,7 +45,7 @@
 // 1. Global
 // ---------
 
-$global-width: rem-calc(1176);
+$global-width: 1176px;
 // $global-font-size: 100%;
 // $global-lineheight: 1.5;
 // $primary-color: #2199e8;
@@ -90,7 +90,7 @@ $breakpoints: (
 
 $grid-row-width: $global-width;
 // $grid-column-count: 12;
-$grid-column-gutter: rem-calc(20);
+$grid-column-gutter: 20px;
 
 // 4. Base Typography
 // ------------------
@@ -131,14 +131,14 @@ $header-lineheight: 1.125;
 // $code-font-weight: $global-weight-normal;
 // $code-background: $light-gray;
 // $code-border: 1px solid $medium-gray;
-// $code-padding: rem-calc(2 5 1);
+// $code-padding: 2 5 1px;
 // $anchor-color: $primary-color;
 // $anchor-color-hover: scale-color($anchor-color, $lightness: -14%);
 // $anchor-text-decoration: none;
 // $anchor-text-decoration-hover: none;
 $hr-width: $global-width;
 // $hr-border: 1px solid $medium-gray;
-// $hr-margin: rem-calc(20) auto;
+// $hr-margin: 20px auto;
 // $list-lineheight: $paragraph-lineheight;
 // $list-margin-bottom: $paragraph-margin-bottom;
 // $list-style-type: disc;
@@ -149,14 +149,14 @@ $hr-width: $global-width;
 // $defnlist-term-weight: $global-weight-bold;
 // $defnlist-term-margin-bottom: 0.3rem;
 // $blockquote-color: $dark-gray;
-// $blockquote-padding: rem-calc(9 20 0 19);
+// $blockquote-padding: 9 20 0 19px;
 // $blockquote-border: 1px solid $medium-gray;
-// $cite-font-size: rem-calc(13);
+// $cite-font-size: 13px;
 // $cite-color: $dark-gray;
 // $keystroke-font: $font-family-monospace;
 // $keystroke-color: $black;
 // $keystroke-background: $light-gray;
-// $keystroke-padding: rem-calc(2 4 0);
+// $keystroke-padding: 2 4 0px;
 // $keystroke-radius: $global-radius;
 // $abbr-underline: 1px dotted $black;
 
@@ -180,7 +180,7 @@ $hr-width: $global-width;
 // $input-background-invalid: $alert-color;
 // $form-label-color-invalid: $alert-color;
 // $input-error-color: $alert-color;
-// $input-error-font-size: rem-calc(12);
+// $input-error-font-size: 12px;
 // $input-error-font-weight: $global-weight-bold;
 
 // 7. Accordion
@@ -214,7 +214,7 @@ $hr-width: $global-width;
 // ---------------
 
 // $breadcrumbs-margin: 0 0 $global-margin 0;
-// $breadcrumbs-item-font-size: rem-calc(11);
+// $breadcrumbs-item-font-size: 11px;
 // $breadcrumbs-item-color: $primary-color;
 // $breadcrumbs-item-color-current: $black;
 // $breadcrumbs-item-color-disabled: $medium-gray;
@@ -303,8 +303,8 @@ $hr-width: $global-width;
 // 18. Flex Video
 // --------------
 
-// $flexvideo-padding-top: rem-calc(25);
-// $flexvideo-margin-bottom: rem-calc(16);
+// $flexvideo-padding-top: 25px;
+// $flexvideo-margin-bottom: 16px;
 // $flexvideo-ratio: 4 by 3;
 // $flexvideo-ratio-widescreen: 16 by 9;
 
@@ -312,19 +312,19 @@ $hr-width: $global-width;
 // ---------
 
 // $fieldset-border: 1px solid $medium-gray;
-// $fieldset-padding: rem-calc(20);
-// $fieldset-margin: rem-calc(18 0);
-// $legend-padding: rem-calc(0 3);
-// $form-spacing: rem-calc(16);
+// $fieldset-padding: 20px;
+// $fieldset-margin: 18 0px;
+// $legend-padding: 0 3px;
+// $form-spacing: 16px;
 // $helptext-color: #333;
-// $helptext-font-size: rem-calc(13);
+// $helptext-font-size: 13px;
 // $helptext-font-style: italic;
 // $input-prefix-color: $black;
 // $input-prefix-background: $light-gray;
 // $input-prefix-border: 1px solid $medium-gray;
 // $input-prefix-padding: 1rem;
 // $form-label-color: $black;
-// $form-label-font-size: rem-calc(14);
+// $form-label-font-size: 14px;
 // $form-label-font-weight: $global-weight-normal;
 // $form-label-line-height: 1.8;
 // $select-background: #fafafa;
@@ -332,7 +332,7 @@ $hr-width: $global-width;
 // $select-radius: $global-radius;
 // $input-color: $dark-gray;
 // $input-font-family: inherit;
-// $input-font-size: rem-calc(16);
+// $input-font-size: 16px;
 // $input-background: $white;
 // $input-background-focus: $white;
 // $input-background-disabled: $light-gray;
@@ -401,11 +401,11 @@ $hr-width: $global-width;
 // 25. Pagination
 // --------------
 
-// $pagination-font-size: rem-calc(14);
+// $pagination-font-size: 14px;
 // $pagination-margin-bottom: $global-margin;
 // $pagination-item-color: $black;
-// $pagination-item-padding: rem-calc(3 10);
-// $pagination-item-spacing: rem-calc(1);
+// $pagination-item-padding: 3 10px;
+// $pagination-item-spacing: 1px;
 // $pagination-radius: $global-radius;
 // $pagination-item-background-hover: $light-gray;
 // $pagination-item-background-current: $primary-color;
@@ -430,7 +430,7 @@ $hr-width: $global-width;
 // $reveal-background: $white;
 // $reveal-width: 600px;
 $reveal-max-width: $global-width;
-// $reveal-offset: rem-calc(100);
+// $reveal-offset: 100px;
 // $reveal-padding: $global-padding;
 // $reveal-border: 1px solid $medium-gray;
 // $reveal-radius: $global-radius;
@@ -473,7 +473,7 @@ $reveal-max-width: $global-width;
 // $table-background: $white;
 // $table-color-scale: 5%;
 // $table-border: 1px solid smart-scale($table-background, $table-color-scale);
-// $table-padding: rem-calc(8 10 10);
+// $table-padding: 8 10 10px;
 // $table-hover-scale: 2%;
 // $table-row-hover: darken($table-background, $table-hover-scale);
 // $table-row-stripe-hover: darken($table-background, $table-color-scale + $table-hover-scale);

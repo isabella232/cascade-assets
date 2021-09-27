@@ -6,11 +6,11 @@ $palettes: map-merge($palettes,
     ),
   ));
 
-$dap-result-breakpoint: rem-calc(600);
+$dap-result-breakpoint: 600px;
 
 .dap-results {
   background-color: $white;
-  padding: rem-calc(30 0);
+  padding: 30px 0px;
   position: relative;
 
   .column:last-child:not(:first-child),
@@ -59,11 +59,11 @@ $dap-result-breakpoint: rem-calc(600);
       }
 
       .result-content {
-        padding-top: rem-calc(12);
+        padding-top: 12px;
       }
 
       .title {
-        font-size: rem-calc(18);
+        font-size: 18px;
       }
 
       .desc,
@@ -76,13 +76,13 @@ $dap-result-breakpoint: rem-calc(600);
 
   &.list-view {
     .results-row {
-      padding-left: rem-calc(10);
-      padding-right: rem-calc(10);
+      padding-left: 10px;
+      padding-right: 10px;
     }
 
     .result {
       border-bottom: 1px solid $burgundy;
-      padding: rem-calc(30 0);
+      padding: 30px 0px;
 
       .image {
         display: none;
@@ -94,7 +94,7 @@ $dap-result-breakpoint: rem-calc(600);
       }
 
       .title {
-        font-size: rem-calc(20);
+        font-size: 20px;
       }
     }
   }
@@ -116,7 +116,7 @@ $dap-result-breakpoint: rem-calc(600);
   .result {
     opacity: 0;
     overflow: hidden;
-    padding-top: rem-calc(25);
+    padding-top: 25px;
     width: 100%;
     transition: opacity $transition-time;
     display: none;
@@ -230,7 +230,7 @@ $dap-result-breakpoint: rem-calc(600);
       left: 0;
       right: 0;
       bottom: 0;
-      padding: rem-calc(20);
+      padding: 20px;
 
       .active-content-inner {
         overflow: hidden;
@@ -246,18 +246,18 @@ $dap-result-breakpoint: rem-calc(600);
       }
 
       .desc {
-        font-size: rem-calc(14);
+        font-size: 14px;
         display: block;
         margin-top: 0;
-        max-height: calc(100% - #{rem-calc(30)});
+        max-height: calc(100% - #{30px});
       }
 
       // scss-lint:disable ImportantRule
       a {
-        font-size: rem-calc(18);
+        font-size: 18px;
         font-weight: 700;
         display: block !important; // Overwrites plugin inline style
-        margin-top: rem-calc(12);
+        margin-top: 12px;
       }
 
       // scss-lint:enable ImportantRule
@@ -265,12 +265,12 @@ $dap-result-breakpoint: rem-calc(600);
 
     .active-content-toggle {
       text-align: center;
-      line-height: rem-calc(52);
+      line-height: 52px;
       cursor: pointer;
       right: 0;
       bottom: 0;
-      width: 2rem;
-      height: 2rem;
+      width: 30px;
+      height: 30px;
       display: flex;
       align-items: center;
       background-color: $red;
@@ -296,7 +296,7 @@ $dap-result-breakpoint: rem-calc(600);
       .icon {
         color: $white;
         width: 100%;
-        height: rem-calc(18);
+        height: 18px;
         display: block;
         transition: transform $transition-time;
         position: relative;
@@ -340,7 +340,7 @@ $dap-result-breakpoint: rem-calc(600);
 
     .campuses,
     .degree-types {
-      margin: rem-calc(5 0 0);
+      margin: 5 0 0px;
 
       li {
         font-weight: 700;
@@ -349,7 +349,7 @@ $dap-result-breakpoint: rem-calc(600);
         &:after {
           content: "|";
           display: inline;
-          margin: rem-calc(0 8);
+          margin: 0 8px;
         }
 
         &:last-child:after {
@@ -360,30 +360,30 @@ $dap-result-breakpoint: rem-calc(600);
 
     .campuses li {
       color: $dark-gray;
-      font-size: rem-calc(14);
+      font-size: 14px;
       line-height: 1.2;
     }
 
     .degree-types li {
       color: $boulder;
-      font-size: rem-calc(16);
+      font-size: 16px;
     }
 
     .desc,
     button,
     .button {
-      margin: rem-calc(15 0 0);
+      margin: 15 0 0px;
     }
 
     .desc {
-      font-size: rem-calc(16);
+      font-size: 16px;
       line-height: 1.325;
     }
 
     button,
     .button {
-      border-radius: rem-calc(3);
-      font-size: rem-calc(18);
+      border-radius: 3px;
+      font-size: 18px;
       font-weight: 700;
       width: auto;
     }
@@ -391,8 +391,8 @@ $dap-result-breakpoint: rem-calc(600);
 
   .no-results {
     p {
-      font-size: rem-calc(16);
-      margin: rem-calc(10 0 15);
+      font-size: 16px;
+      margin: 10 0 15px;
     }
   }
 }

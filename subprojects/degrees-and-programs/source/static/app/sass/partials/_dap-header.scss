@@ -7,11 +7,11 @@ $palettes: map-merge($palettes, ('dap-header': ('core': $black,
 
   .bigMasthead &,
   .bigMasthead.smallRotator & {
-    padding: rem-calc(30 25);
+    padding: 30 25px;
     margin: 0;
 
     @include breakpoint(medium) {
-      padding: rem-calc(75 25);
+      padding: 75 25px;
     }
 
   }
@@ -22,21 +22,21 @@ $palettes: map-merge($palettes, ('dap-header': ('core': $black,
   }
 
   h2 {
-    font-size: rem-calc(30);
+    font-size: 30px;
     line-height: 1;
-    margin: rem-calc(0 0 10);
+    margin: 0 0 10px;
 
     @include breakpoint(medium) {
-      font-size: rem-calc(48);
+      font-size: 48px;
     }
 
   }
 
   h3 {
-    font-size: rem-calc(18);
+    font-size: 18px;
     font-weight: 400;
     line-height: 1.125;
-    margin: rem-calc(0 0 8);
+    margin: 0 0 8px;
   }
 
 }

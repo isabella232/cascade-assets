@@ -3,10 +3,10 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
 
 .dap-form {
   color: $black;
-  padding: rem-calc(0 10);
+  padding: 0 10px;
 
   @include breakpoint(medium) {
-    padding: rem-calc(0 4);
+    padding: 0 4px;
   }
 
   @include breakpoint(xlarge) {
@@ -18,7 +18,7 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
   }
 
   fieldset>.row {
-    margin-bottom: rem-calc(20);
+    margin-bottom: 20px;
 
     &:last-child {
       margin-bottom: 0;
@@ -28,15 +28,15 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
 
   .field-container {
     position: relative;
-    margin: rem-calc(0 0 20);
+    margin: 0 0 20px;
   }
 
   form {
 
     .subsection-heading {
-      font-size: rem-calc(18);
+      font-size: 18px;
       font-weight: 700;
-      padding: rem-calc(0 0 12);
+      padding: 0 0 12px;
       position: relative;
       font-family: $futura-regular;
 
@@ -65,7 +65,7 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
 
         svg {
           opacity: 1;
-          width: rem-calc(30);
+          width: 30px;
         }
 
       }
@@ -112,13 +112,13 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
 
   .or-separator {
     position: relative;
-    margin: rem-calc(0 0 20);
+    margin: 0 0 20px;
 
     span {
       text-transform: uppercase;
       line-height: $input-height/2;
       font-weight: 700;
-      font-size: rem-calc(21);
+      font-size: 21px;
       text-align: center;
       letter-spacing: 1px;
       display: block;
@@ -173,10 +173,6 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
 
 // move to common.scss or similar
   
-// overrides app/assets/stylesheets/base/defaults.scss REM to px 62.5% font size conversion
-  html {
-  font-size: 100% !important;
-  }
 
 .program-types {
   .text--red {
@@ -430,8 +426,8 @@ svg.program-info__close {
 
 .dap-results-header button {
   position: relative !important;
-  width: 5rem !important;
-  height: 3rem;
+  width: 50px !important;
+  height: 50px;
   outline: 1px solid $grey;
 }
 
@@ -442,7 +438,7 @@ svg.program-info__close {
 
 form {
   .link-list {
-    margin: rem-calc(0 0 20);
+    margin: 0 0 20px;
 
     @include breakpoint(medium) {
       column-count: 4;
@@ -460,7 +456,7 @@ form {
     }
 
     li {
-      margin: rem-calc(0 0 12);
+      margin: 0 0 12px;
       display: none;
 
       @include breakpoint(medium) {
@@ -492,7 +488,7 @@ form {
       background-color: transparent;
       transition: color $transition-time, background-color $transition-time;
       display: inline-block;
-      padding: rem-calc(2);
+      padding: 2px;
 
       &:hover {
 

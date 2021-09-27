@@ -5,7 +5,7 @@ $palettes: map-merge($palettes, (
 	)
 ));
 
-$dap-feature-background-image-width: rem-calc(1396);
+$dap-feature-background-image-width: 1396px;
 
 .dap-feature {
 	color: $dark-gray;
@@ -94,7 +94,7 @@ $dap-feature-background-image-width: rem-calc(1396);
 
 	hr {
 		border-top: $transparent-white-border;
-		width: calc(100% - #{rem-calc(20)});
+		width: calc(100% - #{20px});
 		max-width: ($global-width - $grid-column-gutter);
 		margin: 0 auto;
 	}
@@ -116,12 +116,12 @@ $dap-feature-background-image-width: rem-calc(1396);
 		fill: $white;
 		text-align: center;
 		border: 0;
-		font-size: rem-calc(15);
+		font-size: 15px;
 		background-color: $burgundy;
-		line-height: rem-calc(43);
-		height: rem-calc(44);
+		line-height: 43px;
+		height: 44px;
 		margin: 0;
-		padding: rem-calc(0 18);
+		padding: 0 18px;
 		max-width: 100%;
 		width: 100%;
 
@@ -158,8 +158,8 @@ $dap-feature-background-image-width: rem-calc(1396);
 
 		svg {
 			vertical-align: middle;
-			width: rem-calc(18);
-			height: rem-calc(18);
+			width: 18px;
+			height: 18px;
 
 			&.icon-double-chevron {
 				width: 0.75em;
@@ -182,7 +182,7 @@ $dap-feature-background-image-width: rem-calc(1396);
 		color: $black;
 		background-color: transparent;
 		border: 1px solid $dusty-gray;
-		font-size: rem-calc(16);
+		font-size: 16px;
 		box-shadow: none;
 		border-radius: 0;
 		max-width: 100%;
@@ -199,7 +199,7 @@ $dap-feature-background-image-width: rem-calc(1396);
 	input {
 		white-space: nowrap;
 		text-overflow: ellipsis;
-		line-height: rem-calc(47);
+		line-height: 47px;
 		height: $input-height;
 	}
 
@@ -211,11 +211,11 @@ $dap-feature-background-image-width: rem-calc(1396);
 	}
 
 	select {
-		padding: rem-calc(0 48 0 12);
+		padding: 0 48px 0 12px;
 	}
 
 	input {
-		padding: rem-calc(0 12);
+		padding: 0 12px;
 
 		&[type="checkbox"],
 		&[type="radio"] {
@@ -250,24 +250,24 @@ $dap-feature-background-image-width: rem-calc(1396);
 		background-image: url('i/select-arrow.png');
 		background-repeat: no-repeat;
 		background-position: right 18px center;
-		background-size: rem-calc(12 7);
-		padding-right: rem-calc(48);
+		background-size: 12 7px;
+		padding-right: 48px;
 
 		&.open {
 			background-image: url('i/select-close.png');
 			background-repeat: no-repeat;
-			background-size: rem-calc(11 11);
+			background-size: 11 11px;
 		}
 
 	}
 
 	.input-with-button {
-		padding-right: rem-calc(60);
+		padding-right: 60px;
 
 		~ button,
 		~ .button {
-			width: rem-calc(48);
-			height: rem-calc(48);
+			width: 48px;
+			height: 48px;
 			position: absolute;
 			top: 1px;
 			right: 1px;
@@ -322,7 +322,7 @@ $dap-feature-background-image-width: rem-calc(1396);
 	}
 
 	.custom-select-input {
-		padding: rem-calc(15 48 15 12);
+		padding: 15px 48px 15px 12px;
 
 		&.open {
 			color: $burgundy;
@@ -343,7 +343,7 @@ $dap-feature-background-image-width: rem-calc(1396);
 		position: absolute;
 		display: none;
 		width: 100%;
-		padding: rem-calc(0 12);
+		padding: 0 12px;
 
 		&.open {
 			z-index: 3;
@@ -358,14 +358,14 @@ $dap-feature-background-image-width: rem-calc(1396);
 		ul {
 			border-top: 1px solid $burgundy;
 			margin: 0;
-			padding: rem-calc(12 0);
+			padding: 12px 0px;
 		}
 
 		li {
 			color: $dark-gray;
 			cursor: pointer;
 			line-height: 1.25;
-			padding: rem-calc(6 0);
+			padding: 6px 0px;
 			transition: color $transition-time;
 
 			&:hover,
