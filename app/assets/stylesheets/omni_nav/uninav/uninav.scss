@@ -21,10 +21,6 @@
   }
 }
 
-@mixin uninav__menu-item--dropdown-parent {
-  content: "\f0d7";
-}
-
 @mixin uninav-drop-shadow {
   // todo: https://tobiasahlin.com/blog/how-to-animate-box-shadow/
   box-shadow: 0 37.125px 70px -12.125px rgba(0, 0, 0, 0.1);
@@ -59,11 +55,6 @@ html {
       border-bottom: none;
     }
 
-    &__logo {
-      &--secondary {
-        @include qbal-fade-enter;
-      }
-    }
 
     &__utility-nav--wrapper {
       border-bottom: none;
@@ -238,15 +229,6 @@ html {
         margin-left: auto;
       }
 
-      // @include respond(tab-land) {
-      //   width: auto;
-      //   max-width: 50%;
-      // }
-
-      // @include respond(phone) {
-      //   max-width: none;
-      // }
-
       .uninav {
         &__menu-item--audiences {
           a {
@@ -263,6 +245,9 @@ html {
           position: relative;
           z-index: 9999999999999999999999999999;
         }
+      }
+      .uninav__search-input--desktop {
+        min-width: 233px;
       }
 
       &__search-input {
@@ -467,28 +452,10 @@ html {
           text-transform: uppercase;
           font-weight: bold;
           cursor: pointer;
-
-          &:hover {
-            &::after {
-              display: inline-block;
-              content: "\f0d7";
-              transform: rotate(180deg) translateX(-1rem);
-              transition: all ease 0.35s;
-              transition-delay: 0;
-              color: $cu-red;
-            }
-          }
+          display: inline-flex;
 
           &:focus {
             outline: 2px dotted $cu-red;
-          }
-
-          &::after {
-            font-family: "Font Awesome 5 Pro";
-            font-weight: 900;
-            content: "\f0d7";
-            padding-left: 1rem;
-            font-size: 1.4rem;
           }
         }
       }
@@ -550,7 +517,6 @@ html {
           linear-gradient(0deg, #a50034 50%, transparent 50%),
           linear-gradient(0deg, #a50034 50%, transparent 50%);
         background-repeat: repeat-x;
-        /*     background-size: 15px 2px, 15px 2px, 2px 15px, 2px 15px; */
         background-size: 0px 0px, 5px 2px, 0px 0px, 0px 0px;
         background-position: left top, right bottom, left bottom, right top;
         animation: border-dance 700ms ease-out;
@@ -603,8 +569,6 @@ html {
           &:focus,
           &:focus-within {
             color: $cu-red;
-            margin-left: 2px;
-            transition: 150ms linear;
           }
         }
 
@@ -625,34 +589,19 @@ html {
           list-style-image: none;
           margin: 0;
           padding: 0;
-
-          @mixin uninav-slideLeft-enter {
-            animation: qbal-FadeEnter $qbal-duration-3 $qbal-ease-slow backwards,
-              qbal-LeftEnter $qbal-duration-4 $qbal-ease-entrance backwards,
-              showBorder 2s linear forwards;
-          }
+          @include qbal-dropdown-enter;
 
           li {
             width: 100%;
+            animation: showBorder 2s linear forwards;
             display: flex;
             padding-left: 2rem;
-            animation-duration: 200ms;
-            @include uninav-slideLeft-enter;
-
-            &:first-child {
-              // animation-duration: 200ms;
-            }
 
             @for $i from 1 to 10 {
               &:nth-child(#{$i}) {
                 animation-delay: $i * 12ms;
               }
             }
-            // @for $i from 5 to 10 {
-            //   &:nth-child(#{$i}) {
-            //     animation-delay: $i * 100ms;
-            //   }
-            // }
 
             a {
               width: 100%;
@@ -709,14 +658,6 @@ html {
     border-right: 1px solid $cu-light-grey;
   }
 
-  .uninav__dropdown-wrapper > a::after {
-    font-family: "Font Awesome 5 Pro";
-    font-weight: 900;
-    content: "\f0d7";
-    padding-left: 1rem;
-    font-size: 1.4rem;
-  }
-
   & > ul {
     display: flex;
     justify-content: center;
@@ -733,14 +674,6 @@ html {
       align-items: center;
     }
   }
-}
-
-#uninav > nav {
-  // grid-area: nav;
-}
-
-#uninav > global {
-  // grid-area: global;
 }
 
 #uninav > div.uninav__logo--primary {
@@ -786,63 +719,16 @@ html {
     }
   }
 
-  .uninav__dropdown--child[aria-expanded="false"] + .uninav {
-    &__dropdown-wrapper {
-      & > a {
-        &:after {
-          content: "\f0d7";
-          transform: rotate(0deg);
-          transition: all linear 0.25s;
-        }
-      }
-    }
-  }
-
-  .uninav__dropdown--child[aria-expanded="true"] + &.uninav {
-    &__dropdown-wrapper {
-      & > a {
-        &:after {
-          content: "\f0d7";
-          transform: rotate(180deg) translateX(-1rem);
-          transition: all linear 0.25s;
-          color: $cu-red;
-        }
-      }
-    }
-  }
-
-  .uninav__global-nav .uninav__dropdown-wrapper > a::after {
-    content: "\f0d7";
-    transform: rotate(180deg) translateX(-1rem);
-    transition: all linear 0.15s;
-  }
   .uninav__dropdown--child[aria-expanded="true"] {
     z-index: 99999999;
     display: flex;
-  }
-
-  .uninav__dropdown-wrapper > a::after {
-    content: "\f0d7";
-    transform: rotate(0deg);
-    transition: all ease 0.35s;
-    transition-delay: 0;
-  }
-
-  &:hover {
-    .uninav__dropdown-wrapper > a::after {
-      content: "\f0d7";
-      transform: rotate(180deg) translateX(-1rem);
-      transition: all ease 0.35s;
-      transition-delay: 0;
-      color: $cu-red;
-    }
   }
 }
 
 // END UNINAV DROPDOWNS
 @include respond(big-desktop) {
   div.uninav__cta {
-    @include qbal-slideLeft-enter;
+    // // @include qbal-slideLeft-enter;
   }
 
   .uninav__logo {
@@ -880,7 +766,7 @@ html {
 
   .uninav__menu-item--audiences {
     // need a slicker preferably non-js fadeout solution since display: none is not animatable
-    @include qbal-slideLeft-exit;
+    // @include qbal-slideLeft-exit;
     display: none;
   }
 
@@ -888,7 +774,7 @@ html {
     background-color: $white;
 
     .uninav__global-nav {
-      @include qbal-growExaggerated-enter;
+      // @include qbal-growExaggerated-enter;
 
       ul li,
       & > a {
@@ -897,8 +783,7 @@ html {
     }
 
     #uninav__cta {
-      // @include uninav-border-bottom;
-      @include qbal-drop-enter;
+      // @include qbal-drop-enter;
     }
   }
 
@@ -925,7 +810,7 @@ html {
         display: none;
 
         &.slide-left {
-          @include qbal-slideLeft-enter;
+          // @include qbal-slideLeft-enter;
           margin-right: 15px;
         }
       }
@@ -1033,7 +918,7 @@ html {
         display: none;
 
         &.slide-left {
-          @include qbal-slideLeft-enter;
+          // @include qbal-slideLeft-enter;
           margin-right: 15px;
         }
       }
@@ -1135,11 +1020,11 @@ html {
       }
 
       &__menu-item-login {
-        @include qbal-slideLeft-enter;
+        // @include qbal-slideLeft-enter;
       }
 
       &__menu-item-login {
-        @include qbal-slideLeft-enter;
+        // @include qbal-slideLeft-enter;
       }
     }
 
@@ -1295,42 +1180,28 @@ html {
 }
 
 @media only screen and (max-width: 400px) {
-  #uninav {
-    // grid-template-areas: "logo hamburger utility";
-    // grid-template-rows: 60px;
-    // grid-template-columns: 1fr 2fr 2fr;
-
-    &.utility-only {
-      // grid-template-areas: "utility";
-
-      // .uninav__utility-nav--wrapper {
-      //   width: 100vw;
-      // }
+  .uninav {
+    &__global-nav {
+      display: none;
     }
 
-    .uninav {
-      &__global-nav {
-        display: none;
-      }
+    &__hamburger-menu {
+      justify-content: center;
+    }
+  }
 
-      &__hamburger-menu {
-        justify-content: center;
+  .uninav {
+    &__utility-nav--search-wrapper {
+      margin-right: 0;
+
+      .uninav__search-button--mobile {
+        border-right: none;
       }
     }
 
-    .uninav {
-      &__utility-nav--search-wrapper {
-        margin-right: 0;
-
-        .uninav__search-button--mobile {
-          border-right: none;
-        }
-      }
-
-      &__logo {
-        .chapman-logo {
-          width: 75%;
-        }
+    &__logo {
+      .chapman-logo {
+        width: 75%;
       }
     }
   }
@@ -1351,7 +1222,7 @@ html {
   }
 }
 
-html.off-canvas__blur {
+
   #js-off-canvas-overlay {
     animation: increaseOpacity;
     animation-direction: normal;
@@ -1387,33 +1258,12 @@ html.off-canvas__blur {
       }
     }
   }
-}
+
 
 .uninav__animation--exit {
   @include qbal-slideRight-exit;
 }
 
-.uninav {
-  &__slide-right {
-    &--exit {
-      @include qbal-slideRight-exit;
-    }
-
-    &--enter {
-      @include qbal-slideRight-enter;
-    }
-  }
-
-  &__slide-left {
-    &--exit {
-      @include qbal-slideLeft-exit;
-    }
-
-    &--enter {
-      @include qbal-slideLeft-enter;
-    }
-  }
-}
 
 // END TABLET PORTRAIT
 // END MEDIA QUERIES
@@ -1452,31 +1302,8 @@ form.gsc-search-box.gsc-search-box-tools {
   border: 2px dotted var(--color-cu-red) !important;
 }
 
-.uninav__dropdown--parent:hover .fas.fa-paw::before,
-.uninav__dropdown--parent:focus .fas.fa-paw::before,
-.uninav__dropdown--parent:focus-within .fas.fa-paw::before {
-  // content: "chapman systems login" !important;
-  font-family: $futura-regular;
-  font-size: 1.4rem;
-  word-break: break-word;
-  animation: changeLetter 150ms linear 1 forwards;
-
-  @keyframes changeLetter {
-    0% {
-      opacity: 0;
-    }
-
-    50% {
-      opacity: 0.5;
-    }
-
-    100% {
-      opacity: 1;
-      content: "Login";
-      white-space: nowrap;
-      padding: 2%;
-    }
-  }
+svg.svg-inline--fa.fa-paw.fa-w-16 {
+  max-height: 20px;
 }
 
 #js-off-canvas-nav-container * {
@@ -1517,11 +1344,40 @@ form.gsc-search-box.gsc-search-box-tools {
 }
 
 .no-js {
-  .uninav__dropdown--parent:hover .uninav__dropdown--child {
-    z-index: 99999999;
-    display: flex;
+  #uninav {
+    .uninav__dropdown--parent:hover .uninav__dropdown--child {
+      z-index: 99999999;
+      display: flex;
+    }
+    .uninav__utility-nav--wrapper {
+      margin-right: 17px !important;
+    }
+
+    li#uninav__search-button--mobile {
+      display: none !important;
+    }
   }
-  .uninav__utility-nav--wrapper {
-    margin-right: 17px !important;
+}
+
+#uninav {
+  svg.svg-inline--fa.fa-caret-down.fa-w-10 {
+    display: block;
+    width: 8px;
+    min-width: 8px;
+    margin-left: 10px;
+  }
+
+  li.uninav__dropdown--parent:hover svg.svg-inline--fa.fa-caret-down.fa-w-10 {
+    transform: rotate(180deg) translateX(-1rem);
+    transition: all linear 350ms;
+    margin-left: 0;
+  }
+
+  span.uninav-relative-wrapper {
+    position: relative;
+    min-width: 10px;
+    width: 10px;
+    display: flex;
+    align-items: center;
   }
 }
