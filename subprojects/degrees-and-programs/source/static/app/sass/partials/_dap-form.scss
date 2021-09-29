@@ -173,6 +173,14 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
 
 // move to common.scss or similar
 
+.degrees-and-programs .container {
+  margin-top: 0;
+  // keeps footer at bottom when transitioning sections
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
 .program-types {
   .text--red {
