@@ -231,18 +231,7 @@
 ## D&P Accordion Header
 #macro ( dapHeader $data )
 
-    <header class="dap-header" style="display: none;">
-    	<div class="row">
-			<div class="columns small-12">
-				<h2>$_EscapeTool.xml( $data.title.value )</h2>
-				<h3>$_EscapeTool.xml( $data.subtitle.value )</h3>
-				<span class="dap-section-accordion-trigger">
-					<span class="show-for-sr">Toggle the accordion for the "${_EscapeTool.xml( $data.title.value )}" section</span>
-					#svg( "icon-chevron-down" )
-				</span>
-			</div>
-		</div>
-	</header>
+  
 
 #end
 
@@ -250,7 +239,7 @@
 #macro ( discover $type, $header, $motivations )
 
 	<!-- START DISCOVER SECTION -->
-    <section id="js-dap-section-discover" class="dap-section active" data-id="discover">
+    <section id="js-dap-section-discover" class="dap-section" data-id="discover">
 
     	#dapHeader( $header )
 
@@ -431,7 +420,7 @@
     	<!-- EDIT PAGE -->
 <!-- variables are interests and schools -->
 <div class="dap-form">
-  <form id="js-dap-undergraduate-form" class="dap-undergraduate-form active" action="">
+  <form id="js-dap-undergraduate-form" class="dap-undergraduate-form" action="">
     <div class="wavy-bg"></div>
   
     <legend class="show-for-sr">Search for Undergraduate Degrees and Programs</legend>
@@ -567,21 +556,31 @@
 				<div class="row">
 					<div class="columns small-12">
 						<header class="dap-results-header">
-
-							<h2 class="results-count">You are seeing all Undergraduate Degrees and Programs</h2>
-
-							<ul class="results-views clearfix">
-								<li class="active" data-view="grid-view" aria-label="Click to enable grid view of the results">
-									<span class="show-for-sr">Show results in grid view</span>
-									#svg( "icon-grid" )
-								</li>
-								<li data-view="list-view" aria-label="Click to enable list view of the results">
-									<span class="show-for-sr">Show results in list view</span>
-									#svg( "icon-list" )
-								</li>
-							</ul>
-
-						</header>
+    	            		
+    	            		
+    	            		
+              <div class="flex-wrapper">
+                <div class="field-container undergraduate-only">
+                  <label class="show-for-sr" for="dap-undergraduate-keyword">Search for Degrees and Programs</label>
+                  <input class="input-with-button" id="dap-undergraduate-keyword" name="dap-undergraduate-keyword" placeholder="Search Programs" type="text" autocomplete="off">
+                  <button type="submit">
+                    <span class="show-for-sr">Search for Degrees and Programs</span>
+                    #svg( "icon-grid" )
+                  </button>
+                </div>
+                
+                <ul class="clearfix results-views">
+                  <li class="active" data-view="grid-view" aria-label="Click to enable grid view of the results">
+                    <span class="show-for-sr">Show results in grid view</span>
+                    #svg( "icon-grid" )
+                  </li>
+                  <li data-view="list-view" aria-label="Click to enable list view of the results">
+                    <span class="show-for-sr">Show results in list view</span>
+                    #svg( "icon-grid" )
+                  </li>
+                </ul>
+              </div>
+            </header>
 					</div>
 				</div>
 

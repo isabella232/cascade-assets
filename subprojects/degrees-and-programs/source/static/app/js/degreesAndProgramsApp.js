@@ -1095,7 +1095,7 @@ var chapman = chapman || {};
       }
 
       resultHTML =
-        `<article class="wtf result visible columns small-12 clearfix" data-program-title="${title}" data-start-term=${startTermsHTML}>` +
+        `<article class="result visible columns small-12 clearfix" data-program-title="${title}" data-start-term=${startTermsHTML}>` +
         '<div class="image" role="img" data-src="' +
         imgSrc +
         '" aria-label="' +
@@ -1103,7 +1103,7 @@ var chapman = chapman || {};
         '">' +
         '<div class="active-content">' +
         "</div>" +
-        '<a href="#" class="active-content-toggle"><svg class="icon icon-close" title="Toggle result content"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use></svg></a>' +
+        '<a href="#" class="active-content-toggle"><svg class="icon icon-chevron-down" title="Toggle result content"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-down"></use></svg></a>' +
         "</div>" +
         '<div class="result-content">' +
         '<h3 class="title"><a href="' +
@@ -1390,7 +1390,7 @@ var chapman = chapman || {};
           standardTransitionTime,
           "swing",
           function () {
-            setTimeout(function () {
+            setTimeout(function () {  
               isUserScroll = true;
             }, 100);
           }
