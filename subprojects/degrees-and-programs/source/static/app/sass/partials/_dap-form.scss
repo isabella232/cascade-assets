@@ -729,3 +729,7 @@ form {
 #js-dap-results-graduate .field-container.undergraduate-only {
   display: none !important;
 }
+
+section.dap-section:not(.active) {
+  display: none !important;
+}
