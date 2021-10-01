@@ -89,21 +89,17 @@ var chapman = chapman || {};
         scrollPosition = $(window).scrollTop();
       });
 
-      $(".program-toggle").on("click", function () {
-        // alert(activeSection);
-        // _this.toggleSection($(this));
-        // _this.toggleSection($('js-dap-section-graduate'));
-        if (activeSection === "undergraduate") {
-          // _this.toggleSection($("#js-dap-section-undergraduate"));
-          _this.toggleSection($("#js-dap-section-graduate"));
+      $(".program-toggle:not(#create-viewbook)").on("click keydown", function () {
 
-          // $('#js-dap-section-undergraduate').addClass("hidden");
-          // $('#js-dap-section-graduate').removeClass("hidden");
-        } else if (activeSection === "graduate") {
-          _this.toggleSection($("#js-dap-section-undergraduate"));
-
-          // $('#js-dap-section-undergraduate').addClass("hidden");
-          // $('#js-dap-section-graduate').removeClass("hidden");
+        // if keydown event, check if enter key
+        if (event.type === "keydown" && event.keyCode !== 13) {
+          return;
+        } else {
+          if (activeSection === "undergraduate") {
+            _this.toggleSection($("#js-dap-section-graduate"));
+          } else if (activeSection === "graduate") {
+            _this.toggleSection($("#js-dap-section-undergraduate"));
+          }
         }
       });
 
@@ -1390,7 +1386,7 @@ var chapman = chapman || {};
           standardTransitionTime,
           "swing",
           function () {
-            setTimeout(function () {  
+            setTimeout(function () {
               isUserScroll = true;
             }, 100);
           }

@@ -172,14 +172,21 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
 
 
 // move to common.scss or similar
+.degrees-and-programs {
+  p {
+    line-height: 2.2rem;
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+  }
 
-.degrees-and-programs .container {
-  margin-top: 0;
-  // keeps footer at bottom when transitioning sections
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  .container {
+    margin-top: 0;
+    // keeps footer at bottom when transitioning sections
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
 
 .program-types {
@@ -230,7 +237,11 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
     border-bottom: 1px solid $cu-light-grey;
   }
 
+  #create-viewbook {
+    cursor: unset;
+  }
   .program-toggle {
+    cursor: pointer;
     &__blurb {
       display: flex;
       background-color: $white;
@@ -252,6 +263,7 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
 
     &__text {
       padding: 30px;
+      font-family: $futura-regular;
     }
 
     &__image {
@@ -740,4 +752,8 @@ form {
 
 section.dap-section:not(.active) {
   display: none !important;
+}
+
+.program-toggle {
+  cursor: pointer;
 }

@@ -210,22 +210,15 @@ $palettes: map-merge($palettes, ('dap-graduate-form': ('core': $black,
   }
 }
 
-.wavy-bg {
-  content: " ";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: $sand;
-  mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);
-  -webkit-mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);
-  -webkit-mask-size: 100% 100%;
-  will-change: filter;
-  max-height: max-content;
-  min-height: 750px;
-  height: 100%;
-  position: absolute;
+form#js-dap-undergraduate, form#js-dap-graduate {
+
+    background: $sand;
+    mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);
+    -webkit-mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);
+    -webkit-mask-size: 100% 100%;
+    will-change: filter;
+    min-height: 750px;
+    height: 100%;
 }
 
 #js-dap-graduate-form,
