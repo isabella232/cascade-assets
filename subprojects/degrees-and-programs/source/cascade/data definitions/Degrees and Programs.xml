@@ -3,49 +3,16 @@
     <asset field-id="ff6bcc78c0a81e5f43ef9b379659a74d" help-text="i.e. XML" identifier="block" label="Index Block" render-content-depth="4" required="true" type="block"/>
     <asset field-id="ff6bcc78c0a81e5f43ef9b37121051cf" help-text="Dimensions W x H (1400x1200)" identifier="backgroundImage" label="Background Image" required="true" type="file"/>
     <group identifier="accordion" label="Accordion">
-        <group collapsed="true" identifier="section" label="Section" maximum-number="3" minimum-number="3" multiple="true">
-            <text default="Discover" field-id="ff6bcc78c0a81e5f43ef9b3778321225" identifier="type" label="Type" type="radiobutton">
-                <radio-item show-fields="accordion/section/motivations" value="Discover"/>
+        <group collapsed="true" identifier="section" label="Section" maximum-number="2" minimum-number="2" multiple="true">
+            <text default="Undergraduate" field-id="ff6bcc78c0a81e5f43ef9b3778321225" identifier="type" label="Type" type="radiobutton">
                 <radio-item show-fields="accordion/section/interests" value="Undergraduate"/>
-                <radio-item value="Graduate"/>
+                <radio-item value="Graduate" show-fields="accordion/section/interestsGrad"/>
             </text>
-            <text field-id="ff6bcc78c0a81e5f43ef9b37df3fb216" identifier="title" label="Title" required="true"/>
-            <text field-id="ff6bcc78c0a81e5f43ef9b37d0fac0c2" identifier="subtitle" label="Subtitle" required="true"/>
-            <group collapsed="true" identifier="motivations" label="Motivations">
-                <group collapsed="true" identifier="motivation" label="Motivation" maximum-number="5" minimum-number="1" multiple="true">
-                    <text field-id="ff6bcc78c0a81e5f43ef9b37a80632c5" identifier="title" label="Title" required="true" wysiwyg="true"/>
-                    <group collapsed="true" identifier="interests" label="Interests">
-                        <group collapsed="true" identifier="interest" label="Interest" maximum-number="4" minimum-number="4" multiple="true">
-                            <text field-id="ff6bcc78c0a81e5f43ef9b37fb002841" identifier="icon" label="Icon" required="true" type="dropdown">
-                                <dropdown-item value="Book"/>
-                                <dropdown-item value="Brain"/>
-                                <dropdown-item value="Briefcase"/>
-                                <dropdown-item value="Digital"/>
-                                <dropdown-item value="Drama"/>
-                                <dropdown-item value="Education"/>
-                                <dropdown-item value="Film Reel"/>
-                                <dropdown-item value="Global"/>
-                                <dropdown-item value="Handshake"/>
-                                <dropdown-item value="Health Care"/>
-                                <dropdown-item value="Marketing Campaign"/>
-                                <dropdown-item value="Microscope"/>
-                                <dropdown-item value="Mind Map"/>
-                                <dropdown-item value="Palette"/>
-                                <dropdown-item value="Pencil"/>
-                                <dropdown-item value="Science"/>
-                                <dropdown-item value="Sociology"/>
-                                <dropdown-item value="Stage"/>
-                                <dropdown-item value="Star"/>
-                                <dropdown-item value="Team"/>
-                                <dropdown-item value="TV"/>
-                            </text>
-                            <text field-id="ff6bcc78c0a81e5f43ef9b37fe025098" identifier="title" label="Title" required="true"/>
-                        </group>
-                    </group>
-                </group>
-            </group>
-            <group collapsed="true" identifier="interests" label="Interests">
+            <group collapsed="true" identifier="interests" label="Undergraduate Interests">
                 <text field-id="ff6bcc78c0a81e5f43ef9b37637000ed" identifier="interest" label="Interest" minimum-number="1" multiple="true" required="true"/>
+            </group>
+            <group collapsed="true" identifier="interestsGrad" label="Graduate Interests">
+                <text field-id="" identifier="interest" label="Interest" minimum-number="1" multiple="true" required="true"/>
             </group>
         </group>
     </group>

@@ -642,7 +642,7 @@ form {
   &.dark-mode {
     transition: 350ms linear;
 
-    .wavy-bg {
+    .dap-form {
       background-color: #231f20;
     }
 
@@ -706,13 +706,6 @@ form {
     // @include qbal-slideLeft-enter;
     // animation-duration: 750ms;
   }
-}
-
-.wavy-bg {
-  // @include qbal-fade-enter;
-  @include qbal-slideDown-enter;
-  // animation-delay: 250ms;
-  animation-duration: 1.3s;
 }
 
 .dap-results {

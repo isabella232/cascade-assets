@@ -25,6 +25,14 @@
     </svg>
 #end
 
+[system-view:internal]
+<style>
+    #js-dap-section-undergraduate {
+        display: block !important;
+    }
+</style>
+[/system-view:internal]
+
 ## Degrees & Programs
 #macro ( displayPrograms $programs )
 
@@ -421,7 +429,7 @@
 <!-- variables are interests and schools -->
 <div class="dap-form">
   <form id="js-dap-undergraduate-form" class="dap-undergraduate-form" action="">
-    <div class="wavy-bg"></div>
+
   
     <legend class="show-for-sr">Search for Undergraduate Degrees and Programs</legend>
     <fieldset>
@@ -483,9 +491,7 @@
             <div class="clearfix">
               <div class="title-wrapper">
                 <h4 class="subsection-heading">Areas of Study:</h4>
-                <a id="js-reset-undergraduate-interests" class="reset" href="javascript:void(0)" title="Reset interests filters">
-                  #svg( "icon-check" )
-                   Reset</a>
+              
               </div>
               <ul id="js-dap-undergraduate-interests-list" class="dap-undergraduate-interests-list field-container">
                 #foreach ( $interest in $interests )
@@ -616,7 +622,6 @@
     </span>
   </span>
   
-<div class="wavy-bg" />
   <legend class="show-for-sr">Search for Graduate Degrees and Programs</legend>
   <fieldset>
     <input type="hidden" name="type" value="graduate" />
@@ -877,7 +882,7 @@
                 #undergraduate( $type, $header, $interests )
             
             #elseif ( $type.value == "Graduate" )        
-            
+                #set ( $interests = $_XPathTool.selectNodes( $section, "interestsGrad/interest" ) )
                 #graduate( $type, $header, $interests )
             
             #end
