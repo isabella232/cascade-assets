@@ -2,6 +2,8 @@
 
 ## Overview
 
+2021 update: https://chapman.atlassian.net/wiki/spaces/SMC/pages/1354006529/Degrees+and+Programs
+
 This subproject contains the BarkleyREI project version of Degrees and Programs, including a grunt build system to produce web-ready files. We use an in-house open-source app generator, found here: https://github.com/BarkleyREI/generator-brei-app.
 
 The file structure includes two top level folders, `build` and `source`. The `source` folder contains all precompiled and uncompressed source files, and the `build` folder is where the web-ready files deploy to (see instructions in the Deployment section below).
@@ -48,3 +50,7 @@ The following commands can be used to run, build, and finally, deploy your proje
 Sarah Harissis
 BarkleyREI
 sharissis@barkleyrei.com
+
+
+## Nick Notes (gotchas discovered in 2021)
+- SVGs are located in subprojects/degrees-and-programs/source/static/app/assemble/includes/_svg.hbs and referenced throughout the project via
