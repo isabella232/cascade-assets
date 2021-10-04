@@ -458,6 +458,9 @@
   ul.dropdown-menu {
     width: min-content;
     max-width: max-content;
+    @include respond(phone) {
+      max-width: 100%;
+    }
   }
 }
 
