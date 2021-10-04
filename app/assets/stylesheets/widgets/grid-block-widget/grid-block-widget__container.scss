@@ -320,6 +320,10 @@
     }
   }
 
+  .grid-block-widget__container--rotate button.slick-arrow {
+    align-items: center;
+  }
+  
   .grid-block-widget {
     position: relative;
 
@@ -429,7 +433,7 @@
         position: relative;
         overflow: hidden;
         text-overflow: ellipsis;
-        padding: 0 !important;
+        padding: 0;
       }
 
       &--white {

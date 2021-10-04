@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+# ruby '2.7.0'
 
 gem 'autoprefixer-rails', '~> 6.4'
 gem 'awesome_print'
@@ -20,7 +21,6 @@ gem 'coffee-rails', '~> 5.0.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-gem 'httparty'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

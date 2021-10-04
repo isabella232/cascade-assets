@@ -1,0 +1,18 @@
+{
+    "sourceFile": "app/assets/javascripts/global_functions.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1629215647357,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1629215647357,
+            "name": "Commit-0",
+            "content": "$(function () {\n  if (window.location.href.indexOf(\"dev-www.chapman.edu\") > -1) {\n    // refreshCSS();\n    // refreshJS();\n  }\n});\n\nfunction refreshCSS() {\n  let links = document.getElementsByTagName(\"link\");\n  for (let i = 0; i < links.length; i++) {\n    if (links[i].getAttribute(\"rel\") == \"stylesheet\") {\n      let href = links[i].getAttribute(\"href\").split(\"?\")[0];\n\n      let newHref = href + \"?version=\" + new Date().getMilliseconds();\n\n      links[i].setAttribute(\"href\", newHref);\n    }\n  }\n}\n\nfunction refreshJS() {\n  var scripts = document.getElementsByTagName(\"script\");\n  for (var i = 0; i < scripts.length; i++) {\n    var href = scripts[i].src.split(\"?\")[0];\n    var source = href + \"?version=\" + new Date().getMilliseconds();\n    scripts[i].setAttribute(\"src\", source);\n  }\n}\n\nvar accessibleClick = function (event) {\n  var code = event.charCode || event.keyCode,\n    type = event.type;\n\n  if (type === \"click\") {\n    console.log(\"click\");\n    return true;\n  } else if (type === \"keydown\") {\n    if (code === 32 || code === 13) {\n      event.preventDefault();\n      return true;\n    }\n  } else {\n    return false;\n  }\n};\n\n// IE, Polyfills\nfunction ieObjectFitFallback(imageSelector) {\n  const ua = window.navigator.userAgent;\n  const msie = ua.indexOf(\"MSIE \");\n  if (\n    msie > 0 ||\n    (!!navigator.userAgent.match(/Trident.*rv\\:11\\./) &&\n      $(\".homepage-masthead__photo-grid img\").length)\n  ) {\n    $(imageSelector).each(function () {\n      var t = $(this),\n        s = \"url(\" + t.attr(\"src\") + \")\",\n        p = t.parent(),\n        d = $(\"<div class='ie__fallback--object-fit'></div>\");\n      t.hide();\n      p.append(d);\n      d.css({\n        height: 150,\n        \"background-size\": \"cover\",\n        \"background-repeat\": \"no-repeat\",\n        \"background-position\": \"center\",\n        \"background-image\": s,\n      });\n    });\n    $(imageSelector).css(\"height\", \"100%\");\n  }\n}\n\n// usage:\n// function ShowIEAlert(){\n//   if(isIE()){\n//      console.log(\"User is using IE\");\n//   }\n// }\nfunction isIE() {\n  const ua = window.navigator.userAgent; //Check the userAgent property of the window.navigator object\n  const msie = ua.indexOf(\"MSIE \"); // IE 10 or older\n  const trident = ua.indexOf(\"Trident/\"); //IE 11\n\n  return msie > 0 || trident > 0;\n}"
+        }
+    ]
+}

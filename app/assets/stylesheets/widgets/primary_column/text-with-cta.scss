@@ -35,6 +35,9 @@ html {
             grid-row: 2 / span 1;
             margin-bottom: 1rem;
           }
+          ol, ul {
+            margin-left:32px;
+          }
         }
 
         &__buttons {
