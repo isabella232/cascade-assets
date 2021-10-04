@@ -32,6 +32,7 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
   }
 
   form {
+    
 
     .subsection-heading {
       font-size: 18px;
@@ -172,12 +173,32 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
 
 
 // move to common.scss or similar
+
+span#accelerated-tooltip {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  width: 20px;
+  height: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .title-wrapper.section-heading {
+    display: flex;
+    flex-wrap: wrap;
+  }  
+} 
+  
+
 .degrees-and-programs {
   p {
     line-height: 2.2rem;
     font-size: 1.6rem;
     margin-bottom: 2rem;
   }
+
+  
 
   .container {
     margin-top: 0;
@@ -366,14 +387,13 @@ svg.program-info__close {
   color: $red;
   top: -5px;
   background-color: $white;
+  border-radius: 50%;
 }
 
 .dap-form .program-type .inner:hover {
   .svg-inline--fa.fa-question-circle.fa-w-16 {
     color: $white;
     background-color: $black;
-    border-radius: 50%;
-    outline: 1px solid $black;
     transition: $transition-time;
   }
 }
@@ -403,8 +423,8 @@ svg.program-info__close {
   bottom: -20px;
   left: 50%;
   margin-bottom: 5px;
-  margin-left: 120px;
-  padding: 7px;
+  margin-left: 50px;
+  padding: 12px;
   width: 400px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -437,8 +457,8 @@ svg.program-info__close {
 }
 
 /* Show tooltip content on hover */
-[data-tooltip]:hover:before,
-[data-tooltip]:hover:after,
+span, [data-tooltip]:hover:before,
+span, [data-tooltip]:hover:after,
 [data-tooltip]:focus:before,
 [data-tooltip]:focus:after {
   visibility: visible;
