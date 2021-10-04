@@ -1,6 +1,5 @@
 $(function () {
   if ($(".wavy-masthead").length) {
-    console.log("wavy masthead");
 
     var vid = $(".wavy-masthead video");
     var container = $(".wavy-masthead__container");
