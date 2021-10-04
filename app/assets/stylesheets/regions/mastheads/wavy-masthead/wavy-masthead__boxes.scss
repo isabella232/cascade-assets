@@ -1,0 +1,154 @@
+.wavy-masthead__boxes-container {
+  $imageSize: 350px;
+  margin-top: -20px;
+  &:after {
+    max-height: 220px;
+    background-color: $cu-red;
+    background-size: 100% 150%;
+    background-repeat: no-repeat;
+    background-image: url("https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wavy-lines-bottom__trimmed-black-transparent.png");
+  }
+  @include respond(phone) {
+    // this creates the offset wave on mobile
+    &:before {
+      content: "";
+      position: absolute;
+      background-image: url("https://dev-www.chapman.edu/test-section/nick-test/wavy-masthead/images/masthead-wave-gradient-bottom.png");
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endColorstr="#000000", GradientType=1);
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
+      -webkit-mask-image: url(https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png);
+      -webkit-mask-size: 100% 100%;
+      background-size: 130% 100%;
+      will-change: filter;
+      max-height: 235px;
+      z-index: 3;
+      transform: rotate(0deg);
+      z-index: 99999999;
+    }
+  }
+  .faux-h2 {
+    margin-top: 0;
+    font-size: 2.2rem;
+  }
+
+  .title {
+    color: $white;
+    z-index: 4;
+    position: relative;
+    text-align: center;
+    top: 80px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .wavy-masthead__boxes-wrapper {
+    display: flex;
+    justify-content: space-around;
+    justify-content: center;
+    z-index: 99999999;
+    position: absolute;
+
+    width: 100%;
+    justify-self: center;
+    margin-top: 110px;
+    @include respond(tab-land) {
+      position: relative;
+      flex-direction: column;
+      place-items: center;
+    }
+  }
+  .wavy-masthead-box {
+    margin-right: 24px;
+    @include respond(tab-land) {
+      max-width: 88vw;
+      margin-right: 0;
+    }
+
+    background-color: $white;
+    @include respond(tab-land) {
+      &:first-of-type {
+        // margin-top: 200px;
+      }
+      background-color: transparent;
+      width: 100%;
+    }
+    color: var(--color-cu-red);
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wavy-masthead-box__title {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border: 2px solid $cu-light-grey;
+    max-width: 265px;
+    padding-left: 24px;
+    padding-right: 24px;
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    height: 100%;
+    align-items: center;
+    background-color: $white;
+    text-align: center;
+
+    @include respond(tab-land) {
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 24px;
+    }
+  }
+
+  .wavy-masthead__img {
+    max-height: 215px;
+    height: 215px;
+    @include respond(tab-land) {
+      max-height: $imageSize !important;
+      height: $imageSize !important;
+    }
+    img {
+      width: 265px !important;
+      min-height: 215px !important;
+      height: 100% !important;
+      overflow: hidden;
+      object-fit: cover;
+
+      @include respond(tab-land) {
+        width: 100% !important;
+        max-height: $imageSize !important;
+        min-height: $imageSize !important;
+      }
+    }
+  }
+
+  .wavy-masthead-box {
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    &:hover,
+    &:focus-within {
+      transform: translateY(-2px);
+      img {
+        transform: scale(1.05);
+        max-height: 215px !important;
+        overflow: hidden;
+      }
+      .wavy-masthead__img {
+        max-height: 215px !important;
+        -webkit-transition: all 0.4s ease;
+        transition: all 5s linear;
+        transition-delay: 0.45s;
+        overflow: hidden;
+      }
+    }
+  }
+}
+
+.dev {
+  #uninav {
+    display: none;
+  }
+}
