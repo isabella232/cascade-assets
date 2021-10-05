@@ -22,7 +22,7 @@ task build: :environment do
 end
 
 task do_precompile: :environment do
-  ENV['NODE_ENV'] = ENV['RAILS_ENV']
+  ENV["NODE_ENV"]  ||= "development"
   Rake::Task['assets:clobber'].invoke
   Rake::Task['assets:precompile'].invoke
 end

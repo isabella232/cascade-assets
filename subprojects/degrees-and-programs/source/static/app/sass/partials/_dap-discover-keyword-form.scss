@@ -6,7 +6,7 @@ $palettes: map-merge($palettes, (
 ));
 
 .dap-discover-keyword-form {
-	padding: rem-calc(0 0 25);
+	padding: 0 0 25px;
 	display: none;
 
 	hr {
@@ -14,7 +14,7 @@ $palettes: map-merge($palettes, (
 	}
 
 	fieldset {
-		padding: rem-calc(45 0 0);
+		padding: 45 0 0px;
 	}
 
 	.filter-types > .row {
@@ -53,10 +53,10 @@ $palettes: map-merge($palettes, (
 	.big-label {
 		color: $burgundy;
 		// line-height: $input-height;
-		font-size: rem-calc(22);
+		font-size: 22px;
 		font-weight: 700;
 		display: block;
-		padding: rem-calc(12 0);
+		padding: 12 0px;
 	}
 
 	// scss-lint:disable VendorPrefix

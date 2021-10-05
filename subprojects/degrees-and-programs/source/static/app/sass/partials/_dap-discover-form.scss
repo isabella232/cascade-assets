@@ -8,14 +8,14 @@ $palettes: map-merge($palettes, (
 .dap-discover-form {
 
 	@include breakpoint(medium) {
-		padding: rem-calc(35 0 20);
+		padding: 35 0 20px;
 	}
 
 	.filter-types {
 		display: none;
 
 		.row {
-			padding: rem-calc(45 0 25);
+			padding: 45 0 25px;
 		}
 
 	}

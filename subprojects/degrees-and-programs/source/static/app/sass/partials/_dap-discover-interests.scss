@@ -11,8 +11,8 @@ $palettes: map-merge($palettes, (
 
 	&.lighten-background {
 		background-color: lighten($mine-shaft, 10%);
-		padding: rem-calc(0 10);
-		margin: rem-calc(0 -10);
+		padding: 0 10px;
+		margin: 0 -10px;
 
 		@include breakpoint(medium) {
 			background-color: transparent;
@@ -36,8 +36,8 @@ $palettes: map-merge($palettes, (
 	}
 
 	.row {
-		padding-top: rem-calc(35);
-		max-width: rem-calc(940);
+		padding-top: 35px;
+		max-width: 940px;
 	}
 
 	&.interest-active {
@@ -58,7 +58,7 @@ $palettes: map-merge($palettes, (
 
 	.interest {
 		cursor: pointer;
-		height: rem-calc(150);
+		height: 150px;
 		display: none;
 
 		&.visible {
@@ -139,10 +139,10 @@ $palettes: map-merge($palettes, (
 	.svg-container {
 		background-color: transparent;
 		border-radius: 100%;
-		width: rem-calc(75);
-		height: rem-calc(75);
-		margin: 0 auto rem-calc(5);
-		padding: rem-calc(15);
+		width: 75px;
+		height: 75px;
+		margin: 0 auto 5px;
+		padding: 15px;
 		transition: background-color $transition-time;
 
 		svg {
@@ -154,7 +154,7 @@ $palettes: map-merge($palettes, (
 
 	.title {
 		text-align: center;
-		font-size: rem-calc(18);
+		font-size: 18px;
 		font-weight: 400;
 		line-height: 1.175;
 		display: block;

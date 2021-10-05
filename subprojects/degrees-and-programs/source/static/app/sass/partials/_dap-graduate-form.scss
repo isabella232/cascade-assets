@@ -1,10 +1,243 @@
-$palettes: map-merge($palettes, (
-    'dap-graduate-form': (
-        'core': $black,
-        'background': $white
-    )
-));
+$palettes: map-merge($palettes, ('dap-graduate-form': ('core': $black,
+      'background': $white)));
 
 .dap-graduate-form {
-	padding: rem-calc(75 0 55);
+  padding: 75px 0 55px;
+
+  .dap-graduate-interests-list,
+  .link-list {
+    margin: 0 0 20px;
+
+    @include breakpoint(medium) {
+      column-count: 4;
+      column-gap: $grid-gap;
+    }
+
+    &.show-all {
+      li {
+        display: block;
+
+        &.show-more {
+          display: none;
+        }
+      }
+    }
+
+    li {
+      margin: 0 0 12px;
+      display: none;
+
+      @include breakpoint(medium) {
+        display: block;
+      }
+
+      &:nth-child(1),
+      &:nth-child(2),
+      &:nth-child(3),
+      &:nth-child(4),
+      &:nth-child(5),
+      &:nth-child(6),
+      &:nth-child(7),
+      &:nth-child(8) {
+        display: block;
+      }
+
+      &.show-more {
+        display: block;
+
+        @include breakpoint(medium) {
+          display: none;
+        }
+      }
+    }
+
+    a {
+      color: $white;
+      background-color: transparent;
+      transition: color $transition-time, background-color $transition-time;
+      display: inline-block;
+      padding: 2px;
+
+      &:hover {
+
+        .no-touch &,
+        .no-js & {
+          color: $red;
+          background-color: $white;
+        }
+      }
+    }
+
+    label {
+      border-radius: 4px;
+      font-weight: normal;
+      margin: 0;
+      background-color: white;
+      position: relative;
+      width: 100%;
+      min-height: 30px;
+      text-align: center;
+      font-family: "futura-pt";
+      font-size: 16px;
+      transition: background-color $transition-time, border-color $transition-time;
+
+      &:hover,
+      &focus-within,
+      &:active {
+        background-color: $red;
+        color: $white;
+
+        span {
+          color: $white;
+        }
+      }
+
+      input {
+        display: none;
+        border-radius: 4px;
+
+        &:checked~span {
+          color: $red;
+          color: $white;
+          background-color: $white;
+        }
+      }
+
+      span {
+        color: $black;
+        background-color: transparent;
+        transition: color $transition-time, background-color $transition-time;
+        display: inline-block;
+        padding: 12px;
+      }
+    }
+
+    label {
+      font-weight: normal;
+      margin: 0;
+      background-color: white;
+      position: relative;
+      width: 100%;
+      min-height: 30px;
+      text-align: center;
+      font-family: "futura-pt";
+      font-size: 16px;
+      transition: background-color $transition-time, border-color $transition-time;
+
+      &:hover,
+      &focus-within,
+      &:active {
+        background-color: $red;
+        color: $white;
+
+        span {
+          color: $white;
+        }
+      }
+
+      input {
+        display: none;
+
+        &:checked~span {
+          color: $white;
+          background-color: $red;
+        }
+      }
+
+      span {
+        color: $black;
+        background-color: transparent;
+        transition: color $transition-time, background-color $transition-time;
+        display: inline-block;
+        padding: 12px;
+      }
+    }
+
+    .show-more a {
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+  }
+
+  .reset {
+    color: $white;
+    line-height: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    float: right;
+
+    &:hover {
+
+      .no-touch &,
+      .no-js & {
+        color: $silver;
+      }
+    }
+
+    .icon {
+      vertical-align: top;
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      margin-right: 0.25em;
+    }
+  }
+
+  .faux-button {
+    background-color: $white;
+    border: 1px solid $cu-light-grey-2;
+    color: $black;
+    width: 100%;
+    height: 100%;
+    transition: background-color $transition-time, border-color $transition-time;
+
+    &:hover,
+    &focus-within,
+    &:active {
+      background-color: $red;
+      color: $white;
+
+      span {
+        color: $white;
+      }
+    }
+  }
+}
+
+.dap-form {
+  background: $sand;
+  mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);
+  -webkit-mask-image: url(//www.chapman.edu/_assets/masthead-wave-5177a664d6e3c67601d334ce4dbdbb935396b9676aae8f5a5447040a6eb0bae6.png);
+  -webkit-mask-size: 100% 100%;
+  will-change: filter;
+  min-height: 750px;
+  height: 100%;
+
+}
+
+#js-dap-graduate-form,
+#js-dap-graduate-form {
+  position: relative;
+}
+
+#js-dap-graduate-interests,
+#js-dap-graduate-interests {
+  z-index: 2;
+  position: relative;
+}
+
+.text {
+  &--red {
+    color: $red;
+  }
+}
+
+#dap-graduate-program-bridge {
+  &:after {
+    content: "\f05a";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-left: 2px;
+    font-size: 1.4rem;
+  }
 }

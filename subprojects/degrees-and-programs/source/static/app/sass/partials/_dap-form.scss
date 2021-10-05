@@ -1,159 +1,771 @@
-$palettes: map-merge($palettes, (
-	'dap-form': (
-		'core': $black,
-		'background': $white
-	)
-));
+$palettes: map-merge($palettes, ('dap-form': ('core': $black,
+      'background': $white)));
 
 .dap-form {
-	color: $white;
-	background-color: $mine-shaft;
-	padding: rem-calc(0 10);
+  color: $black;
+  padding: 0 10px;
 
-	@include breakpoint(medium) {
-		padding: rem-calc(0 4);
-	}
+  @include breakpoint(medium) {
+    padding: 0 4px;
+  }
 
-	@include breakpoint(xlarge) {
-		padding: 0;
-	}
+  @include breakpoint(xlarge) {
+    padding: 0;
+  }
 
-	.no-js & {
-		display: none;
-	}
+  .no-js & {
+    display: none;
+  }
 
-	fieldset > .row {
-		margin-bottom: rem-calc(20);
+  fieldset>.row {
+    margin-bottom: 20px;
 
-		&:last-child {
-			margin-bottom: 0;
-		}
+    &:last-child {
+      margin-bottom: 0;
+    }
 
-	}
+  }
 
-	.field-container {
-		position: relative;
-		margin: rem-calc(0 0 20);
-	}
+  .field-container {
+    position: relative;
+    margin: 0 0 20px;
+  }
 
-	form {
+  form {
+    
 
-		.subsection-heading {
-			font-size: rem-calc(18);
-			font-weight: 700;
-			border-bottom: $transparent-white-border;
-			padding: rem-calc(0 0 12);
-			margin: rem-calc(0 0 20);
-		}
+    .subsection-heading {
+      font-size: 18px;
+      font-weight: 700;
+      padding: 0 0 12px;
+      position: relative;
+      font-family: $futura-regular;
 
-	}
+      &.pb-0 {
+        padding-bottom: 0;
+      }
+    }
 
-	.program-type {
-		background-color: transparent;
-		padding: 0;
-		text-align: center;
-		display: block;
-		position: relative;
+  }
 
-		input {
-			display: none;
+  .program-type {
+    background-color: transparent;
+    padding: 0;
+    text-align: center;
+    display: block;
+    position: relative;
+    border-radius: 4px;
 
-			&:checked ~ .inner {
-				background-color: $paprika;
-				border: 1px solid transparent;
+    input {
+      display: none;
 
-				svg {
-					opacity: 1;
-					width: rem-calc(30);
-				}
+      &:checked~.inner {
+        background-color: $red;
+        color: $white;
+        border: 1px solid transparent;
 
-			}
+        svg {
+          opacity: 1;
+          width: 30px;
+        }
 
-		}
+      }
 
-		.inner {
-			background-color: transparent;
-			border: $transparent-white-border;
-			width: 100%;
-			height: 100%;
-			transition: background-color $transition-time, border-color $transition-time;
-		}
+    }
 
-		svg,
-		span {
-			vertical-align: middle;
-			display: inline-block;
-		}
+    .inner {
+      background-color: $white;
+      border-radius: 4px;
+      color: $black;
+      width: 100%;
+      height: 100%;
+      transition: background-color $transition-time, border-color $transition-time;
 
-		svg {
-			overflow: hidden;
-			opacity: 0;
-			width: 0;
-			transition: width $transition-time, opacity $transition-time;
-		}
+      &:hover,
+      &focus-within,
+      &:active {
+        background-color: $red;
+        color: $white;
 
-		span {
-			line-height: inherit;
-		}
+        span {
+          color: $white;
+        }
+      }
+    }
 
-	}
+    svg,
+    span {
+      vertical-align: middle;
+      display: inline-block;
+    }
 
-	.or-separator {
-		position: relative;
-		margin: rem-calc(0 0 20);
+    span {
+      line-height: inherit;
+      font-weight: normal;
+      font-family: $futura-regular;
 
-		span {
-			text-transform: uppercase;
-			line-height: $input-height/2;
-			font-weight: 700;
-			font-size: rem-calc(21);
-			text-align: center;
-			letter-spacing: 1px;
-			display: block;
+      &:active {
+        color: $white;
+      }
+    }
 
-			@include breakpoint(large) {
-				line-height: $input-height;
-			}
+  }
 
-		}
+  .or-separator {
+    position: relative;
+    margin: 0 0 20px;
 
-	}
+    span {
+      text-transform: uppercase;
+      line-height: $input-height/2;
+      font-weight: 700;
+      font-size: 21px;
+      text-align: center;
+      letter-spacing: 1px;
+      display: block;
+
+      @include breakpoint(large) {
+        line-height: $input-height;
+      }
+
+    }
+
+  }
 
 }
 
 .dap-undergraduate-form,
 .dap-graduate-form {
 
-	.filter-types {
+  .filter-types {
 
-		.large-5 {
+    .large-5 {
 
-			&:first-child {
+      &:first-child {
 
-				@include breakpoint(large) {
-					width: 44%;
-				}
+        @include breakpoint(large) {
+          width: 44%;
+        }
 
-			}
+      }
 
-			&:last-child {
+      &:last-child {
 
-				@include breakpoint(large) {
-					width: 44%;
-				}
+        @include breakpoint(large) {
+          width: 44%;
+        }
 
-			}
+      }
 
-		}
+    }
 
-		.large-2 {
+    .large-2 {
 
-			@include breakpoint(large) {
-				width: 12%;
-			}
+      @include breakpoint(large) {
+        width: 12%;
+      }
 
-		}
+    }
 
-	}
+  }
 
+}
+
+
+// move to common.scss or similar
+
+span#accelerated-tooltip {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  width: 20px;
+  height: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .title-wrapper.section-heading {
+    display: flex;
+    flex-wrap: wrap;
+  }  
+} 
+  
+
+.degrees-and-programs {
+  p {
+    line-height: 2.2rem;
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+  }
+
+  
+
+  .container {
+    margin-top: 0;
+    // keeps footer at bottom when transitioning sections
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.program-types {
+  .text--red {
+    background-color: transparent;
+    color: $red;
+  }
+
+  .program-finder__heading {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  hr {
+    color: $grey;
+  }
+
+  button.program-toggle {
+    background-color: $red !important;
+    position: relative;
+    max-width: max-content;
+  }
+}
+
+.field-container {
+  display: flex;
+  grid-gap: $grid-gap;
+  flex-wrap: wrap;
+
+
+  .inner {
+    width: max-content !important;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .program-type.button {
+    width: max-content;
+
+    &:focus {
+      outline: 2px dotted $red;
+    }
+  }
+}
+
+#js-dap-feature {
+  .border-bottom--grey {
+    border-bottom: 1px solid $cu-light-grey;
+  }
+
+  #create-viewbook {
+    cursor: unset;
+  }
+  .program-toggle {
+    cursor: pointer;
+    &__blurb {
+      display: flex;
+      background-color: $white;
+      width: 100%;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+
+      &>div {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+        &:first-of-type {
+          max-width: 200px;
+        }
+      }
+    }
+
+    &__text {
+      padding: 30px;
+      font-family: $futura-regular;
+    }
+
+    &__image {
+      width: 165px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+      }
+    }
+  }
+
+  .line {
+    width: 100%;
+    background-color: pink;
+    position: relative;
+    margin-top: 20px;
+    height: 1px;
+    margin-bottom: 20px;
+  }
+
+  .pb-0 {
+    padding-bottom: 0;
+  }
+
+  .faux-h2 {
+    font-size: 30px;
+    font-family: $futura-regular;
+    font-weight: 400;
+
+    .bold {
+      font-weight: 800;
+    }
+  }
+}
+
+article.active {
+  .active-content:after {
+    opacity: 0;
+    // @include qbal-drop-enter;
+    animation: 700ms triangle-fade-in linear forwards;
+  }
+
+  @keyframes triangle-fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+.active-content:after {
+  content: "";
+  display: block;
+  /* reduce the damage in FF3.0 */
+  position: absolute;
+  /*   bottom: -190px; */
+  bottom: -104px;
+  left: 92px;
+  width: 0;
+  border-width: 45px 45px 0;
+  border-style: solid;
+  border-color: $sand transparent;
+  z-index: 9999;
+  transform: rotate(180deg);
+}
+
+svg.program-info__close {
+  max-width: 20px;
+  color: $red;
+  right: 20px;
+  position: absolute;
+  top: 20px;
+  cursor: pointer;
+
+  &:focus {
+    outline: 2px dotted $red;
+  }
+}
+
+
+
+.title-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon.icon-check {
+  display: none !important;
+}
+
+.svg-inline--fa.fa-question-circle.fa-w-16 {
+  position: absolute;
+  margin-left: 2px;
+  color: $red;
+  top: -5px;
+  background-color: $white;
+  border-radius: 50%;
+}
+
+.dap-form .program-type .inner:hover {
+  .svg-inline--fa.fa-question-circle.fa-w-16 {
+    color: $white;
+    background-color: $black;
+    transition: $transition-time;
+  }
+}
+
+/**
+ * Tooltip Styles
+ */
+
+/* Add this attribute to the element that needs a tooltip */
+[data-tooltip] {
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+
+/* Hide the tooltip content by default */
+[data-tooltip]:before,
+[data-tooltip]:after {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Position tooltip above the element */
+[data-tooltip]:before {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  margin-left: 40px;
+  padding: 20px;
+  width: 400px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #000;
+  background-color: rgba(51, 51, 51, 0.9);
+  color: #fff;
+  content: attr(data-tooltip);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.4;
+  opacity: 1;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Triangle hack to make tooltip look like a speech bubble */
+[data-tooltip]:after {
+  position: absolute;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -5px;
+  width: 0;
+  border-top: 5px solid #000;
+  border-top: 5px solid hsla(0, 0%, 20%, 0.9);
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  content: " ";
+  font-size: 0;
+  line-height: 0;
+}
+
+/* Show tooltip content on hover */
+span, [data-tooltip]:hover:before,
+span, [data-tooltip]:hover:after,
+[data-tooltip]:focus:before,
+[data-tooltip]:focus:after {
+  visibility: visible;
+}
+
+
+.flex-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.dap-results-header .field-container {
+  display: flex;
+  width: auto;
+  flex-wrap: nowrap;
+  grid-gap: 0;
+  width: auto;
+}
+
+.dap-results-header button {
+  position: relative !important;
+  width: 50px !important;
+  height: 50px;
+  outline: 1px solid $grey;
+}
+
+#dap-undergraduate-keyword,
+#dap-graduate-keyword {
+  min-width: 20vw;
+}
+
+form {
+  .link-list {
+    margin: 0 0 20px;
+
+    @include breakpoint(medium) {
+      column-count: 4;
+      column-gap: $grid-gap;
+    }
+
+    &.show-all {
+      li {
+        display: block;
+
+        &.show-more {
+          display: none;
+        }
+      }
+    }
+
+    li {
+      margin: 0 0 12px;
+      display: none;
+
+      @include breakpoint(medium) {
+        display: block;
+      }
+
+      &:nth-child(1),
+      &:nth-child(2),
+      &:nth-child(3),
+      &:nth-child(4),
+      &:nth-child(5),
+      &:nth-child(6),
+      &:nth-child(7),
+      &:nth-child(8) {
+        display: block;
+      }
+
+      &.show-more {
+        display: block;
+
+        @include breakpoint(medium) {
+          display: none;
+        }
+      }
+    }
+
+    a {
+      color: $white;
+      background-color: transparent;
+      transition: color $transition-time, background-color $transition-time;
+      display: inline-block;
+      padding: 2px;
+
+      &:hover {
+
+        .no-touch &,
+        .no-js & {
+          color: $red;
+          background-color: $white;
+        }
+      }
+    }
+
+    label {
+      border-radius: 4px;
+      font-weight: normal;
+      margin: 0;
+      background-color: white;
+      position: relative;
+      width: 100%;
+      min-height: 30px;
+      text-align: center;
+      font-family: "futura-pt";
+      font-size: 16px;
+      transition: background-color $transition-time, border-color $transition-time;
+
+      &:hover,
+      &focus-within,
+      &:active {
+        background-color: $red;
+        color: $white;
+
+        span {
+          color: $white;
+        }
+      }
+
+      input {
+        display: none;
+        border-radius: 4px;
+
+        &:checked~span {
+          color: $red;
+          background-color: $white;
+        }
+      }
+
+      span {
+        color: $black;
+        background-color: transparent;
+        transition: color $transition-time, background-color $transition-time;
+        display: inline-block;
+        padding: 12px;
+      }
+    }
+
+    label {
+      font-weight: normal;
+      margin: 0;
+      background-color: white;
+      position: relative;
+      width: 100%;
+      min-height: 30px;
+      text-align: center;
+      font-family: "futura-pt";
+      font-size: 16px;
+      transition: background-color $transition-time, border-color $transition-time;
+
+      &:hover,
+      &focus-within,
+      &:active {
+        background-color: $red;
+        color: $white;
+
+        span {
+          color: $white;
+        }
+      }
+
+      input {
+        display: none;
+
+        &:checked~span {
+          color: $white;
+          background-color: $red;
+        }
+      }
+
+      span {
+        color: $black;
+        background-color: transparent;
+        transition: color $transition-time, background-color $transition-time;
+        display: inline-block;
+        padding: 12px;
+      }
+    }
+
+    .show-more a {
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+  }
+
+}
+
+.dap-section {
+
+  .row>.columns {
+    // animation-delay: 500ms;
+    // @include qbal-slideUp-enter;
+  }
+}
+
+#js-dap-section-graduate {
+
+  // messing with Nick branding
+
+  &.dark-mode {
+    transition: 350ms linear;
+
+    .dap-form {
+      background-color: #231f20;
+    }
+
+    h4,
+    p {
+      color: $white;
+    }
+
+    .dap-section-accordion-trigger {
+      background-color: white;
+      color: $panther-black;
+    }
+
+    .program-toggle h4 {
+      color: white !important;
+    }
+
+    .program-toggle__blurb {
+      background-color: $cu-red;
+    }
+
+    // end messing with Nick branding
+
+    &.active {
+      form {
+        .columns {
+          @include qbal-slideRight-enter;
+          animation-duration: 750ms;
+          // @include qbal-slideUp-enter;
+
+
+
+          h4.pb-0 {
+            @include qbal-fade-enter;
+            animation-duration: 2s;
+          }
+        }
+      }
+    }
+
+    &:not(.active) {
+      @include qbal-slideRight-exit;
+      animation-duration: 750ms;
+
+    }
+  }
+}
+
+#js-dap-section-graduate.active form {
+  animation-delay: 1s;
+  @include qbal-slideRight-enter;
+  animation-duration: 750ms;
+}
+
+#js-dap-section-undergraduate.active form {
+  animation-delay: 1s;
+  @include qbal-slideLeft-enter;
+  animation-duration: 750ms;
+
+  h4.pb-0 {
+    // @include qbal-slideLeft-enter;
+    // animation-duration: 750ms;
+  }
+}
+
+.dap-results {
+  // @include qbal-fade-enter;
+  @include qbal-slideUp-enter;
+  animation-duration: 1.3s;
+  // animation-duration: 500ms;
+
+}
+
+.dap-results .result.active .description .title-wrapper {
+  display: block;
+  width: auto;
+}
+
+.dark-mode__toggle {
+  position: absolute;
+  right: 50px;
+  top: 50px;
+  z-index: 99999;
+  cursor: pointer;
+
+  .fa-sun {
+    color: white;
+    @include qbal-fade-enter;
+    animation-duration: 1s;
+  }
+}
+
+#js-dap-results-undergraduate .field-container.graduate-only {
+  display: none !important;
+}
+
+#js-dap-results-graduate .field-container.undergraduate-only {
+  display: none !important;
+}
+
+section.dap-section:not(.active) {
+  display: none !important;
+}
+
+.program-toggle {
+  cursor: pointer;
 }

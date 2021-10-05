@@ -5,7 +5,7 @@ $arial: Arial, sans-serif;
 $futura: "futura-pt", Arial, sans-serif;
 
 // Foundation overrides
-@import 'overrides/_foundation';
+@import "overrides/_foundation";
 
 // Color palette is a mixin from IBM that
 // lets you organize colors inside a SASS
@@ -16,7 +16,7 @@ $futura: "futura-pt", Arial, sans-serif;
 //
 // There are examples of how to use it peppered
 // into some of the default common styles.
-@import 'color-palette/_color';
+@import "color-palette/_color";
 
 // Colors
 $burgundy: #a50034; // Chapman Red
@@ -30,8 +30,142 @@ $dark-gray: #353430; // Darker Gray
 $mine-shaft: #2d2d2d; // Darkest Gray
 $boulder: #777777;
 
+// From Rails
+$uninav-div-height: 60px;
+$utility-button-width: 60px;
+// Colors
+/* These are colors commonly found on the site.
+Typically, if a color is used more than once or twice,
+it should be added here as a variable. Changing the value
+of these variables will affect the colors sitewide. */
+$futura-regular: "futura-pt", Arial, sans-serif;
+$futura: $futura-regular;
+$futura-condensed: "futura-pt-condensed", Arial, sans-serif;
+$arial: Arial, sans-serif;
+$minion: "minion-pro", Arial, serif;
+$font-stack-body: $arial;
+$font-stack-heading: $futura-regular;
+$font-stack-heading-emphasis: $futura-condensed;
+$cu-red: #a50034;
+$cu-red-rgb-transparent: rgba($cu-red, 0.95);
+$cu-dark-red: #851c2b;
+$white: rgb(255, 255, 255);
+$cu-off-white: #f7f6f0;
+$cu-light-grey: #eaeaea;
+$cu-light-grey-2: #ddd;
+$cu-warm-light-grey: #eaeaea;
+$cardinal: #a50034;
+$cardinal-hover: #810029;
+$pillar: #686259;
+$panther-black: #231f20;
+$pb: $panther-black;
+$theme-bg-color-alpha: transparent;
+$panther-black: #231f20;
+$cu-black: $panther-black;
+$content-padding: 2%;
+$line-height: 2.4rem;
+$red-button-hover: #c8003f;
+$red-button-active: #88002b;
+$white: #ffffff;
+$white-hover: darken($white, 8%);
+$brown: #896d49;
+$teal: #009ca6;
+$pacific: $teal;
+$teal-hover: #24d4bf;
+$teal2: #02bac2;
+$teal2-hover: #01cdd4;
+$teal2-light: #a6ddd1;
+$red: $cu-red;
+$red-secondary: lighten($red, 8%);
+$red-tertiary: darken($red, 8%);
+$red-hover: #ce0041;
+$red-active: #7f0026;
+$grey: #2f2f2f;
+$grey-hover: #4c4b45;
+$grey2: #6e6e66;
+$grey2-hover: #918e87;
+/* These are colors of common elements or states. */
+$cu-font-color: $grey;
+$cu-link-hover: #bb223c;
+$cu-link-down: $cu-dark-red;
+$cu-form-shadow: #797564;
+$cu-border: #a58f75;
+/* These colors are specifically for the class "newbutton". */
+$new-button-primary: $teal2-hover;
+$new-button-secondary: $teal2;
+$new-button-hover-primary: $teal2-light;
+$new-button-hover-secondary: $teal2;
+// // Theme Specific Colors
+// /* These are theme specific colors. I moved them here
+// to make it easier to edit the colors for each theme
+// all in one place. Variables prefixed with "theme" are
+// colors found in multiple themes. The others are specific
+// to a theme. */
+$theme-light-grey: #dbdfcf; // Light grey found in multiple themes
+$grey-light: #ccc;
+$light-grey: $grey-light;
+$uninav-light-grey: #ddd;
+$theme-yellow: #d4e13c; // Yellow found in multiple themes
+$theme-blue: #006185; // Blue found in multiple themes
+$asbe-primary: $red;
+$asbe-secondary: $red-secondary;
+$asbe-tertiary: $red-tertiary;
+$education-primary: $red;
+$education-secondary: $red-secondary;
+$education-tertiary: $red-tertiary;
+$communication-primary: $red;
+$communication-secondary: $red-secondary;
+$communication-tertiary: $red-tertiary;
+$copa-primary: $red;
+$copa-secondary: $red-secondary;
+$copa-tertiary: $red-tertiary;
+$crean-primary: $red;
+$crean-secondary: $red-secondary;
+$crean-tertiary: $red-tertiary;
+$dance-primary: $red;
+$dance-secondary: $red-secondary;
+$dance-tertiary: $red-tertiary;
+$dodge-primary: $red;
+$dodge-secondary: $red-secondary;
+$dodge-tertiary: $red-tertiary;
+$music-primary: $red;
+$music-secondary: $red-tertiary;
+$music-tertiary: $red-secondary;
+$pharmacy-primary: $red;
+$pharmacy-secondary: $red-secondary;
+$pharmacy-tertiary: $red-tertiary;
+$scst-primary: $red;
+$scst-secondary: $red-secondary;
+$scst-tertiary: $red-tertiary;
+$theatre-primary: $red;
+$theatre-secondary: $red-secondary;
+$theatre-tertiary: $red-tertiary;
+$wilkinson-primary: $red;
+$wilkinson-secondary: $red-secondary;
+$wilkinson-tertiary: $red-tertiary;
+$law-primary: $cardinal;
+$law-secondary: $cardinal-hover;
+
+/* Our Base Spacing Unit: Use multiples of this variable */
+$base-spacing: 16px;
+$medium-spacing: 20px;
+
+/* Widget specific colors */
+$cardinal: #a50034;
+$cardinal-alpha: rgba(165, 0, 52, 0.5);
+$pillar: #686259;
+$panther-black: #231f20;
+$white: rgba(255, 255, 255, 255);
+$white-alpha: rgba(255, 255, 240, 0.8);
+$white-alpha-50: rgba(255, 255, 240, 0.5);
+$panther-black-alpha: rgba($panther-black, 0.8);
+$pillar: #686259;
+$sand: #f6f2e8;
+$sand-alpha: rgba($sand, 0.8);
+
 // Measurements, etc.
-$transition-time: 0.45s;
+$transition-time: 150ms;
 $transparent-white-border: 1px solid rgba($white, 0.425);
 $image-bg-position: center 25%;
-$input-height: rem-calc(50);
+$input-height: 50px;
+$grid-gap: 12px;

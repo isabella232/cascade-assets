@@ -1,135 +1,326 @@
 <!-- partial:dap-undergraduate-form -->
 <form id="js-dap-undergraduate-form" class="dap-undergraduate-form" action="">
-	<legend class="show-for-sr">Search for Undergraduate Degrees and Programs</legend>
-	<fieldset>
+  <div class="wavy-bg"></div>
 
-		<input type="hidden" name="type" value="undergraduate">
-		
-		<div id="js-dap-undergraduate-program-types" class="program-types">
-			<div class="row">
-			
-				<!-- Degrees and Programs Checkboxes -->
-				<div class="columns small-12">
-					<h4 class="subsection-heading">Degrees &amp; Programs:</h4>
-				</div>
-				<div class="columns small-12 medium-6">
-					<div class="field-container">
-						<label class="program-type button" for="dap-undergraduate-program-all">
-							<input id="dap-undergraduate-program-all" name="dap-undergraduate-program-all" type="checkbox" value="all" />
-							<div class="inner">
-								{{svg "check"}}
-								<span>All Undergraduate Programs</span>
-							</div>
-						</label>
-					</div>
-				</div>
-				<div class="columns small-12 medium-6">
-					<div class="field-container">
-						<label class="program-type button" for="dap-undergraduate-program-major">
-							<input id="dap-undergraduate-program-major" name="dap-undergraduate-program-major" type="checkbox" value="major,integrated/4+1,accelerated 3+2" />
-							<div class="inner">
-								{{svg "check"}}
-								<span>Majors</span>
-							</div>
-						</label>
-					</div>
-				</div>
-				<div class="columns small-12 medium-6">
-					<div class="field-container">
-						<label class="program-type button" for="dap-undergraduate-program-minor">
-							<input id="dap-undergraduate-program-minor" name="dap-undergraduate-program-minor" type="checkbox" value="minor" />
-							<div class="inner">
-								{{svg "check"}}
-								<span>Minors</span>
-							</div>
-						</label>
-					</div>
-				</div>
-				<div class="columns small-12 medium-6">
-					<div class="field-container">
-						<label class="program-type button" for="dap-undergraduate-program-bridge">
-							<input id="dap-undergraduate-program-bridge" name="dap-undergraduate-program-bridge" type="checkbox" value="bridge,integrated/4+1,accelerated 3+2" />
-							<div class="inner">
-								{{svg "check"}}
-								<span>Accelerated &amp; Bridge Programs</span>
-							</div>
-						</label>
-					</div>
-				</div>
+  <legend class="show-for-sr">Search for Undergraduate Degrees and Programs</legend>
+  <fieldset>
 
-			</div>
-		</div>
-		
-		<div id="js-dap-undergraduate-interests" class="dap-undergraduate-interests">
-			<div class="row">
-				
-				<!-- I'm Interested In Checkboxes -->
-				<div class="columns small-12 clearfix">
-					<a id="js-reset-undergraduate-interests" class="reset" href="javascript:void(0)" title="Reset interests filters">{{svg "reset"}} Reset</a>
-					<h4 class="subsection-heading">I'm Interested In:</h4>
-				</div>
-				<div class="columns small-12">
-					<ul id="js-dap-undergraduate-interests-list" class="dap-undergraduate-interests-list">
-						{{#parseFixture 'dap-feature.json'}}
-							{{#each interests}}
-								<li>
-									<label for="dap-undergraduate-interest-{{id}}">
-										<input id="dap-undergraduate-interest-{{id}}" name="dap-undergraduate-interest-{{id}}" type="checkbox" value="{{id}}">
-										<span>{{{title}}}</span>
-									</label>
-								</li>
-							{{/each}}
-						{{/parseFixture}}
-						<li class="show-more">
-							<a href="javascript:void(0)">+ Show More</a>
-						</li>
-					</ul>
-				</div>
+    <input type="hidden" name="type" value="undergraduate">
 
-			</div>
-		</div>
+    <div id="js-dap-undergraduate-program-types" class="program-types">
+      <div class="row">
 
-		<div id="js-dap-undergraduate-filter-types" class="filter-types">
-			<div class="row">
+        <!-- Degrees and Programs Checkboxes -->
+        <div class="columns small-12">
+          <div class="title-wrapper section-heading">
+            <h4 class="pb-0 subsection-heading faux-h2"><span class="bold text--red">Undergraduate</span> Degree
+              and
+              Program Finder
+            </h4>
+            <div class="dap-section-accordion-trigger program-toggle">Graduate Degree Finder</div>
+          </div>
+          <div class="line"></div>
+        </div>
+        <div class="columns small-12 medium-6">
+          <h4 class="subsection-heading">Program Type:</h4>
+          <div class="field-container">
+            <label tabindex="0" class="program-type button" for="dap-undergraduate-program-all">
+              <input id="dap-undergraduate-program-all" name="dap-undergraduate-program-all" type="checkbox"
+                value="all" />
+              <div class="inner">
+                {{svg "check"}}
+                <span>All</span>
+              </div>
+            </label>
+            <label tabindex="0" class="program-type button" for="dap-undergraduate-program-majors">
+              <input id="dap-undergraduate-program-majors" name="dap-undergraduate-program-majors" type="checkbox"
+                value="major,integrated/4+1,accelerated 3+2" />
+              <div class="inner">
+                {{svg "check"}}
 
-				<!-- Filter by Schools and Colleges -->
-				<div class="columns small-12 large-5">
-					<div class="field-container custom-select-container">
-						<label for="dap-undergraduate-school" class="show-for-sr">Filter by Schools and Colleges</label>
-						<select name="dap-undergraduate-school" id="dap-undergraduate-school">
-							<option disabled="disabled" selected="selected" value="none">Filter by Schools and Colleges</option>
-							<option value="all">All Schools and Colleges</option>
-							{{#parseFixture 'dap-feature.json'}}
-						    	{{#each schools}}
-						    		<option value="{{id}}">{{{title}}}</option>
-					    		{{/each}}
-						    {{/parseFixture}}
-						</select>
-					</div>
-				</div>
+                <span>Majors</span>
+              </div>
+            </label>
+            <label tabindex="0" class="program-type button" for="dap-undergraduate-program-minor">
+              <input id="dap-undergraduate-program-minor" name="dap-undergraduate-program-minor" type="checkbox"
+                value="minor" />
+              <div class="inner">
+                {{svg "check"}}
 
-				<!-- Or Separator -->
-				<div class="columns small-12 large-2">
-					<div class="or-separator">
-						<span>Or</span>
-					</div>
-				</div>
+                <span>Minors</span>
+              </div>
+            </label>
+            <label tabindex="0" class="program-type button dap-undergraduate-program-bridge"
+              for="dap-undergraduate-program-bridge">
 
-				<!-- Search for Degrees and Programs -->
-				<div class="columns small-12 large-5">
-					<div class="field-container">
-						<label for="dap-undergraduate-keyword" class="show-for-sr">Search for Degrees and Programs</label>
-						<input id="dap-undergraduate-keyword" name="dap-undergraduate-keyword" class="input-with-button" type="text" placeholder="Search Degrees &amp; Programs">
-						<button type="submit">
-							<span class="show-for-sr">Search for Degrees and Programs</span>
-							{{svg "search"}}
-						</button>
-					</div>
-				</div>
+              <input id="dap-undergraduate-program-bridge" name="dap-undergraduate-program-bridge" type="checkbox"
+                value="bridge,integrated/4+1,accelerated 3+2" />
+              <div class="inner" xmlns="http://www.w3.org/2000/svg">
 
-			</div>
-		</div>
 
-	</fieldset>
+                <span>Accelerated (4+1) Programs </span>
+                {{!-- SVG appears to be invoked in dap-undergraduate-form.hbs --}}
+                
+                <span tabindex="0" id="accelerated-tooltip" data-tooltip="The Accelerated MBA program is open only to current Chapman University undergraduate students. This program allows students to obtain both an undergraduate degree and graduate business (MBA) degree with just one additional year of study beyond the traditional four years.">
+                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="question-circle"
+                  class="svg-inline--fa fa-question-circle fa-w-16" role="img" viewBox="0 0 512 512">
+                    <title data-tooltip="The Accelerated MBA program is open only to current Chapman University undergraduate students. This program allows students to obtain both an undergraduate degree and graduate business (MBA) degree with just one additional year of study beyond the traditional four years."><div data-tooltip="The Accelerated MBA program is open only to current Chapman University undergraduate students. This program allows students to obtain both an undergraduate degree and graduate business (MBA) degree with just one additional year of study beyond the traditional four years.">
+                </div></title>
+                  <path fill="currentColor"
+                    d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zM262.655 90c-54.497 0-89.255 22.957-116.549 63.758-3.536 5.286-2.353 12.415 2.715 16.258l34.699 26.31c5.205 3.947 12.621 3.008 16.665-2.122 17.864-22.658 30.113-35.797 57.303-35.797 20.429 0 45.698 13.148 45.698 32.958 0 14.976-12.363 22.667-32.534 33.976C247.128 238.528 216 254.941 216 296v4c0 6.627 5.373 12 12 12h56c6.627 0 12-5.373 12-12v-1.333c0-28.462 83.186-29.647 83.186-106.667 0-58.002-60.165-102-116.531-102zM256 338c-25.365 0-46 20.635-46 46 0 25.364 20.635 46 46 46s46-20.636 46-46c0-25.365-20.635-46-46-46z" data-tooltip="The Accelerated MBA program is open only to current Chapman University undergraduate students. This program allows students to obtain both an undergraduate degree and graduate business (MBA) degree with just one additional year of study beyond the traditional four years."/>
+                </svg>
+                </span>
+              </div>
+            </label>
+
+          </div>
+          <div class="clearfix">
+            <div class="title-wrapper">
+              <h4 class="subsection-heading">Areas of Study:</h4>
+              <a id="js-reset-undergraduate-interests" class="reset" href="javascript:void(0)"
+                title="Reset interests filters"><svg class="icon icon-reset">
+                  <use xlink:href="#icon-reset"></use>
+                </svg> Reset</a>
+            </div>
+            <ul id="js-dap-undergraduate-interests-list" class="dap-undergraduate-interests-list field-container">
+              <li>
+                <label for="dap-undergraduate-interest-analytical-thinking">
+                  <input id="dap-undergraduate-interest-analytical-thinking"
+                    name="dap-undergraduate-interest-analytical-thinking" type="checkbox" value="Analytical Thinking">
+                  <span>Analytical Thinking</span>
+                </label>
+              </li>
+              <li>
+                <label for="dap-undergraduate-interest-innovating-interest-b">
+                  <input id="dap-undergraduate-interest-innovating-interest-b"
+                    name="dap-undergraduate-interest-innovating-interest-b" type="checkbox"
+                    value="innovating-interest-b">
+                  <span>Innovating Interest B</span>
+                </label>
+              </li>
+              <li>
+                <label for="dap-undergraduate-interest-innovating-interest-c">
+                  <input id="dap-undergraduate-interest-innovating-interest-c"
+                    name="dap-undergraduate-interest-innovating-interest-c" type="checkbox"
+                    value="innovating-interest-c">
+                  <span>Innovating Interest C</span>
+                </label>
+              </li>
+              <li>
+                <label for="dap-undergraduate-interest-innovating-interest-d">
+                  <input id="dap-undergraduate-interest-innovating-interest-d"
+                    name="dap-undergraduate-interest-innovating-interest-d" type="checkbox"
+                    value="innovating-interest-d">
+                  <span>Innovating Interest D</span>
+                </label>
+              </li>
+              <li>
+                <label for="dap-undergraduate-interest-movies-television">
+                  <input id="dap-undergraduate-interest-movies-television"
+                    name="dap-undergraduate-interest-movies-television" type="checkbox" value="movies-television">
+                  <span>Movies &amp; Television</span>
+                </label>
+              </li>
+              <li>
+                <label for="dap-undergraduate-interest-writing">
+                  <input id="dap-undergraduate-interest-writing" name="dap-undergraduate-interest-writing"
+                    type="checkbox" value="writing">
+                  <span>Writing</span>
+                </label>
+              </li>
+              <li>
+                <label for="dap-undergraduate-interest-performing-arts">
+                  <input id="dap-undergraduate-interest-performing-arts"
+                    name="dap-undergraduate-interest-performing-arts" type="checkbox" value="performing-arts">
+                  <span>Performing Arts</span>
+                </label>
+              </li>
+              <li>
+                <label for="dap-undergraduate-interest-visual-studio-arts">
+                  <input id="dap-undergraduate-interest-visual-studio-arts"
+                    name="dap-undergraduate-interest-visual-studio-arts" type="checkbox" value="visual-studio-arts">
+                  <span>Visual &amp; Studio Arts</span>
+                </label>
+              </li>
+              <li>
+                <label for="dap-undergraduate-interest-helping-interest-a">
+                  <input id="dap-undergraduate-interest-helping-interest-a"
+                    name="dap-undergraduate-interest-helping-interest-a" type="checkbox" value="helping-interest-a">
+                  <span>Helping Interest A</span>
+                </label>
+              </li>
+              <li>
+                <label for="dap-undergraduate-interest-helping-interest-b">
+                  <input id="dap-undergraduate-interest-helping-interest-b"
+                    name="dap-undergraduate-interest-helping-interest-b" type="checkbox" value="helping-interest-b">
+                  <span>Helping Interest B</span>
+                </label>
+              </li>
+              <li>
+                <label for="dap-undergraduate-interest-helping-interest-c">
+                  <input id="dap-undergraduate-interest-helping-interest-c"
+                    name="dap-undergraduate-interest-helping-interest-c" type="checkbox" value="helping-interest-c">
+                  <span>Helping Interest C</span>
+                </label>
+              </li>
+              <li>
+                <label for="dap-undergraduate-interest-helping-interest-d">
+                  <input id="dap-undergraduate-interest-helping-interest-d"
+                    name="dap-undergraduate-interest-helping-interest-d" type="checkbox" value="helping-interest-d">
+                  <span>Helping Interest D</span>
+                </label>
+              </li>
+              <li>
+                <label for="dap-undergraduate-interest-experiencing-interest-a">
+                  <input id="dap-undergraduate-interest-experiencing-interest-a"
+                    name="dap-undergraduate-interest-experiencing-interest-a" type="checkbox"
+                    value="experiencing-interest-a">
+                  <span>Experiencing Interest A</span>
+                </label>
+              </li>
+              <li>
+                <label for="dap-undergraduate-interest-experiencing-interest-b">
+                  <input id="dap-undergraduate-interest-experiencing-interest-b"
+                    name="dap-undergraduate-interest-experiencing-interest-b" type="checkbox"
+                    value="experiencing-interest-b">
+                  <span>Experiencing Interest B</span>
+                </label>
+              </li>
+              <li>
+                <label for="dap-undergraduate-interest-experiencing-interest-c">
+                  <input id="dap-undergraduate-interest-experiencing-interest-c"
+                    name="dap-undergraduate-interest-experiencing-interest-c" type="checkbox"
+                    value="experiencing-interest-c">
+                  <span>Experiencing Interest C</span>
+                </label>
+              </li>
+              <li>
+                <label for="dap-undergraduate-interest-experiencing-interest-d">
+                  <input id="dap-undergraduate-interest-experiencing-interest-d"
+                    name="dap-undergraduate-interest-experiencing-interest-d" type="checkbox"
+                    value="experiencing-interest-d">
+                  <span>Experiencing Interest D</span>
+                </label>
+              </li>
+              <li>
+                <label for="dap-undergraduate-interest-making-interest-a">
+                  <input id="dap-undergraduate-interest-making-interest-a"
+                    name="dap-undergraduate-interest-making-interest-a" type="checkbox" value="making-interest-a">
+                  <span>Making Interest A</span>
+                </label>
+              </li>
+              <li>
+                <label for="dap-undergraduate-interest-making-interest-b">
+                  <input id="dap-undergraduate-interest-making-interest-b"
+                    name="dap-undergraduate-interest-making-interest-b" type="checkbox" value="making-interest-b">
+                  <span>Making Interest B</span>
+                </label>
+              </li>
+              <li>
+                <label for="dap-undergraduate-interest-making-interest-c">
+                  <input id="dap-undergraduate-interest-making-interest-c"
+                    name="dap-undergraduate-interest-making-interest-c" type="checkbox" value="making-interest-c">
+                  <span>Making Interest C</span>
+                </label>
+              </li>
+              <li>
+                <label for="dap-undergraduate-interest-making-interest-d">
+                  <input id="dap-undergraduate-interest-making-interest-d"
+                    name="dap-undergraduate-interest-making-interest-d" type="checkbox" value="making-interest-d">
+                  <span>Making Interest D</span>
+                </label>
+              </li>
+              <li class="show-more">
+                <a href="javascript:void(0)">+ Show More</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="columns small-12 medium-6">
+          <div class="field-container">
+            <div id="create-viewbook" class="program-toggle program-toggle__blurb">
+              <div class="program-toggle__image">
+                  <img src="../img/phone.png" alt="">
+              </div>
+              <div class="program-toggle__text">
+                <h4 class="subsection-heading">Create a Custom Viewbook</h4>
+                <p>Learn more about all the programs you’re interested in!
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="field-container">
+            <div class="program-toggle program-toggle__blurb">
+              <div class="program-toggle__image">
+                  <img src="../img/grad-hat.png" alt="">
+
+              </div>
+              <div class="program-toggle__text">
+                <h4 class="subsection-heading">Undergraduate Degree and Program Finder</h4>
+                <p>If you are looking for an undergraduate program, please use our Undergraduate Degree and Program
+                  Finder.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+    </div>
+    <div class="dp-grid">
+      <div id="js-dap-undergraduate-interests" class="dap-undergraduate-interests">
+
+      </div>
+    </div>
+
+    {{!-- the search fields -- move these above results area --}}
+    {{!-- <div id="js-dap-undergraduate-filter-types" class="filter-types">
+      <div class="row">
+
+        <!-- Filter by Schools and Colleges -->
+        <div class="columns small-12 large-5">
+          <div class="field-container custom-select-container">
+            <label tabindex="0" for="dap-undergraduate-school" class="show-for-sr">Filter by Schools and
+              Colleges</label>
+            <select name="dap-undergraduate-school" id="dap-undergraduate-school">
+              <option disabled="disabled" selected="selected" value="none">Filter by Schools and Colleges</option>
+              <option value="all">All Schools and Colleges</option>
+              {{#parseFixture 'dap-feature.json'}}
+              {{#each schools}}
+              <option value="{{id}}">{{{title}}}</option>
+              {{/each}}
+              {{/parseFixture}}
+            </select>
+          </div>
+        </div>
+
+        <!-- Or Separator -->
+        <div class="columns small-12 large-2">
+          <div class="or-separator">
+            <span>Or</span>
+          </div>
+        </div>
+
+        <!-- Search for Degrees and Programs -->
+        <div class="columns small-12 large-5">
+          <div class="field-container">
+            <label tabindex="0" for="dap-undergraduate-keyword" class="show-for-sr">Search for Degrees and
+              Programs</label>
+            <input id="dap-undergraduate-keyword" name="dap-undergraduate-keyword" class="input-with-button" type="text"
+              placeholder="Search Degrees &amp; Programs">
+            <button type="submit">
+              <span class="show-for-sr">Search for Degrees and Programs</span>
+              {{svg "search"}}
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div> --}}
+
+  </fieldset>
 </form>
+
 <!-- end partial:dap-undergraduate-form -->
