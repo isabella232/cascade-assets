@@ -5,8 +5,15 @@
 #set ( $mastheadType = $masthead.getChild('mastheadType').value )
 #set ( $showBoxes = $masthead.getChild('boxes').getChild('show').value )
 
+
 #if ( $mastheadType == 'No Masthead' )
 	<!-- mastheadType: "No Masthead" -->
+
+#elseif ( $mastheadType == 'Wavy Masthead' )
+
+#import("_cascade/formats/modular/widgets/Wavy Masthead")
+## end
+
 
 ## Branded Masthead design added Nov 2016.
 #elseif ( $mastheadType == 'Branded - New' )
