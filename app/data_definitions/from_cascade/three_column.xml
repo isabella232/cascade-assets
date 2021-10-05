@@ -4,7 +4,7 @@
     <!-- radio-item show-fields map to groups below -->
     <!-- radio-item values map to Masthead format selectors -->
     <text field-id="ff6bcc38c0a81e5f43ef9b37ac5ffc0b" help-text="these are the new wider mastheads available" identifier="mastheadType" label="Masthead Type" type="radiobutton">
-      <radio-item show-fields="masthead/wavyMasthead" value="Wavy Masthead"/>
+      <radio-item show-fields="masthead/wavyMasthead" value="Wavy Masthead" label="Beta Test - 2021 Mastheads"/>
       <radio-item show-fields="masthead/branded201611" value="Branded - New"/>
       <radio-item show-fields="masthead/slider201611" value="Slider - New"/>
       <radio-item show-fields="masthead/boxes" value="Boxes"/>
@@ -52,7 +52,7 @@
             <radio-item label="No" value="no"/>
           </text>
           <shared-field field-id="8565a45dc0a81e8a3b0002935e767e2c" identifier="link" maximum-number="3" path="cta"/>
-          <shared-field field-id="856393ecc0a81e8a3b00029331cf9586" identifier="dropDownButton" path="Drown Down Button"/>
+          <shared-field field-id="856393ecc0a81e8a3b00029331cf9586" identifier="dropDownButton" path="dropdown-button"/>
         </group>
       </group>
       <group collapsed="true" identifier="multipleBoxes" label="Multiple Boxes">

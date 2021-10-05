@@ -1,7 +1,7 @@
 <system-data-structure>
   <group collapsed="true" identifier="masthead" label="Masthead">
     <text default="Side Panel Hero" field-id="ff6bcbe1c0a81e5f43ef9b37f7b68865" identifier="mastheadType" label="Style:" type="radiobutton">
-      <radio-item show-fields="masthead/wavyMasthead" value="Wavy Masthead"/>
+      <radio-item show-fields="masthead/wavyMasthead" value="Wavy Masthead" label="Beta Test - 2021 Mastheads"/>
       <radio-item show-fields="masthead/sidePanelHero" value="Side Panel Hero"/>
       <radio-item show-fields="masthead/brochureMasthead" value="Brochure"/>
       <radio-item show-fields="masthead/subbrandMastheadTypes" value="Sub-Brand"/>
@@ -50,7 +50,7 @@
             <radio-item label="No" value="no"/>
           </text>
           <shared-field field-id="8565a45dc0a81e8a3b0002935e767e2c" identifier="link" maximum-number="3" path="cta"/>
-          <shared-field field-id="856393ecc0a81e8a3b00029331cf9586" identifier="dropDownButton" path="Drown Down Button"/>
+          <shared-field field-id="856393ecc0a81e8a3b00029331cf9586" identifier="dropDownButton" path="dropdown-button"/>
         </group>
       </group>
       <group collapsed="true" identifier="multipleBoxes" label="Multiple Boxes">
