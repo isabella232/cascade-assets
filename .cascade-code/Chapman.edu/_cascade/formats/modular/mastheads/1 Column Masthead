@@ -1,0 +1,25 @@
+#import( "/_cascade/formats/helpers.velocity" )
+#import( "/_cascade/formats/modular/mastheads/side_panel_hero" )
+#import( "/_cascade/formats/modular/mastheads/brochure_masthead" )
+#import( "/_cascade/formats/modular/mastheads/subbrand_masthead" )
+#import( "/_cascade/formats/modular/mastheads/subpage_masthead" )
+
+
+#set ( $currentPage  = $_XPathTool.selectSingleNode($contentRoot, "//system-page[@current]") )
+#set ( $masthead     = $currentPage.getChild('system-data-structure').getChild('masthead') )
+#set ( $mastheadType = $masthead.getChild('mastheadType').value )
+#set ( $subbrandMastheadType = $masthead.getChild('subbrandMastheadTypes').value )
+
+#if($mastheadType == 'Side Panel Hero')
+    #outputSidePanelHero($masthead.getChild('sidePanelHero'))
+#elseif ( $mastheadType == 'Brochure' )
+    #outputBrochureMasthead($masthead.getChild('brochureMasthead'))
+#elseif ( $mastheadType == 'Wavy Masthead' )
+    #import( "/_cascade/formats/modular/widgets/Wavy Masthead" )
+## #elseif ( $mastheadType == 'Sub-Brand' )
+#elseif ( $subbrandMastheadType == 'Sub-Brand Page Masthead' )
+    #outputSubbrandMasthead($masthead.getChild('subbrandMasthead') )
+#elseif ( $subbrandMastheadType == '1 Col Child Page (Left Aligned)' )
+    #outputSubPageMasthead($masthead.getChild('subPageMasthead'))
+#end
+
