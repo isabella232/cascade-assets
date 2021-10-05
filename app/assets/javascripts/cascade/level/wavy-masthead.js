@@ -1,6 +1,5 @@
 $(function () {
   if ($(".wavy-masthead").length) {
-    console.log("wavy masthead");
 
     var vid = $(".wavy-masthead video");
     var container = $(".wavy-masthead__container");
@@ -8,25 +7,6 @@ $(function () {
     toggleVideoPlay();
     wavyMastheadSlider();
   }
-});
-function fetchCuratorImages() {
-  $.ajax({
-    url: "https://api.curator.io/v1/feeds/c91835ec-e439-42c2-bd46-e5fb3899afe2/posts?api_key=11a4445f-6005-4040-9ff2-fd90d3aaa8a6",
-    type: "GET",
-    success: manipulateCuratorImages,
-    error: function (data, status, error) {
-      console.log(
-        "%c ERROR: level/wavy-masthead.js - could not load curator.io images" +
-          data.responseText.error,
-        "background: #222; color: #bada55"
-      );
-      $(".wavy-masthead__photos picture").addClass("fade-in");
-    },
-  });
-}
-
-$(document).on(".wavy-masthead__photos img src", function () {
-  console.log("src changed");
 });
 
 function manipulateCuratorImages(data) {
@@ -88,9 +68,8 @@ function accessibleClick(event) {
 }
 
 function wavyMastheadSlider() {
-  // const masthead = $(".wavy-masthead[data-slider='true']");
   if ($(".wavy-masthead__slider").length) {
-    console.log("slider");
+
     var slider = $(".wavy-masthead__slider")
       .not(".slick-initialized")
       .slick({
@@ -110,6 +89,8 @@ function wavyMastheadSlider() {
       });
     slider;
 
+    var bgColor = $(".wavy-masthead__slider").attr("data-bg-color");
+    $(".slick-dots").attr("data-bg-color", bgColor);
     $(
       "ul:first-of-type.wavy-masthead__slider-dots li:not(.autoplay-toggle"
     ).click(function () {
@@ -122,12 +103,14 @@ function wavyMastheadSlider() {
         .removeClass("slick-active wavy-masthead__active-bullet"); //remove the class
     });
 
-    $(".wavy-masthead__slider-dots li").on("click keydown", function (event) {
-      if (accessibleClick(event)) {
-        console.log("disabling autoplay");
-        $(".wavy-masthead__slider").slick("slickPause");
+    $(".wavy-masthead__slider-dots li, .toggle-video").on(
+      "click keydown",
+      function (event) {
+        if (accessibleClick(event)) {
+          $(".wavy-masthead__slider").slick("slickPause");
+        }
       }
-    });
+    );
   }
 }
 
@@ -149,7 +132,6 @@ function toggleVideoPlay() {
     if (accessibleClick(event)) {
       $(container).attr("data-video-state", "paused");
       $(vid).trigger("pause");
-      console.log("pausing video");
     }
   });
 
@@ -157,7 +139,6 @@ function toggleVideoPlay() {
     if (accessibleClick(event)) {
       $(container).attr("data-video-state", "playing");
       $(vid).trigger("play");
-      console.log("playing video");
     }
   });
 }

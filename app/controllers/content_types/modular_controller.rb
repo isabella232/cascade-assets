@@ -87,7 +87,7 @@ module ContentTypes
         'JQUERY' => cascade_block('_cascade/blocks/html/jquery'),
         'JUMP LINK' => cascade_block('_cascade/blocks/html/jump_link'),
         'MASTHEAD' =>
-          cascade_format('_cascade/formats/modular/mastheads/wavy-masthead/wavy-masthead__slider'),
+          cascade_format('_cascade/formats/modular/mastheads/wavy-masthead/wavy-masthead__video'),
           # app/views/_cascade/formats/modular/mastheads/wavy-masthead/wavy-masthead__slider.html.erb
         'META VIEWPORT' =>
           cascade_block('_cascade/blocks/html/global_meta_viewport'),
