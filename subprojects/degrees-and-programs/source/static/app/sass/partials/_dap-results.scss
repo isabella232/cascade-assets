@@ -141,13 +141,11 @@ $dap-result-breakpoint: 600px;
         opacity: 1;
       }
 
-      /* Inline #29 | https://dev-www.chapman.edu/academics/degrees-and-programs.aspx#type=undergraduate&dap-undergraduate-program-all=all&dap-undergraduate-school=&dap-undergraduate-keyword= */
-
       .relative-wrapper {
         display: block;
         padding-top: 30px;
         padding-bottom: 60px;
-        min-height: 200px;
+        min-height: max-content;
         margin-top: 0;
         margin-bottom: 200px;
       }
