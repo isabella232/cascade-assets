@@ -2,12 +2,9 @@
 /*global $:false */
 /*global location:false */
 /*jslint plusplus: true */
-
 var chapman = chapman || {};
-
 (function ($, Modernizr, window, document) {
   "use strict";
-
   var activeSection = "", // Active section (discover, undergraduate, or graduate)
     activeFilters = [],
     allResults = [],
@@ -45,7 +42,6 @@ var chapman = chapman || {};
         $keywordForm: $("#js-dap-discover-keyword-form"),
         $results: $("#js-dap-results-discover"),
       },
-
       //----- Undergraduate Section -----//
       undergraduate: {
         fieldNamePrefix: "dap-undergraduate-",
@@ -56,7 +52,6 @@ var chapman = chapman || {};
         $filterTypes: $("#js-dap-undergraduate-filter-types"),
         $results: $("#js-dap-results-undergraduate"),
       },
-
       //----- Graduate Section -----//
       graduate: {
         fieldNamePrefix: "dap-graduate-",
@@ -66,7 +61,6 @@ var chapman = chapman || {};
         $results: $("#js-dap-results-graduate"),
       },
     };
-
   chapman.degreesAndProgramsApp = {
     init: function () {
       this.getProgramsData();
@@ -74,23 +68,17 @@ var chapman = chapman || {};
       this.getUrlTypeQuery();
       this.initLazyLoadingInterval();
     },
-
     bindUIEvents: function () {
       var _this = this;
-
       //-------- Global Events --------//
-
       $(window).on("scroll resize", function () {
         if (isUserScroll) {
           lazyLoadingPaused = false;
         }
-
         isMobile = Modernizr.mq("(max-width: 1023px)"); // Reset this if screen size changes
         scrollPosition = $(window).scrollTop();
       });
-
       $(".program-toggle:not(#create-viewbook)").on("click keydown", function () {
-
         // if keydown event, check if enter key
         if (event.type === "keydown" && event.keyCode !== 13) {
           return;
@@ -102,27 +90,19 @@ var chapman = chapman || {};
           }
         }
       });
-
-
-
       // Form change in any section
       $("#js-dap-feature form, #dap-undergraduate-keyword, #dap-graduate-keyword")
         .on("change", function (event) {
           isFormChangeEvent = true;
-
           if (!hashChangesActive) {
             var form = $(this),
               target = $(event.target),
               hash = form.serialize();
-
-
             if (target.attr("id").indexOf("keyword") !== -1) {
               var keywordVal = target.val();
-
               // If using the keyword search in the Discover section...
               if (activeSection === "discover") {
                 var trigger = $("#js-dap-section-undergraduate .dap-body");
-
                 // Jump to Undergraduate section to search by keyword
                 $("#dap-undergraduate-keyword").val(keywordVal);
                 _this.toggleSection(
@@ -134,7 +114,6 @@ var chapman = chapman || {};
                 // Otherwise reset the rest of the form
                 _this.resetForm(form);
                 target.val(keywordVal);
-
                 window.location.hash = hash; // Update the hash so history is enabled
                 _this.resetFiltering(form);
               }
@@ -143,7 +122,6 @@ var chapman = chapman || {};
               window.location.hash = hash; // Update the hash so history is enabled
               _this.resetFiltering(form);
             }
-
             // setTimeout(function () {
             //   _this.scrollToResults();
             // }, 100);
@@ -152,41 +130,33 @@ var chapman = chapman || {};
         .on("submit", function (event) {
           event.preventDefault();
         });
-
       // On forward/back
       $(window).on("hashchange", function (event) {
         // Only do hash filtering if the event wasn't from the DOM
         if (!isFormChangeEvent && !hashChangesActive) {
           _this.applyHashFilters();
         }
-
         isFormChangeEvent = false; // Reset flag
       });
-
       //-------- Discover Events --------//
-
       // Click on Motivations in Discover section
       dap.discover.$motivationsItems.on("click", function (event) {
         if ($(event.target).is("input")) {
           _this.switchDiscoverMotivation($(this));
         }
       });
-
       // Click on Interests in Discover section
       dap.discover.$interestsItems.on("click", function (event) {
         if ($(event.target).is("input")) {
           _this.switchDiscoverInterest($(this));
         }
       });
-
       //-------- Undergraduate Events --------//
-
       // Click on Reset button in Undergraduate section
       dap.undergraduate.$resetInterests.on("click", function () {
         dap.undergraduate.$interestsItems.prop("checked", false);
         _this.resetFiltering($(this).closest("form"));
       });
-
       // Click on Program Types buttons in Undergraduate section
       dap.undergraduate.$programTypes.on(
         "change",
@@ -195,20 +165,16 @@ var chapman = chapman || {};
           _this.syncUndergraduateProgramTypes($(this));
         }
       );
-
       $("form, .input-with-button").on("change", function (event) {
         var form = $(this),
           target = $(event.target);
-
         if (target.attr("id").indexOf("keyword") !== -1) {
           var keywordVal = target.val();
-
           // If using the keyword search in the Discover section...
           if (activeSection === "discover") {
             var trigger = $(
               "#js-dap-section-undergraduate .dap-section-accordion-trigger"
             );
-
             // Jump to Undergraduate section to search by keyword
             _this.toggleSection($("#js-dap-section-undergraduate"), trigger);
             $("#dap-undergraduate-keyword").val(keywordVal);
@@ -219,9 +185,7 @@ var chapman = chapman || {};
           }
         }
       });
-
       //-------- Graduate Events --------//
-
       // Click on Program Types buttons in Graduate section
       dap.graduate.$programTypes.on(
         "change",
@@ -238,11 +202,9 @@ var chapman = chapman || {};
         }
       );
     },
-
     resetFiltering: function (form) {
       if (form !== undefined && form.length > 0) {
         var _this = this;
-
         activeFilters = []; // Clear filters
         _this.clearResultsHTML(); // Clear results markup
         dap.discover.$keywordForm.hide();
@@ -253,22 +215,17 @@ var chapman = chapman || {};
         _this.getResultsSet();
       }
     },
-
     // setWavyBgHeight: function () {
     //   var totalHeight = 0;
-
     //   $("section.dap-section").children().each(function () {
     //     totalHeight = totalHeight + $(this).find('form').outerHeight(true);
     //     $(this).find('.wavy-bg').css('height', totalHeight)
     //   });
     // },
-
     resetForm: function (form) {
       if (form !== undefined && form.length > 0) {
         var formSelects = form.find("select");
-
         // form[0].reset();
-
         // Reset custom selects
         if (formSelects && formSelects.length) {
           for (var i = 0; i < formSelects.length; i++) {
@@ -278,10 +235,8 @@ var chapman = chapman || {};
         }
       }
     },
-
     resetAllForms: function () {
       var _this = this;
-
       for (var type in dap) {
         // Get all dap objects
         if (dap.hasOwnProperty(type)) {
@@ -289,34 +244,25 @@ var chapman = chapman || {};
         }
       }
     },
-
     getProgramsData: function () {
       var _this = this,
         jsonUrl = $dapFeature.data("json-url");
-
       $.ajax({
         type: "GET",
         url: jsonUrl,
         dataType: "text",
         success: function (json) {
-
           var data = $.parseJSON(json);
-
           allResults = data.results;
-
-
           for (var i = 0; i < allResults.length; i++) {
             var result = allResults[i],
               type = result.type || "",
               isUndergradAndGrad = false;
-
             // Fallback in case no degree type is specified
             if (result.degreeTypes !== undefined) {
               // Check if this result is an accelerated or bridge program
               for (var j = 0; j < result.degreeTypes.type.length; j++) {
                 var degreeType = result.degreeTypes.type[j];
-
-
                 if (degreeType) {
                   var degreeTypeFormatted = degreeType.toLowerCase();
                   // var startTerms = degreeType.startTerms;
@@ -332,7 +278,6 @@ var chapman = chapman || {};
                 }
               }
             }
-
             // If it's a bridge or accelerated program, it's both undergraduate and graduate
             if (isUndergradAndGrad) {
               undergraduateResults.push(result);
@@ -344,38 +289,30 @@ var chapman = chapman || {};
                 undergraduateResults.push(result);
                 undergraduateProgramNames.push(result.title);
               }
-
               if (/^graduate/.test(type)) {
                 graduateResults.push(result);
                 graduateProgramNames.push(result.title);
-
               }
             }
           }
-
           // Alphabetically sort everything
           undergraduateProgramNames.sort();
           graduateProgramNames.sort();
           undergraduateResults.sort(_this.titleAlphaSort);
           graduateResults.sort(_this.titleAlphaSort);
-
           _this.initAutocompletes();
           _this.applyHashFilters();
         },
         error: function (e) {
-
         },
       });
     },
-
     initLazyLoadingInterval: function () {
       var _this = this;
-
       setInterval(function () {
         _this.lazyLoadResults();
       }, 0);
     },
-
     lazyLoadResults: function () {
       var _this = this;
       var $resultsContainer = $("#js-dap-results-" + activeSection);
@@ -384,16 +321,13 @@ var chapman = chapman || {};
       var bottomOfWindow = scrollPosition + windowHeight;
       var scrollThreshold = bottomOfWindow + windowHeight * 0.33;
       var result = $(resultsSetItems[resultsSetItemsLoaded]);
-
       if (resultsSetItemsLoaded < resultsSetItems.length && result.length) {
         // If there are results left to load
-
         _this.fadeInResult(result)
         $("#js-dap-results-" + activeSection + " .results-row").append(result); // Append the result
         var $result = $(result); // Store previously appended result as variable
         bottomOfResultsContainer =
           $resultsContainer.offset().top + $resultsContainer.outerHeight(true); // Recalculate container's height with new result
-
         if (
           $resultsContainer.is(":visible")
         ) {
@@ -406,7 +340,6 @@ var chapman = chapman || {};
         }
       } else {
         lazyLoadingPaused = false;
-
         if (activeSection === "discover") {
           // Open the keyword form
           dap.discover.$keywordForm.slideDown(
@@ -418,20 +351,17 @@ var chapman = chapman || {};
         }
       }
     },
-
     fadeInResult: function (result) {
       var image = result.find(".image"),
         imageSrc = image.data("src") || "",
         desc = result.find(".result-content .desc"),
         activeContentInner = result.find(".active-content-inner");
-
       // Truncate description
       if (desc.length) {
         desc.dotdotdot({
           watch: true,
         });
       }
-
       // Truncate content container
       if (activeContentInner.length) {
         activeContentInner.dotdotdot({
@@ -439,27 +369,22 @@ var chapman = chapman || {};
           after: "a",
         });
       }
-
       // Load the images dynamically
       if (image.length) {
         image.css("background-image", "url(" + imageSrc + ")");
       }
-
       setTimeout(function () {
         result.addClass("faded-in");
       }, 100);
     },
-
     toggleSection: function (el, scrollEl) {
       var _this = this,
         section = el.closest(".dap-section"),
         sectionBody = section.find(".dap-body"),
         sectionID = section.data("id"),
         form;
-
       isTransitioning = true;
       $dapFeature.addClass(transitioningClass);
-
       // Reset the previously opened section
       if (
         activeSection !== undefined &&
@@ -470,55 +395,43 @@ var chapman = chapman || {};
         // _this.resetFiltering(form);
         _this.resetForm(form);
       }
-
       _this.resetDiscoverMotivation();
       _this.resetDiscoverInterest();
-
       if (sectionID !== "discover") {
         _this.closeDiscoverMotivationPanel();
         _this.closeDiscoverInterestPanel();
       }
-
       if (section.hasClass("active")) {
         // If the section is open, close it
         var activeResults = $(
           "#js-dap-results-" + activeSection + " .results-row .result"
         );
-
         section.removeClass("active");
         activeResults.removeClass("faded-in");
         setTimeout(function () {
           activeResults.removeClass("visible");
-
           // Close the section
           sectionBody.slideUp(standardTransitionTime, function () {
             isTransitioning = false;
             $dapFeature.removeClass(transitioningClass);
           });
-
           activeSection = ""; // Clear the active section
         }, 500);
       } else {
         // Otherwise close the old section and open the new one
-
         activeSection = sectionID; // Change the active section
         form = $("#js-dap-" + activeSection + "-form");
-
         if (!hashChangesActive) {
           // _this.resetFiltering(form); // Check for filters preset (potentially from query string)
-
           // Update the hash so history is enabled
           var oldHash = window.location.hash.replace("#", "");
           var newHash = form.serialize();
           window.location.hash = newHash; // Triggers hash change most of the time
-
           if (oldHash === newHash) {
             _this.applyHashFilters(); // Applies filters if the page is reloaded with the same hash
           }
         }
-
         var newSectionTransitionDelay = standardTransitionTime;
-
         if ($(".dap-section.active").length) {
           // Close old section
           $(".dap-section.active .dap-body").hide();
@@ -527,10 +440,8 @@ var chapman = chapman || {};
         } else {
           newSectionTransitionDelay = 0; // No delay required if there's no old section to close
         }
-
         setTimeout(function () {
           // Wait until old section is closed (if there is one)
-
           // Open new section
           section.addClass("active");
           sectionBody.slideDown(standardTransitionTime, function () {
@@ -538,22 +449,17 @@ var chapman = chapman || {};
             // Wait to do the following until new section is opened
             var scrollToSectionTime = 0,
               scrollPoint;
-
             headerOffset = parseInt(
               $("html").css("padding-top").replace("px", "")
             );
-
             // Scroll to new section
             if (scrollEl) {
               scrollPoint = scrollEl.offset().top - headerOffset;
             } else if (scrollEl === undefined) {
               scrollPoint = section.offset().top - headerOffset;
             }
-
             if (scrollPoint) {
               isUserScroll = false;
-
-
             } else {
               isTransitioning = false;
               $dapFeature.removeClass(transitioningClass);
@@ -561,10 +467,7 @@ var chapman = chapman || {};
           });
         }, newSectionTransitionDelay);
       }
-
-
     },
-
     switchDiscoverMotivation: function (el) {
       if (!el.hasClass(activeClass)) {
         var motivation = el.data("motivation"),
@@ -573,32 +476,24 @@ var chapman = chapman || {};
             motivation +
             '"]'
           );
-
         dap.discover.$interests.find("input").prop("checked", false); // Reset interests
         dap.discover.activeMotivation = motivation; // Change the active motivation
         el.find("input").prop("checked", true); // Make sure the motivation's input is checked if it's not already
-
         // Reset motivations, then activate the current one
         dap.discover.$motivationsItems.removeClass(activeClass);
         el.addClass(activeClass);
-
         // Reset interests, then show/fade in interests of the chosen motivation
         dap.discover.$interestsItems.removeClass("faded-in");
         dap.discover.$interests.removeClass("interest-active");
-
         dap.discover.$interestsItems.removeClass("visible"); // Hide all interests by default
         $motivationInterests.addClass("visible"); // Only show interests of this motivation
-
         dap.discover.$interests.slideDown(standardTransitionTime, function () {
           // Then slide down the interests section
           $(this).css("overflow", "visible");
-
           $motivationInterests.addClass("faded-in");
-
           // Open the results section
           dap.discover.$results.slideDown(standardTransitionTime, function () {
             $(this).css("overflow", "visible");
-
             setTimeout(function () {
               lazyLoadingPaused = false;
             }, standardTransitionTime / 2);
@@ -606,51 +501,39 @@ var chapman = chapman || {};
         });
       }
     },
-
     resetDiscoverMotivation: function () {
-
       dap.discover.activeMotivation = "";
       dap.discover.$motivationsItems.removeClass(activeClass);
     },
-
     closeDiscoverMotivationPanel: function () {
       dap.discover.$interests.slideUp(standardTransitionTime);
       dap.discover.$keywordForm.hide();
-
       setTimeout(function () {
         dap.discover.$interestsItems.removeClass("faded-in visible");
       }, standardTransitionTime);
     },
-
     // interest example: https://www.chapman.edu/academics/degrees-and-programs.aspx#type=undergraduate&dap-undergraduate-interest-analytical-thinking=Analytical+Thinking&dap-undergraduate-school=&dap-undergraduate-keyword=
-
     switchDiscoverInterest: function (el) {
       if (!el.hasClass(activeClass)) {
         var interest = el.data("interest");
-
         // Change the active interest
         dap.discover.activeInterest = interest;
         dap.discover.$interests.addClass("interest-active");
-
         // Remove active state from any other interests, then make the new one active
         dap.discover.$interestsItems.removeClass(activeClass);
         el.addClass(activeClass);
         el.find("input").prop("checked", true); // Make sure the interest's input is checked if it's not already
-
         lazyLoadingPaused = false;
       }
     },
-
     resetDiscoverInterest: function () {
       dap.discover.activeInterest = "";
       dap.discover.$interestsItems.removeClass(activeClass);
     },
-
     closeDiscoverInterestPanel: function () {
       dap.discover.$interests.removeClass("interest-active");
       dap.discover.$results.slideUp(standardTransitionTime);
     },
-
     /*
 			In the Undergraduate section, All Programs cannot be selected when other program types are selected.
 			Inversely, when other program types are selected, All Programs cannot be selected.
@@ -659,7 +542,6 @@ var chapman = chapman || {};
     syncUndergraduateProgramTypes: function (el) {
       var allProgramsID = "dap-undergraduate-program-all",
         inputID = el.attr("id");
-
       if (inputID === allProgramsID) {
         dap.undergraduate.$programTypes
           .find("input")
@@ -669,7 +551,6 @@ var chapman = chapman || {};
         $("#" + allProgramsID).prop("checked", false);
       }
     },
-
     /*
 			In the Graduate section, All Programs cannot be selected when other program types are selected.
 			Inversely, when other program types are selected, All Programs cannot be selected.
@@ -678,65 +559,48 @@ var chapman = chapman || {};
     syncGraduateProgramTypes: function (el) {
       var allProgramsID = "dap-graduate-program-all",
         inputID = el.attr("id");
-
       if (inputID === allProgramsID) {
         dap.graduate.$programTypes.find("input").not(el).prop("checked", false);
       } else {
         $("#" + allProgramsID).prop("checked", false);
       }
-
       // Start Terms
       var allStartTermsID = "start-term-all",
         inputID = el.attr("id");
-
       if (inputID === allStartTermsID) {
         dap.graduate.$programTypes.find("input").not(el).prop("checked", false);
       } else {
         $("#" + allStartTermsID).prop("checked", false);
       }
-
       // Campuses
       var campusAllID = "dap-graduate-campus-all",
         inputID = el.attr("id");
-
       if (inputID === campusAllID) {
         $('#dap-graduate-campuses').find("input").not(el).prop("checked", false);
       } else {
         $("#" + campusAllID).prop("checked", false);
       }
-
-
     },
-
-
-
-
     getActiveFilters: function (form) {
       var formData = form.serializeArray(),
         degreeTypesArray = [], // Used for storing degree types
         interestsArray = [],
         startTermsArray = [],
         campusesArray = [];
-
       for (var i = 0; i < formData.length; i++) {
         var filter = formData[i],
           name = filter.name,
           formattedName,
           value = filter.value;
-
         formattedName = name.replace(dap[activeSection].fieldNamePrefix, ""); // Remove form name prefixes
-
         // If there is a value
         if (value.length > 0) {
           if (formattedName.indexOf("program") !== -1) {
             // Push to array if a program
             var valuesArray = value.split(",");
-
             // Loop through all values associated with the filter
             for (var j = 0; j < valuesArray.length; j++) {
               var programType = valuesArray[j];
-
-
               // Add each to the degree types array
               if (degreeTypesArray.indexOf(programType) === -1) {
                 degreeTypesArray.push(programType);
@@ -746,15 +610,11 @@ var chapman = chapman || {};
             // Push to array if an interest
             interestsArray.push(value);
           } else if (formattedName.indexOf("start-term") !== -1) {
-
             // Push to array if an interest
             startTermsArray.push(value);
-            console.log('starttermsarray ' + startTermsArray)
           } else if (formattedName.indexOf("campus") !== -1) {
-
             // Push to array if an interest
             campusesArray.push(value);
-            console.log('campusesArray ' + campusesArray)
           } else if (formattedName.indexOf("school") !== -1) {
             // Make sure the school value is a valid school name
             if (value && value.length && value !== "all" && value !== "none") {
@@ -765,24 +625,19 @@ var chapman = chapman || {};
           }
         }
       }
-
       if (degreeTypesArray.length) {
         activeFilters.degreeTypes = degreeTypesArray;
       }
-
       if (interestsArray.length) {
         activeFilters.interests = interestsArray;
       }
-
       if (startTermsArray.length) {
         activeFilters.startTerms = startTermsArray;
       }
-
       if (campusesArray.length) {
         activeFilters.campuses = campusesArray;
       }
     },
-
     getResultsSet: function () {
       var _this = this,
         result,
@@ -794,20 +649,17 @@ var chapman = chapman || {};
         startTerms,
         campuses,
         resultsCountText;
-
       if (activeSection === "discover" || activeSection === "undergraduate") {
         for (var i = 0; i < undergraduateResults.length; i++) {
           result = undergraduateResults[i];
           title = result.title;
           interests = result.interests;
           schools = result.schools;
-
           if (activeSection === "discover") {
             motivations = result.motivations;
           } else if (activeSection === "undergraduate") {
             degreeTypes = result.degreeTypes;
           }
-
           _this.filterResult(
             result,
             title,
@@ -817,7 +669,6 @@ var chapman = chapman || {};
             schools
           );
         }
-
         resultsCountText =
           "You are seeing " +
           resultsSetCount +
@@ -833,9 +684,6 @@ var chapman = chapman || {};
           startTerms = result.startTerms;
           campuses = result.campus;
           interests = result.interests;
-          console.log(`start terms: ${startTerms}`)
-
-
           // FILTER RESULTS || APPLY FILTERS
           _this.filterResult(
             result,
@@ -848,7 +696,6 @@ var chapman = chapman || {};
             campuses
           );
         }
-
         resultsCountText =
           "You are seeing " +
           resultsSetCount +
@@ -856,13 +703,10 @@ var chapman = chapman || {};
           graduateResults.length +
           " Graduate Degrees and Programs"; // Set the results count text
       }
-
       $resultsCount.removeClass("faded-in");
-
       setTimeout(function () {
         $resultsCount.text(resultsCountText).addClass("faded-in");
       }, 375);
-
       // Discover section has unique lazyloading because of animations
       if (activeSection !== "discover") {
         setTimeout(function () {
@@ -870,7 +714,6 @@ var chapman = chapman || {};
         }, standardTransitionTime * 2);
       }
     },
-
     // Compares properties of a single result to the active filters set
     filterResult: function (
       result,
@@ -883,7 +726,6 @@ var chapman = chapman || {};
       campuses
     ) {
       var _this = this;
-
       // Keyword search is separate
       if (
         title !== undefined &&
@@ -892,7 +734,6 @@ var chapman = chapman || {};
       ) {
         var formattedTitle = title.toLowerCase(),
           formattedKeyword = activeFilters.keyword.toLowerCase();
-
         if (formattedTitle.indexOf(formattedKeyword) !== -1) {
           _this.addResultHTML(result); // Keyword match - add result
           return;
@@ -904,13 +745,11 @@ var chapman = chapman || {};
           schoolsMatch = false,
           startTermMatch = false,
           campusMatch = false;
-
         // Interests
         if (activeFilters.interests !== undefined) {
           if (interests !== undefined) {
             for (var i = 0; i < interests.length; i++) {
               var interest = interests[i];
-
               if (activeFilters.interests.indexOf(interest) > -1) {
                 interestMatch = true;
                 break; // If it's a match already, no need to continue
@@ -920,15 +759,13 @@ var chapman = chapman || {};
         } else {
           interestMatch = true;
         }
-
         // Start Terms
         if (activeFilters.startTerms !== undefined) {
           if (activeFilters.startTerms.indexOf("all") > -1) {
             startTermMatch = true; // If all, it's a match by default
           } else if (startTerms !== undefined) {
             for (var i = 0; i < startTerms.length; i++) {
-              var startTerm = startTerms[i];
-
+              let startTerm = startTerms[i].toLowerCase();
               if (activeFilters.startTerms.indexOf(startTerm) > -1) {
                 startTermMatch = true;
                 break; // If it's a match already, no need to continue
@@ -938,7 +775,6 @@ var chapman = chapman || {};
         } else {
           startTermMatch = true;
         }
-
         // Campus asdf
         if (activeFilters.campuses !== undefined) {
           if (activeFilters.campuses.indexOf("all") > -1) {
@@ -946,7 +782,6 @@ var chapman = chapman || {};
           } else if (campuses !== undefined) {
             for (var i = 0; i < campuses.length; i++) {
               var campus = campuses[i];
-
               if (activeFilters.campuses.indexOf(campus) > -1) {
                 campusMatch = true;
                 break; // If it's a match already, no need to continue
@@ -956,7 +791,6 @@ var chapman = chapman || {};
         } else {
           campusMatch = true;
         }
-
         // Motivations
         if (activeFilters.motivation !== undefined) {
           if (
@@ -968,7 +802,6 @@ var chapman = chapman || {};
         } else {
           motivationMatch = true;
         }
-
         // Degree Types
         if (activeFilters.degreeTypes !== undefined) {
           if (activeFilters.degreeTypes.indexOf("all") > -1) {
@@ -977,7 +810,6 @@ var chapman = chapman || {};
             // Loop through the result's degree types
             for (var k = 0; k < degreeTypes.type.length; k++) {
               var degreeType = degreeTypes.type[k];
-
               // If any of the result's degree types match a filter, it's a match
               if (activeFilters.degreeTypes.indexOf(degreeType) > -1) {
                 degreeTypesMatch = true;
@@ -988,13 +820,11 @@ var chapman = chapman || {};
         } else {
           degreeTypesMatch = true;
         }
-
         // Schools
         if (activeFilters.school !== undefined) {
           if (schools !== undefined) {
             for (var j = 0; j < schools.length; j++) {
               var school = schools[j];
-
               if (activeFilters.school.indexOf(school) > -1) {
                 schoolsMatch = true;
                 break; // If it's a match already, no need to continue
@@ -1004,9 +834,6 @@ var chapman = chapman || {};
         } else {
           schoolsMatch = true;
         }
-
-
-
         // If it's a match, add the result HTML to the results set
         if (
           interestMatch &&
@@ -1020,7 +847,6 @@ var chapman = chapman || {};
         }
       }
     },
-
     addResultHTML: function (result) {
       var title = result.title.trim() || "",
         imgSrc,
@@ -1033,7 +859,6 @@ var chapman = chapman || {};
         resultHTML,
         startTermsHTML = "",
         linksHTML = "";
-
       if (result.img) {
         imgSrc = result.img.src || "";
         imgAlt = result.img.alt || "";
@@ -1041,10 +866,8 @@ var chapman = chapman || {};
         imgSrc = "";
         imgAlt = "";
       }
-
       // Only show this field if it's defined
       if (result.links) {
-
         linksHTML += '<ul class="program-links">';
         for (var i = 0; i < result.links.length; i++) {
           var linkPath = result.links[i].linkPath;
@@ -1054,10 +877,8 @@ var chapman = chapman || {};
             linkPath +
             `">${linkLabel}</a>`;
         }
-
         linksHTML += "</ul>";
       }
-
       // Only show this field if it's defined
       if (result.startTerms) {
         for (var i = 0; i < result.startTerms.length; i++) {
@@ -1066,30 +887,23 @@ var chapman = chapman || {};
         // split the startTerms into an array
         startTermsHTML;
       }
-
       // Only show this field if it's defined
       if (result.campus) {
         campusHTML += '<ul class="campuses">';
-
         for (var i = 0; i < result.campus.length; i++) {
           campusHTML += "<li>" + result.campus[i] + "</li>";
         }
-
         campusHTML += "</ul>";
       }
-
       // Only show this field if it's defined
       if (degreeTypes.title) {
         degreeTypesHTML = '<ul class="degree-types clearfix">';
-
         for (var j = 0; j < degreeTypes.title.length; j++) {
           degreeTypesHTML =
             degreeTypesHTML + "<li>" + degreeTypes.title[j] + "</li>";
         }
-
         degreeTypesHTML = degreeTypesHTML + "</ul>";
       }
-
       resultHTML =
         `<article class="result visible columns small-12 clearfix" data-program-title="${title}" data-start-term=${startTermsHTML}>` +
         '<div class="image" role="img" data-src="' +
@@ -1111,12 +925,10 @@ var chapman = chapman || {};
         "</a></h3>" +
         degreeTypesHTML +
         "</div>";
-
       resultHTML =
         resultHTML +
         `<div class="relative-wrapper ">
       <div class="description">
-    
         <div class="title-wrapper">
           <span class="title">${title}</span> | <span class="program-type">${result.degreeTypes.type}</span>
           <svg aria-hidden="false" aria-label="close" focusable="true" data-prefix="fas" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16 program-info__close" tabindex="0" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path></svg>
@@ -1125,36 +937,28 @@ var chapman = chapman || {};
         ${desc} 
         </div>
         ${linksHTML}
-        
       </div>
     </div>` +
         "</article>";
-
       resultsSetItems.push(resultHTML);
       resultsSetCount++;
     },
-
     clearResultsHTML: function () {
       $(".dap-results .results-row").empty();
     },
-
     getUrlTypeQuery: function () {
       var _this = this,
         hash;
-
       // Switches section based on URL query (Undergrad, Graduate, etc)
       if (window.location.href.indexOf("?") > -1) {
         var hashes = window.location.href
           .slice(window.location.href.indexOf("?") + 1)
           .split("&");
-
         for (var i = 0; i < hashes.length; i++) {
           hash = hashes[i].split("=");
-
           if (hash[0] === "type") {
             // BREI's Version
             urlTypeQuery = hash[1].toLowerCase();
-
             if (
               urlTypeQuery === "undergraduate" ||
               urlTypeQuery === "graduate"
@@ -1163,12 +967,10 @@ var chapman = chapman || {};
             } else if (urlTypeQuery === "discover") {
               _this.toggleSection($("#js-dap-section-" + urlTypeQuery), false);
             }
-
             return;
           } else if (hash[0] === "startingtab") {
             // Chapman's Version
             urlTypeQuery = hash[1].toString();
-
             switch (urlTypeQuery) {
               case "1": // Majors
                 _this.toggleSection($("#js-dap-section-undergraduate"));
@@ -1186,31 +988,25 @@ var chapman = chapman || {};
                 _this.toggleSection($("#js-dap-section-graduate"));
                 break;
             }
-
             return;
           }
         }
       }
     },
-
     initAutocompletes: function () {
       var keywordFields = $dapFeature.find('input[id*="keyword"]'),
         undergraduateAutocompleteOptions = "",
         graduateAutocompleteOptions = "";
-
       for (var i = 0; i < undergraduateProgramNames.length; i++) {
         undergraduateAutocompleteOptions +=
           '<option value="' + undergraduateProgramNames[i] + '">';
       }
-
       for (var j = 0; j < graduateProgramNames.length; j++) {
         graduateAutocompleteOptions +=
           '<option value="' + graduateProgramNames[j] + '">';
       }
-
       keywordFields.each(function () {
         var fieldID = $(this).attr("id");
-
         if (
           fieldID.indexOf("-discover") !== -1 ||
           fieldID.indexOf("-undergraduate") !== -1
@@ -1231,26 +1027,19 @@ var chapman = chapman || {};
         }
       });
     },
-
     titleAlphaSort: function (a, b) {
       if (a.title.trim() < b.title.trim()) {
         return -1;
       }
-
       if (a.title.trim() > b.title.trim()) {
         return 1;
       }
-
       return 0;
     },
-
     applyHashFilters: function () {
       hashChangesActive = true;
-
       var _this = this;
       var hashItems = window.location.hash.replace("#", "").split("&");
-
-
       if (_this.getHashValue("start-term-spring")) {
         $('input[value="spring"]').prop("checked", true);
       }
@@ -1266,30 +1055,23 @@ var chapman = chapman || {};
       // _this.resetDiscoverMotivation();
       // _this.resetDiscoverInterest();
       if (_this.getHashValue("type") == null) {
-
         history.pushState("type=graduate", document.title, window.location.pathname);
         _this.toggleSection($("#js-dap-section-undergraduate"));
         // document.getElementById('dap-undergraduate-program-all').click();
-
       }
-
       var formType = _this.getHashValue("type") || activeSection;
       var form = $("#js-dap-" + formType + "-form");
       var noFilters = false;
-
       _this.resetAllForms();
       _this.resetDiscoverMotivation();
       _this.resetDiscoverInterest();
-
       for (var i = 0; i < hashItems.length; i++) {
         var filter = decodeURIComponent(hashItems[i].replace(/\+/g, "%20")); // Remove any plus signs and code as spaces, then decode the filter
         var filterName = filter.substring(0, filter.indexOf("="));
         var filterValue = filter.substring(filter.indexOf("=") + 1);
-
         var filterEl = $(
           '[name="' + filterName + '"][value="' + filterValue + '"]'
         ); // Get the element using the name and value. Standard filter element except for special cases below.
-
         if (filterName === "type") {
           // Switch section on back/forward if necessary
           if (filterValue !== activeSection) {
@@ -1298,23 +1080,17 @@ var chapman = chapman || {};
             continue;
           }
         } else if (filter.indexOf("keyword") !== -1) {
-
           $('[name="' + filterName + '"]').val(filterValue); // Set text input value
         } else if (filter.indexOf("school") !== -1) {
           $('[name="' + filterName + '"]')
             .val(filterValue)
             .change(); // Set select value and trigger change
         } else if (filter.indexOf("start-term") !== -1) {
-
-
           // var i = filterValue;
-
           // var noStartTerm = document.querySelectorAll(`article:not([data-start-term="${i}"])`);
           // let hasStartTerm = document.querySelector(`[data-start-term="${i}"]`);
-
           // for (let i = 0; i < noStartTerm.length; i++) {
           //   let item = noStartTerm[i];
-          //   console.log(item)
           //   item.classList.remove('faded-in')
           //   item.classList.remove('visible')
           // }
@@ -1324,8 +1100,6 @@ var chapman = chapman || {};
             filterValue +
             '"]'
           );
-
-
           _this.switchDiscoverMotivation($motivationEl);
         } else if (filter.indexOf("interest") !== -1) {
           if (formType === "discover") {
@@ -1334,7 +1108,6 @@ var chapman = chapman || {};
               filterValue +
               '"]'
             );
-
             _this.switchDiscoverInterest($interestEl);
           } else {
             filterEl.prop("checked", true); // Check the checkbox
@@ -1349,7 +1122,6 @@ var chapman = chapman || {};
             !filterValue.length
           ) {
             // No hash and no filters set!
-
             if ($("#js-dap-section-" + activeSection).hasClass("active")) {
               noFilters = true;
               _this.toggleSection($("#js-dap-section-" + activeSection)); // Close the section if it's open (which it should be)
@@ -1359,27 +1131,20 @@ var chapman = chapman || {};
           }
         }
       }
-
       hashChangesActive = false;
-
       if (!noFilters && formType && formType !== undefined && formType.length) {
         _this.resetFiltering(form);
       }
     },
-
     getHashValue: function (key) {
       var matches = location.hash.match(new RegExp(key + "=([^&]*)"));
-
       return matches ? matches[1] : null;
     },
-
     // Used to scroll to different points
     scrollToTarget: function (target) {
       headerOffset = parseInt($("html").css("padding-top").replace("px", ""));
-
       setTimeout(function () {
         isUserScroll = false;
-
         $("html, body").animate({
             scrollTop: $(target).offset().top - (headerOffset + 20),
           },
@@ -1393,7 +1158,6 @@ var chapman = chapman || {};
         );
       }, 250);
     },
-
     scrollToResults: function () {
       debugger;
       var $resultsContainer = $("#js-dap-results-" + activeSection);
@@ -1403,7 +1167,6 @@ var chapman = chapman || {};
       var topOfResultsContainer = $resultsContainer.offset().top;
       var scrollPoint =
         topOfResultsContainer - (windowHeight - resultsContainerHeight);
-
       // If the top of the results container isn't completely in view, scroll to it
       if (bottomOfWindow - resultsContainerHeight <= topOfResultsContainer) {
         $("html, body").animate({
@@ -1420,27 +1183,18 @@ var chapman = chapman || {};
       }
     },
   };
-
   var totalHeight = 0;
-
   $("#js-dap-section-undergraduate").children().each(function () {
     totalHeight = totalHeight + $(this).find('form').outerHeight(true);
     // $(this).find('.wavy-bg').css('height', totalHeight)
   });
 })(window.jQuery, window.Modernizr, window, window.document);
-
 $(function () {
   "use strict";
-
   chapman.degreesAndProgramsApp.init();
-
   // document.querySelector("#dap-graduate-campus-all").onchange = function () {
   //   if (this.checked) {
-  //     console.log("Checkbox is checked");
-  //     console.log(this.parentNode.children);
   //   } else {
-  //     console.log("Checkbox is not checked");
   //   }
   // };
-
 });
