@@ -446,7 +446,7 @@
   }
 
   a.button.button--red.no-border.button--dropdown:last-of-type {
-    min-width: 120px;
+    min-width: 150px;
   }
 
   span.label {
@@ -457,7 +457,7 @@
 
   ul.dropdown-menu {
     width: min-content;
-    max-width: max-content;
+    max-width: 100%;
     @include respond(phone) {
       max-width: 100%;
     }
