@@ -1,6 +1,7 @@
 $palettes: map-merge($palettes, ('dap-form': ('core': $black,
       'background': $white)));
 
+
 .dap-form {
   color: $black;
   padding: 0 10px;
@@ -172,7 +173,24 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
 }
 
 
-// move to common.scss or similar
+// move everything below to common.scss or similar
+
+// deal with program titles that span 2 lines
+.active-content.triangle-offset {
+  &::after {
+    bottom: -104px;
+  }
+  &--medium {
+    &::after {
+      bottom: -120px;
+    }
+  }
+  &--large {
+    &::after {
+      bottom: -140px;
+    }
+  }
+}
 
 span#accelerated-tooltip {
   position: absolute;

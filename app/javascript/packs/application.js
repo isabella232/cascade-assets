@@ -26,7 +26,7 @@ import accessibility from "../src/accessibility";
 import "../stylesheets/master.scss";
 
 if (navigation !== 'undefined') {
-  navigation.initialize();
+// navigation.initialize();
 }
 
 accessibility.initialize();

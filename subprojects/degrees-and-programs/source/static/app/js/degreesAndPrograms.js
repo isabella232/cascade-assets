@@ -28,6 +28,20 @@ var chapman = chapman || {};
           }
         });
 
+        let programTitleHeight = $('article.active').find('.result-content .title').outerHeight();
+
+        $('article.active').find('.active-content').addClass('triangle-offset');
+
+        if (programTitleHeight <= 23){
+          $('article.active').find('.active-content').addClass('triangle-offset');
+        }
+        else if (programTitleHeight <= 43) {
+          $('article.active').find('.active-content').addClass('triangle-offset--medium');
+        }
+        else if (programTitleHeight >= 44) {
+          $('article.active').find('.active-content').addClass('triangle-offset--large');
+        } 
+
         function a11yClick(event) {
           if (event.type === 'click') {
             return true;
