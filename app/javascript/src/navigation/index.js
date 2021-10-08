@@ -7,5 +7,3 @@ const navigation = {
     offCanvasNav();
   }
 }
-
-export default navigation;

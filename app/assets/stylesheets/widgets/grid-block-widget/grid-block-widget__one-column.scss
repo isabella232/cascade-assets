@@ -25,7 +25,8 @@ html body {
     --padding-left: 24px;
     --padding-right: 24px;
     // INTRO SECTION
-    .section-intro {
+    .section-intro,
+    .intro-section {
       margin-top: 0;
 
       &__title {

@@ -15,10 +15,12 @@
 #import( "/_cascade/formats/modular/widgets/Funnels 1up" )
 #import( "/_cascade/formats/modular/widgets/Funnels 2up" )
 #import( "/_cascade/formats/modular/widgets/Logo Image Rotator" )
+#import( "/_cascade/formats/modular/widgets/Personnel Widget" )
 #import( "/_cascade/formats/modular/widgets/Personnel" )
 #import( "/_cascade/formats/modular/widgets/Tabs" )
 #import( "/_cascade/formats/modular/widgets/Testimonial" )
 #import( "/_cascade/formats/modular/widgets/Text Editor" )
+#import( "/_cascade/formats/modular/widgets/Text Editor Widget" )
 #import( "/_cascade/formats/modular/widgets/Three Photo Callout" )
 #import( "/_cascade/formats/modular/widgets/Photo Callout" )
 #import( "/_cascade/formats/modular/widgets/Twitter Feed" )
@@ -158,6 +160,14 @@
     #end
 #end
 ##        
+    #if ($widgetType == 'Personnel Widget')
+        #set ($displayPersonnelWidget = $widget.getChild('personnelWidget').getChild('display').value)
+        #if ($displayPersonnelWidget == 'Yes')
+            #outputPersonnelWidget($widget)
+        #end
+    #end
+##  
+##        
     #if ($widgetType == 'Personnel Table')
         #set ($displayPersonnel = $widget.getChild('personnel').getChild('display-personnel').value)
         #if ($displayPersonnel == 'Yes')
@@ -192,6 +202,14 @@
         #end
     #end
 ##    
+##
+    #if ($widgetType == 'New Text Editor')
+      #set ($displayWidget = $widget.getChild('textEditorWidget').getChild('display').value)
+      #if ($displayWidget == 'Yes')
+          #outputTextEditorWidget($widget)
+      #end
+    #end
+##
         #if ($widgetType == 'Next Steps')
             #set ($displayNextSteps = $widget.getChild('next-steps-widget').getChild('display').value)
         #if ($displayNextSteps == 'Yes')

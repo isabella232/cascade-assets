@@ -1,0 +1,142 @@
+.wavy-masthead__slider {
+  @include respond(phone) {
+    &[data-bg-color="black"] {
+      background-color: $panther-black;
+    }
+    &[data-bg-color="red"] {
+      background-color: $cu-red;
+    }
+  }
+  &-container {
+    position: relative;
+    width: 100%;
+
+    background-color: $white;
+  }
+  .wavy-masthead__container {
+    @include respond(phone) {
+      .wavy-masthead__container {
+        background-color: $cu-red;
+      }
+    }
+  }
+  .wavy-masthead {
+    &__text {
+      &-bg {
+        &--none {
+          background-color: none;
+        }
+        &--red {
+          // background-color: $cu-red;
+        }
+      }
+      user-select: text;
+      h2 {
+        font-size: 2.2rem;
+        display: inline-block;
+        text-shadow: none;
+        text-transform: none;
+        font-family: $futura-regular;
+        &:after {
+          content: "\f105";
+          font-family: "Font Awesome 5 Pro";
+          font-weight: 900;
+          margin-left: 2px;
+        }
+      }
+      align-items: start;
+      margin-left: 200px;
+      @include respond(tab-port) {
+        margin-left: 24px;
+      }
+      max-width: 520px;
+      &--inner {
+        // this is for the WYSIWYG and excludes the slick.js dots
+        padding-left: 50px;
+        padding-right: 50px;
+      }
+      .bg--red {
+        // background-color: $cu-red;
+      }
+      @include respond(phone) {
+        display: none;
+      }
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .slick-dots li button:before {
+    color: $white;
+    font-size: 50px !important;
+    opacity: 1;
+  }
+  .slick-slide .mobile {
+    span.mobile__text {
+      // background-color: $cu-red;
+      display: none !important;
+
+      @include respond(phone) {
+        display: block !important;
+      }
+    }
+  }
+}
+// outside of .wavy-masthead
+ul.slick-dots.wavy-masthead__slider-dots {
+  align-items: center;
+  svg,
+  .autoplay-toggle {
+    color: $white;
+    font-size: 3rem !important;
+  }
+  li.autoplay-toggle {
+    height: 30px;
+    width: 30px;
+  }
+  bottom: 50px;
+  display: flex;
+  left: 0;
+  margin-left: 200px;
+  @include respond(tab-port) {
+    margin-left: 24px;
+  }
+
+  button:before {
+    opacity: 1;
+    font-size: 50px !important;
+    color: $white;
+  }
+
+  @include respond(phone) {
+    position: relative;
+    padding-top: 24px;
+    margin-left: 0;
+    padding-left: 50px;
+    // background-color: $cu-red;
+    background-color: var(--wavySliderBackgroundColor);
+    padding-bottom: 24px;
+  }
+}
+
+ul.slick-dots.wavy-masthead__slider-dots li.slick-active button:before {
+  color: $cu-red;
+}
+@include respond(phone) {
+  ul.slick-dots.wavy-masthead__slider-dots[data-bg-color="black"] {
+    background-color: $panther-black;
+    li.slick-active button:before {
+      color: $cu-red;
+    }
+  }
+  ul.slick-dots.wavy-masthead__slider-dots[data-bg-color="red"] {
+    background-color: $cu-red;
+
+    li.slick-active button:before {
+      color: $panther-black;
+    }
+  }
+}

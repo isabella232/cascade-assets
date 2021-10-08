@@ -1,7 +1,11 @@
 body {
-  .section-intro {
+  .grid-block-widget__wrapper .section-intro {
     margin-top: 50px;
     font-family: $futura-regular;
+
+    a.button + a.button {
+      margin-left: 12px;
+    }
 
     &__preheader {
       color: $red;
@@ -119,8 +123,5 @@ body {
         text-align: left;
       }
     }
-  }
-  a.button + a.button {
-    margin-left: 12px;
   }
 }

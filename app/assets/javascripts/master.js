@@ -2,6 +2,8 @@
 //= require_tree ../../../lib/assets/javascripts
 
 //= require _helpers/chapDOM
+//= require cascade/plugins/slick
+//= require cascade/plugins/mousetrap
 //= require_tree ./widgets
 //= require_tree ./components
 //= require_tree ./regions
@@ -9,7 +11,7 @@
 //= require global_functions
 //= require cascade/carousel
 //= require cascade/unibuddy
-//= require cascade/covid-19-button 
+//= require cascade/covid-19-button
 //= require cascade/back-to-top
 //= require cascade/collapsed-nav
 //= require cascade/console-log
@@ -22,7 +24,6 @@
 //= require cascade/rotator
 //= require cascade/search
 //= require cascade/video-overlay
-//= require cascade/weather
 
 // If they're not required, can we delete them and remove these lines?
 // don't require cascade/home
@@ -42,9 +43,8 @@
 //= require cascade/plugins/super-pager
 //= require cascade/plugins/touchwipe
 //= require cascade/plugins/lightslider
-//= require cascade/plugins/slick
+
 //= require cascade/plugins/isOnScreen
-//= require cascade/plugins/mousetrap
 //= require cascade/level/plugins/tipsy
 //= require cascade/level/accordion
 //= require cascade/level/three_photo_callout
@@ -65,6 +65,7 @@
 //= require cascade/level/level
 //= require cascade/level/masthead
 //= require cascade/level/homepage-masthead
+//= require cascade/level/wavy-masthead
 //= require cascade/level/mosaic
 //= require cascade/level/name-bar
 //= require cascade/level/news-events

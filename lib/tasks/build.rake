@@ -17,12 +17,12 @@ task build: :environment do
     File.write(dist_cascade_block_path, ApplicationController.renderer.render(file: 'layouts/cascade-assets.xml'))
     # unzip('dist/netlify/_assets.zip', 'dist/netlify/_assets')
     unzip('dist/staging/_assets.zip', 'dist/staging/_assets')
-    Rake::Task['edit_cascade_assets'].invoke
+    # Rake::Task['edit_cascade_assets'].invoke
   end
 end
 
 task do_precompile: :environment do
-  ENV['NODE_ENV'] = ENV['RAILS_ENV']
+  ENV["NODE_ENV"]  ||= "development"
   Rake::Task['assets:clobber'].invoke
   Rake::Task['assets:precompile'].invoke
 end

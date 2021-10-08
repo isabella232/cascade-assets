@@ -1,8 +1,7 @@
 $(function () {
   if ($(".grid-block-widget").length) {
-    removeEmptyPTagsinWYSIWYG();
     gridBlockWidget();
-    calculateDataHeight();
+    removeEmptyPTagsinWYSIWYG();
     if (isIE()) {
       $(".grid-block-widget img").each(function () {
         var t = jQuery(this),
@@ -62,7 +61,7 @@ function removeEmptyPTagsinWYSIWYG() {
     var $this = $(this);
     $(this)
       .parent()
-      .attr("data-js", "removed empty p tags via grid-block-widget.js");
+      .attr("data-js", "removed empty <p> tags via grid-block-widget.js");
     if ($this.html().replace(/\s|&nbsp;/g, "").length == 0) $this.remove();
   });
 }
@@ -79,6 +78,9 @@ function calculateDataHeight() {
       .addClass("grid-block-widget--text-overflow");
     if ($(this).attr("data-scroll-height") >= 158) {
       $(this).parent().find(".grid-block-widget__reveal--more").show();
+    } else {
+      $(this).parent().find(".grid-block-widget__reveal--more").hide();
+      $(this).removeClass("grid-block-widget__text--truncated");
     }
   });
   // ONE COLUMN
@@ -91,11 +93,15 @@ function calculateDataHeight() {
       .addClass("grid-block-widget--text-overflow");
     if ($(this).attr("data-scroll-height") >= 158) {
       $(this).parent().find(".grid-block-widget__reveal--more").show();
+    } else {
+      $(this).parent().find(".grid-block-widget__reveal--more").hide();
+      $(this).removeClass("grid-block-widget__text--truncated");
     }
   });
 }
 
 function gridBlockWidget() {
+  calculateDataHeight();
   var buttonClickCounter = 0;
   $(".grid-block-widget__container").each(function () {
     // IDs are assigned via velocity format
@@ -203,17 +209,16 @@ function gridBlockCarousel() {
           // instead of a settings object
         ],
       });
-    adjustCarouselButtonPosition();
   }
 }
 
-function adjustCarouselButtonPosition() {
+function adjustCarouselButtonHeight() {
   $(".one-column .grid-block-widget__container--rotate").each(function () {
     var imgHeight = $(this).find(".grid-block-widget__image").height();
     var buttonHeight = imgHeight / 2;
-    $(this).find("button.slick-arrow").css("top", buttonHeight);
-    $(this).find("button.slick-prev").css("transform", "translateX(-20px)");
-    $(this).find("button.slick-next").css("transform", "translateX(20px)");
+    var slickButton = $(this)
+      .find("button.slick-arrow")
+      .css("top", buttonHeight);
   });
 }
 
@@ -239,11 +244,11 @@ function ieObjectFitFallback() {
   });
 }
 $(window).load(function () {
+  adjustCarouselButtonHeight();
+
   $("button.slick-arrow").on("click keydown", function (e) {
     if (accessibleClick(event)) {
-      if ($(this).find($(".grid-block-widget__reveal--less").is(":visible"))) {
-        $(".grid-block-widget__reveal--less").trigger("click");
-      }
+      $(".grid-block-widget__reveal--less").trigger("click");
     }
   });
   $("button.slick-prev").on("keydown", function (e) {
@@ -262,7 +267,6 @@ $(window).load(function () {
 });
 
 function normalizeHeights() {
-  // Normalizes height discrepancies on grid block
   $(".grid-block-widget__container").each(function () {
     // Get an array of all element heights
     var elementHeights = $(this)

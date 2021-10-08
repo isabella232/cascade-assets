@@ -32,7 +32,6 @@ var accessibleClick = function (event) {
     type = event.type;
 
   if (type === "click") {
-    console.log("click");
     return true;
   } else if (type === "keydown") {
     if (code === 32 || code === 13) {

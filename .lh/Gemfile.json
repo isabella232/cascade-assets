@@ -1,0 +1,18 @@
+{
+    "sourceFile": "Gemfile",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1629127803756,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1629127803756,
+            "name": "Commit-0",
+            "content": "source 'https://rubygems.org'\n# ruby '2.7.0'\n\ngem 'autoprefixer-rails', '~> 6.4'\ngem 'awesome_print'\ngem 'foreman'\ngem 'nokogiri'\ngem 'render_anywhere', require: false\ngem 'rubyzip'\ngem 'tzinfo-data'\ngem 'json'\n\n# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'\ngem 'rails', '~> 6.0.3'\n# Use SCSS for stylesheets\ngem 'sass-rails', '~> 6.0.0'\n# Use Uglifier as compressor for JavaScript assets\ngem 'uglifier', '>= 4.2'\n# Use CoffeeScript for .coffee assets and views\ngem 'coffee-rails', '~> 5.0.0'\n# See https://github.com/rails/execjs#readme for more supported runtimes\n# gem 'therubyracer', platforms: :ruby\n\ngem 'httparty'\n# Use jquery as the JavaScript library\ngem 'jquery-rails'\n# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder\ngem 'jbuilder', '~> 2.0'\n# bundle exec rake doc:rails generates the API under doc/api.\ngem 'sdoc', '~> 0.4.0', group: :doc\n\n# Use ActiveModel has_secure_password\n# gem 'bcrypt', '~> 3.1.7'\n\n# Use Unicorn as the app server\n# gem 'unicorn'\n\n# Use Capistrano for deployment\n# gem 'capistrano-rails', group: :development\n\n# Rails 4 ignores assets.digest = false. This makes non-digested assets possible. For\n# Omninav build tasks.\ngem \"non-stupid-digest-assets\", group: :development\n\n# Access an IRB console on exception pages or by using <%= console %> in views\ngem 'web-console', '~> 2.0', group: :development\n# gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'\n\n# gem 'activemodel', '~> 4.2', '>= 4.2.6'\n\ngem 'webpacker', '~> 5.x'\n\n# Test-Only Gems\ngroup :test do\n  # Rubocop static code analyzer: https://github.com/bbatsov/rubocop\n  gem 'rubocop'\n\n  # Feature-testing with Capybara and Selenium\n  # gem \"minitest-rails-capybara\"\n  gem 'selenium-webdriver'\n\n  # PhantomJS webdriver for Capybara: https://github.com/teampoltergeist/poltergeist\n  # Requires phantomjs installed: brew install phantomjs\n  gem 'poltergeist'\n\n  # Stub or block HTTP requests in tests: https://github.com/bblimke/webmock\n  gem 'webmock'\nend\n\n# Gems for Development and Test\ngroup :development, :test do\n  # Call 'byebug' anywhere in the code to stop execution and get a debugger console\n  gem 'byebug'\n  gem 'httparty'\n  \n  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring\n  gem 'spring'\n\n  gem 'guard-livereload', '~> 2.4', require: false\nend\n"
+        }
+    ]
+}
