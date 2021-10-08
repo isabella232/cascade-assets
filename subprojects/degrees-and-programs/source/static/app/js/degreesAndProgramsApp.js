@@ -911,7 +911,7 @@ var chapman = chapman || {};
         '" aria-label="' +
         imgAlt +
         '">' +
-        '<div class="active-content"><i class="fas fa-triangle"></i>' +
+        '<div class="active-content">' +
         "</div>" +
         '<a href="#" class="active-content-toggle"><svg class="icon icon-chevron-down" title="Toggle result content"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-down"></use></svg></a>' +
         "</div>" +
