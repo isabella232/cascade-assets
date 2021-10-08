@@ -202,6 +202,10 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
   }
 }
 
+button[type="submit"] {
+  min-width: 60px;
+}
+
 #accelerated-tooltip {
   position: absolute;
   top: 0;
