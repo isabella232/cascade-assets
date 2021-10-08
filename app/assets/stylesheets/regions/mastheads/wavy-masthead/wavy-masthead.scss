@@ -12,6 +12,22 @@
     }
   }
 
+  &__preheader {
+    font-size: 2.5rem;
+    text-shadow: rgb(0 0 0 / 50%) 6.5px 6.5px 13px;
+    display: -ms-grid;
+    display: grid;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-transform: uppercase;
+    line-height: 0.8em;
+    font-family: "futura-pt-condensed", Arial, sans-serif;
+    font-family: var(--font-family-futura-condensed);
+    font-weight: 700;
+    -webkit-user-select: text;
+  }
+
   &__container {
     position: relative;
     min-height: 600px;
@@ -459,6 +475,7 @@
   ul.dropdown-menu {
     width: min-content;
     max-width: 100%;
+
     @include respond(phone) {
       max-width: 100%;
     }

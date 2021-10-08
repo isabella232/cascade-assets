@@ -324,6 +324,7 @@ $currentMastheadType.getChild('backgroundSelector').value)
 
 #set ($showHeader = $currentMastheadType.getChild('headerTitle').getChild('showHeader').value)
 #set ($preheaderMasthead = $currentMastheadType.getChild('headerTitle').getChild('preheaderMasthead').value)
+<div class="hidden">preheaderMasthead $preheaderMasthead</div>
 #set ($headerMasthead = $currentMastheadType.getChild('headerTitle').getChild('headerMasthead').value)
 #set ($headerMasthead = ${_EscapeTool.xml($headerMasthead)})
 #set ($currentMastheadType = $currentMastheadType)
@@ -359,7 +360,11 @@ $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').
     <div class="wavy-masthead__text">
       <div class="wavy-masthead__header">
         #if ($showHeader != 'no')
-
+        #if (!$_PropertyTool.isNull($preheaderMasthead))
+          <div class="wavy-masthead__preheader">
+            $preheaderMasthead
+          </div>
+        #end
         <h2 data-display-single-image-or-video="true">
           $headerMasthead
         </h2>
@@ -379,6 +384,10 @@ $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').
         #set ($buttonClasses = ['button--red', 'no-border'])
 
 
+        <div class="hidden">
+            dropdownLabel $dropdownLabel
+        </div>
+        #if (!$_PropertyTool.isNull($dropdownLabel))
         <div class="button--dropdown__wrapper">
           <a href="" class="button button--red no-border button--dropdown">
             <span class="label">
@@ -395,6 +404,7 @@ $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').
             #dropdownItems()
           </ul>
         </div>
+        #end
       </div>
       #end
     </div>
