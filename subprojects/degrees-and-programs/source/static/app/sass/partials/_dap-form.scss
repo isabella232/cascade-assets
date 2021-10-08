@@ -33,7 +33,7 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
   }
 
   form {
-    
+
 
     .subsection-heading {
       font-size: 18px;
@@ -175,16 +175,19 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
 
 // move everything below to common.scss or similar
 
+
 // deal with program titles that span 2 lines
 .active-content.triangle-offset {
   &::after {
     bottom: -104px;
   }
+
   &--medium {
     &::after {
       bottom: -120px;
     }
   }
+
   &--large {
     &::after {
       bottom: -140px;
@@ -192,22 +195,53 @@ $palettes: map-merge($palettes, ('dap-form': ('core': $black,
   }
 }
 
-span#accelerated-tooltip {
+
+@media only screen and (max-width: 500px) {
+  [data-tooltip]:after, [data-tooltip]:before {
+    display: none !important;
+  }
+}
+
+#accelerated-tooltip {
   position: absolute;
   top: 0;
   right: 0;
   z-index: 2;
   width: 20px;
   height: 20px;
+  
+
+  &--mobile {
+    display: none;
+
+    @media only screen and (max-width: 500px) {
+      &.active {
+        display: block;
+      }
+
+      display: none;
+      font-size: 14px;
+      line-height: 1.4;
+      opacity: 1;
+      font-family: Arial,
+      Helvetica,
+      sans-serif;
+      background-color: #000;
+      background-color: rgba(51, 51, 51, 0.9);
+      color: $white;
+      padding: 12px;
+    }
+
+  }
 }
 
 @media screen and (max-width: 768px) {
   .title-wrapper.section-heading {
     display: flex;
     flex-wrap: wrap;
-  }  
-} 
-  
+  }
+}
+
 
 .degrees-and-programs {
   p {
@@ -216,7 +250,7 @@ span#accelerated-tooltip {
     margin-bottom: 2rem;
   }
 
-  
+
 
   .container {
     margin-top: 0;
@@ -279,8 +313,10 @@ span#accelerated-tooltip {
   #create-viewbook {
     cursor: unset;
   }
+
   .program-toggle {
     cursor: pointer;
+
     &__blurb {
       display: flex;
       background-color: $white;
@@ -474,8 +510,10 @@ svg.program-info__close {
 }
 
 /* Show tooltip content on hover */
-span, [data-tooltip]:hover:before,
-span, [data-tooltip]:hover:after,
+span,
+[data-tooltip]:hover:before,
+span,
+[data-tooltip]:hover:after,
 [data-tooltip]:focus:before,
 [data-tooltip]:focus:after {
   visibility: visible;

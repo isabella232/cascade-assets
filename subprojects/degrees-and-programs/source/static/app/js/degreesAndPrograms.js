@@ -14,6 +14,12 @@ var chapman = chapman || {};
       $('.results-views li').on('click', function () {
         chapman.degreesAndPrograms.switchResultsView($(this));
       });
+      // on mobile, when click .fa-question-circle, toggle #accelerated-tooltip--mobile
+      $('.fa-question-circle').on('click', function () {
+        $('#accelerated-tooltip--mobile').toggleClass('active');
+      });
+
+
       $('.dap-results').on('click', '.active-content-toggle', function (event) {
         event.preventDefault();
         $(this).closest('.result').toggleClass('active');
