@@ -22,8 +22,6 @@ $sides: (
 html body {
   // ONE COLUMN
   .one-column {
-    --padding-left: 24px;
-    --padding-right: 24px;
     // INTRO SECTION
     .section-intro,
     .intro-section {
@@ -387,11 +385,6 @@ html body .one-column {
       display: block;
       text-align: right;
     }
-    .grid-block-widget__title.text-align--left {
-      display: block;
-      text-align: left;
-      padding-left: 0;
-    }
   }
   .grid-block-widget__text {
     display: flex;
@@ -436,17 +429,13 @@ html body .one-column {
   .block-widget__reveal--white,
   .block-widget__reveal--sand,
   .block-widget__reveal--black {
-    color: $cu-red;
+    color: $cu-red !important;
     [class*="--white"] {
-      color: $cu-red;
+      color: $cu-red !important;
     }
   }
   .grid-block-widget.grid-block-widget--white
     .grid-block-widget__reveal--white {
     color: $cu-red;
-  }
-
-  .grid-block-widget__wrapper--white .grid-block-widget__title {
-    color: $white;
   }
 }
