@@ -30,6 +30,7 @@
     #js-dap-section-undergraduate {
         display: block !important;
     }
+    
 </style>
 [/system-view:internal]
 
@@ -488,6 +489,9 @@
                   </span>
                 </div>
               </label>
+              <div id="accelerated-tooltip--mobile">
+The Accelerated MBA program is open only to current Chapman University undergraduate students. This program allows students to obtain both an undergraduate degree and graduate business (MBA) degree with just one additional year of study beyond the traditional four years.
+                </div>
   
             </div>
             <div class="clearfix">
@@ -609,7 +613,16 @@
 #macro ( graduate $type, $header, $interests )
 
 	<!-- START GRADUATE SECTION -->
-	<section id="js-dap-section-graduate" class="dap-section" data-id="graduate">
+## 	#set ( $accordion = $_XPathTool.selectNodes( $contentRoot, "//accordion/section" ) )
+	#set ($darkMode = $section.getChild('gradThemeContainer').getChild('gradTheme').value)
+	
+	#if ($darkMode == 'Dark Mode')
+	    #set ($darkMode = 'dark-mode')
+    #else 
+        #set ($darkMode = '')
+    #end
+    
+	<section id="js-dap-section-graduate" class="dap-section ${darkMode}" data-id="graduate">
 
 		#dapHeader( $header )
 
@@ -618,11 +631,7 @@
 			<div class="dap-form">
 				<!-- EDIT -->
 <!-- EDIT --><form id="js-dap-graduate-form" class="dap-graduate-form" action="">
-  <span class="dark-mode__toggle">
-    <span data-tooltip="Purely for demo, in case you all decide that the dark background looks best for Graduate">
-      <i class="fas fa-moon" />
-    </span>
-  </span>
+  
   
   <legend class="show-for-sr">Search for Graduate Degrees and Programs</legend>
   <fieldset>
@@ -886,6 +895,9 @@
             #elseif ( $type.value == "Graduate" )        
                 #set ( $interests = $_XPathTool.selectNodes( $section, "interestsGrad/interest" ) )
                 #graduate( $type, $header, $interests )
+                
+
+            
             
             #end
             
