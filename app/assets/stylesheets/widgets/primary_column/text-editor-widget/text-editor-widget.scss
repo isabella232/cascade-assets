@@ -340,6 +340,7 @@ html body .text-editor-widget {
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     margin-right: 1rem;
     @include respond(small) {
       width: 100%;
