@@ -150,6 +150,29 @@ task edit_cascade_assets: :environment do
 end
 
 
+# Edit Degrees and Programs JS                          
+desc 'Updates `Chapman.edu/_files/degrees-programs/js/degreesAndPrograms.js` with ``'
+task edit_dandp_js: :environment do
+  edit_file(
+    'cd1b1a0ac04d744c64d6b67670864f0e',
+    './subprojects/degrees-and-programs/source/static/dist/js/degreesAndPrograms.js'
+  )
+  publish_asset('file', 'cd1b1a0ac04d744c64d6b67670864f0e')
+end
+
+# Edit Degrees and Programs CSS                          
+desc 'Updates `Chapman.edu/_files/degrees-programs/css/main.css` with `subprojects/degrees-and-programs/source/static/app/sass/templates/_degrees-and-programs.scss'
+task edit_dandp_css: :environment do
+  edit_file(
+    'cd19f664c04d744c64d6b676e62256db',
+    './subprojects/degrees-and-programs/source/static/dist/css/main.css'
+  )
+  
+  publish_asset('file', 'cd19f664c04d744c64d6b676e62256db')
+end
+
+
+
 # ---------------------------------------------------------------------------- #
 #                          Edit Widget - Funnels 1 Up                          #
 # ---------------------------------------------------------------------------- #
@@ -230,6 +253,28 @@ task edit_widget_text_with_cta: :environment do
     '61adcfeac0a81e4b05275461be912e1c',
     '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/text_with_cta.vtl'
   )
+end
+
+
+desc 'Replaces `Chapman.edu: /_cascade/formats/Degrees-programs/PrimaryContent` with `subprojects/degrees-and-programs/source/cascade/formats/Degrees-programs/PrimaryContent.vm`'
+task edit_dandp_primaryContent: :environment do
+  edit_format(
+    '9cc451dbc0a81e4173d44587be4c4ac5',
+    'subprojects/degrees-and-programs/source/cascade/formats/Degrees-programs/PrimaryContent.vm'
+  )
+  # publish degrees and programs page
+  publish_asset('page', 'ce06cdd4c04d744c64d6b6765c849731')
+end
+
+
+desc 'Replaces `http://chapman.edu/_cascade/formats/Degrees-programs/data/degrees` with `subprojects/degrees-and-programs/source/cascade/formats/Degrees-programs/data/degrees.vm`'
+task edit_dandp_degrees: :environment do
+  edit_format(
+    '9cc451c5c0a81e4173d445871aecbf6c',
+    'subprojects/degrees-and-programs/source/cascade/formats/Degrees-programs/data/degrees.vm'
+  )
+  # publish degrees and programs page
+  publish_asset('page', 'ce06cdd4c04d744c64d6b6765c849731')
 end
 
 # ---------------------------------------------------------------------------- #
@@ -317,7 +362,7 @@ end
 task edit_wavy_masthead: :environment do
   edit_format(
     '86baa6a4c0a81e8a65cef5df9f5234d7',
-    '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/Wavy-Masthead.vtl'
+    '.cascade-code/Chapman.edu/_cascade/formats/modular/widgets/wavy_masthead/Wavy-Masthead.vtl'
   )
 end
 
@@ -533,10 +578,14 @@ def edit_format(asset_path, update_source)
            }
          }.to_json
        )
-
-  p "🎉        View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{
+  p
+  p
+  p "🥂🍾🎉    View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{
          asset_id
        }&type=#{asset_type}".chomp('/')
+  p
+  p
+  p
 end
 
 # ---------------------------------------------------------------------------- #
@@ -1006,6 +1055,107 @@ def backup_strategy(response_path_full, response, site_name)
 end
 
 # ---------------------------------------------------------------------------- #
+#                                  Edit File                                 #
+# ---------------------------------------------------------------------------- #
+def edit_file(asset_path, update_source)
+  # * 1) BASE URL
+  base_url = 'https://dev-cascade.chapman.edu/api/v1/'.to_s
+
+  # * 2) REST API ACTION
+  # https://wimops.chapman.edu/wiki/WWW#Key_Links
+  # https://www.hannonhill.com/cascadecms/latest/developing-in-cascade/rest-api/index.html
+  rest_action = 'read/'.to_s # ! KEEP TRAILING SLASH
+
+  # * 3) ASSET TYPE
+  # this is easy to find in cascade's edit/preview url.
+  # ie https://dev-cascade.chapman.edu/entity/open.act?id=7f74b81ec04d744c7345a74906ded22a&type=page
+  asset_type = 'file/' # ! KEEP TRAILING SLASH
+
+  # * 4) ASSET PATH OR ID
+  # you can also use its path (ie "Chapman.edu/_cascade/formats/modular/widgets/1-column")... but.. whitespace.
+  asset_path = "#{asset_path}" # ! NO TRAILING SLASH
+
+  # * 5) SECRETS
+  # set these in environment_variables.yml
+  cascade_username = '?u=' + ENV['CASCADE_USERNAME']
+  cascade_password = '&p=' + ENV['CASCADE_PASSWORD']
+  p cascade_username
+  p cascade_password
+  # the constructed url should look something like:
+  # https://dev-cascade.chapman.edu/api/v1/read/folder/Chapman.edu/_cascade/formats/modular/widgets/foldername?u=username&p=password
+
+  url =
+    base_url + rest_action + asset_type + asset_path + cascade_username +
+      cascade_password
+  #  p url
+
+  # Inspect response for required details below 👇
+  response = HTTParty.get(url)
+  #  p response.body
+
+  response_xml = response['asset']['file']['file']
+  site_name = response['asset']['file']['siteName']
+  response_name = response['asset']['file']['name']
+  response_path = response['asset']['file']['path']
+  response_path_full = site_name + '/' + response_path
+
+  parent_folder_id = response['asset']['file']['parentFolderId']
+  parent_folder_path = response['asset']['file']['parentFolderPath']
+
+  asset_id = response['asset']['file']['id']
+
+  # backup_strategy(response_path_full, response, site_name)
+
+  #  p response_xml
+  update_source = "#{update_source}"
+  data = File.read(update_source)
+  response_body = data.gsub('"', "'")
+  p data
+
+  #  # Change URL for edit request
+  url_post =
+    base_url + 'edit/' + asset_type + asset_path + cascade_username +
+      cascade_password
+  p url_post
+  p "📝 Replacing #{response_path} with #{update_source}"
+
+  #  # 👹Editing assets unfortunately requires PATH, SITENAME, ID. This can be obtained by reading the asset's response.body 👆
+
+  p HTTParty.post(
+    url_post,
+    body: {
+     "asset": {
+       "file": {
+         "text": "#{data.force_encoding('utf-8')}",
+         "data": [
+           104,
+           101,
+           108,
+           108,
+           111
+         ],
+         "parentFolderId": parent_folder_id,
+         "parentFolderPath": parent_folder_path,
+         "path": asset_path,
+         "siteId": '6fef14a3c04d744c610b81dac0a8d082',
+         "siteName": 'Chapman.edu',
+         "tags": [],
+         "name": 'PrimaryContent',
+         "id": asset_id
+       }
+     },
+     "success": true
+   }.to_json
+  )
+
+  puts "\n\n\n\n"
+  p "🥂🍾🎉"
+  p "View changes at https://dev-cascade.chapman.edu/entity/open.act?id=#{
+         asset_id }&type=#{asset_type}".chomp('/')
+  puts "\n\n\n\n"
+end
+
+# ---------------------------------------------------------------------------- #
 #                                 Publish Asset                                #
 # ---------------------------------------------------------------------------- #
 def publish_asset(asset_type, asset_path) 
@@ -1054,3 +1204,5 @@ task edit_2_3_col_masthead: :environment do
     '.cascade-code/Chapman.edu/_cascade/formats/level/Masthead.vtl'
   )
 end
+
+

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "source/static/app/sass/partials/_assemble-partials.scss",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1629156139048,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1629156139048,
+            "name": "Commit-0",
+            "content": "@import '_dap-discover-form';\n@import '_dap-discover-interests';\n@import '_dap-discover-keyword-form';\n@import '_dap-discover-motivations';\n@import '_dap-form';\n@import '_dap-graduate-form';\n@import '_dap-header';\n@import '_dap-results-header';\n@import '_dap-results';\n@import '_dap-undergraduate-form';\n@import '_common';\n\n"
+        }
+    ]
+}

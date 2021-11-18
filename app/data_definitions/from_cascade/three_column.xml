@@ -4,11 +4,104 @@
     <!-- radio-item show-fields map to groups below -->
     <!-- radio-item values map to Masthead format selectors -->
     <text field-id="ff6bcc38c0a81e5f43ef9b37ac5ffc0b" help-text="these are the new wider mastheads available" identifier="mastheadType" label="Masthead Type" type="radiobutton">
+      <radio-item show-fields="masthead/wavyMasthead" value="Wavy Masthead" label="Beta Test - 2021 Mastheads"/>
       <radio-item show-fields="masthead/branded201611" value="Branded - New"/>
       <radio-item show-fields="masthead/slider201611" value="Slider - New"/>
       <radio-item show-fields="masthead/boxes" value="Boxes"/>
       <radio-item value="No Masthead"/>
     </text>
+    <group identifier="wavyMasthead" label="Masthead">
+      <text field-id="88e3746ec0a81e8a3b0002936bef116d" identifier="mastheadType" label="Masthead Type" required="true" type="radiobutton">
+        <radio-item label="Single Image/Video " show-fields="masthead/wavyMasthead/singleImage_background_group" value="imageVideo_background"/>
+        <radio-item label="Multiple Image Slider" show-fields="masthead/wavyMasthead/mulitipleImageSlider" value="sliderBackground"/>
+        <radio-item label="Multiple Link Boxes" show-fields="masthead/wavyMasthead/multipleBoxes" value="boxes"/>
+        <radio-item label="No Masthead" value="none"/>
+      </text>
+      <group collapsed="true" identifier="singleImage_background_group" label="Single Image/Video">
+        <text field-id="88e3746ec0a81e8a3b00029342d71b67" identifier="backgroundSelector" label="Background:" required="true" type="radiobutton">
+          <radio-item label="Image" show-fields="masthead/wavyMasthead/singleImage_background_group/image" value="image"/>
+          <radio-item label="Video" show-fields="masthead/wavyMasthead/singleImage_background_group/videoBackground" value="video"/>
+        </text>
+        <group identifier="topLeftWave" label="Top Left Text">
+          <text field-id="" identifier="showTopLeftText" label="Show Top Left Text?" type="radiobutton" default="Yes">
+            <radio-item label="Yes" show-fields="masthead/wavyMasthead/singleImage_background_group/topLeftWave/topLeftText" value="yes"/>
+            <radio-item label="No" value="no"/>
+          </text>
+          <text field-id="" identifier="topLeftText" label="Top Left Text"/>
+        </group>
+        <group identifier="headerTitle" label="Center Header Title">
+          <text field-id="85415772c0a81e8a3b00029301a1433d" identifier="showHeader" label="Show Header?" type="radiobutton">
+            <radio-item label="Yes" show-fields="masthead/wavyMasthead/singleImage_background_group/headerTitle/preheaderMasthead, mastHead/singleImage_background_group/headerTitle/headerMasthead" value="yes"/>
+            <radio-item label="No" value="no"/>
+          </text>
+          <text field-id="85415772c0a81e8a3b000293f5ae9947" identifier="preheaderMasthead" label="Preheader"/>
+          <text field-id="85415772c0a81e8a3b000293d321d328" identifier="headerMasthead" label="Header"/>
+        </group>
+        <shared-field field-id="88e3746ec0a81e8a3b000293a90413b8" identifier="image" label="Image Background" maximum-number="1" minimum-number="1" path="image__rectangle-only--required"/>
+        <group identifier="videoBackground" label="Video Background">
+          <asset field-id="88e3746ec0a81e8a3b0002933d13945c" help-text=".mp4 or .mov" identifier="videoChooser" label="Video File:" type="file"/>
+          <text default="middle" field-id="88e3746ec0a81e8a3b00029329fc12c9" identifier="videoPositionChooser" label="Video Position:" type="radiobutton">
+            <radio-item label="Top" value="top"/>
+            <radio-item label="Middle" value="middle"/>
+            <radio-item label="Bottom" value="bottom"/>
+          </text>
+        </group>
+        <group collapsed="true" identifier="callToActionButtons" label="Call To Action Buttons">
+          <text default="yes" field-id="85415772c0a81e8a3b000293416ce167" identifier="showMatheadButtons" label="Show Masthead Buttons?" required="true" type="radiobutton">
+            <radio-item label="Yes" show-fields="masthead/wavyMasthead/singleImage_background_group/callToActionButtons/link, mastHead/singleImage_background_group/callToActionButtons/dropDownButton" value="yes"/>
+            <radio-item label="No" value="no"/>
+          </text>
+          <shared-field field-id="8565a45dc0a81e8a3b0002935e767e2c" identifier="link" maximum-number="3" path="cta"/>
+          <shared-field field-id="856393ecc0a81e8a3b00029331cf9586" identifier="dropDownButton" path="dropdown-button"/>
+        </group>
+      </group>
+      <group collapsed="true" identifier="multipleBoxes" label="Multiple Boxes">
+        <text field-id="" identifier="title" label="Department Title (Not Page Title)"/>
+        <group identifier="box" label="Box" maximum-number="4" multiple="true">
+          <text field-id="8909d1eac0a81e8a3b000293e895247b" identifier="boxText" label="Box Text" required="true"/>
+          <text field-id="8909d1eac0a81e8a3b000293e4ade1a8" identifier="boxLink" label="Box Link" required="true" type="radiobutton">
+            <radio-item label="Internal Cascade Link" show-fields="masthead/wavyMasthead/multipleBoxes/box/internalURL" value="internalCascadeLink"/>
+            <radio-item label="External URL" show-fields="masthead/wavyMasthead/multipleBoxes/box/externalURL" value="externalURL"/>
+          </text>
+          <asset field-id="8909d1eac0a81e8a3b000293ae98ec11" identifier="internalURL" label="Internal URL" type="page"/>
+          <text field-id="8909d1eac0a81e8a3b0002939a1147cd" identifier="externalURL" label="External URL"/>
+          <shared-field field-id="8909d1eac0a81e8a3b00029375e309a6" identifier="image" label="Background Image" maximum-number="1" path="image__rectangle-only--required"/>
+        </group>
+      </group>
+      <group collapsed="true" identifier="mulitipleImageSlider" label="Multiple Image Slider">
+        <group identifier="topLeftWave" label="Top Left Text">
+          <text field-id="" identifier="showTopLeftText" label="Show Top Left Text?" type="radiobutton" default="Yes">
+            <radio-item label="Yes" show-fields="masthead/wavyMasthead/singleImage_background_group/topLeftWave/topLeftText" value="yes"/>
+            <radio-item label="No" value="no"/>
+          </text>
+          <text field-id="" identifier="topLeftText" label="Top Left Text"/>
+        </group>
+        <text default="none" field-id="89377ae3c0a81e8a3b00029393138031" help-text="For better visibility you may want to put your text in a box." identifier="sliderTextBackground" label="Slider Text Background?" type="radiobutton">
+          <radio-item label="Red" value="red"/>
+          <radio-item label="Black" value="black"/>
+          <radio-item label="None" value="none"/>
+        </text>
+        <group collapsed="true" identifier="imageSlider" label="Slider" maximum-number="6" multiple="true">
+          <group identifier="sliderText" label="Slider Text">
+            <text field-id="8909d1ebc0a81e8a3b000293520a861a" identifier="sliderHeader" label="Slider Header" required="true"/>
+            <text configuration="Text and Links" field-id="8909d1ebc0a81e8a3b00029303128b45" help-text="Max: 200 characters/30 words" identifier="textArea" label="Text" required="true" wysiwyg="true"/>
+          </group>
+          <text field-id="" identifier="backgroundSelector" label="Background:" required="true" type="radiobutton">
+            <radio-item label="Image" show-fields="masthead/wavyMasthead/mulitipleImageSlider/imageSlider/image" value="image"/>
+            <radio-item label="Video" show-fields="masthead/wavyMasthead/mulitipleImageSlider/imageSlider/videoBackground" value="video"/>
+          </text>
+          <shared-field field-id="" identifier="image" label="Image Background" maximum-number="1" minimum-number="1" path="image__rectangle-only--required"/>
+          <group identifier="videoBackground" label="Video Background">
+            <asset field-id="" help-text=".mp4 or .mov" identifier="videoChooser" label="Video File:" type="file"/>
+            <text default="middle" field-id="" identifier="videoPositionChooser" label="Video Position:" type="radiobutton">
+              <radio-item label="Top" value="top"/>
+              <radio-item label="Middle" value="middle"/>
+              <radio-item label="Bottom" value="bottom"/>
+            </text>
+          </group>
+        </group>
+      </group>
+    </group>
     <!-- New masthead formats (Nov 2016): Branded and Slider -->
     <!-- These should mirror groups in two_column.xml -->
     <group identifier="branded201611" label="Branded - New">

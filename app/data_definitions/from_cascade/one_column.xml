@@ -1,7 +1,7 @@
 <system-data-structure>
   <group collapsed="true" identifier="masthead" label="Masthead">
     <text default="Side Panel Hero" field-id="ff6bcbe1c0a81e5f43ef9b37f7b68865" identifier="mastheadType" label="Style:" type="radiobutton">
-      <radio-item show-fields="masthead/wavyMasthead" value="Wavy Masthead"/>
+      <radio-item show-fields="masthead/wavyMasthead" value="Wavy Masthead" label="Beta Test - 2021 Mastheads"/>
       <radio-item show-fields="masthead/sidePanelHero" value="Side Panel Hero"/>
       <radio-item show-fields="masthead/brochureMasthead" value="Brochure"/>
       <radio-item show-fields="masthead/subbrandMastheadTypes" value="Sub-Brand"/>
@@ -20,7 +20,14 @@
           <radio-item label="Image" show-fields="masthead/wavyMasthead/singleImage_background_group/image" value="image"/>
           <radio-item label="Video" show-fields="masthead/wavyMasthead/singleImage_background_group/videoBackground" value="video"/>
         </text>
-        <group identifier="headerTitle" label="Header Title">
+        <group identifier="topLeftWave" label="Top Left Text">
+          <text field-id="" identifier="showTopLeftText" label="Show Top Left Text?" type="radiobutton" default="Yes">
+            <radio-item label="Yes" show-fields="masthead/wavyMasthead/singleImage_background_group/topLeftWave/topLeftText" value="yes"/>
+            <radio-item label="No" value="no"/>
+          </text>
+          <text field-id="" identifier="topLeftText" label="Top Left Text"/>
+        </group>
+        <group identifier="headerTitle" label="Center Header Title">
           <text field-id="85415772c0a81e8a3b00029301a1433d" identifier="showHeader" label="Show Header?" type="radiobutton">
             <radio-item label="Yes" show-fields="masthead/wavyMasthead/singleImage_background_group/headerTitle/preheaderMasthead, mastHead/singleImage_background_group/headerTitle/headerMasthead" value="yes"/>
             <radio-item label="No" value="no"/>
@@ -43,10 +50,11 @@
             <radio-item label="No" value="no"/>
           </text>
           <shared-field field-id="8565a45dc0a81e8a3b0002935e767e2c" identifier="link" maximum-number="3" path="cta"/>
-          <shared-field field-id="856393ecc0a81e8a3b00029331cf9586" identifier="dropDownButton" path="Drown Down Button"/>
+          <shared-field field-id="856393ecc0a81e8a3b00029331cf9586" identifier="dropDownButton" path="dropdown-button"/>
         </group>
       </group>
       <group collapsed="true" identifier="multipleBoxes" label="Multiple Boxes">
+        <text field-id="" identifier="title" label="Department Title (Not Page Title)"/>
         <group identifier="box" label="Box" maximum-number="4" multiple="true">
           <text field-id="8909d1eac0a81e8a3b000293e895247b" identifier="boxText" label="Box Text" required="true"/>
           <text field-id="8909d1eac0a81e8a3b000293e4ade1a8" identifier="boxLink" label="Box Link" required="true" type="radiobutton">
@@ -59,6 +67,13 @@
         </group>
       </group>
       <group collapsed="true" identifier="mulitipleImageSlider" label="Multiple Image Slider">
+        <group identifier="topLeftWave" label="Top Left Text">
+          <text field-id="" identifier="showTopLeftText" label="Show Top Left Text?" type="radiobutton" default="Yes">
+            <radio-item label="Yes" show-fields="masthead/wavyMasthead/singleImage_background_group/topLeftWave/topLeftText" value="yes"/>
+            <radio-item label="No" value="no"/>
+          </text>
+          <text field-id="" identifier="topLeftText" label="Top Left Text"/>
+        </group>
         <text default="none" field-id="89377ae3c0a81e8a3b00029393138031" help-text="For better visibility you may want to put your text in a box." identifier="sliderTextBackground" label="Slider Text Background?" type="radiobutton">
           <radio-item label="Red" value="red"/>
           <radio-item label="Black" value="black"/>
@@ -69,7 +84,19 @@
             <text field-id="8909d1ebc0a81e8a3b000293520a861a" identifier="sliderHeader" label="Slider Header" required="true"/>
             <text configuration="Text and Links" field-id="8909d1ebc0a81e8a3b00029303128b45" help-text="Max: 200 characters/30 words" identifier="textArea" label="Text" required="true" wysiwyg="true"/>
           </group>
-          <shared-field field-id="8909d1ebc0a81e8a3b000293157aea08" identifier="image" label="Image Background" maximum-number="1" minimum-number="1" path="image__rectangle-only--required"/>
+          <text field-id="" identifier="backgroundSelector" label="Background:" required="true" type="radiobutton">
+            <radio-item label="Image" show-fields="masthead/wavyMasthead/mulitipleImageSlider/imageSlider/image" value="image"/>
+            <radio-item label="Video" show-fields="masthead/wavyMasthead/mulitipleImageSlider/imageSlider/videoBackground" value="video"/>
+          </text>
+          <shared-field field-id="" identifier="image" label="Image Background" maximum-number="1" minimum-number="1" path="image__rectangle-only--required"/>
+          <group identifier="videoBackground" label="Video Background">
+            <asset field-id="" help-text=".mp4 or .mov" identifier="videoChooser" label="Video File:" type="file"/>
+            <text default="middle" field-id="" identifier="videoPositionChooser" label="Video Position:" type="radiobutton">
+              <radio-item label="Top" value="top"/>
+              <radio-item label="Middle" value="middle"/>
+              <radio-item label="Bottom" value="bottom"/>
+            </text>
+          </group>
         </group>
       </group>
     </group>

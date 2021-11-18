@@ -1,106 +1,366 @@
 <!-- partial:dap-graduate-form -->
 <form id="js-dap-graduate-form" class="dap-graduate-form" action="">
-	<legend class="show-for-sr">Search for Graduate Degrees and Programs</legend>
-	<fieldset>
+  {{!-- toggle dark mode --}}
+  <span class="dark-mode__toggle">
+    {{!-- font awesome class for dark mode --}}
+    <span data-tooltip="Purely for demo, in case you all decide that the dark background looks best for Graduate">
+      <i class="fas fa-moon"></i>
+    </span>
+  </span>
+  <div class="wavy-bg"></div>
 
-		<input type="hidden" name="type" value="graduate">
-		
-		<div id="js-dap-graduate-program-types" class="program-types">
-			<div class="row">
+  <legend class="show-for-sr">Search for Graduate Degrees and Programs</legend>
+  <fieldset>
 
-				<!-- Program Types Radios -->
-				<div class="columns small-12">
-					<h4 class="subsection-heading">Degrees &amp; Programs:</h4>
-				</div>
-				<div class="columns small-12 medium-6">
-					<div class="field-container">
-						<label class="program-type button" for="dap-graduate-program-all">
-							<input id="dap-graduate-program-all" name="dap-graduate-program-all" type="checkbox" value="all" />
-							<div class="inner">
-								{{svg "check"}}
-								<span>All Graduate Programs</span>
-							</div>
-						</label>
-					</div>
-				</div>
-				<div class="columns small-12 medium-6">
-					<div class="field-container">
-						<label class="program-type button" for="dap-graduate-program-master">
-							<input id="dap-graduate-program-master" name="dap-graduate-program-master" type="checkbox" value="masters,dual/joint,integrated/4+1,accelerated 3+2" />
-							<div class="inner">
-								{{svg "check"}}
-								<span>Masters Programs</span>
-							</div>
-						</label>
-					</div>
-				</div>
-				<div class="columns small-12 medium-6">
-					<div class="field-container">
-						<label class="program-type button" for="dap-graduate-program-doctoral">
-							<input id="dap-graduate-program-doctoral" name="dap-graduate-program-doctoral" type="checkbox" value="doctorate" />
-							<div class="inner">
-								{{svg "check"}}
-								<span>Doctoral Programs</span>
-							</div>
-						</label>
-					</div>
-				</div>
-				<div class="columns small-12 medium-6">
-					<div class="field-container">
-						<label class="program-type button" for="dap-graduate-program-bridge">
-							<input id="dap-graduate-program-bridge" name="dap-graduate-program-bridge" type="checkbox" value="bridge,integrated/4+1,accelerated 3+2,post-baccalaureate,certificate,dual/joint,credential and transitional" />
-							<div class="inner">
-								{{svg "check"}}
-								<span>Accelerated, Bridge, &amp; Special Programs</span>
-							</div>
-						</label>
-					</div>
-				</div>
+    <input type="hidden" name="type" value="graduate">
 
-			</div>
-		</div>
+    <div id="js-dap-graduate-program-types" class="program-types">
+      <div class="row">
 
-		<div id="js-dap-graduate-filter-types" class="filter-types">
-			<div class="row">
+        <!-- Degrees and Programs Checkboxes -->
+        <div class="columns small-12">
+          <div class="title-wrapper section-heading">
+            <h4 class="pb-0 subsection-heading faux-h2"><span class="bold text--red">Graduate</span> Degree
+              and
+              Program Finder
+            </h4>
+            <div class="dap-section-accordion-trigger program-toggle">Undegraduate Degree Finder</div>
+          </div>
+          <div class="line"></div>
+        </div>
+        <div class="columns small-12 medium-6">
+          <h4 class="subsection-heading">Program Type:</h4>
+          <div class="field-container">
+            <label class="program-type button" for="dap-graduate-program-all">
+              <input id="dap-graduate-program-all" name="dap-graduate-program-all" type="checkbox" value="all" />
+              <div class="inner">
+                {{svg "check"}}
+                <span>All Graduate Programs</span>
+              </div>
+            </label>
+            <label class="program-type button" for="dap-graduate-program-master">
+              <input id="dap-graduate-program-master" name="dap-graduate-program-master" type="checkbox"
+                value="masters,dual/joint,integrated/4+1,accelerated 3+2" />
+              <div class="inner">
+                {{svg "check"}}
+                <span>Masters Programs</span>
+              </div>
+            </label>
+            <label class="program-type button" for="dap-graduate-program-doctoral">
+              <input id="dap-graduate-program-doctoral" name="dap-graduate-program-doctoral" type="checkbox"
+                value="doctorate" />
+              <div class="inner">
+                {{svg "check"}}
+                <span>Doctoral Programs</span>
+              </div>
+            </label>
+            <label class="program-type button" for="dap-graduate-program-bridge">
+              <input id="dap-graduate-program-bridge" name="dap-graduate-program-bridge" type="checkbox"
+                value="bridge,accelerated,integrated/4+1,accelerated 3+2,post-baccalaureate,certificate,dual/joint,credential,transitional">
+              <div class="inner">
+                <svg class="icon icon-check" viewBox="0 0 28 28">
 
-				<!-- Filter by Schools and Colleges -->
-				<div class="columns small-12 large-5">
-					<div class="field-container custom-select-container">
-						<label for="dap-graduate-school" class="show-for-sr">Filter by Schools and Colleges</label>
-						<select name="dap-graduate-school" id="dap-graduate-school">
-							<option disabled="disabled" selected="selected" value="none">Filter by Schools and Colleges</option>
-							<option value="all">All Schools and Colleges</option>
-							{{#parseFixture 'dap-feature.json'}}
-						    	{{#each schools}}
-						    		<option value="{{id}}">{{{title}}}</option>
-					    		{{/each}}
-						    {{/parseFixture}}
-						</select>
-					</div>
-				</div>
 
-				<!-- Or Separator -->
-				<div class="columns small-12 large-2">
-					<div class="or-separator">
-						<span>Or</span>
-					</div>
-				</div>
+                  <title>check</title>
+                  <path
+                    d="M26.109 8.844c0 0.391-0.156 0.781-0.438 1.062l-13.438 13.438c-0.281 0.281-0.672 0.438-1.062 0.438s-0.781-0.156-1.062-0.438l-7.781-7.781c-0.281-0.281-0.438-0.672-0.438-1.062s0.156-0.781 0.438-1.062l2.125-2.125c0.281-0.281 0.672-0.438 1.062-0.438s0.781 0.156 1.062 0.438l4.594 4.609 10.25-10.266c0.281-0.281 0.672-0.438 1.062-0.438s0.781 0.156 1.062 0.438l2.125 2.125c0.281 0.281 0.438 0.672 0.438 1.062z">
+                  </path>
+                </svg>
+                <span>Accelerated, Bridge &amp; Special Programs</span>
+              </div>
+            </label>
+          </div>
 
-				<!-- Search for Degrees and Programs -->
-				<div class="columns small-12 large-5">
-					<div class="field-container">
-						<label for="dap-graduate-keyword" class="show-for-sr">Search for Degrees and Programs</label>
-						<input id="dap-graduate-keyword" name="dap-graduate-keyword" class="input-with-button" type="text" placeholder="Search Degrees &amp; Programs">
-						<button type="submit">
-							<span class="show-for-sr">Search for Degrees and Programs</span>
-							{{svg "search"}}
-						</button>
-					</div>
-				</div>
 
-			</div>
-		</div>
 
-	</fieldset>
+        </div>
+        <div class="columns small-12 medium-6">
+          <h4 class="subsection-heading">Start Term(s):</h4>
+          <div id="js-dap-graduate-start-terms" class="field-container">
+            <label tabindex="0" class="program-type start-term button" for="start-term-all">
+              <input id="start-term-all" name="start-term-all" type="checkbox" value="all" />
+              <div class="inner">
+                {{svg "check"}}
+                <span>All</span>
+              </div>
+            </label>
+            <label tabindex="0" class="program-type start-term button" for="start-term-spring">
+              <input id="start-term-spring" name="start-term-spring" type="checkbox" value="spring" />
+              <div class="inner">
+                {{svg "check"}}
+                <span>Spring</span>
+              </div>
+            </label>
+            <label tabindex="0" class="program-type start-term button" for="start-term-summer">
+              <input id="start-term-summer" name="start-term-summer" type="checkbox" value="summer" />
+              <div class="inner">
+                {{svg "check"}}
+                <span>Summer</span>
+              </div>
+            </label>
+            <label tabindex="0" class="program-type start-term button" for="start-term-fall">
+              <input id="start-term-fall" name="start-term-fall" type="checkbox" value="fall" />
+              <div class="inner">
+                {{svg "check"}}
+                <span>Fall</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <div id="js-dap-graduate-interests" class="dap-graduate-interests">
+      <div class="row">
+        <!-- I'm Interested In Checkboxes -->
+        <div class="clearfix columns small-12 medium-6">
+          <h4 class="subsection-heading">Areas of Study:</h4>
+
+          <ul id="js-dap-graduate-interests-list" class="dap-graduate-interests-list field-container">
+            <li>
+              <label for="dap-graduate-interest-innovating-interest-a">
+                <input id="dap-graduate-interest-innovating-interest-a"
+                  name="dap-graduate-interest-innovating-interest-a" type="checkbox" value="Liberal Arts">
+                <span>Innovating Interest A</span>
+              </label>
+            </li>
+            <li>
+              <label for="dap-graduate-interest-interest-business">
+                <input id="dap-graduate-interest-interest-business" name="dap-graduate-interest-interest-business"
+                  type="checkbox" value="Business">
+                <span>Innovating Interest B</span>
+              </label>
+            </li>
+            <li>
+              <label for="dap-graduate-interest-innovating-interest-c">
+                <input id="dap-graduate-interest-innovating-interest-c"
+                  name="dap-graduate-interest-innovating-interest-c" type="checkbox" value="innovating-interest-c">
+                <span>Innovating Interest C</span>
+              </label>
+            </li>
+            <li>
+              <label for="dap-graduate-interest-innovating-interest-d">
+                <input id="dap-graduate-interest-innovating-interest-d"
+                  name="dap-graduate-interest-innovating-interest-d" type="checkbox" value="innovating-interest-d">
+                <span>Innovating Interest D</span>
+              </label>
+            </li>
+            <li>
+              <label for="dap-graduate-interest-movies-television">
+                <input id="dap-graduate-interest-movies-television" name="dap-graduate-interest-movies-television"
+                  type="checkbox" value="movies-television">
+                <span>Movies &amp; Television</span>
+              </label>
+            </li>
+            <li>
+              <label for="dap-graduate-interest-writing">
+                <input id="dap-graduate-interest-writing" name="dap-graduate-interest-writing" type="checkbox"
+                  value="writing">
+                <span>Writing</span>
+              </label>
+            </li>
+            <li>
+              <label for="dap-graduate-interest-performing-arts">
+                <input id="dap-graduate-interest-performing-arts" name="dap-graduate-interest-performing-arts"
+                  type="checkbox" value="performing-arts">
+                <span>Performing Arts</span>
+              </label>
+            </li>
+            <li>
+              <label for="dap-graduate-interest-visual-studio-arts">
+                <input id="dap-graduate-interest-visual-studio-arts" name="dap-graduate-interest-visual-studio-arts"
+                  type="checkbox" value="visual-studio-arts">
+                <span>Visual &amp; Studio Arts</span>
+              </label>
+            </li>
+            <li>
+              <label for="dap-graduate-interest-helping-interest-a">
+                <input id="dap-graduate-interest-helping-interest-a" name="dap-graduate-interest-helping-interest-a"
+                  type="checkbox" value="helping-interest-a">
+                <span>Helping Interest A</span>
+              </label>
+            </li>
+            <li>
+              <label for="dap-graduate-interest-helping-interest-b">
+                <input id="dap-graduate-interest-helping-interest-b" name="dap-graduate-interest-helping-interest-b"
+                  type="checkbox" value="helping-interest-b">
+                <span>Helping Interest B</span>
+              </label>
+            </li>
+            <li>
+              <label for="dap-graduate-interest-helping-interest-c">
+                <input id="dap-graduate-interest-helping-interest-c" name="dap-graduate-interest-helping-interest-c"
+                  type="checkbox" value="helping-interest-c">
+                <span>Helping Interest C</span>
+              </label>
+            </li>
+            <li>
+              <label for="dap-graduate-interest-helping-interest-d">
+                <input id="dap-graduate-interest-helping-interest-d" name="dap-graduate-interest-helping-interest-d"
+                  type="checkbox" value="helping-interest-d">
+                <span>Helping Interest D</span>
+              </label>
+            </li>
+            <li>
+              <label for="dap-graduate-interest-experiencing-interest-a">
+                <input id="dap-graduate-interest-experiencing-interest-a"
+                  name="dap-graduate-interest-experiencing-interest-a" type="checkbox" value="experiencing-interest-a">
+                <span>Experiencing Interest A</span>
+              </label>
+            </li>
+            <li>
+              <label for="dap-graduate-interest-experiencing-interest-b">
+                <input id="dap-graduate-interest-experiencing-interest-b"
+                  name="dap-graduate-interest-experiencing-interest-b" type="checkbox" value="experiencing-interest-b">
+                <span>Experiencing Interest B</span>
+              </label>
+            </li>
+            <li>
+              <label for="dap-graduate-interest-experiencing-interest-c">
+                <input id="dap-graduate-interest-experiencing-interest-c"
+                  name="dap-graduate-interest-experiencing-interest-c" type="checkbox" value="experiencing-interest-c">
+                <span>Experiencing Interest C</span>
+              </label>
+            </li>
+            <li>
+              <label for="dap-graduate-interest-experiencing-interest-d">
+                <input id="dap-graduate-interest-experiencing-interest-d"
+                  name="dap-graduate-interest-experiencing-interest-d" type="checkbox" value="experiencing-interest-d">
+                <span>Experiencing Interest D</span>
+              </label>
+            </li>
+            <li>
+              <label for="dap-graduate-interest-making-interest-a">
+                <input id="dap-graduate-interest-making-interest-a" name="dap-graduate-interest-making-interest-a"
+                  type="checkbox" value="making-interest-a">
+                <span>Making Interest A</span>
+              </label>
+            </li>
+            <li>
+              <label for="dap-graduate-interest-making-interest-b">
+                <input id="dap-graduate-interest-making-interest-b" name="dap-graduate-interest-making-interest-b"
+                  type="checkbox" value="making-interest-b">
+                <span>Making Interest B</span>
+              </label>
+            </li>
+            <li>
+              <label for="dap-graduate-interest-making-interest-c">
+                <input id="dap-graduate-interest-making-interest-c" name="dap-graduate-interest-making-interest-c"
+                  type="checkbox" value="making-interest-c">
+                <span>Making Interest C</span>
+              </label>
+            </li>
+            <li>
+              <label for="dap-graduate-interest-making-interest-d">
+                <input id="dap-graduate-interest-making-interest-d" name="dap-graduate-interest-making-interest-d"
+                  type="checkbox" value="making-interest-d">
+                <span>Making Interest D</span>
+              </label>
+            </li>
+            <li class="show-more">
+              <a href="javascript:void(0)">+ Show More</a>
+            </li>
+          </ul>
+        </div>
+        <div id="dap-graduate-campuses" class="clearfix columns small-12 medium-6">
+          <h4 class="subsection-heading">Campus:</h4>
+          <div class="field-container">
+            <label tabindex="0" class="program-type button" for="dap-graduate-campus-all">
+              <input id="dap-graduate-campus-all" name="dap-graduate-campus-all" type="checkbox" value="all" />
+              <div class="inner">
+                {{svg "check"}}
+                <span>All</span>
+              </div>
+            </label>
+            <label tabindex="0" class="program-type button" for="dap-graduate-campus-orange">
+              <input id="dap-graduate-campus-orange" name="dap-graduate-campus-orange" type="checkbox"
+                value="Orange Campus" />
+              <div class="inner">
+                {{svg "check"}}
+
+                <span>Orange</span>
+              </div>
+            </label>
+            <label tabindex="0" class="program-type button" for="dap-graduate-campus-irvine">
+              <input id="dap-graduate-campus-irvine" name="dap-graduate-campus-irvine" type="checkbox"
+                value="Rinker Health Science Campus" />
+              <div class="inner">
+                {{svg "check"}}
+
+                <span>Rinker (Irvine) Health Science Campus</span>
+              </div>
+            </label>
+
+
+          </div>
+          <div class="program-toggle program-toggle__blurb">
+            <div class="program-toggle__image">
+                <img src="../img/smiling-student.png" alt="">
+
+            </div>
+            <div class="program-toggle__text">
+              <h4 class="subsection-heading">Graduate Degree and Program Finder</h4>
+              <p>If you are looking for an graduate program, please use our graduate Degree and Program
+                Finder.
+              </p>
+            </div>
+          </div>
+
+
+        </div>
+
+
+
+      </div>
+    </div>
+
+    {{!-- the search fields -- move these above results area --}}
+    {{!-- <div id="js-dap-graduate-filter-types" class="filter-types">
+      <div class="row">
+
+        <!-- Filter by Schools and Colleges -->
+        <div class="columns small-12 large-5">
+          <div class="field-container custom-select-container">
+            <label tabindex="0" for="dap-graduate-school" class="show-for-sr">Filter by Schools and
+              Colleges</label>
+            <select name="dap-graduate-school" id="dap-graduate-school">
+              <option disabled="disabled" selected="selected" value="none">Filter by Schools and Colleges</option>
+              <option value="all">All Schools and Colleges</option>
+              {{#parseFixture 'dap-feature.json'}}
+              {{#each schools}}
+              <option value="{{id}}">{{{title}}}</option>
+              {{/each}}
+              {{/parseFixture}}
+            </select>
+          </div>
+        </div>
+
+        <!-- Or Separator -->
+        <div class="columns small-12 large-2">
+          <div class="or-separator">
+            <span>Or</span>
+          </div>
+        </div>
+
+        <!-- Search for Degrees and Programs -->
+        <div class="columns small-12 large-5">
+          <div class="field-container">
+            <label tabindex="0" for="dap-graduate-keyword" class="show-for-sr">Search for Degrees and
+              Programs</label>
+            <input id="dap-graduate-keyword" name="dap-graduate-keyword" class="input-with-button" type="text"
+              placeholder="Search Degrees &amp; Programs">
+            <button type="submit">
+              <span class="show-for-sr">Search for Degrees and Programs</span>
+              {{svg "search"}}
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div> --}}
+
+  </fieldset>
 </form>
 <!-- end partial:dap-graduate-form -->

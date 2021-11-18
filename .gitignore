@@ -54,3 +54,4 @@ todo.txt
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+.npmrc
