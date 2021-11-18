@@ -37,17 +37,18 @@
 #macro(outputFactCard $cardElement)
     #set ($card = {
         "backLinkLabel"       : $_EscapeTool.xml($cardElement.getChild('backLinkLabel').value),
-        "linkType"            : $_XPathTool.selectSingleNode($cardElement, 'link/@type').getValue(),
-        "plainTextLink"       : $cardElement.getChild('plainTextLink').value,
-        "symlink"             : $_XPathTool.selectSingleNode($cardElement, 'link/content/system-symlink').value,
-        "linkPath"            : $cardElement.getChild('link').getChild('path').value,
-        "statNumber"          : $_XPathTool.selectSingleNode($cardElement, 'frontStat/frontStatNumber').value,
-        "statText1"           : $_XPathTool.selectSingleNode($cardElement, 'frontStat/frontStatText1').value,
-        "statText2"           : $_XPathTool.selectSingleNode($cardElement, 'frontStat/frontStatText2').value,
-        "statBackgroundImage" : $_XPathTool.selectSingleNode($cardElement, 'frontStat/frontBackgroundImage').value,
-        "statBackgroundColor" : $_XPathTool.selectSingleNode($cardElement, 'frontStat/frontBackgroundColor').value,
-        "backStat"            : $_XPathTool.selectSingleNode($cardElement, 'backStat/backStat').value
+        "linkType"            : $_EscapeTool.xml($_XPathTool.selectSingleNode($cardElement, 'link/@type').getValue()),
+        "plainTextLink"       : $_EscapeTool.xml($cardElement.getChild('plainTextLink').value),
+        "symlink"             : $_EscapeTool.xml($_XPathTool.selectSingleNode($cardElement, 'link/content/system-symlink').value),
+        "linkPath"            : $_EscapeTool.xml($cardElement.getChild('link').getChild('path').value),
+        "statNumber"          : $_EscapeTool.xml($_XPathTool.selectSingleNode($cardElement, 'frontStat/frontStatNumber').value),
+        "statText1"           : $_EscapeTool.xml($_XPathTool.selectSingleNode($cardElement, 'frontStat/frontStatText1').value),
+        "statText2"           : $_EscapeTool.xml($_XPathTool.selectSingleNode($cardElement, 'frontStat/frontStatText2').value),
+        "statBackgroundImage" : $_EscapeTool.xml($_XPathTool.selectSingleNode($cardElement, 'frontStat/frontBackgroundImage').value),
+        "statBackgroundColor" : $_EscapeTool.xml($_XPathTool.selectSingleNode($cardElement, 'frontStat/frontBackgroundColor').value),
+        "backStat"            : $_EscapeTool.xml($_XPathTool.selectSingleNode($cardElement, 'backStat/backStat').value)
     })
+
     #if ($card.plainTextLink != '')
         #set ($link = $!card.plainTextLink )
     #elseif ($card.linkType == 'symlink')
