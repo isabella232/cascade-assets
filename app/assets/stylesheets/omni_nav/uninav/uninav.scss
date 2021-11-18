@@ -98,7 +98,7 @@ html {
   flex-wrap: wrap;
   background-color: $white;
   top: 0;
-  z-index: 999999999;
+  z-index: 1000000;
 
   @include respond(phone) {
     flex-wrap: nowrap;
