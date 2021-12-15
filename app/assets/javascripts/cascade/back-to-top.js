@@ -7,6 +7,11 @@ $(function() {
     // If Internet Explorer, return version number
     console.log(parseInt(ua.substring(msie + 5, ua.indexOf(".", msie))));
   } // If another browser, return 0
+  else if ($('[href*="ocelotbot"]').length) {
+    // If chatbot is anywhere on page
+    // console.log("chatbot detected.");
+    $("#back2top").hide();
+  }
   else {
     if ($("#back2top").length) {
       var didScroll;
