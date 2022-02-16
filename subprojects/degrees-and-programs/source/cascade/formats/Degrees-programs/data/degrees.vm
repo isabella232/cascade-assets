@@ -4,6 +4,7 @@
     Created:       02/13/2017
     Last Modified: M. Thomas 05/19/2017 - change default campus from Main to Orange (same code in PrimaryContent format is not used)
     Modified By:   Nick Nadel 7/7/2021
+	Modified By:   J. Hoang 2/16/2022 - Fixed results not showing schools 
     Description:   Returns a JSON object of the degrees of the user. 
 *#
 
@@ -199,7 +200,7 @@ ${output.replaceAll( $trimSpacingRegExp, "" )}
 					#set ( $props.schools = [] )
 					#set ( $schools = $blockObject.getStructuredDataNode("school").textValues )
 
-          
+					#generateArray( $props.schools, $schools )
 
           ## Semester 
             #set ( $props.startTerm = [] )
