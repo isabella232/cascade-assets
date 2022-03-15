@@ -11,6 +11,93 @@ bundle install
 rake serve
 ```
 
+## Possible Errors
+*** If you’re not getting any error please skip to the next step to install npm packages ***
+
+### Ruby version
+
+You may find the detailed step by step instructions here: https://mac.install.guide/ruby/1.html
+
+If you’re getting the following error when executing “bundle install”:
+```
+ERROR: While executing gem ... (Gem::FilePermissionError)
+You don't have write permissions for the /Library/Ruby/Gems/2.6.0 directory
+```
+
+#### Check installed version of the Ruby:
+
+```
+Which -a ruby
+```
+If you see /usr/bin/ruby, it is the system Ruby which comes pre-installed on macOS to support scripting. Don't try to remove the system Ruby. Leave it in place and use Homebrew or a version manager to install a newer Ruby version.
+
+#### To Install Homebrew:
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+#### To install version manager: (ex: asdf)
+
+```
+brew install asdf
+```
+
+To use asdf, add the following line to your ~/.zshrc:
+```
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+```
+
+Close and reopen the terminal after installation.
+Confirm installation of the asdf:
+```
+asdf --version
+```
+
+To allow asdf read older versions of Ruby:
+```
+echo "legacy_version_file = yes" >> ~/.asdfrc
+cat ~/.asdfrc
+legacy_version_file = yes
+```
+
+#### Install Ruby with Asdf:
+
+```
+asdf plugin add ruby
+asdf install ruby 2.7.3
+```
+
+Set the default version of Ruby:
+```
+asdf global ruby 2.7.3
+```
+
+To set the local default version, go to the project folder and run:
+```
+asdf local ruby 2.7.3
+```
+
+Once you’ve set the default version of the Ruby run “bundle install” again!
+```
+bundle install
+```
+
+#### Install NPM packages:
+
+To install npm packages, run the following commands in the same order:
+```
+npm config set "@fortawesome:registry" https://npm.fontawesome.com/
+npm config set "//npm.fontawesome.com/:_authToken" 35502DF3-AEA2-4B2E-9B3E-3C5D1BADEC18
+npm install
+```
+
+#### Run server:
+
+```
+Rake serve
+```
+
 Send your browser to [http://localhost:5000](http://localhost:5000). Turn on your livereload extension (optional).
 
 ## Making Changes
