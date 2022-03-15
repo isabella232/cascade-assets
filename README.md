@@ -98,7 +98,9 @@ npm install
 Rake serve
 ```
 
+
 Send your browser to [http://localhost:5000](http://localhost:5000). Turn on your livereload extension (optional).
+
 
 ## Making Changes
 
