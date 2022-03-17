@@ -35,32 +35,24 @@
 ## End Masthead Type
 
 
-
-
+[system-view:internal]
+<!-- Fix internal previews -->
+<style>
+  .wavy-masthead__wave-mask {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+</style>
+[/system-view:internal]
 
 #end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #macro(mastheadImage)
 #set ($widgetXPath = 'masthead-2021')
 ## $widgetXPath is just a verbose alias for $wxp
 #set ($imageUrlInt =
-$currentMastheadType.getChild('image').getChild('imageUrlInt').getChild('path').value )
+$currentMastheadType.getChild('image').getChild('imageUrlInt').getChild('link').value )
 #set ($imageUrlExt =
 $currentMastheadType.getChild('image').getChild('imageUrlExt').value )
 
@@ -99,7 +91,7 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageWidth
 #set ($imageHeight =
 $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeight').value.toLowerCase())
 #else
-#set ($imageHeight = 'auto')
+#set ($imageHeight = '100%')
 #end
 
 
@@ -118,7 +110,7 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
 </style>')
 #elseif ($imageShape == 'square')
 #set ($imageWidth = '100%')
-#set ($imageHeight = 'auto')
+#set ($imageHeight = '100%')
 #end
 
 
@@ -138,29 +130,29 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
 #if ($imageType == 'internal cascade image')
 #set ($imageUrlExt = '')
 
-<div class="wavy-masthead__img--${_EscapeTool.xml($imageShape)} wavy-masthead__img"
+<div class="wavy-masthead__img wavy-masthead__img"
   style="width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)};">
-  <img $imageRole class="wavy-masthead__img img--${_EscapeTool.xml($imageShape)} "
-    src="[system-asset]${_EscapeTool.xml($imageUrlInt)}[/system-asset]" alt="${_EscapeTool.xml($altText)}"
+  <img $imageRole class="wavy-masthead__img"
+    src="[system-asset]${imageUrlInt}[/system-asset]" alt="${_EscapeTool.xml($altText)}"
     title="${_EscapeTool.xml($altText)}"
-    style="object-fit: '${_EscapeTool.xml($objectFit)}'; object-position:'${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}'; width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)}; " />
+    style="object-fit: ${_EscapeTool.xml($objectFit)}; object-position:${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}; width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)}; " />
   <![CDATA[#protect
-                      $code
-                     #protect]]>
+    $code
+  #protect]]>
 </div>
 
 #end
 #if (!$imageType.contains("none") && $imageType == 'external image url')
 #set ($imageUrlInt = '')
 
-<div class="wavy-masthead__img--${_EscapeTool.xml($imageShape)} wavy-masthead__img"
+<div class="wavy-masthead__img wavy-masthead__img"
   style="width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)};">
-  <img $imageRole class="wavy-masthead__img img--${_EscapeTool.xml($imageShape)} "
+  <img $imageRole class="wavy-masthead__img"
     src="${_EscapeTool.xml($imageUrlExt)}" alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}"
-    style="object-fit: '${_EscapeTool.xml($objectFit)}'; object-position:'${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}'; width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)}; " />
+    style="object-fit: ${_EscapeTool.xml($objectFit)}; object-position: ${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}; width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)}; " />
   <![CDATA[#protect
-                      $code
-                     #protect]]>
+    $code
+  #protect]]>
 </div>
 #end
 #end
@@ -203,11 +195,11 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
 #end
 
 #if ($linkType == 'Internal Link')
-#set ($linkURL = $link.getChild('internalLink').getChild('path').value )
+#set ($linkURL = $link.getChild('internalLink').getChild('link').value )
 #elseif ($linkType == 'External Link')
 #set ($linkURL = $link.getChild('externalLink').value )
 #else
-#set ($linkURL = $link.getChild('fileLink').getChild('path').value )
+#set ($linkURL = $link.getChild('fileLink').getChild('link').value )
 #end
 
 #if ($linkLabel != '')
@@ -259,12 +251,12 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
 #end
 
 #if ($linkType == 'internalLink')
-#set ($linkURL = $link.getChild('internalLinkPage').getChild('path').value )
+#set ($linkURL = $link.getChild('internalLinkPage').getChild('link').value )
 
 #elseif ($linkType == 'externalLink')
 #set ($linkURL = $link.getChild('externalLink').value )
 #else
-#set ($linkURL = $link.getChild('fileLink').getChild('path').value )
+#set ($linkURL = $link.getChild('fileLink').getChild('link').value )
 #end
 
 #if ($linkLabel != '')
@@ -331,11 +323,12 @@ $currentMastheadType.getChild('backgroundSelector').value)
 
 #set ($imageType = $currentMastheadType.getChild('image').getChild('imageType').value)
 #set ($imageUrlExt = $currentMastheadType.getChild('image').getChild('imageUrlExt').value)
-#set ($imageUrlInt = $currentMastheadType.getChild('image').getChild('imageUrlInt').getChild('path').value)
+#set ($imageUrlInt = $currentMastheadType.getChild('image').getChild('imageUrlInt').getChild('link').value)
 #set ($imageAltOrDecorative = $currentMastheadType.getChild('image').getChild('imageAltOrDecorative').value)
+#set ($showDropDownButton = $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').getChild('showDropDownButton').value)
 #set ($dropdownLabel =
 $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').getChild('dropdownLabel').value)
-#set ($videoURL = $currentMastheadType.getChild('videoBackground').getChild('videoChooser').getChild('path').value)
+#set ($videoURL = $currentMastheadType.getChild('videoBackground').getChild('videoChooser').getChild('link').value)
 ## image group ##
 ## SINGLE IMAGE GROUP ##
 
@@ -383,11 +376,7 @@ $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').
         '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/singleImage_background_group/callToActionButtons/link')
         #set ($buttonClasses = ['button--red', 'no-border'])
 
-
-        <div class="hidden">
-            dropdownLabel $dropdownLabel
-        </div>
-        #if (!$_PropertyTool.isNull($dropdownLabel))
+        #if ($showDropDownButton != 'no')
         <div class="button--dropdown__wrapper">
           <a href="" class="button button--red no-border button--dropdown">
             <span class="label">
@@ -422,8 +411,7 @@ $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').
         #cta($currentPage,
         '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/singleImage_background_group/callToActionButtons/link')
         #set ($buttonClasses = ['button--red', 'no-border'])
-
-
+        #if ($showDropDownButton != 'no')
         <div class="button--dropdown__wrapper">
           <a href="" class="button button--red no-border button--dropdown">
             <span class="label">
@@ -440,6 +428,7 @@ $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').
             #dropdownItems()
           </ul>
         </div>
+        #end
       </div>
     </div>
   </span>
@@ -454,9 +443,8 @@ $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').
 <ul class="debug">
   <style>
     .wavy-masthead__wave-mask {
-      mask-image: image-url("https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png") !important;
-
-      -webkit-mask-image: image-url("https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png") !important;
+      mask-image: url("https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png") !important;
+      -webkit-mask-image: url("https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png") !important;
     }
   </style>
   #output("wavyMastheadType")
@@ -494,7 +482,7 @@ $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').
 #set ($widgetXPath = 'masthead-2021')
 ## $widgetXPath is just a verbose alias for $wxp
 #set ($imageUrlInt =
-$currentMastheadType.getChild('image').getChild('imageUrlInt').getChild('path').value )
+$currentMastheadType.getChild('image').getChild('imageUrlInt').getChild('link').value )
 #set ($imageUrlExt =
 $currentMastheadType.getChild('image').getChild('imageUrlExt').value )
 
@@ -533,7 +521,7 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageWidth
 #set ($imageHeight =
 $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeight').value.toLowerCase())
 #else
-#set ($imageHeight = 'auto')
+#set ($imageHeight = '100%')
 #end
 
 
@@ -552,7 +540,7 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
 </style>')
 #elseif ($imageShape == 'square')
 #set ($imageWidth = '100%')
-#set ($imageHeight = 'auto')
+#set ($imageHeight = '100%')
 #end
 
 
@@ -572,29 +560,29 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
 #if ($imageType == 'internal cascade image')
 #set ($imageUrlExt = '')
 
-<div class="wavy-masthead__img--${_EscapeTool.xml($imageShape)} wavy-masthead__img"
+<div class="wavy-masthead__img wavy-masthead__img"
   style="width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)};">
-  <img $imageRole class="wavy-masthead__img img--${_EscapeTool.xml($imageShape)} "
-    src="[system-asset]${_EscapeTool.xml($imageUrlInt)}[/system-asset]" alt="${_EscapeTool.xml($altText)}"
+  <img $imageRole class="wavy-masthead__img"
+    src="[system-asset]${imageUrlInt}[/system-asset]" alt="${_EscapeTool.xml($altText)}"
     title="${_EscapeTool.xml($altText)}"
-    style="object-fit: '${_EscapeTool.xml($objectFit)}'; object-position:'${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}'; width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)}; " />
+    style="object-fit: ${_EscapeTool.xml($objectFit)}; object-position:${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}; width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)}; " />
   <![CDATA[#protect
-                      $code
-                     #protect]]>
+    $code
+  #protect]]>
 </div>
 
 #end
 #if (!$imageType.contains("none") && $imageType == 'external image url')
 #set ($imageUrlInt = '')
 
-<div class="wavy-masthead__img--${_EscapeTool.xml($imageShape)} wavy-masthead__img"
+<div class="wavy-masthead__img wavy-masthead__img"
   style="width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)};">
-  <img $imageRole class="wavy-masthead__img img--${_EscapeTool.xml($imageShape)} "
+  <img $imageRole class="wavy-masthead__img"
     src="${_EscapeTool.xml($imageUrlExt)}" alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}"
-    style="object-fit: '${_EscapeTool.xml($objectFit)}'; object-position:'${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}'; width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)}; " />
+    style="object-fit: ${_EscapeTool.xml($objectFit)}; object-position:${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}; width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)}; " />
   <![CDATA[#protect
-                      $code
-                     #protect]]>
+    $code
+  #protect]]>
 </div>
 #end
 #end
@@ -633,11 +621,11 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
 #end
 
 #if ($linkType == 'Internal Link')
-#set ($linkURL = $link.getChild('internalLink').getChild('path').value )
+#set ($linkURL = $link.getChild('internalLink').getChild('link').value )
 #elseif ($linkType == 'External Link')
 #set ($linkURL = $link.getChild('externalLink').value )
 #else
-#set ($linkURL = $link.getChild('fileLink').getChild('path').value )
+#set ($linkURL = $link.getChild('fileLink').getChild('link').value )
 #end
 
 #if ($linkLabel != '')
@@ -689,12 +677,12 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
 #end
 
 #if ($linkType == 'internalLink')
-#set ($linkURL = $link.getChild('internalLinkPage').getChild('path').value )
+#set ($linkURL = $link.getChild('internalLinkPage').getChild('link').value )
 
 #elseif ($linkType == 'externalLink')
 #set ($linkURL = $link.getChild('externalLink').value )
 #else
-#set ($linkURL = $link.getChild('fileLink').getChild('path').value )
+#set ($linkURL = $link.getChild('fileLink').getChild('link').value )
 #end
 
 #if ($linkLabel != '')
@@ -788,7 +776,7 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
 
 
     #if ($linkType == 'internalCascadeLink')
-    #set ($boxLink = $box.getChild('internalURL').getChild('path').value)
+    #set ($boxLink = $box.getChild('internalURL').getChild('link').value)
     #else
     #set ($boxLink = $box.getChild('externalURL').value)
     #end
@@ -855,14 +843,16 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
     #set ($currentMastheadType = $slide) ## this is hacky, but we need the macro to think the slide is the current
     masthead.
     #set ($backgroundSelector = $slide.getChild('backgroundSelector').value)
-    #set ($videoURL = $slide.getChild('videoBackground').getChild('videoChooser').getChild('path').value)
+    #set ($videoURL = $slide.getChild('videoBackground').getChild('videoChooser').getChild('link').value)
     slide - header: $sliderHeader
     ## END SLIDER IMAGE
 
     <span class="mobile">
       <div class="wavy-masthead wavy-masthead__container">
         #videoToggleButtons()
+        #if ($showTopLeftText != 'no')
         #wavyCorner()
+        #end
 
         <div class="wavy-masthead__wave-mask">
           #if ($backgroundSelector == 'image')
@@ -922,11 +912,12 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
 
 #set ($imageType = $currentMastheadType.getChild('image').getChild('imageType').value)
 #set ($imageUrlExt = $currentMastheadType.getChild('image').getChild('imageUrlExt').value)
-#set ($imageUrlInt = $currentMastheadType.getChild('image').getChild('imageUrlInt').getChild('path').value)
+#set ($imageUrlInt = $currentMastheadType.getChild('image').getChild('imageUrlInt').getChild('link').value)
 #set ($imageAltOrDecorative = $currentMastheadType.getChild('image').getChild('imageAltOrDecorative').value)
+#set ($showDropDownButton = $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').getChild('showDropDownButton').value)
 #set ($dropdownLabel =
 $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').getChild('dropdownLabel').value)
-#set ($videoURL = $currentMastheadType.getChild('videoBackground').getChild('videoChooser').getChild('path').value)
+#set ($videoURL = $currentMastheadType.getChild('videoBackground').getChild('videoChooser').getChild('link').value)
 ## image group ##
 ## SINGLE IMAGE GROUP ##
 #end
@@ -936,9 +927,8 @@ $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').
 <ul class="debug">
   <style>
     .wavy-masthead__wave-mask {
-      mask-image: image-url("https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png") !important;
-
-      -webkit-mask-image: image-url("https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png") !important;
+      mask-image: url("https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png") !important;
+      -webkit-mask-image: url("https://www.chapman.edu/_files/img/hero-panels/fallback-images/masthead-wave-gradient.png") !important;
     }
   </style>
   #output("wavyMastheadType")
