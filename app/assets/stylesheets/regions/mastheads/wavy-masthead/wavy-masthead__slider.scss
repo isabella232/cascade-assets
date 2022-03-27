@@ -37,12 +37,6 @@
         text-shadow: none;
         text-transform: none;
         font-family: $futura-regular;
-        &:after {
-          content: "\f105";
-          font-family: "Font Awesome 5 Pro";
-          font-weight: 900;
-          margin-left: 2px;
-        }
       }
       align-items: start;
       margin-left: 200px;

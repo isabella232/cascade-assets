@@ -480,6 +480,22 @@
       max-width: 100%;
     }
   }
+
+  @media screen and (max-width: 600px) {
+
+    &__container {
+      min-height: 300px;
+    }
+
+    &:after {
+      display: none;
+    }
+  
+    &__wave-mask {
+      mask-image: none;
+      -webkit-mask-image: none;
+    }
+  }
 }
 
 // dev only
