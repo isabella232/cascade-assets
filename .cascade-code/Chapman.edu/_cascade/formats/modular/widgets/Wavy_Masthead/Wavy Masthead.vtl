@@ -600,14 +600,19 @@ $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').
       <span class="mobile__text bg--${sliderTextBackground}" data-display-mobile="no">
         <div class="wavy-masthead__text--inner wavy-masthead__text--inner--${sliderTextBackground}">
           <div class="wavy-masthead__header">
-            #if ($showHeader != 'no')
-            <h2 data-display-single-image-or-video="true">
-              ${_EscapeTool.xml($sliderHeader)}
-            </h2>
+              #if ($sliderHeaderIsLink != 'no')
+              <h2 data-display-single-image-or-video="true">
+                #cta($currentPage,
+        '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/mulitipleImageSlider/imageSlider/sliderText/slideHeaderLink','','no')
+              </h2>
+              #else
+              <h2 data-display-single-image-or-video="true">
+                ${_EscapeTool.xml($sliderHeader)}
+              </h2>
+              #end
             <p>
               ${_EscapeTool.xml($textArea)}
             </p>
-            #end
           </div>
         </div>
       </span>
