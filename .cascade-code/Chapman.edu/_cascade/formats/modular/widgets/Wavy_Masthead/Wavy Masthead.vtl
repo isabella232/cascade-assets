@@ -200,7 +200,7 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
 #if ($linkType == 'Internal Link')
 #set ($linkURL = $link.getChild('internalLink').getChild('link').value )
 #elseif ($linkType == 'External Link')
-#set ($linkURL = $link.getChild('externalLink').value )
+#set ($linkURL = $_SerializerTool.serialize($link.getChild('externalLink').value,false))
 #else
 #set ($linkURL = $link.getChild('fileLink').getChild('link').value )
 #end
