@@ -30,9 +30,13 @@
       z-index: 99999999;
     }
   }
-  .faux-h2 {
+  h2, .faux-h2 {
     margin-top: 0;
     font-size: 2.2rem;
+    line-height: 3.3rem;
+  }
+  .wavy-masthead__header h2 {
+    margin-top: 1rem;
   }
 
   .title {
@@ -48,7 +52,7 @@
     display: flex;
     justify-content: space-around;
     justify-content: center;
-    z-index: 99999999;
+    z-index: 5;
     position: absolute;
 
     width: 100%;

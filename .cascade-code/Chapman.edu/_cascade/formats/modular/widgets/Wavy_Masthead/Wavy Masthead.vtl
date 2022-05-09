@@ -155,7 +155,23 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
   #protect]]>
 </div>
 #end
+#if ($imageType.contains("none"))
+#set ($imageUrlInt = '')
+
+<div class="wavy-masthead__img wavy-masthead__img"
+  style="width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)};">
+  <img $imageRole class="wavy-masthead__img"
+    src="https://www.chapman.edu/_assets/connecting-lines-red.jpg" alt="${_EscapeTool.xml($altText)}" title="${_EscapeTool.xml($altText)}"
+    style="object-fit: ${_EscapeTool.xml($objectFit)}; object-position: ${_EscapeTool.xml($objectPositionX)} ${_EscapeTool.xml($objectPositionY)}; width: ${_EscapeTool.xml($imageWidth)}; height: ${_EscapeTool.xml($imageHeight)}; " />
+  <![CDATA[#protect
+    $code
+  #protect]]>
+</div>
 #end
+
+
+#end
+
 ##End mastheadImage##
 
 
@@ -369,6 +385,19 @@ $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').
 
     #if ($showTopLeftText != 'no')
     #wavyCorner()
+    #else
+      <div class="wavy-masthead__header mobile__text">
+        #if ($showHeader != 'no')
+        #if (!$_PropertyTool.isNull($preheaderMasthead))
+          <div class="wavy-masthead__preheader" style="z-index: 1000;top: 50%;position: absolute;margin-left: auto;margin-right: auto;left: 0;right: 0;text-align: center;color: white;">
+            $preheaderMasthead
+          </div>
+        #end
+        <h2 data-display-single-image-or-video="true" style="z-index: 1000;top: 50%;position: absolute;margin-left: auto;margin-right: auto;left: 0;right: 0;text-align: center;color: white;">
+          $headerMasthead
+        </h2>
+        #end
+      </div>
     #end
 
     <div class="wavy-masthead__wave-mask">
@@ -407,7 +436,7 @@ $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').
 
         #if ($showDropDownButton != 'no')
         <div class="button--dropdown__wrapper">
-          <a href="" class="button button--red no-border button--dropdown">
+          <a href="javascript:void(0)" class="button button--red no-border button--dropdown">
             <span class="label">
               ${_EscapeTool.xml($dropdownLabel)}
 
@@ -438,7 +467,7 @@ $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').
         #set ($buttonClasses = ['button--red', 'no-border'])
         #if ($showDropDownButton != 'no')
         <div class="button--dropdown__wrapper">
-          <a href="" class="button button--red no-border button--dropdown">
+          <a href="javascript:void(0)" class="button button--red no-border button--dropdown">
             <span class="label">
               ${_EscapeTool.xml($dropdownLabel)}
 

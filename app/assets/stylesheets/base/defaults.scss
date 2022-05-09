@@ -292,13 +292,13 @@ a {
 
   &.button {
     display: inline-block;
-    padding: 15px 25px;
-    font-size: 16px;
+    padding: 1.5rem 2.5rem;
+    font-size: 1.6rem;
     border-radius: 3px;
     background: #dad8cf no-repeat center;
     color: $grey;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 1.0rem;
     cursor: pointer;
     @include vendorize(box-sizing, border-box);
 
