@@ -589,6 +589,40 @@ $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').
     slide - header: $sliderHeader
     ## END SLIDER IMAGE
 
+## Link stuff
+#set ($link = $slide.getChild('sliderText').getChild('slideHeaderLink'))
+## ACCESSIBILITY
+#set ($ariaLabel = $link.getChild('accessibility').getChild('ariaLabel').value)
+#set ($title = $link.getChild('accessibility').getChild('title').value)
+
+## ANALYTICS
+#set ($customID = $link.getChild('tracking').getChild('customID').value)
+#set ($dataAttr = $link.getChild('tracking').getChild('dataAttr').value)
+
+#if ($customID != '')
+#set ($customID = $link.getChild('customID').value)
+#else
+#set ( $customID = $linkLabel.replaceAll(" ", "-").replaceAll("[^a-zA-Z-]", "").replaceAll("--", "-").toLowerCase() )
+#end
+
+#if ($dataAttr != '')
+#set ($dataAttr = $link.getChild('dataAttr').value)
+#set ($dataAttr = $dataAttr)
+#else
+#set ($dataAttr = '')
+#end
+#set ($linkType = $link.getChild('linkType').value)
+#set ($linkLabel = $link.getChild('label').value)
+#if ($linkType == 'Internal Link')
+#set ($linkURL = $link.getChild('internalLink').getChild('link').value )
+#elseif ($linkType == 'External Link')
+#set ($linkURL = $_SerializerTool.serialize($link.getChild('externalLink').value,false))
+#else
+#set ($linkURL = $link.getChild('fileLink').getChild('link').value )
+#end
+## End Link stuff
+
+
     <span class="mobile">
       <div class="wavy-masthead wavy-masthead__container">
         #videoToggleButtons()
@@ -611,8 +645,10 @@ $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').
             <div class="wavy-masthead__header">
               #if ($sliderHeaderIsLink != 'no')
               <h2 data-display-single-image-or-video="true">
-                #cta($currentPage,
-        '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/mulitipleImageSlider/imageSlider/sliderText/slideHeaderLink','','no')
+                
+<a tabindex="1" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title"
+  class="text--link">#escape($linkLabel)</a>
+
               </h2>
               #else
               <h2 data-display-single-image-or-video="true">
@@ -631,9 +667,8 @@ $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').
           <div class="wavy-masthead__header">
               #if ($sliderHeaderIsLink != 'no')
               <h2 data-display-single-image-or-video="true">
-                #cta($currentPage,
-        '/system-index-block/calling-page/system-page/system-data-structure/masthead/wavyMasthead/mulitipleImageSlider/imageSlider/sliderText/slideHeaderLink','','no')
-              </h2>
+<a tabindex="1" href="$linkURL" id="$customID" data-attribute="$dataAttr" aria-label="$ariaLabel" title="$title"
+  class="text--link">#escape($linkLabel)</a>              </h2>
               #else
               <h2 data-display-single-image-or-video="true">
                 ${_EscapeTool.xml($sliderHeader)}
