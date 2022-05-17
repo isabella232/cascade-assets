@@ -54,7 +54,7 @@
              
                 <p class="description line-clamp">$featuredBody</p>
                  #if ( $featuredLinkExists )
-                      <a #outputHref($featuredLink) class="theme-bg-color theme-button">$_EscapeTool.xml($featuredLink.getChild('label').value)</a>
+                      <a #outputHref($featuredLink) class="theme-bg-color theme-button" style="float: none;">$_EscapeTool.xml($featuredLink.getChild('label').value)</a>
                 #end
                 
               </div>
