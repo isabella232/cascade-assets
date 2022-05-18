@@ -98,6 +98,7 @@
     #set ($sectionHeader = $parentGroup.getChild('sectionHeader').value)
 
     #set ($sectionHeaderParagraph = $parentGroup.getChild('sectionHeaderParagraph').value)
+    #set ($sectionHeaderParagraphObject = $parentGroup.getChild('sectionHeaderParagraph'))
 
     #getSetVal($parentGroup "sectionHeaderParagraph")
     
@@ -238,10 +239,10 @@
         ${_EscapeTool.xml($sectionHeader)}
       </h2>
     #end
-    
-    #if ($_SerializerTool.serialize($element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionHeaderParagraph'), true) != "")
-      <div class="section-intro__title text-align--${introAndOutroTextAlignment}">     
-        $_SerializerTool.serialize($element.getChild($widgetXPath).getChild('sectionHeaderGroup').getChild('sectionHeaderParagraph'), true)
+
+    #if ($sectionHeaderParagraph != "")
+      <div class="section-intro__title text-align--${introAndOutroTextAlignment}">  
+        $_SerializerTool.serialize($sectionHeaderParagraphObject, true)      
       </div>
     #end
     </div>
