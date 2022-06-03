@@ -216,10 +216,11 @@ $currentMastheadType.getChild('image').getChild('advanced').getChild('imageHeigh
 #if ($linkType == 'Internal Link')
 #set ($linkURL = $link.getChild('internalLink').getChild('link').value )
 #elseif ($linkType == 'External Link')
-#set ($linkURL = $_SerializerTool.serialize($link.getChild('externalLink').value,false))
+#set ($linkURL = $link.getChild('externalLink').value )
 #else
 #set ($linkURL = $link.getChild('fileLink').getChild('link').value )
 #end
+#set ($linkURL = ${_EscapeTool.xml($linkURL)})
 
 #if ($linkLabel != '')
 #if ($linkStyle == 'Text Link')
