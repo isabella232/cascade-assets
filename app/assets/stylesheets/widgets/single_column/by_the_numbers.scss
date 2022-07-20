@@ -35,9 +35,12 @@
         font-size: 36px;
         line-height: 40px;
         font-weight: 700;
-        font-family: "futura-pt";
         color: $cu-black;
         margin: 0 0 0 0;
+
+        span {
+          font-family: "futura-pt", Arial, sans-serif;
+        }
 
         @include bp(wildcard-max, 480px) {
           padding: 40px 0 0;

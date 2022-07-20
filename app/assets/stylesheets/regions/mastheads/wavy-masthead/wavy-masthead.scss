@@ -14,7 +14,7 @@
 
   &__preheader {
     font-size: 2.5rem;
-    text-shadow: $mastheadTextShadow;
+    text-shadow: rgb(0 0 0 / 80%) 5.5px 5.5px 8px;
     display: -ms-grid;
     display: grid;
     -webkit-box-pack: center;
@@ -175,7 +175,8 @@
   }
 
   h2 {
-    font-size: 6rem;
+    font-size: 7.5rem;
+    margin-top: 1.5rem;
     text-shadow: $mastheadTextShadow;
     display: -ms-grid;
     display: grid;
