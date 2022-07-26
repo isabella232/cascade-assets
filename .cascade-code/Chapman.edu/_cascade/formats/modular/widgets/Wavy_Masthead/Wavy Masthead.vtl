@@ -390,11 +390,11 @@ $currentMastheadType.getChild('callToActionButtons').getChild('dropDownButton').
       <div class="wavy-masthead__header mobile__text">
         #if ($showHeader != 'no')
         #if (!$_PropertyTool.isNull($preheaderMasthead))
-          <div class="wavy-masthead__preheader" style="z-index: 1000;top: 50%;position: absolute;margin-left: auto;margin-right: auto;left: 0;right: 0;text-align: center;color: white;">
+          <div class="wavy-masthead__preheader" style="z-index: 10;position:relative;text-align: center;color: white;">
             $preheaderMasthead
           </div>
         #end
-        <h2 data-display-single-image-or-video="true" style="z-index: 1000;top: 50%;position: absolute;margin-left: auto;margin-right: auto;left: 0;right: 0;text-align: center;color: white;">
+        <h2 data-display-single-image-or-video="true" style="z-index: 10;position:relative;text-align: center;color: white;">
           $headerMasthead
         </h2>
         #end
