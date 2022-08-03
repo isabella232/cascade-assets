@@ -8,7 +8,6 @@
     font-weight: 400;
     padding-top: 12px;
     padding-bottom: 15px;
-/* hello */
 
     &:hover {
       background-color: lighten($bg, 8%);
@@ -515,7 +514,7 @@
   .testimonial-widget__body {
     margin-right: 0;
   }
-
+  
   .testimonial-widget__cta {
     bottom: 0;
   }
@@ -606,10 +605,12 @@
 }
 
 html body .button.testimonial-widget__button {
+  font-family: "futura-pt", Arial, sans-serif;
   --font-size: 1.8rem;
   --padding-top: 9px;
   --padding-bottom: 9px;
   --font-size: 1.8rem;
+  margin: 0 12px 12px 0;
 }
 
 .testimonial-widget {
@@ -640,4 +641,25 @@ h1+.testimonial-widget {
 
 .callout-box-widget--left.callout.callout-box-widget--white {
   border: 1px solid var(--color-cu-light-grey) !important;
+}
+
+@media only screen and (min-width: 500px) {
+.text--link, a.button {
+  margin: 0 0 12px 12px;
+  }
+
+  .testimonial-widget__cta {
+    margin-left: -12px;
+  }
+}
+
+@media only screen and (max-width: 499px) {
+  .text--link {
+    display: table;
+    margin: 0 auto 16px auto;
+    }
+
+    a.button {
+    margin-bottom: 16px;
+    }
 }

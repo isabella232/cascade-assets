@@ -571,7 +571,8 @@ module ContentTypes
     def render_static_two_column_primary_content
       # This reproduces content from static sample version
       format("%s",
-      render_static_partial("widgets/primary_content/personnel_widget"),
+      render_static_partial("widgets/primary_content/testimonial_widget")
+      # render_static_partial("widgets/primary_content/personnel_widget"),
       # render_static_partial("widgets/primary_content/text_editor_text_only"),
       # render_static_partial("widgets/primary_content/text_editor_text_wrap"),
       # render_static_partial("widgets/primary_content/text_editor_text_video"),
@@ -594,21 +595,21 @@ module ContentTypes
         render_static_partial(
           'widgets/primary_content/personnel_widget'
         ),
-        render_static_partial('widgets/primary_content/testimonial_widget'),
-        render_static_partial('widgets/primary_content/next_steps_widget'),
-        render_static_partial('widgets/primary_content/text_with_cta'),
-        render_static_partial('widgets/primary_content/collapsables_1'),
-        render_static_partial('widgets/primary_content/collapsables_2'),
-        render_static_partial('widgets/primary_content/funnel_1up_boxes_1'),
-        render_static_partial('widgets/primary_content/funnel_2up_boxes_1'),
-        render_static_partial('widgets/primary_content/carousel_1'),
-        render_static_partial('widgets/primary_content/carousel_2'),
-        render_static_partial('widgets/primary_content/form_1'),
-        render_static_partial('widgets/primary_content/personnel_region_1'),
-        render_static_partial('widgets/primary_content/personnel_region_2'),
-        render_static_partial('widgets/primary_content/tabs_1'),
-        render_static_partial('widgets/primary_content/twitter_feed_1'),
-        render_static_partial('widgets/primary_content/logo_image_rotator_1')
+        render_static_partial('widgets/primary_content/testimonial_widget')#,
+        # render_static_partial('widgets/primary_content/next_steps_widget'),
+        # render_static_partial('widgets/primary_content/text_with_cta'),
+        # render_static_partial('widgets/primary_content/collapsables_1'),
+        # render_static_partial('widgets/primary_content/collapsables_2'),
+        # render_static_partial('widgets/primary_content/funnel_1up_boxes_1'),
+        # render_static_partial('widgets/primary_content/funnel_2up_boxes_1'),
+        # render_static_partial('widgets/primary_content/carousel_1'),
+        # render_static_partial('widgets/primary_content/carousel_2'),
+        # render_static_partial('widgets/primary_content/form_1'),
+        # render_static_partial('widgets/primary_content/personnel_region_1'),
+        # render_static_partial('widgets/primary_content/personnel_region_2'),
+        # render_static_partial('widgets/primary_content/tabs_1'),
+        # render_static_partial('widgets/primary_content/twitter_feed_1'),
+        # render_static_partial('widgets/primary_content/logo_image_rotator_1')
       )
     end
 
