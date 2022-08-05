@@ -29,6 +29,7 @@
         display: inline-flex;
         width: 50%;
         padding: 15px;
+        flex-direction: column;
     }
 
     &--widthRatio3366 {
@@ -56,7 +57,7 @@
     @include respond(tab-port) {
 
         .flex-direction {
-            flex-direction:column;
+            flex-direction: column;
         }
         h2.section-title {
             font-size: 26px;
@@ -64,6 +65,7 @@
         }
         .box {
             width: 100%;
+            flex-direction: row;
         }        
     }
 
