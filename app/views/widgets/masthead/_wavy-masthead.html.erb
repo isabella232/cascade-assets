@@ -1,7 +1,8 @@
 <style>
 .wavy-masthead__wave-mask {
-  -webkit-mask-image: none;
-  mask-image: none;
+      /* Using localfile to avoid CORs issue */
+      mask-image: url(<%= asset_path('masthead-wave-gradient.png') %>);
+      -webkit-mask-image: url(<%= asset_path('masthead-wave-gradient.png') %>);
 }
 </style>
 
