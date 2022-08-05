@@ -7,8 +7,8 @@
     #set ( $title = $twoBoxes.getChild('title').value)
     #set ( $box1Content = $_SerializerTool.serialize($twoBoxes.getChild('box1').getChild('content'), true))
     #set ( $box2Content = $_SerializerTool.serialize($twoBoxes.getChild('box2').getChild('content'), true))
-    #set ( $box1CSS = $_SerializerTool.serialize($twoBoxes.getChild('box1').getChild('inlineCSS'), true))
-    #set ( $box2CSS = $_SerializerTool.serialize($twoBoxes.getChild('box2').getChild('inlineCSS'), true))
+    #set ( $box1CSS = $twoBoxes.getChild('box1').getChild('inlineCSS').value)
+    #set ( $box2CSS = $twoBoxes.getChild('box2').getChild('inlineCSS').value)
     #set ( $box1BGColor = $twoBoxes.getChild('box1').getChild('bgColor').value)
     #set ( $box2BGColor = $twoBoxes.getChild('box2').getChild('bgColor').value)
 

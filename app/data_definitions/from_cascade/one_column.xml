@@ -709,37 +709,31 @@
       </group>
       <group identifier="twoBoxes" label="Two Boxes">
         <shared-field field-id="6a2fd5990a00002123798e302fb949d8" identifier="display" path="display"/>
-        <text default="white" field-id="6a2fd59b0a00002123798e30b7678f81" identifier="bgColor" label="Background Color" type="dropdown">
-          <dropdown-item label="White" value="white"/>
-          <dropdown-item label="Red" value="red"/>
-          <dropdown-item label="Sand" value="sand"/>
-          <dropdown-item label="Black" value="black"/>
-        </text>
-        <text default="widthRatio5050" field-id="6a40bcc80a00002123798e3092eef959" help-text="Only affects screens larger than tablet." identifier="widthRatio" label="Width Ratio (Not implemented yet. Defaults to 50/50)" type="radiobutton">
+        <text default="widthRatio5050" field-id="6a40bcc80a00002123798e3092eef959" help-text="Only affects screens larger than tablet." identifier="widthRatio" label="Width Ratio" type="radiobutton">
           <radio-item label="50/50" value="widthRatio5050"/>
           <radio-item label="33/66" value="widthRatio3366"/>
           <radio-item label="66/33" value="widthRatio6633"/>
         </text>
-        <text identifier="title" label="Section Title"/>
+        <text field-id="6f1ba3070a00002123798e30660514bf" identifier="title" label="Section Title"/>
         <group collapsed="true" identifier="box1" label="Box 1">
-          <text default="white" identifier="bgColor" label="Background Color" type="dropdown">
+          <text default="white" field-id="6f1ba3080a00002123798e302489aef2" identifier="bgColor" label="Background Color" type="dropdown">
             <dropdown-item label="White" value="white"/>
             <dropdown-item label="Red" value="red"/>
             <dropdown-item label="Sand" value="sand"/>
             <dropdown-item label="Black" value="black"/>
           </text>
-          <text identifier="content" label="Content" required="true" wysiwyg="true"/>
-          <text help-text="Example: text-align:center; color:red; max-height:600px; overflow:hidden;" identifier="inlineCSS" label="Box 1 - Container Inline CSS"/>
+          <text field-id="6f1ba3080a00002123798e30e1ccf5e9" identifier="content" label="Content" required="true" wysiwyg="true"/>
+          <text field-id="6f1ba3090a00002123798e3019081068" help-text="Example: text-align:center; color:red; max-height:600px; overflow:hidden;" identifier="inlineCSS" label="Box 1 - Container Inline CSS"/>
         </group>
         <group collapsed="true" identifier="box2" label="Box 2">
-          <text default="white" identifier="bgColor" label="Background Color" type="dropdown">
+          <text default="white" field-id="6f1ba3090a00002123798e3050aa69cb" identifier="bgColor" label="Background Color" type="dropdown">
             <dropdown-item label="White" value="white"/>
             <dropdown-item label="Red" value="red"/>
             <dropdown-item label="Sand" value="sand"/>
             <dropdown-item label="Black" value="black"/>
           </text>
-          <text identifier="content" label="Content" required="true" wysiwyg="true"/>
-          <text help-text="Example: text-align:center; color:red; max-height:600px; overflow:hidden;" identifier="inlineCSS" label="Box 2 - Container Inline CSS"/>
+          <text field-id="6f1ba30a0a00002123798e3059d04cbc" identifier="content" label="Content" required="true" wysiwyg="true"/>
+          <text field-id="6f1ba30a0a00002123798e301104f0cc" help-text="Example: text-align:center; color:red; max-height:600px; overflow:hidden;" identifier="inlineCSS" label="Box 2 - Container Inline CSS"/>
         </group>
       </group>
       <group collapsed="true" identifier="textEditorWidget" label="Text Editor Widget" restrict-to-groups="Administrators, Web-Coordinators">
