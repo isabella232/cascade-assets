@@ -455,6 +455,8 @@
       &--left {
         display: block;
         text-align: left;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
       }
       &--right {
         display: block;
