@@ -1,0 +1,72 @@
+/*  Base Styles */
+.two-boxes-widget {
+
+    display: flex;
+    flex-wrap: wrap;
+
+    @include outer-container;
+    @include pad(0 $base-spacing * 3);
+
+    @include media($large-screen) {
+      @include pad(0 $base-spacing);
+    }
+
+    &.flex-direction {
+        flex-direction:row;
+    }
+
+    h2.section-title {
+        font-family: "futura-pt", Arial, sans-serif;
+        font-size: 36px;
+        line-height: 40px;
+        margin: 20px 0;
+        font-weight: 800;
+        width: 100%;
+        text-align: center;
+    }
+
+    .box {
+        display: inline-flex;
+        width: 50%;
+        padding: 15px;
+        flex-direction: column;
+    }
+
+    &--widthRatio3366 {
+        .box:nth-of-type(1) {
+            width: 33.33%; 
+            width: calc(100%/3);
+        }
+        .box:nth-of-type(2) {
+            width: 66.66%; 
+            width: calc(200%/3);
+        }
+    }
+
+    &--widthRatio6633 {
+        .box:nth-of-type(1) {
+            width: 66.66%; 
+            width: calc(200%/3);
+        }
+        .box:nth-of-type(2) {
+            width: 33.33%; 
+            width: calc(100%/3);
+        }
+    }
+
+    @include respond(tab-port) {
+
+        .flex-direction {
+            flex-direction: column;
+        }
+        h2.section-title {
+            font-size: 26px;
+            line-height: 30px;
+        }
+        .box {
+            width: 100%;
+            flex-direction: row;
+        }        
+    }
+
+}

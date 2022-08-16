@@ -1,0 +1,24 @@
+#macro(outputTwoBoxesWidget $element)
+#import( "/_cascade/formats/helpers.velocity" )
+
+    #set ( $twoBoxes = $_XPathTool.selectSingleNode($element, 'twoBoxes') )
+
+    #set ( $widthRatio = $twoBoxes.getChild('widthRatio').value) ## 50/50, 33/66, 66/33
+    #set ( $title = $twoBoxes.getChild('title').value)
+    #set ( $box1Content = $_SerializerTool.serialize($twoBoxes.getChild('box1').getChild('content'), true))
+    #set ( $box2Content = $_SerializerTool.serialize($twoBoxes.getChild('box2').getChild('content'), true))
+    #set ( $box1CSS = $twoBoxes.getChild('box1').getChild('inlineCSS').value)
+    #set ( $box2CSS = $twoBoxes.getChild('box2').getChild('inlineCSS').value)
+    #set ( $box1BGColor = $twoBoxes.getChild('box1').getChild('bgColor').value)
+    #set ( $box2BGColor = $twoBoxes.getChild('box2').getChild('bgColor').value)
+
+
+    <div class="two-boxes-widget flex-direction two-boxes-widget--$widthRatio">
+        #if ($title != "")
+            <h2 class="section-title">${_EscapeTool.xml($title)}</h2>
+        #end
+        <div class="box two-boxes-widget--$box1BGColor" style="$box1CSS">$box1Content</div>
+        <div class="box two-boxes-widget--$box2BGColor" style="$box2CSS">$box2Content</div>
+    </div>
+
+#end
