@@ -10,13 +10,14 @@ default: &default
 
   # Additional paths webpack should lookup modules
   # ['app/assets', 'engine/foo/app/assets']
-  additional_paths: ["app/javascript/images", "app/assets/images"]
+  resolved_paths: ['app/javascript/images', 'app/assets/images']
 
   # Reload manifest.json on all requests so we reload latest compiled packs
   cache_manifest: false
 
   # Extract and emit a css file
   extract_css: true
+  
 
   static_assets_extensions:
     - .jpg
@@ -67,9 +68,10 @@ development:
     quiet: false
     pretty: false
     headers:
-      "Access-Control-Allow-Origin": "*"
+      'Access-Control-Allow-Origin': '*'
     watch_options:
-      ignored: "**/node_modules/**"
+      ignored: '**/node_modules/**'
+
 
 test:
   <<: *default
@@ -78,7 +80,7 @@ test:
   # Compile test packs to a separate directory
   public_output_path: packs-test
 
-staging:
+staging: 
   <<: *default
 
   public_output_path: _assets
@@ -91,7 +93,7 @@ staging:
 
   # Cache manifest.json for performance
   cache_manifest: true
-
+  
 production:
   <<: *default
 

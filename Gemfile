@@ -69,11 +69,12 @@ end
 
 # Gems for Development and Test
 group :development, :test do
+  require 'em/pure_ruby'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-
+  
   gem 'guard-livereload', '~> 2.4', require: false
 end
