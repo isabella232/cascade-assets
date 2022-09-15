@@ -99,7 +99,7 @@ pyenv global 3.10.6
 ```
 Add pyenv to your PATH so that you can reference python.
 ```
-echo "export PATH="${HOME}/.pyenv/shims:${PATH}" >> ~/.zshrc
+echo "export PATH=\"\${HOME}/.pyenv/shims:\${PATH}\"" >> ~/.zshrc
 ```
 Open a new terminal session for changes to take effect.
 #### Run server:
